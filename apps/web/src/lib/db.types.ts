@@ -227,14 +227,14 @@ isOneToOne: false
                   ]
                 },"eateries": {
                   Row: {
-                    "authenticity": Database["public"]['Enums']["eatery_authenticity"] | null,"created_at": string,"diet_flags": NonNullable<Json>,"food_apps": NonNullable<Json>,"id": string,"is_seed": boolean,"is_verified": boolean,"last_verified_at": string | null,"location": unknown,"menu": Json | null,"owner_id": string | null,"price_for_two": number | null,"service_style": Database["public"]['Enums']["service_style"] | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at": string | null,"vibe_tags": (string)[]
+                    "authenticity": Database["public"]['Enums']["eatery_authenticity"] | null,"created_at": string,"diet_flags": NonNullable<Json>,"food_apps": NonNullable<Json>,"id": string,"is_seed": boolean,"is_verified": boolean,"last_verified_at": string | null,"location": unknown,"menu": Json | null,"owner_id": string | null,"phone": string | null,"price_for_two": number | null,"service_style": Database["public"]['Enums']["service_style"] | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at": string | null,"vibe_tags": (string)[],"whatsapp": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location": unknown,"menu"?: Json | null,"owner_id"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[]
+                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location": unknown,"menu"?: Json | null,"owner_id"?: string | null,"phone"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
                   }
                   Update: {
-                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"menu"?: Json | null,"owner_id"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"updated_at"?: string | null,"vibe_tags"?: (string)[]
+                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"menu"?: Json | null,"owner_id"?: string | null,"phone"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
                   }
                   Relationships: [
                     {
@@ -1081,7 +1081,10 @@ isOneToOne: false
             [_ in never]: never
           }
           Functions: {
-            "cast_group_vote":
+            "approve_listing":
+{ Args: { "_id": string,"_type": Database["public"]['Enums']["listing_type"] }; Returns: undefined
+                           },
+"cast_group_vote":
 { Args: { "_entity_id": string,"_token": string,"_vote": string,"_voter_name": string,"_voter_token": string }; Returns: undefined
                            },
 "get_shared_trip":
@@ -1101,6 +1104,12 @@ isOneToOne: false
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
             }[]
+                           },
+"review_owner_claim":
+{ Args: { "_approve": boolean,"_claim": string }; Returns: undefined
+                           },
+"taluka_at":
+{ Args: { "lat": number,"lon": number }; Returns: string
                            },
 "tide_station_coords":
 { Args: Record<PropertyKey, never>; Returns: {

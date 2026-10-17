@@ -9,5 +9,9 @@ export const variables = defineEnvVars({
 	// Own PMTiles host (G3). The map reads `${PMTILES_BASE_URL}/manifest.json` to find the region file.
 	PMTILES_BASE_URL: { public: true, schema: optional },
 	// services/ola-proxy Worker URL. The web app never holds the Ola key itself.
-	OLA_PROXY_URL: { schema: optional }
+	OLA_PROXY_URL: { schema: optional },
+	// Stay price comparison (BACKEND §13). Adapter stays off until the partner account exists.
+	AGODA_ENABLED: { schema: optional },
+	AGODA_PARTNER_ID: { schema: optional },
+	AGODA_API_KEY: { schema: optional }
 });

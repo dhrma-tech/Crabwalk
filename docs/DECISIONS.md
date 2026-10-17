@@ -103,6 +103,21 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P3-9 | Map "Open now": IST, `weekday = extract(dow)` (0 = Sunday); unknown hours never count as open; stays unaffected. Map shows `published` listings only even for staff. Ghat/warning-road and planned-route styles defined but not drawn yet (no public ghat geometry until alerts/routes, P7/P9). |
 | P3-10 | AI firewall check: `scripts/check-ai-firewall.mjs` + self-test fixture, run by root `pnpm lint` (CI). AI paths: `services/api/ai/**`, `apps/web/src/lib/ai/**`, `apps/web/src/routes/api/ai/**`, `supabase/functions/ai*`. Also fails on `OLA_API_KEY` or `ola-proxy` imports anywhere outside `services/ola-proxy`. |
 
+## P4 decisions and notes
+| Ref | Decision / note |
+|---|---|
+| P4-1 | Eateries get `phone` + `whatsapp` (user); owner trigger allows them. Resolves the BACKEND §3.5 found issue. |
+| P4-2 | Photos (user): browser resizes to WebP 480/960/1600 px + ~20 px LQIP (`photos.lqip`); **no AVIF** (browsers can't encode it reliably) — deviation from FRONTEND §3/§11. Public buckets `photos` / `audio`; path `<type>/<id>/<file>`; writes = staff for the listing or its owner (audio: reviewers/admins). Storage upserts need a SELECT policy (added). |
+| P4-3 | Reports come from "Report a problem" on place/stay/eatery pages (user). No photo on reports (photos RLS is staff/owner-only). Anon abuse control: honeypot + DB throttle 20 reports/listing/hour; per-IP/user limits → P10. A report pulls the place's re-check to now. |
+| P4-4 | Content (user): verifier enters facts + EN/MR names; reviewer writes EN/HI/MR text in the review screen → `content_drafts` → `approve_listing()` copies into `*_translations` and publishes. P8 AI drafts will fill the same draft rows. |
+| P4-5 | **"Fixed checklist" (FRONTEND §7.15) interpreted as the fixed set of fact fields captured on every visit** (category, fee, best time, how to reach, station, bus stop, hours, crowd by weekday, monsoon, tide, hidden gem, delivery apps, notes). Spec lists no separate checklist items — confirm or supply items. |
+| P4-6 | Re-check queue: places only (only `places` has `next_recheck_at`). Each verification sets it to +1 month (trigger); "Mark verified today" on /admin. |
+| P4-7 | Agoda adapter behind `AGODA_ENABLED` returns null — the API call is **not implemented until partner docs/keys exist** (no guessed endpoints). Price rows: owner range ("Source: owner"), `stay_offers` links (source = affiliate network), Agoda live when enabled. Booking links are managed by admins on the stay review screen (RLS: admin write). |
+| P4-8 | API shapes: `POST /api/admin/drafts/:id/approve {type}` — `:id` is the listing id. `PATCH /api/owner/listing/:id {type, …facts}`. Admin/owner pages use form actions or fetch over the same server functions. Field form ids are client-generated (idempotent offline retries). |
+| P4-9 | Discover: itineraries (P7) omitted; categories filter via `/?category=`; "Near me" sorts loaded places by distance on the device. Place page: verdict gauge/reviews (P5) and similar/less-crowded (P8) omitted; nearby = stays/food/utilities within ~5 km. |
+| P4-10 | Service worker: stale-while-revalidate for `/api/{places,stays,eateries,dishes,map/utilities}` (closes the P2 deferral). Not pins (open-now is time-sensitive), not tides (safety data). Admin/owner/ola never cached. |
+| P4-11 | Fixed option lists where the spec ends in "…": delivery/food apps = Swiggy, Zomato, EatSure, magicpin; network operators = Jio, Airtel, Vi, BSNL. |
+
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
@@ -119,10 +134,11 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Custom SMTP + push OTP email template to live project (P1-19) — after remaining phases
 - Hindi/Marathi taluka names — team review (P1-16)
 - HI/MR UI strings — team review before launch (P2-3, `messages/NEEDS_REVIEW.md`)
+- Field-form checklist items, if different from the fact fields (P4-5)
 - Marathi UI digits: Devanagari (current, Intl default) or Latin (P2-7)
 
 ## Found issues
-- BACKEND §3.5 `eateries` has no contact column (phone/whatsapp), but owner fact fields include "contact" (§4, P4 task 5). Not added in P1 — needs a decision before P4.
+- ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
 
 ## Phase log
 | Phase | Tag | Deferred |
@@ -131,3 +147,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P1 | `phase-1` | Custom SMTP + live OTP email template (P1-19); booking-proof bucket/cleanup + verdict_agg maintenance → P5 (P1-17, P1-18) |
 | P2 | `phase-2` | HI/MR string review (P2-3); published-content runtime cache → P4, taluka packs/offline banner pack status → P9, Crabby desktop panel → P8; real logo/mascot/category icons (P2-13) |
 | P3 | `phase-3` | **User: API keys + live setup after all phases.** Deferred: `wrangler login` → tiles deploy to `crabwalk-tiles` + verify Pages Range (P3-7) + `PMTILES_BASE_URL`; `ola-proxy` deploy + `OLA_API_KEY` secret + endpoint verification (P3-6) + `OLA_PROXY_URL`; OWM/TideCheck keys → `tide-stations` run, Edge Function deploy + secrets, Vault secrets on live, real cron rows + tide attribution with live data; push P3 migrations to live + pipelines `--live`; TideCheck commercial-use email (P3-1); ghat-zone review (P3-2). Verified locally only. |
+| P4 | `phase-4` | AI drafting → P8 (stubbed via content_drafts); verdict gauge/reviews → P5; itineraries → P7; similar/less-crowded → P8; Agoda API call (needs partner docs/keys, P4-7); per-IP rate limits → P10; photo delete/reorder UI; HI/MR review of new strings; live: push P4 migrations + storage buckets with the other live setup. |

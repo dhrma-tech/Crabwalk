@@ -28,6 +28,21 @@
 			{/if}
 		</section>
 
+		{#if data.isStaff || data.isOwner}
+			<nav class="flex flex-col gap-2">
+				{#if data.isStaff}<a
+						href={resolve('/admin')}
+						class="flex min-h-12 items-center rounded-card border border-border bg-surface px-4 type-h3 text-text no-underline"
+						>{m.me_staff()}</a
+					>{/if}
+				{#if data.isOwner}<a
+						href={resolve('/owner')}
+						class="flex min-h-12 items-center rounded-card border border-border bg-surface px-4 type-h3 text-text no-underline"
+						>{m.me_owner()}</a
+					>{/if}
+			</nav>
+		{/if}
+
 		<section class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
 			<h2 class="type-h2">{m.theme()}</h2>
 			<form method="POST" action="/prefs" class="flex flex-wrap gap-2" data-clip-check>
