@@ -2,9 +2,9 @@ import { fail, redirect } from '@sveltejs/kit';
 import { SUPABASE_URL } from '$app/env/public';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({ locals, url }) => {
 	const user = await locals.getUser();
-	return { email: user?.email ?? null };
+	return { email: user?.email ?? null, error: url.searchParams.get('error') };
 };
 
 export const actions: Actions = {
@@ -22,7 +22,10 @@ export const actions: Actions = {
 		const email = String((await request.formData()).get('email') ?? '').trim();
 		if (!email) return fail(400, { error: 'email' });
 		const { error } = await locals.supabase.auth.signInWithOtp({ email });
-		if (error) return fail(error.status === 429 ? 429 : 502, { error: 'send', email });
+		if (error)
+			return error.status === 429
+				? fail(429, { error: 'rate', email })
+				: fail(502, { error: 'send', email });
 		return { sent: true, email };
 	},
 

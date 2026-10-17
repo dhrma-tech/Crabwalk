@@ -22,6 +22,20 @@ jobs:
       - run: pnpm run test
       - run: pnpm run build
 
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm --filter @crabwalk/web exec playwright install --with-deps chromium
+      # Screenshot baselines are rendered on Windows (local); CI runs every other shell check.
+      - run: pnpm --filter @crabwalk/web exec playwright test --grep-invert snapshot
+
   secrets:
     runs-on: ubuntu-latest
     steps:

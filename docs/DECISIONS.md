@@ -72,6 +72,23 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P1-22 | CLI uses a scoped personal access token (`SUPABASE_ACCESS_TOKEN` in `.env`): Project read, Database read/write, Auth + Edge Functions read/write, Add-ons read. |
 | P1-23 | SvelteKit 3 (scaffolded by `sv`): env via `src/env.ts` (`defineEnvVars`) read from repo-root `.env` (kit `env.dir`); external redirects allowlisted to the Supabase origin only. |
 
+## P2 decisions and notes
+| Ref | Decision / note |
+|---|---|
+| P2-1 | i18n = **Paraglide JS 2** (user). Locale order: cookie → `Accept-Language` / `navigator.languages` → `en`. Switch = form POST `/prefs` (works without JS); signed-in users also get `profiles.language` / `profiles.theme` written. Sign-in does not pull profile prefs back into the cookie (cookie wins). |
+| P2-2 | **Lighthouse 12+ removed the PWA category**, so PLAN P2 acceptance "Lighthouse PWA installable" is checked with Chrome's `Page.getInstallabilityErrors` in Playwright instead (user). |
+| P2-3 | HI/MR UI strings drafted by Claude (user). **All unreviewed**; tracked in `apps/web/messages/NEEDS_REVIEW.md`. |
+| P2-4 | Unbuilt nav targets (Discover, Map, Crabby, Plan) show honest empty states (user). Search icon is `aria-disabled` and shows "Search arrives in a later update" — FRONTEND §4 has no search route. Plan tab → `/plan/new` (§4 has no `/plan` index). |
+| P2-5 | `/me` is reachable by guests in P2 (theme + language settings + sign-in CTA). FRONTEND §4 marks Me "user"; account-only sections get gated as later phases add them. |
+| P2-6 | **Override of FRONTEND §2 `--text-muted`** (user): light `#8A7A64` → `#796B58`, dark `#8F826F` → `#998B77`. The locked values failed AA (3.64–4.16:1 light; 4.02/4.49:1 dark on raised/surface). `--sponsor` and `sand-500` ramp unchanged. Enforced by `src/lib/contrast.test.ts`. |
+| P2-7 | `Intl` `mr-IN` currency style drops lakh grouping (`₹१२५,०००`), so ₹ is prefixed to the decimal format (`₹१,२५,०००`). `mr` therefore shows Devanagari digits (Intl default); `en`/`hi` show Latin. |
+| P2-8 | Tailwind v4: §2.1 ramps mapped in CSS `@theme` (not v3 `theme.extend.colors`). Default palette and `md`/`2xl` breakpoints removed so only brand tokens and §2.4 breakpoints exist. |
+| P2-9 | Fonts: subset from google/fonts OFL sources with `subset-font` (`apps/web/scripts/subset-fonts.mjs`). Sizes: Baloo 2 600/700 ≈ 84 KB each, Mukta 400/600 ≈ 117/121 KB (Devanagari conjuncts). Licence in `static/fonts/OFL.txt`. |
+| P2-10 | Component gallery `/dev/components` is served only by `vite dev` or `vite build --mode e2e` (sample data never in prod). Screenshot baselines are win32 (local); CI `e2e` job runs all other shell checks. |
+| P2-11 | SvelteKit 3: service worker at `src/service-worker/` with its own tsconfig; uses `$app/manifest` + `$app/env`. Paraglide emits `.d.ts` (its JS doesn't type-check against Cloudflare `Request`). |
+| P2-12 | Diet dot colours (spec silent): veg `--ok`, non-veg laterite-700, Jain mango-700 — always with a text label. |
+| P2-13 | Placeholders until art: `<Crabby>` SVG, `<CategoryIcon>` Lucide glyphs, PWA icons (sand tile + laterite disc). |
+
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
@@ -87,6 +104,8 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Emergency keyword list EN/HI/MR — team to finalize before P8
 - Custom SMTP + push OTP email template to live project (P1-19) — after remaining phases
 - Hindi/Marathi taluka names — team review (P1-16)
+- HI/MR UI strings — team review before launch (P2-3, `messages/NEEDS_REVIEW.md`)
+- Marathi UI digits: Devanagari (current, Intl default) or Latin (P2-7)
 
 ## Found issues
 - BACKEND §3.5 `eateries` has no contact column (phone/whatsapp), but owner fact fields include "contact" (§4, P4 task 5). Not added in P1 — needs a decision before P4.
@@ -96,3 +115,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 |---|---|---|
 | P0 | `phase-0` | Supabase project + env wiring (done in P1); CI green confirmed on GitHub by user (`gh` not installed locally) |
 | P1 | `phase-1` | Custom SMTP + live OTP email template (P1-19); booking-proof bucket/cleanup + verdict_agg maintenance → P5 (P1-17, P1-18) |
+| P2 | `phase-2` | HI/MR string review (P2-3); published-content runtime cache → P4, taluka packs/offline banner pack status → P9, Crabby desktop panel → P8; real logo/mascot/category icons (P2-13) |

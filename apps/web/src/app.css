@@ -1,0 +1,255 @@
+@import 'tailwindcss';
+
+/* FRONTEND §2 [LOCKED] — copied exactly, except --text-muted (AA fix, DECISIONS P2-6). */
+:root {
+	--laterite: #b5462b;
+	--sea: #0e6e6a;
+	--mango: #e8a33d;
+	--sand: #f6efe4;
+	--bg: #f6efe4;
+	--surface: #fbf8f2;
+	--surface-raised: #ffffff;
+	--border: #e9dfcf;
+	--text: #1e1b16;
+	--text-2: #5a4a35;
+	--text-muted: #796b58; /* DECISIONS P2-6: was #8a7a64, failed AA */
+	--cta: #b5462b;
+	--on-cta: #ffffff;
+	--link: #0e6e6a;
+	--highlight: #e8a33d;
+	--ok: #2e7d32;
+	--caution: #b7791f;
+	--danger: #c62828;
+	--emergency: #d32f2f;
+	--sponsor: #8a7a64;
+	--v4: #0e6e6a;
+	--v3: #6fc1ba;
+	--v2: #e8a33d;
+	--v1: #d9cbb5;
+	--font-display: 'Baloo 2', system-ui, sans-serif;
+	--font-body: 'Mukta', system-ui, 'Noto Sans Devanagari', sans-serif;
+	--r-chip: 999px;
+	--r-card: 16px;
+	--r-sheet: 24px;
+	--r-input: 12px;
+	/* §2.4 spacing + floating shadow */
+	--s-1: 4px;
+	--s-2: 8px;
+	--s-3: 12px;
+	--s-4: 16px;
+	--s-5: 24px;
+	--s-6: 32px;
+	--s-7: 48px;
+	--shadow-float: 0 4px 16px rgba(30, 27, 22, 0.12);
+	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+	color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		--bg: #16120e;
+		--surface: #221c16;
+		--surface-raised: #2c251d;
+		--border: #3a3128;
+		--text: #f3eadc;
+		--text-2: #c9bba6;
+		--text-muted: #998b77; /* DECISIONS P2-6: was #8f826f */
+		--cta: #e0745a;
+		--on-cta: #1e0b05;
+		--link: #4fb3ac;
+		--highlight: #f0b451;
+		color-scheme: dark;
+	}
+}
+:root[data-theme='dark'] {
+	--bg: #16120e;
+	--surface: #221c16;
+	--surface-raised: #2c251d;
+	--border: #3a3128;
+	--text: #f3eadc;
+	--text-2: #c9bba6;
+	--text-muted: #998b77;
+	--cta: #e0745a;
+	--on-cta: #1e0b05;
+	--link: #4fb3ac;
+	--highlight: #f0b451;
+	color-scheme: dark;
+}
+:lang(mr),
+:lang(hi) {
+	line-height: 1.65;
+	letter-spacing: 0;
+}
+
+/* §2.3 fonts: 4 self-hosted WOFF2, Latin + Devanagari per weight (DECISIONS B12). */
+@font-face {
+	font-family: 'Baloo 2';
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/baloo2-600.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Baloo 2';
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/baloo2-700.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Mukta';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/mukta-400.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Mukta';
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/mukta-600.woff2') format('woff2');
+}
+
+/* Tailwind mapping. Default palette removed so off-brand colours ("travel blue") can't be used. */
+@theme {
+	--color-*: initial;
+	--breakpoint-md: initial;
+	--breakpoint-2xl: initial;
+	--breakpoint-sm: 640px;
+	--breakpoint-lg: 1024px;
+	--breakpoint-xl: 1280px;
+	--font-display: 'Baloo 2', system-ui, sans-serif;
+	--font-body: 'Mukta', system-ui, 'Noto Sans Devanagari', sans-serif;
+
+	/* §2.1 tonal ramps */
+	--color-laterite-50: #fbe9e2;
+	--color-laterite-100: #f4cbbe;
+	--color-laterite-200: #e59a82;
+	--color-laterite-500: #b5462b;
+	--color-laterite-700: #8c3420;
+	--color-laterite-900: #4a1a0e;
+	--color-sea-50: #ddf3f1;
+	--color-sea-100: #b3e2de;
+	--color-sea-200: #6fc1ba;
+	--color-sea-500: #0e6e6a;
+	--color-sea-700: #0a5350;
+	--color-sea-900: #05302e;
+	--color-mango-50: #fcf0da;
+	--color-mango-100: #f8ddaa;
+	--color-mango-200: #f2c46e;
+	--color-mango-500: #e8a33d;
+	--color-mango-700: #a8721f;
+	--color-mango-900: #4a2e05;
+	--color-sand-50: #fbf8f2;
+	--color-sand-100: #f6efe4;
+	--color-sand-200: #e9dfcf;
+	--color-sand-500: #8a7a64;
+	--color-sand-700: #5a4a35;
+	--color-sand-900: #1e1b16;
+	--color-white: #ffffff;
+	--color-transparent: transparent;
+	--color-current: currentColor;
+}
+@theme inline {
+	--color-bg: var(--bg);
+	--color-surface: var(--surface);
+	--color-raised: var(--surface-raised);
+	--color-border: var(--border);
+	--color-text: var(--text);
+	--color-text-2: var(--text-2);
+	--color-muted: var(--text-muted);
+	--color-cta: var(--cta);
+	--color-on-cta: var(--on-cta);
+	--color-link: var(--link);
+	--color-highlight: var(--highlight);
+	--color-ok: var(--ok);
+	--color-caution: var(--caution);
+	--color-danger: var(--danger);
+	--color-emergency: var(--emergency);
+	--color-sponsor: var(--sponsor);
+	--color-v1: var(--v1);
+	--color-v2: var(--v2);
+	--color-v3: var(--v3);
+	--color-v4: var(--v4);
+	--radius-chip: var(--r-chip);
+	--radius-card: var(--r-card);
+	--radius-sheet: var(--r-sheet);
+	--radius-input: var(--r-input);
+	--shadow-float: var(--shadow-float);
+	--ease-brand: var(--ease);
+}
+
+/* `dark:` follows the system unless the user picked a theme in Me. */
+@custom-variant dark {
+	&:where([data-theme='dark'], [data-theme='dark'] *) {
+		@slot;
+	}
+	@media (prefers-color-scheme: dark) {
+		&:where(:root:not([data-theme='light']) *) {
+			@slot;
+		}
+	}
+}
+
+/* §2.3 type scale */
+@utility type-display {
+	font: 700 28px/34px var(--font-display);
+}
+@utility type-h1 {
+	font: 700 22px/28px var(--font-display);
+}
+@utility type-h2 {
+	font: 600 18px/24px var(--font-display);
+}
+@utility type-h3 {
+	font: 600 16px/22px var(--font-body);
+}
+@utility type-body {
+	font: 400 16px/24px var(--font-body);
+}
+@utility type-small {
+	font: 400 14px/20px var(--font-body);
+}
+@utility type-tiny {
+	font: 600 12px/16px var(--font-body);
+}
+
+@layer base {
+	html {
+		background: var(--bg);
+		color: var(--text);
+		font: 400 16px/24px var(--font-body);
+		-webkit-text-size-adjust: 100%;
+	}
+	body {
+		background: var(--bg);
+		min-height: 100dvh;
+	}
+	a {
+		color: var(--link);
+	}
+	/* §3: Lucide outline at 1.75 px (CSS beats the SVG attribute). */
+	svg.lucide {
+		stroke-width: 1.75px;
+		flex-shrink: 0;
+	}
+	/* §12: visible sea 2 px focus ring everywhere */
+	:focus-visible {
+		outline: 2px solid var(--sea);
+		outline-offset: 2px;
+	}
+	:root[data-theme='dark'] :focus-visible {
+		outline-color: var(--link);
+	}
+	@media (prefers-color-scheme: dark) {
+		:root:not([data-theme='light']) :focus-visible {
+			outline-color: var(--link);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+	}
+}
