@@ -1,13 +1,13 @@
 # Crabwalk — Decisions log
 
-Every `[OPEN]` resolved by the user is logged here with date. Spec files are not edited; where an answer overrides a spec line, it is noted here.
+Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec files are not edited; where an answer overrides a spec line, it is noted here.
 
 ## Source of truth
-| Date | Decision |
-|---|---|
-| 2026-10-17 | `docs/Crabwalk Plan.md` / `docs/Crabwalk Design.md` are **not used**. Root `CLAUDE.md` + `CRABWALK_PLAN.md` + `CRABWALK_BACKEND.md` + `CRABWALK_FRONTEND.md` are the full source of truth. Spec refs to "Design §N" / "Plan §N" resolve to the matching root-file content (e.g. tokens = FRONTEND §2, layout order = FRONTEND §7, map style = FRONTEND §8). P0 task 2 "copy locked docs" dropped. |
+| Decision |
+|---|
+| `docs/Crabwalk Plan.md` / `docs/Crabwalk Design.md` are **not used**. Root `CLAUDE.md` + `CRABWALK_PLAN.md` + `CRABWALK_BACKEND.md` + `CRABWALK_FRONTEND.md` are the full source of truth. Spec refs to "Design §N" / "Plan §N" resolve to the matching root-file content (e.g. tokens = FRONTEND §2, layout order = FRONTEND §7, map style = FRONTEND §8). P0 task 2 "copy locked docs" dropped. |
 
-## P0 gate answers (2026-10-17)
+## P0 gate answers
 | # | Topic | Decision |
 |---|---|---|
 | G1 | Frontend framework | **SvelteKit** (shell < 200 KB + QR page). |
@@ -23,7 +23,7 @@ Every `[OPEN]` resolved by the user is logged here with date. Spec files are not
 | G11 | Story font | **Mukta only.** Tiro Devanagari Marathi parked post-MVP. |
 | G12 | Package manager | **pnpm workspaces.** No Turborepo. |
 
-## Other resolutions (2026-10-17)
+## Other resolutions
 | Ref | Decision |
 |---|---|
 | A4 | Matrix: time + distance for all pairs; `route_shape` only for pairs ≤ 60 km, Douglas-Peucker simplified (~10 m), encoded polyline. Report actual size after first run. |
@@ -37,9 +37,22 @@ Every `[OPEN]` resolved by the user is logged here with date. Spec files are not
 | C14 | QR page = same origin, server-rendered **route in `apps/web` with `csr = false`** (zero JS). **No separate `apps/qr`** (overrides PLAN §2 / P0 task 4). < 100 KB enforced in CI (P6). |
 | C16 | `places.food_delivery` = which apps deliver to that location (verifier-marked, no links). `eateries.food_apps` = deep links to the eatery page. Keep both. |
 | C17 | `name_*` / `reason_*` columns = `_en/_hi/_mr`. |
-| C18 | GitHub repo private. User creates Supabase project and sends URL/keys; Supabase CLI via `npx supabase`; user installs `gh`. |
+| C18 | GitHub repo private. User creates the Crabwalk Supabase project (pauses one of their own projects first) and sends URL/keys. Never touch other Supabase projects. Supabase CLI via `npx supabase`; user installs `gh`. |
 | C19 | QR/verdict tie-break: higher level wins. |
-| — | Timeline accepted. Flag any phase slipping > 1 day immediately. Do not compress P10. |
+| — | **No timeline.** No dates, deadlines or time limits. Phases run in order; a phase ends only when its acceptance criteria pass. Do not compress P10. |
+
+## P1 pre-decisions
+| Ref | Decision |
+|---|---|
+| P1-1 | DB testing: local Supabase via Docker Desktop (WSL2) **and** CI runs a fresh Supabase on every push. |
+| P1-2 | End-to-end sign-in (Google OAuth + SMTP) is the last P1 check; everything else built first. |
+| P1-3 | Edge Functions in `supabase/functions/`; `services/api/` = shared TS only; `services/ola-proxy` = separate Cloudflare Worker. |
+| P1-4 | gitleaks runs in CI as well as in the local git protocol. |
+| P1-5 | New tables approved: `regions`, `owner_claims`, `booking_proofs`, `alert_type_ttl`, `app_config`. |
+| P1-6 | `booking_proofs` files in a private Storage bucket; pg_cron deletes the file and nulls `storage_path` after `delete_after`. |
+| P1-7 | RLS defaults as proposed (public read for reference/context data; own-row for user data; internal tables staff-only; `qr_scans` / `dwell_events` server-insert only). Owners write photos, prices, menu, timings, contact for **their own listing only**; never ratings/reviews. |
+| P1-8 | Roles: **no `profiles.role`**. `user_roles` (`user_id`, `role`, `taluka_id` nullable, `entity_type`/`entity_id` nullable); multiple roles per user. RLS via `has_role(role, scope)` SQL function. |
+| P1-9 | `place_embeddings.embedding vector(384)`. |
 
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
@@ -54,12 +67,11 @@ Every `[OPEN]` resolved by the user is logged here with date. Spec files are not
 - Trail difficulty scale — before P9
 - Per-spot tide accessibility rule — from verifiers
 - Emergency keyword list EN/HI/MR — team to finalize before P8
-- `services/api` vs `supabase/functions` location for Edge Functions — confirm in P1
 
 ## Found issues
 _None yet._
 
 ## Phase log
-| Phase | Date pushed | Tag | Deferred |
-|---|---|---|---|
-| P0 | 2026-10-17 | `phase-0` | Supabase project + env wiring (awaiting user's URL/keys); CI green confirmed on GitHub by user (`gh` not installed locally) |
+| Phase | Tag | Deferred |
+|---|---|---|
+| P0 | `phase-0` | Supabase project + env wiring (awaiting user's URL/keys); CI green confirmed on GitHub by user (`gh` not installed locally) |

@@ -5,7 +5,7 @@
 > - `CRABWALK_FRONTEND.md` — PWA, screens, components, design system
 > - Source of truth (locked decisions): `Crabwalk Plan.md`, `Crabwalk Design.md`
 >
-> Generated: 17 Oct 2026. Target: MVP live by **9 Nov 2026** (4 weeks from project start on 12 Oct 2026).
+> No dates or deadlines. Phases run in order; a phase ends only when its acceptance criteria pass.
 
 ---
 
@@ -15,7 +15,7 @@ You are the sole engineer building **Crabwalk**, a tourism PWA for **Ratnagiri**
 
 1. **No invention.** Implement only what is written in this file, `CRABWALK_BACKEND.md`, `CRABWALK_FRONTEND.md`. Anything marked `[OPEN]` is NOT decided — stop and ask the user before implementing it. Anything marked `[DEFAULT]` is an implementation default not in the locked plan — use it unless the user overrides it in Phase 0.
 2. **Budget is ₹0.** Use only free tiers. Never add a paid service, card-required service, or paid API. If a task seems to need one, stop and ask.
-3. **One phase at a time.** Phases are strictly sequential. Never start Phase N+1 until Phase N is pushed to `main` and its acceptance checklist passes. If a phase slips, every later phase shifts by the same number of days — phases never overlap.
+3. **One phase at a time.** Phases are strictly sequential. Never start Phase N+1 until Phase N is pushed to `main` and its acceptance checklist passes. Phases never overlap.
 4. **Git rule.** At the end of every phase: run checks → commit → push to `main` → tag `phase-N`. Exact commands in §3.
 5. **Single MVP.** No v1/v2 split. Every feature in the plan ships in this MVP.
 6. **Scope:** Ratnagiri only. Platform: PWA (installable, offline-capable).
@@ -32,7 +32,7 @@ You are the sole engineer building **Crabwalk**, a tourism PWA for **Ratnagiri**
    - Never let the LLM invent facts, places, or routes.
    - Never copy from Ola or Google Maps when editing OSM.
 8. **Secrets** live only in environment variables. Commit a `.env.example` with variable names, never values.
-9. **Keep `docs/DECISIONS.md` updated** — every `[OPEN]` resolved by the user gets logged there with date.
+9. **Keep `docs/DECISIONS.md` updated** — every `[OPEN]` resolved by the user gets logged there.
 10. **Language of UI:** English, Hindi, Marathi — all three, from Phase 2 onward.
 
 ---
@@ -111,33 +111,33 @@ git tag phase-N && git push origin phase-N
 
 - Never `git push --force` to `main`.
 - If a check fails, fix it inside the same phase — do not push broken code.
-- After push, update `docs/DECISIONS.md` "Phase log" with: phase, date pushed, commit hash, anything deferred.
+- After push, update `docs/DECISIONS.md` "Phase log" with: phase, tag, anything deferred.
 
 ---
 
-## 4. PHASE TIMELINE (sequential, no overlap)
+## 4. PHASE ORDER (sequential, no overlap, no dates)
 
-| Phase | Name | Dates (2026) | Days |
-|---|---|---|---|
-| P0 | Foundation + decision gate | 17 Oct – 18 Oct | 2 |
-| P1 | Database, auth, security | 19 Oct – 20 Oct | 2 |
-| P2 | App shell, design system, i18n | 21 Oct – 22 Oct | 2 |
-| P3 | Geo + context pipelines, Map | 23 Oct – 25 Oct | 3 |
-| P4 | Content: places, stays, food, dishes, admin, owner claim | 26 Oct – 28 Oct | 3 |
-| P5 | Ratings and reviews | 29 Oct – 30 Oct | 2 |
-| P6 | QR system | 31 Oct – 1 Nov | 2 |
-| P7 | Trip planner | 2 Nov – 4 Nov | 3 |
-| P8 | Crabby AI | 5 Nov – 6 Nov | 2 |
-| P9 | Live trip, navigation, offline, push, pattern analysis | 7 Nov – 8 Nov | 2 |
-| P10 | Hardening + launch | 9 Nov | 1 |
+| Phase | Name |
+|---|---|
+| P0 | Foundation + decision gate |
+| P1 | Database, auth, security |
+| P2 | App shell, design system, i18n |
+| P3 | Geo + context pipelines, Map |
+| P4 | Content: places, stays, food, dishes, admin, owner claim |
+| P5 | Ratings and reviews |
+| P6 | QR system |
+| P7 | Trip planner |
+| P8 | Crabby AI |
+| P9 | Live trip, navigation, offline, push, pattern analysis |
+| P10 | Hardening + launch |
 
-**Parallel non-code track (team, not you):** field verification by verifiers (1 per taluka, ~10–15 visits each) starts once the admin form ships in P4. It uses the app; it does not create a code phase and does not conflict with this timeline.
+A phase ends only when its acceptance criteria pass.
 
-**If the 4-week target is not required, keep the order and the no-overlap rule; only the dates stretch.**
+**Parallel non-code track (team, not you):** field verification by verifiers (1 per taluka, ~10–15 visits each) starts once the admin form ships in P4. It uses the app; it does not create a code phase.
 
 ---
 
-## P0 — FOUNDATION + DECISION GATE (17–18 Oct)
+## P0 — FOUNDATION + DECISION GATE
 
 **Goal:** repo exists, open decisions are resolved, tooling works.
 
@@ -182,7 +182,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P1 — DATABASE, AUTH, SECURITY (19–20 Oct)
+## P1 — DATABASE, AUTH, SECURITY
 
 **Goal:** full schema + RLS + auth live in Supabase.
 
@@ -204,7 +204,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P2 — APP SHELL, DESIGN SYSTEM, i18n (21–22 Oct)
+## P2 — APP SHELL, DESIGN SYSTEM, i18n
 
 **Goal:** installable PWA shell with locked design tokens and 3 languages.
 
@@ -226,7 +226,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P3 — GEO + CONTEXT PIPELINES, MAP (23–25 Oct)
+## P3 — GEO + CONTEXT PIPELINES, MAP
 
 **Goal:** own map, own travel-time matrix, utility POIs, weather + tide caches, Map screen.
 
@@ -249,7 +249,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P4 — CONTENT: PLACES, STAYS, FOOD, DISHES, ADMIN, OWNER CLAIM (26–28 Oct)
+## P4 — CONTENT: PLACES, STAYS, FOOD, DISHES, ADMIN, OWNER CLAIM
 
 **Goal:** all listing pages + field data entry + owner editing.
 
@@ -271,7 +271,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P5 — RATINGS AND REVIEWS (29–30 Oct)
+## P5 — RATINGS AND REVIEWS
 
 **Goal:** verdict gauge system exactly as locked.
 
@@ -291,7 +291,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P6 — QR SYSTEM (31 Oct – 1 Nov)
+## P6 — QR SYSTEM
 
 **Goal:** scan page + short URLs + verified visit + reports.
 
@@ -313,7 +313,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P7 — TRIP PLANNER (2–4 Nov)
+## P7 — TRIP PLANNER
 
 **Goal:** deterministic planner + ready-made itineraries + group + export.
 
@@ -338,7 +338,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P8 — CRABBY AI (5–6 Nov)
+## P8 — CRABBY AI
 
 **Goal:** assistant everywhere, tool-calling only, multi-provider router.
 
@@ -365,7 +365,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P9 — LIVE TRIP, NAVIGATION, OFFLINE, PUSH, PATTERN ANALYSIS (7–8 Nov)
+## P9 — LIVE TRIP, NAVIGATION, OFFLINE, PUSH, PATTERN ANALYSIS
 
 ### Tasks
 1. In-browser navigation: GPS dot, route line (stored OSRM shapes; Ola Directions for non-DB places), step list, voice (Web Speech API), screen wake lock. Show limits notice (GPS pauses when minimized; iOS Safari).
@@ -383,7 +383,7 @@ Known pending (not blocking code, track in DECISIONS.md): Sarvam AI result (Suha
 
 ---
 
-## P10 — HARDENING + LAUNCH (9 Nov)
+## P10 — HARDENING + LAUNCH
 
 ### Tasks
 1. Security: RLS audit, rate limits, input validation, CSP headers, secrets audit.
