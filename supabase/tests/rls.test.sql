@@ -66,7 +66,7 @@ select '00000000-0000-0000-0000-0000000000a2', 'place', p_pub, 'family', 4 from 
 insert into public.reviews (user_id, entity_type, entity_id, group_type, text, moderation_status)
 select '00000000-0000-0000-0000-0000000000a2', 'place', p_pub, 'family', 'approved one', 'approved' from ids;
 insert into public.reviews (user_id, entity_type, entity_id, group_type, text, moderation_status)
-select '00000000-0000-0000-0000-0000000000a2', 'place', p_pub, 'family', 'pending one', 'pending' from ids;
+select '00000000-0000-0000-0000-0000000000a2', 'place', p_pub, 'couple', 'pending one', 'pending' from ids;
 
 insert into public.verified_visits (user_id, entity_type, entity_id, method, distance_m)
 select '00000000-0000-0000-0000-0000000000a2', 'eatery', e_pub, 'qr_gps', 50 from ids;

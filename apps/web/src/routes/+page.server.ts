@@ -8,6 +8,7 @@ import {
 	tr,
 	type Lang
 } from '#lib/server/listings.ts';
+import { cardAggs } from '#lib/server/ratings.ts';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import type { PageServerLoad } from './$types';
 
@@ -21,6 +22,11 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 		category ? Promise.resolve([]) : listDishes(locals.supabase),
 		seasonStrip(locals.supabase)
 	]);
+	const aggs = await cardAggs(
+		locals.supabase,
+		'place',
+		[...places, ...gems].map((p) => p.id)
+	);
 	const card = (p: (typeof places)[number]) => {
 		const n = names(p.place_translations);
 		return {
@@ -28,6 +34,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 			category: p.category,
 			names: n,
 			isGem: p.is_hidden_gem,
+			agg: aggs.get(p.id) ?? null,
 			coords: lonLat(p.location),
 			photo: p.hero ? photoUrls(p.hero, n[lang] || n.en) : null
 		};

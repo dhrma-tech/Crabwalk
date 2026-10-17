@@ -3,6 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
+	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import StayCard from '#lib/components/StayCard.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import FilterBar from '#lib/components/listing/FilterBar.svelte';
@@ -68,7 +69,9 @@
 						priceMax={s.price_max}
 						priceSource={s.price_source ? msg(`source_${s.price_source}`) : null}
 						serviceStyle={s.service_style}
-					/>
+					>
+						{#snippet verdict()}<MiniVerdict type="stay" agg={s.agg} />{/snippet}
+					</StayCard>
 				{/each}
 			</div>
 		{:else}

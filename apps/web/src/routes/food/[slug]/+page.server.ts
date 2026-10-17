@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { getEatery, names, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
+import { ratingsFor, DIMENSIONS } from '#lib/server/ratings.ts';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params, locals }) => {
@@ -39,6 +40,13 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 					signature: d.is_signature
 				})),
 			photos: e.photos.map((p) => photoUrls(p, n[lang] || n.en))
-		}
+		},
+		ratings: await ratingsFor(
+			locals.supabase,
+			'eatery',
+			e.id,
+			(await locals.getUser())?.id ?? null
+		),
+		dims: DIMENSIONS.eatery
 	};
 };

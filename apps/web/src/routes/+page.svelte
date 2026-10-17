@@ -6,6 +6,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
+	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import PlaceCard from '#lib/components/PlaceCard.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
@@ -143,7 +144,9 @@
 								photo={p.photo}
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
-							/>
+							>
+								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
+							</PlaceCard>
 						{/each}
 					</div>
 				{:else}
@@ -165,6 +168,7 @@
 									categoryLabel={msg(`cat_${p.category}`)}
 								>
 									{#snippet badges()}<StatusBadge kind="gem" />{/snippet}
+									{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
 								</PlaceCard>
 							</div>
 						{/each}
@@ -218,7 +222,9 @@
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
 								distanceKm={p.km}
-							/>
+							>
+								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
+							</PlaceCard>
 						{/each}
 					</div>
 				{:else if locError}

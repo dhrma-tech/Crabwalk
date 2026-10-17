@@ -13,6 +13,9 @@
 	import AudioGuide from '#lib/components/listing/AudioGuide.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
 	import TideToday from '#lib/components/map/TideToday.svelte';
+	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
+	import VerdictVote from '#lib/components/rating/VerdictVote.svelte';
+	import Reviews from '#lib/components/rating/Reviews.svelte';
 	import type { PageProps } from './$types';
 
 	// Layout order LOCKED (FRONTEND §7.2). Verdict gauge + reviews arrive in P5, similar/less-crowded in P8.
@@ -75,6 +78,15 @@
 		</header>
 
 		{#if p.audio}<AudioGuide path={p.audio.storage_path} transcript={p.audio.transcript} />{/if}
+
+		<VerdictGauge type="place" all={data.ratings.all} groups={data.ratings.groups} />
+		<VerdictVote
+			type="place"
+			id={p.id}
+			dims={[]}
+			mine={data.ratings.mine}
+			signedIn={data.ratings.signedIn}
+		/>
 
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.facts()}</h2>
@@ -174,6 +186,8 @@
 					: m.food_delivery_none()}
 			</p>
 		</section>
+
+		<Reviews reviews={data.ratings.reviews} summaries={data.ratings.summaries} />
 
 		<footer class="flex flex-col gap-3 border-t border-border pt-4">
 			{#if p.lastVerified}<StatusBadge kind="last-verified" date={p.lastVerified} />{/if}

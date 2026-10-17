@@ -12,6 +12,10 @@
 	import PriceTable from '#lib/components/listing/PriceTable.svelte';
 	import Contact from '#lib/components/listing/Contact.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
+	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
+	import VerdictVote from '#lib/components/rating/VerdictVote.svelte';
+	import SubScores from '#lib/components/rating/SubScores.svelte';
+	import Reviews from '#lib/components/rating/Reviews.svelte';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.5 detail: photos → (verdict + sub-scores, P5) → amenities → network → food → price compare.
@@ -43,6 +47,16 @@
 					>{/if}
 			</div>
 		</header>
+
+		<VerdictGauge type="stay" all={data.ratings.all} groups={data.ratings.groups} />
+		<SubScores dims={data.dims} subs={data.ratings.subs} />
+		<VerdictVote
+			type="stay"
+			id={s.id}
+			dims={data.dims}
+			mine={data.ratings.mine}
+			signedIn={data.ratings.signedIn}
+		/>
 		{#if s.description}<p class="type-body whitespace-pre-line">{s.description}</p>{/if}
 
 		<section class="flex flex-col gap-3">
@@ -93,6 +107,8 @@
 			<PriceTable rows={data.prices} />
 			<Contact phone={s.phone} whatsapp={s.whatsapp} />
 		</section>
+
+		<Reviews reviews={data.ratings.reviews} summaries={data.ratings.summaries} />
 
 		<footer class="flex flex-col gap-3 border-t border-border pt-4">
 			{#if s.lastVerified}<StatusBadge kind="last-verified" date={s.lastVerified} />{/if}

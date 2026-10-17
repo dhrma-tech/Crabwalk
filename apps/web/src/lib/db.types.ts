@@ -633,6 +633,26 @@ isOneToOne: false
       referencedColumns: ["code"]
     }
                   ]
+                },"review_photos": {
+                  Row: {
+                    "created_at": string,"height": number | null,"id": string,"lqip": string | null,"review_id": string,"storage_path": string,"updated_at": string | null,"user_id": string,"width": number | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"height"?: number | null,"id"?: string,"lqip"?: string | null,"review_id": string,"storage_path": string,"updated_at"?: string | null,"user_id": string,"width"?: number | null
+                  }
+                  Update: {
+                    "created_at"?: string,"height"?: number | null,"id"?: string,"lqip"?: string | null,"review_id"?: string,"storage_path"?: string,"updated_at"?: string | null,"user_id"?: string,"width"?: number | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "review_photos_review_id_fkey"
+      columns: ["review_id"]
+isOneToOne: false
+      referencedRelation: "reviews"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"review_summaries": {
                   Row: {
                     "created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"generated_at": string,"id": string,"lang": Database["public"]['Enums']["lang"],"summary": string,"updated_at": string | null
@@ -1078,7 +1098,15 @@ isOneToOne: false
                 }
           }
           Views: {
-            [_ in never]: never
+            "verdict_agg_all": {
+                  Row: {
+                    "counts": (number)[] | null,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"is_new": boolean | null,"total": number | null,"winner_level": number | null,"winner_pct": number | null
+                  }
+                  ComputedFields: never
+                  Relationships: [
+                    
+                  ]
+                }
           }
           Functions: {
             "approve_listing":
@@ -1105,8 +1133,16 @@ isOneToOne: false
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
             }[]
                            },
+"review_booking_proof":
+{ Args: { "_approve": boolean,"_proof": string }; Returns: undefined
+                           },
 "review_owner_claim":
 { Args: { "_approve": boolean,"_claim": string }; Returns: undefined
+                           },
+"sub_score_summary":
+{ Args: { "_id": string,"_type": Database["public"]['Enums']["entity_type"] }; Returns: {
+              "avg_score": number,"dimension": string,"n": number
+            }[]
                            },
 "taluka_at":
 { Args: { "lat": number,"lon": number }; Returns: string

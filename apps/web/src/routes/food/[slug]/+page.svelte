@@ -11,6 +11,10 @@
 	import Hours from '#lib/components/listing/Hours.svelte';
 	import Contact from '#lib/components/listing/Contact.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
+	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
+	import VerdictVote from '#lib/components/rating/VerdictVote.svelte';
+	import SubScores from '#lib/components/rating/SubScores.svelte';
+	import Reviews from '#lib/components/rating/Reviews.svelte';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.6 detail: signature dishes → menu → (sub-scores, P5) → food-app buttons (deep links).
@@ -45,6 +49,16 @@
 			</p>
 			{#if e.verified}<div><StatusBadge kind="verified" /></div>{/if}
 		</header>
+
+		<VerdictGauge type="eatery" all={data.ratings.all} groups={data.ratings.groups} />
+		<SubScores dims={data.dims} subs={data.ratings.subs} />
+		<VerdictVote
+			type="eatery"
+			id={e.id}
+			dims={data.dims}
+			mine={data.ratings.mine}
+			signedIn={data.ratings.signedIn}
+		/>
 		{#if e.description}<p class="type-body whitespace-pre-line">{e.description}</p>{/if}
 
 		{#if e.dishes.length}
@@ -88,6 +102,8 @@
 			<Hours rows={e.hours} />
 		</section>
 		<Contact phone={e.phone} whatsapp={e.whatsapp} />
+
+		<Reviews reviews={data.ratings.reviews} summaries={data.ratings.summaries} />
 
 		<footer class="flex flex-col gap-3 border-t border-border pt-4">
 			{#if e.lastVerified}<StatusBadge kind="last-verified" date={e.lastVerified} />{/if}

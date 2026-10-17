@@ -3,6 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
+	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import EateryCard from '#lib/components/EateryCard.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import FilterBar from '#lib/components/listing/FilterBar.svelte';
@@ -55,7 +56,9 @@
 						signatureDish={e.signature}
 						priceForTwo={e.priceForTwo}
 						diet={e.diet.map((d) => dietMap[d])}
-					/>
+					>
+						{#snippet verdict()}<MiniVerdict type="eatery" agg={e.agg} />{/snippet}
+					</EateryCard>
 				{/each}
 			</div>
 		{:else}

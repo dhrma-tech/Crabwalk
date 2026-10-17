@@ -11,7 +11,13 @@
 	const links = $derived([
 		{ href: resolve('/admin/field'), label: m.field_title() },
 		{ href: resolve('/admin/reports'), label: m.reports_title() },
-		...(data.isReviewer ? [{ href: resolve('/admin/review'), label: m.review_title() }] : []),
+		{ href: resolve('/admin/proofs'), label: m.proofs_title() },
+		...(data.isReviewer
+			? [
+					{ href: resolve('/admin/review'), label: m.review_title() },
+					{ href: resolve('/admin/moderation'), label: m.moderation_title() }
+				]
+			: []),
 		...(data.isAdmin ? [{ href: resolve('/admin/claims'), label: m.claims_title() }] : [])
 	]);
 </script>

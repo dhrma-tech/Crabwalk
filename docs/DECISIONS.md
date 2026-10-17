@@ -118,6 +118,17 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P4-10 | Service worker: stale-while-revalidate for `/api/{places,stays,eateries,dishes,map/utilities}` (closes the P2 deferral). Not pins (open-now is time-sensitive), not tides (safety data). Admin/owner/ola never cached. |
 | P4-11 | Fixed option lists where the spec ends in "…": delivery/food apps = Swiggy, Zomato, EatSure, magicpin; network operators = Jio, Airtel, Vi, BSNL. |
 
+## P5 decisions and notes
+| Ref | Decision / note |
+|---|---|
+| P5-1 | Review photos (user): separate `review_photos` table + public `review-photos` bucket (paths start with the uploader's id); `reviews.photo_ids` point there. Never listed as listing photos (those stay verifier/owner-only, LOCKED). Up to 4 per review, client WebP 480/960 + LQIP. |
+| P5-2 | Booking proofs (user, G6): private `booking-proofs` bucket; verifier views via 10-min signed URL; image deleted on approve/reject; daily `booking-proof-cleanup` Edge Function deletes anything past `delete_after` and **auto-rejects still-pending proofs** (user can re-upload). Approval inserts `verified_visits (booking_proof)` → unlocks hygiene/cleanliness for that user + listing only. Closes P1-17. |
+| P5-3 | `verdict_agg` maintained by trigger on every verdict write (closes P1-18); tie → higher level (C19); `is_new = total < 10`. "All" = view `verdict_agg_all` summing groups (B13); used by the gauge's All tab (default) and card mini bars. |
+| P5-4 | Sub-score dimension/entity pairing enforced by a DB trigger; places have no sub-scores (spec lists food + stays only). Per-dimension averages via `sub_score_summary()` (individual rows stay private). |
+| P5-5 | Reviews: one per user/listing/group type (unique); editing sends it back to `pending`. Moderation queue at /admin/moderation (reviewers). Nightly `review-summaries` Edge Function is a stub that writes nothing until P8 (no invented text). |
+| P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
+| P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
+
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
@@ -148,3 +159,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P2 | `phase-2` | HI/MR string review (P2-3); published-content runtime cache → P4, taluka packs/offline banner pack status → P9, Crabby desktop panel → P8; real logo/mascot/category icons (P2-13) |
 | P3 | `phase-3` | **User: API keys + live setup after all phases.** Deferred: `wrangler login` → tiles deploy to `crabwalk-tiles` + verify Pages Range (P3-7) + `PMTILES_BASE_URL`; `ola-proxy` deploy + `OLA_API_KEY` secret + endpoint verification (P3-6) + `OLA_PROXY_URL`; OWM/TideCheck keys → `tide-stations` run, Edge Function deploy + secrets, Vault secrets on live, real cron rows + tide attribution with live data; push P3 migrations to live + pipelines `--live`; TideCheck commercial-use email (P3-1); ghat-zone review (P3-2). Verified locally only. |
 | P4 | `phase-4` | AI drafting → P8 (stubbed via content_drafts); verdict gauge/reviews → P5; itineraries → P7; similar/less-crowded → P8; Agoda API call (needs partner docs/keys, P4-7); per-IP rate limits → P10; photo delete/reorder UI; HI/MR review of new strings; live: push P4 migrations + storage buckets with the other live setup. |
+| P5 | `phase-5` | Review moderation model + nightly summaries → P8 (stubs in place); QR+GPS verified visits → P6 (booking proof path live); live: P5 migrations, buckets, cleanup/summary functions + cron with the other live setup; HI/MR review of new strings. |

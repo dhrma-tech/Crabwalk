@@ -52,8 +52,6 @@ insert into public.sub_scores (user_id, entity_type, entity_id, dimension, score
 select '00000000-0000-0000-0000-0000000004a1', 'eatery', eat, 'taste', 2 from ids;
 insert into public.reviews (user_id, entity_type, entity_id, group_type, text, moderation_status)
 select '00000000-0000-0000-0000-0000000004a1', 'eatery', eat, 'family', 'meh', 'approved' from ids;
-insert into public.verdict_agg (entity_type, entity_id, group_type, counts, total, winner_level)
-select 'eatery', eat, 'family', '{0,1,0,0}', 1, 2 from ids;
 create temp table rating_before as
 select (select jsonb_agg(v order by id) from public.verdicts v) v, (select jsonb_agg(s order by id) from public.sub_scores s) s,
        (select jsonb_agg(r order by id) from public.reviews r) r, (select jsonb_agg(a) from public.verdict_agg a) a;

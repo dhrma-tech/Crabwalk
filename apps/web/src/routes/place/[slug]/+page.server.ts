@@ -1,5 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
+import { ratingsFor } from '#lib/server/ratings.ts';
 import { getPlace, lonLat, names, nearby, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
 import type { PageServerLoad } from './$types';
 
@@ -47,6 +48,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			photos: p.photos.map((ph) => photoUrls(ph, n[lang] || n.en)),
 			coords
 		},
+		ratings: await ratingsFor(locals.supabase, 'place', p.id, (await locals.getUser())?.id ?? null),
 		nearby: coords
 			? await nearby(locals.supabase, coords[0], coords[1])
 			: { listings: [], utilities: [] }

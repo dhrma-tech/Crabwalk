@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { getStay, names, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
+import { ratingsFor, DIMENSIONS } from '#lib/server/ratings.ts';
 import { priceRows } from '#lib/server/prices.ts';
 import type { PageServerLoad } from './$types';
 
@@ -26,6 +27,8 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			lastVerified: s.last_verified_at,
 			photos: s.photos.map((p) => photoUrls(p, n[lang] || n.en))
 		},
-		prices: await priceRows(s)
+		prices: await priceRows(s),
+		ratings: await ratingsFor(locals.supabase, 'stay', s.id, (await locals.getUser())?.id ?? null),
+		dims: DIMENSIONS.stay
 	};
 };
