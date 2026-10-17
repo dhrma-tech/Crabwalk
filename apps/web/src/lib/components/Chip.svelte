@@ -14,7 +14,7 @@
 	type="button"
 	aria-pressed={selected}
 	class={[
-		'inline-flex min-h-11 items-center gap-1.5 rounded-chip border px-4 py-1.5 text-left type-small',
+		'inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-chip border px-4 py-1.5 text-left type-small',
 		'transition-colors duration-200 ease-brand',
 		selected ? 'border-sea-500 bg-sea-500 text-white' : 'border-border bg-surface text-text'
 	]}

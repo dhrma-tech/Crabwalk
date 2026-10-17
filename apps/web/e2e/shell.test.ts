@@ -75,7 +75,10 @@ test('dark theme tokens apply (manual override and system)', async ({ page }) =>
 
 test('language switch sets lang and persists', async ({ page }) => {
 	await page.goto('/me');
-	await page.getByRole('button', { name: 'मराठी' }).click();
+	await Promise.all([
+		page.waitForResponse((r) => r.url().endsWith('/me') && r.request().method() === 'GET'),
+		page.getByRole('button', { name: 'मराठी' }).click()
+	]);
 	await expect(page.locator('html')).toHaveAttribute('lang', 'mr');
 	await expect(page).toHaveURL(/\/me$/);
 	await page.goto('/map');

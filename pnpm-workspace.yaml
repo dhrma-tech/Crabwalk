@@ -1,6 +1,7 @@
 packages:
   - apps/*
   - services/*
+  - pipelines
 onlyBuiltDependencies:
   - esbuild
   - workerd

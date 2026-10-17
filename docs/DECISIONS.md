@@ -89,6 +89,20 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P2-12 | Diet dot colours (spec silent): veg `--ok`, non-veg laterite-700, Jain mango-700 — always with a text label. |
 | P2-13 | Placeholders until art: `<Crabby>` SVG, `<CategoryIcon>` Lucide glyphs, PWA icons (sand tile + laterite disc). |
 
+## P3 decisions and notes
+| Ref | Decision / note |
+|---|---|
+| P3-1 | **Tides: TideCheck is the default** (`TIDE_PROVIDER=tidecheck`, user). TidesAtlas free = 50 one-time credits (not ₹0-sustainable for a daily cron). Both adapters exist. TideCheck terms: cache ≤ 24 h → `tide-refresh` deletes rows not refreshed within 24 h; attribution "Tide data by TideCheck" linked, next to the data. **User to confirm with TideCheck that the free tier allows commercial use.** Overrides BACKEND §8 / FRONTEND §6.9 attribution text. |
+| P3-2 | Road flags (user): ghat = drivable way named "ghat"/"घाट" or inside `pipelines/road-flags/ghat-zones.geojson` (Kashedi, Kumbharli, Amba, Anuskura — **approximate boxes, team to review**); coastal = vertex ≤ 1 km from OSM coastline. Migration adds `road_segments_flags.source` (`auto`/`team`) + `excluded` (team veto that survives re-runs). |
+| P3-3 | Corrections: per segment the **larger** of ghat/coastal applies (not stacked); monsoon multiplies the whole trip when the run month is active → matrix must be re-run `--full` on 1 Jun and 1 Oct. Pairs routed with OSRM `/route` (annotations) for both raw and corrected values. |
+| P3-4 | Weather points (user: I propose, team reviews): 9 taluka HQs + 9 coastal spots + 2 ghat approaches, coordinates from OSM place nodes, in migration `20261017200100`. Tide stations come from `pipelines/tide-stations` (nearest TideCheck station per coastal anchor in `region.json`). |
+| P3-5 | `weather-refresh` uses OWM Current Weather 2.5 only (~480 calls/day) and keeps 7 days of `weather_cache` (spec silent on retention). Alerts-expiry cron not built in P3 (alerts arrive in P9; expiry is already defined by `expires_at`). |
+| P3-6 | `ola-proxy` = Cloudflare Worker; verifies Supabase ES256 JWTs locally via JWKS; 30 req/min/user (Workers rate-limit binding); `Cache-Control: private, no-store`; normalised output with `attribution: 'ola'`. App calls same-origin `/ola/*`, which forwards the user's token (web app holds no Ola key). **Ola endpoint paths/auth taken from community clients — official reference is JS-rendered; verify on first live call.** |
+| P3-7 | Tiles = extracts of the daily Protomaps build (`pmtiles extract`, maxzoom 15) instead of a local Planetiler build (no Java needed). Region file 14.2 MiB, packs 1.2–2.0 MiB. **Cloudflare Pages Range support to be verified on first deploy** (PMTiles needs 206); `wrangler pages dev` does not do Range, so dev/e2e use `pipelines/tiles/serve.ts`. Map finds its file via `${PMTILES_BASE_URL}/manifest.json` and centres from the PMTiles header (no hard-coded region). |
+| P3-8 | Map labels use self-hosted Mukta through MapLibre `font-faces` (no glyph server); Devanagari conjuncts verified rendering. Basemap POI layer dropped (no sprite); our pins replace it. Labels follow `name:<lang>` → most villages show Latin because OSM lacks `name:mr` (data, not code). |
+| P3-9 | Map "Open now": IST, `weekday = extract(dow)` (0 = Sunday); unknown hours never count as open; stays unaffected. Map shows `published` listings only even for staff. Ghat/warning-road and planned-route styles defined but not drawn yet (no public ghat geometry until alerts/routes, P7/P9). |
+| P3-10 | AI firewall check: `scripts/check-ai-firewall.mjs` + self-test fixture, run by root `pnpm lint` (CI). AI paths: `services/api/ai/**`, `apps/web/src/lib/ai/**`, `apps/web/src/routes/api/ai/**`, `supabase/functions/ai*`. Also fails on `OLA_API_KEY` or `ola-proxy` imports anywhere outside `services/ola-proxy`. |
+
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
@@ -116,3 +130,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P0 | `phase-0` | Supabase project + env wiring (done in P1); CI green confirmed on GitHub by user (`gh` not installed locally) |
 | P1 | `phase-1` | Custom SMTP + live OTP email template (P1-19); booking-proof bucket/cleanup + verdict_agg maintenance → P5 (P1-17, P1-18) |
 | P2 | `phase-2` | HI/MR string review (P2-3); published-content runtime cache → P4, taluka packs/offline banner pack status → P9, Crabby desktop panel → P8; real logo/mascot/category icons (P2-13) |
+| P3 | `phase-3` | **User: API keys + live setup after all phases.** Deferred: `wrangler login` → tiles deploy to `crabwalk-tiles` + verify Pages Range (P3-7) + `PMTILES_BASE_URL`; `ola-proxy` deploy + `OLA_API_KEY` secret + endpoint verification (P3-6) + `OLA_PROXY_URL`; OWM/TideCheck keys → `tide-stations` run, Edge Function deploy + secrets, Vault secrets on live, real cron rows + tide attribution with live data; push P3 migrations to live + pipelines `--live`; TideCheck commercial-use email (P3-1); ghat-zone review (P3-2). Verified locally only. |

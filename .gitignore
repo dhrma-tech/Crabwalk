@@ -21,3 +21,6 @@ pipelines/**/out/
 # OS / editor
 .DS_Store
 Thumbs.db
+
+# Pipeline tool binaries (downloaded)
+pipelines/bin/

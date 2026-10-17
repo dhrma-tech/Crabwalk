@@ -26,6 +26,7 @@
 		"@sveltejs/kit": "^3.0.0",
 		"@sveltejs/vite-plugin-svelte": "^7.2.0",
 		"@tailwindcss/vite": "^4.3.3",
+		"@types/geojson": "^7946.0.16",
 		"@types/node": "^24",
 		"eslint": "^10.4.1",
 		"eslint-config-prettier": "^10.1.8",
@@ -49,7 +50,11 @@
 	},
 	"dependencies": {
 		"@lucide/svelte": "^1.59.0",
+		"@protomaps/basemaps": "^5.7.2",
 		"@supabase/ssr": "^0.12.7",
-		"@supabase/supabase-js": "^2.118.0"
+		"@supabase/supabase-js": "^2.118.0",
+		"maplibre-gl": "^6.14.0",
+		"pmtiles": "^4.5.0",
+		"zod": "^4.6.7"
 	}
 }

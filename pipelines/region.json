@@ -1,0 +1,21 @@
+{
+	"$comment": "MVP region config (CLAUDE.md: region lives in data/config, not logic). Add a file per region later.",
+	"code": "RTN",
+	"geofabrik": "asia/india/western-zone",
+	"district": {
+		"name": "Ratnagiri",
+		"admin_level": "5"
+	},
+	"taluka_admin_level": "6",
+	"buffer_km": 10,
+	"protomaps_maxzoom": 15,
+	"tide_anchors": [
+		"Bankot",
+		"Harnai",
+		"Guhagar",
+		"Ganpatipule",
+		"Bhatye",
+		"Ambolgad"
+	],
+	"$comment_tide": "Coastal weather_points (by name) used to find the nearest tide station per coastal taluka."
+}

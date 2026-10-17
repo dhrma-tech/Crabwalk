@@ -10,3 +10,4 @@ Points to check first:
 - `crowd_typical`: "आम तौर पर" / "सहसा" — reads as a crowd suffix ("शांत · सहसा")?
 - `verified` / `last_verified`: Hindi uses "जाँचा गया", Marathi "पडताळलेले".
 - `login_code` (mr) uses a Devanagari digit (६); `hi` uses a Latin digit (6). Pick one convention.
+- P3 map keys (`map_*`, `cat_*`, `util_*`, `tide_*`, `kind_*`): drafts. Check `tide_high`/`tide_low` (ज्वार/भाटा, भरती/ओहोटी), `cat_backwater` (खाडी), `cat_cave` (लेणी vs गुहा).

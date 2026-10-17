@@ -1,0 +1,26 @@
+{
+	"name": "@crabwalk/pipelines",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"osm-extract": "node osm-extract/run.ts",
+		"tiles": "node tiles/run.ts",
+		"road-flags": "node road-flags/run.ts",
+		"osrm-matrix": "node osrm-matrix/run.ts",
+		"utility-pois": "node utility-pois/run.ts",
+		"test": "vitest --run",
+		"check": "tsc --noEmit",
+		"tide-stations": "node tide-stations/run.ts"
+	},
+	"dependencies": {
+		"@mapbox/polyline": "^1.2.1",
+		"pg": "^8.23.1"
+	},
+	"devDependencies": {
+		"@types/mapbox__polyline": "^1.0.5",
+		"@types/node": "^24",
+		"@types/pg": "^8.23.1",
+		"typescript": "^6.0.3",
+		"vitest": "^4.1.8"
+	}
+}

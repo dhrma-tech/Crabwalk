@@ -663,14 +663,14 @@ isOneToOne: false
                   ]
                 },"road_segments_flags": {
                   Row: {
-                    "created_at": string,"flag": Database["public"]['Enums']["correction_type"],"id": string,"osm_way_id": number,"updated_at": string | null
+                    "created_at": string,"excluded": boolean,"flag": Database["public"]['Enums']["correction_type"],"id": string,"osm_way_id": number,"source": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"flag": Database["public"]['Enums']["correction_type"],"id"?: string,"osm_way_id": number,"updated_at"?: string | null
+                    "created_at"?: string,"excluded"?: boolean,"flag": Database["public"]['Enums']["correction_type"],"id"?: string,"osm_way_id": number,"source"?: string,"updated_at"?: string | null
                   }
                   Update: {
-                    "created_at"?: string,"flag"?: Database["public"]['Enums']["correction_type"],"id"?: string,"osm_way_id"?: number,"updated_at"?: string | null
+                    "created_at"?: string,"excluded"?: boolean,"flag"?: Database["public"]['Enums']["correction_type"],"id"?: string,"osm_way_id"?: number,"source"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     
@@ -1086,6 +1086,31 @@ isOneToOne: false
                            },
 "get_shared_trip":
 { Args: { "_token": string }; Returns: Json
+                           },
+"map_pins":
+{ Args: { "categories"?: (Database["public"]['Enums']["place_category"])[],"kinds"?: (string)[],"max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"open_now"?: boolean }; Returns: {
+              "category": string,"id": string,"kind": string,"lat": number,"lon": number,"name_en": string,"name_hi": string,"name_mr": string,"slug": string,"tide_station_id": string
+            }[]
+                           },
+"map_search":
+{ Args: { "q": string }; Returns: {
+              "kind": string,"lang": string,"lat": number,"lon": number,"name": string,"slug": string
+            }[]
+                           },
+"map_utilities":
+{ Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
+              "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
+            }[]
+                           },
+"tide_station_coords":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "id": string,"lat": number,"lon": number,"provider_station_id": string
+            }[]
+                           },
+"weather_point_coords":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "id": string,"lat": number,"lon": number,"name": string
+            }[]
                            }
           }
           Enums: {

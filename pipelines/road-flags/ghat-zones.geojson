@@ -1,0 +1,38 @@
+{
+	"type": "FeatureCollection",
+	"$comment": "Team-editable ghat zones (DECISIONS P3-2). Boxes are APPROXIMATE (from NH66/NH166/SH127 extents in OSM) — team to review and tighten.",
+	"features": [
+		{
+			"type": "Feature",
+			"properties": { "name": "Kashedi ghat (NH66)" },
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[[73.405, 17.86], [73.46, 17.86], [73.46, 17.95], [73.405, 17.95], [73.405, 17.86]]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": { "name": "Kumbharli ghat" },
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[[73.62, 17.37], [73.74, 17.37], [73.74, 17.46], [73.62, 17.46], [73.62, 17.37]]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": { "name": "Amba ghat (NH166)" },
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[[73.74, 16.94], [73.84, 16.94], [73.84, 17.02], [73.74, 17.02], [73.74, 16.94]]]
+			}
+		},
+		{
+			"type": "Feature",
+			"properties": { "name": "Anuskura ghat" },
+			"geometry": {
+				"type": "Polygon",
+				"coordinates": [[[73.8, 16.78], [73.9, 16.78], [73.9, 16.86], [73.8, 16.86], [73.8, 16.78]]]
+			}
+		}
+	]
+}

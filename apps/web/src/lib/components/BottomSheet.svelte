@@ -9,7 +9,7 @@
 
 	const order: Snap[] = ['peek', 'half', 'full'];
 	const heightOf = (s: Snap) =>
-		s === 'peek' ? 120 : s === 'half' ? innerHeight * 0.5 : innerHeight - 56;
+		s === 'peek' ? 120 : s === 'half' ? innerHeight * 0.5 : innerHeight - 56 - 64;
 
 	let innerHeight = $state(800);
 	let drag = $state<{ startY: number; startH: number; moved: boolean } | null>(null);
@@ -44,7 +44,7 @@
 
 <section
 	class={[
-		'fixed inset-x-0 bottom-0 z-30 flex flex-col overflow-hidden rounded-t-sheet border border-border bg-raised shadow-float',
+		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-30 flex flex-col overflow-hidden rounded-t-sheet border border-border bg-raised shadow-float lg:bottom-0 lg:left-24',
 		!drag && 'transition-[height] duration-300 ease-brand'
 	]}
 	style:height="{height}px"

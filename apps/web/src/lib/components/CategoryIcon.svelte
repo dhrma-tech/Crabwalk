@@ -15,7 +15,7 @@
 	export type Category = Database['public']['Enums']['place_category'];
 
 	// Lucide placeholders (FRONTEND §3, custom set [OPEN]). Same glyphs as map pins; swap here only.
-	const icons = {
+	export const categoryIcons = {
 		beach: TreePalm,
 		fort: Castle,
 		temple: Flame,
@@ -36,7 +36,7 @@
 		size = 20,
 		label
 	}: { category: Category; size?: number; label?: string } = $props();
-	const Icon = $derived(icons[category]);
+	const Icon = $derived(categoryIcons[category]);
 </script>
 
 <Icon

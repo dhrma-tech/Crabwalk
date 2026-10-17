@@ -1,0 +1,13 @@
+{
+	"$schema": "../../apps/web/node_modules/wrangler/config-schema.json",
+	// Isolated Ola Maps proxy (BACKEND §6.1). The ONLY place OLA_API_KEY exists (wrangler secret put OLA_API_KEY).
+	"name": "crabwalk-ola-proxy",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-17",
+	"workers_dev": true,
+	"vars": {
+		"SUPABASE_URL": "https://uwaqcutysdcmxfjpfktt.supabase.co"
+	},
+	// Per-user limit to protect the free tier (BACKEND §6.1).
+	"ratelimits": [{ "name": "USER_LIMIT", "namespace_id": "1001", "simple": { "limit": 30, "period": 60 } }]
+}
