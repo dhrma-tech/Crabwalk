@@ -1,0 +1,23 @@
+node_modules/
+
+# Env (only .env.example is committed)
+.env
+.env.*
+!.env.example
+
+# Build output
+.svelte-kit/
+build/
+.wrangler/
+.output/
+
+# Pipeline artefacts (PMTiles, OSRM data, OSM extracts)
+*.pmtiles
+*.osm.pbf
+*.osrm*
+pipelines/**/data/
+pipelines/**/out/
+
+# OS / editor
+.DS_Store
+Thumbs.db

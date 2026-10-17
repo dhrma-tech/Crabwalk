@@ -1,0 +1,15 @@
+{
+	"name": "crabwalk",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@10.32.1",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"lint": "pnpm -r run lint",
+		"typecheck": "pnpm -r run check",
+		"test": "pnpm -r run test",
+		"build": "pnpm -r run build"
+	}
+}
