@@ -21,3 +21,37 @@ jobs:
       - run: pnpm run typecheck
       - run: pnpm run test
       - run: pnpm run build
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        run: |
+          curl -sSfL https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks git --no-banner -v .
+
+  db:
+    runs-on: ubuntu-latest
+    env:
+      # Placeholders so config.toml's env() refs resolve; CI never signs in with Google.
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID: ci-placeholder
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET: ci-placeholder
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Start fresh Supabase (applies migrations + seed)
+        run: pnpm exec supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,mailpit,supavisor
+      - name: RLS tests
+        run: pnpm exec supabase test db
+      - name: Generated DB types are up to date
+        run: |
+          pnpm run db:types
+          git diff --exit-code apps/web/src/lib/db.types.ts
