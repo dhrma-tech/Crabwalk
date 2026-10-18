@@ -25,7 +25,7 @@
 <nav
 	aria-label={m.nav_label()}
 	data-clip-check
-	class="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-raised pb-[env(safe-area-inset-bottom)] lg:inset-y-0 lg:right-auto lg:w-24 lg:border-t-0 lg:border-r lg:pt-4 lg:pb-0"
+	class="fixed inset-x-0 bottom-0 z-20 border-t print:hidden border-border bg-raised pb-[env(safe-area-inset-bottom)] lg:inset-y-0 lg:right-auto lg:w-24 lg:border-t-0 lg:border-r lg:pt-4 lg:pb-0"
 >
 	<ul
 		class="mx-auto flex h-16 max-w-[640px] items-stretch justify-around lg:h-auto lg:flex-col lg:gap-2"

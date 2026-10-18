@@ -11,10 +11,11 @@
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
 	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
 	import type { PageProps } from './$types';
 
-	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → (itineraries, P7)
+	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
 	// → Taste Konkan → near me.
 	let { data }: PageProps = $props();
 	const lang = getLocale();
@@ -173,6 +174,16 @@
 							</div>
 						{/each}
 					</div>
+				</section>
+			{/if}
+
+			{#if data.itineraries.length}
+				<section class="flex flex-col gap-3">
+					<div class="flex items-baseline justify-between">
+						<h2 class="type-h2">{m.itin_title()}</h2>
+						<a href={resolve('/itineraries')} class="type-small">{m.itin_all()}</a>
+					</div>
+					<ItineraryList items={data.itineraries} />
 				</section>
 			{/if}
 

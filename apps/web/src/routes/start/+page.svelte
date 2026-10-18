@@ -7,9 +7,10 @@
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
+	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
 	import type { PageProps } from './$types';
 
-	// FRONTEND §7.17: "Start your Konkan trip" → ready-made itineraries (P7) + planner CTA.
+	// FRONTEND §7.17: "Start your Konkan trip" → ready-made itineraries + planner CTA.
 	let { data }: PageProps = $props();
 	const lang = getLocale();
 	const hrefFor = (kind: string, slug: string) =>
@@ -34,7 +35,11 @@
 
 		<section class="flex flex-col gap-3" data-testid="itineraries">
 			<h2 class="type-h2">{m.start_itineraries()}</h2>
-			<EmptyState title={m.start_itineraries()} body={m.start_itineraries_empty()} />
+			{#if data.itineraries.length}
+				<ItineraryList items={data.itineraries} />
+			{:else}
+				<EmptyState title={m.start_itineraries()} body={m.start_itineraries_empty()} />
+			{/if}
 		</section>
 
 		{#if data.nearby && (data.nearby.listings.length || data.nearby.utilities.length)}

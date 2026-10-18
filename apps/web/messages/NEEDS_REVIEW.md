@@ -14,3 +14,4 @@ Points to check first:
 - P4 keys (listing pages, admin/field/review/reports/claims, owner): drafts. Check domain terms first: `type_eatery` (भोजनालय/खानावळ), `field_lon` (देशांतर vs रेखांश), `food_malvani`, `vibe_*`.
 - P5 keys (`verdict_*`, `group_*`, `dim_*`, reviews, proofs): drafts. Verdict labels are LOCKED in English (BACKEND §5); check the HI/MR equivalents carry the same tone (टाइमपास, स्थानिक प्रसिद्ध).
 - P6 keys (`qr_*`, `start_*`): drafts. Check the emergency copy first (`qr_call_112`, `qr_share_location`, `qr_share_text`, `qr_emergency`) and `qr_plaque_scan` (printed on plaques — review before printing).
+- P7 keys (`plan_*`, `pace_*`, `budget_*`, `reason_*`, `gvote_*`, `itin_*`, `route_*`, `event_*`, `routes_*`, `planner_*`, `me_trips`, `field_fee_inr`, `field_visit_minutes`): drafts. `reason_*` text is saved on trip stops, so review before launch.

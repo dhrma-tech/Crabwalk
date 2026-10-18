@@ -15,13 +15,16 @@
 		...(data.isReviewer
 			? [
 					{ href: resolve('/admin/review'), label: m.review_title() },
-					{ href: resolve('/admin/moderation'), label: m.moderation_title() }
+					{ href: resolve('/admin/moderation'), label: m.moderation_title() },
+					{ href: resolve('/admin/routes'), label: m.routes_title() }
 				]
 			: []),
 		...(data.isAdmin
 			? [
 					{ href: resolve('/admin/claims'), label: m.claims_title() },
-					{ href: resolve('/admin/qr'), label: m.qr_admin_title() }
+					{ href: resolve('/admin/qr'), label: m.qr_admin_title() },
+					{ href: resolve('/admin/events'), label: m.events_title() },
+					{ href: resolve('/admin/planner'), label: m.planner_settings() }
 				]
 			: [])
 	]);

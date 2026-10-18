@@ -133,6 +133,23 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | Ref | Decision |
 |---|---|
 | P7-1 | Planner pace hours confirmed (user): relaxed 6 h, balanced 8 h, packed 10 h per day. |
+| P7-2 | Visit time (user): editable config table of minutes per place category (team tunes) + optional per-place `places.visit_minutes` set by verifiers (field form). |
+| P7-3 | Hours (user): places with real hours are scheduled strictly inside them. No hours rows or `hours_unknown` → only inside a daylight window (config, default 07:00–18:30), stop labelled "Hours not confirmed". |
+| P7-4 | Tides (user): a tide-dependent place is planned only when it has a `place_tide_rules.max_safe_height_m` **and** tide data for that date; scheduled only inside the window where the tide stays below that height. Otherwise skipped with a "Needs tide check" note. |
+| P7-5 | Entry fee (user): new `places.entry_fee_inr` (per adult, verifier-entered, null = unknown). Budget sums known fees and says how many are unknown; user can edit the line. |
+| P7-6 | Fuel (user): `app_config.fuel_price_inr` + `default_mileage_kmpl`, admin-set. No price set → fuel line asks the user to enter one (no invented number). Both editable per trip. |
+| P7-7 | Meals (user): lunch (12:30–14:30) and dinner (19:30–21:00) stops at published eateries near the route matching diet; cost per person = `price_for_two` ÷ 2. Breakfast assumed at the stay, not costed. |
+| P7-8 | Reorder (user): `svelte-dnd-action` (MIT, touch + keyboard) plus Move up / Move down buttons; times recompute after each move. PDF (user): print stylesheet + browser "Save as PDF" (no PDF library). |
+| P7-9 | Trip date (user): new `trips.start_date` (default tomorrow, IST) — spec inputs had no date but hours/tides/festivals need one. |
+| P7-10 | Start point (user): railway stations + bus stands (`utility_pois`) or "Use my location"; stored in `trips.start_point` {label, lon, lat}. Later days start at the previous night's stay. |
+| P7-11 | Scheduling defaults: day starts 09:00 (`app_config.planner_day_start`); place window = pace hours (lunch not counted); lunch 12:30–14:30 tried in every gap, the schedule ending earliest wins; dinner 19:30–21:00 near the last stop; meal stop 60 min. Greedy pick = score − travel ÷ 30 min, then 2-opt (never trades lunch away). Stay per night = nearest that fits 40 % of budget ÷ nights (then unknown price, then over budget). |
+| P7-12 | Scores: base from verdict (winner level × 0.5, 1 if New/none); Standout +2 hidden gem, +1 calm/empty, −1.5 busy; festival with `impact.crowd = busy` in the taluka (or region-wide) counts as busy; monsoon risky −0.5 + warning; heavy rain (current OWM, trip starting today only — no forecast) −3 for risky beaches/waterfalls. Danger alerts within 1 km exclude a place. |
+| P7-13 | Travel: `travel_matrix` corrected times; legs not in the matrix (start point, new listings) use straight line × 1.4 at 35 km/h. Eateries with no hours: 11:00–22:00, labelled "Hours not confirmed". |
+| P7-14 | Reasons: codes → template text in EN/HI/MR saved on the stop (`reason_*`); Crabby may rephrase in P8. User edits (reorder/add/remove) are re-timed from the matrix; a stop pushed outside its hours stays and is flagged "May be closed at this time" (generation itself never does this). Edits are queued client-side so rapid taps can't race. |
+| P7-15 | Custom routes: owner submits → `/admin/routes` (reviewers, via `get_route_for_review()`) → approved routes are public (trips/stops/budget RLS) and listed in `/itineraries` as "By a traveller". Ready-made = admin sets `is_ready_made` + `slug` on a trip they planned. "Plan this trip" copies stops and re-times them for the chosen date. |
+| P7-16 | Group vote: no-JS form at `/plan/vote/:token`; guest id = random 90-day `cw_voter` cookie; guests see counts only (`trip_vote_counts()`), the owner sees each vote. AI merge + trade-offs → P8. |
+| P7-17 | PDF: print stylesheet (app nav/top bar/offline banner hidden, all day panels shown) + browser "Save as PDF". Drag & drop: `svelte-dnd-action` pinned to 0.9.79 (0.9.80 was < 2 weeks old). |
+| P7-18 | `/admin/planner`: fuel price + default mileage (blank = not set → users asked) and visit minutes per category. `/admin/events`: festivals/jatras/seasons with crowd effect + closures. Field form gains numeric entry fee + visit minutes. |
 
 ## P6 decisions and notes
 | Ref | Decision / note |
@@ -168,9 +185,12 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Field-form checklist items, if different from the fact fields (P4-5)
 - Marathi UI digits: Devanagari (current, Intl default) or Latin (P2-7)
 
+- Ready-made itineraries (~5) — team plans them in the app, admin flags them (P7-15)
+- Fuel price, default mileage, visit minutes per category — team sets in /admin/planner (P7-6, P7-2)
+
 ## Found issues
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
-- ~~`rls.test.sql` test 29 counted every approved review → failed on a local DB with P5 e2e leftovers~~ — fixed after P6 (user): scoped to its fixture place. Same fix for `p6_qr.test.sql` "next spot" (fixture moved within ~70 m so leftover e2e places can't outrank it).
+- ~~`rls.test.sql` test 29 counted every approved review → failed on a local DB with P5 e2e leftovers~~ — fixed after P6 (user): scoped to its fixture place. Same fix for `p6_qr.test.sql` "next spot" (fixture moved within ~70 m so leftover e2e places can't outrank it). In P7 the trip assertions in `rls.test.sql` were scoped to the fixture trip too (approved e2e routes are public).
 - `e2e/shell.test.ts` "works offline after first visit" timed out once under a full parallel run (passes alone and on rerun) — possible flake.
 
 ## Phase log
@@ -183,3 +203,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P4 | `phase-4` | AI drafting → P8 (stubbed via content_drafts); verdict gauge/reviews → P5; itineraries → P7; similar/less-crowded → P8; Agoda API call (needs partner docs/keys, P4-7); per-IP rate limits → P10; photo delete/reorder UI; HI/MR review of new strings; live: push P4 migrations + storage buckets with the other live setup. |
 | P5 | `phase-5` | Review moderation model + nightly summaries → P8 (stubs in place); QR+GPS verified visits → P6 (booking proof path live); live: P5 migrations, buckets, cleanup/summary functions + cron with the other live setup; HI/MR review of new strings. |
 | P6 | `phase-6` | Alerts on scan page + live crowd from scans → P9 (P6-12); ready-made itineraries on /start → P7; per-IP rate limits on scan/report → P10; HI/MR review of new strings; live: P6 migration with the other live setup; plaques must be generated from the production origin. |
+| P7 | `phase-7` | AI vote merge + trade-offs and reason rephrasing → P8; pattern analysis (dwell, trending/underrated) → P9; **ready-made itinerary content: 0 rows until the team plans and flags them (~5)**; fuel price + mileage + visit minutes to be set by the team in /admin/planner; HI/MR review of new strings; live: P7 migration with the other live setup. |

@@ -18,7 +18,7 @@
 </script>
 
 <header
-	class="sticky top-0 z-20 border-b border-border bg-bg/95 pt-[env(safe-area-inset-top)] backdrop-blur"
+	class="sticky top-0 z-20 border-b border-border bg-bg/95 print:hidden pt-[env(safe-area-inset-top)] backdrop-blur"
 >
 	<div class="mx-auto flex min-h-14 max-w-[1200px] items-center gap-2 px-4 py-1" data-clip-check>
 		{#if back}

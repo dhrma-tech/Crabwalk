@@ -109,6 +109,20 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"category_visit_minutes": {
+                  Row: {
+                    "category": Database["public"]['Enums']["place_category"],"minutes": number,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "category": Database["public"]['Enums']["place_category"],"minutes": number,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "category"?: Database["public"]['Enums']["place_category"],"minutes"?: number,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"consents": {
                   Row: {
                     "created_at": string,"granted": boolean,"granted_at": string | null,"id": string,"revoked_at": string | null,"type": Database["public"]['Enums']["consent_type"],"updated_at": string | null,"user_id": string
@@ -495,14 +509,14 @@ isOneToOne: false
                   ]
                 },"places": {
                   Row: {
-                    "best_time_text": string | null,"category": Database["public"]['Enums']["place_category"],"created_at": string,"entry_fee_text": string | null,"food_delivery": NonNullable<Json>,"how_to_reach_text": string | null,"id": string,"is_hidden_gem": boolean,"is_seed": boolean,"is_tide_dependent": boolean,"last_verified_at": string | null,"location": unknown,"monsoon_reason": string | null,"monsoon_status": Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text": string | null,"nearest_station_text": string | null,"next_recheck_at": string | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id": string | null,"updated_at": string | null
+                    "best_time_text": string | null,"category": Database["public"]['Enums']["place_category"],"created_at": string,"entry_fee_inr": number | null,"entry_fee_text": string | null,"food_delivery": NonNullable<Json>,"how_to_reach_text": string | null,"id": string,"is_hidden_gem": boolean,"is_seed": boolean,"is_tide_dependent": boolean,"last_verified_at": string | null,"location": unknown,"monsoon_reason": string | null,"monsoon_status": Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text": string | null,"nearest_station_text": string | null,"next_recheck_at": string | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id": string | null,"updated_at": string | null,"visit_minutes": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location": unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null
+                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location": unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
                   }
                   Update: {
-                    "best_time_text"?: string | null,"category"?: Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"tide_station_id"?: string | null,"updated_at"?: string | null
+                    "best_time_text"?: string | null,"category"?: Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
                   }
                   Relationships: [
                     {
@@ -933,14 +947,14 @@ isOneToOne: false
                   ]
                 },"trips": {
                   Row: {
-                    "budget": number | null,"created_at": string,"days": number,"group_type": Database["public"]['Enums']["group_type"] | null,"id": string,"interests": (string)[],"is_ready_made": boolean,"owner_id": string,"pace": Database["public"]['Enums']["trip_pace"],"share_token": string | null,"standout": boolean,"start_point": Json | null,"status": Database["public"]['Enums']["trip_status"],"title": string,"updated_at": string | null
+                    "budget": number | null,"created_at": string,"days": number,"diet": string | null,"group_type": Database["public"]['Enums']["group_type"] | null,"id": string,"interests": (string)[],"is_ready_made": boolean,"owner_id": string,"pace": Database["public"]['Enums']["trip_pace"],"share_token": string | null,"slug": string | null,"standout": boolean,"start_date": string | null,"start_point": Json | null,"status": Database["public"]['Enums']["trip_status"],"title": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "budget"?: number | null,"created_at"?: string,"days": number,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id": string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"standout"?: boolean,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title": string,"updated_at"?: string | null
+                    "budget"?: number | null,"created_at"?: string,"days": number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id": string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "budget"?: number | null,"created_at"?: string,"days"?: number,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id"?: string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"standout"?: boolean,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title"?: string,"updated_at"?: string | null
+                    "budget"?: number | null,"created_at"?: string,"days"?: number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id"?: string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     
@@ -1118,6 +1132,9 @@ isOneToOne: false
 "create_qr_code":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: string
                            },
+"get_route_for_review":
+{ Args: { "_trip": string }; Returns: Json
+                           },
 "get_shared_trip":
 { Args: { "_token": string }; Returns: Json
                            },
@@ -1135,6 +1152,12 @@ isOneToOne: false
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
             }[]
+                           },
+"planner_alerted_places":
+{ Args: { "_ids": (string)[] }; Returns: string[]
+                           },
+"planner_matrix":
+{ Args: { "_ids": (string)[] }; Returns: Json
                            },
 "qr_near_me":
 { Args: { "_code": string }; Returns: {
@@ -1166,6 +1189,11 @@ isOneToOne: false
 "tide_station_coords":
 { Args: Record<PropertyKey, never>; Returns: {
               "id": string,"lat": number,"lon": number,"provider_station_id": string
+            }[]
+                           },
+"trip_vote_counts":
+{ Args: { "_token": string }; Returns: {
+              "down": number,"entity_id": string,"up": number
             }[]
                            },
 "weather_point_coords":

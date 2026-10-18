@@ -249,7 +249,7 @@ select ok((select count(*) from public.reports) >= 1, 'reviewer reads reports');
 -- ================================================================ trips + group votes
 reset role;
 select pg_temp.anon();
-select is((select count(*)::int from public.trips), 0, 'anon cannot list trips');
+select is((select count(*)::int from public.trips where id = (select trip1 from ids)), 0, 'anon cannot list trips');
 select isnt(public.get_shared_trip('tok-u1'), null, 'anon reads trip via share token');
 select is(public.get_shared_trip('bad-token'), null, 'bad token returns nothing');
 select lives_ok(
@@ -265,14 +265,14 @@ select throws_ok(
 
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a1');
-select is((select count(*)::int from public.trips), 1, 'owner reads own trip');
+select is((select count(*)::int from public.trips where id = (select trip1 from ids)), 1, 'owner reads own trip');
 select is((select count(*)::int from public.group_votes), 1, 'trip owner reads votes');
-with u as (update public.trips set title = 'renamed' returning 1)
+with u as (update public.trips set title = 'renamed' where id = (select trip1 from ids) returning 1)
 select is(count(*)::int, 1, 'owner updates own trip') from u;
 
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a2');
-select is((select count(*)::int from public.trips), 0, 'other user cannot read trip');
+select is((select count(*)::int from public.trips where id = (select trip1 from ids)), 0, 'other user cannot read trip');
 select is((select count(*)::int from public.group_votes), 0, 'other user cannot read votes');
 
 -- ================================================================ AI tables

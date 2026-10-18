@@ -31,6 +31,8 @@
 			taluka_id: data.talukas.length === 1 ? data.talukas[0].id : '',
 			category: 'beach',
 			fee: '',
+			feeInr: '',
+			visitMin: '',
 			best: '',
 			reach: '',
 			station: '',
@@ -132,6 +134,8 @@
 				...base,
 				category: f.category,
 				entry_fee_text: f.fee,
+				entry_fee_inr: f.feeInr === '' || f.feeInr == null ? null : Number(f.feeInr),
+				visit_minutes: f.visitMin === '' || f.visitMin == null ? null : Number(f.visitMin),
 				best_time_text: f.best,
 				how_to_reach_text: f.reach,
 				nearest_station_text: f.station,
@@ -326,6 +330,29 @@
 					>{l()}<input class={input} bind:value={f[k]} maxlength="1000" name={k} /></label
 				>
 			{/each}
+			<label class={label}
+				>{m.field_fee_inr()}<input
+					class={input}
+					type="number"
+					min="0"
+					step="1"
+					inputmode="numeric"
+					bind:value={f.feeInr}
+					name="fee_inr"
+				/></label
+			>
+			<label class={label}
+				>{m.field_visit_minutes()}<input
+					class={input}
+					type="number"
+					min="10"
+					max="600"
+					step="5"
+					inputmode="numeric"
+					bind:value={f.visitMin}
+					name="visit_minutes"
+				/></label
+			>
 			<div class="flex flex-wrap gap-2">
 				<label class={box}
 					><input type="checkbox" bind:checked={f.gem} />{m.field_hidden_gem()}</label

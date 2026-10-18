@@ -47,6 +47,8 @@ const base = z.object({
 export const placeInput = base.extend({
 	category: z.enum(E.place_category),
 	entry_fee_text: text,
+	entry_fee_inr: z.number().int().min(0).max(100_000).nullish(), // nullish: offline drafts queued before P7
+	visit_minutes: z.number().int().min(10).max(600).nullish(),
 	best_time_text: text,
 	how_to_reach_text: text,
 	nearest_station_text: text,
@@ -165,6 +167,8 @@ export async function createPlace(db: DB, userId: string, p: z.infer<typeof plac
 		taluka_id: p.taluka_id,
 		location: point(p.lon, p.lat),
 		entry_fee_text: p.entry_fee_text,
+		entry_fee_inr: p.entry_fee_inr ?? null,
+		visit_minutes: p.visit_minutes ?? null,
 		best_time_text: p.best_time_text,
 		how_to_reach_text: p.how_to_reach_text,
 		nearest_station_text: p.nearest_station_text,

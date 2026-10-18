@@ -3,9 +3,10 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import { formatDate } from '#lib/format.ts';
 	import type { PageProps } from './$types';
 
-	// Me shell (P2). Saved trips, packs, roles etc. are added by later phases.
+	// Me (FRONTEND §7.14). Trips from P7; offline packs (P9) and consents arrive later.
 	let { data }: PageProps = $props();
 	const themes = [
 		{ value: 'system', label: m.theme_system },
@@ -27,6 +28,34 @@
 				<div><Button href={resolve('/login')}>{m.sign_in()}</Button></div>
 			{/if}
 		</section>
+
+		{#if data.email}
+			<section class="flex flex-col gap-3" data-testid="my-trips">
+				<h2 class="type-h2">{m.me_trips()}</h2>
+				{#if data.trips.length}
+					<ul
+						class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
+					>
+						{#each data.trips as t (t.id)}
+							<li>
+								<a
+									href={resolve('/plan/[id]', { id: t.id })}
+									class="flex flex-col px-4 py-3 text-text no-underline"
+									><span class="type-h3">{t.title}</span><span class="type-small text-text-2"
+										>{m.plan_n_days({ n: t.days })}{t.start_date
+											? ` · ${formatDate(t.start_date)}`
+											: ''}</span
+									></a
+								>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="type-body text-text-2">{m.me_no_trips()}</p>
+				{/if}
+				<div><Button href={resolve('/plan/new')} variant="secondary">{m.plan_new()}</Button></div>
+			</section>
+		{/if}
 
 		{#if data.isStaff || data.isOwner}
 			<nav class="flex flex-col gap-2">

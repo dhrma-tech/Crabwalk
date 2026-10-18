@@ -19,7 +19,7 @@
 
 {#if !online}
 	<p
-		class="sticky top-0 z-40 flex items-center justify-center gap-2 bg-sand-900 px-4 py-2 type-small text-sand-100"
+		class="sticky top-0 z-40 flex items-center print:hidden justify-center gap-2 bg-sand-900 px-4 py-2 type-small text-sand-100"
 		role="status"
 	>
 		<WifiOff size={20} aria-hidden="true" />{m.offline()}
