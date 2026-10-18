@@ -1115,6 +1115,9 @@ isOneToOne: false
 "cast_group_vote":
 { Args: { "_entity_id": string,"_token": string,"_vote": string,"_voter_name": string,"_voter_token": string }; Returns: undefined
                            },
+"create_qr_code":
+{ Args: { "_id": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: string
+                           },
 "get_shared_trip":
 { Args: { "_token": string }; Returns: Json
                            },
@@ -1131,6 +1134,19 @@ isOneToOne: false
 "map_utilities":
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
+            }[]
+                           },
+"qr_near_me":
+{ Args: { "_code": string }; Returns: {
+              "distance_m": number,"kind": string,"minutes": number,"name_en": string,"name_hi": string,"name_mr": string,"phone": string,"slug": string,"sub": string
+            }[]
+                           },
+"qr_record_scan":
+{ Args: { "_code": string,"_lang"?: Database["public"]['Enums']["lang"],"_lat"?: number,"_lng"?: number,"_session_hash": string }; Returns: undefined
+                           },
+"qr_verify_visit":
+{ Args: { "_code": string,"_lat": number,"_lng": number }; Returns: {
+              "distance_m": number,"verified": boolean
             }[]
                            },
 "review_booking_proof":

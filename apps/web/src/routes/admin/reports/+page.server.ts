@@ -17,11 +17,16 @@ export const load: PageServerLoad = async (event) => {
 		.limit(100);
 	const ids = (t: string) =>
 		(reports ?? []).filter((r) => r.entity_type === t).map((r) => r.entity_id);
-	const [p, s, e] = await Promise.all([
+	const [p, s, e, u] = await Promise.all([
 		db.from('places').select('id, slug, place_translations(lang, name)').in('id', ids('place')),
 		db.from('stays').select('id, slug, stay_translations(lang, name)').in('id', ids('stay')),
-		db.from('eateries').select('id, slug, eatery_translations(lang, name)').in('id', ids('eatery'))
+		db.from('eateries').select('id, slug, eatery_translations(lang, name)').in('id', ids('eatery')),
+		db
+			.from('utility_pois')
+			.select('id, name')
+			.in('id', [...ids('station'), ...ids('bus_stand')])
 	]);
+	const qrOf = new Map((reports ?? []).map((r) => [r.entity_id, r.qr_code]));
 	const label = new Map<string, { name: string | null; href: string }>([
 		...(p.data ?? []).map(
 			(x) => [x.id, { name: tr(x.place_translations, lang), href: `/place/${x.slug}` }] as const
@@ -31,6 +36,9 @@ export const load: PageServerLoad = async (event) => {
 		),
 		...(e.data ?? []).map(
 			(x) => [x.id, { name: tr(x.eatery_translations, lang), href: `/food/${x.slug}` }] as const
+		),
+		...(u.data ?? []).map(
+			(x) => [x.id, { name: x.name, href: `/start?from=${qrOf.get(x.id) ?? ''}` }] as const
 		)
 	]);
 	return {

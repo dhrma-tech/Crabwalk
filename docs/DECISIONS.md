@@ -129,10 +129,26 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## P6 decisions and notes
+| Ref | Decision / note |
+|---|---|
+| P6-1 | QR page JS (user): server-rendered and fully usable without JS (content, `tel:112`, report form, language switch); one inline vanilla script (< 3 KB) adds GPS visit check, location share and the scan beacon. **Narrows C14 "zero JS".** Built as a `+server.ts` returning plain HTML (`/q/[code]`), not a Svelte page: the root layout (nav, toaster, webfont CSS) always wraps pages. |
+| P6-2 | Emergency (user): pinned bar = `tel:112` + "Share my location" → fresh GPS fix → Web Share with a Google Maps link + place name; no Web Share → `sms:` draft; GPS denied → shares the place's own location. Nothing stored server-side. |
+| P6-3 | `/start` (user): "Start your Konkan trip" + planner CTA + honest empty itineraries slot (filled in P7) + what is near the stop. |
+| P6-4 | Scan session (user): random id in a 1-day `cw_qs` cookie (path `/q`), stored only as SHA-256. One `qr_scans` row per session/code/10 min. Position sent only if geolocation is already granted (never prompts on load). Station/bus-stand codes log the scan on the redirect (no page to run the beacon). |
+| P6-5 | Short codes: `create_qr_code()` (admin) = `<regions.code_prefix>-<n>`, n = max + 1 zero-padded to 3, advisory-locked per prefix. Clients can never delete codes (a deleted top number would be re-issued on a new plaque). |
+| P6-6 | Verified visit: `qr_verify_visit()` computes the distance in PostGIS from the listing location; radius in `app_config.qr_visit_radius_m` (200, inclusive). One `qr_gps` visit per user/listing/day. GPS reads use `maximumAge: 0` so a retry after walking closer is not served a cached fix. |
+| P6-7 | Near me now (`qr_near_me()`): 2 stays, 2 eateries, nearest fuel/ATM/toilet/hospital (PostGIS KNN, straight line) + next 3 places by corrected road time from `travel_matrix` (straight-line fallback when the listing has no matrix point). |
+| P6-8 | Stay/eatery codes: verdict summary + first 30 menu items (eateries; stays have no menu column) + latest 3 approved reviews + "Leave a review" → listing page (sign-in + vote UI live there). No payments. |
+| P6-9 | Size budget: CI unit test renders the page with long Devanagari content and fails if HTML ≥ 40 KB (leaves ≥ 60 KB for the 480 px WebP hero), > 1 script, any external script/CSS, webfont or SvelteKit marker. Local e2e measures the real transfer (< 100 KB). |
+| P6-10 | Plaque: `/admin/qr/:code/plaque` = printable A5 SVG (EN + MR name, QR → `<origin>/q/<code>`, URL text, "Emergency 112" band); QR via `uqr` (MIT). Short URL host = the origin the admin is on — generate plaques from the production site. Sponsor = free-text name (find-or-create in `sponsors`), display only. |
+| P6-11 | Audio guide slots: QR page uses the native `<audio>` player (UI language → EN fallback); upload path is the P4 review screen. TTS generation waits on the Sarvam result. |
+| P6-12 | Not on the scan page yet: active `alerts` (no data until P9 — add to the safety block then); live crowd display from `qr_scans` (P9 live layers). |
+
 ## Pending (not blocking code)
 - Sarvam AI result (Suhani)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
-- Plaque permissions (ASI / temple trusts / gram panchayats)
+- Plaque permissions (ASI / temple trusts / gram panchayats) — recorded per code in /admin/qr (P6)
 - Affiliate account owner (PAN/bank)
 - Logo + Crabby mascot artist
 - Custom category icon set
@@ -150,6 +166,8 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 
 ## Found issues
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
+- `supabase/tests/rls.test.sql` test 29 ("anon reads approved reviews only") counts every approved review, so it fails on a local DB after the P5 e2e run leaves one behind. Passes on a fresh DB (CI). Test should scope to its own fixture rows.
+- `e2e/shell.test.ts` "works offline after first visit" timed out once under a full parallel run (passes alone and on rerun) — possible flake.
 
 ## Phase log
 | Phase | Tag | Deferred |
@@ -160,3 +178,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P3 | `phase-3` | **User: API keys + live setup after all phases.** Deferred: `wrangler login` → tiles deploy to `crabwalk-tiles` + verify Pages Range (P3-7) + `PMTILES_BASE_URL`; `ola-proxy` deploy + `OLA_API_KEY` secret + endpoint verification (P3-6) + `OLA_PROXY_URL`; OWM/TideCheck keys → `tide-stations` run, Edge Function deploy + secrets, Vault secrets on live, real cron rows + tide attribution with live data; push P3 migrations to live + pipelines `--live`; TideCheck commercial-use email (P3-1); ghat-zone review (P3-2). Verified locally only. |
 | P4 | `phase-4` | AI drafting → P8 (stubbed via content_drafts); verdict gauge/reviews → P5; itineraries → P7; similar/less-crowded → P8; Agoda API call (needs partner docs/keys, P4-7); per-IP rate limits → P10; photo delete/reorder UI; HI/MR review of new strings; live: push P4 migrations + storage buckets with the other live setup. |
 | P5 | `phase-5` | Review moderation model + nightly summaries → P8 (stubs in place); QR+GPS verified visits → P6 (booking proof path live); live: P5 migrations, buckets, cleanup/summary functions + cron with the other live setup; HI/MR review of new strings. |
+| P6 | `phase-6` | Alerts on scan page + live crowd from scans → P9 (P6-12); ready-made itineraries on /start → P7; per-IP rate limits on scan/report → P10; HI/MR review of new strings; live: P6 migration with the other live setup; plaques must be generated from the production origin. |

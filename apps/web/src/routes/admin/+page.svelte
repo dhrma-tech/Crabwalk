@@ -18,7 +18,12 @@
 					{ href: resolve('/admin/moderation'), label: m.moderation_title() }
 				]
 			: []),
-		...(data.isAdmin ? [{ href: resolve('/admin/claims'), label: m.claims_title() }] : [])
+		...(data.isAdmin
+			? [
+					{ href: resolve('/admin/claims'), label: m.claims_title() },
+					{ href: resolve('/admin/qr'), label: m.qr_admin_title() }
+				]
+			: [])
 	]);
 </script>
 

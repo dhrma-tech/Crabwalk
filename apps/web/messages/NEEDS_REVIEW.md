@@ -13,3 +13,4 @@ Points to check first:
 - P3 map keys (`map_*`, `cat_*`, `util_*`, `tide_*`, `kind_*`): drafts. Check `tide_high`/`tide_low` (ज्वार/भाटा, भरती/ओहोटी), `cat_backwater` (खाडी), `cat_cave` (लेणी vs गुहा).
 - P4 keys (listing pages, admin/field/review/reports/claims, owner): drafts. Check domain terms first: `type_eatery` (भोजनालय/खानावळ), `field_lon` (देशांतर vs रेखांश), `food_malvani`, `vibe_*`.
 - P5 keys (`verdict_*`, `group_*`, `dim_*`, reviews, proofs): drafts. Verdict labels are LOCKED in English (BACKEND §5); check the HI/MR equivalents carry the same tone (टाइमपास, स्थानिक प्रसिद्ध).
+- P6 keys (`qr_*`, `start_*`): drafts. Check the emergency copy first (`qr_call_112`, `qr_share_location`, `qr_share_text`, `qr_emergency`) and `qr_plaque_scan` (printed on plaques — review before printing).
