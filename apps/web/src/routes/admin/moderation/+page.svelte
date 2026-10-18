@@ -23,6 +23,19 @@
 					)}
 				</p>
 				{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
+				{#if r.ai_flag}<p
+						class={[
+							'self-start rounded-chip px-3 py-0.5 type-small',
+							r.ai_flag === 'flagged'
+								? 'bg-laterite-100 text-laterite-900'
+								: 'bg-raised text-text-2'
+						]}
+						data-testid="ai-flag"
+					>
+						{r.ai_flag === 'flagged'
+							? m.moderation_ai_flagged({ reason: r.ai_reason ?? '' })
+							: m.moderation_ai_ok()}
+					</p>{/if}
 				{#if r.photos.length}
 					<div class="flex flex-wrap gap-2">
 						{#each r.photos as src (src)}<img

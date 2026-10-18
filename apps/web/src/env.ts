@@ -13,5 +13,13 @@ export const variables = defineEnvVars({
 	// Stay price comparison (BACKEND §13). Adapter stays off until the partner account exists.
 	AGODA_ENABLED: { schema: optional },
 	AGODA_PARTNER_ID: { schema: optional },
-	AGODA_API_KEY: { schema: optional }
+	AGODA_API_KEY: { schema: optional },
+	// Crabby (BACKEND §11, DECISIONS P8-1): Groq for travellers, Gemini for staff drafting only.
+	// AI_PROVIDER=mock swaps in the scripted provider (local e2e). Model IDs come from env.
+	GROQ_API_KEY: { schema: optional },
+	GEMINI_API_KEY: { schema: optional },
+	AI_MODEL_INTENT: { schema: optional },
+	AI_MODEL_EXPLAIN: { schema: optional },
+	AI_MODEL_DRAFT: { schema: optional },
+	AI_PROVIDER: { schema: optional }
 });

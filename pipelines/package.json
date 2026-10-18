@@ -10,9 +10,11 @@
 		"utility-pois": "node utility-pois/run.ts",
 		"test": "vitest --run",
 		"check": "tsc --noEmit",
-		"tide-stations": "node tide-stations/run.ts"
+		"tide-stations": "node tide-stations/run.ts",
+		"embeddings": "node embeddings/run.ts"
 	},
 	"dependencies": {
+		"@huggingface/transformers": "4.3.0",
 		"@mapbox/polyline": "^1.2.1",
 		"pg": "^8.23.1"
 	},

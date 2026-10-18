@@ -4,6 +4,7 @@
 	import AppNav from '#lib/components/AppNav.svelte';
 	import OfflineBanner from '#lib/components/OfflineBanner.svelte';
 	import Toaster from '#lib/components/Toaster.svelte';
+	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
@@ -19,4 +20,5 @@
 	{@render children()}
 </div>
 <AppNav />
+<CrabbyBubble />
 <Toaster />

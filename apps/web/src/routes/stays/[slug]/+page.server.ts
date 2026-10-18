@@ -13,6 +13,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 	return {
 		stay: {
 			id: s.id,
+			slug: s.slug,
 			names: n,
 			description: tr(s.stay_translations, lang, 'description'),
 			vibes: s.vibe_tags,

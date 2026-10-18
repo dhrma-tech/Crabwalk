@@ -6,6 +6,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
+	import { decide, type Action } from '#lib/crabby.svelte.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import PlanDays from '#lib/components/plan/PlanDays.svelte';
@@ -16,6 +17,12 @@
 	let { data, form }: PageProps = $props();
 	let saving = $state(false);
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
+	let mergeState = $state<'applied' | 'discarded' | null>(null);
+	async function applyMerge(a: Action, apply: boolean) {
+		await decide(a, apply);
+		mergeState = apply ? 'applied' : 'discarded';
+		if (apply) await invalidateAll();
+	}
 	const origin = $derived(page.url.origin);
 
 	// Edits are saved in order: each PATCH carries the full latest order, so a queue avoids races.
@@ -87,7 +94,46 @@
 			</div>
 			{#if data.voters}<p class="type-small text-text-2" data-testid="voters">
 					{m.plan_voters({ n: data.voters })}
-				</p>{/if}
+				</p>
+				<form
+					method="POST"
+					action="?/merge"
+					use:enhance={() =>
+						async ({ update }) =>
+							update({ reset: false })}
+				>
+					<Button type="submit" variant="secondary">{m.plan_merge_votes()}</Button>
+				</form>{/if}
+			{#if form?.merge}
+				{@const r = form.merge}
+				<div
+					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
+					data-testid="merge-result"
+				>
+					{#if r.kind === 'limit'}<p class="type-body">{m.crabby_limit()}</p>
+					{:else if r.kind === 'unavailable'}<p class="type-body">{m.crabby_unavailable()}</p>
+					{:else if r.kind === 'nothing'}<p class="type-body">{m.plan_merge_nothing()}</p>
+					{:else if r.kind === 'merge'}
+						{#if r.text}<p class="type-body">{r.text}</p>{/if}
+						<p class="type-h3">{r.action.preview.title}</p>
+						{#each r.action.preview.lines as l, k (k)}<p class="type-small">{l}</p>{/each}
+						{#if mergeState === 'applied'}<p class="type-small" role="status">
+								{m.crabby_applied()}
+							</p>
+						{:else if mergeState === 'discarded'}<p class="type-small" role="status">
+								{m.crabby_discarded()}
+							</p>
+						{:else}
+							<div class="flex gap-2">
+								<Button onclick={() => applyMerge(r.action, true)}>{m.crabby_apply()}</Button>
+								<Button variant="ghost" onclick={() => applyMerge(r.action, false)}
+									>{m.crabby_discard()}</Button
+								>
+							</div>
+						{/if}
+					{/if}
+				</div>
+			{/if}
 		</section>
 
 		<section class="flex flex-col gap-2 print:hidden">

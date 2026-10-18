@@ -10,7 +10,15 @@ const root = process.argv[2] ?? join(import.meta.dirname, '..');
 const SKIP = new Set(['node_modules', '.git', '.svelte-kit', '.wrangler', 'data', 'dist', 'build', 'test-results']);
 const CODE = /\.(ts|js|mjs|cjs|svelte|tsx|jsx|sql)$/;
 // Paths that hold AI/LLM code now or later (P8). Keep in sync with where AI code is placed.
-const AI = [/^services\/api\/ai\//, /^apps\/web\/src\/lib\/ai\//, /^apps\/web\/src\/routes\/api\/ai\//, /^supabase\/functions\/ai[-_/]/];
+const AI = [
+	/^services\/api\/ai\//,
+	/^apps\/web\/src\/lib\/ai\//,
+	/^apps\/web\/src\/lib\/server\/ai\//,
+	/^apps\/web\/src\/routes\/api\/ai\//,
+	/^supabase\/functions\/ai[-_/]/,
+	/^supabase\/functions\/review-summaries\//,
+	/^supabase\/functions\/_shared\/groq\.ts$/
+];
 const OLA_DIR = /^services\/ola-proxy\//;
 
 function* walk(dir) {

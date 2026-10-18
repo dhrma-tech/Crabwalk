@@ -4,6 +4,7 @@ import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { nearby, type Lang } from '#lib/server/listings.ts';
 import { describeStops, tripView } from '#lib/server/planner/trips.ts';
+import { mergeVotes } from '#lib/server/ai/assist.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 // Plan view (FRONTEND §7.9): owner edits; group votes shown per stop; share/vote links; publish route.
@@ -59,6 +60,22 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
+	// Crabby merges friends' votes into a proposed edit + trade-off text (PLAN P8 task 8, BACKEND §10.4).
+	merge: async (event) => {
+		const s = await session(event);
+		try {
+			return {
+				merge: await mergeVotes(
+					event.locals.supabase,
+					s.user.id,
+					event.params.id,
+					getLocale() as Lang
+				)
+			};
+		} catch {
+			return fail(503, { merge: { kind: 'unavailable' as const } });
+		}
+	},
 	rename: async (event) => {
 		await session(event);
 		const title = String((await event.request.formData()).get('title') ?? '').trim();

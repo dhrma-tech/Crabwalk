@@ -73,7 +73,8 @@ export function reasonText(codes: string[]) {
 const entityOf = (s: { kind: Stop['kind']; id: string }, kinds: Map<string, Kind>) =>
 	s.kind === 'place' ? 'place' : s.kind === 'stay' ? 'stay' : (kinds.get(s.id) ?? 'eatery');
 
-export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
+/** Runs the planner without saving (Crabby previews reuse this; createTrip saves the same result). */
+export async function computeTrip(db: DB, p: PlanInput) {
 	const data = await loadPlannerData(db, {
 		days: p.days,
 		startDate: p.start_date,
@@ -98,7 +99,11 @@ export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
 		stays: data.stays,
 		travel
 	});
+	return { data, days };
+}
 
+export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
+	const { data, days } = await computeTrip(db, p);
 	const { data: trip, error } = await db
 		.from('trips')
 		.insert({

@@ -38,7 +38,21 @@
 
 <Page title={data.text.en.name ?? msg(`type_${data.type}`)} back>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<p class="rounded-card bg-sea-50 p-3 type-small text-sea-900">{m.review_ai_pending()}</p>
+		<form
+			method="POST"
+			action="?/draft"
+			use:enhance
+			class="flex flex-col gap-2 rounded-card bg-sea-50 p-3 text-sea-900"
+		>
+			<p class="type-small">{m.review_ai_pending()}</p>
+			<div><Button type="submit" variant="secondary">{m.review_ai_draft()}</Button></div>
+			{#if form?.drafted != null}<p class="type-small" role="status">
+					{m.review_ai_drafted({ n: form.drafted })}
+				</p>{/if}
+			{#if form?.error === 'draft'}<p class="type-small" role="alert">
+					{m.crabby_unavailable()}
+				</p>{/if}
+		</form>
 
 		{#if data.photos.length}
 			<div class="flex flex-wrap gap-2">

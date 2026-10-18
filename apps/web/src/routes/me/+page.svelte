@@ -3,11 +3,13 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
 	import type { PageProps } from './$types';
 
 	// Me (FRONTEND §7.14). Trips from P7; offline packs (P9) and consents arrive later.
-	let { data }: PageProps = $props();
+	let { data, form }: PageProps = $props();
+	const sel = 'h-12 rounded-input border border-border bg-surface px-3 type-body text-text';
 	const themes = [
 		{ value: 'system', label: m.theme_system },
 		{ value: 'light', label: m.theme_light },
@@ -57,6 +59,51 @@
 			</section>
 		{/if}
 
+		{#if data.email}
+			<form
+				method="POST"
+				action="?/prefs"
+				class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
+				data-testid="prefs"
+			>
+				<h2 class="type-h2">{m.me_prefs()}</h2>
+				<p class="type-small text-text-2">{m.me_prefs_hint()}</p>
+				<label class="flex flex-col gap-1 type-small text-text-2"
+					>{m.plan_diet()}
+					<select name="diet" class={sel}>
+						<option value="">{m.filter_any()}</option>
+						<option value="veg" selected={data.prefs.diet === 'veg'}>{m.diet_veg()}</option>
+						<option value="non_veg" selected={data.prefs.diet === 'non_veg'}
+							>{m.diet_nonveg()}</option
+						>
+						<option value="jain" selected={data.prefs.diet === 'jain'}>{m.diet_jain()}</option>
+					</select>
+				</label>
+				<label class="flex flex-col gap-1 type-small text-text-2"
+					>{m.plan_budget()}
+					<select name="budget_level" class={sel}>
+						<option value="">{m.filter_any()}</option>
+						{#each ['budget', 'mid', 'premium'] as b (b)}<option
+								value={b}
+								selected={data.prefs.budget_level === b}>{msg(`budget_level_${b}`)}</option
+							>{/each}
+					</select>
+				</label>
+				<label class="flex flex-col gap-1 type-small text-text-2"
+					>{m.plan_group()}
+					<select name="group_type" class={sel}>
+						<option value="">{m.filter_any()}</option>
+						{#each ['family', 'couple', 'friends', 'solo'] as g (g)}<option
+								value={g}
+								selected={data.prefs.group_type === g}>{msg(`group_${g}`)}</option
+							>{/each}
+					</select>
+				</label>
+				{#if form?.prefsSaved}<p class="type-small" role="status">{m.owner_saved()}</p>{/if}
+				<div><Button type="submit" variant="secondary">{m.plan_save()}</Button></div>
+			</form>
+		{/if}
+
 		{#if data.isStaff || data.isOwner}
 			<nav class="flex flex-col gap-2">
 				{#if data.isStaff}<a
@@ -71,6 +118,8 @@
 					>{/if}
 			</nav>
 		{/if}
+
+		<p><a href={resolve('/privacy')} class="type-body">{m.privacy_title()}</a></p>
 
 		<section class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
 			<h2 class="type-h2">{m.theme()}</h2>

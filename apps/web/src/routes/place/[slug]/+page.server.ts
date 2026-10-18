@@ -49,6 +49,11 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			coords
 		},
 		ratings: await ratingsFor(locals.supabase, 'place', p.id, (await locals.getUser())?.id ?? null),
+		// FRONTEND §7.2 (P8): embeddings + rules, no LLM.
+		similar: (await locals.supabase.rpc('similar_places', { _slug: p.slug, _limit: 4 })).data ?? [],
+		lessCrowded:
+			(await locals.supabase.rpc('less_crowded_alternatives', { _slug: p.slug, _weekday: wd }))
+				.data ?? [],
 		nearby: coords
 			? await nearby(locals.supabase, coords[0], coords[1])
 			: { listings: [], utilities: [] }

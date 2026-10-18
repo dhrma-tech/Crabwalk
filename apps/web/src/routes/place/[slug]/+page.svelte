@@ -18,7 +18,7 @@
 	import Reviews from '#lib/components/rating/Reviews.svelte';
 	import type { PageProps } from './$types';
 
-	// Layout order LOCKED (FRONTEND §7.2). Verdict gauge + reviews arrive in P5, similar/less-crowded in P8.
+	// Layout order LOCKED (FRONTEND §7.2).
 	let { data }: PageProps = $props();
 	const p = $derived(data.place);
 	const lang = getLocale();
@@ -171,6 +171,49 @@
 							<li class="flex justify-between gap-3 px-4 py-3">
 								<span class="type-body">{msg(`util_${u.type}`)}{u.name ? ` · ${u.name}` : ''}</span
 								><span class="type-small text-text-2">{m.km_away({ km: formatNumber(u.km) })}</span>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</section>
+		{/if}
+
+		{#if data.lessCrowded.length || data.similar.length}
+			<section class="flex flex-col gap-3" data-testid="similar">
+				{#if data.lessCrowded.length}
+					<h2 class="type-h2">{m.less_crowded_title()}</h2>
+					<ul
+						class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
+					>
+						{#each data.lessCrowded as x (x.slug)}
+							<li>
+								<a
+									href={resolve('/place/[slug]', { slug: x.slug })}
+									class="flex justify-between gap-3 px-4 py-3 text-text no-underline"
+									><span class="type-body">{pinName(x)} · {msg(`crowd_${x.level}`)}</span><span
+										class="type-small text-text-2"
+										>{m.km_away({ km: formatNumber(Number(x.km)) })}</span
+									></a
+								>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if data.similar.length}
+					<h2 class="type-h2">{m.similar_title()}</h2>
+					<ul
+						class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
+					>
+						{#each data.similar as x (x.slug)}
+							<li>
+								<a
+									href={resolve('/place/[slug]', { slug: x.slug })}
+									class="flex justify-between gap-3 px-4 py-3 text-text no-underline"
+									><span class="type-body">{pinName(x)} · {msg(`cat_${x.category}`)}</span><span
+										class="type-small text-text-2"
+										>{m.km_away({ km: formatNumber(Number(x.km)) })}</span
+									></a
+								>
 							</li>
 						{/each}
 					</ul>

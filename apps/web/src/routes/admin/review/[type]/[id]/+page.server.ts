@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { requireStaff } from '#lib/server/auth.ts';
 import { photosFor, photoUrls } from '#lib/server/listings.ts';
 import { entity, FIELDS, isReviewType, loadText, publish, saveDrafts } from '#lib/server/review.ts';
+import { draftContent } from '#lib/server/ai/drafting.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -60,6 +61,17 @@ const offer = z.object({
 });
 
 export const actions: Actions = {
+	// AI drafts fill empty fields only; the reviewer still checks every fact (PLAN P8 task 9).
+	draft: async (event) => {
+		await requireStaff(event, 'reviewer');
+		const { type, id } = event.params;
+		if (!isReviewType(type)) error(404, 'not found');
+		try {
+			return { drafted: (await draftContent(event.locals.supabase, type, id)).filled };
+		} catch {
+			return fail(503, { error: 'draft' });
+		}
+	},
 	save: async (event) => {
 		await requireStaff(event, 'reviewer');
 		const { type, id } = event.params;

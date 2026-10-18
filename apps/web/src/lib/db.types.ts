@@ -683,14 +683,14 @@ isOneToOne: false
                   ]
                 },"reviews": {
                   Row: {
-                    "created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id": string,"moderation_status": Database["public"]['Enums']["review_status"],"photo_ids": (string)[],"text": string | null,"updated_at": string | null,"user_id": string
+                    "ai_flag": string | null,"ai_reason": string | null,"created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id": string,"moderation_status": Database["public"]['Enums']["review_status"],"photo_ids": (string)[],"text": string | null,"updated_at": string | null,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id"?: string,"moderation_status"?: Database["public"]['Enums']["review_status"],"photo_ids"?: (string)[],"text"?: string | null,"updated_at"?: string | null,"user_id": string
+                    "ai_flag"?: string | null,"ai_reason"?: string | null,"created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id"?: string,"moderation_status"?: Database["public"]['Enums']["review_status"],"photo_ids"?: (string)[],"text"?: string | null,"updated_at"?: string | null,"user_id": string
                   }
                   Update: {
-                    "created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"group_type"?: Database["public"]['Enums']["group_type"],"id"?: string,"moderation_status"?: Database["public"]['Enums']["review_status"],"photo_ids"?: (string)[],"text"?: string | null,"updated_at"?: string | null,"user_id"?: string
+                    "ai_flag"?: string | null,"ai_reason"?: string | null,"created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"group_type"?: Database["public"]['Enums']["group_type"],"id"?: string,"moderation_status"?: Database["public"]['Enums']["review_status"],"photo_ids"?: (string)[],"text"?: string | null,"updated_at"?: string | null,"user_id"?: string
                   }
                   Relationships: [
                     
@@ -1123,7 +1123,10 @@ isOneToOne: false
                 }
           }
           Functions: {
-            "approve_listing":
+            "ai_take_message":
+{ Args: Record<PropertyKey, never>; Returns: number
+                           },
+"approve_listing":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["listing_type"] }; Returns: undefined
                            },
 "cast_group_vote":
@@ -1137,6 +1140,11 @@ isOneToOne: false
                            },
 "get_shared_trip":
 { Args: { "_token": string }; Returns: Json
+                           },
+"less_crowded_alternatives":
+{ Args: { "_slug": string,"_weekday": number }; Returns: {
+              "category": string,"km": number,"level": string,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
+            }[]
                            },
 "map_pins":
 { Args: { "categories"?: (Database["public"]['Enums']["place_category"])[],"kinds"?: (string)[],"max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"open_now"?: boolean }; Returns: {
@@ -1177,6 +1185,11 @@ isOneToOne: false
                            },
 "review_owner_claim":
 { Args: { "_approve": boolean,"_claim": string }; Returns: undefined
+                           },
+"similar_places":
+{ Args: { "_limit"?: number,"_slug": string }; Returns: {
+              "category": string,"km": number,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
+            }[]
                            },
 "sub_score_summary":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["entity_type"] }; Returns: {

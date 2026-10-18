@@ -10,6 +10,7 @@
 	import TagList from '#lib/components/TagList.svelte';
 	import Hero from '#lib/components/listing/Hero.svelte';
 	import PriceTable from '#lib/components/listing/PriceTable.svelte';
+	import PriceTip from '#lib/components/crabby/PriceTip.svelte';
 	import Contact from '#lib/components/listing/Contact.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
 	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
@@ -105,6 +106,7 @@
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.prices_title()}</h2>
 			<PriceTable rows={data.prices} />
+			{#if data.prices.filter((r) => r.price).length >= 2}<PriceTip slug={data.stay.slug} />{/if}
 			<Contact phone={s.phone} whatsapp={s.whatsapp} />
 		</section>
 

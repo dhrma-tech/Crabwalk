@@ -3,6 +3,8 @@
 	import X from '@lucide/svelte/icons/x';
 	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { resolve } from '$app/paths';
+	import { page } from '$app/state';
+	import { onMount } from 'svelte';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import TopBar from '#lib/components/TopBar.svelte';
@@ -42,7 +44,8 @@
 
 	// Search: own DB first, Ola autocomplete only when nothing matches and the user is signed in (FRONTEND §8).
 	type Result = { name: string; lon: number | null; lat: number | null; source: 'own' | 'ola' };
-	let q = $state('');
+	// ?q= prefills the search (Crabby "open on map" action).
+	let q = $state(page.url.searchParams.get('q') ?? '');
 	let results = $state<Result[]>([]);
 	let searched = $state(false);
 	let olaPoint = $state<{ lon: number; lat: number } | null>(null);
@@ -50,6 +53,10 @@
 	// eslint-disable-next-line svelte/prefer-svelte-reactivity
 	const olaSessionCache = new Map<string, Result[]>();
 	let timer: ReturnType<typeof setTimeout>;
+
+	onMount(() => {
+		if (q) onSearch();
+	});
 
 	function onSearch() {
 		clearTimeout(timer);

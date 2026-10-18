@@ -129,6 +129,24 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## P8 pre-decisions
+| Ref | Decision |
+|---|---|
+| P8-1 | **Overrides BACKEND §11.1 [LOCKED] router (user).** Gemini API free tier ("Unpaid Services") trains on prompts, allows human review, forbids personal info and consumer apps likely used by under-18s (ai.google.dev/gemini-api/terms, checked 2026-10-18). So: traveller-facing chat, explanations, moderation, vote merge and review summaries run on **Groq only** (`llama-3.1-8b-instant` → `llama-3.3-70b-versatile`, and 70B → 8B for explanations). **Gemini only for staff content drafting** from verifier facts (no user text). Model IDs from env. |
+| P8-2 | Providers verified with a mock provider in tests (429 fall-through, payload logging); real keys + live smoke test with the other live setup (user). |
+| P8-3 | Emergency keywords (BACKEND §11.6 [OPEN]): Claude drafts EN/HI/MR + romanised list in one config file, **team reviews before launch**; matching errs toward over-triggering (user). |
+| P8-4 | Privacy: new `/privacy` page with only the "AI assistant (Crabby)" section in EN/HI/MR, marked draft for legal review; rest of the policy is the team's (user). |
+| P8-5 | Embeddings (G7, multilingual-e5-small 384): computed in a batch pipeline for places (place-to-place similarity only — "similar" / "less crowded" need no query embedding), so no runtime embedding service. |
+| P8-6 | AI code lives in `apps/web/src/lib/server/ai/` (server-only) + `supabase/functions/review-summaries` + `_shared/groq.ts`; all added to the AI firewall paths. Provider interface (Groq, Gemini, Mock) is Sarvam-ready (§11.7). |
+| P8-7 | Router: on 429 / 5xx / network / missing key → next link. Every payload is scrubbed (phone numbers, coordinates) and passes an audit hook before any provider sees it. Tools return slugs/names/facts only — never ids, phones, coordinates, Ola data; trips are referenced as T1, T2… |
+| P8-8 | Flow per §11.2: client emergency check → server emergency guard → `ai_take_message()` (20/IST day from `app_config.ai_daily_cap`; `AI_DAILY_MSG_CAP` env dropped) → 8B moderation → 8B tool loop (≤ 4 rounds) → 70B explanation from TOOL RESULTS only. Nothing found → honest "don't know" + 3 verified places. Client sends the last 6 turns; nothing stored server-side. |
+| P8-9 | Previews: `ai_actions` (own insert as proposed; own one-way update to applied/discarded). Apply re-runs our code with the stored payload (planner, trip edit) — never the model. `start_nav` hands over to Google Maps until P9 navigation; `open_map` opens /map with `?q=` search. |
+| P8-10 | Review pre-screen runs when a reviewer opens /admin/moderation (reviewer's session, ≤ 10 per load); the model only flags (`reviews.ai_flag/ai_reason`), people decide. Authors can't set flags; editing the text clears it. Content helper fills only EMPTY fields as drafts (facts minus contacts/coordinates/ids). |
+| P8-11 | Nightly summaries: listings with ≥ 3 approved text reviews changed since the last summary, ≤ 40 per run, one Groq call → EN/HI/MR; stops on 429. Verified locally in the edge runtime (auth, no-key failure path); live run needs `GROQ_API_KEY` as a function secret. |
+| P8-12 | Emergency card (FRONTEND §6.8): Call 112, nearest hospital from our utility POIs (distance, call if we have a number, Google Maps directions), share location (Web Share / SMS). Position stays on the device. Offline per-taluka hospital list → P9 packs. |
+| P8-13 | Similar / less-crowded (place page + `/api/recommend/*`): pgvector cosine over `place_embeddings`; less-crowded = similar, ≤ 50 km, typically calm/empty today when this place is typically busy. `pipelines/embeddings` (transformers.js 4.3.0, `Xenova/multilingual-e5-small` q8) — re-run after content changes. |
+| P8-14 | `AI_PROVIDER=mock` is for local dev/e2e only (also in local `.env`); the mock-log endpoint exists only in `--mode e2e` builds with mock on. **Live must leave `AI_PROVIDER` empty.** Me gains preferences (diet, budget level, group) = Crabby's memory. Desktop: bubble opens a right-side panel (closes the P2 deferral). |
+
 ## P7 pre-decisions
 | Ref | Decision |
 |---|---|
@@ -168,7 +186,7 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P6-12 | Not on the scan page yet: active `alerts` (no data until P9 — add to the safety block then); live crowd display from `qr_scans` (P9 live layers). |
 
 ## Pending (not blocking code)
-- Sarvam AI result (Suhani)
+- Sarvam AI result (Suhani) — provider interface ready (P8-6)
 - Ola caching confirmation email to support@olakrutrim.com (client cache = active session until confirmed)
 - Plaque permissions (ASI / temple trusts / gram panchayats) — recorded per code in /admin/qr (P6)
 - Affiliate account owner (PAN/bank)
@@ -178,7 +196,7 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - TBD rating — parked, do not build
 - Trail difficulty scale — before P9
 - Per-spot tide accessibility rule — from verifiers
-- Emergency keyword list EN/HI/MR — team to finalize before P8
+- Emergency keyword list EN/HI/MR — Claude draft in P8, team to review before launch (P8-3)
 - Custom SMTP + push OTP email template to live project (P1-19) — after remaining phases
 - Hindi/Marathi taluka names — team review (P1-16)
 - HI/MR UI strings — team review before launch (P2-3, `messages/NEEDS_REVIEW.md`)
@@ -187,6 +205,8 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 
 - Ready-made itineraries (~5) — team plans them in the app, admin flags them (P7-15)
 - Fuel price, default mileage, visit minutes per category — team sets in /admin/planner (P7-6, P7-2)
+
+- Privacy policy (rest of it) + legal review of the AI section (P8-4)
 
 ## Found issues
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
@@ -204,3 +224,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5 | `phase-5` | Review moderation model + nightly summaries → P8 (stubs in place); QR+GPS verified visits → P6 (booking proof path live); live: P5 migrations, buckets, cleanup/summary functions + cron with the other live setup; HI/MR review of new strings. |
 | P6 | `phase-6` | Alerts on scan page + live crowd from scans → P9 (P6-12); ready-made itineraries on /start → P7; per-IP rate limits on scan/report → P10; HI/MR review of new strings; live: P6 migration with the other live setup; plaques must be generated from the production origin. |
 | P7 | `phase-7` | AI vote merge + trade-offs and reason rephrasing → P8; pattern analysis (dwell, trending/underrated) → P9; **ready-made itinerary content: 0 rows until the team plans and flags them (~5)**; fuel price + mileage + visit minutes to be set by the team in /admin/planner; HI/MR review of new strings; live: P7 migration with the other live setup. |
+| P8 | `phase-8` | **Live:** `GROQ_API_KEY` + `GEMINI_API_KEY` (web + review-summaries secret), model IDs, run `pipelines embeddings --live`, P8 migration, review-summaries cron; real-LLM smoke test (P8-2). Emergency keywords + privacy AI section + all P8 HI/MR strings need team/legal review before launch. Offline hospital list → P9; navigation for `start_nav` → P9. |
