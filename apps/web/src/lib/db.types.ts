@@ -509,14 +509,14 @@ isOneToOne: false
                   ]
                 },"places": {
                   Row: {
-                    "best_time_text": string | null,"category": Database["public"]['Enums']["place_category"],"created_at": string,"entry_fee_inr": number | null,"entry_fee_text": string | null,"food_delivery": NonNullable<Json>,"how_to_reach_text": string | null,"id": string,"is_hidden_gem": boolean,"is_seed": boolean,"is_tide_dependent": boolean,"last_verified_at": string | null,"location": unknown,"monsoon_reason": string | null,"monsoon_status": Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text": string | null,"nearest_station_text": string | null,"next_recheck_at": string | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id": string | null,"updated_at": string | null,"visit_minutes": number | null
+                    "best_time_text": string | null,"category": Database["public"]['Enums']["place_category"],"created_at": string,"dwell_minutes": number | null,"entry_fee_inr": number | null,"entry_fee_text": string | null,"food_delivery": NonNullable<Json>,"how_to_reach_text": string | null,"id": string,"is_hidden_gem": boolean,"is_seed": boolean,"is_tide_dependent": boolean,"last_verified_at": string | null,"location": unknown,"monsoon_reason": string | null,"monsoon_status": Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text": string | null,"nearest_station_text": string | null,"next_recheck_at": string | null,"slug": string,"status": Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id": string | null,"updated_at": string | null,"visit_minutes": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location": unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
+                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"dwell_minutes"?: number | null,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location": unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
                   }
                   Update: {
-                    "best_time_text"?: string | null,"category"?: Database["public"]['Enums']["place_category"],"created_at"?: string,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
+                    "best_time_text"?: string | null,"category"?: Database["public"]['Enums']["place_category"],"created_at"?: string,"dwell_minutes"?: number | null,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"tide_station_id"?: string | null,"updated_at"?: string | null,"visit_minutes"?: number | null
                   }
                   Relationships: [
                     {
@@ -566,6 +566,20 @@ isOneToOne: true
       referencedRelation: "trips"
       referencedColumns: ["id"]
     }
+                  ]
+                },"push_subscriptions": {
+                  Row: {
+                    "auth": string,"created_at": string,"endpoint": string,"id": string,"p256dh": string,"updated_at": string | null,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "auth": string,"created_at"?: string,"endpoint": string,"id"?: string,"p256dh": string,"updated_at"?: string | null,"user_id": string
+                  }
+                  Update: {
+                    "auth"?: string,"created_at"?: string,"endpoint"?: string,"id"?: string,"p256dh"?: string,"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Relationships: [
+                    
                   ]
                 },"qr_codes": {
                   Row: {
@@ -867,28 +881,28 @@ isOneToOne: false
                   ]
                 },"trails": {
                   Row: {
-                    "created_at": string,"difficulty": string | null,"geometry": unknown,"gpx_storage_path": string | null,"id": string,"name_en": string,"name_hi": string | null,"name_mr": string | null,"source": string,"updated_at": string | null
+                    "created_at": string,"difficulty": string | null,"geometry": unknown,"gpx_storage_path": string | null,"id": string,"name_en": string,"name_hi": string | null,"name_mr": string | null,"osm_id": number | null,"source": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"difficulty"?: string | null,"geometry"?: unknown,"gpx_storage_path"?: string | null,"id"?: string,"name_en": string,"name_hi"?: string | null,"name_mr"?: string | null,"source": string,"updated_at"?: string | null
+                    "created_at"?: string,"difficulty"?: string | null,"geometry"?: unknown,"gpx_storage_path"?: string | null,"id"?: string,"name_en": string,"name_hi"?: string | null,"name_mr"?: string | null,"osm_id"?: number | null,"source": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "created_at"?: string,"difficulty"?: string | null,"geometry"?: unknown,"gpx_storage_path"?: string | null,"id"?: string,"name_en"?: string,"name_hi"?: string | null,"name_mr"?: string | null,"source"?: string,"updated_at"?: string | null
+                    "created_at"?: string,"difficulty"?: string | null,"geometry"?: unknown,"gpx_storage_path"?: string | null,"id"?: string,"name_en"?: string,"name_hi"?: string | null,"name_mr"?: string | null,"osm_id"?: number | null,"source"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     
                   ]
                 },"travel_matrix": {
                   Row: {
-                    "computed_at": string,"distance_m": number,"duration_corrected_s": number,"duration_s": number,"from_point_id": string,"route_shape": string | null,"to_point_id": string
+                    "computed_at": string,"distance_m": number,"duration_corrected_s": number,"duration_s": number,"from_point_id": string,"route_shape": string | null,"route_turns": string | null,"to_point_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "computed_at"?: string,"distance_m": number,"duration_corrected_s": number,"duration_s": number,"from_point_id": string,"route_shape"?: string | null,"to_point_id": string
+                    "computed_at"?: string,"distance_m": number,"duration_corrected_s": number,"duration_s": number,"from_point_id": string,"route_shape"?: string | null,"route_turns"?: string | null,"to_point_id": string
                   }
                   Update: {
-                    "computed_at"?: string,"distance_m"?: number,"duration_corrected_s"?: number,"duration_s"?: number,"from_point_id"?: string,"route_shape"?: string | null,"to_point_id"?: string
+                    "computed_at"?: string,"distance_m"?: number,"duration_corrected_s"?: number,"duration_s"?: number,"from_point_id"?: string,"route_shape"?: string | null,"route_turns"?: string | null,"to_point_id"?: string
                   }
                   Relationships: [
                     {
@@ -927,14 +941,14 @@ isOneToOne: true
                   ]
                 },"trip_stops": {
                   Row: {
-                    "arrive_at": string | null,"created_at": string,"day": number,"depart_at": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"kind": Database["public"]['Enums']["stop_kind"],"order": number,"reason_en": string | null,"reason_hi": string | null,"reason_mr": string | null,"travel_from_prev_s": number | null,"trip_id": string,"updated_at": string | null
+                    "arrive_at": string | null,"created_at": string,"day": number,"depart_at": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at": string | null,"order": number,"reason_en": string | null,"reason_hi": string | null,"reason_mr": string | null,"travel_from_prev_s": number | null,"trip_id": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "arrive_at"?: string | null,"created_at"?: string,"day": number,"depart_at"?: string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"kind": Database["public"]['Enums']["stop_kind"],"order": number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id": string,"updated_at"?: string | null
+                    "arrive_at"?: string | null,"created_at"?: string,"day": number,"depart_at"?: string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order": number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "arrive_at"?: string | null,"created_at"?: string,"day"?: number,"depart_at"?: string | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"kind"?: Database["public"]['Enums']["stop_kind"],"order"?: number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id"?: string,"updated_at"?: string | null
+                    "arrive_at"?: string | null,"created_at"?: string,"day"?: number,"depart_at"?: string | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"kind"?: Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order"?: number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     {
@@ -947,14 +961,14 @@ isOneToOne: false
                   ]
                 },"trips": {
                   Row: {
-                    "budget": number | null,"created_at": string,"days": number,"diet": string | null,"group_type": Database["public"]['Enums']["group_type"] | null,"id": string,"interests": (string)[],"is_ready_made": boolean,"owner_id": string,"pace": Database["public"]['Enums']["trip_pace"],"share_token": string | null,"slug": string | null,"standout": boolean,"start_date": string | null,"start_point": Json | null,"status": Database["public"]['Enums']["trip_status"],"title": string,"updated_at": string | null
+                    "budget": number | null,"created_at": string,"days": number,"diet": string | null,"group_type": Database["public"]['Enums']["group_type"] | null,"id": string,"interests": (string)[],"is_ready_made": boolean,"live_date": string | null,"owner_id": string,"pace": Database["public"]['Enums']["trip_pace"],"share_token": string | null,"slug": string | null,"standout": boolean,"start_date": string | null,"start_point": Json | null,"status": Database["public"]['Enums']["trip_status"],"title": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "budget"?: number | null,"created_at"?: string,"days": number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id": string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title": string,"updated_at"?: string | null
+                    "budget"?: number | null,"created_at"?: string,"days": number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"live_date"?: string | null,"owner_id": string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "budget"?: number | null,"created_at"?: string,"days"?: number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"owner_id"?: string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title"?: string,"updated_at"?: string | null
+                    "budget"?: number | null,"created_at"?: string,"days"?: number,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"interests"?: (string)[],"is_ready_made"?: boolean,"live_date"?: string | null,"owner_id"?: string,"pace"?: Database["public"]['Enums']["trip_pace"],"share_token"?: string | null,"slug"?: string | null,"standout"?: boolean,"start_date"?: string | null,"start_point"?: Json | null,"status"?: Database["public"]['Enums']["trip_status"],"title"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     
@@ -1132,6 +1146,9 @@ isOneToOne: false
 "cast_group_vote":
 { Args: { "_entity_id": string,"_token": string,"_vote": string,"_voter_name": string,"_voter_token": string }; Returns: undefined
                            },
+"confirm_alert":
+{ Args: { "_id": string }; Returns: string
+                           },
 "create_qr_code":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: string
                            },
@@ -1146,6 +1163,16 @@ isOneToOne: false
               "category": string,"km": number,"level": string,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
             }[]
                            },
+"map_alerts":
+{ Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number }; Returns: {
+              "expires_at": string,"geojson": string,"id": string,"reason_en": string,"reason_hi": string,"reason_mr": string,"reported_at": string,"severity": string,"type": string
+            }[]
+                           },
+"map_heatmap":
+{ Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number }; Returns: {
+              "lat": number,"lon": number,"slug": string,"source": string,"weight": number
+            }[]
+                           },
 "map_pins":
 { Args: { "categories"?: (Database["public"]['Enums']["place_category"])[],"kinds"?: (string)[],"max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"open_now"?: boolean }; Returns: {
               "category": string,"id": string,"kind": string,"lat": number,"lon": number,"name_en": string,"name_hi": string,"name_mr": string,"slug": string,"tide_station_id": string
@@ -1156,9 +1183,19 @@ isOneToOne: false
               "kind": string,"lang": string,"lat": number,"lon": number,"name": string,"slug": string
             }[]
                            },
+"map_trails":
+{ Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number }; Returns: {
+              "difficulty": string,"geojson": string,"id": string,"km": number,"name_en": string,"name_hi": string,"name_mr": string,"source": string
+            }[]
+                           },
 "map_utilities":
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
+            }[]
+                           },
+"nav_leg":
+{ Args: { "_from": string,"_to": string }; Returns: {
+              "distance_m": number,"duration_s": number,"shape": string,"turns": string
             }[]
                            },
 "planner_alerted_places":
@@ -1179,6 +1216,9 @@ isOneToOne: false
 { Args: { "_code": string,"_lat": number,"_lng": number }; Returns: {
               "distance_m": number,"verified": boolean
             }[]
+                           },
+"refresh_patterns":
+{ Args: Record<PropertyKey, never>; Returns: undefined
                            },
 "review_booking_proof":
 { Args: { "_approve": boolean,"_proof": string }; Returns: undefined
@@ -1202,6 +1242,11 @@ isOneToOne: false
 "tide_station_coords":
 { Args: Record<PropertyKey, never>; Returns: {
               "id": string,"lat": number,"lon": number,"provider_station_id": string
+            }[]
+                           },
+"trail_geojson":
+{ Args: { "_id": string }; Returns: {
+              "geojson": string,"name_en": string
             }[]
                            },
 "trip_vote_counts":

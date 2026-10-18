@@ -9,6 +9,7 @@ import polyline from '@mapbox/polyline';
 import { DATA, db, docker, logger, target } from '../lib/common.ts';
 import { correctedDuration, expectedPairs, segKey, type Factors, type Flag } from './correct.ts';
 import { simplify } from './simplify.ts';
+import { encodeTurns, type Maneuver } from './turns.ts';
 
 const log = logger('osrm-matrix');
 const IMAGE = 'ghcr.io/project-osrm/osrm-backend:v6.0.0';
@@ -116,20 +117,20 @@ try {
 	const rows: (string | number | null)[][] = [];
 	const failed: string[] = [];
 	const route = async ([a, b]: (typeof todo)[0]) => {
-		const url = `http://127.0.0.1:${PORT}/route/v1/driving/${a.lon},${a.lat};${b.lon},${b.lat}?overview=full&geometries=geojson&annotations=nodes,duration`;
+		const url = `http://127.0.0.1:${PORT}/route/v1/driving/${a.lon},${a.lat};${b.lon},${b.lat}?overview=full&geometries=geojson&annotations=nodes,duration&steps=true`;
 		const res = (await (await fetch(url)).json()) as {
 			code: string;
-			routes?: { duration: number; distance: number; geometry: { coordinates: [number, number][] }; legs: { annotation: { nodes: number[]; duration: number[] } }[] }[];
+			routes?: { duration: number; distance: number; geometry: { coordinates: [number, number][] }; legs: { annotation: { nodes: number[]; duration: number[] }; steps: { maneuver: Maneuver }[] }[] }[];
 		};
 		const r = res.routes?.[0];
 		if (res.code !== 'Ok' || !r) return void failed.push(`${a.id}→${b.id} ${res.code}`);
 		const { nodes, duration } = r.legs[0].annotation;
 		const flags = duration.map((_, i) => segFlags.get(segKey(nodes[i], nodes[i + 1])));
-		const shape =
-			r.distance <= SHAPE_MAX_M
-				? polyline.encode(simplify(r.geometry.coordinates, 10).map(([lon, lat]) => [lat, lon]))
-				: null;
-		rows.push([a.id, b.id, Math.round(r.duration), Math.round(r.distance), correctedDuration(duration, flags, factors, month), shape]);
+		const line = r.distance <= SHAPE_MAX_M ? simplify(r.geometry.coordinates, 10) : null;
+		const shape = line ? polyline.encode(line.map(([lon, lat]) => [lat, lon])) : null;
+		// P9-2: compact turn cues on the simplified line (no street names, offline).
+		const turns = line ? encodeTurns(line, r.legs[0].steps.map((x) => x.maneuver)) : null;
+		rows.push([a.id, b.id, Math.round(r.duration), Math.round(r.distance), correctedDuration(duration, flags, factors, month, r.duration), shape, turns]);
 	};
 	for (let i = 0; i < todo.length; i += 8) await Promise.all(todo.slice(i, i + 8).map(route));
 
@@ -137,11 +138,11 @@ try {
 		const c = rows.slice(i, i + 1000);
 		const col = (k: number) => c.map((r) => r[k]);
 		await client.query(
-			`insert into public.travel_matrix (from_point_id, to_point_id, duration_s, distance_m, duration_corrected_s, route_shape, computed_at)
-			 select *, now() from unnest($1::uuid[], $2::uuid[], $3::int[], $4::int[], $5::int[], $6::text[])
+			`insert into public.travel_matrix (from_point_id, to_point_id, duration_s, distance_m, duration_corrected_s, route_shape, route_turns, computed_at)
+			 select *, now() from unnest($1::uuid[], $2::uuid[], $3::int[], $4::int[], $5::int[], $6::text[], $7::text[])
 			 on conflict (from_point_id, to_point_id) do update set duration_s = excluded.duration_s, distance_m = excluded.distance_m,
-			   duration_corrected_s = excluded.duration_corrected_s, route_shape = excluded.route_shape, computed_at = now()`,
-			[col(0), col(1), col(2), col(3), col(4), col(5)]
+			   duration_corrected_s = excluded.duration_corrected_s, route_shape = excluded.route_shape, route_turns = excluded.route_turns, computed_at = now()`,
+			[col(0), col(1), col(2), col(3), col(4), col(5), col(6)]
 		);
 	}
 	const total = Number((await client.query(`select count(*) from public.travel_matrix`)).rows[0].count);

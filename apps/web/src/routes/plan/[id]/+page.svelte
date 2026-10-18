@@ -18,6 +18,14 @@
 	let saving = $state(false);
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
 	let mergeState = $state<'applied' | 'discarded' | null>(null);
+	// Saved trips' routes are cached automatically for offline navigation (FRONTEND §9).
+	let routesCached = $state(false);
+	$effect(() => {
+		void data.days;
+		fetch(`/api/trips/${data.trip.id}/routes`)
+			.then((r) => (routesCached = r.ok))
+			.catch(() => (routesCached = false));
+	});
 	async function applyMerge(a: Action, apply: boolean) {
 		await decide(a, apply);
 		mergeState = apply ? 'applied' : 'discarded';
@@ -80,6 +88,55 @@
 		{#if data.budget}
 			<BudgetCard budget={data.budget} editable onsave={(budget) => patch({ budget })} />
 		{/if}
+
+		<section class="flex flex-col gap-3 print:hidden" data-testid="on-the-day">
+			<h2 class="type-h2">{m.live_title()}</h2>
+			<div class="flex flex-wrap gap-2">
+				<Button href={resolve('/trip/live/[id]', { id: data.trip.id })}>{m.live_open()}</Button>
+				<Button variant="secondary" href={`${resolve('/navigate')}?trip=${data.trip.id}&day=1`}
+					>{m.live_navigate_day()}</Button
+				>
+			</div>
+			<p class="type-small text-text-2" data-testid="offline-ready">
+				{routesCached ? m.plan_offline_ready() : m.plan_offline_pending()}
+			</p>
+			<form
+				method="POST"
+				action="?/suggest"
+				use:enhance={() =>
+					async ({ update }) =>
+						update({ reset: false })}
+				class="flex flex-wrap items-end gap-2"
+			>
+				<label class="flex flex-col gap-1 type-small text-text-2"
+					>{m.plan_days()}<select
+						name="day"
+						class="h-11 rounded-input border border-border bg-surface px-3 type-body text-text"
+						>{#each data.days as d, i (i)}<option value={i + 1}
+								>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
+							>{/each}</select
+					></label
+				>
+				<Button type="submit" variant="ghost">{m.plan_suggest_order()}</Button>
+			</form>
+			{#if form?.suggest}
+				<div
+					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
+					data-testid="order-suggestion"
+				>
+					{#if form.suggest.savedMin > 0}
+						<p class="type-body">{m.plan_suggest_saves({ n: form.suggest.savedMin })}</p>
+						<p class="type-small">{form.suggest.names.join(' → ')}</p>
+						<form method="POST" action="?/applyOrder" use:enhance>
+							<input type="hidden" name="day" value={form.suggest.day} />
+							<Button type="submit">{m.crabby_apply()}</Button>
+						</form>
+					{:else}
+						<p class="type-body">{m.plan_suggest_none()}</p>
+					{/if}
+				</div>
+			{/if}
+		</section>
 
 		<section class="flex flex-col gap-3 print:hidden">
 			<h2 class="type-h2">{m.plan_share_title()}</h2>

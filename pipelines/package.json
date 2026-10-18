@@ -11,7 +11,8 @@
 		"test": "vitest --run",
 		"check": "tsc --noEmit",
 		"tide-stations": "node tide-stations/run.ts",
-		"embeddings": "node embeddings/run.ts"
+		"embeddings": "node embeddings/run.ts",
+		"trails": "node trails/run.ts"
 	},
 	"dependencies": {
 		"@huggingface/transformers": "4.3.0",

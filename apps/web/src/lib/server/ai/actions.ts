@@ -36,7 +36,7 @@ export async function decide(db: DB, userId: string, id: string, apply: boolean)
 				href = `/map?q=${encodeURIComponent(String(payload.name))}`;
 				break;
 			case 'start_nav': {
-				// Navigation is P9; until then hand over to Google Maps (no Ola, B11).
+				// In-app navigation (P9); it offers the Google Maps hand-off for long drives.
 				const { data: p } = await db
 					.from('places')
 					.select('location')
@@ -44,7 +44,7 @@ export async function decide(db: DB, userId: string, id: string, apply: boolean)
 					.maybeSingle();
 				const c = p ? lonLat(p.location) : null;
 				if (!c) return { status: 404 as const };
-				href = `https://www.google.com/maps/dir/?api=1&destination=${c[1]},${c[0]}`;
+				href = `/navigate?to=${c[1]},${c[0]}&name=${encodeURIComponent(String(payload.name ?? ''))}`;
 				break;
 			}
 			case 'shortlist_stays':

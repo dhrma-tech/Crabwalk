@@ -21,5 +21,7 @@ export const variables = defineEnvVars({
 	AI_MODEL_INTENT: { schema: optional },
 	AI_MODEL_EXPLAIN: { schema: optional },
 	AI_MODEL_DRAFT: { schema: optional },
-	AI_PROVIDER: { schema: optional }
+	AI_PROVIDER: { schema: optional },
+	// Web push (DECISIONS P9-3). Public key only — the private key lives in the trip-nudges function.
+	VAPID_PUBLIC_KEY: { public: true, schema: optional }
 });

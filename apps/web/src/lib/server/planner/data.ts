@@ -98,7 +98,7 @@ export async function loadPlannerData(db: DB, p: PlannerParams) {
 	let placesQ = db
 		.from('places')
 		.select(
-			'id, category, location, taluka_id, is_hidden_gem, is_tide_dependent, tide_station_id, monsoon_status, visit_minutes, entry_fee_inr, place_hours(weekday, opens, closes, hours_unknown), crowd_typical(weekday, level), place_tide_rules(max_safe_height_m)'
+			'id, category, location, taluka_id, is_hidden_gem, is_tide_dependent, tide_station_id, monsoon_status, visit_minutes, dwell_minutes, entry_fee_inr, place_hours(weekday, opens, closes, hours_unknown), crowd_typical(weekday, level), place_tide_rules(max_safe_height_m)'
 		)
 		.eq('status', 'published')
 		.neq('monsoon_status', 'closed');
@@ -255,7 +255,7 @@ export async function loadPlannerData(db: DB, p: PlannerParams) {
 			id: x.id,
 			...pt,
 			category: x.category,
-			visitMin: x.visit_minutes ?? catMin.get(x.category) ?? 60,
+			visitMin: x.visit_minutes ?? x.dwell_minutes ?? catMin.get(x.category) ?? 60,
 			fee: x.entry_fee_inr,
 			tideDependent: x.is_tide_dependent,
 			days

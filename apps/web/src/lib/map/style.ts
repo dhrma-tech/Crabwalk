@@ -81,8 +81,9 @@ export const ATTRIBUTION_OSM =
 export const ATTRIBUTION_OLA =
 	'<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">Ola Maps</a>';
 
+/** One region file online, or every downloaded taluka pack offline (P9): same layers per source. */
 export function buildStyle(
-	tilesUrl: string,
+	tiles: string | string[],
 	theme: MapTheme,
 	lang: string,
 	origin: string
@@ -97,7 +98,38 @@ export function buildStyle(
 	};
 	// No sprite sheet: drop basemap POIs (our pins replace them) and strip icons from label layers
 	// (e.g. the town dot on places_locality) so the labels still draw.
-	const base = layers('protomaps', flavor, { lang })
+	const urls = Array.isArray(tiles) ? tiles : [tiles];
+	// Interleave by layer (all packs' water, then all roads, …) so one pack's land never covers another's roads.
+	const per = urls.map((_, i) =>
+		sourceLayers(i ? `protomaps${i}` : 'protomaps', i, flavor, lang, theme)
+	);
+	const base = per[0]!
+		.flatMap((_, j) => per.map((ls) => ls[j]!))
+		.filter((l, k) => l.type !== 'background' || k === 0);
+	return {
+		version: 8,
+		'font-faces': fontFaces(origin),
+		sources: Object.fromEntries(
+			urls.map((u, i) => [
+				i ? `protomaps${i}` : 'protomaps',
+				{ type: 'vector', url: `pmtiles://${u}`, attribution: ATTRIBUTION_OSM }
+			])
+		),
+		layers: base
+	} as StyleSpecification;
+}
+
+const fontFaces = (origin: string) => {
+	const mukta400 = [{ url: `${origin}/fonts/mukta-400.woff2` }];
+	return {
+		'Mukta Regular': mukta400,
+		'Mukta SemiBold': [{ url: `${origin}/fonts/mukta-600.woff2` }],
+		'Noto Sans Devanagari Regular v1': mukta400
+	};
+};
+
+function sourceLayers(source: string, i: number, flavor: Flavor, lang: string, theme: MapTheme) {
+	const base = layers(source, flavor, { lang })
 		.filter((l) => l.id !== 'pois')
 		.map((l) => {
 			if (l.type !== 'symbol' || !l.layout || !('icon-image' in l.layout)) return l;
@@ -109,26 +141,14 @@ export function buildStyle(
 	const coastline: LayerSpecification = {
 		id: 'coastline',
 		type: 'line',
-		source: 'protomaps',
+		source,
 		'source-layer': 'water',
 		paint: { 'line-color': theme === 'light' ? '#6FC1BA' : '#0A5350', 'line-width': 1 }
 	};
 	const waterIdx = base.findIndex((l) => l.id === 'water');
 	base.splice(waterIdx + 1, 0, coastline);
 
-	const mukta400 = [{ url: `${origin}/fonts/mukta-400.woff2` }];
-	return {
-		version: 8,
-		'font-faces': {
-			'Mukta Regular': mukta400,
-			'Mukta SemiBold': [{ url: `${origin}/fonts/mukta-600.woff2` }],
-			'Noto Sans Devanagari Regular v1': mukta400
-		},
-		sources: {
-			protomaps: { type: 'vector', url: `pmtiles://${tilesUrl}`, attribution: ATTRIBUTION_OSM }
-		},
-		layers: base
-	} as StyleSpecification;
+	return base.map((l) => (i ? ({ ...l, id: `${l.id}-${i}` } as LayerSpecification) : l));
 }
 
 // Pin colours (FRONTEND §8): places laterite, stays sea, food mango; utilities neutral grey.

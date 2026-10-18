@@ -34,4 +34,10 @@ describe('pairs', () => {
 	it('segment key is direction-free', () => {
 		expect(segKey(5, 2)).toBe(segKey(2, 5));
 	});
+	it('keeps turn penalties outside the segments and never drops below the route duration', () => {
+		const f = { ghat: 1.4, coastal: 1.2, monsoon: 1.25, monsoonMonths: [6, 7, 8, 9] };
+		// Segments sum to 100 s; OSRM's route duration is 110 s (10 s of turn penalties).
+		expect(correctedDuration([50, 50], [undefined, undefined], f, 10, 110)).toBe(110);
+		expect(correctedDuration([50, 50], [new Set(['ghat'] as const), undefined], f, 10, 110)).toBe(130);
+	});
 });

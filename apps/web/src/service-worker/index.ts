@@ -1,5 +1,5 @@
 import { self as sw } from '$app/service-worker';
-import { immutable, assets } from '$app/manifest';
+import { immutable, assets, prerendered } from '$app/manifest';
 import { version } from '$app/env';
 
 // FRONTEND §9: precache the app shell (JS/CSS/fonts/icons); pages are network-first with the last good
@@ -8,9 +8,14 @@ import { version } from '$app/env';
 const SHELL = `shell-${version}`;
 const PAGES = 'pages-v1';
 const CONTENT = 'content-v1';
-const precache = [...immutable, ...assets]
+// P9: downloaded taluka packs (PMTiles + data) and saved trips' routes. Never evicted on update.
+const PACKS = 'packs-v1';
+const TRIPS = 'trips-v1';
+const precache = [...immutable, ...assets, ...prerendered]
 	.map((f) => '/' + f.path.replace(/^\//, ''))
-	.filter((p) => p !== '/robots.txt');
+	.filter((p) => p !== '/robots.txt')
+	// Runtime public env module: client-only pages (e.g. /navigate) import it, so it is needed offline too.
+	.concat('/_app/env.js');
 const NO_CACHE = [
 	'/auth',
 	'/login',
@@ -40,7 +45,7 @@ sw.addEventListener('activate', (event) => {
 			.then((keys) =>
 				Promise.all(
 					keys
-						.filter((k) => k !== SHELL && k !== PAGES && k !== CONTENT)
+						.filter((k) => ![SHELL, PAGES, CONTENT, PACKS, TRIPS].includes(k))
 						.map((k) => caches.delete(k))
 				)
 			)
@@ -48,14 +53,58 @@ sw.addEventListener('activate', (event) => {
 	);
 });
 
+/** Serve a cached pack file, honouring Range (PMTiles reads byte ranges). Anything else → network. */
+async function fromPacks(req: Request) {
+	const hit = await (await caches.open(PACKS)).match(req.url);
+	if (!hit) return fetch(req);
+	const range = /bytes=(\d+)-(\d*)/.exec(req.headers.get('range') ?? '');
+	if (!range) return hit;
+	const buf = await hit.arrayBuffer();
+	const start = Number(range[1]);
+	const end = range[2] ? Math.min(Number(range[2]), buf.byteLength - 1) : buf.byteLength - 1;
+	return new Response(buf.slice(start, end + 1), {
+		status: 206,
+		headers: {
+			'Content-Type': 'application/octet-stream',
+			'Content-Range': `bytes ${start}-${end}/${buf.byteLength}`,
+			'Content-Length': String(end - start + 1)
+		}
+	});
+}
+
 sw.addEventListener('fetch', (event) => {
 	const req = event.request;
 	const url = new URL(req.url);
+	// Downloaded taluka packs: tiles may live on the tiles host (other origin) — serve them offline-first.
+	if (
+		req.method === 'GET' &&
+		(url.pathname.endsWith('.pmtiles') || /^\/api\/packs\/[^/]+\/data$/.test(url.pathname))
+	) {
+		event.respondWith(fromPacks(req));
+		return;
+	}
 	if (req.method !== 'GET' || url.origin !== sw.location.origin) return;
 	if (NO_CACHE.some((p) => url.pathname.startsWith(p))) return;
 
 	if (precache.includes(url.pathname)) {
-		event.respondWith(caches.match(req).then((hit) => hit ?? fetch(req)));
+		// By pathname: prerendered client pages (/navigate?trip=…) are cached once for every query string.
+		event.respondWith(caches.match(url.pathname).then((hit) => hit ?? fetch(req)));
+		return;
+	}
+
+	// Saved trips' routes (shapes + turn cues): network-first, last copy kept for offline navigation.
+	if (/^\/api\/trips\/[^/]+\/routes$/.test(url.pathname)) {
+		event.respondWith(
+			fetch(req)
+				.then((res) => {
+					if (res.ok) {
+						const copy = res.clone();
+						caches.open(TRIPS).then((c) => c.put(req, copy));
+					}
+					return res;
+				})
+				.catch(async () => (await (await caches.open(TRIPS)).match(req)) ?? Response.error())
+		);
 		return;
 	}
 
@@ -87,10 +136,30 @@ sw.addEventListener('fetch', (event) => {
 					const pages = await caches.open(PAGES);
 					return (
 						(await pages.match(req)) ??
+						// Prerendered client pages (e.g. /navigate?trip=…) work for any query string.
+						(await caches.match(url.pathname)) ??
 						(await pages.match('/')) ??
 						new Response('Offline', { status: 503, headers: { 'content-type': 'text/plain' } })
 					);
 				})
 		);
 	}
+});
+
+// Trip time nudges (DECISIONS P9-3): show the push; tapping it opens the live trip.
+sw.addEventListener('push', (event) => {
+	const d = (event.data?.json() ?? {}) as { title?: string; body?: string; url?: string };
+	event.waitUntil(
+		sw.registration.showNotification(d.title ?? 'Crabwalk', {
+			body: d.body,
+			icon: '/icons/icon-192.png',
+			data: { url: d.url ?? '/' }
+		})
+	);
+});
+
+sw.addEventListener('notificationclick', (event) => {
+	event.notification.close();
+	const url = (event.notification.data as { url?: string } | null)?.url ?? '/';
+	event.waitUntil(sw.clients.openWindow(url));
 });

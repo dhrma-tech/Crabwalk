@@ -51,3 +51,31 @@ export async function listItineraries(db: DB, lang: Lang = 'en', limit = 30) {
 		};
 	});
 }
+
+/** Trending pairs and underrated places from saved/completed trips (BACKEND §10.6; analytics, no LLM). */
+export async function patterns(db: DB, lang: Lang = 'en') {
+	const { data: rows } = await db
+		.from('route_stats')
+		.select('kind, stops, score')
+		.order('score', { ascending: false });
+	const ids = [...new Set((rows ?? []).flatMap((r) => r.stops))];
+	const { data: places } = ids.length
+		? await db
+				.from('places')
+				.select('id, slug, place_translations(lang, name)')
+				.in('id', ids)
+				.eq('status', 'published')
+		: { data: [] };
+	const p = new Map(
+		(places ?? []).map((x) => [
+			x.id,
+			{ slug: x.slug, name: tr(x.place_translations, lang) ?? x.slug }
+		])
+	);
+	const pick = (kind: string) =>
+		(rows ?? [])
+			.filter((r) => r.kind === kind && r.stops.every((id) => p.has(id)))
+			.slice(0, 5)
+			.map((r) => r.stops.map((id) => p.get(id)!));
+	return { trending: pick('trending'), underrated: pick('underrated').map((x) => x[0]!) };
+}

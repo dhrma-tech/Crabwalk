@@ -5,10 +5,21 @@
 	import Button from '#lib/components/Button.svelte';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
+	import OfflinePacks from '#lib/components/OfflinePacks.svelte';
+	import { enablePush, disablePush, pushStatus } from '#lib/push.ts';
+	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
 
 	// Me (FRONTEND §7.14). Trips from P7; offline packs (P9) and consents arrive later.
 	let { data, form }: PageProps = $props();
+	let push = $state<'on' | 'off' | 'unsupported' | 'denied'>('unsupported');
+	onMount(async () => (push = await pushStatus()));
+	async function togglePush() {
+		if (push === 'on') {
+			await disablePush();
+			push = 'off';
+		} else push = (await enablePush()) ? 'on' : await pushStatus();
+	}
 	const sel = 'h-12 rounded-input border border-border bg-surface px-3 type-body text-text';
 	const themes = [
 		{ value: 'system', label: m.theme_system },
@@ -103,6 +114,43 @@
 				<div><Button type="submit" variant="secondary">{m.plan_save()}</Button></div>
 			</form>
 		{/if}
+
+		{#if data.email}
+			<section
+				class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
+				data-testid="consents"
+			>
+				<h2 class="type-h2">{m.consents_title()}</h2>
+				<form method="POST" action="?/dwell" class="flex flex-col gap-2">
+					<input type="hidden" name="on" value={data.dwell ? '0' : '1'} />
+					<p class="type-body">{m.dwell_title()}</p>
+					<p class="type-small text-text-2">{m.dwell_hint()}</p>
+					<p class="type-small" data-testid="dwell-state">
+						{data.dwell ? m.consent_on() : m.consent_off()}
+					</p>
+					<div>
+						<Button type="submit" variant="secondary"
+							>{data.dwell ? m.dwell_revoke() : m.dwell_grant()}</Button
+						>
+					</div>
+				</form>
+				<div class="flex flex-col gap-2 border-t border-border pt-3">
+					<p class="type-body">{m.push_title()}</p>
+					{#if push === 'unsupported'}<p class="type-small text-text-2">{m.push_iphone()}</p>
+					{:else if push === 'denied'}<p class="type-small text-text-2">{m.push_denied()}</p>
+					{:else}
+						<div>
+							<Button variant="secondary" onclick={togglePush}
+								>{push === 'on' ? m.push_disable() : m.push_enable()}</Button
+							>
+						</div>
+						<p class="type-small text-text-2">{m.push_iphone()}</p>
+					{/if}
+				</div>
+			</section>
+		{/if}
+
+		<OfflinePacks />
 
 		{#if data.isStaff || data.isOwner}
 			<nav class="flex flex-col gap-2">

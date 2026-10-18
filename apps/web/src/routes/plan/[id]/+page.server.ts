@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { nearby, type Lang } from '#lib/server/listings.ts';
-import { describeStops, tripView } from '#lib/server/planner/trips.ts';
+import { describeStops, editTrip, suggestOrder, tripView } from '#lib/server/planner/trips.ts';
 import { mergeVotes } from '#lib/server/ai/assist.ts';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -60,6 +60,20 @@ export const load: PageServerLoad = async (event) => {
 };
 
 export const actions: Actions = {
+	// Pattern analysis: better stop order for a day (BACKEND §10.6). Preview first; apply re-times the day.
+	suggest: async (event) => {
+		await session(event);
+		const day = Number((await event.request.formData()).get('day'));
+		const r = await suggestOrder(event.locals.supabase, event.params.id, day);
+		return { suggest: { day, savedMin: r?.savedMin ?? 0, names: r?.names ?? [] } };
+	},
+	applyOrder: async (event) => {
+		await session(event);
+		const day = Number((await event.request.formData()).get('day'));
+		const r = await suggestOrder(event.locals.supabase, event.params.id, day);
+		if (r?.days) await editTrip(event.locals.supabase, event.params.id, { days: r.days });
+		return { ordered: true };
+	},
 	// Crabby merges friends' votes into a proposed edit + trade-off text (PLAN P8 task 8, BACKEND §10.4).
 	merge: async (event) => {
 		const s = await session(event);

@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Search from '@lucide/svelte/icons/search';
 	import X from '@lucide/svelte/icons/x';
+	import LayersIcon from '@lucide/svelte/icons/layers';
+	import Download from '@lucide/svelte/icons/download';
 	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
@@ -13,7 +15,13 @@
 	import BottomSheet, { type Snap } from '#lib/components/BottomSheet.svelte';
 	import ErrorState from '#lib/components/ErrorState.svelte';
 	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
-	import MapView, { type Pin } from '#lib/components/map/MapView.svelte';
+	import MapView, {
+		type LayerInfo,
+		type Layers,
+		type Pin
+	} from '#lib/components/map/MapView.svelte';
+	import { msg } from '#lib/msg.ts';
+	import { relTime } from '#lib/format.ts';
 	import TideToday from '#lib/components/map/TideToday.svelte';
 	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import type { PageProps } from './$types';
@@ -38,6 +46,21 @@
 	let snap = $state<Snap>('peek');
 	let failed = $state(!PMTILES_BASE_URL);
 	let view: MapView | undefined = $state();
+
+	// P9 live & safety layers (FRONTEND §8, §6.9, §6.10).
+	const istNow = () => {
+		const d = new Date(Date.now() + 5.5 * 3600e3);
+		return d.getUTCHours() * 60 + d.getUTCMinutes();
+	};
+	let layers = $state<Layers>({});
+	let showLayers = $state(false);
+	let tideMinute = $state(istNow());
+	let layerInfo = $state<LayerInfo | null>(null);
+	let feature = $state<{ kind: 'alert' | 'trail'; props: Record<string, unknown> } | null>(null);
+	const hhmm = (m: number) =>
+		`${String(Math.floor(m / 60)).padStart(2, '0')}:${String(m % 60).padStart(2, '0')}`;
+	const layerKeys = ['heat', 'alerts', 'tides', 'trails'] as const;
+	const fp = (k: string) => feature?.props[k] as string | number | null | undefined;
 
 	const toggle = <T,>(list: T[], v: T, on: boolean) =>
 		on ? [...list, v] : list.filter((x) => x !== v);
@@ -128,7 +151,12 @@
 				{openNow}
 				{utilities}
 				{olaPoint}
-				onselect={(p) => ((selected = p), (snap = 'peek'))}
+				{layers}
+				{tideMinute}
+				heatLabels={{ live: m.heat_live(), typical: m.heat_typical() }}
+				onfeature={(x) => ((feature = x), (selected = null), (snap = 'peek'))}
+				oninfo={(i) => (layerInfo = i)}
+				onselect={(p) => ((selected = p), (feature = null), (snap = 'peek'))}
 				onerror={() => (failed = true)}
 			/>
 		</div>
@@ -217,6 +245,145 @@
 				</div>
 			{/if}
 		</div>
+
+		<div
+			class="absolute right-3 bottom-[calc(140px+env(safe-area-inset-bottom))] z-10 flex flex-col items-end gap-2 lg:bottom-28"
+		>
+			{#if showLayers}
+				<fieldset
+					class="flex flex-col gap-1 rounded-card border border-border bg-raised p-3 shadow-float"
+					data-testid="layers-panel"
+				>
+					<legend class="sr-only">{m.layers_title()}</legend>
+					{#each layerKeys as k (k)}
+						<label class="flex min-h-11 items-center gap-3 type-body">
+							<input
+								type="checkbox"
+								class="size-5"
+								checked={!!layers[k]}
+								onchange={(e) => (layers = { ...layers, [k]: e.currentTarget.checked })}
+							/>
+							{msg(`layer_${k}`)}
+						</label>
+					{/each}
+				</fieldset>
+			{/if}
+			<button
+				type="button"
+				class="flex size-12 items-center justify-center rounded-full border border-border bg-raised shadow-float"
+				aria-label={m.layers_title()}
+				aria-expanded={showLayers}
+				onclick={() => (showLayers = !showLayers)}
+				><LayersIcon size={22} aria-hidden="true" /></button
+			>
+		</div>
+
+		{#if layers.heat || layers.tides}
+			<div
+				class="pointer-events-auto absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-10 mx-auto flex max-w-[520px] flex-col gap-2 lg:bottom-6"
+			>
+				{#if layers.heat && layerInfo}
+					<p
+						class="rounded-card bg-raised px-3 py-2 type-small shadow-float"
+						data-testid="heat-legend"
+					>
+						<b>{m.layer_heat()}</b> · {m.heat_counts({
+							live: layerInfo.live,
+							typical: layerInfo.typical
+						})}<br />
+						<span class="text-text-2">{m.heat_explain()}</span>
+					</p>
+				{/if}
+				{#if layers.tides}
+					<div
+						class="flex flex-col gap-1 rounded-card bg-raised px-3 py-2 shadow-float"
+						data-testid="tide-slider"
+					>
+						<label class="flex items-center gap-3 type-small">
+							<span class="w-12 font-semibold" aria-live="polite">{hhmm(tideMinute)}</span>
+							<input
+								type="range"
+								min="0"
+								max="1425"
+								step="15"
+								bind:value={tideMinute}
+								class="flex-1"
+								aria-label={m.tide_slider()}
+							/>
+						</label>
+						<p class="flex flex-wrap gap-x-3 type-small text-text-2">
+							<span><span class="text-ok">●</span> {m.tide_ok()}</span>
+							<span><span class="text-danger">●</span> {m.tide_cut()}</span>
+							<span>● {m.tide_unknown()}</span>
+							{#each layerInfo?.tideAttribution ?? [] as a (a.url)}
+								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- provider attribution link -->
+								<a href={a.url} target="_blank" rel="noopener">{a.text}</a>
+							{/each}
+						</p>
+					</div>
+				{/if}
+			</div>
+		{/if}
+
+		{#if feature}
+			<BottomSheet bind:snap>
+				<div class="flex flex-col gap-2 pb-4" data-testid="feature-sheet">
+					<div class="flex items-start justify-between gap-2">
+						{#if feature.kind === 'alert'}
+							<div>
+								<h2 class="type-h2">{msg(`alert_${fp('type')}`)}</h2>
+								<p
+									class={[
+										'type-small font-semibold',
+										fp('severity') === 'danger' ? 'text-danger' : 'text-caution'
+									]}
+								>
+									{msg(`severity_${fp('severity')}`)}
+								</p>
+							</div>
+						{:else}
+							<div>
+								<h2 class="type-h2">{fp(`name_${getLocale()}`) || fp('name_en')}</h2>
+								<p class="type-small text-text-2">
+									{m.km_away({ km: String(fp('km')) })} · {fp('difficulty')
+										? msg(`trail_${fp('difficulty')}`)
+										: m.trail_unrated()}
+								</p>
+							</div>
+						{/if}
+						<button
+							type="button"
+							class="flex size-11 items-center justify-center rounded-chip text-text-2"
+							aria-label={m.close()}
+							onclick={() => (feature = null)}><X size={20} aria-hidden="true" /></button
+						>
+					</div>
+					{#if feature.kind === 'alert'}
+						{@const reason = fp(`reason_${getLocale()}`) || fp('reason_en')}
+						{#if reason}<p class="type-body">{reason}</p>{/if}
+						<p class="type-small text-text-2" data-testid="alert-times">
+							{m.alert_times({
+								ago: relTime(String(fp('reported_at')), getLocale()),
+								left: relTime(String(fp('expires_at')), getLocale())
+							})}
+						</p>
+					{:else}
+						{#if fp('difficulty')}<p class="type-small">
+								{msg(`trail_${fp('difficulty')}_def`)}
+							</p>{/if}
+						<p class="type-small text-text-2">
+							{fp('source') === 'osm' ? m.trail_source_osm() : m.trail_source_team()}
+						</p>
+						<div>
+							<Button variant="secondary" href={`/api/trails/${fp('id')}/gpx`}>
+								{#snippet icon()}<Download size={18} aria-hidden="true" />{/snippet}
+								{m.trail_gpx()}
+							</Button>
+						</div>
+					{/if}
+				</div>
+			</BottomSheet>
+		{/if}
 
 		{#if selected}
 			{@const p = selected}

@@ -14,6 +14,7 @@
 	let open = $state(false);
 	const hidden = $derived(
 		page.route.id === '/crabby' ||
+			page.route.id === '/navigate' ||
 			!!page.route.id?.startsWith('/admin') ||
 			crabby.emergency ||
 			page.status >= 400

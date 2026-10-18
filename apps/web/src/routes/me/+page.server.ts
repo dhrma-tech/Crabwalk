@@ -18,6 +18,12 @@ export const load: PageServerLoad = async ({ locals, cookies }) => {
 				.eq('user_id', user.id)
 				.maybeSingle()
 		: { data: null };
+	const { data: consents } = user
+		? await locals.supabase
+				.from('consents')
+				.select('type, granted, revoked_at')
+				.eq('user_id', user.id)
+		: { data: [] };
 	const { data: trips } = user
 		? await locals.supabase
 				.from('trips')
@@ -32,7 +38,8 @@ export const load: PageServerLoad = async ({ locals, cookies }) => {
 		isStaff: has('verifier') || has('reviewer') || has('admin'),
 		isOwner: has('owner'),
 		trips: trips ?? [],
-		prefs: prefs ?? { diet: null, budget_level: null, group_type: null }
+		prefs: prefs ?? { diet: null, budget_level: null, group_type: null },
+		dwell: (consents ?? []).some((c) => c.type === 'dwell_time' && c.granted && !c.revoked_at)
 	};
 };
 
@@ -44,6 +51,25 @@ const prefs = z.object({
 });
 
 export const actions: Actions = {
+	// Dwell-time opt-in (DPDPA consent, revocable any time; PLAN P9 acceptance).
+	dwell: async (event) => {
+		const { user } = await session(event);
+		const on = (await event.request.formData()).get('on') === '1';
+		const now = new Date().toISOString();
+		const { error } = await event.locals.supabase.from('consents').upsert(
+			on
+				? {
+						user_id: user.id,
+						type: 'dwell_time',
+						granted: true,
+						granted_at: now,
+						revoked_at: null
+					}
+				: { user_id: user.id, type: 'dwell_time', granted: false, revoked_at: now },
+			{ onConflict: 'user_id,type' }
+		);
+		if (error) return fail(403);
+	},
 	prefs: async (event) => {
 		const { user } = await session(event);
 		const b = prefs.safeParse(Object.fromEntries(await event.request.formData()));

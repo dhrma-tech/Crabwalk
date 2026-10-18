@@ -23,6 +23,16 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { buildStyle, ATTRIBUTION_OLA, PIN, type MapTheme } from '#lib/map/style.ts';
 	import { addPinImages, type UtilityType } from '#lib/map/icons.ts';
+	import { tideState } from '#lib/tides.ts';
+	import { offlineData, savedPacks } from '#lib/packs.ts';
+
+	export type Layers = { heat?: boolean; alerts?: boolean; tides?: boolean; trails?: boolean };
+	export type LayerInfo = {
+		live: number;
+		typical: number;
+		tideDate: string | null;
+		tideAttribution: { text: string; url: string }[];
+	};
 
 	// MapLibre + own PMTiles only (FRONTEND §8). Never requests Ola tiles; Ola appears only as a search marker.
 	let {
@@ -32,8 +42,18 @@
 		openNow = false,
 		utilities = [],
 		olaPoint = null,
+		showPins = true,
+		route = null,
+		guide = null,
+		me = null,
+		follow = false,
+		layers = {},
+		tideMinute = 0,
+		heatLabels = { live: 'Live', typical: 'Typical' },
 		onselect,
-		onerror
+		onerror,
+		onfeature,
+		oninfo
 	}: {
 		tilesBase: string;
 		kinds?: string[];
@@ -41,14 +61,29 @@
 		openNow?: boolean;
 		utilities?: UtilityType[];
 		olaPoint?: { lon: number; lat: number } | null;
+		layers?: Layers;
+		tideMinute?: number;
+		heatLabels?: { live: string; typical: string };
 		onselect: (pin: Pin | null) => void;
 		onerror: () => void;
+		/** Alert or trail tapped (P9 layers). */
+		onfeature?: (f: { kind: 'alert' | 'trail'; props: Record<string, unknown> }) => void;
+		oninfo?: (info: LayerInfo) => void;
+		/** Navigation (P9): pins off, stored route line, straight guide line, GPS dot, camera follows. */
+		showPins?: boolean;
+		route?: [number, number][] | null;
+		guide?: [number, number][] | null;
+		me?: [number, number] | null;
+		follow?: boolean;
 	} = $props();
+	const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
+	let tideData: FeatureCollection & { date?: string } = EMPTY;
 
 	let container: HTMLDivElement;
 	let map: MLMap | undefined = $state();
 	let ready = $state(false);
-	let tilesUrl = '';
+	let tilesUrl: string | string[] = '';
+	let offline = false;
 	let pins: FeatureCollection = { type: 'FeatureCollection', features: [] };
 	let utils: FeatureCollection = { type: 'FeatureCollection', features: [] };
 	let marker: Marker | undefined;
@@ -163,19 +198,262 @@
 				'icon-allow-overlap': true
 			}
 		});
+		// P9 live & safety layers (FRONTEND §8): under the pins, above the basemap.
+		m.addSource('heat', { type: 'geojson', data: EMPTY });
+		m.addLayer(
+			{
+				id: 'heat',
+				type: 'heatmap',
+				source: 'heat',
+				maxzoom: 16,
+				paint: {
+					'heatmap-weight': ['get', 'weight'],
+					'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 18, 14, 40],
+					'heatmap-opacity': 0.75,
+					'heatmap-color': [
+						'interpolate',
+						['linear'],
+						['heatmap-density'],
+						0,
+						'rgba(232,163,61,0)',
+						0.3,
+						'#F0B451',
+						0.7,
+						'#E0745A',
+						1,
+						'#B5462B'
+					]
+				}
+			},
+			'util'
+		);
+		// Every point names its source (acceptance: the heatmap labels its data source every time).
+		m.addLayer({
+			id: 'heat-label',
+			type: 'symbol',
+			source: 'heat',
+			minzoom: 12,
+			layout: {
+				'text-field': ['match', ['get', 'source'], 'live', heatLabels.live, heatLabels.typical],
+				'text-font': ['Mukta SemiBold'],
+				'text-size': 12,
+				'text-offset': [0, 1.6]
+			},
+			paint: { 'text-color': '#8C3420', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.5 }
+		});
+		m.addSource('trails', { type: 'geojson', data: EMPTY });
+		m.addLayer(
+			{
+				id: 'trails',
+				type: 'line',
+				source: 'trails',
+				paint: {
+					'line-width': ['interpolate', ['linear'], ['zoom'], 10, 2, 15, 5],
+					'line-dasharray': [2, 1.5],
+					'line-color': [
+						'match',
+						['get', 'difficulty'],
+						'easy',
+						'#2E7D32',
+						'moderate',
+						'#B7791F',
+						'hard',
+						'#B5462B',
+						'#5A4A35'
+					]
+				}
+			},
+			'util'
+		);
+		m.addSource('alerts', { type: 'geojson', data: EMPTY });
+		const sev = ['match', ['get', 'severity'], 'danger', '#C62828', '#B7791F'] as unknown as string;
+		m.addLayer(
+			{
+				id: 'alerts-fill',
+				type: 'fill',
+				source: 'alerts',
+				filter: ['==', ['geometry-type'], 'Polygon'],
+				paint: { 'fill-color': sev, 'fill-opacity': 0.25 }
+			},
+			'util'
+		);
+		m.addLayer(
+			{
+				id: 'alerts-line',
+				type: 'line',
+				source: 'alerts',
+				filter: ['!=', ['geometry-type'], 'Point'],
+				paint: { 'line-color': sev, 'line-width': 5 }
+			},
+			'util'
+		);
+		m.addLayer({
+			id: 'alerts-point',
+			type: 'circle',
+			source: 'alerts',
+			filter: ['==', ['geometry-type'], 'Point'],
+			paint: {
+				'circle-radius': 12,
+				'circle-color': sev,
+				'circle-stroke-width': 3,
+				'circle-stroke-color': '#FFFFFF'
+			}
+		});
+		m.addSource('tides', { type: 'geojson', data: EMPTY });
+		m.addLayer(
+			{
+				id: 'tides',
+				type: 'circle',
+				source: 'tides',
+				paint: {
+					'circle-radius': 20,
+					'circle-color': 'rgba(0,0,0,0)',
+					'circle-stroke-width': 4,
+					'circle-stroke-color': [
+						'match',
+						['get', 'state'],
+						'ok',
+						'#2E7D32',
+						'cut',
+						'#C62828',
+						'#8A7A64'
+					]
+				}
+			},
+			'pin'
+		);
+		m.addSource('route', { type: 'geojson', data: EMPTY });
+		m.addLayer({
+			id: 'route-casing',
+			type: 'line',
+			source: 'route',
+			layout: { 'line-cap': 'round', 'line-join': 'round' },
+			paint: { 'line-color': '#FFFFFF', 'line-width': 10 }
+		});
+		m.addLayer({
+			id: 'route',
+			type: 'line',
+			source: 'route',
+			layout: { 'line-cap': 'round', 'line-join': 'round' },
+			paint: {
+				'line-color': '#0E6E6A',
+				'line-width': 6,
+				'line-dasharray': [
+					'case',
+					['==', ['get', 'guide'], true],
+					['literal', [1, 1.5]],
+					['literal', [1, 0]]
+				]
+			}
+		});
+		m.addSource('me', { type: 'geojson', data: EMPTY });
+		m.addLayer({
+			id: 'me',
+			type: 'circle',
+			source: 'me',
+			paint: {
+				'circle-radius': 9,
+				'circle-color': '#1E6FD9',
+				'circle-stroke-width': 3,
+				'circle-stroke-color': '#FFFFFF'
+			}
+		});
+		for (const id of ['clusters', 'cluster-count', 'pin', 'pin-icon'])
+			m.setLayoutProperty(id, 'visibility', showPins ? 'visible' : 'none');
 		ready = true;
 	}
 
-	async function loadPins() {
+	const fetchFC = async (path: string) => {
+		const res = await fetch(path + '?bbox=' + bboxParam()).catch(() => null);
+		return res?.ok ? ((await res.json()) as FeatureCollection & Record<string, unknown>) : EMPTY;
+	};
+	const setData = (id: string, fc: FeatureCollection) =>
+		(map?.getSource(id) as GeoJSONSource | undefined)?.setData(fc);
+
+	function paintTides() {
 		if (!map || !ready) return;
+		const date = tideData.date ?? '';
+		setData('tides', {
+			type: 'FeatureCollection',
+			features: tideData.features.map((f) => ({
+				...f,
+				properties: {
+					...f.properties,
+					state: tideState(
+						f.properties?.extremes ?? null,
+						f.properties?.max_safe ?? null,
+						date,
+						tideMinute
+					)
+				}
+			}))
+		});
+	}
+
+	async function loadLayers() {
+		if (!map || !ready) return;
+		const [heat, alerts, trails, tides] = await Promise.all([
+			layers.heat ? fetchFC('/api/map/heatmap') : EMPTY,
+			layers.alerts ? fetchFC('/api/map/alerts') : EMPTY,
+			layers.trails ? fetchFC('/api/map/trails') : EMPTY,
+			layers.tides ? fetchFC('/api/map/tides') : EMPTY
+		]);
+		setData('heat', heat);
+		setData('alerts', alerts);
+		setData('trails', trails);
+		tideData = tides as typeof tideData;
+		paintTides();
+		const live = heat.features.filter((x) => x.properties?.source === 'live').length;
+		oninfo?.({
+			live,
+			typical: heat.features.length - live,
+			tideDate: (tides as { date?: string }).date ?? null,
+			tideAttribution: (tides as { attribution?: LayerInfo['tideAttribution'] }).attribution ?? []
+		});
+	}
+
+	async function loadPins() {
+		if (!map || !ready || !showPins) return;
 		const params: Record<string, string> = { bbox: bboxParam() };
 		if (kinds.length) params.kinds = kinds.join(',');
 		if (categories.length) params.categories = categories.join(',');
 		if (openNow) params.open_now = '1';
-		const res = await fetch(`/api/map/pins?${new URLSearchParams(params)}`);
-		if (!res.ok) return;
-		pins = await res.json();
+		const res = await fetch(`/api/map/pins?${new URLSearchParams(params)}`).catch(() => null);
+		if (res?.ok) pins = await res.json();
+		else if (offline || !navigator.onLine) pins = await offlinePins();
+		else return;
 		(map.getSource('pins') as GeoJSONSource | undefined)?.setData(pins);
+	}
+
+	/** Pins from downloaded packs (no network). */
+	async function offlinePins(): Promise<FeatureCollection> {
+		const d = await offlineData();
+		const [w, s, e, n] = map!.getBounds().toArray().flat();
+		const inBox = (at: [number, number]) =>
+			at[0] >= w! && at[0] <= e! && at[1] >= s! && at[1] <= n!;
+		const rows = [...d.places, ...d.stays, ...d.eateries].filter(
+			(x) =>
+				inBox(x.at) &&
+				(!kinds.length || kinds.includes(x.kind)) &&
+				(!categories.length || (x.kind === 'place' && categories.includes(x.category)))
+		);
+		return {
+			type: 'FeatureCollection',
+			features: rows.map((x) => ({
+				type: 'Feature',
+				geometry: { type: 'Point', coordinates: x.at },
+				properties: {
+					kind: x.kind,
+					id: x.slug,
+					slug: x.slug,
+					name_en: x.names.en,
+					name_hi: x.names.hi,
+					name_mr: x.names.mr,
+					category: x.kind === 'place' ? x.category : null,
+					tide_station_id: null
+				}
+			}))
+		};
 	}
 
 	async function loadUtilities() {
@@ -207,17 +485,39 @@
 					import('maplibre-gl'),
 					import('pmtiles')
 				]);
-				const manifest = (await (await fetch(`${tilesBase}/manifest.json`)).json()) as {
-					region: string;
-				};
-				tilesUrl = `${tilesBase}/${manifest.region}`;
 				maplibregl.setWorkerUrl(workerUrl);
 				const protocol = new Protocol();
 				maplibregl.addProtocol('pmtiles', protocol.tile);
 				protocolCleanup = () => maplibregl.removeProtocol('pmtiles');
-				const archive = new PMTiles(tilesUrl);
-				protocol.add(archive);
-				const h = await archive.getHeader();
+				// Online: the region file. Offline (or host unreachable): every downloaded taluka pack (P9).
+				let headers;
+				try {
+					const manifest = (await (await fetch(`${tilesBase}/manifest.json`)).json()) as {
+						region: string;
+					};
+					tilesUrl = `${tilesBase}/${manifest.region}`;
+					const archive = new PMTiles(tilesUrl);
+					protocol.add(archive);
+					headers = [await archive.getHeader()];
+				} catch (e) {
+					const packs = Object.values(await savedPacks()).map((p) => p.tiles);
+					if (!packs.length) throw e;
+					offline = true;
+					tilesUrl = packs;
+					const archives = packs.map((u) => new PMTiles(u));
+					archives.forEach((a) => protocol.add(a));
+					headers = await Promise.all(archives.map((a) => a.getHeader()));
+				}
+				const h = {
+					minLon: Math.min(...headers.map((x) => x.minLon)),
+					minLat: Math.min(...headers.map((x) => x.minLat)),
+					maxLon: Math.max(...headers.map((x) => x.maxLon)),
+					maxLat: Math.max(...headers.map((x) => x.maxLat)),
+					minZoom: Math.min(...headers.map((x) => x.minZoom)),
+					centerLon: headers[0]!.centerLon,
+					centerLat: headers[0]!.centerLat,
+					centerZoom: headers[0]!.centerZoom
+				};
 				if (destroyed) return;
 				MarkerCtor = maplibregl.Marker;
 				const mm = new maplibregl.Map({
@@ -245,7 +545,16 @@
 				});
 				mm.on('moveend', () => {
 					clearTimeout(timer);
-					timer = setTimeout(() => (loadPins(), loadUtilities()), 250);
+					timer = setTimeout(() => (loadPins(), loadUtilities(), loadLayers()), 250);
+				});
+				for (const id of ['alerts-point', 'alerts-line', 'alerts-fill'])
+					mm.on('click', id, (e) => {
+						const f = e.features?.[0];
+						if (f) onfeature?.({ kind: 'alert', props: f.properties as Record<string, unknown> });
+					});
+				mm.on('click', 'trails', (e) => {
+					const f = e.features?.[0];
+					if (f) onfeature?.({ kind: 'trail', props: f.properties as Record<string, unknown> });
 				});
 				mm.on('click', 'clusters', async (e) => {
 					const f = e.features?.[0];
@@ -299,6 +608,55 @@
 	$effect(() => {
 		void [utilities.join(), ready];
 		loadUtilities();
+	});
+	$effect(() => {
+		void [layers.heat, layers.alerts, layers.tides, layers.trails, ready];
+		loadLayers();
+	});
+	$effect(() => {
+		void [tideMinute, ready];
+		paintTides();
+	});
+
+	// Navigation overlays (P9).
+	$effect(() => {
+		void [route, guide, ready];
+		if (!map || !ready) return;
+		const line = route ?? guide;
+		setData('route', {
+			type: 'FeatureCollection',
+			features: line
+				? [
+						{
+							type: 'Feature',
+							geometry: { type: 'LineString', coordinates: line },
+							properties: { guide: !route }
+						}
+					]
+				: []
+		});
+		if (line && !me) {
+			const xs = line.map((p) => p[0]);
+			const ys = line.map((p) => p[1]);
+			map.fitBounds(
+				[
+					[Math.min(...xs), Math.min(...ys)],
+					[Math.max(...xs), Math.max(...ys)]
+				],
+				{ padding: 60, duration: 0 }
+			);
+		}
+	});
+	$effect(() => {
+		void [me, follow, ready];
+		if (!map || !ready) return;
+		setData('me', {
+			type: 'FeatureCollection',
+			features: me
+				? [{ type: 'Feature', geometry: { type: 'Point', coordinates: me }, properties: {} }]
+				: []
+		});
+		if (me && follow) map.easeTo({ center: me, zoom: Math.max(map.getZoom(), 16), duration: 500 });
 	});
 
 	// Ola search marker: shown with "Ola Maps" attribution only while on screen (BACKEND §6.1).

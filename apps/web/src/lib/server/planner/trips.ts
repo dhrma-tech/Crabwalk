@@ -16,7 +16,7 @@ import {
 	type Stop
 } from '#lib/planner/engine.ts';
 import { lonLat, tr, type Lang } from '../listings.ts';
-import { addDays, loadPlannerData, travelFor, type Diet } from './data.ts';
+import { addDays, istToday, loadPlannerData, travelFor, type Diet } from './data.ts';
 
 type DB = SupabaseClient<Database>;
 type Kind = 'place' | 'stay' | 'eatery';
@@ -535,4 +535,144 @@ export async function tripView(
 				}
 			: null
 	};
+}
+
+/**
+ * Navigation legs for a trip (PLAN P9 task 1): start point / previous stop → each stop, with the stored OSRM
+ * shape + turn cues when the matrix has the pair. Legs without a shape (first leg from a station, > 60 km)
+ * navigate with a straight guide line and the "Open in Google Maps" hand-off.
+ */
+export async function tripRoutes(db: DB, tripId: string, lang: Lang) {
+	const { data: t } = await db
+		.from('trips')
+		.select(
+			'id, title, days, start_point, trip_stops(day, order, kind, entity_type, entity_id, arrive_at)'
+		)
+		.eq('id', tripId)
+		.maybeSingle();
+	if (!t) return null;
+	const info = await describeStops(db, t.trip_stops, lang);
+	const start = t.start_point as (Pt & { label: string }) | null;
+	let from: { id: string | null; name: string; pt: Pt | null } = {
+		id: null,
+		name: start?.label ?? '',
+		pt: start
+	};
+	const days = [];
+	for (let d = 1; d <= t.days; d++) {
+		const stops = t.trip_stops.filter((s) => s.day === d).sort((a, b) => a.order - b.order);
+		const legs = [];
+		for (const s of stops) {
+			const to = info.get(s.entity_id);
+			if (!to?.pt) continue;
+			const leg = from.id
+				? ((await db.rpc('nav_leg', { _from: from.id, _to: s.entity_id })).data?.[0] ?? null)
+				: null;
+			legs.push({
+				from: { name: from.name, at: from.pt ? [from.pt.lon, from.pt.lat] : null },
+				to: {
+					name: to.name,
+					at: [to.pt.lon, to.pt.lat],
+					kind: s.kind,
+					href: to.href,
+					arrive_at: s.arrive_at
+				},
+				shape: leg?.shape ?? null,
+				turns: leg?.turns ?? null,
+				distance_m: leg?.distance_m ?? null,
+				duration_s: leg?.duration_s ?? null
+			});
+			from = { id: s.entity_id, name: to.name, pt: to.pt };
+		}
+		days.push({ day: d, legs });
+	}
+	return { id: t.id, title: t.title, days };
+}
+
+/**
+ * Better stop order for one day (BACKEND §10.6, reuses 2-opt): reorders the day's places among themselves
+ * (meals and the stay keep their slots), re-timed against hours/tides from the matrix. Suggested only if it
+ * saves ≥ 5 min of driving without adding any stop outside its hours.
+ */
+export async function suggestOrder(db: DB, tripId: string, day: number) {
+	const { data: t } = await db
+		.from('trips')
+		.select(
+			'days, start_date, start_point, standout, trip_stops(day, order, kind, entity_type, entity_id)'
+		)
+		.eq('id', tripId)
+		.maybeSingle();
+	if (!t || day < 1 || day > t.days) return null;
+	const byDay = (d: number) =>
+		t.trip_stops.filter((s) => s.day === d).sort((a, b) => a.order - b.order);
+	const stops = byDay(day);
+	const info = await describeStops(db, t.trip_stops, 'en');
+	const prev = day > 1 ? byDay(day - 1).at(-1) : undefined;
+	const start = (prev && info.get(prev.entity_id)?.pt) || (t.start_point as Pt);
+	const data = await loadPlannerData(db, {
+		days: t.days,
+		startDate: t.start_date ?? addDays(istToday(), 1).date,
+		start,
+		interests: [],
+		standout: t.standout,
+		diet: null
+	});
+	const travel = await travelFor(db, [
+		...(prev ? [prev.entity_id] : []),
+		...stops.map((s) => s.entity_id)
+	]);
+	const seqOf = (order: typeof stops) =>
+		order
+			.filter((s) => info.get(s.entity_id)?.pt)
+			.map((s) => {
+				const place = data.places.find((x) => x.id === s.entity_id);
+				return {
+					kind: s.kind,
+					id: s.entity_id,
+					pt: info.get(s.entity_id)!.pt!,
+					minutes:
+						s.kind === 'place' ? (place?.visitMin ?? 60) : s.kind === 'meal' ? LUNCH.minutes : 0,
+					open: s.kind === 'place' ? (place?.days[day - 1]?.open ?? null) : null
+				};
+			});
+	const score = (order: typeof stops) => {
+		const r = retime(seqOf(order), start, data.dayStart, travel);
+		return {
+			s: r.reduce((a, x) => a + x.travel.s, 0),
+			conflicts: r.filter((x) => x.kind === 'place' && x.conflict).length
+		};
+	};
+	const slots = stops.map((s, i) => (s.kind === 'place' ? i : -1)).filter((i) => i >= 0);
+	const withPlaces = (places: typeof stops) =>
+		stops.map((s, i) => (s.kind === 'place' ? places[slots.indexOf(i)]! : s));
+	let places = slots.map((i) => stops[i]!);
+	const base = score(stops);
+	let best = base;
+	let improved = true;
+	while (improved) {
+		improved = false;
+		for (let i = 0; i < places.length - 1; i++)
+			for (let k = i + 1; k < places.length; k++) {
+				const cand = [
+					...places.slice(0, i),
+					...places.slice(i, k + 1).reverse(),
+					...places.slice(k + 1)
+				];
+				const sc = score(withPlaces(cand));
+				if (sc.conflicts <= base.conflicts && sc.s < best.s) {
+					places = cand;
+					best = sc;
+					improved = true;
+				}
+			}
+	}
+	const savedMin = Math.round((base.s - best.s) / 60);
+	if (savedMin < 5) return { savedMin: 0, days: null };
+	const days = Array.from({ length: t.days }, (_, d) =>
+		(d + 1 === day ? withPlaces(places) : byDay(d + 1)).map((s) => ({
+			kind: s.kind,
+			entity_id: s.entity_id
+		}))
+	);
+	return { savedMin, days, names: places.map((p) => info.get(p.entity_id)?.name ?? '') };
 }

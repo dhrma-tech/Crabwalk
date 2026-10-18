@@ -129,6 +129,21 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## P9 pre-decisions
+| Ref | Decision |
+|---|---|
+| P9-1 | Trail difficulty (user): **easy / moderate / hard**, each with a one-line definition; OSM `sac_scale` maps automatically (hiking → easy, mountain_hiking → moderate, demanding_mountain_hiking and above → hard); team can override. |
+| P9-2 | Turn cues (user: geometry cues, no street names, offline). Implemented as a **compact turn list per stored route** from OSRM maneuvers (vertex index + direction, e.g. `14L,52SR`) added by the matrix pipeline — tens of bytes per pair instead of full step JSON — so cues sit at real junctions rather than guessed bends. Ola steps only for non-DB destinations (signed in, online). |
+| P9-3 | Push (user): self-generated VAPID keys (private key in `.env` / function secret, never in git); Supabase Edge Function on pg_cron every 5 min sends time nudges for trips in live mode today, max 1 push per stop; subscribe only after consent; iPhone note (installed PWA only). |
+| P9-4 | Turn cues: `travel_matrix.route_turns` from OSRM maneuvers (≈ 24 bytes/route locally; region estimate low MBs). Ola Directions via our proxy returns only polyline + distance + duration, so **non-DB destinations get the route line + ETA without turn cues** (proxy unchanged). Legs without a stored shape (first leg from a station, > 60 km) show a straight guide line and make "Open in Google Maps" the primary button. |
+| P9-5 | `/navigate` is a prerendered client-only page (precached with `/_app/env.js`), reading `?trip&day&leg` or `?to=lat,lng&name`. Trip routes come from `/api/trips/:id/routes` (service worker keeps the last copy; the plan page fetches it automatically). Voice = Web Speech at 400 m / 100 m per turn; wake lock re-taken on return; off-route > 60 m. Crabby's `start_nav` now opens it (closes the P8 deferral). |
+| P9-6 | Offline packs: pack PMTiles + `/api/packs/:taluka/data` (published listings + safety utilities; hospital phones only) in Cache Storage `packs-v1`; the service worker answers PMTiles Range requests from it (206). Offline, the map builds its style from every downloaded pack (layers interleaved per type) and pins/hospitals come from pack data. Pack URLs/sizes/version derive from the tiles manifest (same naming as the tiles pipeline). |
+| P9-7 | Heatmap (G10): `map_heatmap()` labels every point `live` (≥ `live_crowd_min_users` distinct QR sessions + consented dwell arrivals in `live_crowd_window_min`) or `typical` (crowd_typical today); no data → no point. Legend shows counts per source + the rule; points show the label from zoom 12. |
+| P9-8 | Alerts (G9): verifiers report/re-confirm/remove in `/admin/alerts` (point location); `confirm_alert()` extends by `alert_type_ttl`; map shows "Reported … · expires …". Trails: `pipelines/trails` imports named OSM paths/hiking routes as `source = 'osm'` ("not yet checked by our team"); GPX built on demand. |
+| P9-9 | Live trip: `trips.live_date` = live mode today. Nudges are rules on plan times (late ≥ 20 min → "skip X?" with Skip / Why? → Crabby; past planned departure → "time to leave"). Push (`trip-nudges`, every 5 min): departure within 15 min, one push per stop (`trip_stops.nudged_at`), text in the user's language, dead subscriptions (404/410) deleted. Verified locally in the edge runtime (selection + nudged_at; delivery needs a real browser subscription). |
+| P9-10 | Dwell (DPDPA): opt-in in Me, revocable; RLS refuses rows without an active consent; rows carry a random per-day uuid (DB check), place and times only. Recorded only while the live-trip page is open (arrive ≤ 150 m, leave > 300 m after ≥ 5 min). Nightly `refresh_patterns()` sets `places.dwell_minutes` (median, ≥ 5 visits; planner order: verifier value → dwell → category) and `route_stats` (trending pairs in ≥ 3 saved/completed trips, 60 days; underrated = ≥ 10 votes, winner ≥ 3, rarely planned) shown on /itineraries. "Suggest a better order" (2-opt, ≥ 5 min saved, no new hours conflicts) on the plan page. |
+| P9-11 | Push consent: subscribing records `consents.push`; revoking deletes every subscription (trigger). VAPID keys generated locally into `.env` (public key exposed to the web app, private key only for the function). |
+
 ## P8 pre-decisions
 | Ref | Decision |
 |---|---|
@@ -194,7 +209,6 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Custom category icon set
 - Exact place count (100–200)
 - TBD rating — parked, do not build
-- Trail difficulty scale — before P9
 - Per-spot tide accessibility rule — from verifiers
 - Emergency keyword list EN/HI/MR — Claude draft in P8, team to review before launch (P8-3)
 - Custom SMTP + push OTP email template to live project (P1-19) — after remaining phases
@@ -209,6 +223,8 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Privacy policy (rest of it) + legal review of the AI section (P8-4)
 
 ## Found issues
+- ~~OSRM pipeline: corrected duration floored at the segment sum, not the route duration (turn penalties), so corrected < raw failed the pipeline once more points existed~~ — fixed in P9 (it blocked the turn-cue run): penalties kept, floor = route duration; test added.
+- Supabase grants EXECUTE to PUBLIC by default, so `revoke … from anon, authenticated` alone does not block a function. Fixed for `refresh_patterns` in P9; earlier revokes (`create_qr_code`, `qr_verify_visit`, `ai_take_message`, `get_route_for_review`) are still guarded inside the functions (admin/auth checks) — revisit in P10 hardening.
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
 - ~~`rls.test.sql` test 29 counted every approved review → failed on a local DB with P5 e2e leftovers~~ — fixed after P6 (user): scoped to its fixture place. Same fix for `p6_qr.test.sql` "next spot" (fixture moved within ~70 m so leftover e2e places can't outrank it). In P7 the trip assertions in `rls.test.sql` were scoped to the fixture trip too (approved e2e routes are public).
 - `e2e/shell.test.ts` "works offline after first visit" timed out once under a full parallel run (passes alone and on rerun) — possible flake.
@@ -225,3 +241,4 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P6 | `phase-6` | Alerts on scan page + live crowd from scans → P9 (P6-12); ready-made itineraries on /start → P7; per-IP rate limits on scan/report → P10; HI/MR review of new strings; live: P6 migration with the other live setup; plaques must be generated from the production origin. |
 | P7 | `phase-7` | AI vote merge + trade-offs and reason rephrasing → P8; pattern analysis (dwell, trending/underrated) → P9; **ready-made itinerary content: 0 rows until the team plans and flags them (~5)**; fuel price + mileage + visit minutes to be set by the team in /admin/planner; HI/MR review of new strings; live: P7 migration with the other live setup. |
 | P8 | `phase-8` | **Live:** `GROQ_API_KEY` + `GEMINI_API_KEY` (web + review-summaries secret), model IDs, run `pipelines embeddings --live`, P8 migration, review-summaries cron; real-LLM smoke test (P8-2). Emergency keywords + privacy AI section + all P8 HI/MR strings need team/legal review before launch. Offline hospital list → P9; navigation for `start_nav` → P9. |
+| P9 | `phase-9` | **Live:** VAPID keys as `trip-nudges` secrets + `VAPID_PUBLIC_KEY`/`VAPID_SUBJECT` in the web env; deploy `trip-nudges`; P9 migration (crons `trip-nudges`, `refresh-patterns`); re-run `osrm-matrix --full` (turn cues) and `trails` pipelines `--live`; tiles deploy for packs. Real-device checks: push delivery (Android + installed iPhone PWA), wake lock, voice. Team: verify OSM trails (difficulty), alert workflow. HI/MR review of P9 strings. |

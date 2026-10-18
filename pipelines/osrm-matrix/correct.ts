@@ -5,17 +5,25 @@ export type Factors = { ghat: number; coastal: number; monsoon: number; monsoonM
 /**
  * Segment-weighted correction: each OSRM segment on a flagged way is scaled by the largest factor among its
  * flags (ghat and coastal are not stacked — DECISIONS P3-3); monsoon then scales the whole trip when `month`
- * (1–12) is active. Never returns less than the raw duration.
+ * (1–12) is active. Time OSRM adds outside the segments (turn penalties) is kept as-is.
+ * Never returns less than the raw route duration.
  */
-export function correctedDuration(segments: number[], flags: (Set<Flag> | undefined)[], f: Factors, month: number) {
+export function correctedDuration(
+	segments: number[],
+	flags: (Set<Flag> | undefined)[],
+	f: Factors,
+	month: number,
+	routeDuration = segments.reduce((a, b) => a + b, 0)
+) {
 	let total = 0;
 	segments.forEach((d, i) => {
 		const s = flags[i];
 		const m = s ? Math.max(1, s.has('ghat') ? f.ghat : 1, s.has('coastal') ? f.coastal : 1) : 1;
 		total += d * m;
 	});
+	total += Math.max(0, routeDuration - segments.reduce((a, b) => a + b, 0));
 	if (f.monsoonMonths.includes(month)) total *= f.monsoon;
-	return Math.round(Math.max(total, segments.reduce((a, b) => a + b, 0)));
+	return Math.round(Math.max(total, routeDuration));
 }
 
 /** Ordered pairs (a→b, a≠b) — the matrix holds both directions. */

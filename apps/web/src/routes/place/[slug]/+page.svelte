@@ -13,6 +13,7 @@
 	import AudioGuide from '#lib/components/listing/AudioGuide.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
 	import TideToday from '#lib/components/map/TideToday.svelte';
+	import TideSlider from '#lib/components/map/TideSlider.svelte';
 	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
 	import VerdictVote from '#lib/components/rating/VerdictVote.svelte';
 	import Reviews from '#lib/components/rating/Reviews.svelte';
@@ -135,6 +136,11 @@
 			</div>
 			{#if p.tideDependent}<p class="type-body">{m.tide_dependent()}</p>{/if}
 			{#if p.tideStation}<TideToday station={p.tideStation} />{/if}
+			{#if p.tideDependent && p.coords}<TideSlider
+					slug={p.slug}
+					lon={p.coords[0]}
+					lat={p.coords[1]}
+				/>{/if}
 			{#if p.text.safety}<p class="type-body whitespace-pre-line">
 					<strong class="type-h3">{m.place_safety()}:</strong>
 					{p.text.safety}

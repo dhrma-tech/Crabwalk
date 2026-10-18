@@ -12,6 +12,7 @@
 		{ href: resolve('/admin/field'), label: m.field_title() },
 		{ href: resolve('/admin/reports'), label: m.reports_title() },
 		{ href: resolve('/admin/proofs'), label: m.proofs_title() },
+		{ href: resolve('/admin/alerts'), label: m.alerts_title() },
 		...(data.isReviewer
 			? [
 					{ href: resolve('/admin/review'), label: m.review_title() },

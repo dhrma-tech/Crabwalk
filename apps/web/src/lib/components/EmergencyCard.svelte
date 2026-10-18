@@ -5,6 +5,7 @@
 	import X from '@lucide/svelte/icons/x';
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatNumber } from '#lib/format.ts';
+	import { offlineData } from '#lib/packs.ts';
 
 	// FRONTEND §6.8 [LOCKED]: --emergency header, huge Call 112, nearest hospital (distance + call +
 	// navigate), share live location. No branding, no mascot, no bounce. The position stays on the device.
@@ -38,6 +39,7 @@
 				const d = 0.3;
 				const bbox = [here.lon - d, here.lat - d, here.lon + d, here.lat + d].join(',');
 				const res = await fetch(`/api/map/utilities?bbox=${bbox}&types=hospital`).catch(() => null);
+				// Offline: hospitals from downloaded taluka packs (FRONTEND §9).
 				const fc = res?.ok
 					? ((await res.json()) as {
 							features: {
@@ -45,7 +47,14 @@
 								properties: { name: string | null; phone: string | null };
 							}[];
 						})
-					: { features: [] };
+					: {
+							features: (await offlineData()).utilities
+								.filter((u) => u.type === 'hospital')
+								.map((u) => ({
+									geometry: { coordinates: u.at },
+									properties: { name: u.name, phone: u.phone }
+								}))
+						};
 				const list = fc.features
 					.map((f) => {
 						const [lon, lat] = f.geometry.coordinates;

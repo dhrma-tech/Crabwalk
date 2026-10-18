@@ -288,12 +288,12 @@ select throws_ok(
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a1');
 select throws_ok(
-  $$ insert into public.dwell_events (anon_id, place_id, arrived_at) select 'x', p_pub, now() from ids $$,
+  $$ insert into public.dwell_events (anon_id, place_id, arrived_at) select gen_random_uuid()::text, p_pub, now() from ids $$,
   '42501', null, 'no dwell rows without consent');
 insert into public.consents (user_id, type, granted, granted_at)
 values ('00000000-0000-0000-0000-0000000000a1', 'dwell_time', true, now());
 select lives_ok(
-  $$ insert into public.dwell_events (anon_id, place_id, arrived_at) select 'x', p_pub, now() from ids $$,
+  $$ insert into public.dwell_events (anon_id, place_id, arrived_at) select gen_random_uuid()::text, p_pub, now() from ids $$,
   'dwell row allowed with consent');
 select is((select count(*)::int from public.dwell_events), 0, 'user cannot read dwell_events');
 update public.consents set revoked_at = now() where user_id = '00000000-0000-0000-0000-0000000000a1';
