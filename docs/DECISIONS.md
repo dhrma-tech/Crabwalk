@@ -129,6 +129,11 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## P7 pre-decisions
+| Ref | Decision |
+|---|---|
+| P7-1 | Planner pace hours confirmed (user): relaxed 6 h, balanced 8 h, packed 10 h per day. |
+
 ## P6 decisions and notes
 | Ref | Decision / note |
 |---|---|
@@ -154,7 +159,6 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Custom category icon set
 - Exact place count (100–200)
 - TBD rating — parked, do not build
-- Planner pace hours (DEFAULT relaxed 6 / balanced 8 / packed 10) — confirm before P7
 - Trail difficulty scale — before P9
 - Per-spot tide accessibility rule — from verifiers
 - Emergency keyword list EN/HI/MR — team to finalize before P8
@@ -166,7 +170,7 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 
 ## Found issues
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
-- `supabase/tests/rls.test.sql` test 29 ("anon reads approved reviews only") counts every approved review, so it fails on a local DB after the P5 e2e run leaves one behind. Passes on a fresh DB (CI). Test should scope to its own fixture rows.
+- ~~`rls.test.sql` test 29 counted every approved review → failed on a local DB with P5 e2e leftovers~~ — fixed after P6 (user): scoped to its fixture place. Same fix for `p6_qr.test.sql` "next spot" (fixture moved within ~70 m so leftover e2e places can't outrank it).
 - `e2e/shell.test.ts` "works offline after first visit" timed out once under a full parallel run (passes alone and on rerun) — possible flake.
 
 ## Phase log

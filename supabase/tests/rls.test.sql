@@ -198,7 +198,7 @@ select throws_ok(
 -- ================================================================ reviews
 reset role;
 select pg_temp.anon();
-select is((select count(*)::int from public.reviews), 1, 'anon reads approved reviews only');
+select is((select count(*)::int from public.reviews where entity_id = (select p_pub from ids)), 1, 'anon reads approved reviews only');
 
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a1');

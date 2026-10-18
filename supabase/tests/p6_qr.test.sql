@@ -36,7 +36,7 @@ grant select on ids to authenticated, anon;
 insert into public.places (id, slug, category, taluka_id, location, status)
 select place, 'p6-place', 'fort', t, 'SRID=4326;POINT(73.3 17)', 'published' from ids;
 insert into public.places (id, slug, category, taluka_id, location, status)
-select place2, 'p6-place2', 'beach', t, 'SRID=4326;POINT(73.31 17.01)', 'published' from ids;
+select place2, 'p6-place2', 'beach', t, 'SRID=4326;POINT(73.3005 17.0005)', 'published' from ids;
 insert into public.place_translations (place_id, lang, name) select place2, 'en', 'P6 Beach' from ids;
 insert into public.eateries (id, slug, taluka_id, location, status) select eat, 'p6-eat', t, 'SRID=4326;POINT(73.301 17)', 'published' from ids;
 insert into public.utility_pois (id, type, location, name, source, taluka_id)
