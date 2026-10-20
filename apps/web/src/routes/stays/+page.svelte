@@ -16,7 +16,7 @@
 		keys.map((k) => ({ value: k, label: msg(`${prefix}${k}`) }));
 </script>
 
-<Page title={m.stays_title()}>
+<Page title={m.stays_title()} description={m.meta_stays()}>
 	<div class="flex flex-col gap-4">
 		<FilterBar
 			fields={[

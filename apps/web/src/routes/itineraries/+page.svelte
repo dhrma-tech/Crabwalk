@@ -10,7 +10,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.itin_title()}>
+<Page title={m.itin_title()} description={m.meta_itineraries()}>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
 		{#if data.itineraries.length}
 			<ItineraryList items={data.itineraries} />

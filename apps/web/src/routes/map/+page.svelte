@@ -25,6 +25,7 @@
 	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import type { PageProps } from './$types';
 	import { loginHref } from '#lib/login.ts';
+	import Meta from '#lib/components/Meta.svelte';
 
 	let { data }: PageProps = $props();
 
@@ -135,7 +136,7 @@
 	const gmaps = (p: Pin) => `https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}`;
 </script>
 
-<svelte:head><title>{m.nav_map()} · {m.app_name()}</title></svelte:head>
+<Meta title={m.nav_map()} description={m.meta_map()} />
 
 <TopBar title={m.nav_map()} />
 <main id="main" class="relative min-h-0 flex-1">

@@ -13,7 +13,6 @@ const PACKS = 'packs-v1';
 const TRIPS = 'trips-v1';
 const precache = [...immutable, ...assets, ...prerendered]
 	.map((f) => '/' + f.path.replace(/^\//, ''))
-	.filter((p) => p !== '/robots.txt')
 	// Runtime public env module: client-only pages (e.g. /navigate) import it, so it is needed offline too.
 	.concat('/_app/env.js');
 const NO_CACHE = [

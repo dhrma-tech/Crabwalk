@@ -27,7 +27,7 @@
 	const dietLabel = { veg: m.diet_veg, non_veg: m.diet_nonveg, jain: m.diet_jain };
 </script>
 
-<Page title={primary} back>
+<Page title={primary} back description={e.description} image={e.photos[0]?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
 		<Hero photo={e.photos[0] ?? null} tone="yama" />
 		<header class="flex flex-col gap-2">

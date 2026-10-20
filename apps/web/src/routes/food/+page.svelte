@@ -14,7 +14,7 @@
 	const dietMap = { veg: 'veg', non_veg: 'nonveg', jain: 'jain' } as const;
 </script>
 
-<Page title={m.food_title()}>
+<Page title={m.food_title()} description={m.meta_food()}>
 	<div class="flex flex-col gap-4">
 		<FilterBar
 			fields={[

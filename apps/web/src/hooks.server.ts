@@ -6,6 +6,7 @@ import type { Database } from '#lib/db.types.ts';
 import { paraglideMiddleware } from '#lib/paraglide/server.js';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
 import { allowed, ruleFor } from '#lib/server/rate.ts';
+import { isPrivatePath } from '#lib/seo.ts';
 
 const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
@@ -62,6 +63,7 @@ const limits: Handle = async ({ event, resolve }) => {
 	);
 	h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 	if (!h.has('X-Frame-Options')) h.set('X-Frame-Options', 'DENY');
+	if (isPrivatePath(event.url.pathname)) h.set('X-Robots-Tag', 'noindex');
 	return res;
 };
 

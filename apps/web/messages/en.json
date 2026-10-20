@@ -1,6 +1,12 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
 	"app_name": "Crabwalk",
+	"meta_default": "Verified beaches, forts, temples, stays and food on the Konkan coast — honest visitor verdicts, tide and monsoon status, and trip plans that work offline, in English, Hindi and Marathi.",
+	"meta_stays": "Homestays, beachfront and orchard stays on the Konkan coast, checked by our team — with prices and where each price comes from.",
+	"meta_food": "Where to eat on the Konkan coast: home-style kitchens and local legends serving Malvani thalis, solkadhi and more, checked by our team.",
+	"meta_map": "Map of verified places, stays and food on the Konkan coast, with tide times, road alerts and trails. Works offline with downloaded taluka packs.",
+	"meta_taste": "Konkan dishes worth travelling for — solkadhi, ukadiche modak, Malvani fish thali — and the verified places that make them best.",
+	"meta_itineraries": "Ready-made Konkan trips by our team and by travellers: day-by-day stops, drive times and tide-safe timings to plan from.",
 	"skip_to_content": "Skip to content",
 	"nav_label": "Main",
 	"nav_discover": "Discover",

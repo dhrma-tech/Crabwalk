@@ -14,7 +14,7 @@
 	const secondary = $derived(lang === 'en' ? d.names.mr : d.names.en);
 </script>
 
-<Page title={d.name} back>
+<Page title={d.name} back description={d.what || d.story} image={d.photo?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
 		<Hero photo={d.photo} tone="sakura" />
 		<header>

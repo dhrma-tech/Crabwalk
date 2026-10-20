@@ -52,7 +52,12 @@
 	);
 </script>
 
-<Page title={primary} back>
+<Page
+	title={primary}
+	back
+	description={p.text.story || p.text.significance}
+	image={p.photos[0]?.src}
+>
 	<article
 		class="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start lg:gap-x-10"
 	>

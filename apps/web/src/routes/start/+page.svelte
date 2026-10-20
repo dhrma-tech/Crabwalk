@@ -23,7 +23,7 @@
 	}) => (lang === 'hi' ? x.name_hi : lang === 'mr' ? x.name_mr : null) || x.name_en || x.slug;
 </script>
 
-<Page title={m.start_title()}>
+<Page title={m.start_title()} description={m.start_intro()}>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
 		<section class="flex flex-col gap-3">
 			{#if data.stop}<p class="type-body text-text-2">
