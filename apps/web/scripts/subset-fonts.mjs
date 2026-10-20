@@ -1,16 +1,15 @@
-// Build the self-hosted WOFF2 files (FRONTEND §2.3). DECISIONS P10-4 (overrides B12): each weight is split by
-// unicode-range into a Latin file and a Devanagari file, so English pages never download Devanagari glyphs.
-// Usage: node scripts/subset-fonts.mjs <dir with Baloo2.ttf (variable), Mukta-Regular.ttf, Mukta-SemiBold.ttf>
-//        node scripts/subset-fonts.mjs --from-combined   (re-split the old combined static/fonts/<name>.woff2)
-// Sources: github.com/google/fonts ofl/baloo2, ofl/mukta (SIL OFL 1.1).
-import { readFile, writeFile, mkdir, rm } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+// Build the self-hosted WOFF2 files (Suna, DECISIONS P10a-3). 4 weights, each split by unicode-range into a
+// Latin file and a Devanagari file (P10-4), so English pages never download Devanagari glyphs.
+// Usage: node scripts/subset-fonts.mjs <dir with the source TTFs below>
+// Sources (SIL OFL 1.1, github.com/google/fonts): ofl/shipporimincho, ofl/notoserifdevanagari,
+// ofl/zenkakugothicnew, ofl/notosansdevanagari.
+import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import subsetFont from 'subset-font';
 
-const arg = process.argv[2];
-if (!arg) throw new Error('pass the source font directory, or --from-combined');
+const dir = process.argv[2];
+if (!dir) throw new Error('pass the source font directory');
 
 // Keep in sync with the unicode-range lines in src/app.css and src/lib/map/style.ts.
 export const LATIN = [
@@ -37,30 +36,30 @@ const chars = (ranges) =>
 	ranges
 		.flatMap(([a, b]) => Array.from({ length: b - a + 1 }, (_, i) => String.fromCodePoint(a + i)))
 		.join('');
+// The 蟹 (crab) logo mark is set in the serif (U+87F9 in the serif Latin file only).
+const LOGO = '蟹';
 
+const SERIF_DEVA = 'NotoSerifDevanagari[wdth,wght].ttf';
+const SANS_DEVA = 'NotoSansDevanagari[wdth,wght].ttf';
 const jobs = [
-	{ file: 'Baloo2.ttf', name: 'baloo2-600', axes: { wght: 600 } },
-	{ file: 'Baloo2.ttf', name: 'baloo2-700', axes: { wght: 700 } },
-	{ file: 'Mukta-Regular.ttf', name: 'mukta-400' },
-	{ file: 'Mukta-SemiBold.ttf', name: 'mukta-600' }
+	{ name: 'serif-400', latin: 'ShipporiMincho-Regular.ttf', deva: SERIF_DEVA, wght: 400 },
+	{ name: 'sans-400', latin: 'ZenKakuGothicNew-Regular.ttf', deva: SANS_DEVA, wght: 400 },
+	{ name: 'sans-500', latin: 'ZenKakuGothicNew-Medium.ttf', deva: SANS_DEVA, wght: 500 },
+	{ name: 'sans-700', latin: 'ZenKakuGothicNew-Bold.ttf', deva: SANS_DEVA, wght: 700 }
 ];
 
 const outDir = fileURLToPath(new URL('../static/fonts/', import.meta.url));
 await mkdir(outDir, { recursive: true });
 for (const job of jobs) {
-	const combined = join(outDir, `${job.name}.woff2`);
-	const fromCombined = arg === '--from-combined';
-	const font = await readFile(fromCombined ? combined : join(arg, job.file));
-	for (const [part, ranges] of [
-		['latin', LATIN],
-		['deva', DEVA]
+	for (const [part, file, text, axes] of [
+		['latin', job.latin, chars(LATIN) + (job.name.startsWith('serif') ? LOGO : ''), undefined],
+		['deva', job.deva, chars(DEVA), { wght: job.wght, wdth: 100 }]
 	]) {
-		const woff2 = await subsetFont(font, chars(ranges), {
+		const woff2 = await subsetFont(await readFile(join(dir, file)), text, {
 			targetFormat: 'woff2',
-			...(!fromCombined && job.axes && { variationAxes: job.axes })
+			...(axes && { variationAxes: axes })
 		});
 		await writeFile(join(outDir, `${job.name}-${part}.woff2`), woff2);
 		console.log(`${job.name}-${part}.woff2`, (woff2.length / 1024).toFixed(1), 'KB');
 	}
-	if (existsSync(combined)) await rm(combined);
 }

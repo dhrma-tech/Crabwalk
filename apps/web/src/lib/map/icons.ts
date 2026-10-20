@@ -50,10 +50,10 @@ export async function addPinImages(map: MLMap) {
 	const jobs: [string, Component<Record<string, unknown>>, string][] = [
 		...Object.entries(categoryIcons).map(
 			([k, c]) =>
-				[`place-${k}`, c, '#FFFFFF'] as [string, Component<Record<string, unknown>>, string]
+				[`place-${k}`, c, '#1F1E1C'] as [string, Component<Record<string, unknown>>, string]
 		),
 		['stay', BedDouble as Component<Record<string, unknown>>, '#FFFFFF'],
-		['eatery', UtensilsCrossed as Component<Record<string, unknown>>, '#4A2E05'], // text-on-mango colour
+		['eatery', UtensilsCrossed as Component<Record<string, unknown>>, '#FFFFFF'],
 		...Object.entries(utilityIcons).map(
 			([k, c]) =>
 				[`util-${k}`, c, '#FFFFFF'] as [string, Component<Record<string, unknown>>, string]

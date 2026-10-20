@@ -9,7 +9,7 @@
 	// No login: name + up/down per spot. Crabby merges votes for the creator in P8.
 	let { data, form }: PageProps = $props();
 	const opt =
-		'flex min-h-11 cursor-pointer items-center gap-1.5 rounded-chip border border-border px-4 type-small has-checked:border-sea-500 has-checked:bg-sea-500 has-checked:text-white has-focus-visible:outline-2 has-focus-visible:outline-sea-500';
+		'flex min-h-11 cursor-pointer items-center gap-1.5 border border-text px-4 type-small has-checked:bg-text has-checked:text-bg has-focus-visible:outline-2 has-focus-visible:outline-text';
 </script>
 
 <Page title={m.gvote_title()}>
@@ -22,15 +22,12 @@
 				required
 				maxlength="60"
 				autocomplete="given-name"
-				class="h-12 rounded-input border border-border bg-surface px-4 type-body text-text"
+				class="h-11 border-b border-text bg-bg type-body text-text"
 			/>
 		</label>
 		<ul class="flex flex-col gap-3">
 			{#each data.spots as s (s.id)}
-				<li
-					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
-					data-testid="vote-spot"
-				>
+				<li class="flex flex-col gap-2 border border-border bg-surface p-4" data-testid="vote-spot">
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
 					{#if s.href}<a href={s.href} class="type-h3">{s.name}</a>{:else}<span class="type-h3"
 							>{s.name}</span

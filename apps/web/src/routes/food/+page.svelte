@@ -46,9 +46,10 @@
 			]}
 		/>
 		{#if data.eateries.length}
-			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			<div class="grid gap-x-10 gap-y-3 lg:grid-cols-2">
 				{#each data.eateries as e (e.slug)}
 					<EateryCard
+						row
 						href={resolve('/food/[slug]', { slug: e.slug })}
 						names={e.names}
 						photo={e.photo}

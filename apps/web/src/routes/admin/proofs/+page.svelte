@@ -14,7 +14,7 @@
 	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
 		{#each data.proofs as p (p.id)}
 			<article
-				class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
+				class="flex flex-col gap-2 border border-border bg-surface p-4"
 				data-testid="pending-proof"
 			>
 				<p class="type-h3">
@@ -23,7 +23,7 @@
 						>{msg(`type_${p.type}`)} · {formatDate(p.created_at)}</span
 					>
 				</p>
-				{#if p.url}<img src={p.url} alt="" class="max-h-80 rounded-input object-contain" />{/if}
+				{#if p.url}<img src={p.url} alt="" class="max-h-80 object-contain" />{/if}
 				<form method="POST" action="?/decide" use:enhance class="flex gap-2">
 					<input type="hidden" name="id" value={p.id} />
 					<Button type="submit" variant="secondary" name="approve" value="1">{m.approve()}</Button>

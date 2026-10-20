@@ -31,7 +31,7 @@
 							value={data.tomorrow}
 							min={data.tomorrow}
 							required
-							class="h-12 rounded-input border border-border bg-surface px-4 type-body text-text"
+							class="h-11 border-b border-text bg-bg type-body text-text"
 						/>
 					</label>
 					<Button type="submit">{m.itin_use()}</Button>

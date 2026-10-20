@@ -37,7 +37,7 @@
 			{#each links as l (l.href)}
 				<a
 					href={l.href}
-					class="flex min-h-14 items-center rounded-card border border-border bg-surface px-4 type-h3 text-text no-underline"
+					class="flex min-h-14 items-center border border-border bg-surface px-4 type-h3 text-text no-underline"
 					>{l.label}</a
 				>
 			{/each}
@@ -45,11 +45,9 @@
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.recheck_title()}</h2>
 			{#if data.due.length}
-				<ul
-					class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
-				>
+				<ul class="flex flex-col divide-y divide-border border-t border-text">
 					{#each data.due as p (p.id)}
-						<li class="flex flex-wrap items-center justify-between gap-3 px-4 py-3">
+						<li class="flex flex-wrap items-center justify-between gap-3 py-3">
 							<div>
 								<a href={resolve('/place/[slug]', { slug: p.slug })} class="type-body">{p.name}</a>
 								{#if p.last}<div><StatusBadge kind="last-verified" date={p.last} /></div>{/if}

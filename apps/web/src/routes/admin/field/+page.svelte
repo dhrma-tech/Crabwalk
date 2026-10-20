@@ -203,11 +203,10 @@
 		accuracy = null;
 	}
 
-	const input =
-		'h-12 w-full rounded-input border border-border bg-surface px-4 type-body text-text';
+	const input = 'h-11 w-full border-b border-text bg-bg type-body text-text';
 	const label = 'flex flex-col gap-1.5 type-small text-text-2';
 	const box =
-		'flex min-h-11 items-center gap-2 rounded-chip border border-border bg-surface px-4 type-small text-text';
+		'flex min-h-11 items-center gap-2 border border-border bg-surface px-4 type-small text-text';
 </script>
 
 <Page title={m.field_title()} back>
@@ -217,7 +216,7 @@
 		data-testid="field-form"
 	>
 		{#if queued.length}
-			<p class="rounded-card bg-mango-100 p-3 type-small text-mango-900" role="status">
+			<p class="bg-yama p-3 type-small text-text" role="status">
 				{m.queue_count({ n: queued.length })}{#each queued.filter((q) => q.error) as q (q.id)}<br
 					/>{q.payload.name_en}: {q.error}{/each}
 			</p>
@@ -309,11 +308,7 @@
 				/>
 			</label>
 			{#if previews.length}<div class="flex flex-wrap gap-2">
-					{#each previews as src, i (i)}<img
-							{src}
-							alt=""
-							class="size-20 rounded-input object-cover"
-						/>{/each}
+					{#each previews as src, i (i)}<img {src} alt="" class="size-20 object-cover" />{/each}
 				</div>{/if}
 		</fieldset>
 
@@ -380,7 +375,7 @@
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{msg(`wd_${d}`)}
 						<select
-							class="h-11 rounded-input border border-border bg-surface px-3 type-small"
+							class="h-11 border border-border bg-surface px-3 type-small"
 							bind:value={f.crowd[d]}
 						>
 							<option value="">—</option>{#each ['empty', 'calm', 'busy'] as l (l)}<option value={l}
@@ -420,7 +415,7 @@
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{op}
 						<select
-							class="h-11 rounded-input border border-border bg-surface px-3 type-small"
+							class="h-11 border border-border bg-surface px-3 type-small"
 							bind:value={f.network[op]}
 						>
 							<option value="">—</option>{#each ['none', 'weak', 'good'] as l (l)}<option value={l}
@@ -535,14 +530,14 @@
 							<span>{msg(`wd_${h.weekday}`)}</span>
 							<input
 								type="time"
-								class="h-11 rounded-input border border-border bg-surface px-2"
+								class="h-11 border border-border bg-surface px-2"
 								bind:value={h.opens}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} opens`}
 							/>
 							<input
 								type="time"
-								class="h-11 rounded-input border border-border bg-surface px-2"
+								class="h-11 border border-border bg-surface px-2"
 								bind:value={h.closes}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} closes`}
@@ -559,7 +554,7 @@
 		{#if kind === 'places'}
 			<label class={label}
 				>{m.field_notes()}<textarea
-					class="rounded-input border border-border bg-surface p-3 type-body text-text"
+					class="border border-text bg-transparent p-3 type-body text-text"
 					rows="4"
 					maxlength="1000"
 					bind:value={f.notes}

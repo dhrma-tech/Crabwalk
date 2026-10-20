@@ -8,14 +8,19 @@
 	import Heart from '@lucide/svelte/icons/heart';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import CategoryIcon, { type Category } from './CategoryIcon.svelte';
+	import { categoryTone, type Category } from './CategoryIcon.svelte';
+	import NoPhoto, { type Tone } from './NoPhoto.svelte';
 
-	// Shared shell for Place/Stay/Eatery cards (FRONTEND §6.3): 4:3 photo, heart, bilingual name, body.
+	// Shared shell for Place/Stay/Eatery cards (FRONTEND §6.3): 4:3 photo (or the no-photo pattern), heart,
+	// bilingual name, body. Suna: no box, just the image and the words under it; `row` = list row with a
+	// 110×84 thumbnail (Stays / Food lists, design 4a/6a).
 	let {
 		href,
 		photo,
 		names,
 		fallbackCategory,
+		tone,
+		row = false,
 		saved = false,
 		onsave,
 		children
@@ -24,6 +29,8 @@
 		photo?: Photo | null;
 		names: Names;
 		fallbackCategory?: Category;
+		tone?: Tone;
+		row?: boolean;
 		saved?: boolean;
 		onsave?: () => void;
 		children?: Snippet;
@@ -38,21 +45,21 @@
 	const secondaryLang = locale === 'en' ? 'mr' : 'en';
 </script>
 
-<article
-	class="relative overflow-hidden rounded-card border border-border bg-surface text-text"
-	data-clip-check
->
+<article class={['relative text-text', row && 'border-t border-border pt-3']} data-clip-check>
 	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
-	<a {href} class="block text-text no-underline">
+	<a {href} class={['text-text no-underline', row ? 'flex gap-3.5' : 'block']}>
 		<div
-			class="aspect-[4/3] w-full bg-sand-200 bg-cover bg-center dark:bg-raised"
+			class={[
+				row ? 'h-[84px] w-[110px] shrink-0' : 'aspect-[4/3] w-full',
+				'bg-border bg-cover bg-center'
+			]}
 			style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
 		>
 			{#if photo}
 				<img
 					src={photo.src}
 					srcset={photo.srcset}
-					sizes="(min-width: 1024px) 360px, 100vw"
+					sizes={row ? '110px' : '(min-width: 1024px) 360px, 100vw'}
 					alt={photo.alt}
 					loading="lazy"
 					decoding="async"
@@ -60,18 +67,18 @@
 					height="300"
 					class="h-full w-full object-cover"
 				/>
-			{:else if fallbackCategory}
-				<!-- No stock photos: show the category glyph until a verifier photo exists. -->
-				<div class="flex h-full items-center justify-center text-text-2">
-					<CategoryIcon category={fallbackCategory} size={40} />
-				</div>
+			{:else}
+				<NoPhoto
+					tone={tone ?? (fallbackCategory ? categoryTone[fallbackCategory] : 'asagi')}
+					label={!row}
+				/>
 			{/if}
 		</div>
-		<div class="flex flex-col gap-2 p-4">
+		<div class={['flex min-w-0 flex-col gap-1.5', row ? 'pr-11' : 'pt-2']}>
 			<div>
-				<h3 class="type-h2">{primary}</h3>
+				<h3 class="type-h3">{primary}</h3>
 				{#if secondary && secondary !== primary}
-					<p class="type-small text-text-2" lang={secondaryLang}>{secondary}</p>
+					<p class="text-[13px] text-text-2" lang={secondaryLang}>{secondary}</p>
 				{/if}
 			</div>
 			{@render children?.()}
@@ -80,7 +87,10 @@
 	{#if onsave}
 		<button
 			type="button"
-			class="absolute top-2 right-2 flex size-11 items-center justify-center rounded-chip bg-raised/90 text-laterite-500 shadow-float dark:text-cta"
+			class={[
+				'absolute right-0 flex size-11 items-center justify-center bg-bg/70 text-text',
+				row ? 'top-2' : 'top-0'
+			]}
 			aria-pressed={saved}
 			aria-label={saved ? m.saved() : m.save()}
 			onclick={onsave}

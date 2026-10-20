@@ -66,14 +66,13 @@
 		busy = false;
 		toast(res.ok ? m.owner_saved() : m.send_failed());
 	}
-	const input =
-		'h-12 w-full rounded-input border border-border bg-surface px-4 type-body text-text';
+	const input = 'h-11 w-full border-b border-text bg-bg type-body text-text';
 	const label = 'flex flex-col gap-1.5 type-small text-text-2';
 </script>
 
 <Page title={data.name ?? m.owner_edit()} back>
 	<form onsubmit={save} class="mx-auto flex max-w-[680px] flex-col gap-5" data-testid="owner-form">
-		<p class="rounded-card bg-sea-50 p-3 type-small text-sea-900">{m.owner_ratings_readonly()}</p>
+		<p class="bg-asagi p-3 type-small text-text">{m.owner_ratings_readonly()}</p>
 		<PhotoUpload type={data.type as 'stay' | 'eatery'} id={data.id} />
 		{#if data.type === 'stay'}
 			<div class="grid grid-cols-2 gap-3">
@@ -110,7 +109,7 @@
 				>{m.menu()}<span class="type-small">{m.owner_menu_hint()}</span>
 				<textarea
 					rows="6"
-					class="rounded-input border border-border bg-surface p-3 type-body text-text"
+					class="border border-text bg-transparent p-3 type-body text-text"
 					bind:value={menu}
 					name="menu"></textarea>
 			</label>
@@ -121,14 +120,14 @@
 						<span>{msg(`wd_${h.weekday}`)}</span>
 						<input
 							type="time"
-							class="h-11 rounded-input border border-border bg-surface px-2"
+							class="h-11 border border-border bg-surface px-2"
 							bind:value={h.opens}
 							disabled={h.closed}
 							aria-label={`${msg(`wd_${h.weekday}`)} opens`}
 						/>
 						<input
 							type="time"
-							class="h-11 rounded-input border border-border bg-surface px-2"
+							class="h-11 border border-border bg-surface px-2"
 							bind:value={h.closes}
 							disabled={h.closed}
 							aria-label={`${msg(`wd_${h.weekday}`)} closes`}

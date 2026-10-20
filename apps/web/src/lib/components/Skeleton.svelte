@@ -1,16 +1,16 @@
 <script lang="ts">
-	// FRONTEND §6.12: sand-100 shimmer; static under reduced motion (global rule stops the animation).
+	// FRONTEND §6.12: hairline-tone blocks (Suna 3a) with a soft shimmer; static under reduced motion.
 	let { class: cls = 'h-4 w-full' }: { class?: string } = $props();
 </script>
 
-<div class={['skeleton rounded-input bg-sand-100 dark:bg-raised', cls]} aria-hidden="true"></div>
+<div class={['skeleton bg-border', cls]} aria-hidden="true"></div>
 
 <style>
 	.skeleton {
 		background-image: linear-gradient(
 			90deg,
 			transparent 0%,
-			rgb(255 255 255 / 0.35) 50%,
+			color-mix(in srgb, var(--bg) 45%, transparent) 50%,
 			transparent 100%
 		);
 		background-size: 200% 100%;

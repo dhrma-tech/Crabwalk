@@ -44,7 +44,7 @@
 
 <section
 	class={[
-		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-30 flex flex-col overflow-hidden rounded-t-sheet border border-border bg-raised shadow-float lg:bottom-0 lg:left-24',
+		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-30 flex flex-col overflow-hidden border-t border-text bg-bg lg:bottom-0 lg:[:root:has([data-dock])_&]:right-[340px]',
 		!drag && 'transition-[height] duration-300 ease-brand'
 	]}
 	style:height="{height}px"
@@ -59,9 +59,9 @@
 		onpointerup={up}
 		onpointercancel={up}
 	>
-		<span class="h-1.5 w-10 rounded-chip bg-border" aria-hidden="true"></span>
+		<span class="h-0.5 w-9 bg-border" aria-hidden="true"></span>
 	</button>
-	<div class="min-h-0 flex-1 overflow-y-auto px-4 pb-[env(safe-area-inset-bottom)]">
+	<div class="min-h-0 flex-1 overflow-y-auto px-6 pb-[env(safe-area-inset-bottom)]">
 		{@render children()}
 	</div>
 </section>

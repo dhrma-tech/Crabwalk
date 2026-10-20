@@ -45,14 +45,12 @@
 		{#if data.nearby && (data.nearby.listings.length || data.nearby.utilities.length)}
 			<section class="flex flex-col gap-3">
 				<h2 class="type-h2">{m.start_near()}</h2>
-				<ul
-					class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
-				>
+				<ul class="flex flex-col divide-y divide-border border-t border-text">
 					{#each data.nearby.listings as x (x.id)}
 						<li>
 							<a
 								href={hrefFor(x.kind, x.slug)}
-								class="flex justify-between gap-3 px-4 py-3 text-text no-underline"
+								class="flex justify-between gap-3 py-3 text-text no-underline"
 								><span class="type-body">{pinName(x)}</span><span class="type-small text-text-2"
 									>{m.km_away({ km: formatNumber(x.km) })}</span
 								></a
@@ -60,7 +58,7 @@
 						</li>
 					{/each}
 					{#each data.nearby.utilities as u (u.id)}
-						<li class="flex justify-between gap-3 px-4 py-3">
+						<li class="flex justify-between gap-3 py-3">
 							<span class="type-body">{msg(`util_${u.type}`)}{u.name ? ` · ${u.name}` : ''}</span
 							><span class="type-small text-text-2">{m.km_away({ km: formatNumber(u.km) })}</span>
 						</li>

@@ -42,7 +42,7 @@
 						<li>
 							<a
 								href={resolve('/place/[slug]', { slug: p.slug })}
-								class="flex min-h-11 items-center rounded-chip border border-border bg-surface px-4 type-small no-underline"
+								class="flex min-h-11 items-center border border-border bg-surface px-4 type-small no-underline"
 								>{p.name}</a
 							>
 						</li>

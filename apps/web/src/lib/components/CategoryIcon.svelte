@@ -28,6 +28,21 @@
 		market: Store,
 		orchard: Trees
 	} satisfies Record<Category, unknown>;
+
+	// Suna tint per category: category tiles and the no-photo pattern.
+	export const categoryTone = {
+		beach: 'asagi',
+		fort: 'yama',
+		temple: 'sakura',
+		waterfall: 'fuji',
+		viewpoint: 'wakaba',
+		backwater: 'asagi',
+		cave: 'fuji',
+		museum: 'yama',
+		village: 'wakaba',
+		market: 'sakura',
+		orchard: 'wakaba'
+	} as const satisfies Record<Category, 'sakura' | 'asagi' | 'yama' | 'wakaba' | 'fuji'>;
 </script>
 
 <script lang="ts">

@@ -2,7 +2,6 @@
 	import Phone from '@lucide/svelte/icons/phone';
 	import Navigation from '@lucide/svelte/icons/navigation';
 	import Share2 from '@lucide/svelte/icons/share-2';
-	import X from '@lucide/svelte/icons/x';
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatNumber } from '#lib/format.ts';
 	import { offlineData } from '#lib/packs.ts';
@@ -83,75 +82,74 @@
 	}
 </script>
 
-<div class="fixed inset-0 z-50 flex items-end bg-black/40" role="presentation">
-	<div
-		role="alertdialog"
-		aria-modal="true"
-		aria-labelledby="emergency-title"
-		class="w-full overflow-hidden rounded-t-sheet bg-raised pb-[env(safe-area-inset-bottom)] shadow-float"
-		data-testid="emergency-card"
+<svelte:window onkeydown={(e) => e.key === 'Escape' && onclose()} />
+
+<!-- Suna 4a: full-screen sheet over anything; red header is the 112 call itself. Calm: no motion. -->
+<div
+	role="alertdialog"
+	aria-modal="true"
+	aria-labelledby="emergency-title"
+	class="fixed inset-0 z-50 overflow-y-auto bg-bg pb-[env(safe-area-inset-bottom)] text-text"
+	data-testid="emergency-card"
+>
+	<a
+		href="tel:112"
+		class="block bg-emergency px-6 pt-[calc(36px+env(safe-area-inset-top))] pb-8 text-white no-underline"
 	>
-		<header class="flex items-center justify-between bg-emergency px-4 py-3 text-white">
-			<h2 id="emergency-title" class="type-h2">{m.emergency_title()}</h2>
-			<button
-				type="button"
-				class="flex size-11 items-center justify-center"
-				aria-label={m.close()}
-				onclick={onclose}
-			>
-				<X size={24} aria-hidden="true" />
-			</button>
-		</header>
-		<div class="flex flex-col gap-4 p-4">
-			<a
-				href="tel:112"
-				class="flex min-h-16 items-center justify-center gap-3 rounded-chip bg-emergency type-h1 text-white no-underline"
-				><Phone size={28} aria-hidden="true" />{m.qr_call_112()}</a
-			>
-
-			<div
-				class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
-				aria-live="polite"
-			>
-				<h3 class="type-h3">{m.emergency_hospital()}</h3>
-				{#if status === 'locating'}
-					<p class="type-small text-text-2">{m.emergency_locating()}</p>
-				{:else if status === 'no-gps'}
-					<p class="type-small">{m.qr_gps_off()}</p>
-				{:else if status === 'none' || !hospital}
-					<p class="type-small">{m.emergency_no_hospital()}</p>
-				{:else}
-					<p class="type-body">
-						{hospital.name ?? m.util_hospital()} · {m.km_away({
-							km: formatNumber(Math.round(hospital.km * 10) / 10)
-						})}
-					</p>
-					<div class="flex flex-wrap gap-2">
-						{#if hospital.phone}
-							<a
-								href="tel:{hospital.phone}"
-								class="flex min-h-11 items-center gap-2 rounded-chip border border-border px-4 type-small no-underline"
-								><Phone size={18} aria-hidden="true" />{m.emergency_call_hospital()}</a
-							>
-						{/if}
+		<h2 id="emergency-title" class="text-[14px] font-normal">{m.emergency_title()}</h2>
+		<span class="flex items-center gap-3 text-[56px] leading-tight font-bold"
+			><Phone size={40} aria-hidden="true" />{m.qr_call_112()}</span
+		>
+	</a>
+	<div class="mx-auto flex max-w-[680px] flex-col gap-5 p-6">
+		<div class="flex flex-col gap-1" aria-live="polite">
+			<h3 class="text-[13px] font-normal text-text-2">{m.emergency_hospital()}</h3>
+			{#if status === 'locating'}
+				<p class="type-small text-text-2">{m.emergency_locating()}</p>
+			{:else if status === 'no-gps'}
+				<p class="type-small">{m.qr_gps_off()}</p>
+			{:else if status === 'none' || !hospital}
+				<p class="type-small">{m.emergency_no_hospital()}</p>
+			{:else}
+				<p class="text-[22px] leading-snug font-medium">{hospital.name ?? m.util_hospital()}</p>
+				<p class="text-text-2">
+					{m.km_away({ km: formatNumber(Math.round(hospital.km * 10) / 10) })}
+				</p>
+				<div class="mt-3 grid grid-cols-2 gap-2.5">
+					{#if hospital.phone}
 						<a
-							href="https://www.google.com/maps/dir/?api=1&destination={hospital.lat},{hospital.lon}"
-							target="_blank"
-							rel="noopener"
-							class="flex min-h-11 items-center gap-2 rounded-chip border border-border px-4 type-small no-underline"
-							><Navigation size={18} aria-hidden="true" />{m.emergency_navigate()}</a
+							href="tel:{hospital.phone}"
+							class="flex min-h-12 items-center justify-center gap-2 bg-text px-3 text-bg no-underline"
+							><Phone size={18} aria-hidden="true" />{m.emergency_call_hospital()}</a
 						>
-					</div>
-				{/if}
-			</div>
+					{/if}
+					<a
+						href="https://www.google.com/maps/dir/?api=1&destination={hospital.lat},{hospital.lon}"
+						target="_blank"
+						rel="noopener"
+						class={[
+							'flex min-h-12 items-center justify-center gap-2 border border-text px-3 text-text no-underline',
+							!hospital.phone && 'col-span-2'
+						]}><Navigation size={18} aria-hidden="true" />{m.emergency_navigate()}</a
+					>
+				</div>
+			{/if}
+		</div>
 
+		<div class="flex flex-col gap-1.5 border-t border-border pt-4">
 			<button
 				type="button"
 				disabled={!pos}
 				onclick={share}
-				class="flex min-h-12 items-center justify-center gap-2 rounded-chip border-2 border-emergency type-h3 text-text disabled:opacity-50"
+				class="flex min-h-12 items-center justify-center gap-2 border border-text text-text disabled:opacity-50"
 				><Share2 size={20} aria-hidden="true" />{m.qr_share_location()}</button
 			>
 		</div>
+
+		<button
+			type="button"
+			class="min-h-11 text-text-2 underline underline-offset-4"
+			onclick={onclose}>{m.close()}</button
+		>
 	</div>
 </div>

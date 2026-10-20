@@ -7,7 +7,7 @@
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
-	const field = 'h-11 w-28 rounded-input border border-border bg-raised px-3 type-body text-text';
+	const field = 'h-11 w-28 border-b border-text bg-bg type-body text-text';
 </script>
 
 <Page title={m.planner_settings()} back>

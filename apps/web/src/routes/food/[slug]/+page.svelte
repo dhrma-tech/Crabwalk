@@ -29,7 +29,7 @@
 
 <Page title={primary} back>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<Hero photo={e.photos[0] ?? null} />
+		<Hero photo={e.photos[0] ?? null} tone="yama" />
 		<header class="flex flex-col gap-2">
 			<h2 class="type-display">{primary}</h2>
 			{#if secondary && secondary !== primary}<p
@@ -69,7 +69,7 @@
 						<li>
 							<a
 								href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
-								class="inline-flex min-h-11 items-center rounded-chip border border-border bg-surface px-4 type-small text-text no-underline"
+								class="inline-flex min-h-11 items-center border border-border bg-surface px-4 type-small text-text no-underline"
 								>{d.name}</a
 							>
 						</li>
@@ -81,9 +81,7 @@
 		{#if e.menu.length}
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h2">{m.menu()}</h2>
-				<ul
-					class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
-				>
+				<ul class="flex flex-col divide-y divide-border border-t border-text">
 					{#each e.menu as item, i (i)}<li class="px-4 py-2 type-body">{item}</li>{/each}
 				</ul>
 			</section>

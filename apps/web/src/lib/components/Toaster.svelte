@@ -10,7 +10,7 @@
 >
 	{#each toasts as t (t.id)}
 		<p
-			class="max-w-[680px] rounded-card border border-sand-700 bg-sand-900 px-4 py-3 type-small text-sand-100 shadow-float"
+			class="max-w-[680px] bg-text px-4 py-3 type-small text-bg"
 			transition:fly={{ y: 16, duration: 200 }}
 		>
 			{t.text}

@@ -1,18 +1,21 @@
 <script lang="ts">
-	import CategoryIcon, { type Category } from '../CategoryIcon.svelte';
+	import { categoryTone, type Category } from '../CategoryIcon.svelte';
+	import NoPhoto, { type Tone } from '../NoPhoto.svelte';
 
-	// 16:9 hero (FRONTEND §3). Verifier/owner photos only; without one, the category glyph (no stock photos).
+	// 16:9 hero (FRONTEND §3). Verifier/owner photos only; without one, the Suna no-photo pattern.
 	let {
 		photo,
-		category
+		category,
+		tone
 	}: {
 		photo: { src: string; srcset: string; lqip?: string; alt: string } | null;
 		category?: Category;
+		tone?: Tone;
 	} = $props();
 </script>
 
 <div
-	class="-mx-4 aspect-video overflow-hidden bg-sand-200 bg-cover bg-center sm:mx-0 sm:rounded-card dark:bg-raised"
+	class="aspect-video overflow-hidden bg-border bg-cover bg-center"
 	style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
 >
 	{#if photo}
@@ -25,9 +28,7 @@
 			decoding="async"
 			class="h-full w-full object-cover"
 		/>
-	{:else if category}
-		<div class="flex h-full items-center justify-center text-text-2">
-			<CategoryIcon {category} size={56} />
-		</div>
+	{:else}
+		<NoPhoto tone={tone ?? (category ? categoryTone[category] : 'asagi')} />
 	{/if}
 </div>

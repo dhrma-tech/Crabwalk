@@ -21,7 +21,7 @@
 	import type { GeoJSONSource, Map as MLMap, Marker } from 'maplibre-gl';
 	import type { FeatureCollection, Point } from 'geojson';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import { buildStyle, ATTRIBUTION_OLA, PIN, type MapTheme } from '#lib/map/style.ts';
+	import { buildStyle, ATTRIBUTION_OLA, PIN, MAP, type MapTheme } from '#lib/map/style.ts';
 	import { addPinImages, type UtilityType } from '#lib/map/icons.ts';
 	import { tideState } from '#lib/tides.ts';
 	import { offlineData, savedPacks } from '#lib/packs.ts';
@@ -118,7 +118,7 @@
 				'circle-radius': 11,
 				'circle-color': PIN.utility,
 				'circle-stroke-width': 1.5,
-				'circle-stroke-color': '#FFFFFF'
+				'circle-stroke-color': MAP.halo
 			}
 		});
 		m.addLayer({
@@ -147,7 +147,7 @@
 				'circle-color': PIN.cluster,
 				'circle-radius': ['step', ['get', 'point_count'], 16, 10, 20, 50, 26],
 				'circle-stroke-width': 2,
-				'circle-stroke-color': '#FFFFFF'
+				'circle-stroke-color': MAP.halo
 			}
 		});
 		m.addLayer({
@@ -157,11 +157,11 @@
 			filter: ['has', 'point_count'],
 			layout: {
 				'text-field': ['get', 'point_count_abbreviated'],
-				'text-font': ['Mukta SemiBold'],
+				'text-font': ['Suna Sans Medium'],
 				'text-size': 14,
 				'text-allow-overlap': true
 			},
-			paint: { 'text-color': '#FFFFFF' }
+			paint: { 'text-color': MAP.halo }
 		});
 		m.addLayer({
 			id: 'pin',
@@ -180,7 +180,7 @@
 					PIN.place
 				],
 				'circle-stroke-width': 2,
-				'circle-stroke-color': '#FFFFFF'
+				'circle-stroke-color': MAP.halo
 			}
 		});
 		m.addLayer({
@@ -215,13 +215,13 @@
 						['linear'],
 						['heatmap-density'],
 						0,
-						'rgba(232,163,61,0)',
+						MAP.heat[0],
 						0.3,
-						'#F0B451',
+						MAP.heat[1],
 						0.7,
-						'#E0745A',
+						MAP.heat[2],
 						1,
-						'#B5462B'
+						MAP.heat[3]
 					]
 				}
 			},
@@ -235,11 +235,11 @@
 			minzoom: 12,
 			layout: {
 				'text-field': ['match', ['get', 'source'], 'live', heatLabels.live, heatLabels.typical],
-				'text-font': ['Mukta SemiBold'],
+				'text-font': ['Suna Sans Medium'],
 				'text-size': 12,
 				'text-offset': [0, 1.6]
 			},
-			paint: { 'text-color': '#8C3420', 'text-halo-color': '#FFFFFF', 'text-halo-width': 1.5 }
+			paint: { 'text-color': MAP.ink, 'text-halo-color': MAP.halo, 'text-halo-width': 1.5 }
 		});
 		m.addSource('trails', { type: 'geojson', data: EMPTY });
 		m.addLayer(
@@ -254,19 +254,25 @@
 						'match',
 						['get', 'difficulty'],
 						'easy',
-						'#2E7D32',
+						MAP.ok,
 						'moderate',
-						'#B7791F',
+						MAP.caution,
 						'hard',
-						'#B5462B',
-						'#5A4A35'
+						MAP.danger,
+						MAP.unknown
 					]
 				}
 			},
 			'util'
 		);
 		m.addSource('alerts', { type: 'geojson', data: EMPTY });
-		const sev = ['match', ['get', 'severity'], 'danger', '#C62828', '#B7791F'] as unknown as string;
+		const sev = [
+			'match',
+			['get', 'severity'],
+			'danger',
+			MAP.danger,
+			MAP.caution
+		] as unknown as string;
 		m.addLayer(
 			{
 				id: 'alerts-fill',
@@ -296,7 +302,7 @@
 				'circle-radius': 12,
 				'circle-color': sev,
 				'circle-stroke-width': 3,
-				'circle-stroke-color': '#FFFFFF'
+				'circle-stroke-color': MAP.halo
 			}
 		});
 		m.addSource('tides', { type: 'geojson', data: EMPTY });
@@ -313,10 +319,10 @@
 						'match',
 						['get', 'state'],
 						'ok',
-						'#2E7D32',
+						MAP.ok,
 						'cut',
-						'#C62828',
-						'#8A7A64'
+						MAP.caution,
+						MAP.unknown
 					]
 				}
 			},
@@ -328,7 +334,7 @@
 			type: 'line',
 			source: 'route',
 			layout: { 'line-cap': 'round', 'line-join': 'round' },
-			paint: { 'line-color': '#FFFFFF', 'line-width': 10 }
+			paint: { 'line-color': MAP.halo, 'line-width': 10 }
 		});
 		m.addLayer({
 			id: 'route',
@@ -336,7 +342,7 @@
 			source: 'route',
 			layout: { 'line-cap': 'round', 'line-join': 'round' },
 			paint: {
-				'line-color': '#0E6E6A',
+				'line-color': MAP.route,
 				'line-width': 6,
 				'line-dasharray': [
 					'case',
@@ -353,9 +359,9 @@
 			source: 'me',
 			paint: {
 				'circle-radius': 9,
-				'circle-color': '#1E6FD9',
+				'circle-color': MAP.me,
 				'circle-stroke-width': 3,
-				'circle-stroke-color': '#FFFFFF'
+				'circle-stroke-color': MAP.halo
 			}
 		});
 		for (const id of ['clusters', 'cluster-count', 'pin', 'pin-icon'])
@@ -687,10 +693,27 @@
 		background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
 		color: var(--text-2);
 	}
-	/* WCAG 2.5.8 target size + comfortable touch: map control buttons 44 px. */
+	/* WCAG 2.5.8 target size + comfortable touch: map control buttons 44 px. Suna: square, hairline, no shadow. */
 	:global(.maplibregl-ctrl-group button) {
 		width: 44px;
 		height: 44px;
+	}
+	:global(.maplibregl-ctrl.maplibregl-ctrl-group) {
+		border-radius: 0;
+		box-shadow: none;
+		border: 1px solid var(--text);
+		background: var(--bg);
+	}
+	:global(.maplibregl-ctrl-group button + button) {
+		border-top-color: var(--border);
+	}
+	:global([data-theme='dark'] .maplibregl-ctrl-group .maplibregl-ctrl-icon) {
+		filter: invert(1);
+	}
+	@media (prefers-color-scheme: dark) {
+		:global(:root:not([data-theme='light']) .maplibregl-ctrl-group .maplibregl-ctrl-icon) {
+			filter: invert(1);
+		}
 	}
 	:global(.maplibregl-ctrl-attrib a) {
 		color: var(--link);

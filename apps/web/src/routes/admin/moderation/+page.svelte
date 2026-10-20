@@ -14,7 +14,7 @@
 	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
 		{#each data.reviews as r (r.id)}
 			<article
-				class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
+				class="flex flex-col gap-2 border border-border bg-surface p-4"
 				data-testid="pending-review"
 			>
 				<p class="type-small text-text-2">
@@ -25,10 +25,8 @@
 				{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
 				{#if r.ai_flag}<p
 						class={[
-							'self-start rounded-chip px-3 py-0.5 type-small',
-							r.ai_flag === 'flagged'
-								? 'bg-laterite-100 text-laterite-900'
-								: 'bg-raised text-text-2'
+							'self-start px-3 py-0.5 type-small',
+							r.ai_flag === 'flagged' ? 'bg-sakura text-text' : 'bg-raised text-text-2'
 						]}
 						data-testid="ai-flag"
 					>
@@ -38,11 +36,7 @@
 					</p>{/if}
 				{#if r.photos.length}
 					<div class="flex flex-wrap gap-2">
-						{#each r.photos as src (src)}<img
-								{src}
-								alt=""
-								class="size-24 rounded-input object-cover"
-							/>{/each}
+						{#each r.photos as src (src)}<img {src} alt="" class="size-24 object-cover" />{/each}
 					</div>
 				{/if}
 				<form method="POST" action="?/decide" use:enhance class="flex gap-2">

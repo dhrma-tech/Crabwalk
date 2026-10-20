@@ -50,29 +50,27 @@
 		`${String(Math.floor(x / 60)).padStart(2, '0')}:${String(x % 60).padStart(2, '0')}`;
 </script>
 
-<div
-	class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
-	data-testid="place-tide-slider"
->
+<div class="flex flex-col gap-2 border-t border-border pt-3" data-testid="place-tide-slider">
 	<label class="flex items-center gap-3 type-small">
-		<span class="w-12 font-semibold" aria-live="polite">{hhmm(minute)}</span>
+		<span class="w-12 font-medium" aria-live="polite">{hhmm(minute)}</span>
 		<input
 			type="range"
 			min="0"
 			max="1425"
 			step="15"
 			bind:value={minute}
-			class="flex-1"
+			class="flex-1 accent-[var(--cta)]"
 			aria-label={m.tide_slider()}
 		/>
 	</label>
-	<p
-		class={[
-			'type-body font-semibold',
-			st === 'ok' ? 'text-ok' : st === 'cut' ? 'text-danger' : 'text-text-2'
-		]}
-		data-testid="tide-state"
-	>
+	<p class="flex items-center gap-2 type-body font-medium" data-testid="tide-state">
+		<span
+			class={[
+				'size-2 shrink-0 rounded-full',
+				st === 'ok' ? 'bg-ok' : st === 'cut' ? 'bg-caution' : 'bg-border'
+			]}
+			aria-hidden="true"
+		></span>
 		{st === 'ok' ? m.tide_ok() : st === 'cut' ? m.tide_cut() : m.tide_unknown()}{#if h != null}
 			· {h.toFixed(1)} m{/if}
 	</p>

@@ -14,14 +14,14 @@
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
 		{#if data.items.length}
 			<ul
-				class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
+				class="flex flex-col divide-y divide-border border-t border-text"
 				data-testid="review-queue"
 			>
 				{#each data.items as it (it.id)}
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: it.type, id: it.id })}
-							class="flex justify-between gap-3 px-4 py-3 text-text no-underline"
+							class="flex justify-between gap-3 py-3 text-text no-underline"
 						>
 							<span class="type-body">{it.name}</span><span class="type-small text-text-2"
 								>{msg(`type_${it.type}`)}</span
@@ -41,7 +41,7 @@
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: 'dish', id: d.id })}
-							class="inline-flex min-h-11 items-center rounded-chip border border-border bg-surface px-4 type-small text-text no-underline"
+							class="inline-flex min-h-11 items-center border border-border bg-surface px-4 type-small text-text no-underline"
 							>{d.name ?? d.slug}</a
 						>
 					</li>

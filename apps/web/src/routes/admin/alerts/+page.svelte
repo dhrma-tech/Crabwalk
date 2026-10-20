@@ -11,7 +11,7 @@
 	let { data, form }: PageProps = $props();
 	let lon = $state('');
 	let lat = $state('');
-	const field = 'h-11 w-full rounded-input border border-border bg-raised px-3 type-body text-text';
+	const field = 'h-11 w-full border-b border-text bg-bg type-body text-text';
 	function gps() {
 		navigator.geolocation?.getCurrentPosition(
 			(p) => {
@@ -30,7 +30,7 @@
 			method="POST"
 			action="?/create"
 			use:enhance
-			class="grid gap-3 rounded-card border border-border bg-surface p-4 sm:grid-cols-2"
+			class="grid gap-3 border border-border bg-surface p-4 sm:grid-cols-2"
 		>
 			<h2 class="type-h2 sm:col-span-2">{m.alerts_add()}</h2>
 			<label class="flex flex-col gap-1 type-small text-text-2"
@@ -88,14 +88,17 @@
 
 		<ul class="flex flex-col gap-3">
 			{#each data.alerts as a (a.id)}
-				<li
-					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
-					data-testid="alert-row"
-				>
+				<li class="flex flex-col gap-2 border border-border bg-surface p-4" data-testid="alert-row">
 					<p class="type-h3">
 						{msg(`alert_${a.type}`)} ·
-						<span class={a.severity === 'danger' ? 'text-danger' : 'text-caution'}
-							>{msg(`severity_${a.severity}`)}</span
+						<span class="inline-flex items-center gap-1.5"
+							><span
+								class={[
+									'size-2 rounded-full',
+									a.severity === 'danger' ? 'bg-danger' : 'bg-caution'
+								]}
+								aria-hidden="true"
+							></span>{msg(`severity_${a.severity}`)}</span
 						>
 					</p>
 					{#if a.reason_en}<p class="type-body">{a.reason_en}</p>{/if}

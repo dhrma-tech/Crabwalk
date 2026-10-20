@@ -24,15 +24,12 @@
 		}).format(new Date(iso));
 </script>
 
-<section
-	class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
-	data-testid="tides"
->
+<section class="flex flex-col gap-2 border-t border-border pt-3" data-testid="tides">
 	<h3 class="flex items-center gap-1.5 type-h3">
 		<Waves size={20} aria-hidden="true" />{m.map_tides()}
 	</h3>
 	{#if day === undefined}
-		<div class="h-5 w-2/3 rounded-input bg-sand-100 dark:bg-raised" aria-hidden="true"></div>
+		<div class="h-5 w-2/3 bg-border" aria-hidden="true"></div>
 	{:else if day === null || !day.extremes.length}
 		<p class="type-small text-text-2">{m.tide_unavailable()}</p>
 	{:else}

@@ -33,7 +33,7 @@
 		const a = new Audio(URL.createObjectURL(file));
 		a.onloadedmetadata = () => (duration = Math.round(a.duration));
 	}
-	const field = 'w-full rounded-input border border-border bg-surface p-3 type-body text-text';
+	const field = 'w-full border border-text bg-transparent p-3 type-body text-text';
 </script>
 
 <Page title={data.text.en.name ?? msg(`type_${data.type}`)} back>
@@ -42,7 +42,7 @@
 			method="POST"
 			action="?/draft"
 			use:enhance
-			class="flex flex-col gap-2 rounded-card bg-sea-50 p-3 text-sea-900"
+			class="flex flex-col gap-2 bg-asagi p-3 text-text"
 		>
 			<p class="type-small">{m.review_ai_pending()}</p>
 			<div><Button type="submit" variant="secondary">{m.review_ai_draft()}</Button></div>
@@ -59,12 +59,12 @@
 				{#each data.photos as p, i (i)}<img
 						src={p.src}
 						alt=""
-						class="size-24 rounded-input object-cover"
+						class="size-24 object-cover"
 					/>{/each}
 			</div>
 		{/if}
 
-		<details class="rounded-card border border-border bg-surface p-3">
+		<details class="border border-border bg-surface p-3">
 			<summary class="min-h-11 cursor-pointer type-h3">{m.facts()}</summary>
 			<dl class="mt-2 grid gap-1 type-small">
 				{#each Object.entries(data.facts) as [k, v] (k)}
@@ -80,7 +80,7 @@
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h2">{m.review_notes()}</h2>
 				{#each data.notes as n, i (i)}<p
-						class="rounded-card border border-border bg-surface p-3 type-body whitespace-pre-line"
+						class="border border-border bg-surface p-3 type-body whitespace-pre-line"
 					>
 						{n.notes}
 					</p>{/each}
@@ -94,17 +94,14 @@
 			class="flex flex-col gap-4"
 			data-testid="review-form"
 		>
-			<div class="flex rounded-chip border border-border bg-surface p-0.5 w-fit" role="tablist">
+			<div class="flex border border-text w-fit" role="tablist">
 				{#each tabs as t (t.k)}
 					<button
 						type="button"
 						role="tab"
 						aria-selected={tab === t.k}
 						lang={t.k}
-						class={[
-							'min-h-10 rounded-chip px-4 type-small',
-							tab === t.k ? 'bg-sea-500 text-white' : 'text-text-2'
-						]}
+						class={['min-h-10 px-4 type-small', tab === t.k ? 'bg-text text-bg' : 'text-text-2']}
 						onclick={() => (tab = t.k)}>{t.label}</button
 					>
 				{/each}

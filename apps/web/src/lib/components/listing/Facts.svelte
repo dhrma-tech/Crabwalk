@@ -5,11 +5,15 @@
 	let { rows }: { rows: { label: string; value: string | null | undefined }[] } = $props();
 </script>
 
-<dl class="grid gap-3 sm:grid-cols-2" data-clip-check>
-	{#each rows as r (r.label)}
-		<div class="rounded-card border border-border bg-surface p-3">
-			<dt class="type-small text-text-2">{r.label}</dt>
-			<dd class={['type-body', !r.value && 'text-text-2']}>{r.value || m.not_known()}</dd>
-		</div>
-	{/each}
-</dl>
+<div class="@container">
+	<dl class="grid border-t border-text @md:grid-cols-2 @md:gap-x-8" data-clip-check>
+		{#each rows as r (r.label)}
+			<div class="flex justify-between gap-4 border-b border-border py-2">
+				<dt class="text-[13px] text-text-2">{r.label}</dt>
+				<dd class={['text-right type-body', !r.value && 'text-text-2']}>
+					{r.value || m.not_known()}
+				</dd>
+			</div>
+		{/each}
+	</dl>
+</div>

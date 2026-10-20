@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Search from '@lucide/svelte/icons/search';
-	import LocateFixed from '@lucide/svelte/icons/locate-fixed';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
@@ -11,32 +9,17 @@
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import SearchBox from '#lib/components/SearchBox.svelte';
+	import NoPhoto from '#lib/components/NoPhoto.svelte';
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
-	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
+	import { categoryIcons, categoryTone, type Category } from '#lib/components/CategoryIcon.svelte';
 	import type { PageProps } from './$types';
 
 	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
-	// → Taste Konkan → near me.
+	// → Taste Konkan → near me. Suna 2a/5a: on laptops the search sits in the top bar, and season +
+	// categories share a row under the heading.
 	let { data }: PageProps = $props();
 	const lang = getLocale();
-
-	let q = $state('');
-	let results = $state<{ kind: string; slug: string; name: string }[]>([]);
-	let timer: ReturnType<typeof setTimeout>;
-	function onSearch() {
-		clearTimeout(timer);
-		if (q.trim().length < 2) return void (results = []);
-		timer = setTimeout(async () => {
-			const r = await fetch(`/api/map/search?q=${encodeURIComponent(q.trim())}`);
-			results = r.ok ? await r.json() : [];
-		}, 300);
-	}
-	const hrefFor = (kind: string, slug: string) =>
-		kind === 'place'
-			? resolve('/place/[slug]', { slug })
-			: kind === 'stay'
-				? resolve('/stays/[slug]', { slug })
-				: resolve('/food/[slug]', { slug });
 
 	let here = $state<{ lon: number; lat: number } | null>(null);
 	let locError = $state(false);
@@ -62,82 +45,67 @@
 					.slice(0, 6)
 			: []
 	);
+	const seasonDots = ['var(--yama-s)', 'var(--asagi-s)', 'var(--fuji-s)', 'var(--wakaba-s)'];
 </script>
 
 <Page title={data.category ? msg(`cat_${data.category}`) : m.app_name()} back={!!data.category}>
 	<div class="flex flex-col gap-8">
-		<div class="relative">
-			<label
-				class="flex h-12 items-center gap-2 rounded-input border border-border bg-surface px-3"
-			>
-				<Search size={20} aria-hidden="true" class="text-text-2" />
-				<span class="sr-only">{m.discover_search()}</span>
-				<input
-					bind:value={q}
-					oninput={onSearch}
-					type="search"
-					placeholder={m.discover_search()}
-					class="h-full min-w-0 flex-1 bg-transparent type-body outline-none"
-				/>
-			</label>
-			{#if results.length}
-				<ul
-					class="absolute inset-x-0 z-10 mt-1 overflow-hidden rounded-card border border-border bg-raised shadow-float"
-				>
-					{#each results as r, i (i)}
+		<SearchBox class="lg:hidden" />
+		{#if !data.category}
+			<p class="hidden font-display text-[38px] leading-snug lg:block" aria-hidden="true">
+				{m.discover_heading()}
+			</p>
+		{/if}
+
+		<div class="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:gap-12">
+			{#if !data.category && (data.season.seasons.length || data.season.events.length)}
+				<section aria-label={m.discover_season()}>
+					<h2 class="mb-1.5 type-h2">{m.discover_season()}</h2>
+					<ul>
+						{#each data.season.seasons as s, i (s)}
+							<li class="flex items-center gap-2.5 border-b border-border py-2">
+								<span
+									class="size-2 shrink-0 rounded-full"
+									style:background={seasonDots[i % seasonDots.length]}
+									aria-hidden="true"
+								></span>{msg(`season_${s}`)}
+							</li>
+						{/each}
+						{#each data.season.events as e (e.name_en)}
+							<li class="flex items-center gap-2.5 border-b border-border py-2">
+								<span class="size-2 shrink-0 rounded-full bg-fuji-s" aria-hidden="true"></span>
+								{(lang === 'hi' ? e.name_hi : lang === 'mr' ? e.name_mr : null) || e.name_en}
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
+
+			<section class="flex flex-col gap-2.5">
+				<h2 class="type-h2">{m.discover_categories()}</h2>
+				<ul class="grid grid-cols-4 gap-2">
+					{#each Object.keys(categoryIcons) as c (c)}
+						{@const on = data.category === c}
 						<li>
 							<a
-								href={hrefFor(r.kind, r.slug)}
-								class="block px-4 py-3 type-body text-text no-underline">{r.name}</a
+								href={resolve(`/?category=${c}`)}
+								aria-current={on ? 'page' : undefined}
+								class={[
+									'flex h-full min-h-11 items-center justify-center px-1 py-2 text-center text-[13px] leading-tight text-text no-underline',
+									on && 'outline-2 -outline-offset-2 outline-text'
+								]}
+								style:background="var(--{categoryTone[c as Category]})">{msg(`cat_${c}`)}</a
 							>
 						</li>
 					{/each}
 				</ul>
-			{/if}
-		</div>
-
-		{#if !data.category && (data.season.seasons.length || data.season.events.length)}
-			<section class="flex flex-wrap items-center gap-2" aria-label={m.discover_season()}>
-				<span class="type-small text-text-2">{m.discover_season()}</span>
-				{#each data.season.seasons as s (s)}
-					<span class="rounded-chip bg-mango-100 px-3 py-1 type-tiny text-mango-900"
-						>{msg(`season_${s}`)}</span
-					>
-				{/each}
-				{#each data.season.events as e (e.name_en)}
-					<span class="rounded-chip bg-sea-50 px-3 py-1 type-tiny text-sea-900"
-						>{(lang === 'hi' ? e.name_hi : lang === 'mr' ? e.name_mr : null) || e.name_en}</span
-					>
-				{/each}
 			</section>
-		{/if}
-
-		<section class="flex flex-col gap-3">
-			<h2 class="type-h2">{m.discover_categories()}</h2>
-			<ul class="grid grid-cols-4 gap-2 sm:grid-cols-6 lg:grid-cols-11">
-				{#each Object.keys(categoryIcons) as c (c)}
-					<li>
-						<a
-							href={resolve(`/?category=${c}`)}
-							aria-current={data.category === c ? 'page' : undefined}
-							class={[
-								'flex min-h-11 flex-col items-center gap-1 rounded-card border p-2 text-center type-tiny no-underline',
-								data.category === c
-									? 'border-sea-500 bg-sea-50 text-sea-900'
-									: 'border-border bg-surface text-text'
-							]}
-						>
-							<CategoryIcon category={c as Category} size={24} />{msg(`cat_${c}`)}
-						</a>
-					</li>
-				{/each}
-			</ul>
-		</section>
+		</div>
 
 		{#if data.category}
 			<section class="flex flex-col gap-3">
 				{#if data.places.length}
-					<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 						{#each data.places as p (p.slug)}
 							<PlaceCard
 								href={resolve('/place/[slug]', { slug: p.slug })}
@@ -156,11 +124,13 @@
 			</section>
 		{:else}
 			{#if data.gems.length}
-				<section class="flex flex-col gap-3">
+				<section class="flex flex-col gap-2.5">
 					<h2 class="type-h2">{m.discover_hidden_gems()}</h2>
-					<div class="-mx-4 flex snap-x gap-4 overflow-x-auto px-4 pb-2">
+					<div
+						class="-mx-6 flex snap-x gap-4 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0"
+					>
 						{#each data.gems as p (p.slug)}
-							<div class="w-72 shrink-0 snap-start">
+							<div class="w-[210px] shrink-0 snap-start lg:w-auto">
 								<PlaceCard
 									href={resolve('/place/[slug]', { slug: p.slug })}
 									names={p.names}
@@ -178,30 +148,30 @@
 			{/if}
 
 			{#if data.itineraries.length}
-				<section class="flex flex-col gap-3">
+				<section class="flex flex-col gap-2.5">
 					<div class="flex items-baseline justify-between">
 						<h2 class="type-h2">{m.itin_title()}</h2>
-						<a href={resolve('/itineraries')} class="type-small">{m.itin_all()}</a>
+						<a href={resolve('/itineraries')} class="type-small text-text">{m.itin_all()}</a>
 					</div>
 					<ItineraryList items={data.itineraries} />
 				</section>
 			{/if}
 
 			{#if data.dishes.length}
-				<section class="flex flex-col gap-3">
+				<section class="flex flex-col gap-2.5">
 					<div class="flex items-baseline justify-between">
 						<h2 class="type-h2">{m.discover_taste()}</h2>
-						<a href={resolve('/taste-konkan')} class="type-small">{m.see_all()}</a>
+						<a href={resolve('/taste-konkan')} class="type-small text-text">{m.see_all()}</a>
 					</div>
-					<ul class="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2">
+					<ul class="-mx-6 flex gap-3 overflow-x-auto px-6 pb-2 lg:mx-0 lg:px-0">
 						{#each data.dishes as d (d.slug)}
 							<li class="w-36 shrink-0">
 								<a
 									href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
-									class="flex flex-col gap-2 text-text no-underline"
+									class="flex flex-col gap-1.5 text-text no-underline"
 								>
 									<div
-										class="aspect-square overflow-hidden rounded-card bg-sand-200 bg-cover dark:bg-raised"
+										class="aspect-square overflow-hidden bg-border bg-cover"
 										style:background-image={d.photo?.lqip ? `url(${d.photo.lqip})` : undefined}
 									>
 										{#if d.photo}<img
@@ -211,7 +181,7 @@
 												alt={d.photo.alt}
 												loading="lazy"
 												class="h-full w-full object-cover"
-											/>{/if}
+											/>{:else}<NoPhoto tone="sakura" label={false} />{/if}
 									</div>
 									<span class="type-h3">{d.name}</span>
 								</a>
@@ -221,10 +191,10 @@
 				</section>
 			{/if}
 
-			<section class="flex flex-col gap-3">
+			<section class="flex flex-col gap-2.5">
 				<h2 class="type-h2">{m.discover_near_me()}</h2>
 				{#if near.length}
-					<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+					<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 						{#each near as p (p.slug)}
 							<PlaceCard
 								href={resolve('/place/[slug]', { slug: p.slug })}
@@ -242,13 +212,10 @@
 					<p class="type-body text-text-2">{m.discover_location_denied()}</p>
 				{:else if data.places.length}
 					<div>
-						<Button variant="secondary" onclick={nearMe}>
-							{#snippet icon()}<LocateFixed size={20} aria-hidden="true" />{/snippet}
-							{m.discover_near_me_cta()}
-						</Button>
+						<Button variant="secondary" onclick={nearMe}>{m.discover_near_me_cta()}</Button>
 					</div>
 				{:else}
-					<EmptyState title={m.soon_title()} body={m.soon_discover()} />
+					<EmptyState title={m.soon_title()} body={m.soon_discover()} tone="asagi" />
 				{/if}
 			</section>
 		{/if}

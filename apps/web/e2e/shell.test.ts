@@ -60,15 +60,16 @@ test('dark theme tokens apply (manual override and system)', async ({ page }) =>
 	await prefs(page, 'en', 'dark');
 	await page.goto('/');
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+	// Suna sumi #16171A (DECISIONS P10a-1).
 	expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe(
-		'rgb(22, 18, 14)'
+		'rgb(22, 23, 26)'
 	);
 
 	const sys = await page.context().browser()!.newContext({ colorScheme: 'dark' });
 	const p2 = await sys.newPage();
 	await p2.goto('http://localhost:4173/');
 	expect(await p2.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe(
-		'rgb(22, 18, 14)'
+		'rgb(22, 23, 26)'
 	);
 	await sys.close();
 });

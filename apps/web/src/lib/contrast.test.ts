@@ -25,8 +25,10 @@ const ratio = (a: string, b: string) => {
 };
 
 const surfaces = ['bg', 'surface', 'surface-raised'];
-// Text tokens on every surface must reach 4.5:1 (normal text, incl. 14 px captions).
-const text = ['text', 'text-2', 'text-muted', 'link'];
+// Text tokens on every surface must reach 4.5:1 (normal text, incl. 13 px captions).
+const text = ['text', 'text-2', 'text-muted', 'link', 'ok', 'caution'];
+// Suna tints carry ink text (badges, banners, chat bubbles, category tiles).
+const tints = ['sakura', 'asagi', 'yama', 'wakaba', 'fuji'];
 
 for (const [name, t] of [
 	['light', light],
@@ -37,20 +39,30 @@ for (const [name, t] of [
 			for (const bg of surfaces)
 				it(`${fg} on ${bg} ≥ 4.5`, () => expect(ratio(t[fg], t[bg])).toBeGreaterThanOrEqual(4.5));
 		it('on-cta on cta ≥ 4.5', () => expect(ratio(t['on-cta'], t.cta)).toBeGreaterThanOrEqual(4.5));
+		// Selected chips / segments and toasts invert ink and paper.
+		it('bg on text ≥ 4.5', () => expect(ratio(t.bg, t.text)).toBeGreaterThanOrEqual(4.5));
+		for (const tint of tints)
+			it(`text on ${tint} ≥ 4.5`, () => expect(ratio(t.text, t[tint])).toBeGreaterThanOrEqual(4.5));
+		// Status dots are graphics: 3:1 against the page (WCAG 1.4.11); their words carry the meaning.
+		for (const dot of ['ok', 'caution', 'danger'])
+			it(`${dot} dot on bg ≥ 3`, () => expect(ratio(t[dot], t.bg)).toBeGreaterThanOrEqual(3));
 	});
 
 describe('fixed pairs used by components', () => {
 	const pairs: [string, string, string][] = [
-		['mango text', '#4a2e05', '#e8a33d'],
-		['white on sea (selected chip)', '#ffffff', '#0e6e6a'],
-		['white on ok badge', '#ffffff', '#2e7d32'],
-		['white on danger badge', '#ffffff', '#c62828'],
-		['ink on caution badge', '#1e1b16', '#b7791f'],
-		['white on emergency', '#ffffff', '#d32f2f'],
-		['sea-900 on sea-50 (crowd)', '#05302e', '#ddf3f1'],
-		['mango-900 on mango-100 (crowd)', '#4a2e05', '#f8ddaa'],
-		['toast sand-100 on sand-900', '#f6efe4', '#1e1b16']
+		['white on emergency', '#ffffff', '#b3261e'],
+		['QR page ink on washi', '#1f1e1c', '#f4f0e8']
 	];
 	for (const [label, fg, bg] of pairs)
 		it(`${label} ≥ 4.5`, () => expect(ratio(fg, bg)).toBeGreaterThanOrEqual(4.5));
+	// Map pin glyphs are graphics (3:1): PIN in map/style.ts, glyph colours in map/icons.ts.
+	const pins: [string, string, string][] = [
+		['ink glyph on place pin', '#1f1e1c', '#d99a00'],
+		['white glyph on stay pin', '#ffffff', '#00808a'],
+		['white glyph on food pin', '#ffffff', '#c45a78'],
+		['white glyph on utility pin', '#ffffff', '#5c584f'],
+		['washi count on cluster', '#f4f0e8', '#6c6ba8']
+	];
+	for (const [label, fg, bg] of pins)
+		it(`${label} ≥ 3`, () => expect(ratio(fg, bg)).toBeGreaterThanOrEqual(3));
 });

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;700&family=Shippori+Mincho:wght@400;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap">
+<style>body{margin:0;background:#E4DFD3;font-family:system-ui,sans-serif}a{color:#2B3F5C}a:hover{color:#16202f}</style>
+</helmet>
+<section id="6a" style="padding:56px;display:flex;flex-direction:column;gap:32px;width:2340px">
+<div style="display:flex;gap:16px;align-items:center"><div style="background:#1F1E1C;color:#F4F0E8;font:500 16px system-ui;padding:6px 14px;border-radius:2px">6a</div><div style="font:600 30px 'Shippori Mincho',serif;color:#1F1E1C">All remaining pages · mobile 360 px, then laptop 1280 px · public, signed-in, owner, admin, states</div></div>
+<sc-for list="{{ rows3 }}" as="row" hint-placeholder-count="5">
+<div style="display:flex;gap:28px">
+<sc-for list="{{ row }}" as="p" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:500 13px system-ui;color:#555">{{ p.label }}</div>
+<div style="position:relative;width:{{ p.fw }}px;height:{{ p.fh }}px;overflow:hidden;border-radius:6px;background:{{ p.t.bg }};color:{{ p.t.ink }};font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;line-height:1.6;display:flex"><div style="flex:1;min-width:0;position:relative">
+<div style="padding:{{ p.tpad }};display:flex;align-items:center;gap:12px"><sc-if value="{{ p.desk }}"><div style="flex:none;width:44px;height:44px;border:1px solid {{ p.t.ink }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:1px;background:{{ p.t.ink }}"></span><span style="width:18px;height:1px;background:{{ p.t.ink }}"></span><span style="width:18px;height:1px;background:{{ p.t.ink }}"></span></div><b style="font-weight:500;font-size:17px;margin-right:12px">Crabwalk</b></sc-if><span style="font-size:22px;width:20px">{{ p.back }}</span><div style="flex:1;font-weight:500;font-size:16px">{{ p.title }}</div><div style="display:flex;gap:12px;font-size:13px"><span style="border-bottom:1px solid {{ p.t.ink }}">EN</span><span style="color:{{ p.t.sub }}">हि</span><span style="color:{{ p.t.sub }}">म</span></div></div>
+<div style="padding:{{ p.pad }};columns:{{ p.cols }};column-gap:56px">
+<sc-for list="{{ p.blocks }}" as="b" hint-placeholder-count="6"><div style="break-inside:avoid;margin-bottom:12px">
+<sc-if value="{{ b.is_h }}"><div style="font-family:'Shippori Mincho',serif;font-size:24px;line-height:1.45">{{ b.t }}</div></sc-if>
+<sc-if value="{{ b.is_p }}"><div style="font-size:14px;color:{{ p.t.sub }}">{{ b.t }}</div></sc-if>
+<sc-if value="{{ b.is_l }}"><div style="font-family:'Shippori Mincho',serif;font-size:17px;margin-top:4px">{{ b.t }}</div></sc-if>
+<sc-if value="{{ b.is_f }}"><div><div style="font-size:12px;color:{{ p.t.sub }}">{{ b.l }}</div><div style="border-bottom:1px solid {{ p.t.ink }};padding:3px 0;color:{{ b.vc }}">{{ b.v }}</div></div></sc-if>
+<sc-if value="{{ b.is_photo }}"><div style="height:{{ b.h }}px;background:{{ b.bg }};display:flex;align-items:flex-end;padding:8px;font-size:12px">{{ b.t }}</div></sc-if>
+<sc-if value="{{ b.is_btns }}"><div style="display:flex;gap:10px"><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="2"><div style="flex:1;text-align:center;padding:11px 6px;background:{{ x.bg }};color:{{ x.ink }};border:1px solid {{ x.bd }}">{{ x.t }}</div></sc-for></div></sc-if>
+<sc-if value="{{ b.is_chips }}"><div style="display:flex;gap:8px;flex-wrap:wrap;font-size:13px"><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="4"><span style="padding:2px 12px;background:{{ x.bg }};color:{{ x.ink }};border:1px solid {{ x.bd }}">{{ x.t }}</span></sc-for></div></sc-if>
+<sc-if value="{{ b.is_rows }}"><div style="border-top:1px solid {{ p.t.ink }}"><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid {{ p.t.line }};padding:6px 0;font-size:14px"><span style="color:{{ p.t.sub }}">{{ x.k }}</span><span style="text-align:right">{{ x.v }}</span></div></sc-for></div></sc-if>
+<sc-if value="{{ b.is_items }}"><div><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="3"><div style="display:flex;gap:12px;align-items:center;border-top:1px solid {{ p.t.line }};padding:10px 0"><div style="flex:none;width:56px;height:56px;background:{{ x.bg }}"></div><div style="flex:1"><div style="font-weight:500;line-height:1.4">{{ x.n }}</div><div style="font-size:12px;color:{{ p.t.sub }}">{{ x.m }}</div></div><span style="flex:none;font-size:12px;padding:0 8px;background:{{ x.tb }}">{{ x.tag }}</span></div></sc-for></div></sc-if>
+<sc-if value="{{ b.is_banner }}"><div style="background:{{ b.bg }};padding:10px 14px;font-size:14px">{{ b.t }}</div></sc-if>
+<sc-if value="{{ b.is_card }}"><div style="border:1px solid {{ p.t.ink }};padding:12px 14px"><div style="font-size:12px;color:{{ p.t.sub }}">{{ b.k2 }}</div><div style="font-family:'Shippori Mincho',serif;font-size:18px;line-height:1.5">{{ b.t }}</div><div style="font-size:13px;color:{{ p.t.sub }}">{{ b.m }}</div></div></sc-if>
+<sc-if value="{{ b.is_seg }}"><div><div style="font-size:12px;color:{{ p.t.sub }}">{{ b.l }}</div><div style="display:flex;border:1px solid {{ p.t.ink }};font-size:13px;text-align:center"><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="3"><div style="flex:1;padding:6px 2px;background:{{ x.bg }};color:{{ x.ink }}">{{ x.t }}</div></sc-for></div></div></sc-if>
+<sc-if value="{{ b.is_tog }}"><div style="display:flex;justify-content:space-between;align-items:center;gap:12px;border-bottom:1px solid {{ p.t.line }};padding:6px 0;font-size:14px"><span>{{ b.t }}</span><span style="flex:none;width:40px;height:22px;border:1px solid {{ p.t.ink }};background:{{ b.bg }};position:relative"><span style="position:absolute;top:2px;{{ b.side }}:2px;width:16px;height:16px;background:{{ b.kn }}"></span></span></div></sc-if>
+<sc-if value="{{ b.is_tl }}"><div><sc-for list="{{ b.items }}" as="s" hint-placeholder-count="3"><div style="display:flex;gap:12px"><div style="width:44px;font-size:13px;color:{{ p.t.sub }};padding-top:2px">{{ s.t }}</div><div style="width:9px;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:{{ s.dc }};margin-top:8px"></span><span style="flex:1;width:1px;background:{{ p.t.line }}"></span></div><div style="flex:1;padding-bottom:12px"><div style="font-weight:500;line-height:1.4">{{ s.n }}</div><span style="font-size:12px;background:{{ s.c }};padding:0 8px">{{ s.r }}</span><div style="font-size:12px;color:{{ p.t.sub }};margin-top:4px">{{ s.drive }}</div></div></div></sc-for></div></sc-if>
+<sc-if value="{{ b.is_map }}"><div style="position:relative;height:{{ b.h }}px;background:{{ p.t.water }};overflow:hidden"><div style="position:absolute;inset:0;background:{{ p.t.land }};clip-path:polygon(28% 0,36% 30%,26% 60%,32% 100%,100% 100%,100% 0)"></div><div style="position:absolute;left:44%;top:6%;width:3px;height:90%;background:{{ p.t.pri }};transform:rotate(8deg);transform-origin:top"></div><div style="position:absolute;left:44%;top:6%;width:12px;height:12px;border-radius:50%;background:{{ p.t.yamaS }};border:2px solid {{ p.t.bg }}"></div><div style="position:absolute;left:55%;top:88%;width:12px;height:12px;border-radius:50%;background:{{ p.t.pri }};border:2px solid {{ p.t.bg }}"></div></div></sc-if>
+<sc-if value="{{ b.is_turn }}"><div style="background:{{ p.t.ink }};color:{{ p.t.bg }};padding:16px;display:flex;gap:16px;align-items:center"><span style="font-size:44px;line-height:1">↰</span><div><div style="font-size:12px">in 400 m</div><div style="font-family:'Shippori Mincho',serif;font-size:24px;line-height:1.3">Turn left</div><div style="font-size:12px">onto Ganpatipule Road</div></div></div></sc-if>
+<sc-if value="{{ b.is_grid }}"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><sc-for list="{{ b.items }}" as="x" hint-placeholder-count="6"><div><div style="height:70px;background:{{ x.bg }}"></div><div style="font-weight:500;line-height:1.4;margin-top:4px">{{ x.n }}</div><div style="font-size:12px;color:{{ p.t.sub }}">{{ x.m }}</div></div></sc-for></div></sc-if>
+<sc-if value="{{ b.is_verdict }}"><div><div style="font-family:'Shippori Mincho',serif;font-size:22px">{{ b.win }} <span style="font-family:'Zen Kaku Gothic New',sans-serif;font-size:13px;color:{{ p.t.sub }}">{{ b.pct }}</span></div><div style="display:flex;gap:3px;margin-top:4px"><div style="flex:1;height:6px;background:{{ p.t.sakuraS }}"></div><div style="flex:1;height:6px;background:{{ p.t.yamaS }}"></div><div style="flex:1;height:6px;background:{{ p.t.wakabaS }}"></div><div style="flex:1;height:6px;background:{{ p.t.asagiS }}"></div></div><div style="display:flex;justify-content:space-between;font-size:11px;color:{{ p.t.sub }}"><span>{{ b.a }}</span><span>{{ b.b }}</span><span>{{ b.c }}</span><span>{{ b.d }}</span></div></div></sc-if>
+</div></sc-for></div>
+<sc-if value="{{ p.nav }}"><div style="position:absolute;left:0;right:0;bottom:0;height:64px;background:{{ p.t.bg }};border-top:1px solid {{ p.t.line }};display:grid;grid-template-columns:repeat(5,1fr);align-items:center;text-align:center;font-size:12px;color:{{ p.t.sub }}"><div>Discover</div><div>Map</div><div style="position:relative;height:100%"><div style="position:absolute;left:50%;top:-18px;margin-left:-26px;width:52px;height:52px;border-radius:50%;background:{{ p.t.pri }};display:flex;align-items:center;justify-content:center"><span style="width:5px;height:5px;border-radius:50%;background:{{ p.t.priInk }};box-shadow:12px 0 0 {{ p.t.priInk }};margin-right:12px"></span></div><div style="position:absolute;bottom:6px;left:0;right:0">Crabby</div></div><div>Plan</div><div>Me</div></div></sc-if>
+</div>
+<sc-if value="{{ p.desk }}"><div style="flex:none;width:340px;border-left:1px solid {{ p.t.line }};padding:24px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:{{ p.t.pri }};display:flex;align-items:center;justify-content:center"><span style="width:4px;height:4px;border-radius:50%;background:{{ p.t.priInk }};box-shadow:8px 0 0 {{ p.t.priInk }};margin-right:8px"></span></div><b style="font-weight:500">Crabby</b></div><div style="font-size:14px;color:{{ p.t.sub }}">Ask me about places, food, stays or your trip. I only answer from Crabwalk's verified data.</div><div style="align-self:flex-end;background:{{ p.t.fuji }};padding:8px 14px;max-width:240px">What should I know before going?</div><div style="font-size:14px">I can answer from the verified page on the left. Ask about timings, tides or what to bring.</div><div style="flex:1"></div><div style="border-bottom:1px solid {{ p.t.ink }};padding-bottom:6px;color:{{ p.t.sub }}">Ask Crabby</div><div style="font-size:11px;color:{{ p.t.sub }}">17 questions left today</div></div></sc-if>
+</div></div>
+</sc-for></div></sc-for>
+</section>
+<section id="5a" style="padding:56px;display:flex;flex-direction:column;gap:32px;width:1400px">
+<div style="display:flex;gap:16px;align-items:center"><div style="background:#1F1E1C;color:#F4F0E8;font:500 16px system-ui;padding:6px 14px;border-radius:2px">5a</div><div style="font:600 30px 'Shippori Mincho',serif;color:#1F1E1C">Laptop · 1280 px · menu hidden until tapped, Crabby always docked right</div></div>
+<sc-for list="{{ desk }}" as="f" hint-placeholder-count="8">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:500 13px system-ui;color:#555">{{ f.label }}</div>
+<div style="position:relative;width:1280px;height:800px;overflow:hidden;background:{{ f.t.bg }};color:{{ f.t.ink }};font-family:'Zen Kaku Gothic New',sans-serif;font-size:15px;line-height:1.6;display:flex">
+<sc-if value="{{ f.menu }}"><div style="position:absolute;z-index:5;left:0;top:0;bottom:0;width:230px;background:{{ f.t.bg }};border-right:1px solid {{ f.t.ink }};padding:24px 20px;display:flex;flex-direction:column;gap:6px">
+<div style="display:flex;align-items:center;gap:10px;margin-bottom:24px"><div style="width:28px;height:28px;border:1px solid {{ f.t.ink }};display:flex;align-items:center;justify-content:center;font-family:'Shippori Mincho',serif">蟹</div><b style="font-weight:500;font-size:17px">Crabwalk</b></div>
+<sc-for list="{{ f.nav }}" as="n" hint-placeholder-count="5"><div style="padding:8px 10px;color:{{ n.c }};font-weight:{{ n.w }};border-left:2px solid {{ n.b }}">{{ n.t }}</div></sc-for>
+<div style="flex:1"></div><div style="display:flex;gap:12px;font-size:13px;padding:0 10px"><span style="border-bottom:1px solid {{ f.t.ink }}">EN</span><span style="color:{{ f.t.sub }}">हि</span><span style="color:{{ f.t.sub }}">म</span></div></div></sc-if>
+
+<div style="flex:1;min-width:0;padding:28px 40px;display:flex;flex-direction:column;gap:24px;overflow:hidden">
+<div style="display:flex;align-items:center;gap:20px"><div style="flex:none;width:44px;height:44px;border:1px solid {{ f.t.ink }};display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px"><span style="width:18px;height:1px;background:{{ f.t.ink }}"></span><span style="width:18px;height:1px;background:{{ f.t.ink }}"></span><span style="width:18px;height:1px;background:{{ f.t.ink }}"></span></div><div style="font-weight:500;font-size:17px">Crabwalk</div><div style="flex:1;border-bottom:1px solid {{ f.t.ink }};padding:8px 0;color:{{ f.t.sub }};max-width:520px">Search places, stays, food</div><div style="display:flex;gap:12px;font-size:13px"><span style="border-bottom:1px solid {{ f.t.ink }}">EN</span><span style="color:{{ f.t.sub }}">हि</span><span style="color:{{ f.t.sub }}">म</span></div></div>
+
+<sc-if value="{{ f.isDisc }}"><div style="display:flex;flex-direction:column;gap:26px">
+<div style="font-family:'Shippori Mincho',serif;font-size:38px;line-height:1.4">Where to next on the coast?</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:48px"><div><div style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:6px">In season</div><sc-for list="{{ f.seasons }}" as="z" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid {{ f.t.line }}"><span style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:{{ z.c }}"></span>{{ z.n }}</span><span style="color:{{ f.t.sub }};font-size:13px">{{ z.d }}</span></div></sc-for></div>
+<div><div style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:10px">Explore</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px"><sc-for list="{{ f.cats }}" as="c" hint-placeholder-count="8"><div style="height:52px;background:{{ c.bg }};display:flex;align-items:center;justify-content:center;font-size:14px">{{ c.n }}</div></sc-for></div></div></div>
+<div><div style="font-family:'Shippori Mincho',serif;font-size:20px;margin-bottom:10px">Hidden gems</div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px"><sc-for list="{{ f.places }}" as="q" hint-placeholder-count="4"><div><div style="aspect-ratio:4/3;background:repeating-linear-gradient(0deg,{{ f.t.sakuraS }}55 0 1px,{{ f.t.sakura }} 1px 9px);display:flex;align-items:flex-end;padding:8px;font-size:12px">Photo coming soon</div><div style="margin-top:8px;font-weight:500">{{ q.n }}</div><div style="font-size:13px;color:{{ f.t.sub }}">{{ q.s }}</div></div></sc-for></div></div></div></sc-if>
+
+<sc-if value="{{ f.isPlace }}"><div style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:40px">
+<div style="display:flex;flex-direction:column;gap:18px"><div style="aspect-ratio:16/9;background:repeating-linear-gradient(0deg,{{ f.t.asagiS }}55 0 1px,{{ f.t.asagi }} 1px 9px);display:flex;justify-content:space-between;align-items:flex-end;padding:10px;font-size:12px"><span>Photo coming soon</span><span style="font-size:22px">♡</span></div>
+<div><div style="font-family:'Shippori Mincho',serif;font-size:34px;line-height:1.4">Ganpatipule Beach</div><div style="color:{{ f.t.sub }}">गणपतीपुळे · Beach & temple</div></div>
+<div style="display:flex;gap:10px;font-size:13px"><sc-for list="{{ f.badges }}" as="b" hint-placeholder-count="4"><span style="background:{{ b.bg }};padding:1px 10px">{{ b.t }}</span></sc-for></div>
+<div style="max-width:680px;color:{{ f.t.sub }}">A white-sand beach below a 400-year-old Ganesh temple. Mornings are calm; weekends fill by noon.</div></div>
+<div style="display:flex;flex-direction:column;gap:16px"><div><div style="font-size:13px;color:{{ f.t.sub }}">What visitors say</div><div style="font-family:'Shippori Mincho',serif;font-size:24px">Must visit <span style="font-size:13px;color:{{ f.t.sub }}">62% · 148 votes</span></div><div style="display:flex;gap:3px;margin-top:6px"><div style="flex:1;height:6px;background:{{ f.t.sakuraS }}"></div><div style="flex:1;height:6px;background:{{ f.t.yamaS }}"></div><div style="flex:1;height:6px;background:{{ f.t.wakabaS }}"></div><div style="flex:1;height:6px;background:{{ f.t.asagiS }}"></div></div></div>
+<div style="border-top:1px solid {{ f.t.ink }};border-bottom:1px solid {{ f.t.line }};padding:10px 0"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:{{ f.t.ok }};margin-right:8px"></span>Accessible till 4:30 pm<div style="font-size:13px;color:{{ f.t.sub }}">Cut off by tide. Next safe time 6:10 pm.</div></div>
+<sc-for list="{{ f.facts }}" as="x" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;border-bottom:1px solid {{ f.t.line }};padding-bottom:6px"><span style="color:{{ f.t.sub }};font-size:13px">{{ x.k }}</span><span>{{ x.v }}</span></div></sc-for>
+<div style="font-size:12px;color:{{ f.t.sub }}">Verified 12 Sep 2026 by the Crabwalk team</div></div></div></sc-if>
+
+<sc-if value="{{ f.isMap }}"><div style="position:relative;flex:1;margin:0 -40px -28px;background:{{ f.t.water }};overflow:hidden">
+<div style="position:absolute;inset:0;background:{{ f.t.land }};clip-path:polygon(30% 0,36% 15%,27% 30%,35% 45%,26% 60%,33% 78%,25% 100%,100% 100%,100% 0)"></div>
+<div style="position:absolute;left:48%;top:10%;width:20%;height:26%;background:{{ f.t.park }};clip-path:polygon(0 20%,60% 0,100% 40%,70% 100%,10% 80%)"></div>
+<div style="position:absolute;left:46%;top:0;width:3px;height:100%;background:{{ f.t.road }};transform:rotate(7deg);transform-origin:top"></div>
+<div style="position:absolute;left:26%;top:52%;width:80%;height:2px;background:{{ f.t.road }};transform:rotate(-8deg)"></div>
+<div style="position:absolute;left:36%;top:44%;width:14px;height:14px;border-radius:50%;background:{{ f.t.pri }};border:2px solid {{ f.t.bg }}"></div>
+<div style="position:absolute;left:52%;top:62%;width:10px;height:10px;border-radius:50%;background:{{ f.t.yamaS }}"></div><div style="position:absolute;left:60%;top:38%;width:10px;height:10px;border-radius:50%;background:{{ f.t.sakuraS }}"></div>
+<div style="position:absolute;left:10%;top:40%;font-size:13px;color:{{ f.t.sub }};font-style:italic">Arabian Sea</div>
+<div style="position:absolute;left:40px;top:20px;width:360px;display:flex;flex-direction:column;gap:8px"><div style="background:{{ f.t.bg }};border:1px solid {{ f.t.line }};padding:9px 14px;color:{{ f.t.sub }}">Search places</div><div style="display:flex;gap:6px;font-size:13px"><span style="background:{{ f.t.ink }};color:{{ f.t.bg }};padding:3px 12px">Places</span><span style="background:{{ f.t.bg }};border:1px solid {{ f.t.ink }};padding:3px 12px">Stays</span><span style="background:{{ f.t.bg }};border:1px solid {{ f.t.ink }};padding:3px 12px">Food</span><span style="background:{{ f.t.bg }};border:1px solid {{ f.t.ink }};padding:3px 12px">Open now</span></div></div>
+<div style="position:absolute;right:24px;top:20px;width:320px;background:{{ f.t.bg }};border:1px solid {{ f.t.ink }};padding:16px"><div style="font-family:'Shippori Mincho',serif;font-size:20px">Ganpatipule Beach</div><div style="font-size:13px;color:{{ f.t.sub }}">Beach & temple · 1.2 km · Verified 12 Sep</div><div style="display:flex;gap:8px;margin-top:12px"><div style="flex:1;text-align:center;padding:9px;background:{{ f.t.pri }};color:{{ f.t.priInk }}">Add to trip</div><div style="flex:1;text-align:center;padding:9px;border:1px solid {{ f.t.ink }}">Directions</div></div></div>
+<div style="position:absolute;left:40px;bottom:16px;font-size:11px;color:{{ f.t.sub }}">© OpenStreetMap contributors</div></div></sc-if>
+
+<sc-if value="{{ f.isPlan }}"><div style="display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:48px">
+<div><div style="font-family:'Shippori Mincho',serif;font-size:32px;line-height:1.4">Two days, Ratnagiri</div><div style="font-size:13px;color:{{ f.t.sub }};margin-bottom:14px">2 travellers · Relaxed · Standout mode on</div>
+<div style="display:flex;gap:20px;border-bottom:1px solid {{ f.t.line }};margin-bottom:14px"><span style="padding-bottom:6px;border-bottom:2px solid {{ f.t.ink }};font-weight:500">Day 1</span><span style="color:{{ f.t.sub }}">Day 2</span></div>
+<sc-for list="{{ f.stops }}" as="s" hint-placeholder-count="3"><div style="display:flex;gap:16px"><div style="width:56px;color:{{ f.t.sub }};font-size:13px;padding-top:2px">{{ s.t }}</div><div style="width:9px;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:{{ s.dc }};margin-top:8px"></span><span style="flex:1;width:1px;background:{{ f.t.line }}"></span></div><div style="flex:1;padding-bottom:18px"><div style="font-weight:500">{{ s.n }}</div><span style="font-size:12px;background:{{ s.c }};padding:0 8px">{{ s.r }}</span><div style="font-size:12px;color:{{ f.t.sub }};margin-top:8px">{{ s.drive }}</div></div></div></sc-for></div>
+<div style="display:flex;flex-direction:column;gap:8px;font-size:14px;align-self:start;border-top:1px solid {{ f.t.ink }};padding-top:12px"><div style="font-family:'Shippori Mincho',serif;font-size:20px">Budget</div>
+<div style="display:flex;justify-content:space-between"><span style="color:{{ f.t.sub }}">Stay</span><span>₹4,200</span></div><div style="display:flex;justify-content:space-between"><span style="color:{{ f.t.sub }}">Food</span><span>₹2,600</span></div><div style="display:flex;justify-content:space-between"><span style="color:{{ f.t.sub }}">Entry fees · 2 not known</span><span>₹300</span></div><div style="display:flex;justify-content:space-between;font-weight:500;border-top:1px solid {{ f.t.line }};padding-top:6px"><span>Total · ₹3,550 per person</span><span>₹7,100</span></div>
+<div style="display:flex;gap:10px;margin-top:10px"><div style="flex:1;text-align:center;padding:11px;background:{{ f.t.pri }};color:{{ f.t.priInk }}">Start live trip</div><div style="flex:1;text-align:center;padding:11px;border:1px solid {{ f.t.ink }}">Share</div></div></div></div></sc-if>
+</div>
+
+<sc-if value="{{ f.panel }}"><div style="flex:none;width:340px;border-left:1px solid {{ f.t.line }};padding:24px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;align-items:center;gap:10px"><div style="width:30px;height:30px;border-radius:50%;background:{{ f.t.pri }};display:flex;align-items:center;justify-content:center"><span style="width:4px;height:4px;border-radius:50%;background:{{ f.t.priInk }};box-shadow:8px 0 0 {{ f.t.priInk }};margin-right:8px"></span></div><b style="font-weight:500">Crabby</b></div>
+<div style="font-size:14px;color:{{ f.t.sub }}">Ask me about places, food, stays or your trip. I only answer from Crabwalk's verified data.</div>
+<div style="align-self:flex-end;background:{{ f.t.fuji }};padding:8px 14px;max-width:240px">Best time to visit Ganpatipule?</div>
+<div style="font-size:14px">Early morning, October to March. Weekends fill by noon, so Tuesday to Thursday is calmest.</div>
+<div style="border:1px solid {{ f.t.ink }};padding:12px"><div style="font-size:12px;color:{{ f.t.sub }}">Proposed change</div><div style="font-family:'Shippori Mincho',serif;font-size:17px">Add Ganpatipule to Day 2</div><div style="display:flex;gap:8px;margin-top:10px"><div style="flex:1;text-align:center;padding:8px;background:{{ f.t.pri }};color:{{ f.t.priInk }}">Apply</div><div style="flex:1;text-align:center;padding:8px;border:1px solid {{ f.t.ink }}">Discard</div></div></div>
+<div style="flex:1"></div><div style="border-bottom:1px solid {{ f.t.ink }};padding-bottom:6px;color:{{ f.t.sub }}">Ask Crabby</div><div style="font-size:11px;color:{{ f.t.sub }}">17 questions left today</div></div></sc-if>
+</div></div>
+</sc-for>
+</section>
+<section id="4a" style="padding:56px;display:flex;flex-direction:column;gap:32px;width:2200px">
+<div style="display:flex;gap:16px;align-items:center"><div style="background:#1F1E1C;color:#F4F0E8;font:500 16px system-ui;padding:6px 14px;border-radius:2px">4a</div><div style="font:600 30px 'Shippori Mincho',serif;color:#1F1E1C">More screens · QR scan, Emergency, Stays, Eatery, Group vote, Sign in</div></div>
+<sc-for list="{{ rows2 }}" as="row" hint-placeholder-count="2">
+<div style="display:flex;gap:28px">
+<sc-for list="{{ row }}" as="p" hint-placeholder-count="6">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:500 13px system-ui;color:#555">{{ p.label }}</div>
+<div style="position:relative;width:360px;height:780px;overflow:hidden;border-radius:6px;background:{{ p.t.bg }};color:{{ p.t.ink }};font-family:{{ p.font }};font-size:15px;line-height:1.6">
+
+<sc-if value="{{ p.isQr }}"><div style="font-family:system-ui,sans-serif;padding:20px 24px 100px;display:flex;flex-direction:column;gap:14px">
+<div style="display:flex;justify-content:space-between;font-size:13px;color:{{ p.t.sub }}"><span>Crabwalk</span><span><b style="border-bottom:1px solid {{ p.t.ink }};color:{{ p.t.ink }}">EN</b> · हि · म</span></div>
+<div style="font:600 26px/1.3 Georgia,serif">Ratnadurg Fort</div><div style="font-size:14px;color:{{ p.t.sub }}">रत्नदुर्ग किल्ला · Fort</div>
+<div style="height:120px;background:{{ p.t.sakura }};display:flex;align-items:flex-end;padding:8px;font-size:12px">One photo, under 40 KB</div>
+<div style="border:1px solid {{ p.t.ink }};padding:10px 12px;display:flex;justify-content:space-between"><span>Audio guide · 3 min</span><b>Play</b></div>
+<div style="font-size:14px">A 14th-century sea fort above Bhagwati Bay. The lighthouse path closes at 5:30 pm.</div>
+<div style="background:{{ p.t.yama }};padding:8px 12px;font-size:14px"><b>Tide:</b> path below the fort is cut off from 4:30 pm.</div>
+<div style="border:1px solid {{ p.t.ink }};padding:12px;text-align:center;font-weight:600">I'm here — verify my visit</div>
+<div style="font-size:13px;color:{{ p.t.sub }}">Near me now · Bhagwati Temple 400 m · Aare-Ware 6 min drive</div>
+<div style="font-size:13px;display:flex;gap:16px"><span style="border-bottom:1px solid {{ p.t.ink }}">Leave a review</span><span style="border-bottom:1px solid {{ p.t.ink }}">Open in Crabwalk</span><span style="border-bottom:1px solid {{ p.t.ink }}">Report</span></div>
+<div style="font-size:11px;color:{{ p.t.sub }}">Supported by Ratnagiri Tourism Trust</div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;padding:12px 24px;border-top:1px solid {{ p.t.ink }};background:{{ p.t.bg }};display:flex;gap:10px;font-family:system-ui,sans-serif"><div style="flex:1.3;background:#B3261E;color:#fff;text-align:center;padding:12px;font-weight:700">Call 112</div><div style="flex:1;border:1px solid {{ p.t.ink }};text-align:center;padding:12px">Share location</div></div></sc-if>
+
+<sc-if value="{{ p.isEmg }}"><div style="position:absolute;inset:0"><div style="background:#B3261E;color:#fff;padding:36px 24px 32px"><div style="font-size:14px">Emergency</div><div style="font-size:64px;font-weight:700;line-height:1.2">Call 112</div></div>
+<div style="padding:24px;display:flex;flex-direction:column;gap:20px">
+<div><div style="font-size:13px;color:{{ p.t.sub }}">Nearest hospital</div><div style="font-size:22px;font-weight:500">Sub-District Hospital, Ganpatipule</div><div style="color:{{ p.t.sub }}">4.2 km · about 9 min</div>
+<div style="display:flex;gap:10px;margin-top:12px"><div style="flex:1;text-align:center;padding:14px;background:{{ p.t.ink }};color:{{ p.t.bg }}">Call hospital</div><div style="flex:1;text-align:center;padding:14px;border:1px solid {{ p.t.ink }}">Directions</div></div></div>
+<div style="border-top:1px solid {{ p.t.line }};padding-top:16px"><div style="padding:14px;text-align:center;border:1px solid {{ p.t.ink }}">Share my location</div><div style="font-size:13px;color:{{ p.t.sub }};margin-top:6px">Sends a message with your coordinates. Works offline from saved hospital lists.</div></div>
+<div style="font-size:13px;color:{{ p.t.sub }}">Finding your location… · No hospital found nearby in our data. Call 112.</div>
+<div style="text-align:center;color:{{ p.t.sub }};text-decoration:underline">Close</div></div></div></sc-if>
+
+<sc-if value="{{ p.isStays }}"><div style="padding:16px 24px 90px;display:flex;flex-direction:column;gap:14px">
+<div style="font-family:{{ p.serif }};font-size:26px">Stays</div>
+<div style="display:flex;gap:8px;font-size:13px;overflow:hidden"><span style="flex:none;white-space:nowrap;background:{{ p.t.ink }};color:{{ p.t.bg }};padding:3px 12px">Beachfront</span><span style="flex:none;white-space:nowrap;border:1px solid {{ p.t.line }};padding:3px 12px">Orchard stay</span><span style="flex:none;white-space:nowrap;border:1px solid {{ p.t.line }};padding:3px 12px">Family</span><span style="flex:none;white-space:nowrap;border:1px solid {{ p.t.line }};padding:3px 12px">Under ₹3,000</span></div>
+<sc-for list="{{ p.stays }}" as="s" hint-placeholder-count="2"><div style="border-top:1px solid {{ p.t.line }};padding-top:12px;display:flex;gap:14px"><div style="flex:none;width:110px;height:84px;background:{{ s.bg }}"></div><div style="flex:1"><div style="font-weight:500">{{ s.n }}</div><div style="display:flex;gap:6px;font-size:12px;margin:2px 0"><span style="background:{{ p.t.yama }};padding:0 8px">{{ s.v1 }}</span><span style="background:{{ p.t.wakaba }};padding:0 8px">{{ s.v2 }}</span><span style="color:{{ p.t.sub }}">+2</span></div><div style="font-size:13px">{{ s.p }}</div><div style="font-size:12px;color:{{ p.t.sub }}">{{ s.src }} · {{ s.v }}</div></div></div></sc-for>
+<div style="color:{{ p.t.sub }};font-size:13px">Nothing matches these filters yet.</div></div></sc-if>
+
+<sc-if value="{{ p.isEat }}"><div style="padding:16px 24px 90px;display:flex;flex-direction:column;gap:14px">
+<div style="height:84px;background:{{ p.t.yama }}"></div>
+<div><div style="font-family:{{ p.serif }};font-size:26px;line-height:1.4">Konkan Tadka</div><div style="font-size:13px;color:{{ p.t.sub }}">Local legend · ₹700 for two</div></div>
+<div><div style="display:flex;gap:3px"><div style="flex:1;height:6px;background:{{ p.t.sakuraS }}"></div><div style="flex:1;height:6px;background:{{ p.t.yamaS }}"></div><div style="flex:1;height:6px;background:{{ p.t.wakabaS }}"></div><div style="flex:1;height:6px;background:{{ p.t.asagiS }}"></div></div><div style="display:flex;justify-content:space-between;font-size:11px;color:{{ p.t.sub }}"><span>Skip</span><span>Okay</span><span>Go for it</span><span>Local legend</span></div></div>
+<div style="border-top:1px solid {{ p.t.ink }}">
+<sc-for list="{{ p.menu }}" as="m" hint-placeholder-count="4"><div style="display:flex;justify-content:space-between;border-bottom:1px solid {{ p.t.line }};padding:6px 0"><span>{{ m.n }}</span><span>{{ m.p }}</span></div></sc-for></div>
+<div style="font-size:13px;color:{{ p.t.sub }}">Open today 11 am – 10 pm · Veg and non-veg</div>
+<div style="display:flex;gap:10px"><div style="flex:1;text-align:center;padding:11px;background:{{ p.t.pri }};color:{{ p.t.priInk }}">Order on Swiggy</div><div style="flex:1;text-align:center;padding:11px;border:1px solid {{ p.t.ink }}">Call</div></div>
+<div style="font-size:12px;color:{{ p.t.sub }}">Verified 3 Oct 2026 by the Crabwalk team</div></div></sc-if>
+
+<sc-if value="{{ p.isVote }}"><div style="padding:24px 24px 90px;display:flex;flex-direction:column;gap:16px">
+<div style="font-family:{{ p.serif }};font-size:24px;line-height:1.5">Help plan “Two days, Ratnagiri”</div><div style="font-size:14px;color:{{ p.t.sub }}">Vote on the spots you want. No sign-in needed.</div>
+<div style="border-bottom:1px solid {{ p.t.ink }};padding:8px 0;color:{{ p.t.sub }}">Your name</div>
+<sc-for list="{{ p.spots }}" as="s" hint-placeholder-count="3"><div style="border:1px solid {{ p.t.line }};padding:12px;display:flex;align-items:center;gap:12px"><div style="flex:1"><div style="font-weight:500">{{ s.n }}</div><div style="font-size:12px;color:{{ p.t.sub }}">{{ s.c }}</div></div><div style="padding:8px 14px;background:{{ s.yb }};color:{{ s.yi }};border:1px solid {{ p.t.ink }}">Yes</div><div style="padding:8px 14px;border:1px solid {{ p.t.line }}">Skip</div></div></sc-for>
+<div style="text-align:center;padding:12px;background:{{ p.t.pri }};color:{{ p.t.priInk }}">Send votes</div></div></sc-if>
+
+<sc-if value="{{ p.isSign }}"><div style="padding:56px 24px;display:flex;flex-direction:column;gap:18px">
+<div style="width:40px;height:40px;border:1px solid {{ p.t.ink }};display:flex;align-items:center;justify-content:center;font-size:22px">蟹</div>
+<div style="font-family:{{ p.serif }};font-size:28px;line-height:1.4">Sign in to plan, save and share trips</div>
+<div style="border:1px solid {{ p.t.ink }};padding:12px;text-align:center">Continue with Google</div>
+<div style="text-align:center;color:{{ p.t.sub }};font-size:13px">or</div>
+<div style="border-bottom:1px solid {{ p.t.ink }};padding:8px 0;color:{{ p.t.sub }}">Email</div>
+<div style="padding:12px;text-align:center;background:{{ p.t.pri }};color:{{ p.t.priInk }}">Send code</div>
+<div style="font-size:13px;color:{{ p.t.sub }}">Enter the 6-digit code we sent to anita@example.com</div>
+<div style="display:flex;gap:8px"><sc-for list="{{ p.code }}" as="c" hint-placeholder-count="6"><div style="flex:1;height:52px;border:1px solid {{ p.t.ink }};display:flex;align-items:center;justify-content:center;font-size:20px">{{ c }}</div></sc-for></div>
+<div style="font-size:13px;color:{{ p.t.warn }}">That code is wrong. Check it and try again.</div>
+<div style="padding:12px;text-align:center;border:1px solid {{ p.t.ink }}">Verify code</div></div></sc-if>
+
+<sc-if value="{{ p.nav }}"><div style="position:absolute;left:0;right:0;bottom:0;height:64px;background:{{ p.t.bg }};border-top:1px solid {{ p.t.line }};display:grid;grid-template-columns:repeat(5,1fr);align-items:center;text-align:center;font-size:12px;color:{{ p.t.sub }}"><div>Discover</div><div>Map</div><div style="position:relative;height:100%"><div style="position:absolute;left:50%;top:-18px;margin-left:-26px;width:52px;height:52px;border-radius:50%;background:{{ p.t.pri }};display:flex;align-items:center;justify-content:center"><span style="width:5px;height:5px;border-radius:50%;background:{{ p.t.priInk }};box-shadow:12px 0 0 {{ p.t.priInk }};margin-right:12px"></span></div><div style="position:absolute;bottom:6px;left:0;right:0">Crabby</div></div><div>Plan</div><div>Me</div></div></sc-if>
+</div></div>
+</sc-for></div></sc-for>
+</section>
+<section id="3a" style="padding:56px;display:flex;flex-direction:column;gap:32px;width:1900px;font-family:'Zen Kaku Gothic New',sans-serif;color:#1F1E1C">
+<div style="display:flex;gap:16px;align-items:center"><div style="background:#1F1E1C;color:#F4F0E8;font:500 16px system-ui;padding:6px 14px;border-radius:2px">3a</div><div style="font:600 30px 'Shippori Mincho',serif">Suna design system · tokens and components</div></div>
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px">
+<sc-for list="{{ boards }}" as="b" hint-placeholder-count="2">
+<div style="background:{{ b.bg }};color:{{ b.ink }};padding:32px;display:flex;flex-direction:column;gap:28px">
+<div style="font:600 22px 'Shippori Mincho',serif">{{ b.name }}</div>
+<div style="display:grid;grid-template-columns:repeat(6,1fr);gap:10px"><sc-for list="{{ b.sw }}" as="s" hint-placeholder-count="12"><div><div style="height:56px;background:{{ s.c }};border:1px solid {{ b.line }}"></div><div style="font-size:12px;margin-top:4px;line-height:1.4">{{ s.n }}<br>{{ s.c }}</div></div></sc-for></div>
+<div style="display:flex;flex-direction:column;gap:6px;border-top:1px solid {{ b.ink }};padding-top:14px">
+<div style="font:400 36px/1.3 'Shippori Mincho',serif">Display 36 · गणपतीपुळे</div><div style="font:400 24px/1.5 'Shippori Mincho',serif">Title 24 · रत्नदुर्ग किल्ला</div><div style="font:500 16px/1.6 'Zen Kaku Gothic New',sans-serif">Body 16 · Verified by the Crabwalk team on 12 Sep 2026. आमच्या टीमने तपासलेली ठिकाणे.</div><div style="font-size:13px;color:{{ b.sub }};line-height:1.6">Caption 13 · Reported 2 h ago · expires in 22 h · ₹1,25,000</div></div>
+<div style="display:flex;flex-direction:column;gap:14px;border-top:1px solid {{ b.ink }};padding-top:14px">
+<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+<div style="padding:11px 22px;background:{{ b.pri }};color:{{ b.priInk }}">Add to trip</div><div style="padding:11px 22px;background:{{ b.pri }};color:{{ b.priInk }};outline:2px solid {{ b.ink }};outline-offset:3px">Focus</div><div style="padding:11px 22px;background:{{ b.line }};color:{{ b.sub }}">Disabled</div><div style="padding:11px 22px;border:1px solid {{ b.ink }}">Secondary</div><div style="padding:11px 4px;border-bottom:1px solid {{ b.ink }}">Text action</div><div style="padding:11px 22px;background:#B3261E;color:#fff">Call 112</div><div style="font-size:12px;color:{{ b.sub }}">Red is emergency only</div></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><sc-for list="{{ b.tags }}" as="g" hint-placeholder-count="6"><span style="background:{{ g.bg }};padding:3px 12px;font-size:13px;color:{{ b.ink }}">{{ g.t }}</span></sc-for></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+<div style="border:1px solid {{ b.line }};padding:12px"><div style="height:64px;background:{{ b.tint }}"></div><div style="margin-top:6px;font-weight:500">Place card · photo</div><div style="font-size:12px;color:{{ b.sub }}">Fort · 34 km</div></div>
+<div style="border:1px solid {{ b.line }};padding:12px"><div style="height:64px;background:repeating-linear-gradient(0deg,{{ b.line }} 0 1px,transparent 1px 9px)"></div><div style="margin-top:6px;font-weight:500">Place card · no photo</div><div style="font-size:12px;color:{{ b.sub }}">Line pattern</div></div>
+<div style="border:1px solid {{ b.line }};padding:12px"><div style="height:64px;background:{{ b.line }};opacity:.6"></div><div style="margin-top:6px;height:12px;width:70%;background:{{ b.line }}"></div><div style="margin-top:6px;height:10px;width:40%;background:{{ b.line }}"></div></div></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px">
+<div style="border-top:1px solid {{ b.ink }};padding-top:8px"><div style="display:flex;align-items:center;gap:8px"><span style="width:8px;height:8px;border-radius:50%;background:{{ b.ok }}"></span>Accessible till 4:30 pm</div><div style="display:flex;align-items:center;gap:8px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:{{ b.warn }}"></span>Cut off by tide · next safe 6:10 pm</div></div>
+<div style="border-top:1px solid {{ b.ink }};padding-top:8px;color:{{ b.sub }}">Offline: You're offline, showing saved data.<br>Empty: No verified places here yet.<br>Hours not known yet</div></div>
+</div></div></sc-for></div>
+</section>
+<section id="2a" style="padding:56px;display:flex;flex-direction:column;gap:36px;width:1900px">
+<div style="display:flex;gap:16px;align-items:flex-start">
+<div style="background:#1F1E1C;color:#F4F0E8;font:500 16px system-ui;padding:6px 14px;border-radius:2px">2a</div>
+<div style="max-width:900px"><div style="font:600 32px 'Shippori Mincho',serif;color:#1F1E1C">Suna · 砂 (sand)</div>
+<div style="font:400 15px/1.6 system-ui;color:#444;margin-top:6px">Washi paper, sumi ink, one indigo (aizome). Hairline rules instead of boxes, wide margins, no shadows, no gradients. Pins and badges use quiet matcha and ochre; red is kept for emergencies only. Crabby is a single small seal-like mark.</div>
+<div style="font:400 13px system-ui;color:#666;margin-top:6px">Shippori Mincho + Noto Serif Devanagari for titles · Zen Kaku Gothic New + Noto Sans Devanagari for text · all OFL, Devanagari-complete</div></div></div>
+<sc-for list="{{ rows }}" as="row" hint-placeholder-count="2">
+<div style="display:flex;gap:28px">
+<sc-for list="{{ row }}" as="p" hint-placeholder-count="5">
+<div style="display:flex;flex-direction:column;gap:8px"><div style="font:500 13px system-ui;color:#555">{{ p.label }}</div>
+<div style="position:relative;width:360px;height:780px;overflow:hidden;border-radius:6px;background:{{ p.t.bg }};color:{{ p.t.ink }};font-family:{{ p.font }};font-size:15px;line-height:1.6">
+<div style="padding:16px 24px 0;display:flex;align-items:center;gap:12px">
+<div style="width:26px;height:26px;border:1px solid {{ p.t.ink }};display:flex;align-items:center;justify-content:center;font-family:'Shippori Mincho',serif;font-size:15px">蟹</div>
+<div style="flex:1;font-weight:500;font-size:16px">{{ p.s.title }}</div>
+<div style="display:flex;gap:12px;font-size:13px"><span style="border-bottom:1px solid {{ p.enLine }}">EN</span><span style="color:{{ p.t.sub }}">हि</span><span style="border-bottom:1px solid {{ p.mrLine }}">म</span></div></div>
+
+<sc-if value="{{ p.isDisc }}"><div style="padding:20px 24px;display:flex;flex-direction:column;gap:16px">
+<div style="border-bottom:1px solid {{ p.t.ink }};padding:10px 0;color:{{ p.t.sub }}">{{ p.s.search }}</div>
+<div><div style="font-family:{{ p.serif }};font-size:20px;margin-bottom:6px">{{ p.s.season }}</div>
+<sc-for list="{{ p.seasons }}" as="z" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid {{ p.t.line }}"><span style="display:flex;align-items:center;gap:10px"><span style="width:8px;height:8px;border-radius:50%;background:{{ z.c }}"></span>{{ z.n }}</span><span style="font-size:13px;color:{{ p.t.sub }}">{{ z.d }}</span></div></sc-for></div>
+<div><div style="font-family:{{ p.serif }};font-size:20px;margin-bottom:10px">{{ p.s.cats }}</div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px">
+<sc-for list="{{ p.cats }}" as="c" hint-placeholder-count="8"><div style="height:44px;background:{{ c.bg }};display:flex;align-items:center;justify-content:center;font-size:13px;text-align:center;line-height:1.3">{{ c.n }}</div></sc-for></div></div>
+<div><div style="font-family:{{ p.serif }};font-size:20px;margin-bottom:10px">{{ p.s.gems }}</div>
+<div style="display:flex;gap:16px;overflow:hidden">
+<sc-for list="{{ p.places }}" as="q" hint-placeholder-count="2"><div style="flex:none;width:210px"><div style="height:86px;background:repeating-linear-gradient(0deg,{{ p.t.sakuraS }}55 0 1px,{{ p.t.sakura }} 1px 9px);display:flex;align-items:flex-end;padding:8px;font-size:12px;color:{{ p.t.sub }}">{{ p.s.nophoto }}</div>
+<div style="margin-top:8px;font-weight:500">{{ q.n }}</div><div style="font-size:13px;color:{{ p.t.sub }}">{{ q.s }}</div></div></sc-for></div></div>
+</div></sc-if>
+
+<sc-if value="{{ p.isPlace }}"><div style="padding:12px 24px 90px;display:flex;flex-direction:column;gap:12px">
+<div style="height:80px;background:repeating-linear-gradient(0deg,{{ p.t.asagiS }}55 0 1px,{{ p.t.asagi }} 1px 9px);display:flex;justify-content:space-between;align-items:flex-end;padding:8px 10px;font-size:12px;color:{{ p.t.sub }}"><span>{{ p.s.nophoto }}</span><span style="font-size:20px;color:{{ p.t.ink }}">♡</span></div>
+<div><div style="font-family:{{ p.serif }};font-size:30px;line-height:1.5">{{ p.s.name }}</div><div style="color:{{ p.t.sub }};font-size:14px">{{ p.s.name2 }} · {{ p.s.cat }}</div></div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;font-size:13px"><sc-for list="{{ p.badges }}" as="b" hint-placeholder-count="3"><span style="background:{{ b.bg }};padding:1px 10px">{{ b.t }}</span></sc-for></div>
+<div><div style="font-size:13px;color:{{ p.t.sub }}">{{ p.s.say }}</div>
+<div style="display:flex;align-items:baseline;gap:10px;margin:2px 0 8px"><span style="font-family:{{ p.serif }};font-size:24px">{{ p.s.win }}</span><span style="font-size:13px;color:{{ p.t.sub }}">{{ p.s.pct }}</span></div>
+<div style="display:flex;gap:3px"><sc-for list="{{ p.seg }}" as="g" hint-placeholder-count="4"><div style="flex:1;height:6px;background:{{ g }}"></div></sc-for></div>
+<div style="display:flex;justify-content:space-between;font-size:11px;margin-top:6px;color:{{ p.t.sub }}"><span>{{ p.s.l1 }}</span><span>{{ p.s.l2 }}</span><span>{{ p.s.l3 }}</span><span>{{ p.s.l4 }}</span></div></div>
+<div style="border-top:1px solid {{ p.t.ink }};border-bottom:1px solid {{ p.t.line }};padding:12px 0"><div style="display:flex;align-items:center;gap:8px;font-weight:500"><span style="width:8px;height:8px;border-radius:50%;background:{{ p.t.ok }}"></span>{{ p.s.tide }}</div><div style="font-size:13px;color:{{ p.t.sub }};margin-top:4px">{{ p.s.tide2 }}</div></div>
+<sc-for list="{{ p.facts }}" as="f" hint-placeholder-count="3"><div style="display:flex;justify-content:space-between;gap:16px;border-bottom:1px solid {{ p.t.line }};padding-bottom:8px"><span style="color:{{ p.t.sub }};font-size:13px">{{ f.k }}</span><span style="text-align:right">{{ f.v }}</span></div></sc-for>
+<div style="font-size:12px;color:{{ p.t.sub }}">{{ p.s.verified }}</div></div></sc-if>
+
+<sc-if value="{{ p.isMap }}"><div style="position:absolute;top:60px;left:0;right:0;bottom:64px;background:{{ p.t.water }};overflow:hidden">
+<div style="position:absolute;inset:0;background:{{ p.t.land }};clip-path:polygon(40% 0,46% 12%,36% 26%,44% 40%,34% 55%,42% 70%,32% 85%,38% 100%,100% 100%,100% 0)"></div>
+<div style="position:absolute;left:52%;top:8%;width:36%;height:22%;background:{{ p.t.park }};clip-path:polygon(0 20%,60% 0,100% 40%,70% 100%,10% 80%)"></div>
+<div style="position:absolute;left:52%;top:0;width:3px;height:100%;background:{{ p.t.road }};transform:rotate(8deg);transform-origin:top"></div>
+<div style="position:absolute;left:30%;top:46%;width:90%;height:2px;background:{{ p.t.road }};transform:rotate(-12deg)"></div>
+<div style="position:absolute;left:58%;top:10%;width:3px;height:44%;background:{{ p.t.warn }};transform:rotate(-20deg)"></div>
+<div style="position:absolute;left:42%;top:30%;width:100px;height:2px;background:{{ p.t.pri }};transform:rotate(55deg);transform-origin:left"></div>
+<div style="position:absolute;left:46%;top:46%;width:14px;height:14px;border-radius:50%;background:{{ p.t.pri }};border:2px solid {{ p.t.bg }}"></div>
+<div style="position:absolute;left:61%;top:60%;width:10px;height:10px;border-radius:50%;background:{{ p.t.yamaS }};border:2px solid {{ p.t.bg }}"></div>
+<div style="position:absolute;left:70%;top:34%;width:10px;height:10px;border-radius:50%;background:{{ p.t.sakuraS }};border:2px solid {{ p.t.bg }}"></div>
+<div style="position:absolute;left:60%;top:18%;width:26px;height:26px;border-radius:50%;background:{{ p.t.fujiS }};color:{{ p.t.priInk }};font-size:12px;display:flex;align-items:center;justify-content:center">4</div>
+<div style="position:absolute;left:49%;top:44%;font-size:12px;margin-left:16px;margin-top:-4px;text-shadow:0 0 3px {{ p.t.land }},0 0 3px {{ p.t.land }}">{{ p.s.pin }}</div>
+<div style="position:absolute;left:4%;top:44%;font-size:12px;color:{{ p.t.sub }};font-style:italic">{{ p.s.sea }}</div>
+<div style="position:absolute;top:12px;left:16px;right:16px;display:flex;flex-direction:column;gap:8px"><div style="background:{{ p.t.bg }};border:1px solid {{ p.t.line }};padding:9px 14px;color:{{ p.t.sub }}">{{ p.s.msearch }}</div>
+<div style="display:flex;gap:6px;font-size:13px"><sc-for list="{{ p.chips }}" as="c" hint-placeholder-count="4"><span style="background:{{ c.bg }};color:{{ c.ink }};border:1px solid {{ p.t.ink }};padding:3px 12px">{{ c.t }}</span></sc-for></div></div>
+<div style="position:absolute;left:0;right:0;bottom:0;background:{{ p.t.bg }};border-top:1px solid {{ p.t.ink }};padding:10px 24px 16px"><div style="width:36px;height:2px;background:{{ p.t.line }};margin:0 auto 10px"></div>
+<div style="font-family:{{ p.serif }};font-size:20px">{{ p.s.name }}</div><div style="font-size:13px;color:{{ p.t.sub }}">{{ p.s.mcap }}</div>
+<div style="display:flex;gap:10px;margin-top:10px"><div style="flex:1;text-align:center;padding:10px;background:{{ p.t.pri }};color:{{ p.t.priInk }}">{{ p.s.addtrip }}</div><div style="flex:1;text-align:center;padding:10px;border:1px solid {{ p.t.ink }}">{{ p.s.dir }}</div></div></div>
+</div></sc-if>
+
+<sc-if value="{{ p.isPlan }}"><div style="padding:20px 24px 90px;display:flex;flex-direction:column;gap:16px">
+<div><div style="font-family:{{ p.serif }};font-size:26px;line-height:1.4">Two days, Ratnagiri</div><div style="font-size:13px;color:{{ p.t.sub }}">2 travellers · Relaxed · Standout mode on</div></div>
+<div style="display:flex;gap:20px;border-bottom:1px solid {{ p.t.line }}"><span style="padding-bottom:6px;border-bottom:2px solid {{ p.t.ink }};font-weight:500">Day 1</span><span style="color:{{ p.t.sub }}">Day 2</span></div>
+<div style="display:flex;flex-direction:column">
+<sc-for list="{{ p.stops }}" as="s" hint-placeholder-count="3"><div style="display:flex;gap:14px">
+<div style="width:52px;font-size:13px;color:{{ p.t.sub }};padding-top:2px">{{ s.t }}</div>
+<div style="width:9px;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:{{ s.dc }};margin-top:8px"></span><span style="flex:1;width:1px;background:{{ p.t.line }}"></span></div>
+<div style="flex:1;padding-bottom:16px"><div style="font-weight:500">{{ s.n }}</div><div style="font-size:12px;background:{{ s.c }};display:inline-block;padding:0 8px">{{ s.r }}</div><div style="font-size:12px;color:{{ p.t.sub }};margin-top:10px">{{ s.drive }}</div></div></div></sc-for></div>
+<div style="border-top:1px solid {{ p.t.ink }};padding-top:10px;display:flex;flex-direction:column;gap:4px;font-size:14px">
+<div style="display:flex;justify-content:space-between"><span style="color:{{ p.t.sub }}">Stay</span><span>₹4,200</span></div><div style="display:flex;justify-content:space-between"><span style="color:{{ p.t.sub }}">Food</span><span>₹2,600</span></div><div style="display:flex;justify-content:space-between"><span style="color:{{ p.t.sub }}">Entry fees · 2 not known</span><span>₹300</span></div>
+<div style="display:flex;justify-content:space-between;font-weight:500;border-top:1px solid {{ p.t.line }};padding-top:6px;margin-top:4px"><span>Total · ₹3,550 per person</span><span>₹7,100</span></div></div>
+<div style="display:flex;gap:10px"><div style="flex:1;text-align:center;padding:11px;background:{{ p.t.pri }};color:{{ p.t.priInk }}">Start live trip</div><div style="flex:1;text-align:center;padding:11px;border:1px solid {{ p.t.ink }}">Share</div></div>
+</div></sc-if>
+
+<sc-if value="{{ p.isChat }}"><div style="padding:16px 24px 150px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;gap:10px;align-items:flex-start"><div style="flex:none;width:30px;height:30px;border-radius:50%;border:1px solid {{ p.t.ink }};display:flex;align-items:center;justify-content:center"><span style="width:3px;height:3px;border-radius:50%;background:{{ p.t.ink }};box-shadow:7px 0 0 {{ p.t.ink }};margin-right:7px"></span></div><div style="font-size:14px;color:{{ p.t.sub }}">Ask me about places, food, stays or your trip. I only answer from Crabwalk's verified data.</div></div>
+<div style="align-self:flex-end;max-width:240px;background:{{ p.t.fuji }};padding:10px 14px">Where can I eat Malvani food near Ganpatipule?</div>
+<div style="display:flex;gap:10px"><div style="flex:none;width:30px"></div><div style="display:flex;flex-direction:column;gap:10px"><div>Two verified spots within 10 km. Both serve a Malvani fish thali.</div>
+<div style="border:1px solid {{ p.t.line }};padding:10px 12px"><div style="font-weight:500">Konkan Tadka</div><div style="font-size:13px;color:{{ p.t.sub }}">Local legend · ₹700 for two · 3 km</div></div>
+</div></div>
+<div style="align-self:flex-end;max-width:240px;background:{{ p.t.fuji }};padding:10px 14px">Add the first one to my trip</div>
+<div style="border:1px solid {{ p.t.ink }};padding:14px;margin-left:40px"><div style="font-size:12px;color:{{ p.t.sub }}">Proposed change</div><div style="font-family:{{ p.serif }};font-size:18px;margin:2px 0 4px">Add lunch on Day 1</div><div style="font-size:13px;color:{{ p.t.sub }}">Konkan Tadka · 1:00 pm · after Ratnadurg Fort</div>
+<div style="display:flex;gap:10px;margin-top:12px"><div style="flex:1;text-align:center;padding:9px;background:{{ p.t.pri }};color:{{ p.t.priInk }}">Apply</div><div style="flex:1;text-align:center;padding:9px;border:1px solid {{ p.t.ink }}">Discard</div></div></div>
+</div>
+<div style="position:absolute;left:0;right:0;bottom:64px;padding:10px 24px;background:{{ p.t.bg }};border-top:1px solid {{ p.t.line }}"><div style="display:flex;gap:6px;font-size:12px;margin-bottom:8px;color:{{ p.t.sub }}"><span style="border:1px solid {{ p.t.line }};padding:2px 10px">Plan a 2-day trip</span><span style="border:1px solid {{ p.t.line }};padding:2px 10px">Hidden gems</span></div>
+<div style="display:flex;gap:10px;align-items:center;border-bottom:1px solid {{ p.t.ink }};padding-bottom:6px"><span style="flex:1;color:{{ p.t.sub }}">Ask Crabby</span><span style="width:44px;text-align:center;color:{{ p.t.sub }}">Mic</span></div><div style="font-size:11px;color:{{ p.t.sub }};margin-top:4px">17 questions left today</div></div></sc-if>
+
+<div style="position:absolute;left:0;right:0;bottom:0;height:64px;background:{{ p.t.bg }};border-top:1px solid {{ p.t.line }};display:grid;grid-template-columns:repeat(5,1fr);align-items:center;text-align:center;font-size:12px;color:{{ p.t.sub }}">
+<div style="color:{{ p.n1c }};font-weight:{{ p.n1w }}">{{ p.s.n1 }}</div><div style="color:{{ p.n2c }};font-weight:{{ p.n2w }}">{{ p.s.n2 }}</div>
+<div style="position:relative;height:100%"><div style="position:absolute;left:50%;top:-18px;margin-left:-26px;width:52px;height:52px;border-radius:50%;background:{{ p.t.pri }};display:flex;align-items:center;justify-content:center"><span style="width:5px;height:5px;border-radius:50%;background:{{ p.t.priInk }};box-shadow:12px 0 0 {{ p.t.priInk }};margin-right:12px"></span></div><div style="position:absolute;bottom:6px;left:0;right:0;color:{{ p.n3c }}">Crabby</div></div>
+<div style="color:{{ p.n4c }};font-weight:{{ p.n4w }}">{{ p.s.n4 }}</div><div>{{ p.s.n5 }}</div></div>
+</div></div>
+</sc-for></div></sc-for>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const base = { title:'Crabwalk', search:'Search places, stays, food', season:'In season', cats:'Explore', gems:'Hidden gems', nophoto:'Photo coming soon', name:'Ganpatipule Beach', name2:'गणपतीपुळे', cat:'Beach & temple', say:'What visitors say', win:'Must visit', pct:'62% · 148 votes', l1:'Skip', l2:'Timepass', l3:'Worth it', l4:'Must visit', tide:'Accessible till 4:30 pm', tide2:'Cut off by tide. Next safe time 6:10 pm.', verified:'Verified 12 Sep 2026 by the Crabwalk team', n1:'Discover', n2:'Map', n4:'Plan', n5:'Me', pin:'Ganpatipule', sea:'Arabian Sea', msearch:'Search places', mcap:'Beach & temple · 1.2 km · Verified 12 Sep', addtrip:'Add to trip', dir:'Directions' };
+    const mr = { ...base, search:'ठिकाणे, राहण्याची सोय, जेवण शोधा', season:'हंगाम', cats:'शोधा', gems:'लपलेली रत्ने', nophoto:'फोटो लवकरच', name:'गणपतीपुळे', name2:'Ganpatipule Beach', cat:'समुद्रकिनारा आणि मंदिर', say:'प्रवासी काय म्हणतात', win:'नक्की भेट द्या', pct:'६२% · १४८ मते', l1:'टाळा', l2:'वेळ घालवा', l3:'योग्य', l4:'नक्की जा', tide:'दुपारी ४:३० पर्यंत प्रवेश शक्य', tide2:'भरतीमुळे प्रवेश बंद — पुढील सुरक्षित वेळ संध्याकाळी ६:१०.', verified:'क्रॅबवॉक टीमने १२ सप्टें २०२६ रोजी तपासले', n1:'शोधा', n2:'नकाशा', n4:'योजना', n5:'मी' };
+    const L = { bg:'#F4F0E8', ink:'#1F1E1C', sub:'#5C584F', line:'#D6CFC0', soft:'#C9C1AE', pri:'#2B3F5C', priInk:'#F4F0E8', ok:'#5F6F3E', ochre:'#9A7420', warn:'#9A7420', land:'#EAE4D6', water:'#BFDFE0', park:'#D3E39A', road:'#FBF9F4', sakura:'#F6D5D8', asagi:'#BFE3E3', yama:'#F5D776', wakaba:'#D3E39A', fuji:'#D3D2EA', sakuraS:'#C45A78', asagiS:'#00808A', yamaS:'#D99A00', wakabaS:'#7A9A1E', fujiS:'#6C6BA8' };
+    const D = { bg:'#16171A', ink:'#ECE7DB', sub:'#A39E92', line:'#34363B', soft:'#2A2C31', pri:'#9DB4D6', priInk:'#16171A', ok:'#A5B47F', ochre:'#D1A650', warn:'#D1A650', land:'#202226', water:'#12303A', park:'#2A3A1E', road:'#3A3D43', sakura:'#5A3A40', asagi:'#1F4A4D', yama:'#6B5416', wakaba:'#3A4A22', fuji:'#3A3A58', sakuraS:'#E8A0B4', asagiS:'#5FC5CC', yamaS:'#E8B84A', wakabaS:'#B7D35B', fujiS:'#A9A8E0' };
+    const seasons = (t)=>[{n:'Mango season',d:'Apr – Jun',c:t.yamaS},{n:'Turtle nesting · Velas',d:'Feb – Apr',c:t.asagiS},{n:'Waterfall season',d:'Jul – Sep',c:t.fujiS}];
+    const catsEn = ['Beach','Fort','Temple','Waterfall','Viewpoint','Backwater','Cave','Orchard'];
+    const catsMr = ['किनारा','किल्ला','मंदिर','धबधबा','दृश्यबिंदू','खाडी','गुहा','बाग'];
+    const places = [{n:'Aare-Ware Beach',s:'Hidden gem · Worth it, 71%'},{n:'Jaigad Fort',s:'Fort · 34 km · Must visit'}];
+    const placesMr = [{n:'आरे-वारे बीच',s:'लपलेले रत्न · योग्य, ७१%'},{n:'जयगड किल्ला',s:'किल्ला · ३४ किमी · नक्की जा'}];
+    const chipsOf = (t) => [{t:'Places',bg:t.ink,ink:t.bg},{t:'Stays',bg:t.bg,ink:t.ink},{t:'Food',bg:t.bg,ink:t.ink},{t:'Open now',bg:t.bg,ink:t.ink}];
+    const stops0 = [{t:'9:00',n:'Ratnadurg Fort',r:'Hidden gem',drive:'25 min drive',k:'yama'},{t:'11:30',n:'Thibaw Palace',r:'Low crowd',drive:'40 min drive',k:'wakaba'},{t:'2:00',n:'Aare-Ware Beach',r:'Tide-safe time',drive:'',k:'asagi'}];
+    const mk = (T, kind, lang, label) => {
+      const m = lang==='mr', t = T;
+      const act = { n1:kind==='d', n2:kind==='m', n3:kind==='c', n4:kind==='n' };
+      const ai = (b) => b ? t.ink : t.sub, aw = (b) => b ? 500 : 400;
+      return { label, kind, t, s: m?mr:base,
+        font: m ? "'Noto Sans Devanagari',sans-serif" : "'Zen Kaku Gothic New',sans-serif",
+        serif: m ? "'Noto Serif Devanagari',serif" : "'Shippori Mincho',serif",
+        isDisc:kind==='d', isPlace:kind==='p', isMap:kind==='m', isPlan:kind==='n', isChat:kind==='c',
+        enLine: m ? 'transparent' : t.ink, mrLine: m ? t.ink : 'transparent',
+        n1c:ai(act.n1), n1w:aw(act.n1), n2c:ai(act.n2), n2w:aw(act.n2), n3c:ai(act.n3), n4c:ai(act.n4), n4w:aw(act.n4),
+        seasons:seasons(t), cats:(m?catsMr:catsEn).map((n,i)=>({n,bg:[t.sakura,t.asagi,t.yama,t.wakaba,t.fuji][i%5]})), places: m?placesMr:places,
+        badges: (m ? ['लपलेले रत्न','तपासलेले','गर्दी: कमी · सामान्य','भरतीवर अवलंबून'] : ['Hidden gem','Verified','Crowd: calm · Typical','Tide-dependent']).map((x,i)=>({t:x,bg:[t.yama,t.wakaba,t.fuji,t.asagi][i]})),
+        facts: m ? [{k:'आजची वेळ',v:'सकाळी ६ – रात्री ९'},{k:'प्रवेश शुल्क',v:'विनामूल्य'},{k:'सर्वोत्तम वेळ',v:'ऑक्टोबर–मार्च, सकाळी'}] : [{k:"Today's hours",v:'6 am – 9 pm'},{k:'Entry fee',v:'Free'},{k:'Best time',v:'Oct–Mar, mornings'}],
+        seg:[t.sakuraS,t.yamaS,t.wakabaS,t.asagiS], chips:chipsOf(t), stops:stops0.map(s=>({...s,c:t[s.k],dc:t[s.k+'S']})) };
+    };
+    const bd = (T, name) => ({ name, bg:T.bg, ink:T.ink, sub:T.sub, line:T.line, pri:T.pri, priInk:T.priInk, ok:T.ok, warn:T.warn, tint:T.asagi,
+      sw:[['Washi','bg'],['Sumi','ink'],['Sub','sub'],['Line','line'],['Aizome','pri'],['Matcha','ok'],['Sakura','sakura'],['Asagi','asagi'],['Yamabuki','yama'],['Wakaba','wakaba'],['Fuji','fuji'],['Ochre','ochre']].map(a=>({n:a[0],c:T[a[1]]})),
+      tags:[['Hidden gem','yama'],['Verified','wakaba'],['Calm · Typical','fuji'],['Tide-dependent','asagi'],['Veg','sakura']].map(a=>({t:a[0],bg:T[a[1]]})) });
+    const mk2 = (T, kind, label) => ({ label, kind, t:T, font:"'Zen Kaku Gothic New',sans-serif", serif:"'Shippori Mincho',serif",
+      isQr:kind==='qr', isEmg:kind==='emg', isStays:kind==='st', isEat:kind==='eat', isVote:kind==='vote', isSign:kind==='sign', nav:kind==='st'||kind==='eat',
+      stays:[{n:'Sagar Kinara Homestay',v1:'Beachfront',v2:'Family',p:'₹1,800–2,500',src:'Owner’s price',v:'Good stay · 78%',bg:T.asagi},{n:'Amrai Orchard Stay',v1:'Orchard stay',v2:'Couple',p:'₹2,200–3,000',src:'Agoda live',v:'New · 6 votes',bg:T.wakaba}],
+      menu:[{n:'Surmai thali',p:'₹350'},{n:'Kombdi vade',p:'₹280'},{n:'Solkadhi',p:'₹60'},{n:'Ukadiche modak',p:'₹120'}],
+      spots:[{n:'Ratnadurg Fort',c:'3 yes · 1 skip',yb:T.ink,yi:T.bg},{n:'Thibaw Palace',c:'2 yes · 2 skip',yb:'transparent',yi:T.ink},{n:'Aare-Ware Beach',c:'4 yes · 0 skip',yb:'transparent',yi:T.ink}],
+      code:['4','8','2','','','']});
+    const rows2 = [[mk2(L,'qr','QR scan · system fonts · light'),mk2(L,'emg','Emergency card'),mk2(L,'st','Stays list'),mk2(L,'eat','Eatery detail'),mk2(L,'vote','Group vote'),mk2(L,'sign','Sign in · code error')],
+      [mk2(D,'qr','QR scan · dark'),mk2(D,'emg','Emergency · dark'),mk2(D,'st','Stays · dark'),mk2(D,'eat','Eatery · dark'),mk2(D,'vote','Group vote · dark'),mk2(D,'sign','Sign in · dark')]];
+    const mkD = (T, kind, label, active, open) => ({ label, t:T, panel:true, menu:!!open, isDisc:kind==='d', isPlace:kind==='p', isMap:kind==='m', isPlan:kind==='n',
+      nav:['Discover','Map','Crabby','Plan','Me'].map(n=>({t:n,c:n===active?T.ink:T.sub,w:n===active?500:400,b:n===active?T.pri:'transparent'})),
+      seasons:seasons(T), cats:catsEn.map((n,i)=>({n,bg:[T.sakura,T.asagi,T.yama,T.wakaba,T.fuji][i%5]})),
+      places:[{n:'Aare-Ware Beach',s:'Hidden gem · Worth it, 71%'},{n:'Jaigad Fort',s:'Fort · 34 km · Must visit'},{n:'Velneshwar Beach',s:'Beach · Calm · Typical'},{n:'Marleshwar Waterfall',s:'Waterfall · Jul–Sep'}],
+      badges:['Hidden gem','Verified','Crowd: calm · Typical','Tide-dependent'].map((x,i)=>({t:x,bg:[T.yama,T.wakaba,T.fuji,T.asagi][i]})),
+      facts:[{k:"Today's hours",v:'6 am – 9 pm'},{k:'Entry fee',v:'Free'},{k:'Best time',v:'Oct–Mar, mornings'}],
+      stops:stops0.map(s=>({...s,c:T[s.k],dc:T[s.k+'S']})) });
+    const mkS = (T, title, blocks, o={}) => { const dk=!!o.desk;
+      const tone = k => k==='ink'?T.ink:T[k]||T.line;
+      const bt = (t,k) => ({t, bg:k==='pri'?T.pri:'transparent', ink:k==='pri'?T.priInk:T.ink, bd:k==='pri'?T.pri:T.ink});
+      const tg = k => ({bg:T[k], ink:T.ink, bd:'transparent'});
+      const out = blocks.map(b => {
+        const x = { ...b, ['is_'+b.k]:true };
+        if (b.k==='btns') x.items = b.items.map(s=>bt(s[0],s[1]));
+        if (b.k==='chips') x.items = b.items.map(s=>({t:s[0], ...(s[1]?tg(s[1]):{bg:'transparent',ink:T.ink,bd:T.line})}));
+        if (b.k==='seg') x.items = b.items.map((s,i)=>({t:s, bg:i===b.on?T.ink:'transparent', ink:i===b.on?T.bg:T.ink}));
+        if (b.k==='items') x.items = b.items.map(s=>({n:s[0],m:s[1],tag:s[2]||'',bg:T[s[3]||'asagi'],tb:s[2]?T[s[4]||'yama']:'transparent'}));
+        if (b.k==='banner') x.bg = tone(b.c||'yama');
+        if (b.k==='photo') { x.bg=T[b.c||'sakura']; x.h=b.h||90; }
+        if (b.k==='f') x.vc = b.fill ? T.ink : T.sub;
+        if (b.k==='tog') { x.bg = b.on?T.pri:'transparent'; x.kn = b.on?T.priInk:T.ink; x.side = b.on?'right':'left'; }
+        if (b.k==='tl') x.items = stops0.map(s=>({...s,c:T[s.k],dc:T[s.k+'S']}));
+        if (b.k==='grid') x.items = b.items.map((s,i)=>({n:s[0],m:s[1],bg:[T.yama,T.sakura,T.asagi,T.wakaba,T.fuji,T.yama][i%6]}));
+        if (b.k==='rows') x.items = b.items.map(s=>({k:s[0],v:s[1]}));
+        if (b.k==='map') x.h = b.h||150;
+        return x; });
+      return { label:(o.label||title)+(dk?' · laptop':''), t:T, title, back:o.top?'':'‹', nav:!dk&&!!o.nav, blocks:out, desk:dk, fw:dk?1280:360, fh:dk?800:780, cols:dk?2:1, pad:dk?'20px 40px':'14px 24px 90px', tpad:dk?'20px 40px 0':'16px 24px 0' };
+    };
+    const H=t=>({k:'h',t}), P=t=>({k:'p',t}), Lb=t=>({k:'l',t}), F=(l,v,fill)=>({k:'f',l,v,fill}), BT=(...items)=>({k:'btns',items}), CH=(...items)=>({k:'chips',items}), RW=(...items)=>({k:'rows',items}), IT=(...items)=>({k:'items',items}), BN=(t,c)=>({k:'banner',t,c}), CD=(k,t,m)=>({k:'card',k2:k,t,m}), SG=(l,on,...items)=>({k:'seg',l,on,items}), TG=(t,on)=>({k:'tog',t,on}), PH=(t,h,c)=>({k:'photo',t,h,c});
+    const CDx=(kk,t,m)=>({k:'card',k:'card',t,m,kk});
+    const card = (kk,t,m)=>({k:'card',t,m,k_:kk});
+    const mkC = (kk,t,m)=>({k:'card',t,m,kk});
+    const rows3src = (T, desk) => {
+      const S = (title, blocks, o) => mkS(T, title, blocks, {...o, desk});
+      const C = (kk,t,m)=>({k:'card',t,m,k2:kk});
+      return [
+      S('Sagar Kinara Homestay',[PH('Photo coming soon',50,'asagi'),H('Sagar Kinara Homestay'),CH(['Beachfront','yama'],['Family','wakaba'],['Traditional Konkani home','fuji']),{k:'verdict',win:'Good stay',pct:'78% · 41 votes',a:'Avoid',b:'Okay',c:'Good stay',d:'Perfect stay'},RW(['Cleanliness','Verified visitors only'],['Host','4.6 / 5']),Lb('Prices'),RW(["Owner's price",'₹1,800–2,500'],['Agoda live','₹2,100 · See price']),BT(['Call','pri'],['WhatsApp'])],{nav:true,label:'Stay detail'}),
+      S('Food',[H('Food'),CH(['Veg'],['Non-veg'],['Jain'],['Home-style','wakaba'],['Local legend','yama']),IT(['Konkan Tadka','Surmai thali · ₹700 for two · veg and non-veg','Local legend','asagi','yama'],['Sagar Kinara Kitchen','Kombdi vade · ₹500 for two','Home-style','sakura','wakaba'],['Malvan Aaswad','Malvani fish thali · ₹800 for two','Tourist','yama','fuji']),P('No verified places here yet.')],{nav:true,label:'Food list'}),
+      S('Taste Konkan',[H('Taste Konkan'),P('Dishes of the coast, with where to eat them.'),{k:'grid',items:[['Solkadhi','सोलकढी'],['Ukadiche modak','उकडीचे मोदक'],['Malvani fish thali','Surmai · Bangda'],['Kombdi vade','Chicken and vade'],['Aambopoli','Mango sheet'],['Kokum sharbat','Cooling drink']]}],{nav:true,label:'Taste Konkan'}),
+      S('Solkadhi',[PH('Photo coming soon',90,'sakura'),H('Solkadhi · सोलकढी'),Lb('What it is'),P('A pink drink of kokum and coconut milk, served with a meal to cool the stomach.'),Lb("Where it's best"),IT(['Konkan Tadka','Local legend · 3 km'],['Sagar Kinara Kitchen','Home-style · 6 km'])],{nav:true,label:'Dish page'}),
+      S('Ready-made trips',[H('Ready-made trips'),IT(['Ganpatipule to Ratnagiri','2 days · 9 places','By Crabwalk','asagi','wakaba'],['Forts and beaches','3 days · 12 places','By Crabwalk','yama','wakaba'],['Mango orchard weekend','2 days · 6 places','By a traveller','sakura','fuji'])],{nav:true,label:'Itineraries'}),
+      S('Two days, Ratnagiri',[H('Ganpatipule to Ratnagiri'),CH(['By Crabwalk','wakaba'],['2 days'],['9 places']),{k:'map',h:110},{k:'tl'},BT(['Plan this trip','pri']),P('Sign in to plan, save and share trips.')],{nav:true,label:'Itinerary detail'}),
+      S('Start your trip',[H('Start your Konkan trip'),P('Ratnagiri railway station. Plan a trip, or pick one that is ready.'),BT(['Plan my trip','pri']),Lb('Ready-made trips'),IT(['Ganpatipule to Ratnagiri','2 days · 9 places','By Crabwalk','asagi','wakaba'],['Forts and beaches','3 days · 12 places','By Crabwalk','yama','wakaba']),Lb('Near this stop'),IT(['Thibaw Palace','Palace · 2.1 km'],['Ratnadurg Fort','Fort · 4 km'])],{label:'Start (station QR)'}),
+      S('Plan a trip',[H('Plan a trip'),F('Days','2  ( − )  ( + )',true),F('Start date','Sat 14 Nov 2026',true),F('Start point','Ratnagiri railway station',true),SG('Travelling as',1,'Family','Couple','Solo','Friends'),F('Budget','₹15,000  ·  No limit',true),CH(['Beaches','asagi'],['Forts','yama'],['Food','sakura']),SG('Pace',1,'Relaxed','Balanced','Packed'),TG('Standout mode: hidden gems, calm spots',true),BT(['Generate plan','pri'])],{label:'Plan new'}),
+      S('Shared plan',[H('Two days, Ratnagiri'),P('Shared by Anita · read only'),{k:'tl'},RW(['Total','₹7,100'],['Per person','₹3,550']),BT(['Plan your own','pri'])],{label:'Shared plan'}),
+      S('Live trip',[BN('Live mode is on today: leave-time reminders are active.','wakaba'),C('You are at','Thibaw Palace','Planned until 4:30 pm'),C('Next stop','Aare-Ware Beach','Arrive 5:10 pm · 25 min drive'),BT(['Start navigation','pri']),BN('Running 20 min late. Skip Aare-Ware Beach?','yama'),BT(['Skip it'],['Why?']),TG('Leave-time reminders',true),P('That was the last stop for today.')],{nav:true,label:'Live trip'}),
+      S('Navigate',[{k:'map',h:200},{k:'turn'},RW(['To go','12 km · about 25 min'],['Next stop','Aare-Ware Beach']),TG('Voice guidance',true),TG('Screen stays on',true),BN('It is dark outside. Switch to dark mode for night driving?','fuji'),BT(['Open in Google Maps'])],{top:true,label:'Navigation'}),
+      S('Me',[H('Me'),P('Signed in as anita@example.com'),Lb('My trips'),IT(['Two days, Ratnagiri','Day 1 · 14 Nov']),SG('Theme',0,'Match phone','Light','Dark'),Lb('Offline packs'),RW(['Ratnagiri · 42 MB','Delete'],['Guhagar · 38 MB','Download'],['Chiplun · 36 MB','Update available']),TG('Share anonymous visit times',false),TG('Leave-time reminders',true)],{nav:true,label:'Me'}),
+      S('Privacy policy',[H('Privacy policy'),BN('Draft. Not final.','yama'),Lb('Contents'),RW(['1','Data we collect'],['2','How Crabby uses your messages'],['3','Consent'],['4','How long we keep data'],['5','Your rights']),Lb('1. Data we collect'),P('We collect your email to sign you in, and your location only while you use the map, navigation or verify a visit.')],{label:'Privacy'}),
+      S('My listings',[H('My listings'),IT(['Sagar Kinara Homestay','Stay · Edit facts','Claimed','asagi','wakaba']),P('No listings yet. Claim yours from its page.')],{label:'Owner · my listings'}),
+      S('Claim this listing',[H('Own this place? Claim it'),P("We'll call the number on this listing to confirm you own it."),RW(['Listing','Sagar Kinara Homestay'],['Phone on file','+91 98•••• 4210']),BT(['Send claim','pri']),BN('Claim sent. We will call within 2 days.','wakaba')],{label:'Owner · claim'}),
+      S('Edit facts',[H('Edit facts'),PH('Add photos',60,'asagi'),F('Price per night','₹1,800 – 2,500',true),F('Menu, one item per line','Surmai thali — ₹350',true),F('Hours','Open all day',true),F('Phone / WhatsApp','+91 98•••• 4210',true),BT(['Save changes','pri']),P("Owners can't edit ratings or reviews.")],{label:'Owner · edit'}),
+      S('Field team',[BN('Internal tool','fuji'),H('Field team'),IT(['Add a listing','Place, stay or eatery','','asagi'],['Review queue','Drafts waiting','7','yama','yama'],['Reports','New problems','3','sakura','yama'],['Claims and proofs','Waiting','4','wakaba','yama']),Lb('Due for re-check'),IT(['Jaigad Fort','Last visit 14 Mar','Mark verified today','fuji','wakaba'])],{label:'Admin home'}),
+      S('Add a listing',[BN('Saved offline. It will send when you are back online. 2 waiting to send.','yama'),SG('Type',0,'Place','Stay','Eatery'),F('Name (English)','Velneshwar Beach',true),F('Name (मराठी)','वेळणेश्वर',true),BT(['Use my location  ±12 m'],['Take photo']),CH(['Hidden gem','yama'],['Tide-dependent'],['Hours not known']),F('Entry fee','Free',true),TG('Hidden gem',true),BT(['Save draft'],['Submit','pri'])],{label:'Admin · add listing'}),
+      S('Review editor',[SG('Language',0,'EN','हि','मर'),F('Name','Ganpatipule Beach',true),F('Description','A white-sand beach below the temple.',true),BT(['Draft missing text with AI']),BN('Check every fact before you approve.','yama'),F('Booking link','Agoda · deep link',true),BT(['Save drafts'],['Approve and publish','pri'])],{label:'Admin · review editor'}),
+      S('Reports',[SG('Status',0,'New','Checking','Fixed','Not a problem'),IT(['Broken QR plaque','Ratnadurg Fort · 2 h ago','New','sakura','yama'],['Garbage on beach','Aare-Ware · yesterday','Checking','asagi','fuji'],['Wrong hours','Thibaw Palace · 3 d','Fixed','yama','wakaba'])],{label:'Admin · reports'}),
+      S('Claims and proofs',[BN('Call the listed number before approving.','yama'),CD1(T,'Claim','Amrai Orchard Stay','Claimed by Ravi Joshi · +91 98•••• 1177'),BT(['Reject'],['Approve','pri']),CD1(T,'Booking proof','Sagar Kinara Homestay','Bill image · deleted in 30 days'),BT(['Reject'],['Approve','pri'])],{label:'Admin · claims, proofs'}),
+      S('Moderation',[IT(['"Lovely and quiet beach."','Ganpatipule · 5 stars','Looks fine','wakaba','wakaba'],['"Avoid, they overcharge!!"','Jaigad · 1 star','Flagged: tone','sakura','yama']),BT(['Reject'],['Approve','pri'])],{label:'Admin · moderation'}),
+      S('QR codes',[H('QR codes'),F('Points to','Ratnadurg Fort',true),F('Permission','Granted · Fort trust',true),F('Installed','12 Oct 2026',true),F('Sponsor','Ratnagiri Tourism Trust',true),{k:'card',k2:'',t:'Scan for audio guide, safety and help nearby',m:'Printable plaque · Ratnadurg Fort'},BT(['Create code','pri'],['Print plaque'])],{label:'Admin · QR'}),
+      S('Events and alerts',[H('Road and safety alerts'),IT(['Landslide · Danger','Reported 2 h ago · expires in 22 h','Still there','sakura','yama'],['Ghat road · Caution','Reported 1 d ago','Cleared','yama','wakaba']),Lb('Festivals and events'),IT(['Ganpatipule Jatra','Crowd: heavy · Mar 4–6','Festival','fuji','yama']),Lb('Planner settings'),RW(['Fuel price','₹104 / litre'],['Mileage','16 km / litre'])],{label:'Admin · events, alerts, planner'}),
+      S('Not found',[{k:'photo',t:'',h:120,c:'fuji'},H("We couldn't find this page"),P('The link may be old or mistyped.'),BT(['Go to Discover','pri'])],{label:'404'}),
+      S('Error',[{k:'photo',t:'',h:120,c:'sakura'},H("This page didn't load"),P('Check your connection and try again.'),BT(['Try again','pri'])],{label:'Error'}),
+      S('Discover',[BN("You're offline. Showing saved data: Ratnagiri, Guhagar.",'yama'),H('Discover'),{k:'photo',t:'',h:100,c:'asagi'},P('Nothing saved for Chiplun yet. Download its pack on Me.'),BT(['Open Me','pri'])],{nav:true,label:'Offline + empty'}),
+      S('Field team',[{k:'photo',t:'',h:110,c:'fuji'},H('This page is for the field team'),P('Sign in with a team account to continue.'),BT(['Go to Discover','pri'])],{label:'Not allowed'}),
+      S('Plan',[H('Plan'),CD1(T,'Sign in','Sign in to plan, save and share trips','Google or a 6-digit code to your email'),BT(['Sign in','pri']),{k:'photo',t:'',h:80,c:'wakaba'},P('Not here yet. Hotel booking will appear once we have verified partners.')],{nav:true,label:'Sign-in wall + not here yet'})
+      ];
+    };
+    function CD1(T,k,t,m){ return {k:'card',k2:k,t,m}; }
+    const flat = rows3src(L), flatD = rows3src(D);
+    const rows3 = []; for (let i=0;i<flat.length;i+=6) rows3.push(flat.slice(i,i+6)); rows3src(L,true).forEach(x=>rows3.push([x]));
+    const desk = [];
+    [[L,'light'],[D,'dark']].forEach(([T,n])=>{ desk.push(mkD(T,'d','Discover · '+n,'Discover',false),mkD(T,'d','Discover · menu open · '+n,'Discover',true),mkD(T,'p','Place · '+n,'Discover',false),mkD(T,'m','Map · '+n,'Map',false),mkD(T,'n','Plan view · '+n,'Plan',false)); });
+    return { desk, rows2, rows3, boards:[bd(L,'Light · washi'), bd(D,'Dark · sumi')], rows: [
+      [mk(L,'d','en','Discover · English · light'), mk(L,'p','en','Place · English · light'), mk(L,'m','en','Map · light'), mk(L,'n','en','Plan view · light'), mk(L,'c','en','Crabby chat · light')],
+      [mk(L,'d','mr','Discover · मराठी · light'), mk(D,'p','mr','Place · मराठी · dark'), mk(D,'m','en','Map · dark'), mk(D,'n','en','Plan view · dark'), mk(D,'c','en','Crabby chat · dark')]
+    ] };
+  }
+}
+</script>
+</body>
+</html>

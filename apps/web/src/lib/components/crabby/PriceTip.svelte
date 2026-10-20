@@ -28,7 +28,7 @@
 <div class="flex items-start gap-2" data-testid="price-tip">
 	{#if status === 'done'}
 		<Crabby size={32} />
-		<p class="rounded-card border border-border bg-surface px-3 py-2 type-small">{text}</p>
+		<p class="border border-text px-3 py-2 type-small">{text}</p>
 	{:else if status === 'signin'}
 		<a href={resolve('/login')} class="type-small">{m.crabby_signin()}</a>
 	{:else}

@@ -17,16 +17,16 @@
 	} = $props();
 </script>
 
-<ul class="flex flex-col gap-3" data-testid="itineraries-list">
+<ul class="flex flex-col" data-testid="itineraries-list">
 	{#each items as it (it.id)}
 		<li>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -- href built server-side from a known route + slug -->
 			<a
 				href={it.href}
-				class="flex flex-col gap-1 rounded-card border border-border bg-surface p-4 text-text no-underline"
+				class="flex flex-col gap-0.5 border-t border-border py-3 text-text no-underline"
 			>
 				<span class="type-h3">{it.title}</span>
-				<span class="type-small text-text-2">
+				<span class="text-[13px] text-text-2">
 					{m.plan_n_days({ n: it.days })} · {m.itin_places({ n: it.places })} · {it.readyMade
 						? m.itin_ready_made()
 						: m.itin_community()}

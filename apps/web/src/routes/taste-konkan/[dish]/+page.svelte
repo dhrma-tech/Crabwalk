@@ -16,7 +16,7 @@
 
 <Page title={d.name} back>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<Hero photo={d.photo} />
+		<Hero photo={d.photo} tone="sakura" />
 		<header>
 			<h2 class="type-display">{d.name}</h2>
 			{#if secondary && secondary !== d.name}<p
@@ -37,14 +37,12 @@
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.dish_where()}</h2>
 			{#if d.eateries.length}
-				<ul
-					class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
-				>
+				<ul class="flex flex-col divide-y divide-border border-t border-text">
 					{#each d.eateries as e (e.slug)}
 						<li>
 							<a
 								href={resolve('/food/[slug]', { slug: e.slug })}
-								class="flex justify-between gap-3 px-4 py-3 text-text no-underline"
+								class="flex justify-between gap-3 py-3 text-text no-underline"
 								><span class="type-body">{e.name}</span>{#if e.priceForTwo != null}<span
 										class="type-small text-text-2"
 										>{m.price_for_two({ price: formatINR(e.priceForTwo) })}</span

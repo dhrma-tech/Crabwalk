@@ -28,7 +28,7 @@
 
 <div class="flex flex-col gap-2">
 	<label
-		class="flex min-h-11 w-fit cursor-pointer items-center gap-2 rounded-chip border border-border bg-surface px-4 type-small"
+		class="flex min-h-11 w-fit cursor-pointer items-center gap-2 border border-text px-4 type-small"
 		aria-busy={busy}
 	>
 		<Camera size={20} aria-hidden="true" />{m.field_photos()}
@@ -36,10 +36,6 @@
 	</label>
 	{#if failed}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
 	{#if done.length}<div class="flex flex-wrap gap-2">
-			{#each done as src, i (i)}<img
-					{src}
-					alt=""
-					class="size-20 rounded-input object-cover"
-				/>{/each}
+			{#each done as src, i (i)}<img {src} alt="" class="size-20 object-cover" />{/each}
 		</div>{/if}
 </div>

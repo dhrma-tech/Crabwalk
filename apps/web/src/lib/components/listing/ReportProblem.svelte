@@ -33,16 +33,12 @@
 		{m.report_problem()}
 	</Button>
 {:else}
-	<form
-		onsubmit={send}
-		class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-		data-clip-check
-	>
+	<form onsubmit={send} class="flex flex-col gap-3 border-t border-border pt-3" data-clip-check>
 		<fieldset class="flex flex-wrap gap-2">
 			<legend class="mb-2 type-h3">{m.report_problem()}</legend>
 			{#each ['wrong_info', 'unsafe_spot', 'garbage'] as t (t)}
 				<label
-					class="flex min-h-11 items-center gap-2 rounded-chip border border-border bg-raised px-4 type-small"
+					class="flex min-h-11 items-center gap-2 border border-text px-3 type-small has-checked:bg-text has-checked:text-bg"
 				>
 					<input type="radio" name="type" value={t} bind:group={type} />{msg(`report_type_${t}`)}
 				</label>
@@ -54,7 +50,7 @@
 				bind:value={text}
 				maxlength="1000"
 				rows="3"
-				class="rounded-input border border-border bg-raised p-3 type-body text-text"></textarea>
+				class="border border-text bg-transparent p-3 type-body text-text"></textarea>
 		</label>
 		<input
 			type="text"

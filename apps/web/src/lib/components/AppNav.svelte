@@ -1,58 +1,94 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import Compass from '@lucide/svelte/icons/compass';
-	import MapIcon from '@lucide/svelte/icons/map';
-	import Route from '@lucide/svelte/icons/route';
-	import User from '@lucide/svelte/icons/user';
+	import { afterNavigate } from '$app/navigation';
 	import { m } from '#lib/paraglide/messages.js';
+	import { menu } from '#lib/menu.svelte.ts';
 	import Crabby from './Crabby.svelte';
+	import BrandMark from './BrandMark.svelte';
+	import LanguageSwitch from './LanguageSwitch.svelte';
 
-	// FRONTEND §5 [LOCKED]: bottom nav on phones, left rail on desktop. Crabby centre, raised.
+	// Phones: bottom nav, Crabby raised in the centre (FRONTEND §5). Laptop: no rail — a drawer behind ☰
+	// in the top bar (Suna 5a, DECISIONS P10a-4 overrides FRONTEND §5 "left rail").
 	const items = [
-		{ href: resolve('/'), label: m.nav_discover, icon: Compass },
-		{ href: resolve('/map'), label: m.nav_map, icon: MapIcon },
-		{ href: resolve('/crabby'), label: m.nav_crabby, icon: null },
-		{ href: resolve('/plan/new'), label: m.nav_plan, icon: Route },
-		{ href: resolve('/me'), label: m.nav_me, icon: User }
+		{ href: resolve('/'), label: m.nav_discover },
+		{ href: resolve('/map'), label: m.nav_map },
+		{ href: resolve('/crabby'), label: m.nav_crabby },
+		{ href: resolve('/plan/new'), label: m.nav_plan },
+		{ href: resolve('/me'), label: m.nav_me }
 	];
 	const active = (href: string) =>
 		href === '/'
 			? page.url.pathname === '/'
 			: page.url.pathname.startsWith(href.split('/').slice(0, 2).join('/'));
+
+	afterNavigate(() => (menu.open = false));
+	let drawer: HTMLElement | undefined = $state();
+	$effect(() => {
+		if (menu.open) drawer?.querySelector('a')?.focus();
+	});
 </script>
+
+<svelte:window onkeydown={(e) => e.key === 'Escape' && (menu.open = false)} />
 
 <nav
 	aria-label={m.nav_label()}
 	data-clip-check
-	class="fixed inset-x-0 bottom-0 z-20 border-t print:hidden border-border bg-raised pb-[env(safe-area-inset-bottom)] lg:inset-y-0 lg:right-auto lg:w-24 lg:border-t-0 lg:border-r lg:pt-4 lg:pb-0"
+	class="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg pb-[env(safe-area-inset-bottom)] lg:hidden print:hidden"
 >
-	<ul
-		class="mx-auto flex h-16 max-w-[640px] items-stretch justify-around lg:h-auto lg:flex-col lg:gap-2"
-	>
-		{#each items as item (item.href)}
+	<ul class="mx-auto grid h-16 max-w-[640px] grid-cols-5 items-stretch">
+		{#each items as item, i (item.href)}
 			{@const on = active(item.href)}
-			<li class="flex flex-1 lg:flex-none">
+			<li class="flex">
 				<a
 					href={item.href}
 					aria-current={on ? 'page' : undefined}
 					class={[
-						'flex flex-1 flex-col items-center justify-center gap-0.5 px-1 py-1 type-tiny no-underline lg:py-3',
-						on ? 'text-laterite-500 dark:text-cta' : 'text-text-2'
+						'relative flex flex-1 flex-col items-center justify-center px-1 text-center text-[12px] leading-tight no-underline',
+						i === 2 && 'justify-end pb-1.5',
+						on ? 'font-medium text-text' : 'text-text-2'
 					]}
 				>
-					{#if item.icon}
-						<item.icon size={24} aria-hidden="true" />
-					{:else}
-						<span
-							class="-mt-6 flex size-14 items-center justify-center rounded-full border border-border bg-raised shadow-float lg:mt-0"
-						>
-							<Crabby size={40} />
-						</span>
+					{#if i === 2}
+						<span class="absolute -top-[18px] left-1/2 -ml-[26px]"><Crabby size={52} /></span>
 					{/if}
-					<span class="text-center">{item.label()}</span>
+					<span>{item.label()}</span>
 				</a>
 			</li>
 		{/each}
 	</ul>
 </nav>
+
+{#if menu.open}
+	<button
+		type="button"
+		class="fixed inset-0 z-40 hidden cursor-default lg:block"
+		aria-label={m.close()}
+		tabindex="-1"
+		onclick={() => (menu.open = false)}
+	></button>
+	<nav
+		id="app-menu"
+		bind:this={drawer}
+		aria-label={m.nav_label()}
+		class="fixed inset-y-0 left-0 z-50 hidden w-[230px] flex-col gap-1.5 border-r border-text bg-bg px-5 py-6 lg:flex print:hidden"
+	>
+		<div class="mb-6 flex items-center gap-2.5">
+			<BrandMark size={28} />
+			<span class="text-[17px] font-medium">{m.app_name()}</span>
+		</div>
+		{#each items as item (item.href)}
+			{@const on = active(item.href)}
+			<a
+				href={item.href}
+				aria-current={on ? 'page' : undefined}
+				class={[
+					'border-l-2 px-2.5 py-2 type-body no-underline',
+					on ? 'border-cta font-medium text-text' : 'border-transparent text-text-2'
+				]}>{item.label()}</a
+			>
+		{/each}
+		<div class="flex-1"></div>
+		<LanguageSwitch />
+	</nav>
+{/if}

@@ -11,7 +11,7 @@
 
 <Page title={m.app_name()} back>
 	{#if notFound}
-		<ErrorState title={m.not_found_title()} body={m.not_found_body()}>
+		<ErrorState title={m.not_found_title()} body={m.not_found_body()} tone="fuji">
 			{#snippet action()}<Button href={resolve('/')}>{m.go_discover()}</Button>{/snippet}
 		</ErrorState>
 	{:else}

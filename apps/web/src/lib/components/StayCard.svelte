@@ -17,6 +17,7 @@
 		priceMax,
 		priceSource,
 		serviceStyle,
+		row,
 		saved,
 		onsave,
 		verdict
@@ -29,13 +30,14 @@
 		priceMax?: number | null;
 		priceSource?: string | null;
 		serviceStyle?: 'homely' | 'professional' | null;
+		row?: boolean;
 		saved?: boolean;
 		onsave?: () => void;
 		verdict?: Snippet;
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} {saved} {onsave}>
+<ListingCard {href} {photo} {names} tone="asagi" {row} {saved} {onsave}>
 	{#if tags.length}<TagList {tags} />{/if}
 	{#if priceMin != null && priceMax != null && priceSource}
 		<p class="type-small text-text-2">

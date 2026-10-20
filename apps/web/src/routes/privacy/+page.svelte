@@ -25,7 +25,7 @@
 
 <Page title={m.privacy_title()}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-4">
-		<p class="rounded-card bg-sand-100 p-3 type-small dark:bg-raised">{m.privacy_draft()}</p>
+		<p class="bg-yama p-3 type-small">{m.privacy_draft()}</p>
 		{#each sections as [title, body] (title)}
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h2">{title}</h2>

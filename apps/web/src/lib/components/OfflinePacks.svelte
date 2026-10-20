@@ -32,10 +32,7 @@
 	}
 </script>
 
-<section
-	class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-	data-testid="packs"
->
+<section class="flex flex-col gap-3 border-t border-text pt-3" data-testid="packs">
 	<h2 class="type-h2">{m.packs_title()}</h2>
 	<p class="type-small text-text-2">{m.packs_hint()}</p>
 	{#if !packs.length}

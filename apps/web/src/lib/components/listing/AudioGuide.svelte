@@ -15,16 +15,13 @@
 	const src = $derived(`${SUPABASE_URL}/storage/v1/object/public/audio/${path}`);
 </script>
 
-<section
-	class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-	aria-label={m.audio_guide()}
->
+<section class="flex flex-col gap-3 border border-text px-3 py-3" aria-label={m.audio_guide()}>
 	<h2 class="type-h3">{m.audio_guide()}</h2>
 	<audio bind:this={audio} {src} preload="none" bind:paused bind:playbackRate={rate}></audio>
 	<div class="flex flex-wrap items-center gap-2">
 		<button
 			type="button"
-			class="flex size-12 items-center justify-center rounded-full bg-cta text-on-cta"
+			class="flex size-11 items-center justify-center bg-cta text-on-cta"
 			aria-label={paused ? m.audio_play() : m.audio_pause()}
 			onclick={() => (paused ? audio.play() : audio.pause())}
 		>
@@ -35,25 +32,18 @@
 		</button>
 		<button
 			type="button"
-			class="flex size-11 items-center justify-center rounded-chip text-link"
+			class="flex size-11 items-center justify-center text-link"
 			aria-label={m.audio_back15()}
 			onclick={() => (audio.currentTime = Math.max(0, audio.currentTime - 15))}
 		>
 			<RotateCcw size={22} aria-hidden="true" />
 		</button>
-		<div
-			class="flex rounded-chip border border-border p-0.5"
-			role="group"
-			aria-label={m.audio_speed()}
-		>
+		<div class="flex border border-text" role="group" aria-label={m.audio_speed()}>
 			{#each rates as r (r)}
 				<button
 					type="button"
 					aria-pressed={rate === r}
-					class={[
-						'min-h-10 rounded-chip px-3 type-small',
-						rate === r ? 'bg-sea-500 text-white' : 'text-text-2'
-					]}
+					class={['min-h-11 px-3 type-small', rate === r ? 'bg-text text-bg' : 'text-text-2']}
 					onclick={() => (rate = r)}>{r}×</button
 				>
 			{/each}

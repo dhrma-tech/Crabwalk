@@ -3,7 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatNumber } from '#lib/format.ts';
 	import ListingCard, { type Names, type Photo } from './ListingCard.svelte';
-	import CategoryIcon, { type Category } from './CategoryIcon.svelte';
+	import type { Category } from './CategoryIcon.svelte';
 
 	// FRONTEND §6.3 PlaceCard. `verdict` = mini gauge (P5); `badges` = up to 2 StatusBadges.
 	let {
@@ -32,8 +32,7 @@
 </script>
 
 <ListingCard {href} {photo} {names} fallbackCategory={category} {saved} {onsave}>
-	<p class="flex items-center gap-1.5 type-small text-text-2">
-		<CategoryIcon {category} size={20} />
+	<p class="flex items-center gap-1.5 text-[13px] text-text-2">
 		<span>{categoryLabel}</span>
 		{#if distanceKm != null}<span aria-hidden="true">·</span>
 			<span>{m.distance_km({ km: formatNumber(distanceKm) })}</span>{/if}

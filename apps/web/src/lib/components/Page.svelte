@@ -15,6 +15,6 @@
 >
 
 <TopBar {title} {back} />
-<main id="main" class="mx-auto w-full max-w-[1200px] px-4 py-4">
+<main id="main" class="mx-auto w-full max-w-[1200px] px-6 pt-3 pb-8 lg:px-10 lg:pt-4">
 	{@render children()}
 </main>

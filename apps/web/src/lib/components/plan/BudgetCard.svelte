@@ -43,15 +43,12 @@
 		mileage = budget.vehicle_mileage_kmpl;
 		activities = budget.activities;
 	});
-	const num = 'h-12 w-28 rounded-input border border-border bg-surface px-3 type-body text-text';
+	const num = 'h-11 w-28 border-b border-text bg-transparent type-body text-text';
 </script>
 
-<section
-	class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-	data-testid="budget"
->
+<section class="flex flex-col gap-3 border-t border-text pt-3" data-testid="budget">
 	<h2 class="type-h2">{m.plan_budget()}</h2>
-	<dl class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 type-body">
+	<dl class="grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 type-small [&>dt]:text-text-2">
 		<dt>{m.budget_stay()}</dt>
 		<dd class="text-right">{formatINR(budget.stay)}</dd>
 		<dt>{m.budget_food()}</dt>
@@ -68,8 +65,10 @@
 		<dd class="text-right">{formatINR(budget.entry)}</dd>
 		<dt>{m.budget_activities()}</dt>
 		<dd class="text-right">{formatINR(budget.activities)}</dd>
-		<dt class="type-h3">{m.budget_total()}</dt>
-		<dd class="text-right type-h3" data-testid="budget-total">{formatINR(budget.total)}</dd>
+		<dt class="border-t border-border pt-1.5 font-medium text-text!">{m.budget_total()}</dt>
+		<dd class="border-t border-border pt-1.5 text-right font-medium" data-testid="budget-total">
+			{formatINR(budget.total)}
+		</dd>
 		<dt>{m.budget_per_person({ n: budget.people })}</dt>
 		<dd class="text-right" data-testid="budget-pp">{formatINR(budget.perPerson)}</dd>
 	</dl>

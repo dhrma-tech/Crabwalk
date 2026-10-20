@@ -20,7 +20,7 @@
 			push = 'off';
 		} else push = (await enablePush()) ? 'on' : await pushStatus();
 	}
-	const sel = 'h-12 rounded-input border border-border bg-surface px-3 type-body text-text';
+	const sel = 'h-11 border-b border-text bg-bg type-body text-text';
 	const themes = [
 		{ value: 'system', label: m.theme_system },
 		{ value: 'light', label: m.theme_light },
@@ -30,7 +30,7 @@
 
 <Page title={m.nav_me()}>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<section class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
+		<section class="flex flex-col gap-3 border-t border-text pt-3">
 			{#if data.email}
 				<p class="type-body">{m.me_signed_in_as({ email: data.email })}</p>
 				<form method="POST" action="/login?/signOut">
@@ -46,14 +46,12 @@
 			<section class="flex flex-col gap-3" data-testid="my-trips">
 				<h2 class="type-h2">{m.me_trips()}</h2>
 				{#if data.trips.length}
-					<ul
-						class="flex flex-col divide-y divide-border rounded-card border border-border bg-surface"
-					>
+					<ul class="flex flex-col divide-y divide-border border-t border-text">
 						{#each data.trips as t (t.id)}
 							<li>
 								<a
 									href={resolve('/plan/[id]', { id: t.id })}
-									class="flex flex-col px-4 py-3 text-text no-underline"
+									class="flex flex-col py-3 text-text no-underline"
 									><span class="type-h3">{t.title}</span><span class="type-small text-text-2"
 										>{m.plan_n_days({ n: t.days })}{t.start_date
 											? ` · ${formatDate(t.start_date)}`
@@ -74,7 +72,7 @@
 			<form
 				method="POST"
 				action="?/prefs"
-				class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
+				class="flex flex-col gap-3 border-t border-text pt-3"
 				data-testid="prefs"
 			>
 				<h2 class="type-h2">{m.me_prefs()}</h2>
@@ -116,10 +114,7 @@
 		{/if}
 
 		{#if data.email}
-			<section
-				class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
-				data-testid="consents"
-			>
+			<section class="flex flex-col gap-3 border-t border-text pt-3" data-testid="consents">
 				<h2 class="type-h2">{m.consents_title()}</h2>
 				<form method="POST" action="?/dwell" class="flex flex-col gap-2">
 					<input type="hidden" name="on" value={data.dwell ? '0' : '1'} />
@@ -156,12 +151,12 @@
 			<nav class="flex flex-col gap-2">
 				{#if data.isStaff}<a
 						href={resolve('/admin')}
-						class="flex min-h-12 items-center rounded-card border border-border bg-surface px-4 type-h3 text-text no-underline"
+						class="flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
 						>{m.me_staff()}</a
 					>{/if}
 				{#if data.isOwner}<a
 						href={resolve('/owner')}
-						class="flex min-h-12 items-center rounded-card border border-border bg-surface px-4 type-h3 text-text no-underline"
+						class="flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
 						>{m.me_owner()}</a
 					>{/if}
 			</nav>
@@ -169,9 +164,14 @@
 
 		<p><a href={resolve('/privacy')} class="type-body">{m.privacy_title()}</a></p>
 
-		<section class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
+		<section class="flex flex-col gap-3 border-t border-text pt-3">
 			<h2 class="type-h2">{m.theme()}</h2>
-			<form method="POST" action="/prefs" class="flex flex-wrap gap-2" data-clip-check>
+			<form
+				method="POST"
+				action="/prefs"
+				class="flex w-fit flex-wrap border border-text"
+				data-clip-check
+			>
 				<input type="hidden" name="return" value="/me" />
 				{#each themes as t (t.value)}
 					<button
@@ -179,10 +179,8 @@
 						value={t.value}
 						aria-pressed={data.theme === t.value}
 						class={[
-							'min-h-11 rounded-chip border px-4 type-small',
-							data.theme === t.value
-								? 'border-sea-500 bg-sea-500 text-white'
-								: 'border-border bg-surface text-text'
+							'min-h-11 px-4 type-small',
+							data.theme === t.value ? 'bg-text text-bg' : 'text-text'
 						]}
 					>
 						{t.label()}

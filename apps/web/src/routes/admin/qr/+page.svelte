@@ -8,8 +8,7 @@
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
-	const field =
-		'min-h-11 rounded-input border border-border bg-raised px-3 type-body text-text w-full';
+	const field = 'min-h-11 w-full border-b border-text bg-bg type-body text-text';
 </script>
 
 <Page title={m.qr_admin_title()} back>
@@ -21,8 +20,8 @@
 					href="{resolve('/admin/qr')}?type={t}"
 					aria-current={t === data.type ? 'page' : undefined}
 					class={[
-						'flex min-h-11 items-center rounded-chip border border-border px-4 type-small no-underline',
-						t === data.type ? 'bg-sea-500 text-white' : 'bg-raised text-text'
+						'flex min-h-11 items-center border border-border px-4 type-small no-underline',
+						t === data.type ? 'bg-text text-bg' : 'bg-raised text-text'
 					]}>{msg(`qr_type_${t}`)}</a
 				>
 			{/each}
@@ -32,7 +31,7 @@
 			method="POST"
 			action="?/create"
 			use:enhance
-			class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
+			class="flex flex-col gap-3 border border-border bg-surface p-4"
 		>
 			<input type="hidden" name="type" value={data.type} />
 			<label class="flex flex-col gap-1.5 type-small text-text-2">
@@ -49,7 +48,7 @@
 		{#if data.codes.length}
 			<ul class="flex flex-col gap-3">
 				{#each data.codes as c (c.code)}
-					<li class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4">
+					<li class="flex flex-col gap-3 border border-border bg-surface p-4">
 						<div class="flex flex-wrap items-baseline justify-between gap-2">
 							<a href={resolve('/q/[code]', { code: c.code })} class="type-h3">{c.code}</a>
 							<span class="type-small text-text-2"

@@ -23,17 +23,18 @@
 		...rest
 	}: Props = $props();
 
+	// Suna 3a: aizome primary, ink-outline secondary, underlined text action; red only for emergency.
 	const styles = {
-		primary: 'min-h-12 px-6 bg-cta text-on-cta type-h3',
-		secondary: 'min-h-10 px-5 border-2 border-link text-link type-h3 hit',
-		ghost: 'min-h-10 px-4 text-link type-h3 hit',
-		emergency: 'min-h-14 px-6 bg-emergency text-white type-h2'
+		primary: 'min-h-11 px-5 bg-cta text-on-cta type-body',
+		secondary: 'min-h-11 px-5 border border-text text-text type-body',
+		ghost: 'min-h-11 px-1 text-text type-body underline decoration-1 underline-offset-[6px]',
+		emergency: 'min-h-14 px-6 bg-emergency text-white font-bold text-[18px]'
 	};
 	// Heights are minimums: long Marathi labels wrap instead of clipping.
 	const base =
-		'relative inline-flex items-center justify-center gap-2 rounded-chip py-1.5 text-center ' +
+		'relative inline-flex items-center justify-center gap-2 py-2 text-center ' +
 		'transition-transform duration-[120ms] ease-brand active:scale-[.97] ' +
-		'disabled:opacity-50 aria-disabled:opacity-50';
+		'disabled:bg-border disabled:text-text-2 disabled:border-transparent aria-disabled:opacity-60';
 </script>
 
 {#snippet content()}
@@ -57,12 +58,3 @@
 		{@render content()}
 	</button>
 {/if}
-
-<style>
-	/* 40 px visuals still get a 44 px touch target (§2.4). */
-	:global(.hit)::before {
-		content: '';
-		position: absolute;
-		inset: -2px 0;
-	}
-</style>

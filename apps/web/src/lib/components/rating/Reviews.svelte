@@ -25,13 +25,13 @@
 
 <section class="flex flex-col gap-3" data-testid="reviews">
 	<h2 class="type-h2">{m.reviews_title()}</h2>
-	{#if summary}<p class="rounded-card bg-sea-50 p-3 type-body text-sea-900">
+	{#if summary}<p class="bg-asagi p-3 type-body text-text">
 			<strong>{m.review_summary()}:</strong>
 			{summary}
 		</p>{/if}
 	{#each reviews as r (r.id)}
-		<article class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4">
-			<p class="type-small text-text-2">
+		<article class="flex flex-col gap-2 border-t border-border pt-3">
+			<p class="text-[13px] text-text-2">
 				{msg(`group_${r.group_type}`)} · {formatDate(r.created_at)}
 			</p>
 			{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
@@ -42,7 +42,7 @@
 							src={url(p.storage_path)}
 							alt=""
 							loading="lazy"
-							class="size-24 rounded-input bg-cover object-cover"
+							class="size-24 bg-cover object-cover"
 							style:background-image={p.lqip ? `url(${p.lqip})` : undefined}
 						/>
 					{/each}

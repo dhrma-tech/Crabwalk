@@ -1,17 +1,19 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Crabby from './Crabby.svelte';
 
-	// FRONTEND §6.12: Crabby illustration + invitation + at most one CTA.
-	let { title, body, action }: { title: string; body: string; action?: Snippet } = $props();
+	// FRONTEND §6.12 in Suna (6a): a quiet tint block + one-line invitation + at most one CTA.
+	type Tone = 'fuji' | 'sakura' | 'asagi' | 'wakaba' | 'yama';
+	let {
+		title,
+		body,
+		tone = 'fuji',
+		action
+	}: { title: string; body: string; tone?: Tone; action?: Snippet } = $props();
 </script>
 
-<div
-	class="mx-auto flex max-w-[680px] flex-col items-center gap-3 py-12 text-center"
-	data-clip-check
->
-	<Crabby size={96} />
+<div class="flex max-w-[680px] flex-col gap-3 py-6" data-clip-check>
+	<div class="h-24 w-full" style:background="var(--{tone})" aria-hidden="true"></div>
 	<h2 class="type-h1">{title}</h2>
-	<p class="type-body text-text-2">{body}</p>
-	{#if action}<div class="pt-2">{@render action()}</div>{/if}
+	<p class="type-small text-text-2">{body}</p>
+	{#if action}<div class="pt-1">{@render action()}</div>{/if}
 </div>

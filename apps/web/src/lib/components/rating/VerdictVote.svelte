@@ -112,10 +112,7 @@
 	}
 </script>
 
-<section
-	class="flex flex-col gap-4 rounded-card border border-border bg-surface p-4"
-	data-testid="verdict-vote"
->
+<section class="flex flex-col gap-4 border-t border-text pt-4" data-testid="verdict-vote">
 	<h2 class="type-h2">{m.vote_title()}</h2>
 	{#if !signedIn}
 		<div><Button href={resolve('/login')} variant="secondary">{m.vote_signin()}</Button></div>
@@ -123,7 +120,7 @@
 		<div class="flex flex-col gap-1.5">
 			<span class="type-small text-text-2">{m.vote_as()}</span>
 			<div
-				class="flex w-fit flex-wrap rounded-chip border border-border bg-raised p-0.5"
+				class="flex w-fit flex-wrap border border-text"
 				role="radiogroup"
 				aria-label={m.vote_as()}
 			>
@@ -132,10 +129,7 @@
 						type="button"
 						role="radio"
 						aria-checked={group === g}
-						class={[
-							'min-h-10 rounded-chip px-3 type-small',
-							group === g ? 'bg-sea-500 text-white' : 'text-text-2'
-						]}
+						class={['min-h-11 px-3 type-small', group === g ? 'bg-text text-bg' : 'text-text-2']}
 						onclick={() => (group = g)}>{msg(`group_${g}`)}</button
 					>
 				{/each}
@@ -149,10 +143,8 @@
 					type="button"
 					aria-pressed={mine.verdicts[group] === level}
 					class={[
-						'flex min-h-16 flex-col items-center justify-center gap-1 rounded-card border-2 px-2 py-2 type-h3',
-						mine.verdicts[group] === level
-							? 'border-sea-500 bg-sea-50 text-sea-900'
-							: 'border-border bg-raised text-text'
+						'flex min-h-16 flex-col items-center justify-center gap-1 border border-text px-2 py-2 type-body',
+						mine.verdicts[group] === level ? 'bg-text text-bg' : 'bg-bg text-text'
 					]}
 					onclick={() => vote(level)}
 				>
@@ -181,10 +173,8 @@
 									disabled={locked(d)}
 									aria-label={m.score_of({ dim: msg(`dim_${d}`), n })}
 									class={[
-										'size-11 rounded-chip border type-small disabled:opacity-40',
-										mine.subs[d] === n
-											? 'border-sea-500 bg-sea-500 text-white'
-											: 'border-border bg-raised'
+										'size-11 border border-text type-small disabled:opacity-40',
+										mine.subs[d] === n ? 'border-text bg-text text-bg' : 'bg-bg'
 									]}
 									onclick={() => score(d, n)}>{n}</button
 								>
@@ -199,10 +189,7 @@
 					{#if proofSent || mine.proofPending}
 						<p class="type-small" role="status">{m.proof_sent()}</p>
 					{:else}
-						<form
-							onsubmit={proof}
-							class="flex flex-col gap-2 rounded-card border border-border p-3"
-						>
+						<form onsubmit={proof} class="flex flex-col gap-2 border border-border p-3">
 							<h4 class="type-h3">{m.proof_title()}</h4>
 							<p class="type-small text-text-2">{m.proof_body()}</p>
 							<input
@@ -229,10 +216,10 @@
 						bind:value={text}
 						maxlength="2000"
 						rows="3"
-						class="rounded-input border border-border bg-raised p-3 type-body text-text"></textarea>
+						class="border border-text bg-transparent p-3 type-body text-text"></textarea>
 				</label>
 				<label
-					class="flex min-h-11 w-fit cursor-pointer items-center gap-2 rounded-chip border border-border bg-raised px-4 type-small"
+					class="flex min-h-11 w-fit cursor-pointer items-center gap-2 border border-text px-4 type-small"
 				>
 					<Camera size={20} aria-hidden="true" />{m.review_photos()}
 					<input type="file" accept="image/*" multiple class="sr-only" onchange={addPhotos} />

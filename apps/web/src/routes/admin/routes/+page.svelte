@@ -13,7 +13,7 @@
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
 		{#each data.routes as r (r.trip_id)}
 			<article
-				class="flex flex-col gap-3 rounded-card border border-border bg-surface p-4"
+				class="flex flex-col gap-3 border border-border bg-surface p-4"
 				data-testid="route-review"
 			>
 				{#if r.view}

@@ -134,20 +134,18 @@
 			method="POST"
 			action={data.live ? '?/stop' : '?/start'}
 			use:enhance
-			class="flex flex-wrap items-center gap-2"
+			class={['flex flex-wrap items-center gap-2', data.live && 'bg-wakaba px-3.5 py-2']}
 		>
-			<p class="flex-1 type-small text-text-2">{data.live ? m.live_on() : m.live_off()}</p>
+			<p class={['flex-1 type-small', data.live ? 'text-text' : 'text-text-2']}>
+				{data.live ? m.live_on() : m.live_off()}
+			</p>
 			<Button type="submit" variant={data.live ? 'ghost' : 'primary'}
 				>{data.live ? m.live_stop() : m.live_start()}</Button
 			>
 		</form>
 
 		{#if lateMin >= 20 && next && next.kind === 'place'}
-			<div
-				class="flex flex-col gap-2 rounded-card border border-caution bg-mango-50 p-3 dark:bg-raised"
-				role="status"
-				data-testid="nudge-late"
-			>
+			<div class="flex flex-col gap-2 bg-yama px-3.5 py-2.5" role="status" data-testid="nudge-late">
 				<p class="type-body">{m.nudge_late({ n: lateMin, place: next.name ?? '' })}</p>
 				<div class="flex flex-wrap gap-2">
 					<form method="POST" action="?/skip" use:enhance>
@@ -163,37 +161,30 @@
 				</div>
 			</div>
 		{:else if leaveNow && next}
-			<p
-				class="rounded-card border border-border bg-surface p-3 type-body"
-				role="status"
-				data-testid="nudge-leave"
-			>
+			<p class="bg-yama px-3.5 py-2.5 type-body" role="status" data-testid="nudge-leave">
 				{m.nudge_leave({ place: next.name ?? '' })}
 			</p>
 		{/if}
 
 		{#if atIdx >= 0 && day?.stops[atIdx]}
-			<section class="rounded-card border border-border bg-surface p-4" data-testid="current-stop">
-				<p class="type-small text-text-2">{m.live_here()}</p>
-				<p class="type-h2">{day.stops[atIdx].name}</p>
-				{#if day.stops[atIdx].depart}<p class="type-small">
+			<section class="border border-text px-3.5 py-3" data-testid="current-stop">
+				<p class="text-[12px] text-text-2">{m.live_here()}</p>
+				<p class="font-display text-[18px] leading-normal">{day.stops[atIdx].name}</p>
+				{#if day.stops[atIdx].depart}<p class="text-[13px] text-text-2">
 						{m.live_until({ t: day.stops[atIdx].depart })}
 					</p>{/if}
 			</section>
 		{/if}
 
 		{#if next}
-			<section
-				class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
-				data-testid="next-stop"
-			>
-				<p class="type-small text-text-2">{m.live_next()}</p>
-				<p class="type-h2">{next.name}</p>
-				<p class="type-small">
+			<section class="flex flex-col gap-1 border border-text px-3.5 py-3" data-testid="next-stop">
+				<p class="text-[12px] text-text-2">{m.live_next()}</p>
+				<p class="font-display text-[18px] leading-normal">{next.name}</p>
+				<p class="text-[13px] text-text-2">
 					{m.live_planned({ t: clock(raw[nextIdx]?.arrive_at ?? null) })}{#if legDur[nextIdx]}
 						· {m.live_drive({ n: Math.round(legDur[nextIdx]! / 60) })}{/if}
 				</p>
-				<div>
+				<div class="mt-2">
 					<Button
 						href={`${resolve('/navigate')}?trip=${data.trip.id}&day=${data.day}&leg=${nextIdx}`}
 						>{m.live_navigate()}</Button
@@ -207,7 +198,7 @@
 		{#if push === 'off'}
 			<button
 				type="button"
-				class="self-start type-body text-link underline"
+				class="self-start type-body text-text underline underline-offset-4"
 				onclick={async () => (push = (await enablePush()) ? 'on' : 'off')}
 			>
 				{m.push_enable()}

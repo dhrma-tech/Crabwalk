@@ -152,8 +152,8 @@
 			<Input id="g-err" label={s.input} error={s.risky} />
 		</section>
 
-		<section class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4">
-			<Skeleton class="h-32 w-full rounded-card" />
+		<section class="flex flex-col gap-2 border border-border bg-surface p-4">
+			<Skeleton class="h-32 w-full" />
 			<Skeleton class="h-4 w-2/3" />
 		</section>
 

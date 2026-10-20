@@ -4,7 +4,7 @@
 	import { msg } from '#lib/msg.ts';
 	import { formatNumber } from '#lib/format.ts';
 
-	// FRONTEND §6.4: small labelled bars 0–5, sea fill; hygiene/cleanliness show a lock + "Verified visitors only".
+	// FRONTEND §6.4: small labelled bars 0–5, aizome fill; hygiene/cleanliness show a lock + "Verified visitors only".
 	let { dims, subs }: { dims: string[]; subs: { dimension: string; avg: number; n: number }[] } =
 		$props();
 	const locked = ['hygiene', 'cleanliness'];
@@ -19,14 +19,13 @@
 					>{#if locked.includes(d)}<Lock size={14} aria-hidden="true" />{/if}{msg(`dim_${d}`)}</span
 				>
 				<span
-					class="h-2 overflow-hidden rounded-chip bg-sand-200 dark:bg-raised"
+					class="h-2 overflow-hidden bg-border"
 					role="img"
 					aria-label={s
 						? m.score_of({ dim: msg(`dim_${d}`), n: formatNumber(s.avg) })
 						: msg(`dim_${d}`)}
 				>
-					{#if s}<span class="block h-full bg-sea-500" style:width="{(s.avg / 5) * 100}%"
-						></span>{/if}
+					{#if s}<span class="block h-full bg-cta" style:width="{(s.avg / 5) * 100}%"></span>{/if}
 				</span>
 				<span class="text-text-2">{s ? formatNumber(s.avg) : '–'}</span>
 			</li>

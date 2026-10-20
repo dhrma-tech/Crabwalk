@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import Check from '@lucide/svelte/icons/check';
 
-	// Filter chip (FRONTEND §6.2): toggle; selected = sea fill + white + check.
+	// Filter chip (FRONTEND §6.2): toggle; selected = ink fill + check (Suna map chips).
 	let {
 		selected = $bindable(false),
 		onchange,
@@ -14,9 +14,9 @@
 	type="button"
 	aria-pressed={selected}
 	class={[
-		'inline-flex min-h-11 shrink-0 items-center gap-1.5 rounded-chip border px-4 py-1.5 text-left type-small',
+		'inline-flex min-h-11 shrink-0 items-center gap-1.5 border border-text px-3 py-1 text-left type-small',
 		'transition-colors duration-200 ease-brand',
-		selected ? 'border-sea-500 bg-sea-500 text-white' : 'border-border bg-surface text-text'
+		selected ? 'bg-text text-bg' : 'bg-bg text-text'
 	]}
 	onclick={() => {
 		selected = !selected;

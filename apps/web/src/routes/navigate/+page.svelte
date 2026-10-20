@@ -214,9 +214,11 @@
 			data-testid="nav-card"
 		>
 			{#if leg}
-				<div class="rounded-card bg-sea-700 p-4 text-white shadow-float">
+				<div class="bg-text p-4 text-bg">
 					{#if arrived}
-						<p class="type-h1" data-testid="nav-arrived">{m.nav_arrived({ place: leg.to.name })}</p>
+						<p class="font-display text-[24px] leading-snug" data-testid="nav-arrived">
+							{m.nav_arrived({ place: leg.to.name })}
+						</p>
 					{:else if nav?.offRoute}
 						<p class="type-h2" role="alert">{m.nav_off_route()}</p>
 					{:else if nav?.next}
@@ -227,7 +229,10 @@
 								: nav.next.code.endsWith('L')
 									? CornerUpLeft
 									: CornerUpRight}
-						<p class="flex items-center gap-2 type-h1" data-testid="nav-next">
+						<p
+							class="flex items-center gap-2 font-display text-[24px] leading-snug"
+							data-testid="nav-next"
+						>
 							<Icon size={28} aria-hidden="true" />{turnText(nav.next.code)}
 						</p>
 						<p class="type-h3">{m.nav_in()} {dist(nav.next.in)}</p>
@@ -247,7 +252,7 @@
 			<div class="flex flex-wrap items-center gap-2">
 				<button
 					type="button"
-					class="flex min-h-11 items-center gap-2 rounded-chip border border-border bg-raised px-3 type-small shadow-float"
+					class="flex min-h-11 items-center gap-2 border border-text bg-bg px-3 type-small"
 					aria-pressed={voice}
 					onclick={() => (voice = !voice)}
 				>
@@ -257,7 +262,7 @@
 						/>{/if}{m.nav_voice()}
 				</button>
 				<span
-					class="flex min-h-11 items-center gap-2 rounded-chip border border-border bg-raised px-3 type-small shadow-float"
+					class="flex min-h-11 items-center gap-2 border border-text bg-bg px-3 type-small"
 					data-testid="wake-lock"
 				>
 					<Sun size={18} aria-hidden="true" />{awake ? m.nav_awake_on() : m.nav_awake_off()}
@@ -281,21 +286,18 @@
 				</div>
 				{#if olaLine && !leg.shape}
 					<!-- BACKEND §6.1: Ola results are attributed wherever they show. -->
-					<p
-						class="rounded-card bg-raised px-3 py-2 type-small shadow-float"
-						data-testid="ola-attribution"
-					>
+					<p class="border border-border bg-bg px-3 py-2 type-small" data-testid="ola-attribution">
 						{m.nav_route_by()}
 						<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
 							>Ola Maps</a
 						>
 					</p>
 				{/if}
-				{#if longDrive}<p class="rounded-card bg-raised px-3 py-2 type-small shadow-float">
+				{#if longDrive}<p class="border border-border bg-bg px-3 py-2 type-small">
 						{m.nav_long_drive()}
 					</p>{/if}
 				{#if turns.length}
-					<details class="rounded-card bg-raised px-3 py-2 shadow-float" data-testid="nav-steps">
+					<details class="border border-border bg-bg px-3 py-2" data-testid="nav-steps">
 						<summary class="min-h-11 cursor-pointer content-center type-small"
 							>{m.nav_steps({ n: turns.length })}</summary
 						>
@@ -311,7 +313,7 @@
 				<form
 					method="POST"
 					action="/prefs"
-					class="flex flex-wrap items-center gap-2 rounded-card bg-raised px-3 py-2 shadow-float"
+					class="flex flex-wrap items-center gap-2 bg-fuji px-3 py-2"
 					data-testid="dark-suggest"
 				>
 					<input type="hidden" name="theme" value="dark" />
@@ -323,7 +325,7 @@
 					>
 				</form>
 			{/if}
-			<p class="rounded-card bg-raised px-3 py-2 type-small text-text-2 shadow-float">
+			<p class="border border-border bg-bg px-3 py-2 type-small text-text-2">
 				{m.nav_limits()}
 			</p>
 		</div>

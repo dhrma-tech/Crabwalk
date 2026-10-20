@@ -9,10 +9,10 @@
 
 <ul class="flex flex-wrap gap-1.5">
 	{#each shown as tag (tag)}
-		<li class="rounded-chip bg-bg px-2.5 py-0.5 type-tiny text-text-2">{tag}</li>
+		<li class="border border-border px-2.5 py-px text-[13px] text-text">{tag}</li>
 	{/each}
 	{#if rest > 0}
-		<li class="rounded-chip bg-bg px-2.5 py-0.5 type-tiny text-text-2">
+		<li class="px-1 py-px text-[13px] text-text-2">
 			{m.more_count({ count: rest })}
 		</li>
 	{/if}

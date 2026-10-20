@@ -161,11 +161,11 @@
 			/>
 		</div>
 
-		<div class="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-3">
-			<div class="pointer-events-auto relative mx-auto w-full max-w-[680px]">
-				<label
-					class="flex h-12 items-center gap-2 rounded-input border border-border bg-raised px-3 shadow-float"
-				>
+		<div
+			class="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-3 lg:px-10 lg:pt-5"
+		>
+			<div class="pointer-events-auto relative w-full max-w-[680px] lg:max-w-[360px]">
+				<label class="flex h-12 items-center gap-2 border border-border bg-raised px-3">
 					<Search size={20} aria-hidden="true" class="text-text-2" />
 					<span class="sr-only">{m.map_search()}</span>
 					<input
@@ -173,14 +173,11 @@
 						oninput={onSearch}
 						type="search"
 						placeholder={m.map_search()}
-						class="h-full min-w-0 flex-1 bg-transparent type-body text-text outline-none"
+						class="h-full min-w-0 flex-1 bg-transparent type-body text-text placeholder:text-text-2"
 					/>
 				</label>
 				{#if results.length || searched}
-					<ul
-						class="mt-1 overflow-hidden rounded-card border border-border bg-raised shadow-float"
-						role="listbox"
-					>
+					<ul class="mt-1 overflow-hidden border border-text bg-bg" role="listbox">
 						{#each results as r, i (i)}
 							<li>
 								<button
@@ -251,7 +248,7 @@
 		>
 			{#if showLayers}
 				<fieldset
-					class="flex flex-col gap-1 rounded-card border border-border bg-raised p-3 shadow-float"
+					class="flex flex-col gap-1 border border-text bg-bg p-3"
 					data-testid="layers-panel"
 				>
 					<legend class="sr-only">{m.layers_title()}</legend>
@@ -270,7 +267,7 @@
 			{/if}
 			<button
 				type="button"
-				class="flex size-12 items-center justify-center rounded-full border border-border bg-raised shadow-float"
+				class="flex size-12 items-center justify-center border border-text bg-bg"
 				aria-label={m.layers_title()}
 				aria-expanded={showLayers}
 				onclick={() => (showLayers = !showLayers)}
@@ -283,10 +280,7 @@
 				class="pointer-events-auto absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-10 mx-auto flex max-w-[520px] flex-col gap-2 lg:bottom-6"
 			>
 				{#if layers.heat && layerInfo}
-					<p
-						class="rounded-card bg-raised px-3 py-2 type-small shadow-float"
-						data-testid="heat-legend"
-					>
+					<p class="border border-border bg-bg px-3 py-2 type-small" data-testid="heat-legend">
 						<b>{m.layer_heat()}</b> · {m.heat_counts({
 							live: layerInfo.live,
 							typical: layerInfo.typical
@@ -296,25 +290,25 @@
 				{/if}
 				{#if layers.tides}
 					<div
-						class="flex flex-col gap-1 rounded-card bg-raised px-3 py-2 shadow-float"
+						class="flex flex-col gap-1 border border-border bg-bg px-3 py-2"
 						data-testid="tide-slider"
 					>
 						<label class="flex items-center gap-3 type-small">
-							<span class="w-12 font-semibold" aria-live="polite">{hhmm(tideMinute)}</span>
+							<span class="w-12 font-medium" aria-live="polite">{hhmm(tideMinute)}</span>
 							<input
 								type="range"
 								min="0"
 								max="1425"
 								step="15"
 								bind:value={tideMinute}
-								class="flex-1"
+								class="flex-1 accent-[var(--cta)]"
 								aria-label={m.tide_slider()}
 							/>
 						</label>
 						<p class="flex flex-wrap gap-x-3 type-small text-text-2">
 							<span><span class="text-ok">●</span> {m.tide_ok()}</span>
-							<span><span class="text-danger">●</span> {m.tide_cut()}</span>
-							<span>● {m.tide_unknown()}</span>
+							<span><span class="text-caution">●</span> {m.tide_cut()}</span>
+							<span><span class="text-text-2">●</span> {m.tide_unknown()}</span>
 							{#each layerInfo?.tideAttribution ?? [] as a (a.url)}
 								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- provider attribution link -->
 								<a href={a.url} target="_blank" rel="noopener">{a.text}</a>
@@ -332,13 +326,14 @@
 						{#if feature.kind === 'alert'}
 							<div>
 								<h2 class="type-h2">{msg(`alert_${fp('type')}`)}</h2>
-								<p
-									class={[
-										'type-small font-semibold',
-										fp('severity') === 'danger' ? 'text-danger' : 'text-caution'
-									]}
-								>
-									{msg(`severity_${fp('severity')}`)}
+								<p class="flex items-center gap-2 type-small font-medium">
+									<span
+										class={[
+											'size-2 rounded-full',
+											fp('severity') === 'danger' ? 'bg-danger' : 'bg-caution'
+										]}
+										aria-hidden="true"
+									></span>{msg(`severity_${fp('severity')}`)}
 								</p>
 							</div>
 						{:else}
@@ -353,7 +348,7 @@
 						{/if}
 						<button
 							type="button"
-							class="flex size-11 items-center justify-center rounded-chip text-text-2"
+							class="flex size-11 items-center justify-center text-text-2"
 							aria-label={m.close()}
 							onclick={() => (feature = null)}><X size={20} aria-hidden="true" /></button
 						>
@@ -407,7 +402,7 @@
 						</div>
 						<button
 							type="button"
-							class="flex size-11 items-center justify-center rounded-chip text-text-2"
+							class="flex size-11 items-center justify-center text-text-2"
 							aria-label={m.close()}
 							onclick={() => (selected = null)}><X size={20} aria-hidden="true" /></button
 						>

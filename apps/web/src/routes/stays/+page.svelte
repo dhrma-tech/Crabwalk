@@ -58,9 +58,10 @@
 			]}
 		/>
 		{#if data.stays.length}
-			<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			<div class="grid gap-x-10 gap-y-3 lg:grid-cols-2">
 				{#each data.stays as s (s.slug)}
 					<StayCard
+						row
 						href={resolve('/stays/[slug]', { slug: s.slug })}
 						names={s.names}
 						photo={s.photo}

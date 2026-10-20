@@ -1,5 +1,5 @@
-// Map style (FRONTEND §8 [LOCKED]): Protomaps basemap layers recoloured to "Laterite and sea".
-// Labels use our self-hosted Mukta through MapLibre `font-faces` (complex-script shaping for Devanagari);
+// Map style (FRONTEND §8, Suna colours per DECISIONS P10a-1): Protomaps basemap layers on washi land and asagi
+// water. Labels use our self-hosted Suna sans through MapLibre `font-faces` (Devanagari shaping);
 // no external glyph server, no Ola tiles.
 import { layers, namedFlavor, type Flavor } from '@protomaps/basemaps';
 import type { StyleSpecification, LayerSpecification } from 'maplibre-gl';
@@ -17,62 +17,62 @@ const parks = (c: string) => ({
 
 const flavors: Record<MapTheme, Partial<Flavor>> = {
 	light: {
-		background: '#F6EFE4',
-		earth: '#F6EFE4',
-		water: '#B3E2DE',
-		...parks('#E3E8D4'),
-		highway: '#FFFFFF',
-		major: '#FFFFFF',
-		link: '#FFFFFF',
-		highway_casing_early: '#E9DFCF',
-		highway_casing_late: '#E9DFCF',
-		major_casing_early: '#E9DFCF',
-		major_casing_late: '#E9DFCF',
-		link_casing: '#E9DFCF',
-		minor_a: '#FBF8F2',
-		minor_b: '#FBF8F2',
-		minor_casing: '#E9DFCF',
-		city_label: '#1E1B16',
-		city_label_halo: '#F6EFE4',
-		subplace_label: '#5A4A35',
-		subplace_label_halo: '#F6EFE4',
-		roads_label_major: '#5A4A35',
-		roads_label_major_halo: '#F6EFE4',
-		roads_label_minor: '#5A4A35',
-		roads_label_minor_halo: '#F6EFE4',
-		state_label: '#5A4A35',
-		state_label_halo: '#F6EFE4',
-		country_label: '#5A4A35',
-		ocean_label: '#0A5350'
+		background: '#EAE4D6',
+		earth: '#EAE4D6',
+		water: '#BFDFE0',
+		...parks('#D3E39A'),
+		highway: '#FBF9F4',
+		major: '#FBF9F4',
+		link: '#FBF9F4',
+		highway_casing_early: '#D6CFC0',
+		highway_casing_late: '#D6CFC0',
+		major_casing_early: '#D6CFC0',
+		major_casing_late: '#D6CFC0',
+		link_casing: '#D6CFC0',
+		minor_a: '#F4F0E8',
+		minor_b: '#F4F0E8',
+		minor_casing: '#D6CFC0',
+		city_label: '#1F1E1C',
+		city_label_halo: '#EAE4D6',
+		subplace_label: '#5C584F',
+		subplace_label_halo: '#EAE4D6',
+		roads_label_major: '#5C584F',
+		roads_label_major_halo: '#F4F0E8',
+		roads_label_minor: '#5C584F',
+		roads_label_minor_halo: '#F4F0E8',
+		state_label: '#5C584F',
+		state_label_halo: '#EAE4D6',
+		country_label: '#5C584F',
+		ocean_label: '#5C584F'
 	},
 	dark: {
-		background: '#16120E',
-		earth: '#16120E',
-		water: '#05302E',
-		...parks('#1D2218'), // "darkened" [DEFAULT]
-		highway: '#3A3128',
-		major: '#3A3128',
-		link: '#3A3128',
-		highway_casing_early: '#2C251D',
-		highway_casing_late: '#2C251D',
-		major_casing_early: '#2C251D',
-		major_casing_late: '#2C251D',
-		link_casing: '#2C251D',
-		minor_a: '#2C251D',
-		minor_b: '#2C251D',
-		minor_casing: '#221C16',
-		city_label: '#F3EADC',
-		city_label_halo: '#16120E',
-		subplace_label: '#C9BBA6',
-		subplace_label_halo: '#16120E',
-		roads_label_major: '#C9BBA6',
-		roads_label_major_halo: '#16120E',
-		roads_label_minor: '#C9BBA6',
-		roads_label_minor_halo: '#16120E',
-		state_label: '#C9BBA6',
-		state_label_halo: '#16120E',
-		country_label: '#C9BBA6',
-		ocean_label: '#6FC1BA'
+		background: '#202226',
+		earth: '#202226',
+		water: '#12303A',
+		...parks('#2A3A1E'),
+		highway: '#3A3D43',
+		major: '#3A3D43',
+		link: '#3A3D43',
+		highway_casing_early: '#2A2C31',
+		highway_casing_late: '#2A2C31',
+		major_casing_early: '#2A2C31',
+		major_casing_late: '#2A2C31',
+		link_casing: '#2A2C31',
+		minor_a: '#2A2C31',
+		minor_b: '#2A2C31',
+		minor_casing: '#202226',
+		city_label: '#ECE7DB',
+		city_label_halo: '#202226',
+		subplace_label: '#A39E92',
+		subplace_label_halo: '#202226',
+		roads_label_major: '#A39E92',
+		roads_label_major_halo: '#202226',
+		roads_label_minor: '#A39E92',
+		roads_label_minor_halo: '#202226',
+		state_label: '#A39E92',
+		state_label_halo: '#202226',
+		country_label: '#A39E92',
+		ocean_label: '#A39E92'
 	}
 };
 
@@ -91,9 +91,9 @@ export function buildStyle(
 	const flavor: Flavor = {
 		...namedFlavor(theme),
 		...flavors[theme],
-		regular: 'Mukta Regular',
-		bold: 'Mukta SemiBold',
-		italic: 'Mukta Regular',
+		regular: 'Suna Sans Regular',
+		bold: 'Suna Sans Medium',
+		italic: 'Suna Sans Regular',
 		pois: undefined // our own pins replace basemap POIs (they would need a sprite sheet)
 	};
 	// No sprite sheet: drop basemap POIs (our pins replace them) and strip icons from label layers
@@ -129,9 +129,9 @@ const fontFaces = (origin: string) => {
 		}
 	];
 	return {
-		'Mukta Regular': face('mukta-400'),
-		'Mukta SemiBold': face('mukta-600'),
-		'Noto Sans Devanagari Regular v1': face('mukta-400')
+		'Suna Sans Regular': face('sans-400'),
+		'Suna Sans Medium': face('sans-500'),
+		'Noto Sans Devanagari Regular v1': face('sans-400')
 	};
 };
 
@@ -150,7 +150,7 @@ function sourceLayers(source: string, i: number, flavor: Flavor, lang: string, t
 		type: 'line',
 		source,
 		'source-layer': 'water',
-		paint: { 'line-color': theme === 'light' ? '#6FC1BA' : '#0A5350', 'line-width': 1 }
+		paint: { 'line-color': theme === 'light' ? '#8FC3C5' : '#1F4A4D', 'line-width': 1 }
 	};
 	const waterIdx = base.findIndex((l) => l.id === 'water');
 	base.splice(waterIdx + 1, 0, coastline);
@@ -158,11 +158,25 @@ function sourceLayers(source: string, i: number, flavor: Flavor, lang: string, t
 	return base.map((l) => (i ? ({ ...l, id: `${l.id}-${i}` } as LayerSpecification) : l));
 }
 
-// Pin colours (FRONTEND §8): places laterite, stays sea, food mango; utilities neutral grey.
+// Pin colours (FRONTEND §8 in Suna): places yamabuki, stays asagi, food sakura; utilities neutral grey;
+// clusters fuji. Mid-tones that read on both the light and the dark map.
 export const PIN = {
-	place: '#B5462B',
-	stay: '#0E6E6A',
-	eatery: '#E8A33D',
-	utility: '#6E6A64',
-	cluster: '#0E6E6A'
+	place: '#D99A00',
+	stay: '#00808A',
+	eatery: '#C45A78',
+	utility: '#5C584F',
+	cluster: '#6C6BA8'
+} as const;
+
+// Overlay colours (Suna): never red — red is emergency only. Halo/casing = washi.
+export const MAP = {
+	halo: '#F4F0E8',
+	ink: '#1F1E1C',
+	route: '#2B3F5C',
+	me: '#2B3F5C',
+	ok: '#7A9A1E',
+	caution: '#D99A00',
+	danger: '#C45A78',
+	unknown: '#8A857A',
+	heat: ['rgba(108,107,168,0)', '#6C6BA8', '#D99A00', '#C45A78'] as const
 } as const;

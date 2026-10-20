@@ -89,8 +89,8 @@
 	}
 
 	const seg = (on: boolean) => [
-		'min-h-11 flex-1 rounded-chip px-3 type-small',
-		on ? 'bg-sea-500 text-white' : 'text-text-2'
+		'min-h-11 flex-1 px-3 type-small',
+		on ? 'bg-text text-bg' : 'text-text-2'
 	];
 </script>
 
@@ -135,7 +135,7 @@
 						bind:value={startDate}
 						min={data.tomorrow}
 						required
-						class="h-12 rounded-input border border-border bg-surface px-4 type-body text-text"
+						class="h-11 border-b border-text bg-bg type-body text-text"
 					/>
 				</label>
 			</section>
@@ -149,7 +149,7 @@
 						bind:value={startQuery}
 						oninput={() => (gps = null)}
 						autocomplete="off"
-						class="h-12 rounded-input border border-border bg-surface px-4 type-body text-text"
+						class="h-11 border-b border-text bg-bg type-body text-text"
 					/>
 				</label>
 				<datalist id="starts">
@@ -165,11 +165,7 @@
 
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h3">3 · {m.plan_group()}</h2>
-				<div
-					class="flex rounded-chip border border-border p-0.5"
-					role="group"
-					aria-label={m.plan_group()}
-				>
+				<div class="flex border border-border p-0.5" role="group" aria-label={m.plan_group()}>
 					{#each ['family', 'couple', 'friends', 'solo'] as const as g (g)}
 						<button
 							type="button"
@@ -186,7 +182,7 @@
 						min="1"
 						max="50"
 						bind:value={people}
-						class="h-12 w-24 rounded-input border border-border bg-surface px-4 type-body text-text"
+						class="h-12 w-24 border border-border bg-surface px-4 type-body text-text"
 					/>
 				</label>
 			</section>
@@ -225,10 +221,7 @@
 				</div>
 				<label class="flex flex-col gap-1.5 type-small text-text-2">
 					{m.plan_diet()}
-					<select
-						bind:value={diet}
-						class="h-12 rounded-input border border-border bg-surface px-4 type-body text-text"
-					>
+					<select bind:value={diet} class="h-11 border-b border-text bg-bg type-body text-text">
 						<option value="">{m.filter_any()}</option>
 						<option value="veg">{m.diet_veg()}</option>
 						<option value="non_veg">{m.diet_nonveg()}</option>
@@ -239,11 +232,7 @@
 
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h3">6 · {m.plan_pace()}</h2>
-				<div
-					class="flex rounded-chip border border-border p-0.5"
-					role="group"
-					aria-label={m.plan_pace()}
-				>
+				<div class="flex border border-border p-0.5" role="group" aria-label={m.plan_pace()}>
 					{#each ['relaxed', 'balanced', 'packed'] as const as p (p)}
 						<button
 							type="button"

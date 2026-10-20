@@ -15,6 +15,7 @@
 		signatureDish,
 		priceForTwo,
 		diet = [],
+		row,
 		saved,
 		onsave,
 		verdict
@@ -26,6 +27,7 @@
 		signatureDish?: string | null;
 		priceForTwo?: number | null;
 		diet?: Diet[];
+		row?: boolean;
 		saved?: boolean;
 		onsave?: () => void;
 		verdict?: Snippet;
@@ -33,15 +35,15 @@
 
 	const dot: Record<Diet, string> = {
 		veg: 'bg-ok',
-		nonveg: 'bg-laterite-700',
-		jain: 'bg-mango-700'
+		nonveg: 'bg-sakura-s',
+		jain: 'bg-yama-s'
 	};
 	const dietText = { veg: m.diet_veg, nonveg: m.diet_nonveg, jain: m.diet_jain };
 </script>
 
-<ListingCard {href} {photo} {names} {saved} {onsave}>
+<ListingCard {href} {photo} {names} tone="yama" {row} {saved} {onsave}>
 	{#if authenticity}
-		<p class="w-fit rounded-chip bg-bg px-2.5 py-0.5 type-tiny text-text-2">{authenticity}</p>
+		<p class="w-fit bg-yama px-2.5 py-px text-[13px] text-text">{authenticity}</p>
 	{/if}
 	{#if signatureDish}<p class="type-body">{signatureDish}</p>{/if}
 	{#if priceForTwo != null}

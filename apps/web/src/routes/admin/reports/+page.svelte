@@ -15,7 +15,7 @@
 		{#if data.reports.length}
 			{#each data.reports as r (r.id)}
 				<article
-					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-4"
+					class="flex flex-col gap-2 border border-border bg-surface p-4"
 					data-testid="report"
 				>
 					<p class="type-h3">

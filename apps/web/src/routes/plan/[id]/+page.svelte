@@ -64,7 +64,7 @@
 					name="title"
 					value={data.trip.title}
 					maxlength="120"
-					class="h-12 flex-1 rounded-input border border-border bg-surface px-4 type-h3 text-text"
+					class="h-12 flex-1 border border-border bg-surface px-4 type-h3 text-text"
 				/>
 				<Button type="submit" variant="secondary">{m.plan_save()}</Button>
 			</form>
@@ -111,7 +111,7 @@
 				<label class="flex flex-col gap-1 type-small text-text-2"
 					>{m.plan_days()}<select
 						name="day"
-						class="h-11 rounded-input border border-border bg-surface px-3 type-body text-text"
+						class="h-11 border-b border-text bg-bg type-body text-text"
 						>{#each data.days as d, i (i)}<option value={i + 1}
 								>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
 							>{/each}</select
@@ -121,7 +121,7 @@
 			</form>
 			{#if form?.suggest}
 				<div
-					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
+					class="flex flex-col gap-2 border border-border bg-surface p-3"
 					data-testid="order-suggestion"
 				>
 					{#if form.suggest.savedMin > 0}
@@ -164,7 +164,7 @@
 			{#if form?.merge}
 				{@const r = form.merge}
 				<div
-					class="flex flex-col gap-2 rounded-card border border-border bg-surface p-3"
+					class="flex flex-col gap-2 border border-border bg-surface p-3"
 					data-testid="merge-result"
 				>
 					{#if r.kind === 'limit'}<p class="type-body">{m.crabby_limit()}</p>
@@ -213,7 +213,7 @@
 							value={data.trip.slug ?? ''}
 							pattern={SLUG_PATTERN}
 							required
-							class="h-12 rounded-input border border-border bg-surface px-3 type-body text-text"
+							class="h-11 border-b border-text bg-bg type-body text-text"
 						/>
 					</label>
 					<Button type="submit" variant="ghost"

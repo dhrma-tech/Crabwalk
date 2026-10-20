@@ -14,7 +14,8 @@
 
 <form method="POST" action="/prefs" class="flex" aria-label={m.language()}>
 	<input type="hidden" name="return" value={page.url.pathname + page.url.search} />
-	<div class="flex rounded-chip border border-border bg-surface p-0.5">
+	<!-- Suna: plain "EN हि म", the current one underlined in ink; 44 px targets. -->
+	<div class="flex">
 		{#each options as o (o.locale)}
 			<button
 				name="locale"
@@ -23,8 +24,10 @@
 				aria-label={o.name}
 				aria-pressed={o.locale === current}
 				class={[
-					'flex h-10 min-w-10 items-center justify-center rounded-chip px-2 type-small',
-					o.locale === current ? 'bg-sea-500 text-white' : 'text-text-2',
+					'flex h-11 min-w-9 items-center justify-center px-1 text-[13px] leading-none',
+					o.locale === current
+						? 'text-text underline decoration-1 underline-offset-[6px]'
+						: 'text-text-2',
 					// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
 					// web-font files are never downloaded just for this switch.
 					current === 'en' && o.locale !== 'en' && 'font-[system-ui]'
