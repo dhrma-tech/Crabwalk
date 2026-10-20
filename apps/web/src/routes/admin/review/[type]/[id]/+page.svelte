@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -41,7 +41,7 @@
 		<form
 			method="POST"
 			action="?/draft"
-			use:enhance
+			use:submitting
 			class="flex flex-col gap-2 bg-asagi p-3 text-text"
 		>
 			<p class="type-small">{m.review_ai_pending()}</p>
@@ -90,7 +90,7 @@
 		<form
 			method="POST"
 			action="?/save"
-			use:enhance
+			use:submitting
 			class="flex flex-col gap-4"
 			data-testid="review-form"
 		>
@@ -144,7 +144,7 @@
 					<form
 						method="POST"
 						action="?/removeOffer"
-						use:enhance
+						use:submitting
 						class="flex items-center justify-between gap-3 type-small"
 					>
 						<span>{o.provider} · {o.affiliate_network ?? '—'}</span>
@@ -152,7 +152,7 @@
 						<Button type="submit" variant="ghost">{m.remove()}</Button>
 					</form>
 				{/each}
-				<form method="POST" action="?/addOffer" use:enhance class="grid gap-2 sm:grid-cols-3">
+				<form method="POST" action="?/addOffer" use:submitting class="grid gap-2 sm:grid-cols-3">
 					<input
 						name="provider"
 						placeholder={m.offer_provider()}
@@ -182,7 +182,7 @@
 				method="POST"
 				action="?/audio"
 				enctype="multipart/form-data"
-				use:enhance
+				use:submitting
 				class="flex flex-col gap-3"
 			>
 				<h2 class="type-h2">{m.audio_upload()}</h2>

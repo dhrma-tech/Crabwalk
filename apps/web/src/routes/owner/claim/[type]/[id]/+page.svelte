@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -16,7 +16,7 @@
 		{:else}
 			<p class="type-body">{m.claim_body()}</p>
 			{#if form?.error}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
-			<form method="POST" use:enhance><Button type="submit">{m.claim_send()}</Button></form>
+			<form method="POST" use:submitting><Button type="submit">{m.claim_send()}</Button></form>
 		{/if}
 	</div>
 </Page>

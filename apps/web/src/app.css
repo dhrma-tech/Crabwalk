@@ -281,6 +281,10 @@
 	a {
 		color: var(--link);
 	}
+	/* A form waiting on its action (lib/forms.ts). */
+	form[aria-busy] {
+		cursor: progress;
+	}
 	svg.lucide {
 		stroke-width: 1.5px;
 		flex-shrink: 0;

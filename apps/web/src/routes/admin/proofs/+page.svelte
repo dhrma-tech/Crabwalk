@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
@@ -24,7 +24,7 @@
 					>
 				</p>
 				{#if p.url}<img src={p.url} alt="" class="max-h-80 object-contain" />{/if}
-				<form method="POST" action="?/decide" use:enhance class="flex gap-2">
+				<form method="POST" action="?/decide" use:submitting class="flex gap-2">
 					<input type="hidden" name="id" value={p.id} />
 					<Button type="submit" variant="secondary" name="approve" value="1">{m.approve()}</Button>
 					<Button type="submit" variant="ghost" name="approve" value="0">{m.reject()}</Button>

@@ -5,9 +5,12 @@
 	import OfflineBanner from '#lib/components/OfflineBanner.svelte';
 	import Toaster from '#lib/components/Toaster.svelte';
 	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
+	import { onMount } from 'svelte';
+	import { guardPlainForms } from '#lib/forms.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
+	onMount(guardPlainForms);
 </script>
 
 <a

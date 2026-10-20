@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
@@ -52,7 +52,7 @@
 								<a href={resolve('/place/[slug]', { slug: p.slug })} class="type-body">{p.name}</a>
 								{#if p.last}<div><StatusBadge kind="last-verified" date={p.last} /></div>{/if}
 							</div>
-							<form method="POST" action="?/verified" use:enhance>
+							<form method="POST" action="?/verified" use:submitting>
 								<input type="hidden" name="id" value={p.id} />
 								<Button type="submit" variant="secondary">{m.recheck_mark()}</Button>
 							</form>

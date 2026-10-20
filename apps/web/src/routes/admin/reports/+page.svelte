@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
@@ -28,7 +28,7 @@
 					{#if r.target}<a href={r.target.href} class="type-body">{r.target.name}</a>{/if}
 					{#if r.qr_code}<p class="type-small text-text-2">QR {r.qr_code}</p>{/if}
 					{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
-					<form method="POST" action="?/status" use:enhance class="flex flex-wrap gap-2">
+					<form method="POST" action="?/status" use:submitting class="flex flex-wrap gap-2">
 						<input type="hidden" name="id" value={r.id} />
 						{#each ['triaged', 'fixed', 'rejected'] as s (s)}
 							<Button

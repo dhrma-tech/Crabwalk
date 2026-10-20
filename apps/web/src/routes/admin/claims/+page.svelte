@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -21,7 +21,7 @@
 					{c.email}{#if c.phone}
 						· <a href={`tel:${c.phone}`}>{c.phone}</a>{/if}
 				</p>
-				<form method="POST" action="?/review" use:enhance class="flex gap-2">
+				<form method="POST" action="?/review" use:submitting class="flex gap-2">
 					<input type="hidden" name="id" value={c.id} />
 					<Button type="submit" variant="secondary" name="approve" value="1">{m.approve()}</Button>
 					<Button type="submit" variant="ghost" name="approve" value="0">{m.reject()}</Button>
