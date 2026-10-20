@@ -9,6 +9,8 @@
 	import Crabby from '../Crabby.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';
+	import { page } from '$app/state';
+	import { loginHref } from '#lib/login.ts';
 
 	// FRONTEND §6.7: chat bubbles, ActionPreviewCard (Apply / Discard), mic (Web Speech API), honest
 	// "I don't know" + verified alternatives, daily-limit state, login wall. Emergency → EmergencyCard.
@@ -162,7 +164,7 @@
 			data-testid="crabby-signin"
 		>
 			<p class="type-body">{m.crabby_signin()}</p>
-			<Button href={resolve('/login')}>{m.sign_in()}</Button>
+			<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
 		</div>
 	{:else}
 		{#if chips.length && !crabby.turns.length}

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import Button from '../Button.svelte';
 	import Crabby from '../Crabby.svelte';
+	import { page } from '$app/state';
+	import { loginHref } from '#lib/login.ts';
 
 	// Stay price-compare suggestion (PLAN P8 task 11): one line over the rows shown above, on request.
 	let { slug }: { slug: string } = $props();
@@ -30,7 +31,8 @@
 		<Crabby size={32} />
 		<p class="border border-text px-3 py-2 type-small">{text}</p>
 	{:else if status === 'signin'}
-		<a href={resolve('/login')} class="type-small">{m.crabby_signin()}</a>
+		<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- /login + a validated return path -->
+		<a href={loginHref(page.url)} class="type-small">{m.crabby_signin()}</a>
 	{:else}
 		<Button variant="ghost" loading={status === 'busy'} onclick={run}>{m.crabby_price_tip()}</Button
 		>

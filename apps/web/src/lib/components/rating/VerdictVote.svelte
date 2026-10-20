@@ -6,13 +6,14 @@
 	import Lock from '@lucide/svelte/icons/lock';
 	import Camera from '@lucide/svelte/icons/camera';
 	import { invalidateAll } from '$app/navigation';
-	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import { processPhoto, type Processed } from '#lib/field/photos.ts';
 	import Button from '../Button.svelte';
 	import type { EntityType } from './VerdictGauge.svelte';
+	import { page } from '$app/state';
+	import { loginHref } from '#lib/login.ts';
 
 	// FRONTEND §6.4 voting: 4 large verdict buttons (icon + label, no emoji) → optional quick-tap sub-scores →
 	// optional text/photos. Hygiene/cleanliness taps disabled with explanation unless verified (DB-enforced too).
@@ -115,7 +116,7 @@
 <section class="flex flex-col gap-4 border-t border-text pt-4" data-testid="verdict-vote">
 	<h2 class="type-h2">{m.vote_title()}</h2>
 	{#if !signedIn}
-		<div><Button href={resolve('/login')} variant="secondary">{m.vote_signin()}</Button></div>
+		<div><Button href={loginHref(page.url)} variant="secondary">{m.vote_signin()}</Button></div>
 	{:else}
 		<div class="flex flex-col gap-1.5">
 			<span class="type-small text-text-2">{m.vote_as()}</span>

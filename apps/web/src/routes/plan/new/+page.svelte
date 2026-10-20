@@ -9,6 +9,8 @@
 	import Chip from '#lib/components/Chip.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import type { PageProps } from './$types';
+	import { page } from '$app/state';
+	import { loginHref } from '#lib/login.ts';
 
 	// FRONTEND §7.8 (LOCKED order): days → start → group → budget → interests → pace → Standout → Generate.
 	let { data }: PageProps = $props();
@@ -97,7 +99,7 @@
 <Page title={m.nav_plan()}>
 	{#if !data.signedIn}
 		<EmptyState title={m.plan_title()} body={m.plan_signin()}>
-			{#snippet action()}<Button href={resolve('/login')}>{m.sign_in()}</Button>{/snippet}
+			{#snippet action()}<Button href={loginHref(page.url)}>{m.sign_in()}</Button>{/snippet}
 		</EmptyState>
 	{:else}
 		<form

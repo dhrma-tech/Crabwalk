@@ -4,7 +4,6 @@
 	import LayersIcon from '@lucide/svelte/icons/layers';
 	import Download from '@lucide/svelte/icons/download';
 	import { PMTILES_BASE_URL } from '$app/env/public';
-	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { onMount } from 'svelte';
 	import { m } from '#lib/paraglide/messages.js';
@@ -25,6 +24,7 @@
 	import TideToday from '#lib/components/map/TideToday.svelte';
 	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import type { PageProps } from './$types';
+	import { loginHref } from '#lib/login.ts';
 
 	let { data }: PageProps = $props();
 
@@ -190,7 +190,8 @@
 						{#if searched && !results.length}
 							<li class="px-4 py-3 type-small text-text-2">
 								{#if !data.signedIn && q.trim().length >= 3}
-									<a href={resolve('/login')}>{m.map_search_more_signin()}</a>
+									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- /login + a validated return path -->
+									<a href={loginHref(page.url)}>{m.map_search_more_signin()}</a>
 								{:else}
 									{m.map_no_results()}
 								{/if}

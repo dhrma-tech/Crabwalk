@@ -9,6 +9,8 @@
 	import { enablePush, disablePush, pushStatus } from '#lib/push.ts';
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
+	import { page } from '$app/state';
+	import { loginHref } from '#lib/login.ts';
 
 	// Me (FRONTEND §7.14). Trips from P7; offline packs (P9) and consents arrive later.
 	let { data, form }: PageProps = $props();
@@ -38,7 +40,7 @@
 				</form>
 			{:else}
 				<p class="type-body">{m.me_guest()}</p>
-				<div><Button href={resolve('/login')}>{m.sign_in()}</Button></div>
+				<div><Button href={loginHref(page.url)}>{m.sign_in()}</Button></div>
 			{/if}
 		</section>
 
