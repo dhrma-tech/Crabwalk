@@ -129,6 +129,17 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## Refinement (branch `refinement`, user)
+| Ref | Decision |
+|---|---|
+| R-1 | Production refinement pass on branch `refinement` (main untouched); findings, fixes, Lighthouse before/after and accepted exceptions in `AUDIT.md`. |
+| R-2 | List filters are Zod-validated (`lib/server/filters.ts`): `/api/*` answers 400 on bad values, list pages drop them. Malformed form bodies → 400 (`lib/server/http.ts`). |
+| R-3 | Sign-in returns to the page that asked for it (`?next=`, same-origin only; Google keeps it in a 10-min cookie). 401/403 render a not-allowed state; unexpected server errors carry a reference id (`handleError`). |
+| R-4 | `use:submitting` replaces `use:enhance`; plain POST forms are guarded in the root layout. |
+| R-5 | SEO: per-page descriptions/Open Graph/canonical (`Meta`), generated `sitemap.xml` + `robots.txt`, `X-Robots-Tag: noindex` on private paths (`lib/seo.ts`). New HI/MR strings need team review. |
+| R-6 | Migration `20261025100000_refinement_indexes`: 17 FK indexes; pgTAP guard for new user/owner/listing/taluka FKs. |
+| R-7 | Named z-layers and hover tokens (`--cta-hover`, `--emergency-hover`, `row-link`) join the Suna tokens in `app.css`. |
+
 ## P10a decisions (Suna redesign)
 | Ref | Decision |
 |---|---|
