@@ -34,7 +34,7 @@
 {#if !hidden}
 	<aside
 		data-dock
-		class="fixed inset-y-0 right-0 z-30 hidden w-[340px] flex-col border-l border-border bg-bg lg:flex print:hidden"
+		class="fixed inset-y-0 right-0 z-panel hidden w-[340px] flex-col border-l border-border bg-bg lg:flex print:hidden"
 		aria-label={m.nav_crabby()}
 	>
 		<h2 class="flex items-center gap-2.5 px-6 pt-6 pb-2 type-h3">
@@ -44,7 +44,7 @@
 	</aside>
 	{#if chips.length}
 		<div
-			class="fixed right-6 bottom-[calc(80px+env(safe-area-inset-bottom))] z-20 flex flex-col items-end gap-2 lg:hidden print:hidden"
+			class="fixed right-6 bottom-[calc(80px+env(safe-area-inset-bottom))] z-bar flex flex-col items-end gap-2 lg:hidden print:hidden"
 		>
 			{#each chips as c (c)}
 				<button

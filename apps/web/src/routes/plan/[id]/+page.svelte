@@ -64,11 +64,11 @@
 					name="title"
 					value={data.trip.title}
 					maxlength="120"
-					class="h-12 flex-1 border border-border bg-surface px-4 type-h3 text-text"
+					class="h-11 flex-1 border-b border-text bg-bg type-h3 text-text"
 				/>
 				<Button type="submit" variant="secondary">{m.plan_save()}</Button>
 			</form>
-			<h1 class="hidden type-h1 print:block">{data.trip.title}</h1>
+			<h2 class="hidden type-h1 print:block">{data.trip.title}</h2>
 			<p class="type-small text-text-2">
 				{m.plan_n_days({ n: data.trip.days })}{data.trip.start ? ` · ${data.trip.start}` : ''} · {msg(
 					`pace_${data.trip.pace}`

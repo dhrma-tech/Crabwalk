@@ -211,7 +211,7 @@
 		</div>
 
 		<div
-			class="absolute inset-x-3 top-3 z-10 mx-auto flex max-w-[560px] flex-col gap-2"
+			class="absolute inset-x-3 top-3 z-map-ui mx-auto flex max-w-[560px] flex-col gap-2"
 			data-testid="nav-card"
 		>
 			{#if leg}
@@ -272,7 +272,7 @@
 		</div>
 
 		<div
-			class="absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-10 mx-auto flex max-w-[560px] flex-col gap-2 lg:bottom-6"
+			class="absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-map-ui mx-auto flex max-w-[560px] flex-col gap-2 lg:bottom-6"
 		>
 			{#if leg}
 				<div class="flex flex-wrap gap-2">

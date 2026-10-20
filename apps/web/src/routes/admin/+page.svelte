@@ -37,7 +37,7 @@
 			{#each links as l (l.href)}
 				<a
 					href={l.href}
-					class="flex min-h-14 items-center border border-border bg-surface px-4 type-h3 text-text no-underline"
+					class="row-link flex min-h-14 items-center border border-border px-4 type-h3 text-text no-underline"
 					>{l.label}</a
 				>
 			{/each}
@@ -49,7 +49,10 @@
 					{#each data.due as p (p.id)}
 						<li class="flex flex-wrap items-center justify-between gap-3 py-3">
 							<div>
-								<a href={resolve('/place/[slug]', { slug: p.slug })} class="type-body">{p.name}</a>
+								<a
+									href={resolve('/place/[slug]', { slug: p.slug })}
+									class="inline-flex min-h-11 items-center type-body">{p.name}</a
+								>
 								{#if p.last}<div><StatusBadge kind="last-verified" date={p.last} /></div>{/if}
 							</div>
 							<form method="POST" action="?/verified" use:submitting>

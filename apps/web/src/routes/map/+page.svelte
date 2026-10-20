@@ -163,10 +163,10 @@
 		</div>
 
 		<div
-			class="pointer-events-none absolute inset-x-0 top-0 z-10 flex flex-col gap-2 p-3 lg:px-10 lg:pt-5"
+			class="pointer-events-none absolute inset-x-0 top-0 z-map-ui flex flex-col gap-2 p-3 lg:px-10 lg:pt-5"
 		>
 			<div class="pointer-events-auto relative w-full max-w-[680px] lg:max-w-[360px]">
-				<label class="flex h-12 items-center gap-2 border border-border bg-raised px-3">
+				<label class="flex h-12 items-center gap-2 border border-border bg-bg px-3">
 					<Search size={20} aria-hidden="true" class="text-text-2" />
 					<span class="sr-only">{m.map_search()}</span>
 					<input
@@ -246,7 +246,7 @@
 		</div>
 
 		<div
-			class="absolute left-3 bottom-[calc(140px+env(safe-area-inset-bottom))] z-10 flex flex-col items-start gap-2 lg:bottom-28"
+			class="absolute left-3 bottom-[calc(140px+env(safe-area-inset-bottom))] z-map-ui flex flex-col items-start gap-2 lg:bottom-28"
 		>
 			{#if showLayers}
 				<fieldset
@@ -279,7 +279,7 @@
 
 		{#if layers.heat || layers.tides}
 			<div
-				class="pointer-events-auto absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-10 mx-auto flex max-w-[520px] flex-col gap-2 lg:bottom-6"
+				class="pointer-events-auto absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-map-ui mx-auto flex max-w-[520px] flex-col gap-2 lg:bottom-6"
 			>
 				{#if layers.heat && layerInfo}
 					<p class="border border-border bg-bg px-3 py-2 type-small" data-testid="heat-legend">

@@ -23,7 +23,10 @@
 </script>
 
 {#if !online}
-	<p class="sticky top-0 z-40 bg-yama px-6 py-2.5 type-small text-text print:hidden" role="status">
+	<p
+		class="sticky top-0 z-banner bg-yama px-6 py-2.5 type-small text-text print:hidden"
+		role="status"
+	>
 		{m.offline()} ·
 		{packs.length ? m.offline_packs({ names: packs.join(', ') }) : m.offline_no_packs()}
 	</p>

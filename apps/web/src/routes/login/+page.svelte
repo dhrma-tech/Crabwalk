@@ -53,7 +53,7 @@
 						label={m.login_code()}
 						inputmode="numeric"
 						autocomplete="one-time-code"
-						pattern="[0-9]{6}"
+						pattern={'[0-9]{6}'}
 						maxlength={6}
 						required
 					/>

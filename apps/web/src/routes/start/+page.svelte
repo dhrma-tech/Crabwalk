@@ -50,7 +50,7 @@
 						<li>
 							<a
 								href={hrefFor(x.kind, x.slug)}
-								class="flex justify-between gap-3 py-3 text-text no-underline"
+								class="row-link flex justify-between gap-3 py-3 text-text no-underline"
 								><span class="type-body">{pinName(x)}</span><span class="type-small text-text-2"
 									>{m.km_away({ km: formatNumber(x.km) })}</span
 								></a

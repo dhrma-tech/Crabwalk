@@ -15,7 +15,7 @@
 
 <a
 	href="#main"
-	class="sr-only z-50 border border-text bg-bg px-4 py-2 focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
+	class="sr-only z-overlay border border-text bg-bg px-4 py-2 focus:not-sr-only focus:fixed focus:top-2 focus:left-2"
 	>{m.skip_to_content()}</a
 >
 <OfflineBanner />

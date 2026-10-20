@@ -18,14 +18,14 @@
 	}
 </script>
 
-<header class="sticky top-0 z-20 bg-bg pt-[env(safe-area-inset-top)] print:hidden">
+<header class="sticky top-0 z-bar bg-bg pt-[env(safe-area-inset-top)] print:hidden">
 	<div
 		class="mx-auto flex min-h-14 max-w-[1200px] items-center gap-3 px-6 py-1.5 lg:min-h-[76px] lg:gap-5 lg:px-10"
 		data-clip-check
 	>
 		<button
 			type="button"
-			class="hidden size-11 shrink-0 flex-col items-center justify-center gap-[5px] border border-text lg:flex"
+			class="hidden size-11 shrink-0 flex-col items-center justify-center gap-[5px] border border-text transition-colors duration-150 hover:bg-text/5 lg:flex"
 			aria-label={m.nav_menu()}
 			aria-expanded={menu.open}
 			aria-controls="app-menu"
@@ -35,13 +35,13 @@
 		</button>
 		<a
 			href={resolve('/')}
-			class="hidden shrink-0 text-[17px] font-medium text-text no-underline lg:block"
+			class="hidden min-h-11 shrink-0 items-center text-[17px] font-medium text-text no-underline decoration-1 underline-offset-4 hover:underline lg:flex"
 			>{m.app_name()}</a
 		>
 		{#if back}
 			<a
 				href={resolve('/')}
-				class="-ml-2 flex size-11 shrink-0 items-center justify-center text-[26px] leading-none text-text no-underline lg:ml-0"
+				class="-ml-2 flex size-11 shrink-0 items-center justify-center text-[26px] leading-none text-text no-underline transition-colors duration-150 hover:bg-text/5 lg:ml-0"
 				aria-label={m.back()}
 				onclick={goBack}><span aria-hidden="true">‹</span></a
 			>

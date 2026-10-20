@@ -69,7 +69,7 @@
 						<li>
 							<a
 								href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
-								class="inline-flex min-h-11 items-center border border-border bg-surface px-4 type-small text-text no-underline"
+								class="inline-flex min-h-11 items-center border border-text px-4 type-small text-text no-underline hover:bg-text/5"
 								>{d.name}</a
 							>
 						</li>
@@ -107,7 +107,7 @@
 			{#if e.lastVerified}<StatusBadge kind="last-verified" date={e.lastVerified} />{/if}
 			{#if !e.claimed}<a
 					href={resolve('/owner/claim/[type]/[id]', { type: 'eatery', id: e.id })}
-					class="type-small">{m.claim_cta()}</a
+					class="inline-flex min-h-11 items-center type-small">{m.claim_cta()}</a
 				>{/if}
 			<ReportProblem entityType="eatery" entityId={e.id} />
 		</footer>

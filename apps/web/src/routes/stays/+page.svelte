@@ -51,6 +51,7 @@
 				{#each data.stays as s (s.slug)}
 					<StayCard
 						row
+						level={2}
 						href={resolve('/stays/[slug]', { slug: s.slug })}
 						names={s.names}
 						photo={s.photo}

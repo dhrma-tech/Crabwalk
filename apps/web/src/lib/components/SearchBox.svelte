@@ -26,22 +26,23 @@
 </script>
 
 <div class={['relative', cls]}>
-	<div class="flex h-11 items-center border-b border-text">
+	<div class="flex items-center border-b border-text">
 		<input
 			aria-label={m.discover_search()}
 			bind:value={q}
 			oninput={onSearch}
 			type="search"
 			placeholder={m.discover_search()}
-			class="h-full min-w-0 flex-1 bg-transparent type-body text-text placeholder:text-text-2"
+			class="h-11 min-w-0 flex-1 bg-transparent type-body text-text placeholder:text-text-2"
 		/>
 	</div>
 	{#if results.length}
-		<ul class="absolute inset-x-0 z-30 mt-1 border border-text bg-bg">
+		<ul class="absolute inset-x-0 z-panel mt-1 border border-text bg-bg">
 			{#each results as r, i (i)}
 				<li class="border-b border-border last:border-0">
-					<a href={hrefFor(r.kind, r.slug)} class="block px-4 py-3 type-body text-text no-underline"
-						>{r.name}</a
+					<a
+						href={hrefFor(r.kind, r.slug)}
+						class="row-link block px-4 py-3 type-body text-text no-underline">{r.name}</a
 					>
 				</li>
 			{/each}

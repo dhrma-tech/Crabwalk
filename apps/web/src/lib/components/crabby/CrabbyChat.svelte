@@ -217,7 +217,9 @@
 		<p class="flex flex-wrap gap-x-1.5 px-6 pt-1.5 pb-4 text-[11px] text-text-2">
 			{#if crabby.remaining != null}<span>{m.crabby_remaining({ n: crabby.remaining })}</span><span
 					aria-hidden="true">·</span
-				>{/if}<a href={resolve('/privacy')}>{m.crabby_privacy()}</a>
+				>{/if}<a href={resolve('/privacy')} class="inline-flex min-h-11 items-center"
+				>{m.crabby_privacy()}</a
+			>
 		</p>
 	{/if}
 </div>

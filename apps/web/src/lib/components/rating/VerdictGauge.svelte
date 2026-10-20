@@ -81,7 +81,10 @@
 			<button
 				type="button"
 				aria-pressed={group === g}
-				class={['min-h-11 px-3 type-small', group === g ? 'bg-text text-bg' : 'text-text-2']}
+				class={[
+					'min-h-11 min-w-11 px-3 type-small',
+					group === g ? 'bg-text text-bg' : 'text-text-2'
+				]}
 				onclick={() => (group = g)}>{msg(`group_${g}`)}</button
 			>
 		{/each}

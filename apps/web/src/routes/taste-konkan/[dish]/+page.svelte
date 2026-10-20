@@ -42,7 +42,7 @@
 						<li>
 							<a
 								href={resolve('/food/[slug]', { slug: e.slug })}
-								class="flex justify-between gap-3 py-3 text-text no-underline"
+								class="row-link flex justify-between gap-3 py-3 text-text no-underline"
 								><span class="type-body">{e.name}</span>{#if e.priceForTwo != null}<span
 										class="type-small text-text-2"
 										>{m.price_for_two({ price: formatINR(e.priceForTwo) })}</span

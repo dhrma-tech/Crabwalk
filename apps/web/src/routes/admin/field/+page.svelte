@@ -374,10 +374,7 @@
 				{#each days as d (d)}
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{msg(`wd_${d}`)}
-						<select
-							class="h-11 border border-border bg-surface px-3 type-small"
-							bind:value={f.crowd[d]}
-						>
+						<select class="h-11 border-b border-text bg-bg type-small" bind:value={f.crowd[d]}>
 							<option value="">—</option>{#each ['empty', 'calm', 'busy'] as l (l)}<option value={l}
 									>{msg(`crowd_${l}`)}</option
 								>{/each}
@@ -414,10 +411,7 @@
 				{#each ['Jio', 'Airtel', 'Vi', 'BSNL'] as op (op)}
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{op}
-						<select
-							class="h-11 border border-border bg-surface px-3 type-small"
-							bind:value={f.network[op]}
-						>
+						<select class="h-11 border-b border-text bg-bg type-small" bind:value={f.network[op]}>
 							<option value="">—</option>{#each ['none', 'weak', 'good'] as l (l)}<option value={l}
 									>{msg(`network_${l}`)}</option
 								>{/each}
@@ -526,18 +520,20 @@
 				>
 				{#if !f.hoursUnknown}
 					{#each f.hours as h (h.weekday)}
-						<div class="grid grid-cols-[3rem_1fr_1fr_auto] items-center gap-2 type-small">
+						<div
+							class="grid grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 type-small"
+						>
 							<span>{msg(`wd_${h.weekday}`)}</span>
 							<input
 								type="time"
-								class="h-11 border border-border bg-surface px-2"
+								class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
 								bind:value={h.opens}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} opens`}
 							/>
 							<input
 								type="time"
-								class="h-11 border border-border bg-surface px-2"
+								class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
 								bind:value={h.closes}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} closes`}

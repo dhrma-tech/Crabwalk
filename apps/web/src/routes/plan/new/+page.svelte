@@ -107,7 +107,7 @@
 			class="mx-auto flex max-w-[680px] flex-col gap-6"
 			data-testid="planner"
 		>
-			<h1 class="type-h1">{m.plan_title()}</h1>
+			<h2 class="type-h1">{m.plan_title()}</h2>
 
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h3">1 · {m.plan_days()}</h2>
@@ -184,7 +184,7 @@
 						min="1"
 						max="50"
 						bind:value={people}
-						class="h-12 w-24 border border-border bg-surface px-4 type-body text-text"
+						class="h-11 w-24 border-b border-text bg-bg type-body text-text"
 					/>
 				</label>
 			</section>
@@ -199,6 +199,7 @@
 					bind:value={budget}
 					disabled={noBudget}
 					aria-label={m.plan_budget()}
+					class="h-11 w-full accent-[var(--cta)]"
 				/>
 				<p class="type-body" aria-live="polite">
 					{noBudget ? m.plan_no_budget() : formatINR(budget)}

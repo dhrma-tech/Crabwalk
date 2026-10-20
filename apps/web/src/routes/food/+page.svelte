@@ -50,6 +50,7 @@
 				{#each data.eateries as e (e.slug)}
 					<EateryCard
 						row
+						level={2}
 						href={resolve('/food/[slug]', { slug: e.slug })}
 						names={e.names}
 						photo={e.photo}

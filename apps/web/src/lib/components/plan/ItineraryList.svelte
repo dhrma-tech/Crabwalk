@@ -23,7 +23,7 @@
 			<!-- eslint-disable svelte/no-navigation-without-resolve -- href built server-side from a known route + slug -->
 			<a
 				href={it.href}
-				class="flex flex-col gap-0.5 border-t border-border py-3 text-text no-underline"
+				class="row-link flex flex-col gap-0.5 border-t border-border py-3 text-text no-underline"
 			>
 				<span class="type-h3">{it.title}</span>
 				<span class="text-[13px] text-text-2">

@@ -44,7 +44,7 @@
 
 <section
 	class={[
-		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-30 flex flex-col overflow-hidden border-t border-text bg-bg lg:bottom-0 lg:[:root:has([data-dock])_&]:right-[340px]',
+		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-panel flex flex-col overflow-hidden border-t border-text bg-bg lg:bottom-0 lg:[:root:has([data-dock])_&]:right-[340px]',
 		!drag && 'transition-[height] duration-300 ease-brand'
 	]}
 	style:height="{height}px"

@@ -25,7 +25,9 @@
 						>
 					</p>
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
-					{#if r.target}<a href={r.target.href} class="type-body">{r.target.name}</a>{/if}
+					{#if r.target}<a href={r.target.href} class="inline-flex min-h-11 items-center type-body"
+							>{r.target.name}</a
+						>{/if}
 					{#if r.qr_code}<p class="type-small text-text-2">QR {r.qr_code}</p>{/if}
 					{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
 					<form method="POST" action="?/status" use:submitting class="flex flex-wrap gap-2">

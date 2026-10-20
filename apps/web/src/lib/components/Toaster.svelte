@@ -4,7 +4,7 @@
 </script>
 
 <div
-	class="pointer-events-none fixed inset-x-4 bottom-[calc(80px+env(safe-area-inset-bottom))] z-50 flex flex-col items-center gap-2 lg:bottom-6"
+	class="pointer-events-none fixed inset-x-4 bottom-[calc(80px+env(safe-area-inset-bottom))] z-overlay flex flex-col items-center gap-2 lg:bottom-6"
 	role="status"
 	aria-live="polite"
 >

@@ -91,7 +91,7 @@
 								href={resolve(`/?category=${c}`)}
 								aria-current={on ? 'page' : undefined}
 								class={[
-									'flex h-full min-h-11 items-center justify-center px-1 py-2 text-center text-[13px] leading-tight text-text no-underline',
+									'flex h-full min-h-11 items-center justify-center px-1 py-2 text-center text-[13px] leading-tight text-text no-underline outline-text -outline-offset-2 hover:outline-1',
 									on && 'outline-2 -outline-offset-2 outline-text'
 								]}
 								style:background="var(--{categoryTone[c as Category]})">{msg(`cat_${c}`)}</a
@@ -151,7 +151,11 @@
 				<section class="flex flex-col gap-2.5">
 					<div class="flex items-baseline justify-between">
 						<h2 class="type-h2">{m.itin_title()}</h2>
-						<a href={resolve('/itineraries')} class="type-small text-text">{m.itin_all()}</a>
+						<a
+							href={resolve('/itineraries')}
+							class="inline-flex min-h-11 min-w-11 items-center justify-end type-small text-text"
+							>{m.itin_all()}</a
+						>
 					</div>
 					<ItineraryList items={data.itineraries} />
 				</section>
@@ -161,7 +165,11 @@
 				<section class="flex flex-col gap-2.5">
 					<div class="flex items-baseline justify-between">
 						<h2 class="type-h2">{m.discover_taste()}</h2>
-						<a href={resolve('/taste-konkan')} class="type-small text-text">{m.see_all()}</a>
+						<a
+							href={resolve('/taste-konkan')}
+							class="inline-flex min-h-11 min-w-11 items-center justify-end type-small text-text"
+							>{m.see_all()}</a
+						>
 					</div>
 					<ul class="-mx-6 flex gap-3 overflow-x-auto px-6 pb-2 lg:mx-0 lg:px-0">
 						{#each data.dishes as d (d.slug)}

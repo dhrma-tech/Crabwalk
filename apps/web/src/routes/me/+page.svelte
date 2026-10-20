@@ -53,7 +53,7 @@
 							<li>
 								<a
 									href={resolve('/plan/[id]', { id: t.id })}
-									class="flex flex-col py-3 text-text no-underline"
+									class="row-link flex flex-col py-3 text-text no-underline"
 									><span class="type-h3">{t.title}</span><span class="type-small text-text-2"
 										>{m.plan_n_days({ n: t.days })}{t.start_date
 											? ` · ${formatDate(t.start_date)}`
@@ -153,18 +153,22 @@
 			<nav class="flex flex-col gap-2">
 				{#if data.isStaff}<a
 						href={resolve('/admin')}
-						class="flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
+						class="row-link flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
 						>{m.me_staff()}</a
 					>{/if}
 				{#if data.isOwner}<a
 						href={resolve('/owner')}
-						class="flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
+						class="row-link flex min-h-12 items-center border-b border-border type-h3 text-text no-underline"
 						>{m.me_owner()}</a
 					>{/if}
 			</nav>
 		{/if}
 
-		<p><a href={resolve('/privacy')} class="type-body">{m.privacy_title()}</a></p>
+		<p>
+			<a href={resolve('/privacy')} class="inline-flex min-h-11 items-center type-body"
+				>{m.privacy_title()}</a
+			>
+		</p>
 
 		<section class="flex flex-col gap-3 border-t border-text pt-3">
 			<h2 class="type-h2">{m.theme()}</h2>
