@@ -12,7 +12,10 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		// interface Error {}
+		interface Error {
+			/** Short reference for unexpected errors, logged server-side with the details. */
+			id?: string;
+		}
 		interface Locals {
 			supabase: SupabaseClient<Database>;
 			getUser: () => Promise<User | null>;

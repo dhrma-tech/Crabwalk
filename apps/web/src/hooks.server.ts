@@ -1,5 +1,5 @@
 import { createServerClient } from '@supabase/ssr';
-import type { Handle } from '@sveltejs/kit/hooks';
+import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { sequence } from '@sveltejs/kit/hooks';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
@@ -66,3 +66,12 @@ const limits: Handle = async ({ event, resolve }) => {
 };
 
 export const handle = sequence(shell, supabase, limits);
+
+// Unexpected errors (thrown by our code): details go to the server log under a short id and the user sees only
+// that id. error() and framework errors (404s) keep SvelteKit's safe defaults — no stack traces either way.
+export const handleError: HandleServerError = ({ kind, error, event }) => {
+	if (kind !== 'unknown') return;
+	const id = crypto.randomUUID().slice(0, 8);
+	console.error(`[${id}] ${event.request.method} ${event.url.pathname}`, error);
+	return { id };
+};
