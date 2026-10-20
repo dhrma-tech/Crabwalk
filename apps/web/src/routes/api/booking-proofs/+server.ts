@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { assertPublished } from '#lib/server/ratings.ts';
+import { formBody } from '#lib/server/http.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({ entity_type: z.enum(['stay', 'eatery']), entity_id: z.uuid() });
@@ -15,7 +16,7 @@ const TYPES: Record<string, string> = {
 // The image is deleted on review or after 30 days at most.
 export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
-	const form = await event.request.formData();
+	const form = await formBody(event.request);
 	const m = meta.safeParse({
 		entity_type: form.get('entity_type'),
 		entity_id: form.get('entity_id')

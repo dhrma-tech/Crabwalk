@@ -2,8 +2,11 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { SUPABASE_URL } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
+import { AMENITIES, DIETS, VIBES } from '#lib/vocab.ts';
 
 type DB = SupabaseClient<Database>;
+type Enums = Database['public']['Enums'];
+
 export type Lang = 'en' | 'hi' | 'mr';
 type Tr = { lang: string; name?: string | null } & Record<string, unknown>;
 
@@ -58,7 +61,7 @@ const PLACE_TR = 'lang, name, short_story, history, significance, dos, donts, sa
 
 export async function listPlaces(
 	db: DB,
-	f: { category?: string; hiddenGem?: boolean; limit?: number } = {}
+	f: { category?: Enums['place_category']; hiddenGem?: boolean; limit?: number } = {}
 ) {
 	let q = db
 		.from('places')
@@ -68,7 +71,7 @@ export async function listPlaces(
 		.eq('status', 'published')
 		.order('last_verified_at', { ascending: false, nullsFirst: false })
 		.limit(f.limit ?? 60);
-	if (f.category) q = q.eq('category', f.category as Database['public']['Enums']['place_category']);
+	if (f.category) q = q.eq('category', f.category);
 	if (f.hiddenGem) q = q.eq('is_hidden_gem', true);
 	const { data, error } = await q;
 	if (error) throw error;
@@ -96,7 +99,12 @@ export async function getPlace(db: DB, slug: string) {
 
 export async function listStays(
 	db: DB,
-	f: { vibe?: string; style?: string; maxPrice?: number; amenity?: string } = {}
+	f: {
+		vibe?: (typeof VIBES)[number];
+		style?: Enums['service_style'];
+		maxPrice?: number;
+		amenity?: (typeof AMENITIES)[number];
+	} = {}
 ) {
 	let q = db
 		.from('stays')
@@ -106,7 +114,7 @@ export async function listStays(
 		.eq('status', 'published')
 		.limit(60);
 	if (f.vibe) q = q.contains('vibe_tags', [f.vibe]);
-	if (f.style) q = q.eq('service_style', f.style as Database['public']['Enums']['service_style']);
+	if (f.style) q = q.eq('service_style', f.style);
 	if (f.maxPrice) q = q.lte('price_min', f.maxPrice);
 	if (f.amenity) q = q.contains('amenities', { [f.amenity]: true });
 	const { data, error } = await q;
@@ -133,7 +141,11 @@ export async function getStay(db: DB, slug: string) {
 
 export async function listEateries(
 	db: DB,
-	f: { diet?: string; authenticity?: string; maxPrice?: number } = {}
+	f: {
+		diet?: (typeof DIETS)[number];
+		authenticity?: Enums['eatery_authenticity'];
+		maxPrice?: number;
+	} = {}
 ) {
 	let q = db
 		.from('eateries')
@@ -143,8 +155,7 @@ export async function listEateries(
 		.eq('status', 'published')
 		.limit(60);
 	if (f.diet) q = q.contains('diet_flags', { [f.diet]: true });
-	if (f.authenticity)
-		q = q.eq('authenticity', f.authenticity as Database['public']['Enums']['eatery_authenticity']);
+	if (f.authenticity) q = q.eq('authenticity', f.authenticity);
 	if (f.maxPrice) q = q.lte('price_for_two', f.maxPrice);
 	const { data, error } = await q;
 	if (error) throw error;

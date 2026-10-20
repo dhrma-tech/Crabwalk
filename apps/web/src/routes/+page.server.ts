@@ -8,6 +8,7 @@ import {
 	tr,
 	type Lang
 } from '#lib/server/listings.ts';
+import { placeFilter, readFilter } from '#lib/server/filters.ts';
 import { cardAggs } from '#lib/server/ratings.ts';
 import { listItineraries } from '#lib/server/planner/itineraries.ts';
 import { getLocale } from '#lib/paraglide/runtime.js';
@@ -16,7 +17,7 @@ import type { PageServerLoad } from './$types';
 // Discover (FRONTEND §7.1). ?category= filters the place grid.
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const lang = getLocale() as Lang;
-	const category = url.searchParams.get('category') ?? undefined;
+	const category = readFilter(placeFilter, url.searchParams)?.category;
 	const [places, gems, dishes, season, itineraries] = await Promise.all([
 		listPlaces(locals.supabase, { category }),
 		category ? Promise.resolve([]) : listPlaces(locals.supabase, { hiddenGem: true, limit: 10 }),
