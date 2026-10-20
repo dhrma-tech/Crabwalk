@@ -322,12 +322,30 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			if (stays && s('vibe')) q = q.contains('vibe_tags', [s('vibe')!]);
 			if (!stays && s('diet')) q = q.contains('diet_flags', { [s('diet')!]: true });
 			if (!stays && i('max_price_for_two')) q = q.lte('price_for_two', i('max_price_for_two')!);
+			const dist = (p: [number, number]) =>
+				c ? Math.hypot((p[0] - c[0]) * 106, (p[1] - c[1]) * 110.6) : 0;
+			if (c) {
+				// Near a place: take the nearest candidates inside the 15 km box first, so the row limit
+				// can't drop close listings when a region has more than 40 (DECISIONS P10a found issue).
+				const dLat = 15 / 110.6;
+				const dLon = 15 / 106;
+				const { data: pins } = await db.rpc('map_pins', {
+					min_lon: c[0] - dLon,
+					min_lat: c[1] - dLat,
+					max_lon: c[0] + dLon,
+					max_lat: c[1] + dLat,
+					kinds: [stays ? 'stay' : 'eatery']
+				});
+				const ids = (pins ?? [])
+					.sort((a, b) => dist([a.lon, a.lat]) - dist([b.lon, b.lat]))
+					.slice(0, 40)
+					.map((p) => p.id);
+				q = q.in('id', ids);
+			}
 			const { data } = await q;
 			const km = (l: unknown) => {
 				const p = lonLat(l);
-				return c && p
-					? Math.round(Math.hypot((p[0] - c[0]) * 106, (p[1] - c[1]) * 110.6) * 10) / 10
-					: null;
+				return c && p ? Math.round(dist(p) * 10) / 10 : null;
 			};
 			type Row = Record<string, unknown> & { slug: string; location: unknown };
 			return ((data ?? []) as Row[])
