@@ -129,6 +129,14 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## P10 pre-decisions
+| Ref | Decision |
+|---|---|
+| P10-1 | Order (user): finish and verify all hardening locally first; then a **guided production deploy** — user supplies keys/logins and approves every live action (wrangler login, db push, secrets, seed cleanup). |
+| P10-2 | Production URL (user): Cloudflare Pages `*.pages.dev` (free); custom domain can be added later without code changes. |
+| P10-3 | Privacy (user): Claude drafts the full DPDPA-oriented policy (EN/HI/MR), marked DRAFT until legal/team approval. |
+| P10-4 | Fonts (perf, overrides B12 file count): each weight ships as a Latin half and a Devanagari half picked by `unicode-range`, so English pages never download Devanagari glyphs; still 4 weights. Map labels use the same halves. On English pages the हि / म switch labels use the system font. |
+
 ## P9 pre-decisions
 | Ref | Decision |
 |---|---|

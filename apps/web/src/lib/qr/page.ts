@@ -34,7 +34,7 @@ summary{cursor:pointer;color:var(--ln);min-height:44px;display:flex;align-items:
 :focus-visible{outline:3px solid var(--ln);outline-offset:2px}`;
 
 // Scan beacon (position only if already granted), GPS-verified visit, emergency location share (P6-2).
-const JS = `(()=>{const b=document.body.dataset,$=i=>document.getElementById(i),
+export const JS = `(()=>{const b=document.body.dataset,$=i=>document.getElementById(i),
 post=(p,o)=>fetch('/q/'+b.code+'/'+p,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(o)}),
 gps=()=>new Promise((y,n)=>navigator.geolocation?navigator.geolocation.getCurrentPosition(p=>y(p.coords),n,{enableHighAccuracy:true,timeout:15e3,maximumAge:0}):n()),
 scan=c=>post('scan',c?{lat:c.latitude,lng:c.longitude}:{}).catch(()=>{});
@@ -207,4 +207,21 @@ export function renderQrMissing(lang: Lang) {
 		`<main><h1>${esc(m.qr_missing())}</h1><p>${esc(m.qr_missing_hint())}</p><p><a class="btn pri" href="/">Crabwalk</a></p></main><nav class="sos" aria-label="${esc(m.qr_emergency())}"><a href="tel:112">${esc(m.qr_call_112())}</a></nav>`,
 		{}
 	);
+}
+
+/** CSP for the scan page (P10): only its own inline script (by hash), Supabase media, same-origin posts. */
+export async function qrCsp(supabaseOrigin: string) {
+	const d = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(JS));
+	const hash = btoa(String.fromCharCode(...new Uint8Array(d)));
+	return [
+		"default-src 'none'",
+		`script-src 'sha256-${hash}'`,
+		"style-src 'unsafe-inline'",
+		`img-src ${supabaseOrigin} data:`,
+		`media-src ${supabaseOrigin}`,
+		"connect-src 'self'",
+		"form-action 'self'",
+		"base-uri 'none'",
+		"frame-ancestors 'none'"
+	].join('; ');
 }

@@ -5,6 +5,7 @@ import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
 import { paraglideMiddleware } from '#lib/paraglide/server.js';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
+import { allowed, ruleFor } from '#lib/server/rate.ts';
 
 const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
@@ -43,4 +44,25 @@ const shell: Handle = ({ event, resolve }) =>
 		});
 	});
 
-export const handle = sequence(shell, supabase);
+// P10: per-client limits on write endpoints (429 with Retry-After), then security headers on every response.
+const limits: Handle = async ({ event, resolve }) => {
+	const rule = ruleFor(event.request.method, event.url);
+	if (rule && !(await allowed(event, rule)))
+		return new Response(JSON.stringify({ message: 'too many requests' }), {
+			status: 429,
+			headers: { 'Content-Type': 'application/json', 'Retry-After': String(rule.windowS) }
+		});
+	const res = await resolve(event);
+	const h = res.headers;
+	h.set('X-Content-Type-Options', 'nosniff');
+	h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+	h.set(
+		'Permissions-Policy',
+		'geolocation=(self), camera=(self), microphone=(self), payment=(), usb=()'
+	);
+	h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
+	if (!h.has('X-Frame-Options')) h.set('X-Frame-Options', 'DENY');
+	return res;
+};
+
+export const handle = sequence(shell, supabase, limits);

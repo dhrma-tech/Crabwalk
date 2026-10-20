@@ -1,4 +1,5 @@
 import { fail } from '@sveltejs/kit';
+import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { requireStaff } from '#lib/server/auth.ts';
 import { tr, type Lang } from '#lib/server/listings.ts';
@@ -46,6 +47,7 @@ export const actions: Actions = {
 	decide: async (event) => {
 		await requireStaff(event);
 		const f = await event.request.formData();
+		if (!z.uuid().safeParse(f.get('id')).success) return fail(400);
 		const id = String(f.get('id'));
 		const db = event.locals.supabase;
 		const { data: p } = await db

@@ -1,4 +1,5 @@
 import { fail } from '@sveltejs/kit';
+import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { requireStaff } from '#lib/server/auth.ts';
 import { tr, type Lang } from '#lib/server/listings.ts';
@@ -49,6 +50,7 @@ export const actions: Actions = {
 	review: async (event) => {
 		await requireStaff(event, 'admin');
 		const f = await event.request.formData();
+		if (!z.uuid().safeParse(f.get('id')).success) return fail(400);
 		const { error } = await event.locals.supabase.rpc('review_owner_claim', {
 			_claim: String(f.get('id')),
 			_approve: f.get('approve') === '1'

@@ -247,7 +247,7 @@
 		</div>
 
 		<div
-			class="absolute right-3 bottom-[calc(140px+env(safe-area-inset-bottom))] z-10 flex flex-col items-end gap-2 lg:bottom-28"
+			class="absolute left-3 bottom-[calc(140px+env(safe-area-inset-bottom))] z-10 flex flex-col items-start gap-2 lg:bottom-28"
 		>
 			{#if showLayers}
 				<fieldset

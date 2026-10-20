@@ -1,17 +1,22 @@
 import { redirect } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
-import { renderQrMissing, renderQrPage } from '#lib/qr/page.ts';
+import { SUPABASE_URL } from '$app/env/public';
+import { qrCsp, renderQrMissing, renderQrPage } from '#lib/qr/page.ts';
 import { CODE_RE, SESSION_COOKIE, resolveQr, sessionHash } from '#lib/server/qr.ts';
 import type { Lang } from '#lib/server/listings.ts';
 import type { RequestHandler } from './$types';
 
-const html = (body: string, status = 200) =>
+let csp: Promise<string> | undefined;
+const html = async (body: string, status = 200) =>
 	new Response(body, {
 		status,
 		headers: {
 			'Content-Type': 'text/html; charset=utf-8',
 			'Cache-Control': 'private, no-cache',
-			Vary: 'Cookie, Accept-Language'
+			Vary: 'Cookie, Accept-Language',
+			'Content-Security-Policy': await (csp ??= qrCsp(
+				new URL(SUPABASE_URL ?? 'http://localhost').origin
+			))
 		}
 	});
 

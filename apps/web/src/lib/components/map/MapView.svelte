@@ -687,6 +687,11 @@
 		background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
 		color: var(--text-2);
 	}
+	/* WCAG 2.5.8 target size + comfortable touch: map control buttons 44 px. */
+	:global(.maplibregl-ctrl-group button) {
+		width: 44px;
+		height: 44px;
+	}
 	:global(.maplibregl-ctrl-attrib a) {
 		color: var(--link);
 	}

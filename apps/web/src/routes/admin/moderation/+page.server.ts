@@ -1,4 +1,5 @@
 import { fail } from '@sveltejs/kit';
+import { z } from 'zod';
 import { SUPABASE_URL } from '$app/env/public';
 import { requireStaff } from '#lib/server/auth.ts';
 import { prescreen } from '#lib/server/ai/moderation.ts';
@@ -30,6 +31,7 @@ export const actions: Actions = {
 	decide: async (event) => {
 		await requireStaff(event, 'reviewer');
 		const f = await event.request.formData();
+		if (!z.uuid().safeParse(f.get('id')).success) return fail(400);
 		const status = f.get('approve') === '1' ? 'approved' : 'rejected';
 		const { error } = await event.locals.supabase
 			.from('reviews')

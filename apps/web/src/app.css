@@ -81,29 +81,71 @@
 }
 
 /* §2.3 fonts: 4 self-hosted WOFF2, Latin + Devanagari per weight (DECISIONS B12). */
+/* DECISIONS P10-4 (overrides B12): Latin and Devanagari halves per weight, picked by unicode-range —
+   English pages never download Devanagari glyphs. Keep ranges in sync with scripts/subset-fonts.mjs. */
 @font-face {
 	font-family: 'Baloo 2';
 	font-weight: 600;
 	font-display: swap;
-	src: url('/fonts/baloo2-600.woff2') format('woff2');
+	src: url('/fonts/baloo2-600-latin.woff2') format('woff2');
+	unicode-range:
+		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
+		U+2122, U+2212;
+}
+@font-face {
+	font-family: 'Baloo 2';
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/baloo2-600-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 @font-face {
 	font-family: 'Baloo 2';
 	font-weight: 700;
 	font-display: swap;
-	src: url('/fonts/baloo2-700.woff2') format('woff2');
+	src: url('/fonts/baloo2-700-latin.woff2') format('woff2');
+	unicode-range:
+		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
+		U+2122, U+2212;
+}
+@font-face {
+	font-family: 'Baloo 2';
+	font-weight: 700;
+	font-display: swap;
+	src: url('/fonts/baloo2-700-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 @font-face {
 	font-family: 'Mukta';
 	font-weight: 400;
 	font-display: swap;
-	src: url('/fonts/mukta-400.woff2') format('woff2');
+	src: url('/fonts/mukta-400-latin.woff2') format('woff2');
+	unicode-range:
+		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
+		U+2122, U+2212;
+}
+@font-face {
+	font-family: 'Mukta';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/mukta-400-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 @font-face {
 	font-family: 'Mukta';
 	font-weight: 600;
 	font-display: swap;
-	src: url('/fonts/mukta-600.woff2') format('woff2');
+	src: url('/fonts/mukta-600-latin.woff2') format('woff2');
+	unicode-range:
+		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
+		U+2122, U+2212;
+}
+@font-face {
+	font-family: 'Mukta';
+	font-weight: 600;
+	font-display: swap;
+	src: url('/fonts/mukta-600-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 
 /* Tailwind mapping. Default palette removed so off-brand colours ("travel blue") can't be used. */

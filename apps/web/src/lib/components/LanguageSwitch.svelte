@@ -24,7 +24,10 @@
 				aria-pressed={o.locale === current}
 				class={[
 					'flex h-10 min-w-10 items-center justify-center rounded-chip px-2 type-small',
-					o.locale === current ? 'bg-sea-500 text-white' : 'text-text-2'
+					o.locale === current ? 'bg-sea-500 text-white' : 'text-text-2',
+					// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
+					// web-font files are never downloaded just for this switch.
+					current === 'en' && o.locale !== 'en' && 'font-[system-ui]'
 				]}
 			>
 				{o.short}

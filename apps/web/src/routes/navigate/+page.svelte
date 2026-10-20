@@ -24,6 +24,7 @@
 		type LL,
 		type NavState
 	} from '#lib/nav/nav.ts';
+	import { isNight } from '#lib/sun.ts';
 
 	// FRONTEND §7.12: map + route line + big next-turn card + voice toggle + wake-lock indicator + limits notice
 	// + "Open in Google Maps" for long highway drives. Planned legs use the stored route + turn cues (offline);
@@ -42,6 +43,14 @@
 	let me = $state<LL | null>(null);
 	let voice = $state(false);
 	let awake = $state(false);
+	// FRONTEND §12: suggest dark mode for night driving (after sunset, if not already dark).
+	let darkDismissed = $state(false);
+	const darkNow = () =>
+		document.documentElement.dataset.theme === 'dark' ||
+		(!document.documentElement.dataset.theme && matchMedia('(prefers-color-scheme: dark)').matches);
+	const suggestDark = $derived(
+		!darkDismissed && !!me && isNight(new Date(), me[0], me[1]) && !darkNow()
+	);
 	let failed = $state(false);
 	let olaLine = $state<LL[] | null>(null);
 	// Announcement keys already spoken — not UI state, so a plain Set.
@@ -270,6 +279,18 @@
 						>
 					{/if}
 				</div>
+				{#if olaLine && !leg.shape}
+					<!-- BACKEND §6.1: Ola results are attributed wherever they show. -->
+					<p
+						class="rounded-card bg-raised px-3 py-2 type-small shadow-float"
+						data-testid="ola-attribution"
+					>
+						{m.nav_route_by()}
+						<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
+							>Ola Maps</a
+						>
+					</p>
+				{/if}
 				{#if longDrive}<p class="rounded-card bg-raised px-3 py-2 type-small shadow-float">
 						{m.nav_long_drive()}
 					</p>{/if}
@@ -285,6 +306,22 @@
 						</ol>
 					</details>
 				{/if}
+			{/if}
+			{#if suggestDark}
+				<form
+					method="POST"
+					action="/prefs"
+					class="flex flex-wrap items-center gap-2 rounded-card bg-raised px-3 py-2 shadow-float"
+					data-testid="dark-suggest"
+				>
+					<input type="hidden" name="theme" value="dark" />
+					<input type="hidden" name="return" value={page.url.pathname + page.url.search} />
+					<p class="flex-1 type-small">{m.nav_dark_hint()}</p>
+					<Button type="submit" variant="secondary">{m.nav_dark_on()}</Button>
+					<Button type="button" variant="ghost" onclick={() => (darkDismissed = true)}
+						>{m.nav_dark_no()}</Button
+					>
+				</form>
 			{/if}
 			<p class="rounded-card bg-raised px-3 py-2 type-small text-text-2 shadow-float">
 				{m.nav_limits()}

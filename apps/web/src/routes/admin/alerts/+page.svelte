@@ -116,9 +116,8 @@
 						</form>
 					</div>
 				</li>
-			{:else}
-				<p class="type-body text-text-2">{m.alerts_none()}</p>
 			{/each}
 		</ul>
+		{#if !data.alerts.length}<p class="type-body text-text-2">{m.alerts_none()}</p>{/if}
 	</div>
 </Page>

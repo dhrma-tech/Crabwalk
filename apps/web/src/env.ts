@@ -23,5 +23,7 @@ export const variables = defineEnvVars({
 	AI_MODEL_DRAFT: { schema: optional },
 	AI_PROVIDER: { schema: optional },
 	// Web push (DECISIONS P9-3). Public key only — the private key lives in the trip-nudges function.
-	VAPID_PUBLIC_KEY: { public: true, schema: optional }
+	VAPID_PUBLIC_KEY: { public: true, schema: optional },
+	// P10 rate limits: HMAC secret for client keys (IPs are never stored).
+	RATE_LIMIT_SALT: { schema: optional }
 });

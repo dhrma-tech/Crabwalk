@@ -621,6 +621,20 @@ isOneToOne: false
       referencedColumns: ["code"]
     }
                   ]
+                },"rate_hits": {
+                  Row: {
+                    "hits": number,"key": string,"window_start": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "hits"?: number,"key": string,"window_start": string
+                  }
+                  Update: {
+                    "hits"?: number,"key"?: string,"window_start"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"regions": {
                   Row: {
                     "code_prefix": string,"created_at": string,"id": string,"name": string,"updated_at": string | null
@@ -1216,6 +1230,9 @@ isOneToOne: false
 { Args: { "_code": string,"_lat": number,"_lng": number }; Returns: {
               "distance_m": number,"verified": boolean
             }[]
+                           },
+"rate_take":
+{ Args: { "_key": string,"_limit": number,"_window_s": number }; Returns: boolean
                            },
 "refresh_patterns":
 { Args: Record<PropertyKey, never>; Returns: undefined

@@ -120,11 +120,18 @@ export function buildStyle(
 }
 
 const fontFaces = (origin: string) => {
-	const mukta400 = [{ url: `${origin}/fonts/mukta-400.woff2` }];
+	// P10-4: Latin + Devanagari halves, chosen by unicode-range (same as app.css).
+	const face = (n: string) => [
+		{ url: `${origin}/fonts/${n}-latin.woff2`, 'unicode-range': ['U+0020-00FF', 'U+2010-2212'] },
+		{
+			url: `${origin}/fonts/${n}-deva.woff2`,
+			'unicode-range': ['U+0900-097F', 'U+1CD0-1CF9', 'U+200B-200D', 'U+25CC', 'U+A8E0-A8FF']
+		}
+	];
 	return {
-		'Mukta Regular': mukta400,
-		'Mukta SemiBold': [{ url: `${origin}/fonts/mukta-600.woff2` }],
-		'Noto Sans Devanagari Regular v1': mukta400
+		'Mukta Regular': face('mukta-400'),
+		'Mukta SemiBold': face('mukta-600'),
+		'Noto Sans Devanagari Regular v1': face('mukta-400')
 	};
 };
 

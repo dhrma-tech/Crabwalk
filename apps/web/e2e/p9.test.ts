@@ -52,6 +52,7 @@ test('sign in; opt in and out of dwell time in Me (revocable)', async ({ browser
 
 test('map layers: heatmap legend names Live/Typical; tide slider with attribution; trails GPX', async () => {
 	await page.goto('/map');
+	await page.waitForLoadState('networkidle'); // hydrated: the layers toggle registers
 	await page.getByRole('button', { name: 'Map layers' }).click();
 	const panel = page.getByTestId('layers-panel');
 	await panel.getByLabel('Busy now').check();
