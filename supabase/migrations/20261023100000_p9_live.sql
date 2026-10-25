@@ -141,9 +141,9 @@ $$;
 -- One trail's line for the GPX download.
 create function public.trail_geojson(_id uuid)
 returns table (name_en text, geojson text)
-language sql stable security invoker set search_path = '' as $
+language sql stable security invoker set search_path = '' as $$
   select t.name_en, extensions.st_asgeojson(t.geometry, 6) from public.trails t where t.id = _id and t.geometry is not null;
-$;
+$$;
 
 -- ---------------------------------------------------------------- dwell + pattern analysis (BACKEND §10.6)
 -- Consented dwell visits → median minutes per place (≥ 5 samples); the planner prefers a verifier value.
