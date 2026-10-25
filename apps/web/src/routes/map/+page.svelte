@@ -140,6 +140,7 @@
 
 <TopBar title={m.nav_map()} />
 <main id="main" class="relative min-h-0 flex-1">
+	<h1 class="sr-only">{m.nav_map()}</h1>
 	{#if failed}
 		<ErrorState title={m.error_title()} body={m.map_unavailable()} />
 	{:else}

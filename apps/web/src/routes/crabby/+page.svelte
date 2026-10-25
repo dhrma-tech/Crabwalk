@@ -18,7 +18,8 @@
 <TopBar title={m.nav_crabby()} />
 <main
 	id="main"
-	class="mx-auto flex h-[calc(100dvh-56px-64px-env(safe-area-inset-bottom))] w-full max-w-[760px] flex-col lg:h-[calc(100dvh-56px)]"
+	class="mx-auto flex h-[calc(100dvh-var(--bar-h)-var(--nav-h)-env(safe-area-inset-top))] w-full max-w-[760px] flex-col"
 >
+	<h1 class="sr-only">{m.nav_crabby()}</h1>
 	<CrabbyChat chips={[m.crabby_chip_plan(), m.crabby_chip_gems(), m.crabby_chip_food()]} />
 </main>

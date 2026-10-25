@@ -54,7 +54,7 @@
 
 <Page title={data.category ? msg(`cat_${data.category}`) : m.app_name()} back={!!data.category}>
 	<div class="flex flex-col gap-8">
-		<SearchBox class="lg:hidden" />
+		<SearchBox id="search" class="lg:hidden" />
 		{#if !data.category}
 			<p class="hidden font-display text-[38px] leading-snug lg:block" aria-hidden="true">
 				{m.discover_heading()}

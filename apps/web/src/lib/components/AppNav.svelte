@@ -1,96 +1,80 @@
 <script lang="ts">
+	import Compass from '@lucide/svelte/icons/compass';
+	import MapIcon from '@lucide/svelte/icons/map';
+	import Route from '@lucide/svelte/icons/route';
+	import CircleUser from '@lucide/svelte/icons/circle-user';
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
-	import { afterNavigate } from '$app/navigation';
 	import { m } from '#lib/paraglide/messages.js';
-	import { menu } from '#lib/menu.svelte.ts';
+	import { crabby } from '#lib/crabby.svelte.ts';
+	import { isActive } from '#lib/nav.ts';
 	import Crabby from './Crabby.svelte';
-	import BrandMark from './BrandMark.svelte';
-	import LanguageSwitch from './LanguageSwitch.svelte';
 
-	// Phones: bottom nav, Crabby raised in the centre (FRONTEND §5). Laptop: no rail — a drawer behind ☰
-	// in the top bar (Suna 5a, DECISIONS P10a-4 overrides FRONTEND §5 "left rail").
+	// Phones (Report 2 §7.1): a floating glass bar 12 px above the safe area with Crabby raised in the centre;
+	// the current item gets a kokum icon and dot. Laptops navigate from the top bar (T-3). Hidden while typing
+	// (the on-screen keyboard is up), on /navigate and under the emergency card.
 	const items = [
-		{ href: resolve('/'), label: m.nav_discover },
-		{ href: resolve('/map'), label: m.nav_map },
-		{ href: resolve('/crabby'), label: m.nav_crabby },
-		{ href: resolve('/plan/new'), label: m.nav_plan },
-		{ href: resolve('/me'), label: m.nav_me }
+		{ href: resolve('/'), label: m.nav_discover, icon: Compass },
+		{ href: resolve('/map'), label: m.nav_map, icon: MapIcon },
+		{ href: resolve('/crabby'), label: m.nav_crabby, icon: null },
+		{ href: resolve('/plan/new'), label: m.nav_plan, icon: Route },
+		{ href: resolve('/me'), label: m.nav_me, icon: CircleUser }
 	];
-	const active = (href: string) =>
-		href === '/'
-			? page.url.pathname === '/'
-			: page.url.pathname.startsWith(href.split('/').slice(0, 2).join('/'));
 
-	afterNavigate(() => (menu.open = false));
-	let drawer: HTMLElement | undefined = $state();
-	$effect(() => {
-		if (menu.open) drawer?.querySelector('a')?.focus();
+	let typing = $state(false);
+	onMount(() => {
+		const field = (t: EventTarget | null) =>
+			t instanceof HTMLElement &&
+			t.matches(
+				'input:not([type=checkbox],[type=radio],[type=range],[type=file],[type=button],[type=submit]),textarea,[contenteditable]'
+			);
+		const onIn = (e: FocusEvent) => (typing = field(e.target));
+		const onOut = (e: FocusEvent) => (typing = field(e.relatedTarget));
+		addEventListener('focusin', onIn);
+		addEventListener('focusout', onOut);
+		return () => {
+			removeEventListener('focusin', onIn);
+			removeEventListener('focusout', onOut);
+		};
 	});
+	const hidden = $derived(typing || page.route.id === '/navigate' || crabby.emergency);
 </script>
-
-<svelte:window onkeydown={(e) => e.key === 'Escape' && (menu.open = false)} />
 
 <nav
 	aria-label={m.nav_label()}
 	data-clip-check
-	class="fixed inset-x-0 bottom-0 z-bar border-t border-border bg-bg pb-[env(safe-area-inset-bottom)] lg:hidden print:hidden"
+	class={[
+		'fixed inset-x-4 bottom-[calc(12px+env(safe-area-inset-bottom))] z-bar mx-auto max-w-140 lg:hidden print:hidden',
+		hidden && 'hidden'
+	]}
 >
-	<ul class="mx-auto grid h-16 max-w-[640px] grid-cols-5 items-stretch">
-		{#each items as item, i (item.href)}
-			{@const on = active(item.href)}
+	<ul class="glass grid h-17 grid-cols-5 rounded-xl shadow-e2">
+		{#each items as item (item.href)}
+			{@const on = isActive(page.url.pathname, item.href)}
 			<li class="flex">
 				<a
 					href={item.href}
 					aria-current={on ? 'page' : undefined}
 					class={[
-						'relative flex flex-1 flex-col items-center justify-center px-1 text-center text-[12px] leading-tight no-underline',
-						i === 2 && 'justify-end pb-1.5',
-						on ? 'font-medium text-text' : 'text-text-2 hover:text-text'
+						'relative flex flex-1 flex-col items-center justify-center gap-0.5 px-0.5 text-center type-label no-underline',
+						on ? 'text-text' : 'text-text-2'
 					]}
 				>
-					{#if i === 2}
-						<span class="absolute -top-[18px] left-1/2 -ml-[26px]"><Crabby size={52} /></span>
+					{#if item.icon}
+						{@const Icon = item.icon}
+						<Icon size={24} aria-hidden="true" class={on ? 'text-kokum' : undefined} />
+						<span>{item.label()}</span>
+						{#if on}<span class="absolute bottom-1 size-1 rounded-full bg-kokum"></span>{/if}
+					{:else}
+						<span
+							class="absolute -top-3.5 flex size-14 items-center justify-center rounded-full bg-kokum shadow-e2"
+							><Crabby size={36} tone="white" /></span
+						>
+						<span class="mt-auto pb-1.5">{item.label()}</span>
 					{/if}
-					<span>{item.label()}</span>
 				</a>
 			</li>
 		{/each}
 	</ul>
 </nav>
-
-{#if menu.open}
-	<button
-		type="button"
-		class="fixed inset-0 z-banner hidden cursor-default lg:block"
-		aria-label={m.close()}
-		tabindex="-1"
-		onclick={() => (menu.open = false)}
-	></button>
-	<nav
-		id="app-menu"
-		bind:this={drawer}
-		aria-label={m.nav_label()}
-		class="fixed inset-y-0 left-0 z-overlay hidden w-[230px] flex-col gap-1.5 border-r border-text bg-bg px-5 py-6 lg:flex print:hidden"
-	>
-		<div class="mb-6 flex items-center gap-2.5">
-			<BrandMark size={28} />
-			<span class="text-[17px] font-medium">{m.app_name()}</span>
-		</div>
-		{#each items as item (item.href)}
-			{@const on = active(item.href)}
-			<a
-				href={item.href}
-				aria-current={on ? 'page' : undefined}
-				class={[
-					'border-l-2 px-2.5 py-2 type-body no-underline',
-					on
-						? 'border-cta font-medium text-text'
-						: 'border-transparent text-text-2 hover:bg-text/5 hover:text-text'
-				]}>{item.label()}</a
-			>
-		{/each}
-		<div class="flex-1"></div>
-		<LanguageSwitch />
-	</nav>
-{/if}

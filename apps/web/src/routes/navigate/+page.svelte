@@ -194,6 +194,7 @@
 <Meta title={m.nav_title()} />
 <TopBar title={m.nav_title()} back />
 <main id="main" class="relative min-h-0 flex-1">
+	<h1 class="sr-only">{m.nav_title()}</h1>
 	{#if failed || !PMTILES_BASE_URL}
 		<ErrorState title={m.error_title()} body={m.nav_unavailable()} />
 	{:else}

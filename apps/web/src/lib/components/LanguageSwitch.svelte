@@ -12,28 +12,31 @@
 	const current = getLocale();
 </script>
 
-<form method="POST" action="/prefs" class="flex" aria-label={m.language()}>
+<form method="POST" action="/prefs" class="shrink-0" aria-label={m.language()}>
 	<input type="hidden" name="return" value={page.url.pathname + page.url.search} />
-	<!-- Suna: plain "EN हि म", the current one underlined in ink; 44 px targets. -->
-	<div class="flex">
+	<!-- Tideline segmented pill (Report 2 §8): 44 px targets, the current one a raised surface thumb. -->
+	<div class="flex rounded-full bg-surface-2">
 		{#each options as o (o.locale)}
+			{@const on = o.locale === current}
 			<button
 				name="locale"
 				value={o.locale}
 				lang={o.locale}
 				aria-label={o.name}
-				aria-pressed={o.locale === current}
+				aria-pressed={on}
 				class={[
-					'flex h-11 min-w-11 items-center justify-center px-1 text-[13px] leading-none',
-					o.locale === current
-						? 'text-text underline decoration-1 underline-offset-[6px]'
-						: 'text-text-2 hover:text-text',
+					'group flex size-11 items-center justify-center type-label',
 					// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
 					// web-font files are never downloaded just for this switch.
 					current === 'en' && o.locale !== 'en' && 'font-[system-ui]'
 				]}
 			>
-				{o.short}
+				<span
+					class={[
+						'flex h-9 min-w-9 items-center justify-center rounded-full px-2 transition-colors duration-200',
+						on ? 'bg-surface text-text shadow-e1' : 'text-text-2 group-hover:text-text'
+					]}>{o.short}</span
+				>
 			</button>
 		{/each}
 	</div>

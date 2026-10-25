@@ -1,14 +1,40 @@
 <script lang="ts">
+	import ChevronLeft from '@lucide/svelte/icons/chevron-left';
+	import Search from '@lucide/svelte/icons/search';
+	import CircleUser from '@lucide/svelte/icons/circle-user';
+	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
-	import { menu } from '#lib/menu.svelte.ts';
+	import { isActive } from '#lib/nav.ts';
 	import LanguageSwitch from './LanguageSwitch.svelte';
 	import BrandMark from './BrandMark.svelte';
 	import SearchBox from './SearchBox.svelte';
+	import OfflineBanner from './OfflineBanner.svelte';
 
-	// FRONTEND §5: back, title, language switch, search. Suna: phones show the 蟹 mark (or ‹) + title;
-	// laptops add ☰ (menu drawer, P10a-4), the wordmark and the search field.
+	// Report 2 §7 (T-3, T-21). Phones: back chevron or the mark (the wordmark on Discover), the title, search,
+	// language pill. Laptops: one persistent bar, full width even with Crabby docked: wordmark, links, search,
+	// language, Me. The page <h1> lives in <main>, so the title here is visual only. Page colour at the top,
+	// surface + e2 once the page scrolls. The offline pill hangs under the bar.
 	let { title, back = false }: { title: string; back?: boolean } = $props();
+	const home = $derived(page.url.pathname === '/');
+	const links = [
+		{ href: resolve('/'), label: m.nav_discover },
+		{ href: resolve('/map'), label: m.nav_map },
+		{ href: resolve('/plan/new'), label: m.nav_plan },
+		{ href: resolve('/itineraries'), label: m.itin_title },
+		{ href: resolve('/taste-konkan'), label: m.taste_title }
+	];
+	const icon =
+		'flex size-11 shrink-0 items-center justify-center rounded-full no-underline transition-colors duration-200';
+
+	let sentinel: HTMLElement | undefined = $state();
+	let scrolled = $state(false);
+	$effect(() => {
+		if (!sentinel) return;
+		const io = new IntersectionObserver(([e]) => (scrolled = !e!.isIntersecting));
+		io.observe(sentinel);
+		return () => io.disconnect();
+	});
 
 	function goBack(e: MouseEvent) {
 		if (history.length > 1) {
@@ -18,40 +44,82 @@
 	}
 </script>
 
-<header class="sticky top-0 z-bar bg-bg pt-[env(safe-area-inset-top)] print:hidden">
-	<div
-		class="mx-auto flex min-h-14 max-w-[1200px] items-center gap-3 px-6 py-1.5 lg:min-h-[76px] lg:gap-5 lg:px-10"
-		data-clip-check
-	>
-		<button
-			type="button"
-			class="hidden size-11 shrink-0 flex-col items-center justify-center gap-[5px] border border-text transition-colors duration-150 hover:bg-text/5 lg:flex"
-			aria-label={m.nav_menu()}
-			aria-expanded={menu.open}
-			aria-controls="app-menu"
-			onclick={() => (menu.open = !menu.open)}
-		>
-			{#each [0, 1, 2] as i (i)}<span class="h-px w-[18px] bg-text"></span>{/each}
-		</button>
-		<a
-			href={resolve('/')}
-			class="hidden min-h-11 shrink-0 items-center text-[17px] font-medium text-text no-underline decoration-1 underline-offset-4 hover:underline lg:flex"
-			>{m.app_name()}</a
-		>
+<div bind:this={sentinel} class="pointer-events-none absolute top-0 left-0 h-px w-px"></div>
+<header
+	class={[
+		'sticky top-0 z-bar pt-[env(safe-area-inset-top)] transition-[background-color,box-shadow] duration-200 print:hidden',
+		'lg:[:has(~[data-dock])>&]:-mr-(--dock-w)',
+		scrolled ? 'bg-surface shadow-e2' : 'bg-bg'
+	]}
+>
+	<div class="flex min-h-14 items-center gap-1 px-3 lg:hidden" data-clip-check>
 		{#if back}
 			<a
 				href={resolve('/')}
-				class="-ml-2 flex size-11 shrink-0 items-center justify-center text-[26px] leading-none text-text no-underline transition-colors duration-150 hover:bg-text/5 lg:ml-0"
+				class={[icon, 'text-text hover:bg-surface-2']}
 				aria-label={m.back()}
-				onclick={goBack}><span aria-hidden="true">‹</span></a
+				onclick={goBack}><ChevronLeft size={24} aria-hidden="true" /></a
 			>
 		{:else}
-			<span class="lg:hidden"><BrandMark /></span>
+			<a
+				href={resolve('/')}
+				class="flex min-h-11 min-w-11 shrink-0 items-center justify-center px-1 no-underline"
+				aria-label={m.app_name()}
+				aria-current={home ? 'page' : undefined}><BrandMark wordmark={home} /></a
+			>
 		{/if}
-		<h1 class={['min-w-0 flex-1 type-h3 lg:text-[17px]', title === m.app_name() && 'lg:sr-only']}>
-			{title}
-		</h1>
-		<SearchBox class="hidden max-w-[520px] flex-1 lg:block" />
-		<div class="ml-auto shrink-0"><LanguageSwitch /></div>
+		{#if home}
+			<span class="flex-1"></span>
+		{:else}
+			<p class="min-w-0 flex-1 px-1 type-h3 wrap-anywhere text-text" aria-hidden="true">{title}</p>
+			<a
+				href="{resolve('/')}#search"
+				class={[icon, 'text-text hover:bg-surface-2']}
+				aria-label={m.search()}><Search size={22} aria-hidden="true" /></a
+			>
+		{/if}
+		<LanguageSwitch />
+	</div>
+
+	<div class="mx-auto hidden h-18 max-w-300 items-center gap-4 px-8 lg:flex" data-clip-check>
+		<a
+			href={resolve('/')}
+			class="flex min-h-11 shrink-0 items-center no-underline"
+			aria-label={m.app_name()}
+			aria-current={home ? 'page' : undefined}><BrandMark wordmark /></a
+		>
+		<nav aria-label={m.nav_label()}>
+			<ul class="flex items-center">
+				{#each links as l (l.href)}
+					{@const on = isActive(page.url.pathname, l.href)}
+					<li>
+						<a
+							href={l.href}
+							aria-current={on ? 'page' : undefined}
+							class={[
+								'relative flex min-h-11 items-center rounded-full px-3 type-body whitespace-nowrap no-underline transition-colors duration-200',
+								on ? 'font-semibold text-text' : 'text-text-2 hover:bg-surface-2 hover:text-text'
+							]}
+							>{l.label()}{#if on}<span
+									class="absolute bottom-1 left-1/2 size-1 -translate-x-1/2 rounded-full bg-kokum"
+								></span>{/if}</a
+						>
+					</li>
+				{/each}
+			</ul>
+		</nav>
+		<SearchBox class="mx-auto max-w-120 min-w-0 flex-1" />
+		<LanguageSwitch />
+		<a
+			href={resolve('/me')}
+			class={[icon, 'bg-surface-2 text-text-2 hover:text-text']}
+			aria-label={m.nav_me()}
+			aria-current={isActive(page.url.pathname, '/me') ? 'page' : undefined}
+			><CircleUser size={24} aria-hidden="true" /></a
+		>
+	</div>
+
+	<div class="pointer-events-none absolute inset-x-0 top-full flex justify-center px-4 pt-2">
+		<OfflineBanner />
 	</div>
 </header>

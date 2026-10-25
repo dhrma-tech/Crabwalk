@@ -56,7 +56,17 @@
 	--dur-state: 200ms;
 	--dur-sheet: 320ms;
 	--dur-shimmer: 1.2s;
+	/* Shell sizes (Report 2 §7): top bar, room kept for the floating phone nav, docked Crabby panel. */
+	--bar-h: 56px;
+	--nav-h: calc(96px + env(safe-area-inset-bottom));
+	--dock-w: 360px;
 	color-scheme: light;
+}
+@media (width >= 1024px) {
+	:root {
+		--bar-h: 72px;
+		--nav-h: 0px;
+	}
 }
 /* Night tide: deep slate, never pure black. Lighter surfaces + a 1 px light edge instead of big shadows.
    Values Report 2 leaves out (dark tints, sponsor, scrim, emergency) are T-19. Keep both blocks identical

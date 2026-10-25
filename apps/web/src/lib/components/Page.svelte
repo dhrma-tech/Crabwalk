@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import { page } from '$app/state';
 	import TopBar from './TopBar.svelte';
 	import Meta from './Meta.svelte';
 
@@ -20,6 +21,10 @@
 
 <Meta {title} {description} {image} />
 <TopBar {title} {back} />
-<main id="main" class="mx-auto w-full max-w-[1200px] px-6 pt-3 pb-8 lg:px-10 lg:pt-4">
+<!-- The page heading (T-21): phones show the title in the top bar, laptops above the content. -->
+<main id="main" class="mx-auto w-full max-w-300 px-5 pt-2 pb-10 lg:px-8 lg:pt-6">
+	<h1 class={['sr-only', page.url.pathname !== '/' && 'lg:not-sr-only lg:mb-6 lg:type-h1']}>
+		{title}
+	</h1>
 	{@render children()}
 </main>

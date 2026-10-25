@@ -76,7 +76,7 @@
 	>
 		{#if !crabby.turns.length}
 			<div class="flex items-start gap-2.5">
-				<Crabby size={30} outline />
+				<Crabby size={30} />
 				<p class="type-small text-text-2">{m.crabby_hello()}</p>
 			</div>
 		{/if}
@@ -90,7 +90,7 @@
 				</p>
 			{:else}
 				<div class="flex items-start gap-2.5 self-start">
-					<Crabby size={30} outline />
+					<Crabby size={30} />
 					<div class="flex min-w-0 flex-1 flex-col gap-2.5" data-testid="bubble-crabby">
 						{#if t.kind === 'limit'}
 							<p class="type-body" data-testid="crabby-limit">{m.crabby_limit()}</p>

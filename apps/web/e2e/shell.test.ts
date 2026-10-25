@@ -48,7 +48,7 @@ for (const locale of locales)
 			await expect(page).toHaveScreenshot(`gallery-${locale}-${theme}.png`, { fullPage: true });
 		});
 
-for (const width of [360, 640, 1280])
+for (const width of [360, 640, 1024, 1280])
 	test(`no clipping with longest Marathi strings at ${width}px`, async ({ page }) => {
 		await page.setViewportSize({ width, height: 900 });
 		await prefs(page, 'mr');
