@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { m } from '#lib/paraglide/messages.js';
@@ -133,7 +133,7 @@
 		<form
 			method="POST"
 			action={data.live ? '?/stop' : '?/start'}
-			use:enhance
+			use:submitting
 			class={['flex flex-wrap items-center gap-2', data.live && 'bg-wakaba px-3.5 py-2']}
 		>
 			<p class={['flex-1 type-small', data.live ? 'text-text' : 'text-text-2']}>
@@ -148,7 +148,7 @@
 			<div class="flex flex-col gap-2 bg-yama px-3.5 py-2.5" role="status" data-testid="nudge-late">
 				<p class="type-body">{m.nudge_late({ n: lateMin, place: next.name ?? '' })}</p>
 				<div class="flex flex-wrap gap-2">
-					<form method="POST" action="?/skip" use:enhance>
+					<form method="POST" action="?/skip" use:submitting>
 						<input type="hidden" name="day" value={data.day} />
 						<input type="hidden" name="entity_id" value={next.entity_id} />
 						<Button type="submit" variant="secondary">{m.nudge_skip()}</Button>

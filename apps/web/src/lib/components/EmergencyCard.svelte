@@ -89,7 +89,7 @@
 	role="alertdialog"
 	aria-modal="true"
 	aria-labelledby="emergency-title"
-	class="fixed inset-0 z-50 overflow-y-auto bg-bg pb-[env(safe-area-inset-bottom)] text-text"
+	class="fixed inset-0 z-overlay overflow-y-auto bg-bg pb-[env(safe-area-inset-bottom)] text-text"
 	data-testid="emergency-card"
 >
 	<a

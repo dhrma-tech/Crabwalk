@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
@@ -35,7 +35,7 @@
 </script>
 
 {#snippet editor(e: Ev)}
-	<form method="POST" action="?/save" use:enhance class="grid gap-3 sm:grid-cols-2">
+	<form method="POST" action="?/save" use:submitting class="grid gap-3 sm:grid-cols-2">
 		<input type="hidden" name="id" value={e.id} />
 		<label class="flex flex-col gap-1 type-small text-text-2"
 			>{m.event_name()} (EN)<input name="name_en" value={e.name_en} required class={field} /></label
@@ -124,7 +124,7 @@
 						</summary>
 						<div class="mt-3 flex flex-col gap-3">
 							{@render editor(e)}
-							<form method="POST" action="?/delete" use:enhance>
+							<form method="POST" action="?/delete" use:submitting>
 								<input type="hidden" name="id" value={e.id} />
 								<Button type="submit" variant="ghost">{m.plan_remove()}</Button>
 							</form>

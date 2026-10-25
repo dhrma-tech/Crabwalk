@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
+	import { AMENITIES, VIBES } from '#lib/vocab.ts';
 	import Page from '#lib/components/Page.svelte';
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import StayCard from '#lib/components/StayCard.svelte';
@@ -11,23 +12,11 @@
 
 	// FRONTEND §7.5: filters (vibe, service style, price, amenities) → cards.
 	let { data }: PageProps = $props();
-	const vibes = [
-		'traditional_konkani_home',
-		'family',
-		'luxury',
-		'business',
-		'backpacker',
-		'couple_friendly',
-		'pet_friendly',
-		'beachfront',
-		'orchard_stay'
-	];
-	const amenities = ['ac', 'hot_water', 'wifi', 'parking', 'power_backup'];
-	const opt = (prefix: string, keys: string[]) =>
+	const opt = (prefix: string, keys: readonly string[]) =>
 		keys.map((k) => ({ value: k, label: msg(`${prefix}${k}`) }));
 </script>
 
-<Page title={m.stays_title()}>
+<Page title={m.stays_title()} description={m.meta_stays()}>
 	<div class="flex flex-col gap-4">
 		<FilterBar
 			fields={[
@@ -35,7 +24,7 @@
 					name: 'vibe',
 					label: m.filter_vibe(),
 					value: data.filters.vibe,
-					options: opt('vibe_', vibes)
+					options: opt('vibe_', VIBES)
 				},
 				{
 					name: 'style',
@@ -47,7 +36,7 @@
 					name: 'amenity',
 					label: m.filter_amenity(),
 					value: data.filters.amenity,
-					options: opt('amenity_', amenities)
+					options: opt('amenity_', AMENITIES)
 				},
 				{
 					name: 'max_price',
@@ -62,6 +51,7 @@
 				{#each data.stays as s (s.slug)}
 					<StayCard
 						row
+						level={2}
 						href={resolve('/stays/[slug]', { slug: s.slug })}
 						names={s.names}
 						photo={s.photo}

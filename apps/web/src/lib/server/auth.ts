@@ -1,5 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
+import { loginHref } from '#lib/login.ts';
+import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
 
 export type Role = {
 	role: string;
@@ -8,18 +10,18 @@ export type Role = {
 	entity_id: string | null;
 };
 
-/** Signed-in user + their roles (own rows readable via RLS). Redirects to /login when signed out. */
+/** Signed-in user + their roles (own rows readable via RLS). Signed out → /login, then back here. */
 export async function session(event: Pick<RequestEvent, 'locals' | 'url'>) {
 	const user = await event.locals.getUser();
 	if (!user) {
 		if (event.url.pathname.startsWith('/api/')) error(401, 'sign in');
-		redirect(303, '/login');
+		redirect(303, loginHref(event.url));
 	}
 	const { data } = await event.locals.supabase
 		.from('user_roles')
 		.select('role, taluka_id, entity_type, entity_id')
 		.eq('user_id', user.id);
-	const roles = (data ?? []) as Role[];
+	const roles = (devBypass(event.url.hostname) ? DEV_ROLES : (data ?? [])) as Role[];
 	const has = (r: string) => roles.some((x) => x.role === r);
 	return {
 		user,

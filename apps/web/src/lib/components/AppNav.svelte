@@ -34,7 +34,7 @@
 <nav
 	aria-label={m.nav_label()}
 	data-clip-check
-	class="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-bg pb-[env(safe-area-inset-bottom)] lg:hidden print:hidden"
+	class="fixed inset-x-0 bottom-0 z-bar border-t border-border bg-bg pb-[env(safe-area-inset-bottom)] lg:hidden print:hidden"
 >
 	<ul class="mx-auto grid h-16 max-w-[640px] grid-cols-5 items-stretch">
 		{#each items as item, i (item.href)}
@@ -46,7 +46,7 @@
 					class={[
 						'relative flex flex-1 flex-col items-center justify-center px-1 text-center text-[12px] leading-tight no-underline',
 						i === 2 && 'justify-end pb-1.5',
-						on ? 'font-medium text-text' : 'text-text-2'
+						on ? 'font-medium text-text' : 'text-text-2 hover:text-text'
 					]}
 				>
 					{#if i === 2}
@@ -62,7 +62,7 @@
 {#if menu.open}
 	<button
 		type="button"
-		class="fixed inset-0 z-40 hidden cursor-default lg:block"
+		class="fixed inset-0 z-banner hidden cursor-default lg:block"
 		aria-label={m.close()}
 		tabindex="-1"
 		onclick={() => (menu.open = false)}
@@ -71,7 +71,7 @@
 		id="app-menu"
 		bind:this={drawer}
 		aria-label={m.nav_label()}
-		class="fixed inset-y-0 left-0 z-50 hidden w-[230px] flex-col gap-1.5 border-r border-text bg-bg px-5 py-6 lg:flex print:hidden"
+		class="fixed inset-y-0 left-0 z-overlay hidden w-[230px] flex-col gap-1.5 border-r border-text bg-bg px-5 py-6 lg:flex print:hidden"
 	>
 		<div class="mb-6 flex items-center gap-2.5">
 			<BrandMark size={28} />
@@ -84,7 +84,9 @@
 				aria-current={on ? 'page' : undefined}
 				class={[
 					'border-l-2 px-2.5 py-2 type-body no-underline',
-					on ? 'border-cta font-medium text-text' : 'border-transparent text-text-2'
+					on
+						? 'border-cta font-medium text-text'
+						: 'border-transparent text-text-2 hover:bg-text/5 hover:text-text'
 				]}>{item.label()}</a
 			>
 		{/each}

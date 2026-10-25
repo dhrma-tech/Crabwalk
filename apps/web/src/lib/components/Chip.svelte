@@ -16,7 +16,7 @@
 	class={[
 		'inline-flex min-h-11 shrink-0 items-center gap-1.5 border border-text px-3 py-1 text-left type-small',
 		'transition-colors duration-200 ease-brand',
-		selected ? 'bg-text text-bg' : 'bg-bg text-text'
+		selected ? 'bg-text text-bg' : 'bg-bg text-text hover:bg-text/5'
 	]}
 	onclick={() => {
 		selected = !selected;

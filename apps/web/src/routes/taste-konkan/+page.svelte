@@ -11,7 +11,7 @@
 	const tones = ['yama', 'sakura', 'asagi', 'wakaba', 'fuji'] as const;
 </script>
 
-<Page title={m.taste_title()}>
+<Page title={m.taste_title()} description={m.meta_taste()}>
 	{#if data.dishes.length}
 		<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
 			{#each data.dishes as d, i (d.slug)}

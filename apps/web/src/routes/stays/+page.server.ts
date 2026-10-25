@@ -1,16 +1,13 @@
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { listStays, names, photoUrls, type Lang } from '#lib/server/listings.ts';
+import { stayFilter, readFilter } from '#lib/server/filters.ts';
 import { cardAggs } from '#lib/server/ratings.ts';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const lang = getLocale() as Lang;
-	const f = {
-		vibe: url.searchParams.get('vibe') || undefined,
-		style: url.searchParams.get('style') || undefined,
-		maxPrice: Number(url.searchParams.get('max_price')) || undefined,
-		amenity: url.searchParams.get('amenity') || undefined
-	};
+	const p = readFilter(stayFilter, url.searchParams)!;
+	const f = { vibe: p.vibe, style: p.style, maxPrice: p.max_price, amenity: p.amenity };
 	const stays = await listStays(locals.supabase, f);
 	const aggs = await cardAggs(
 		locals.supabase,

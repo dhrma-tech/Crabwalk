@@ -24,3 +24,6 @@ Thumbs.db
 
 # Pipeline tool binaries (downloaded)
 pipelines/bin/
+
+# Personal editor settings
+.vscode/

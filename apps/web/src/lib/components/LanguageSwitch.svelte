@@ -24,10 +24,10 @@
 				aria-label={o.name}
 				aria-pressed={o.locale === current}
 				class={[
-					'flex h-11 min-w-9 items-center justify-center px-1 text-[13px] leading-none',
+					'flex h-11 min-w-11 items-center justify-center px-1 text-[13px] leading-none',
 					o.locale === current
 						? 'text-text underline decoration-1 underline-offset-[6px]'
-						: 'text-text-2',
+						: 'text-text-2 hover:text-text',
 					// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
 					// web-font files are never downloaded just for this switch.
 					current === 'en' && o.locale !== 'en' && 'font-[system-ui]'

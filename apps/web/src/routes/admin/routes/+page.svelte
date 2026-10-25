@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -25,7 +25,7 @@
 					</p>
 					<PlanDays days={r.view.days} />
 				{/if}
-				<form method="POST" action="?/review" use:enhance class="flex flex-wrap gap-2">
+				<form method="POST" action="?/review" use:submitting class="flex flex-wrap gap-2">
 					<input type="hidden" name="trip_id" value={r.trip_id} />
 					<Button type="submit" name="status" value="approved">{m.routes_approve()}</Button>
 					<Button type="submit" variant="ghost" name="status" value="rejected"

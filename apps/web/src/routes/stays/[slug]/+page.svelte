@@ -29,7 +29,7 @@
 	const foodKeys = ['veg', 'non_veg', 'malvani', 'jain', 'homemade_included'];
 </script>
 
-<Page title={primary} back>
+<Page title={primary} back description={s.description} image={s.photos[0]?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
 		<Hero photo={s.photos[0] ?? null} tone="asagi" />
 		<header class="flex flex-col gap-2">
@@ -116,7 +116,7 @@
 			{#if s.lastVerified}<StatusBadge kind="last-verified" date={s.lastVerified} />{/if}
 			{#if !s.claimed}<a
 					href={resolve('/owner/claim/[type]/[id]', { type: 'stay', id: s.id })}
-					class="type-small">{m.claim_cta()}</a
+					class="inline-flex min-h-11 items-center type-small">{m.claim_cta()}</a
 				>{/if}
 			<ReportProblem entityType="stay" entityId={s.id} />
 		</footer>

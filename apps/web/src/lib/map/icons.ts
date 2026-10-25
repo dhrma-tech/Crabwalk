@@ -40,8 +40,12 @@ async function toImage(icon: Component<Record<string, unknown>>, color: string) 
 	const svg = host.innerHTML.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
 	unmount(inst);
 	const img = new Image(SIZE * RATIO, SIZE * RATIO);
-	img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
-	await img.decode();
+	// The load event, not img.decode(): Chromium can reject decode() for SVG data URLs while the page is busy.
+	await new Promise<void>((resolve, reject) => {
+		img.onload = () => resolve();
+		img.onerror = () => reject(new Error(`pin glyph failed: ${icon.name}`));
+		img.src = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+	});
 	return img;
 }
 
@@ -59,10 +63,12 @@ export async function addPinImages(map: MLMap) {
 				[`util-${k}`, c, '#FFFFFF'] as [string, Component<Record<string, unknown>>, string]
 		)
 	];
+	// One glyph that fails to load must not take the other pins (and every overlay after them) down.
 	await Promise.all(
 		jobs.map(async ([name, icon, color]) => {
-			if (!map.hasImage(name))
-				map.addImage(name, await toImage(icon, color), { pixelRatio: RATIO });
+			if (map.hasImage(name)) return;
+			const img = await toImage(icon, color).catch(() => null);
+			if (img && !map.hasImage(name)) map.addImage(name, img, { pixelRatio: RATIO });
 		})
 	);
 }

@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { PHOTO_WIDTHS } from '#lib/server/listings.ts';
+import { formBody } from '#lib/server/http.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({
@@ -18,7 +19,7 @@ const meta = z.object({
 // Client already resized to WebP at 480/960/1600 (DECISIONS P4-2). Storage + photos RLS decide who may write.
 export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
-	const form = await event.request.formData();
+	const form = await formBody(event.request);
 	const m = meta.safeParse(Object.fromEntries([...form].filter(([, v]) => typeof v === 'string')));
 	if (!m.success) error(400, 'bad photo metadata');
 	const { id, entity_type, entity_id } = m.data;

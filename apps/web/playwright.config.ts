@@ -17,6 +17,9 @@ if (local) {
 	url = s.API_URL;
 	key = s.ANON_KEY;
 }
+// The build prerenders /navigate through the Supabase hook, so it needs values too (CI has no .env).
+process.env.SUPABASE_URL ??= url;
+process.env.SUPABASE_ANON_KEY ??= key;
 const localTiles = existsSync('../../pipelines/data/tiles/manifest.json');
 const tiles = localTiles ? 'http://localhost:4174' : (process.env.PMTILES_BASE_URL ?? '');
 process.env.E2E_TILES = tiles;
@@ -26,6 +29,8 @@ export default defineConfig({
 	fullyParallel: true,
 	// One local workerd + software WebGL: more workers starve the preview server.
 	workers: 3,
+	// Software WebGL on shared runners: one retry in CI only (local runs stay strict).
+	retries: process.env.CI ? 1 : 0,
 	reporter: 'list',
 	// Font rendering differs per OS, so baselines are per platform (committed: win32).
 	snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}-{platform}{ext}',

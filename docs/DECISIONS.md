@@ -129,6 +129,18 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | P5-6 | Verdict buttons use Lucide icons thumbs-down / circle-minus / thumbs-up / star (spec: icon + label, no emoji). Vote group defaults to Family; the gauge defaults to All. |
 | P5-7 | Owner/hygiene rules stay in RLS (P1); API maps RLS 42501 → 403 so "unverified cannot submit hygiene" is server-enforced, not just a disabled button. |
 
+## Refinement (branch `refinement`, user)
+| Ref | Decision |
+|---|---|
+| R-1 | Production refinement pass on branch `refinement` (main untouched); findings, fixes, Lighthouse before/after and accepted exceptions in `AUDIT.md`. |
+| R-2 | List filters are Zod-validated (`lib/server/filters.ts`): `/api/*` answers 400 on bad values, list pages drop them. Malformed form bodies → 400 (`lib/server/http.ts`). |
+| R-3 | Sign-in returns to the page that asked for it (`?next=`, same-origin only; Google keeps it in a 10-min cookie). 401/403 render a not-allowed state; unexpected server errors carry a reference id (`handleError`). |
+| R-4 | `use:submitting` replaces `use:enhance`; plain POST forms are guarded in the root layout. |
+| R-5 | SEO: per-page descriptions/Open Graph/canonical (`Meta`), generated `sitemap.xml` + `robots.txt`, `X-Robots-Tag: noindex` on private paths (`lib/seo.ts`). New HI/MR strings need team review. |
+| R-6 | Migration `20261025100000_refinement_indexes`: 17 FK indexes; pgTAP guard for new user/owner/listing/taluka FKs. |
+| R-7 | Named z-layers and hover tokens (`--cta-hover`, `--emergency-hover`, `row-link`) join the Suna tokens in `app.css`. |
+| R-8 | Text fields and textareas show no focus outline while typing (user; overrides design 3a "Focus" for text fields only). Buttons, links, checkboxes, radios, sliders and file pickers keep the ink ring. |
+
 ## P10a decisions (Suna redesign)
 | Ref | Decision |
 |---|---|
@@ -246,6 +258,7 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 - Supabase grants EXECUTE to PUBLIC by default, so `revoke … from anon, authenticated` alone does not block a function. Fixed for `refresh_patterns` in P9; earlier revokes (`create_qr_code`, `qr_verify_visit`, `ai_take_message`, `get_route_for_review`) are still guarded inside the functions (admin/auth checks) — revisit in P10 hardening.
 - ~~BACKEND §3.5 `eateries` has no contact column~~ — resolved in P4 (P4-1).
 - ~~`rls.test.sql` test 29 counted every approved review → failed on a local DB with P5 e2e leftovers~~ — fixed after P6 (user): scoped to its fixture place. Same fix for `p6_qr.test.sql` "next spot" (fixture moved within ~70 m so leftover e2e places can't outrank it). In P7 the trip assertions in `rls.test.sql` were scoped to the fixture trip too (approved e2e routes are public).
+- ~~CI red on `main` since phase-5 (found when landing `refinement`)~~ — fixed (user): (1) `20261023100000_p9_live.sql` `trail_geojson` was quoted `$ … $`, so no fresh DB could apply it; **edited in place to `$$` — the one approved exception to append-only** (never applied from that text: live has P1/P2 only, the local body was already the `$$` version). (2) The prerendered `/navigate` (P9-5) runs the Supabase hook at build time → CI `checks` got placeholder `SUPABASE_URL`/`SUPABASE_ANON_KEY`. (3) CI e2e never ran (no DB → `/` 500 → webServer timeout) → the e2e job now starts a fresh Supabase and runs the full suite with `E2E_SUPABASE=local` (snapshots still local-only), 1 retry in CI only.
 - `e2e/shell.test.ts` "works offline after first visit" timed out once under a full parallel run (passes alone and on rerun) — possible flake.
 - Local e2e on Windows: Playwright's `webServer` preview (`wrangler pages dev`, :4173) is not always stopped after a run, and `reuseExistingServer` then tests whatever build is left in `.svelte-kit/cloudflare` (e.g. a production build without `/dev/components` or the local CSP hosts → 21 false failures in P10). Stop any :4173 listener before running e2e.
 - ~~EmergencyCard backdrop `bg-black/40` never rendered (the palette reset removed black)~~ — moot in P10a: the card is a full-screen sheet.

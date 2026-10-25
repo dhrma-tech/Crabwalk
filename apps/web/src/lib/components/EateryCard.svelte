@@ -16,6 +16,7 @@
 		priceForTwo,
 		diet = [],
 		row,
+		level,
 		saved,
 		onsave,
 		verdict
@@ -28,6 +29,7 @@
 		priceForTwo?: number | null;
 		diet?: Diet[];
 		row?: boolean;
+		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
 		verdict?: Snippet;
@@ -41,7 +43,7 @@
 	const dietText = { veg: m.diet_veg, nonveg: m.diet_nonveg, jain: m.diet_jain };
 </script>
 
-<ListingCard {href} {photo} {names} tone="yama" {row} {saved} {onsave}>
+<ListingCard {href} {photo} {names} tone="yama" {row} {level} {saved} {onsave}>
 	{#if authenticity}
 		<p class="w-fit bg-yama px-2.5 py-px text-[13px] text-text">{authenticity}</p>
 	{/if}

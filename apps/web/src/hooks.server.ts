@@ -1,11 +1,13 @@
 import { createServerClient } from '@supabase/ssr';
-import type { Handle } from '@sveltejs/kit/hooks';
+import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
 import { sequence } from '@sveltejs/kit/hooks';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
+import { devAuth } from '#lib/devAuth.server.ts';
 import { paraglideMiddleware } from '#lib/paraglide/server.js';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
 import { allowed, ruleFor } from '#lib/server/rate.ts';
+import { isPrivatePath } from '#lib/seo.ts';
 
 const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
@@ -62,7 +64,17 @@ const limits: Handle = async ({ event, resolve }) => {
 	);
 	h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 	if (!h.has('X-Frame-Options')) h.set('X-Frame-Options', 'DENY');
+	if (isPrivatePath(event.url.pathname)) h.set('X-Robots-Tag', 'noindex');
 	return res;
 };
 
-export const handle = sequence(shell, supabase, limits);
+export const handle = sequence(shell, supabase, devAuth, limits);
+
+// Unexpected errors (thrown by our code): details go to the server log under a short id and the user sees only
+// that id. error() and framework errors (404s) keep SvelteKit's safe defaults — no stack traces either way.
+export const handleError: HandleServerError = ({ kind, error, event }) => {
+	if (kind !== 'unknown') return;
+	const id = crypto.randomUUID().slice(0, 8);
+	console.error(`[${id}] ${event.request.method} ${event.url.pathname}`, error);
+	return { id };
+};

@@ -2,6 +2,7 @@ import { error, json } from '@sveltejs/kit';
 import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { assertPublished, GROUPS } from '#lib/server/ratings.ts';
+import { formBody } from '#lib/server/http.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({
@@ -16,7 +17,7 @@ const MAX_PHOTOS = 4;
 // (moderation queue; model check wired in P8). Re-posting edits the user's review for that group.
 export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
-	const form = await event.request.formData();
+	const form = await formBody(event.request);
 	const m = meta.safeParse(Object.fromEntries([...form].filter(([, v]) => typeof v === 'string')));
 	if (!m.success) error(400, 'bad request');
 	const db = event.locals.supabase;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
@@ -30,7 +30,7 @@
 		<form
 			method="POST"
 			action="?/create"
-			use:enhance
+			use:submitting
 			class="flex flex-col gap-3 border border-border bg-surface p-4"
 		>
 			<input type="hidden" name="type" value={data.type} />
@@ -55,7 +55,7 @@
 								>{msg(`qr_type_${c.entity_type}`)} · {c.target}</span
 							>
 						</div>
-						<form method="POST" action="?/save" use:enhance class="grid gap-3 sm:grid-cols-2">
+						<form method="POST" action="?/save" use:submitting class="grid gap-3 sm:grid-cols-2">
 							<input type="hidden" name="code" value={c.code} />
 							<label class="flex flex-col gap-1.5 type-small text-text-2">
 								{m.qr_admin_permission()}

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -11,7 +11,12 @@
 </script>
 
 <Page title={m.planner_settings()} back>
-	<form method="POST" action="?/save" use:enhance class="mx-auto flex max-w-[680px] flex-col gap-6">
+	<form
+		method="POST"
+		action="?/save"
+		use:submitting
+		class="mx-auto flex max-w-[680px] flex-col gap-6"
+	>
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.budget_fuel()}</h2>
 			<p class="type-small text-text-2">{m.planner_fuel_hint()}</p>

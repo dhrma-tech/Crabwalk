@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
 	import { resolve } from '$app/paths';
@@ -57,18 +57,18 @@
 <Page title={data.trip.title} back>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
 		<header class="flex flex-col gap-2">
-			<form method="POST" action="?/rename" use:enhance class="flex gap-2 print:hidden">
+			<form method="POST" action="?/rename" use:submitting class="flex gap-2 print:hidden">
 				<label class="sr-only" for="trip-title">{m.plan_rename()}</label>
 				<input
 					id="trip-title"
 					name="title"
 					value={data.trip.title}
 					maxlength="120"
-					class="h-12 flex-1 border border-border bg-surface px-4 type-h3 text-text"
+					class="h-11 flex-1 border-b border-text bg-bg type-h3 text-text"
 				/>
 				<Button type="submit" variant="secondary">{m.plan_save()}</Button>
 			</form>
-			<h1 class="hidden type-h1 print:block">{data.trip.title}</h1>
+			<h2 class="hidden type-h1 print:block">{data.trip.title}</h2>
 			<p class="type-small text-text-2">
 				{m.plan_n_days({ n: data.trip.days })}{data.trip.start ? ` · ${data.trip.start}` : ''} · {msg(
 					`pace_${data.trip.pace}`
@@ -103,7 +103,7 @@
 			<form
 				method="POST"
 				action="?/suggest"
-				use:enhance={() =>
+				use:submitting={() =>
 					async ({ update }) =>
 						update({ reset: false })}
 				class="flex flex-wrap items-end gap-2"
@@ -127,7 +127,7 @@
 					{#if form.suggest.savedMin > 0}
 						<p class="type-body">{m.plan_suggest_saves({ n: form.suggest.savedMin })}</p>
 						<p class="type-small">{form.suggest.names.join(' → ')}</p>
-						<form method="POST" action="?/applyOrder" use:enhance>
+						<form method="POST" action="?/applyOrder" use:submitting>
 							<input type="hidden" name="day" value={form.suggest.day} />
 							<Button type="submit">{m.crabby_apply()}</Button>
 						</form>
@@ -155,7 +155,7 @@
 				<form
 					method="POST"
 					action="?/merge"
-					use:enhance={() =>
+					use:submitting={() =>
 						async ({ update }) =>
 							update({ reset: false })}
 				>
@@ -200,12 +200,17 @@
 			{/if}
 			{#if !data.published || data.published === 'rejected'}
 				<p class="type-small text-text-2">{m.plan_publish_hint()}</p>
-				<form method="POST" action="?/publish" use:enhance>
+				<form method="POST" action="?/publish" use:submitting>
 					<Button type="submit" variant="secondary">{m.plan_publish()}</Button>
 				</form>
 			{/if}
 			{#if data.isAdmin}
-				<form method="POST" action="?/readyMade" use:enhance class="flex flex-wrap items-end gap-2">
+				<form
+					method="POST"
+					action="?/readyMade"
+					use:submitting
+					class="flex flex-wrap items-end gap-2"
+				>
 					<label class="flex flex-col gap-1 type-small text-text-2">
 						{m.plan_ready_made_slug()}
 						<input

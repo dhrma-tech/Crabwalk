@@ -2,14 +2,17 @@ import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
 import { session } from '#lib/server/auth.ts';
+import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals, cookies }) => {
+export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 	const user = await locals.getUser();
 	const theme = cookies.get(THEME_COOKIE);
-	const { data: roles } = user
-		? await locals.supabase.from('user_roles').select('role').eq('user_id', user.id)
-		: { data: [] };
+	const { data: roles } = devBypass(url.hostname)
+		? { data: DEV_ROLES }
+		: user
+			? await locals.supabase.from('user_roles').select('role').eq('user_id', user.id)
+			: { data: [] };
 	const has = (r: string) => (roles ?? []).some((x) => x.role === r);
 	const { data: prefs } = user
 		? await locals.supabase

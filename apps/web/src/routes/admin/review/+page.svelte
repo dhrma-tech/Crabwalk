@@ -21,7 +21,7 @@
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: it.type, id: it.id })}
-							class="flex justify-between gap-3 py-3 text-text no-underline"
+							class="row-link flex justify-between gap-3 py-3 text-text no-underline"
 						>
 							<span class="type-body">{it.name}</span><span class="type-small text-text-2"
 								>{msg(`type_${it.type}`)}</span
@@ -41,7 +41,7 @@
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: 'dish', id: d.id })}
-							class="inline-flex min-h-11 items-center border border-border bg-surface px-4 type-small text-text no-underline"
+							class="inline-flex min-h-11 items-center border border-text px-4 type-small text-text no-underline hover:bg-text/5"
 							>{d.name ?? d.slug}</a
 						>
 					</li>

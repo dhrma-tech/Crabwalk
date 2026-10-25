@@ -9,6 +9,10 @@ on:
 jobs:
   checks:
     runs-on: ubuntu-latest
+    env:
+      # Placeholders for the build: the prerendered /navigate runs the Supabase hook (no DB call).
+      SUPABASE_URL: http://127.0.0.1:54321
+      SUPABASE_ANON_KEY: ci-placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -24,6 +28,11 @@ jobs:
 
   e2e:
     runs-on: ubuntu-latest
+    env:
+      # Full suite on a fresh local stack (migrations + seed); Google is never used.
+      E2E_SUPABASE: local
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID: ci-placeholder
+      SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET: ci-placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -32,6 +41,8 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
+      - name: Start fresh Supabase (applies migrations + seed; Mailpit for email OTP)
+        run: pnpm exec supabase start -x studio,imgproxy,edge-runtime,logflare,vector,realtime,supavisor
       - run: pnpm --filter @crabwalk/web exec playwright install --with-deps chromium
       # Screenshot baselines are rendered on Windows (local); CI runs every other shell check.
       - run: pnpm --filter @crabwalk/web exec playwright test --grep-invert snapshot

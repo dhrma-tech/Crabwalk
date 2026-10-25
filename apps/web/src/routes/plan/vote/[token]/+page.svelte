@@ -29,9 +29,8 @@
 			{#each data.spots as s (s.id)}
 				<li class="flex flex-col gap-2 border border-border bg-surface p-4" data-testid="vote-spot">
 					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
-					{#if s.href}<a href={s.href} class="type-h3">{s.name}</a>{:else}<span class="type-h3"
-							>{s.name}</span
-						>{/if}
+					{#if s.href}<a href={s.href} class="inline-flex min-h-11 items-center type-h3">{s.name}</a
+						>{:else}<span class="type-h3">{s.name}</span>{/if}
 					<fieldset class="flex flex-wrap items-center gap-2">
 						<legend class="sr-only">{s.name}</legend>
 						<label class={opt}

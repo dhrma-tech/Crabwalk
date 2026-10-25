@@ -13,7 +13,7 @@
 
 	// Shared shell for Place/Stay/Eatery cards (FRONTEND §6.3): 4:3 photo (or the no-photo pattern), heart,
 	// bilingual name, body. Suna: no box, just the image and the words under it; `row` = list row with a
-	// 110×84 thumbnail (Stays / Food lists, design 4a/6a).
+	// 110×84 thumbnail (Stays / Food lists, design 4a/6a); `boxed` = hairline card (Discover).
 	let {
 		href,
 		photo,
@@ -21,6 +21,8 @@
 		fallbackCategory,
 		tone,
 		row = false,
+		boxed = false,
+		level = 3,
 		saved = false,
 		onsave,
 		children
@@ -31,6 +33,9 @@
 		fallbackCategory?: Category;
 		tone?: Tone;
 		row?: boolean;
+		boxed?: boolean;
+		/** Heading level of the name: 2 when the cards sit right under the page title (lists). */
+		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
 		children?: Snippet;
@@ -45,9 +50,23 @@
 	const secondaryLang = locale === 'en' ? 'mr' : 'en';
 </script>
 
-<article class={['relative text-text', row && 'border-t border-border pt-3']} data-clip-check>
-	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
-	<a {href} class={['text-text no-underline', row ? 'flex gap-3.5' : 'block']}>
+<article
+	class={[
+		'relative text-text',
+		row && 'border-t border-border pt-3',
+		boxed && 'h-full border border-border'
+	]}
+	data-clip-check
+>
+	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
+	<a
+		{href}
+		class={[
+			'group text-text no-underline',
+			row ? 'flex gap-3.5' : 'block',
+			boxed && 'row-link h-full'
+		]}
+	>
 		<div
 			class={[
 				row ? 'h-[84px] w-[110px] shrink-0' : 'aspect-[4/3] w-full',
@@ -74,9 +93,15 @@
 				/>
 			{/if}
 		</div>
-		<div class={['flex min-w-0 flex-col gap-1.5', row ? 'pr-11' : 'pt-2']}>
+		<div
+			class={['flex min-w-0 flex-col gap-1.5', row ? 'pr-11' : boxed ? 'px-3 pt-2.5 pb-3' : 'pt-2']}
+		>
 			<div>
-				<h3 class="type-h3">{primary}</h3>
+				<svelte:element
+					this={`h${level}`}
+					class="type-h3 decoration-1 underline-offset-4 group-hover:underline"
+					>{primary}</svelte:element
+				>
 				{#if secondary && secondary !== primary}
 					<p class="text-[13px] text-text-2" lang={secondaryLang}>{secondary}</p>
 				{/if}

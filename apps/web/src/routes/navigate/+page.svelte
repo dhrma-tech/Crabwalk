@@ -25,6 +25,7 @@
 		type NavState
 	} from '#lib/nav/nav.ts';
 	import { isNight } from '#lib/sun.ts';
+	import Meta from '#lib/components/Meta.svelte';
 
 	// FRONTEND §7.12: map + route line + big next-turn card + voice toggle + wake-lock indicator + limits notice
 	// + "Open in Google Maps" for long highway drives. Planned legs use the stored route + turn cues (offline);
@@ -190,7 +191,7 @@
 	});
 </script>
 
-<svelte:head><title>{m.nav_title()} · {m.app_name()}</title></svelte:head>
+<Meta title={m.nav_title()} />
 <TopBar title={m.nav_title()} back />
 <main id="main" class="relative min-h-0 flex-1">
 	{#if failed || !PMTILES_BASE_URL}
@@ -210,7 +211,7 @@
 		</div>
 
 		<div
-			class="absolute inset-x-3 top-3 z-10 mx-auto flex max-w-[560px] flex-col gap-2"
+			class="absolute inset-x-3 top-3 z-map-ui mx-auto flex max-w-[560px] flex-col gap-2"
 			data-testid="nav-card"
 		>
 			{#if leg}
@@ -271,7 +272,7 @@
 		</div>
 
 		<div
-			class="absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-10 mx-auto flex max-w-[560px] flex-col gap-2 lg:bottom-6"
+			class="absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-map-ui mx-auto flex max-w-[560px] flex-col gap-2 lg:bottom-6"
 		>
 			{#if leg}
 				<div class="flex flex-wrap gap-2">

@@ -1,6 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import { z } from 'zod';
 import { CODE_RE } from '#lib/server/qr.ts';
+import { formBody } from '#lib/server/http.ts';
 import type { RequestHandler } from './$types';
 
 const body = z.object({
@@ -12,7 +13,7 @@ const body = z.object({
 // POST /q/:code/report (plain form, works without JS) → reports with qr_code set → triage (B10).
 // Anon allowed; throttled in the DB (P4-3).
 export const POST: RequestHandler = async ({ params, request, locals }) => {
-	const b = body.safeParse(Object.fromEntries(await request.formData()));
+	const b = body.safeParse(Object.fromEntries(await formBody(request)));
 	if (!CODE_RE.test(params.code) || !b.success) error(400, 'bad request');
 	const { data: q } = await locals.supabase
 		.from('qr_codes')

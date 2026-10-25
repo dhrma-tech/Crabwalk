@@ -15,7 +15,7 @@
 		{#each data.listings as l (l.id)}
 			<a
 				href={resolve('/owner/[type]/[id]', { type: l.type, id: l.id })}
-				class="flex justify-between gap-3 border border-border bg-surface px-4 py-3 text-text no-underline"
+				class="row-link flex justify-between gap-3 border border-border px-4 py-3 text-text no-underline"
 			>
 				<span class="type-body">{l.name}</span><span class="type-small text-link"
 					>{m.owner_edit()}</span

@@ -18,6 +18,8 @@
 	// Self-contained ES-module worker; Vite emits it as a hashed asset.
 	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 	import { onMount } from 'svelte';
+	import { m as msg } from '#lib/paraglide/messages.js';
+	import Crabby from '../Crabby.svelte';
 	import type { GeoJSONSource, Map as MLMap, Marker } from 'maplibre-gl';
 	import type { FeatureCollection, Point } from 'geojson';
 	import { getLocale } from '#lib/paraglide/runtime.js';
@@ -82,6 +84,8 @@
 	let container: HTMLDivElement;
 	let map: MLMap | undefined = $state();
 	let ready = $state(false);
+	// The basemap has drawn once: the loading note can go even if an overlay later fails.
+	let painted = $state(false);
 	let tilesUrl: string | string[] = '';
 	let offline = false;
 	let pins: FeatureCollection = { type: 'FeatureCollection', features: [] };
@@ -544,6 +548,7 @@
 					new maplibregl.GeolocateControl({ trackUserLocation: false }),
 					'bottom-right'
 				);
+				mm.once('load', () => (painted = true));
 				mm.on('style.load', async () => {
 					await overlays();
 					loadPins();
@@ -684,7 +689,18 @@
 	});
 </script>
 
-<div bind:this={container} class="h-full w-full" data-testid="map"></div>
+<div class="relative h-full w-full">
+	<div bind:this={container} class="h-full w-full" data-testid="map"></div>
+	{#if !painted}
+		<!-- The map library is a large download on 4G: say so instead of showing an empty box. -->
+		<p
+			class="pointer-events-none absolute inset-0 flex items-center justify-center gap-3 bg-bg type-small text-text-2"
+			role="status"
+		>
+			<Crabby size={28} walking />{msg.loading()}
+		</p>
+	{/if}
+</div>
 
 <style>
 	/* Attribution must always be visible (FRONTEND §8): themed, and lifted clear of the raised Crabby tab. */

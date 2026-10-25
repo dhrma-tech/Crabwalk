@@ -11,6 +11,7 @@
 	--text-2: #5c584f;
 	--text-muted: #5c584f;
 	--cta: #2b3f5c;
+	--cta-hover: #22324a;
 	--on-cta: #f4f0e8;
 	--link: #2b3f5c;
 	--highlight: #d99a00;
@@ -18,6 +19,7 @@
 	--caution: #88661c; /* P10a-2: design ochre #9A7420 was 3.78:1 on washi */
 	--danger: #c45a78; /* sakura, not red: red is emergency only (brief §2) */
 	--emergency: #b3261e;
+	--emergency-hover: #9b2119;
 	--sponsor: #5c584f;
 	--sakura: #f6d5d8;
 	--asagi: #bfe3e3;
@@ -55,6 +57,7 @@
 		--text-2: #a39e92;
 		--text-muted: #a39e92;
 		--cta: #9db4d6;
+		--cta-hover: #b6c8e2;
 		--on-cta: #16171a;
 		--link: #9db4d6;
 		--highlight: #e8b84a;
@@ -84,6 +87,7 @@
 	--text-2: #a39e92;
 	--text-muted: #a39e92;
 	--cta: #9db4d6;
+	--cta-hover: #b6c8e2;
 	--on-cta: #16171a;
 	--link: #9db4d6;
 	--highlight: #e8b84a;
@@ -199,6 +203,7 @@
 	--color-text-2: var(--text-2);
 	--color-muted: var(--text-muted);
 	--color-cta: var(--cta);
+	--color-cta-hover: var(--cta-hover);
 	--color-on-cta: var(--on-cta);
 	--color-link: var(--link);
 	--color-highlight: var(--highlight);
@@ -206,6 +211,7 @@
 	--color-caution: var(--caution);
 	--color-danger: var(--danger);
 	--color-emergency: var(--emergency);
+	--color-emergency-hover: var(--emergency-hover);
 	--color-sponsor: var(--sponsor);
 	--color-sakura: var(--sakura);
 	--color-asagi: var(--asagi);
@@ -258,6 +264,29 @@
 @utility type-tiny {
 	font: 500 12px/1.5 var(--font-body);
 }
+/* A whole-row link in a ruled list: a faint ink wash on hover (Suna has no shadows to lift with). */
+@utility row-link {
+	transition: background-color 150ms var(--ease);
+	&:hover {
+		background-color: color-mix(in srgb, var(--text) 5%, transparent);
+	}
+}
+/* Stacking layers, bottom to top. Use these names, not raw z-index numbers. */
+@utility z-map-ui {
+	z-index: 10; /* controls and legends floating over a map */
+}
+@utility z-bar {
+	z-index: 20; /* sticky top bar, phone nav, floating chips */
+}
+@utility z-panel {
+	z-index: 30; /* docked Crabby, bottom sheet, dropdowns */
+}
+@utility z-banner {
+	z-index: 40; /* offline banner, the menu's click-away backdrop */
+}
+@utility z-overlay {
+	z-index: 50; /* menu drawer, emergency card, toasts, skip link */
+}
 /* No-photo treatment: a fine line pattern over the category tint ("Photo coming soon"). */
 @utility no-photo {
 	background: repeating-linear-gradient(
@@ -281,6 +310,10 @@
 	a {
 		color: var(--link);
 	}
+	/* A form waiting on its action (lib/forms.ts). */
+	form[aria-busy] {
+		cursor: progress;
+	}
 	svg.lucide {
 		stroke-width: 1.5px;
 		flex-shrink: 0;
@@ -289,6 +322,11 @@
 	:focus-visible {
 		outline: 2px solid var(--text);
 		outline-offset: 3px;
+	}
+	/* Text fields show focus by their caret; no box while typing (owner call, see DECISIONS). */
+	input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']):focus-visible,
+	textarea:focus-visible {
+		outline: none;
 	}
 	@media (prefers-reduced-motion: reduce) {
 		*,

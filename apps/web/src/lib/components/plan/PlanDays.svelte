@@ -166,9 +166,9 @@
 											>{kindLabel(s.kind)}</span
 										>{/if}
 									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
-									{#if s.href}<a href={s.href} class="type-h3">{s.name}</a>{:else}<span
-											class="type-h3">{s.name ?? '—'}</span
-										>{/if}
+									{#if s.href}<a href={s.href} class="inline-flex min-h-11 items-center type-h3"
+											>{s.name}</a
+										>{:else}<span class="type-h3">{s.name ?? '—'}</span>{/if}
 									{#if s.reason}<span
 											class="mt-1 self-start px-2 text-[12px]"
 											style:background="var(--{tint(s.kind)})"

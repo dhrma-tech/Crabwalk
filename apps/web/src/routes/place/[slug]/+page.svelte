@@ -52,7 +52,12 @@
 	);
 </script>
 
-<Page title={primary} back>
+<Page
+	title={primary}
+	back
+	description={p.text.story || p.text.significance}
+	image={p.photos[0]?.src}
+>
 	<article
 		class="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start lg:gap-x-10"
 	>
@@ -119,7 +124,7 @@
 								<li class="border-b border-border">
 									<a
 										href={hrefFor(x.kind, x.slug)}
-										class="flex justify-between gap-3 py-2 text-text no-underline"
+										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
 										><span class="type-body">{pinName(x)}</span><span class="type-small text-text-2"
 											>{m.km_away({ km: formatNumber(x.km) })}</span
 										></a
@@ -154,7 +159,7 @@
 								<li class="border-b border-border">
 									<a
 										href={resolve('/place/[slug]', { slug: x.slug })}
-										class="flex justify-between gap-3 py-2 text-text no-underline"
+										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
 										><span class="type-body">{pinName(x)} · {msg(`crowd_${x.level}`)}</span><span
 											class="type-small text-text-2"
 											>{m.km_away({ km: formatNumber(Number(x.km)) })}</span
@@ -171,7 +176,7 @@
 								<li class="border-b border-border">
 									<a
 										href={resolve('/place/[slug]', { slug: x.slug })}
-										class="flex justify-between gap-3 py-2 text-text no-underline"
+										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
 										><span class="type-body">{pinName(x)} · {msg(`cat_${x.category}`)}</span><span
 											class="type-small text-text-2"
 											>{m.km_away({ km: formatNumber(Number(x.km)) })}</span

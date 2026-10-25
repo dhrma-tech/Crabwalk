@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
@@ -29,7 +29,7 @@
 		<form
 			method="POST"
 			action="?/create"
-			use:enhance
+			use:submitting
 			class="grid gap-3 border border-border bg-surface p-4 sm:grid-cols-2"
 		>
 			<h2 class="type-h2 sm:col-span-2">{m.alerts_add()}</h2>
@@ -109,11 +109,11 @@
 						})}
 					</p>
 					<div class="flex flex-wrap gap-2">
-						<form method="POST" action="?/confirm" use:enhance>
+						<form method="POST" action="?/confirm" use:submitting>
 							<input type="hidden" name="id" value={a.id} />
 							<Button type="submit" variant="secondary">{m.alerts_confirm()}</Button>
 						</form>
-						<form method="POST" action="?/remove" use:enhance>
+						<form method="POST" action="?/remove" use:submitting>
 							<input type="hidden" name="id" value={a.id} />
 							<Button type="submit" variant="ghost">{m.alerts_remove()}</Button>
 						</form>

@@ -4,6 +4,7 @@
 import { z } from 'zod';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { Constants, type Database } from '#lib/db.types.ts';
+import { AMENITIES, DIETS, VIBES } from '#lib/vocab.ts';
 
 type DB = SupabaseClient<Database>;
 const E = Constants.public.Enums;
@@ -67,26 +68,9 @@ export const placeInput = base.extend({
 
 export const stayInput = base
 	.extend({
-		vibe_tags: z
-			.array(
-				z.enum([
-					'traditional_konkani_home',
-					'family',
-					'luxury',
-					'business',
-					'backpacker',
-					'couple_friendly',
-					'pet_friendly',
-					'beachfront',
-					'orchard_stay'
-				])
-			)
-			.max(9),
+		vibe_tags: z.array(z.enum(VIBES)).max(VIBES.length),
 		service_style: z.enum(E.service_style).nullable(),
-		amenities: z.partialRecord(
-			z.enum(['ac', 'hot_water', 'wifi', 'parking', 'power_backup']),
-			z.boolean()
-		),
+		amenities: z.partialRecord(z.enum(AMENITIES), z.boolean()),
 		network_strength: z.partialRecord(z.enum(OPERATORS), z.enum(['none', 'weak', 'good'])),
 		food_at_stay: z.partialRecord(
 			z.enum(['veg', 'non_veg', 'malvani', 'jain', 'homemade_included']),
@@ -105,7 +89,7 @@ export const stayInput = base
 export const eateryInput = base.extend({
 	authenticity: z.enum(E.eatery_authenticity).nullable(),
 	price_for_two: z.number().int().min(0).nullable(),
-	diet_flags: z.partialRecord(z.enum(['veg', 'non_veg', 'jain']), z.boolean()),
+	diet_flags: z.partialRecord(z.enum(DIETS), z.boolean()),
 	service_style: z.enum(E.service_style).nullable(),
 	food_apps: z.partialRecord(
 		z.enum(FOOD_APPS),
