@@ -12,7 +12,11 @@
 	import SearchBox from '#lib/components/SearchBox.svelte';
 	import NoPhoto from '#lib/components/NoPhoto.svelte';
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
-	import { categoryIcons, categoryTone, type Category } from '#lib/components/CategoryIcon.svelte';
+	import CategoryIcon, {
+		categoryIcons,
+		categoryTone,
+		type Category
+	} from '#lib/components/CategoryIcon.svelte';
 	import type { PageProps } from './$types';
 
 	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
@@ -61,9 +65,9 @@
 			{#if !data.category && (data.season.seasons.length || data.season.events.length)}
 				<section aria-label={m.discover_season()}>
 					<h2 class="mb-1.5 type-h2">{m.discover_season()}</h2>
-					<ul>
+					<ul class="grid grid-cols-2 gap-2">
 						{#each data.season.seasons as s, i (s)}
-							<li class="flex items-center gap-2.5 border-b border-border py-2">
+							<li class="flex items-center gap-2.5 border border-border px-3 py-2.5">
 								<span
 									class="size-2 shrink-0 rounded-full"
 									style:background={seasonDots[i % seasonDots.length]}
@@ -72,7 +76,7 @@
 							</li>
 						{/each}
 						{#each data.season.events as e (e.name_en)}
-							<li class="flex items-center gap-2.5 border-b border-border py-2">
+							<li class="flex items-center gap-2.5 border border-border px-3 py-2.5">
 								<span class="size-2 shrink-0 rounded-full bg-fuji-s" aria-hidden="true"></span>
 								{(lang === 'hi' ? e.name_hi : lang === 'mr' ? e.name_mr : null) || e.name_en}
 							</li>
@@ -83,7 +87,7 @@
 
 			<section class="flex flex-col gap-2.5">
 				<h2 class="type-h2">{m.discover_categories()}</h2>
-				<ul class="grid grid-cols-4 gap-2">
+				<ul class="grid grid-cols-3 gap-2 sm:grid-cols-4">
 					{#each Object.keys(categoryIcons) as c (c)}
 						{@const on = data.category === c}
 						<li>
@@ -91,10 +95,11 @@
 								href={resolve(`/?category=${c}`)}
 								aria-current={on ? 'page' : undefined}
 								class={[
-									'flex h-full min-h-11 items-center justify-center px-1 py-2 text-center text-[13px] leading-tight text-text no-underline outline-text -outline-offset-2 hover:outline-1',
+									'flex h-full min-h-20 flex-col justify-between gap-2 border border-border p-3 text-[13px] leading-tight text-text no-underline outline-text -outline-offset-2 hover:outline-1',
 									on && 'outline-2 -outline-offset-2 outline-text'
 								]}
-								style:background="var(--{categoryTone[c as Category]})">{msg(`cat_${c}`)}</a
+								style:background="var(--{categoryTone[c as Category]})"
+								><CategoryIcon category={c as Category} />{msg(`cat_${c}`)}</a
 							>
 						</li>
 					{/each}
@@ -113,6 +118,7 @@
 								photo={p.photo}
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
+								boxed
 							>
 								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
 							</PlaceCard>
@@ -137,6 +143,7 @@
 									photo={p.photo}
 									category={p.category}
 									categoryLabel={msg(`cat_${p.category}`)}
+									boxed
 								>
 									{#snippet badges()}<StatusBadge kind="gem" />{/snippet}
 									{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
@@ -157,7 +164,7 @@
 							>{m.itin_all()}</a
 						>
 					</div>
-					<ItineraryList items={data.itineraries} />
+					<ItineraryList items={data.itineraries} cards />
 				</section>
 			{/if}
 
@@ -176,7 +183,7 @@
 							<li class="w-36 shrink-0">
 								<a
 									href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
-									class="flex flex-col gap-1.5 text-text no-underline"
+									class="row-link flex h-full flex-col border border-border text-text no-underline"
 								>
 									<div
 										class="aspect-square overflow-hidden bg-border bg-cover"
@@ -191,7 +198,7 @@
 												class="h-full w-full object-cover"
 											/>{:else}<NoPhoto tone="sakura" label={false} />{/if}
 									</div>
-									<span class="type-h3">{d.name}</span>
+									<span class="px-3 pt-2 pb-2.5 type-h3">{d.name}</span>
 								</a>
 							</li>
 						{/each}
@@ -210,6 +217,7 @@
 								photo={p.photo}
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
+								boxed
 								distanceKm={p.km}
 							>
 								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}

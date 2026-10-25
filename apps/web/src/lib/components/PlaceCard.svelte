@@ -15,6 +15,7 @@
 		distanceKm,
 		saved,
 		onsave,
+		boxed,
 		verdict,
 		badges
 	}: {
@@ -26,12 +27,13 @@
 		distanceKm?: number | null;
 		saved?: boolean;
 		onsave?: () => void;
+		boxed?: boolean;
 		verdict?: Snippet;
 		badges?: Snippet;
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} fallbackCategory={category} {saved} {onsave}>
+<ListingCard {href} {photo} {names} fallbackCategory={category} {saved} {onsave} {boxed}>
 	<p class="flex items-center gap-1.5 text-[13px] text-text-2">
 		<span>{categoryLabel}</span>
 		{#if distanceKm != null}<span aria-hidden="true">·</span>
