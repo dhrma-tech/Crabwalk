@@ -135,6 +135,10 @@ test('works offline after first visit', async ({ page, context }) => {
 	await page.goto('/');
 	await page.evaluate(() => navigator.serviceWorker.ready);
 	await page.reload(); // SW now controls the page and caches it
+	// The page is cached after the response (cache.put), so wait for control + the cached copy, not a delay.
+	await page.waitForFunction(
+		async () => !!navigator.serviceWorker.controller && !!(await caches.match(location.href))
+	);
 	await context.setOffline(true);
 	await page.reload();
 	await expect(page.locator('main')).toBeVisible();

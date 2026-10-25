@@ -17,6 +17,9 @@ if (local) {
 	url = s.API_URL;
 	key = s.ANON_KEY;
 }
+// A preview left on :4173 by an earlier run would be reused and test an old build: stop it first (main process only).
+if (!process.env.CI && !process.env.TEST_WORKER_INDEX)
+	execSync('node scripts/free-port.mjs 4173', { stdio: 'inherit' });
 // The build prerenders /navigate through the Supabase hook, so it needs values too (CI has no .env).
 process.env.SUPABASE_URL ??= url;
 process.env.SUPABASE_ANON_KEY ??= key;
@@ -42,7 +45,7 @@ export default defineConfig({
 			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''}${local ? ' -b AI_PROVIDER=mock' : ''}`,
 			url: 'http://localhost:4173',
 			timeout: 180_000,
-			reuseExistingServer: !process.env.CI
+			reuseExistingServer: false
 		},
 		...(localTiles
 			? [
