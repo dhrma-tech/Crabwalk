@@ -129,8 +129,11 @@ test('security headers on pages, API and the QR page', async ({ request }) => {
 });
 
 test('attribution: OSM on the map; tide provider next to tide data', async ({ page }) => {
+	test.skip(!process.env.E2E_TILES, 'no tile host (build tiles or set PMTILES_BASE_URL)');
 	await page.goto('/map');
-	await expect(page.locator('.maplibregl-ctrl-attrib')).toContainText('OpenStreetMap');
+	await expect(page.locator('.maplibregl-ctrl-attrib')).toContainText('OpenStreetMap', {
+		timeout: 15_000
+	});
 	await page.getByRole('button', { name: 'Map layers' }).click();
 	await page.getByTestId('layers-panel').getByLabel('Tides').check();
 	const tides = page.getByTestId('tide-slider');
