@@ -4,14 +4,22 @@
 
 	export type Snap = 'peek' | 'half' | 'full';
 
-	// FRONTEND §6.6: peek (120 px) → half → full. Drag the handle, or tap it to cycle (keyboard too).
+	// Report 2 §8: surface sheet, 28 px top corners, e3, 36×4 handle; peek (132 px) → half → full. Drag the
+	// handle, or tap it to cycle (keyboard too). Sits above the phone nav and left of the docked Crabby.
 	let { snap = $bindable<Snap>('peek'), children }: { snap?: Snap; children: Snippet } = $props();
 
 	const order: Snap[] = ['peek', 'half', 'full'];
-	const heightOf = (s: Snap) =>
-		s === 'peek' ? 120 : s === 'half' ? innerHeight * 0.5 : innerHeight - 56 - 64;
-
+	let sheet: HTMLElement;
 	let innerHeight = $state(800);
+	// Full = up to the top bar: the sheet's bottom edge (above the nav) minus the bar height.
+	function fullHeight() {
+		if (!sheet) return innerHeight * 0.85;
+		const bar = parseFloat(getComputedStyle(sheet).getPropertyValue('--bar-h')) || 56;
+		return sheet.getBoundingClientRect().bottom - bar;
+	}
+	const heightOf = (s: Snap) =>
+		s === 'peek' ? 132 : s === 'half' ? innerHeight * 0.5 : fullHeight();
+
 	let drag = $state<{ startY: number; startH: number; moved: boolean } | null>(null);
 	let dragH = $state(0);
 	const height = $derived(drag ? dragH : heightOf(snap));
@@ -43,15 +51,16 @@
 <svelte:window bind:innerHeight />
 
 <section
+	bind:this={sheet}
 	class={[
-		'fixed inset-x-0 bottom-[calc(64px+env(safe-area-inset-bottom))] z-panel flex flex-col overflow-hidden border-t border-text bg-bg lg:bottom-0 lg:[:root:has([data-dock])_&]:right-[340px]',
-		!drag && 'transition-[height] duration-300 ease-brand'
+		'fixed inset-x-0 bottom-(--nav-h) z-panel flex flex-col rounded-t-xl bg-surface shadow-e3 lg:bottom-0 lg:[:root:has([data-dock])_&]:right-(--dock-w)',
+		!drag && 'transition-[height] duration-(--dur-sheet) ease-brand'
 	]}
 	style:height="{height}px"
 >
 	<button
 		type="button"
-		class="flex h-11 w-full shrink-0 touch-none items-center justify-center"
+		class="flex h-11 w-full shrink-0 touch-none items-center justify-center rounded-t-xl"
 		aria-label={m.sheet_handle()}
 		aria-expanded={snap !== 'peek'}
 		onpointerdown={down}
@@ -59,9 +68,9 @@
 		onpointerup={up}
 		onpointercancel={up}
 	>
-		<span class="h-0.5 w-9 bg-border" aria-hidden="true"></span>
+		<span class="h-1 w-9 rounded-full bg-border-strong" aria-hidden="true"></span>
 	</button>
-	<div class="min-h-0 flex-1 overflow-y-auto px-6 pb-[env(safe-area-inset-bottom)]">
+	<div class="min-h-0 flex-1 overflow-y-auto px-5 pb-4 lg:px-8">
 		{@render children()}
 	</div>
 </section>

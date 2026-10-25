@@ -1,19 +1,19 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import Illustration from './Illustration.svelte';
 
-	// FRONTEND §6.12 in Suna (6a): a quiet tint block + one-line invitation + at most one CTA.
-	type Tone = 'fuji' | 'sakura' | 'asagi' | 'wakaba' | 'yama';
+	// Report 2 §8: illustration + heading + one sentence + at most one CTA.
 	let {
 		title,
 		body,
-		tone = 'fuji',
+		art = 'crab',
 		action
-	}: { title: string; body: string; tone?: Tone; action?: Snippet } = $props();
+	}: { title: string; body: string; art?: 'crab' | 'boat' | 'fort'; action?: Snippet } = $props();
 </script>
 
-<div class="flex max-w-[680px] flex-col gap-3 py-6" data-clip-check>
-	<div class="h-24 w-full" style:background="var(--{tone})" aria-hidden="true"></div>
-	<h2 class="type-h1">{title}</h2>
-	<p class="type-small text-text-2">{body}</p>
-	{#if action}<div class="pt-1">{@render action()}</div>{/if}
+<div class="mx-auto flex max-w-170 flex-col items-center gap-2 py-8 text-center" data-clip-check>
+	<Illustration name={art} />
+	<h2 class="mt-2 type-h2">{title}</h2>
+	<p class="type-body text-text-2">{body}</p>
+	{#if action}<div class="pt-2">{@render action()}</div>{/if}
 </div>

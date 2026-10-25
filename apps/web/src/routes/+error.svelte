@@ -21,11 +21,11 @@
 
 <Page {title} back>
 	{#if kind === 'missing'}
-		<ErrorState {title} body={m.not_found_body()} tone="fuji">
+		<ErrorState {title} body={m.not_found_body()} art="fort">
 			{#snippet action()}<Button href="/">{m.go_discover()}</Button>{/snippet}
 		</ErrorState>
 	{:else if kind === 'denied'}
-		<ErrorState {title} body={m.not_allowed_body()} tone="fuji">
+		<ErrorState {title} body={m.not_allowed_body()}>
 			{#snippet action()}
 				<div class="flex flex-wrap items-center gap-4">
 					<Button href="/">{m.go_discover()}</Button>
