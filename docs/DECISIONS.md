@@ -139,6 +139,7 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | R-5 | SEO: per-page descriptions/Open Graph/canonical (`Meta`), generated `sitemap.xml` + `robots.txt`, `X-Robots-Tag: noindex` on private paths (`lib/seo.ts`). New HI/MR strings need team review. |
 | R-6 | Migration `20261025100000_refinement_indexes`: 17 FK indexes; pgTAP guard for new user/owner/listing/taluka FKs. |
 | R-7 | Named z-layers and hover tokens (`--cta-hover`, `--emergency-hover`, `row-link`) join the Suna tokens in `app.css`. |
+| R-8 | Text fields and textareas show no focus outline while typing (user; overrides design 3a "Focus" for text fields only). Buttons, links, checkboxes, radios, sliders and file pickers keep the ink ring. |
 
 ## P10a decisions (Suna redesign)
 | Ref | Decision |
