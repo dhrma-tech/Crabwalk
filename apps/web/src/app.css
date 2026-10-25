@@ -448,13 +448,23 @@
 @utility z-overlay {
 	z-index: 50; /* menu drawer, emergency card, toasts, skip link */
 }
-/* No-photo treatment: a fine line pattern over the category tint ("Photo coming soon"). */
-@utility no-photo {
-	background: repeating-linear-gradient(
-		0deg,
-		color-mix(in srgb, var(--tone-s, var(--asagi-s)) 33%, transparent) 0 1px,
-		var(--tone, var(--asagi)) 1px 9px
-	);
+/* Text field (Report 2 §8): sunken, no border at rest; focus = 1.5 px ink border + surface fill instead of an
+   outline box (R-8), error = danger border. Put it on the input, or on a wrapper holding an icon + input. */
+@utility field {
+	border: 1.5px solid transparent;
+	border-radius: var(--radius-sm);
+	background: var(--surface-2);
+	transition:
+		border-color var(--dur-state) var(--ease),
+		background-color var(--dur-state) var(--ease);
+	&:focus-within {
+		border-color: var(--text);
+		background: var(--surface);
+	}
+	&[aria-invalid='true'],
+	&:has([aria-invalid='true']) {
+		border-color: var(--danger);
+	}
 }
 
 @layer base {
@@ -483,7 +493,7 @@
 		outline: 2px solid var(--focus);
 		outline-offset: 2px;
 	}
-	/* Text fields show focus by their caret; no box while typing (owner call, see DECISIONS). */
+	/* Text fields show focus by the `field` border, not a box (R-8, see DECISIONS). */
 	input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']):focus-visible,
 	textarea:focus-visible {
 		outline: none;

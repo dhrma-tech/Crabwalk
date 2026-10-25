@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import Check from '@lucide/svelte/icons/check';
 
-	// Filter chip (FRONTEND §6.2): toggle; selected = ink fill + check (Suna map chips).
+	// Filter chip (Report 2 §8): 36 px sunken pill in a 44 px target; selected = ink fill + check.
 	let {
 		selected = $bindable(false),
 		onchange,
@@ -13,16 +13,20 @@
 <button
 	type="button"
 	aria-pressed={selected}
-	class={[
-		'inline-flex min-h-11 shrink-0 items-center gap-1.5 border border-text px-3 py-1 text-left type-small',
-		'transition-colors duration-200 ease-brand',
-		selected ? 'bg-text text-bg' : 'bg-bg text-text hover:bg-text/5'
-	]}
+	class="group inline-flex min-h-11 shrink-0 items-center text-left"
 	onclick={() => {
 		selected = !selected;
 		onchange?.(selected);
 	}}
 >
-	{#if selected}<Check size={16} aria-hidden="true" />{/if}
-	{@render children()}
+	<span
+		class={[
+			'inline-flex min-h-9 items-center gap-1.5 rounded-full px-3.5 py-1 type-label',
+			'transition-[background-color,color,transform] duration-(--dur-state) ease-brand group-active:scale-[.97]',
+			selected ? 'bg-text text-bg' : 'bg-surface-2 text-text group-hover:bg-surface-3'
+		]}
+	>
+		{#if selected}<Check size={16} aria-hidden="true" />{/if}
+		{@render children()}
+	</span>
 </button>

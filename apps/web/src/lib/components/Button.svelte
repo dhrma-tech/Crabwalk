@@ -4,9 +4,9 @@
 	import Phone from '@lucide/svelte/icons/phone';
 	import Crabby from './Crabby.svelte';
 
-	// FRONTEND §6.1. Primary: one per screen. Emergency: emergency card / QR page only.
+	// Report 2 §8. Primary (kokum): one per screen. Emergency: emergency card / QR page only, and never moves.
 	type Props = HTMLButtonAttributes & {
-		variant?: 'primary' | 'secondary' | 'ghost' | 'emergency';
+		variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'emergency';
 		href?: string;
 		loading?: boolean;
 		icon?: Snippet;
@@ -23,26 +23,30 @@
 		...rest
 	}: Props = $props();
 
-	// Suna 3a: aizome primary, ink-outline secondary, underlined text action; red only for emergency.
 	const styles = {
-		primary: 'min-h-11 px-5 bg-cta text-on-cta type-body hover:bg-cta-hover',
-		secondary: 'min-h-11 px-5 border border-text text-text type-body hover:bg-text/5',
-		ghost:
-			'min-h-11 px-1 text-text type-body underline decoration-1 underline-offset-[6px] hover:decoration-2',
+		primary:
+			'min-h-12 rounded-md px-5 bg-kokum text-on-kokum type-body-strong hover:bg-kokum-hover',
+		secondary:
+			'min-h-12 rounded-md px-5 bg-surface-2 text-text type-body-strong hover:bg-surface-3',
+		outline:
+			'min-h-12 rounded-md px-5 border-[1.5px] border-border-strong text-text type-body-strong hover:bg-surface-2',
+		ghost: 'min-h-11 px-1 text-lagoon type-body-strong underline-offset-4 hover:underline',
 		emergency:
-			'min-h-14 px-6 bg-emergency text-white font-bold text-[18px] hover:bg-emergency-hover'
+			'min-h-14 rounded-md px-6 bg-emergency text-white [font:700_18px/24px_system-ui,sans-serif] hover:bg-emergency-hover'
 	};
 	// Heights are minimums: long Marathi labels wrap instead of clipping.
-	const base =
-		'relative inline-flex items-center justify-center gap-2 py-2 text-center ' +
-		'transition-[transform,background-color,text-decoration-thickness] duration-150 ease-brand ' +
-		'active:scale-[.98] ' +
-		'disabled:bg-border disabled:text-text-2 disabled:border-transparent aria-disabled:opacity-60';
+	const base = $derived([
+		'relative inline-flex items-center justify-center gap-2 py-2 text-center no-underline',
+		'transition-[transform,background-color] duration-(--dur-press) ease-brand',
+		'disabled:text-muted disabled:no-underline aria-disabled:opacity-60',
+		variant !== 'emergency' && 'active:scale-[.97] disabled:active:scale-100',
+		variant !== 'ghost' && 'disabled:border-transparent disabled:bg-surface-2'
+	]);
 </script>
 
 {#snippet content()}
 	{#if loading}
-		<Crabby size={20} walking />
+		<Crabby size={20} walking tone={variant === 'primary' ? 'white' : 'kokum'} />
 	{:else if variant === 'emergency'}
 		<Phone size={24} aria-hidden="true" />
 	{:else if icon}
@@ -53,7 +57,7 @@
 
 {#if href}
 	<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
-	<a {href} class={[base, styles[variant], 'no-underline', cls]} aria-busy={loading || undefined}>
+	<a {href} class={[base, styles[variant], cls]} aria-busy={loading || undefined}>
 		{@render content()}
 	</a>
 {:else}
