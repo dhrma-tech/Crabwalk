@@ -25,5 +25,7 @@ export const variables = defineEnvVars({
 	// Web push (DECISIONS P9-3). Public key only — the private key lives in the trip-nudges function.
 	VAPID_PUBLIC_KEY: { public: true, schema: optional },
 	// P10 rate limits: HMAC secret for client keys (IPs are never stored).
-	RATE_LIMIT_SALT: { schema: optional }
+	RATE_LIMIT_SALT: { schema: optional },
+	// Dev-only auth bypass (lib/devAuth.ts). Ignored in production builds and off localhost.
+	DEV_BYPASS_AUTH: { public: true, schema: optional }
 });

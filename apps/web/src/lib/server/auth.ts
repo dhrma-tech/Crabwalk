@@ -1,6 +1,7 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
 import { loginHref } from '#lib/login.ts';
+import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
 
 export type Role = {
 	role: string;
@@ -20,7 +21,7 @@ export async function session(event: Pick<RequestEvent, 'locals' | 'url'>) {
 		.from('user_roles')
 		.select('role, taluka_id, entity_type, entity_id')
 		.eq('user_id', user.id);
-	const roles = (data ?? []) as Role[];
+	const roles = (devBypass(event.url.hostname) ? DEV_ROLES : (data ?? [])) as Role[];
 	const has = (r: string) => roles.some((x) => x.role === r);
 	return {
 		user,

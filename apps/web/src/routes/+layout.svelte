@@ -7,11 +7,26 @@
 	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
 	import { onMount } from 'svelte';
 	import { guardPlainForms } from '#lib/forms.ts';
+	import { devBypass } from '#lib/devAuth.ts';
+	import { devClient } from '#lib/devAuth.client.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children }: LayoutProps = $props();
 	onMount(guardPlainForms);
+	let devMode = $state(false);
+	onMount(() => {
+		devMode = devBypass(location.hostname);
+		if (devMode) return devClient();
+	});
 </script>
+
+{#if devMode}
+	<div
+		class="pointer-events-none fixed bottom-[calc(72px+env(safe-area-inset-bottom))] left-2 z-overlay bg-text px-2 py-0.5 text-[11px] font-bold text-bg lg:bottom-2"
+	>
+		DEV MODE
+	</div>
+{/if}
 
 <a
 	href="#main"
