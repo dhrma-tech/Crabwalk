@@ -54,7 +54,8 @@ const PUBLIC = [
 	'/privacy',
 	'/login',
 	'/crabby',
-	'/navigate?to=17,73.3&name=Test'
+	'/navigate?to=17,73.3&name=Test',
+	'/dev/components' // every component in every state (e2e builds only)
 ];
 
 for (const scheme of ['light', 'dark'] as const)
