@@ -118,7 +118,7 @@
 								class="flex flex-col gap-1 border border-text p-3.5"
 								data-testid="action-preview"
 							>
-								<p class="type-tiny font-normal text-text-2">{m.crabby_proposed()}</p>
+								<p class="type-label font-normal text-text-2">{m.crabby_proposed()}</p>
 								<p class="font-display text-[18px] leading-snug">{a.preview.title}</p>
 								{#each a.preview.lines as l, k (k)}<p class="type-small text-text-2">{l}</p>{/each}
 								{#each a.preview.links ?? [] as l (l.href)}

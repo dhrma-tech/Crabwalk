@@ -1,8 +1,7 @@
 Fonts in this folder (subset WOFF2, see apps/web/scripts/subset-fonts.mjs):
-- serif-400-latin: Shippori Mincho — Copyright 2021 The Shippori Mincho Project Authors (https://github.com/fontdasu/ShipporiMincho)
-- serif-400-deva: Noto Serif Devanagari — Copyright 2022 The Noto Project Authors (https://github.com/notofonts/devanagari)
-- sans-*-latin: Zen Kaku Gothic New — Copyright 2022 The Zen Kaku Gothic Project Authors (https://github.com/googlefonts/zen-kakugothic)
-- sans-*-deva: Noto Sans Devanagari — Copyright 2022 The Noto Project Authors (https://github.com/notofonts/devanagari)
+- display-700-latin, display-700-deva: Eczar — Copyright 2014 The Eczar Project Authors (https://github.com/rosettatype/eczar)
+- text-var-latin: Anek Latin — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
+- text-var-deva: Anek Devanagari — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
 
 All are licensed under the SIL Open Font License, Version 1.1 (text below).
 

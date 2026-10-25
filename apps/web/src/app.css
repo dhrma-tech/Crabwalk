@@ -1,111 +1,182 @@
 @import 'tailwindcss';
 
-/* Suna · 砂 (DECISIONS P10a-1, overrides FRONTEND §2 [LOCKED] tokens): washi paper, sumi ink, one indigo
-   (aizome). Hairline rules, no radii, no shadows. Tints are quiet badge/pin fills; red is emergency only. */
+/* Tideline (DECISIONS T-1, Report 2 §3–§5): shell paper, basalt ink, one kokum action, lagoon for maps and
+   information, alphonso for delight (fill only, never text). Depth from surfaces and soft shadows; red is
+   emergency only. contrast.test.ts reads these blocks, so a changed value is re-checked. */
 :root {
-	--bg: #f4f0e8;
-	--surface: #f4f0e8;
-	--surface-raised: #f4f0e8;
-	--border: #d6cfc0;
-	--text: #1f1e1c;
-	--text-2: #5c584f;
-	--text-muted: #5c584f;
-	--cta: #2b3f5c;
-	--cta-hover: #22324a;
-	--on-cta: #f4f0e8;
-	--link: #2b3f5c;
-	--highlight: #d99a00;
-	--ok: #5f6f3e;
-	--caution: #88661c; /* P10a-2: design ochre #9A7420 was 3.78:1 on washi */
-	--danger: #c45a78; /* sakura, not red: red is emergency only (brief §2) */
-	--emergency: #b3261e;
-	--emergency-hover: #9b2119;
-	--sponsor: #5c584f;
-	--sakura: #f6d5d8;
-	--asagi: #bfe3e3;
-	--yama: #f5d776;
-	--wakaba: #d3e39a;
-	--fuji: #d3d2ea;
-	--sakura-s: #c45a78;
-	--asagi-s: #00808a;
-	--yama-s: #d99a00;
-	--wakaba-s: #7a9a1e;
-	--fuji-s: #6c6ba8;
-	--v1: var(--sakura-s);
-	--v2: var(--yama-s);
-	--v3: var(--wakaba-s);
-	--v4: var(--asagi-s);
-	--font-display: 'Shippori Mincho', 'Noto Serif Devanagari', Georgia, serif;
-	--font-body: 'Zen Kaku Gothic New', 'Noto Sans Devanagari', system-ui, sans-serif;
-	--s-1: 4px;
-	--s-2: 8px;
-	--s-3: 12px;
-	--s-4: 16px;
-	--s-5: 24px;
-	--s-6: 32px;
-	--s-7: 48px;
+	--bg: #f7f5f0;
+	--surface: #ffffff;
+	--surface-2: #efece5;
+	--surface-3: #e6e2d9;
+	--border: #e4dfd5;
+	--border-strong: #8f887b;
+	--text: #15171a;
+	--text-2: #4a4f57;
+	--text-muted: #646973;
+	--kokum: #7a2048;
+	--kokum-hover: #651a3b;
+	--kokum-ink: #5e1838;
+	--kokum-50: #f7e9ef;
+	--kokum-100: #eed0dc;
+	--on-kokum: #ffffff;
+	--lagoon: #0f6b66;
+	--lagoon-ink: #0b4f4b;
+	--lagoon-50: #e3f2f0;
+	--lagoon-100: #c5e5e1;
+	--on-lagoon: #ffffff;
+	--alphonso: #f4b740;
+	--on-alphonso: #3d2a00;
+	--alphonso-50: #fdf3dc;
+	--alphonso-ink: #3d2a00;
+	--laterite: #a8492e;
+	--laterite-50: #f8e8e2;
+	--ok: #2f7d4f;
+	--ok-50: #e5f2ea;
+	--caution: #8a5a00;
+	--caution-50: #fff1d6;
+	--danger: #a8492e; /* tide cut-off, closed, risky: laterite, not red */
+	--danger-50: #f8e8e2;
+	--emergency: #c8102e; /* EmergencyCard + QR emergency bar only */
+	--emergency-hover: #a90d27;
+	--sponsor: #646973;
+	--v1: #8f877a;
+	--v2: #b07a06;
+	--v3: #358a80;
+	--v4: #0f6b66;
+	--focus: #0f6b66;
+	--scrim: rgba(21, 23, 26, 0.48);
+	--glass: rgba(255, 255, 255, 0.78);
+	--e1: 0 1px 2px rgba(21, 23, 26, 0.04), 0 4px 12px rgba(21, 23, 26, 0.05);
+	--e2: 0 8px 28px rgba(21, 23, 26, 0.1);
+	--e3: 0 18px 48px rgba(21, 23, 26, 0.18);
+	--font-display: 'Eczar', Georgia, serif;
+	--font-body: 'Anek', system-ui, sans-serif;
 	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--dur-press: 120ms;
+	--dur-state: 200ms;
+	--dur-sheet: 320ms;
+	--dur-shimmer: 1.2s;
 	color-scheme: light;
 }
+/* Night tide: deep slate, never pure black. Lighter surfaces + a 1 px light edge instead of big shadows.
+   Values Report 2 leaves out (dark tints, sponsor, scrim, emergency) are T-19. Keep both blocks identical
+   (contrast.test.ts checks). */
 @media (prefers-color-scheme: dark) {
 	:root:not([data-theme='light']) {
-		--bg: #16171a;
-		--surface: #16171a;
-		--surface-raised: #16171a;
-		--border: #34363b;
-		--text: #ece7db;
-		--text-2: #a39e92;
-		--text-muted: #a39e92;
-		--cta: #9db4d6;
-		--cta-hover: #b6c8e2;
-		--on-cta: #16171a;
-		--link: #9db4d6;
-		--highlight: #e8b84a;
-		--ok: #a5b47f;
-		--caution: #d1a650;
-		--danger: #e8a0b4;
-		--sponsor: #a39e92;
-		--sakura: #5a3a40;
-		--asagi: #1f4a4d;
-		--yama: #6b5416;
-		--wakaba: #3a4a22;
-		--fuji: #3a3a58;
-		--sakura-s: #e8a0b4;
-		--asagi-s: #5fc5cc;
-		--yama-s: #e8b84a;
-		--wakaba-s: #b7d35b;
-		--fuji-s: #a9a8e0;
+		--bg: #0f1215;
+		--surface: #171b1f;
+		--surface-2: #1f2429;
+		--surface-3: #262c32;
+		--border: #2a3036;
+		--border-strong: #6b7380;
+		--text: #f2efe9;
+		--text-2: #b9bcc2;
+		--text-muted: #8d939b;
+		--kokum: #e68ab0;
+		--kokum-hover: #efa6c4;
+		--kokum-ink: #f3c6d8;
+		--kokum-50: #3a1a28;
+		--kokum-100: #4a2236;
+		--on-kokum: #2a0716;
+		--lagoon: #5cc4bb;
+		--lagoon-ink: #a6e6dd;
+		--lagoon-50: #12302e;
+		--lagoon-100: #183d3a;
+		--on-lagoon: #0f1215;
+		--alphonso: #f6c35e;
+		--on-alphonso: #2e2000;
+		--alphonso-50: #3a2e12;
+		--alphonso-ink: #f6c35e;
+		--laterite: #f08e6e;
+		--laterite-50: #3a211b;
+		--ok: #7cc69a;
+		--ok-50: #16291e;
+		--caution: #e0b04a;
+		--caution-50: #352a12;
+		--danger: #f08e6e;
+		--danger-50: #3a211b;
+		--emergency: #d93036;
+		--emergency-hover: #c8102e;
+		--sponsor: #8d939b;
+		--v1: #857c6e;
+		--v2: #d9a33a;
+		--v3: #4fb7ac;
+		--v4: #a6e6dd;
+		--focus: #5cc4bb;
+		--scrim: rgba(0, 0, 0, 0.6);
+		--glass: rgba(23, 27, 31, 0.78);
+		--e1: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+		--e2: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.28);
+		--e3: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px rgba(0, 0, 0, 0.4);
 		color-scheme: dark;
 	}
 }
 :root[data-theme='dark'] {
-	--bg: #16171a;
-	--surface: #16171a;
-	--surface-raised: #16171a;
-	--border: #34363b;
-	--text: #ece7db;
-	--text-2: #a39e92;
-	--text-muted: #a39e92;
-	--cta: #9db4d6;
-	--cta-hover: #b6c8e2;
-	--on-cta: #16171a;
-	--link: #9db4d6;
-	--highlight: #e8b84a;
-	--ok: #a5b47f;
-	--caution: #d1a650;
-	--danger: #e8a0b4;
-	--sponsor: #a39e92;
-	--sakura: #5a3a40;
-	--asagi: #1f4a4d;
-	--yama: #6b5416;
-	--wakaba: #3a4a22;
-	--fuji: #3a3a58;
-	--sakura-s: #e8a0b4;
-	--asagi-s: #5fc5cc;
-	--yama-s: #e8b84a;
-	--wakaba-s: #b7d35b;
-	--fuji-s: #a9a8e0;
+	--bg: #0f1215;
+	--surface: #171b1f;
+	--surface-2: #1f2429;
+	--surface-3: #262c32;
+	--border: #2a3036;
+	--border-strong: #6b7380;
+	--text: #f2efe9;
+	--text-2: #b9bcc2;
+	--text-muted: #8d939b;
+	--kokum: #e68ab0;
+	--kokum-hover: #efa6c4;
+	--kokum-ink: #f3c6d8;
+	--kokum-50: #3a1a28;
+	--kokum-100: #4a2236;
+	--on-kokum: #2a0716;
+	--lagoon: #5cc4bb;
+	--lagoon-ink: #a6e6dd;
+	--lagoon-50: #12302e;
+	--lagoon-100: #183d3a;
+	--on-lagoon: #0f1215;
+	--alphonso: #f6c35e;
+	--on-alphonso: #2e2000;
+	--alphonso-50: #3a2e12;
+	--alphonso-ink: #f6c35e;
+	--laterite: #f08e6e;
+	--laterite-50: #3a211b;
+	--ok: #7cc69a;
+	--ok-50: #16291e;
+	--caution: #e0b04a;
+	--caution-50: #352a12;
+	--danger: #f08e6e;
+	--danger-50: #3a211b;
+	--emergency: #d93036;
+	--emergency-hover: #c8102e;
+	--sponsor: #8d939b;
+	--v1: #857c6e;
+	--v2: #d9a33a;
+	--v3: #4fb7ac;
+	--v4: #a6e6dd;
+	--focus: #5cc4bb;
+	--scrim: rgba(0, 0, 0, 0.6);
+	--glass: rgba(23, 27, 31, 0.78);
+	--e1: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+	--e2: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 8px 24px rgba(0, 0, 0, 0.28);
+	--e3: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px rgba(0, 0, 0, 0.4);
 	color-scheme: dark;
+}
+/* Suna names still used by components until steps D–E restyle them (T-18); removed at the end of step E. */
+:root {
+	--surface-raised: var(--surface);
+	--cta: var(--kokum);
+	--cta-hover: var(--kokum-hover);
+	--on-cta: var(--on-kokum);
+	--link: var(--lagoon);
+	--highlight: var(--alphonso);
+	--sakura: var(--danger-50);
+	--asagi: var(--lagoon-50);
+	--yama: var(--caution-50);
+	--wakaba: var(--ok-50);
+	--fuji: var(--surface-2);
+	--sakura-s: var(--danger);
+	--asagi-s: var(--lagoon);
+	--yama-s: var(--caution);
+	--wakaba-s: var(--ok);
+	--fuji-s: var(--text-2);
 }
 :lang(mr),
 :lang(hi) {
@@ -113,83 +184,59 @@
 	letter-spacing: 0;
 }
 
-/* Fonts: 4 weights (P10a-3), each a Latin half + a Devanagari half picked by unicode-range (P10-4).
-   Keep ranges in sync with scripts/subset-fonts.mjs and src/lib/map/style.ts. */
+/* Fonts (Report 2 §4.1, T-17): Eczar 700 for display, Anek variable 400–700 for text. Each is a Latin file +
+   a Devanagari file picked by unicode-range (P10-4). Keep ranges in sync with scripts/subset-fonts.mjs and
+   src/lib/map/style.ts. */
 @font-face {
-	font-family: 'Shippori Mincho';
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/serif-400-latin.woff2') format('woff2');
-	unicode-range:
-		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
-		U+2122, U+2212, U+87F9;
-}
-@font-face {
-	font-family: 'Noto Serif Devanagari';
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/serif-400-deva.woff2') format('woff2');
-	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
-}
-@font-face {
-	font-family: 'Zen Kaku Gothic New';
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/sans-400-latin.woff2') format('woff2');
-	unicode-range:
-		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
-		U+2122, U+2212;
-}
-@font-face {
-	font-family: 'Zen Kaku Gothic New';
-	font-weight: 500;
-	font-display: swap;
-	src: url('/fonts/sans-500-latin.woff2') format('woff2');
-	unicode-range:
-		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
-		U+2122, U+2212;
-}
-@font-face {
-	font-family: 'Zen Kaku Gothic New';
+	font-family: 'Eczar';
 	font-weight: 700;
 	font-display: swap;
-	src: url('/fonts/sans-700-latin.woff2') format('woff2');
+	src: url('/fonts/display-700-latin.woff2') format('woff2');
 	unicode-range:
 		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
 		U+2122, U+2212;
 }
 @font-face {
-	font-family: 'Noto Sans Devanagari';
-	font-weight: 400;
-	font-display: swap;
-	src: url('/fonts/sans-400-deva.woff2') format('woff2');
-	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
-}
-@font-face {
-	font-family: 'Noto Sans Devanagari';
-	font-weight: 500;
-	font-display: swap;
-	src: url('/fonts/sans-500-deva.woff2') format('woff2');
-	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
-}
-@font-face {
-	font-family: 'Noto Sans Devanagari';
+	font-family: 'Eczar';
 	font-weight: 700;
 	font-display: swap;
-	src: url('/fonts/sans-700-deva.woff2') format('woff2');
+	src: url('/fonts/display-700-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
+}
+@font-face {
+	font-family: 'Anek';
+	font-weight: 400 700;
+	font-display: swap;
+	src: url('/fonts/text-var-latin.woff2') format('woff2');
+	unicode-range:
+		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
+		U+2122, U+2212;
+}
+@font-face {
+	font-family: 'Anek';
+	font-weight: 400 700;
+	font-display: swap;
+	src: url('/fonts/text-var-deva.woff2') format('woff2');
 	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 
-/* Tailwind mapping. Default palette removed so off-palette colours can't be used. */
+/* Tailwind mapping. Default palette, radii and shadows removed so only Tideline values can be used. */
 @theme {
 	--color-*: initial;
+	--radius-*: initial;
+	--shadow-*: initial;
 	--breakpoint-md: initial;
 	--breakpoint-2xl: initial;
 	--breakpoint-sm: 640px;
 	--breakpoint-lg: 1024px;
 	--breakpoint-xl: 1280px;
-	--font-display: 'Shippori Mincho', 'Noto Serif Devanagari', Georgia, serif;
-	--font-body: 'Zen Kaku Gothic New', 'Noto Sans Devanagari', system-ui, sans-serif;
+	--font-display: 'Eczar', Georgia, serif;
+	--font-body: 'Anek', system-ui, sans-serif;
+	/* Report 2 §5 --r-sm … --r-xl; rounded-full stays for chips, avatars and icon buttons. */
+	--radius-sm: 12px;
+	--radius-md: 16px;
+	--radius-lg: 20px;
+	--radius-xl: 28px;
 	--color-white: #ffffff;
 	--color-transparent: transparent;
 	--color-current: currentColor;
@@ -197,22 +244,56 @@
 @theme inline {
 	--color-bg: var(--bg);
 	--color-surface: var(--surface);
-	--color-raised: var(--surface-raised);
+	--color-surface-2: var(--surface-2);
+	--color-surface-3: var(--surface-3);
 	--color-border: var(--border);
+	--color-border-strong: var(--border-strong);
 	--color-text: var(--text);
 	--color-text-2: var(--text-2);
 	--color-muted: var(--text-muted);
+	--color-kokum: var(--kokum);
+	--color-kokum-hover: var(--kokum-hover);
+	--color-kokum-ink: var(--kokum-ink);
+	--color-kokum-50: var(--kokum-50);
+	--color-kokum-100: var(--kokum-100);
+	--color-on-kokum: var(--on-kokum);
+	--color-lagoon: var(--lagoon);
+	--color-lagoon-ink: var(--lagoon-ink);
+	--color-lagoon-50: var(--lagoon-50);
+	--color-lagoon-100: var(--lagoon-100);
+	--color-on-lagoon: var(--on-lagoon);
+	--color-alphonso: var(--alphonso);
+	--color-on-alphonso: var(--on-alphonso);
+	--color-alphonso-50: var(--alphonso-50);
+	--color-alphonso-ink: var(--alphonso-ink);
+	--color-laterite: var(--laterite);
+	--color-laterite-50: var(--laterite-50);
+	--color-ok: var(--ok);
+	--color-ok-50: var(--ok-50);
+	--color-caution: var(--caution);
+	--color-caution-50: var(--caution-50);
+	--color-danger: var(--danger);
+	--color-danger-50: var(--danger-50);
+	--color-emergency: var(--emergency);
+	--color-emergency-hover: var(--emergency-hover);
+	--color-sponsor: var(--sponsor);
+	--color-v1: var(--v1);
+	--color-v2: var(--v2);
+	--color-v3: var(--v3);
+	--color-v4: var(--v4);
+	--color-focus: var(--focus);
+	--color-scrim: var(--scrim);
+	--shadow-e1: var(--e1);
+	--shadow-e2: var(--e2);
+	--shadow-e3: var(--e3);
+	--ease-brand: var(--ease);
+	/* Suna compatibility (T-18), removed with the block above. */
+	--color-raised: var(--surface-raised);
 	--color-cta: var(--cta);
 	--color-cta-hover: var(--cta-hover);
 	--color-on-cta: var(--on-cta);
 	--color-link: var(--link);
 	--color-highlight: var(--highlight);
-	--color-ok: var(--ok);
-	--color-caution: var(--caution);
-	--color-danger: var(--danger);
-	--color-emergency: var(--emergency);
-	--color-emergency-hover: var(--emergency-hover);
-	--color-sponsor: var(--sponsor);
 	--color-sakura: var(--sakura);
 	--color-asagi: var(--asagi);
 	--color-yama: var(--yama);
@@ -223,11 +304,6 @@
 	--color-yama-s: var(--yama-s);
 	--color-wakaba-s: var(--wakaba-s);
 	--color-fuji-s: var(--fuji-s);
-	--color-v1: var(--v1);
-	--color-v2: var(--v2);
-	--color-v3: var(--v3);
-	--color-v4: var(--v4);
-	--ease-brand: var(--ease);
 }
 
 /* `dark:` follows the system unless the user picked a theme in Me. */
@@ -242,33 +318,108 @@
 	}
 }
 
-/* Suna type scale: Mincho titles, Gothic text. Body never < 16 px. */
+/* Type scale (Report 2 §4.2), phone → laptop. Body never < 16 px, secondary text never < 14 px; `label` is
+   for chips, badges and nav only. Devanagari gets no letter-spacing and taller lines (T-20). */
+@utility type-display-xl {
+	font: 700 34px/40px var(--font-display);
+	letter-spacing: -0.01em;
+	@media (width >= 1024px) {
+		font-size: 48px;
+		line-height: 54px;
+	}
+	&:lang(mr),
+	&:lang(hi) {
+		letter-spacing: 0;
+		line-height: 1.35;
+	}
+}
 @utility type-display {
-	font: 400 30px/1.45 var(--font-display);
+	font: 700 28px/34px var(--font-display);
+	@media (width >= 1024px) {
+		font-size: 36px;
+		line-height: 42px;
+	}
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.35;
+	}
 }
 @utility type-h1 {
-	font: 400 24px/1.45 var(--font-display);
+	font: 700 24px/30px var(--font-display);
+	@media (width >= 1024px) {
+		font-size: 28px;
+		line-height: 34px;
+	}
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.35;
+	}
 }
 @utility type-h2 {
-	font: 400 20px/1.5 var(--font-display);
+	font: 650 20px/26px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.45;
+	}
 }
 @utility type-h3 {
-	font: 500 16px/1.5 var(--font-body);
+	font: 600 17px/24px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.5;
+	}
 }
 @utility type-body {
-	font: 400 16px/1.6 var(--font-body);
+	font: 400 16px/26px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.65;
+	}
+}
+@utility type-body-strong {
+	font: 600 16px/26px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.65;
+	}
 }
 @utility type-small {
-	font: 400 14px/1.6 var(--font-body);
+	font: 450 14px/20px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.6;
+	}
 }
-@utility type-tiny {
-	font: 500 12px/1.5 var(--font-body);
+@utility type-label {
+	font: 600 13px/16px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.4;
+	}
 }
-/* A whole-row link in a ruled list: a faint ink wash on hover (Suna has no shadows to lift with). */
+/* A whole-row link in an inset list: sunken on hover (pointer devices) and while pressed. */
 @utility row-link {
-	transition: background-color 150ms var(--ease);
-	&:hover {
-		background-color: color-mix(in srgb, var(--text) 5%, transparent);
+	transition: background-color var(--dur-state) var(--ease);
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--surface-2);
+		}
+	}
+	&:active {
+		background-color: var(--surface-3);
+	}
+}
+/* Glass (Report 2 §5): only over photos and the map, never behind body text. Solid where blur is missing or
+   the viewer asks for less transparency. */
+@utility glass {
+	background: var(--glass);
+	-webkit-backdrop-filter: blur(14px) saturate(1.2);
+	backdrop-filter: blur(14px) saturate(1.2);
+	@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+		background: var(--surface);
+	}
+	@media (prefers-reduced-transparency: reduce) {
+		background: var(--surface);
 	}
 }
 /* Stacking layers, bottom to top. Use these names, not raw z-index numbers. */
@@ -300,7 +451,7 @@
 	html {
 		background: var(--bg);
 		color: var(--text);
-		font: 400 16px/1.6 var(--font-body);
+		font: 400 16px/26px var(--font-body);
 		-webkit-text-size-adjust: 100%;
 	}
 	body {
@@ -308,20 +459,19 @@
 		min-height: 100dvh;
 	}
 	a {
-		color: var(--link);
+		color: var(--lagoon);
 	}
 	/* A form waiting on its action (lib/forms.ts). */
 	form[aria-busy] {
 		cursor: progress;
 	}
 	svg.lucide {
-		stroke-width: 1.5px;
+		stroke-width: 1.75px;
 		flex-shrink: 0;
 	}
-	/* Visible ink focus ring everywhere (design 3a "Focus"). */
 	:focus-visible {
-		outline: 2px solid var(--text);
-		outline-offset: 3px;
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
 	}
 	/* Text fields show focus by their caret; no box while typing (owner call, see DECISIONS). */
 	input:not([type='checkbox'], [type='radio'], [type='range'], [type='file']):focus-visible,

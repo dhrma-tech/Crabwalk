@@ -1,5 +1,5 @@
 // Map style (FRONTEND §8, Suna colours per DECISIONS P10a-1): Protomaps basemap layers on washi land and asagi
-// water. Labels use our self-hosted Suna sans through MapLibre `font-faces` (Devanagari shaping);
+// water. Labels use our self-hosted Anek text font through MapLibre `font-faces` (Devanagari shaping);
 // no external glyph server, no Ola tiles.
 import { layers, namedFlavor, type Flavor } from '@protomaps/basemaps';
 import type { StyleSpecification, LayerSpecification } from 'maplibre-gl';
@@ -91,9 +91,9 @@ export function buildStyle(
 	const flavor: Flavor = {
 		...namedFlavor(theme),
 		...flavors[theme],
-		regular: 'Suna Sans Regular',
-		bold: 'Suna Sans Medium',
-		italic: 'Suna Sans Regular',
+		regular: 'Anek',
+		bold: 'Anek',
+		italic: 'Anek',
 		pois: undefined // our own pins replace basemap POIs (they would need a sprite sheet)
 	};
 	// No sprite sheet: drop basemap POIs (our pins replace them) and strip icons from label layers
@@ -120,7 +120,8 @@ export function buildStyle(
 }
 
 const fontFaces = (origin: string) => {
-	// P10-4: Latin + Devanagari halves, chosen by unicode-range (same as app.css).
+	// P10-4: Latin + Devanagari halves, chosen by unicode-range (same as app.css). MapLibre draws a font file at
+	// its default instance, so every label is Anek 400: one name, no regular/bold pair (T-17).
 	const face = (n: string) => [
 		{ url: `${origin}/fonts/${n}-latin.woff2`, 'unicode-range': ['U+0020-00FF', 'U+2010-2212'] },
 		{
@@ -129,9 +130,8 @@ const fontFaces = (origin: string) => {
 		}
 	];
 	return {
-		'Suna Sans Regular': face('sans-400'),
-		'Suna Sans Medium': face('sans-500'),
-		'Noto Sans Devanagari Regular v1': face('sans-400')
+		Anek: face('text-var'),
+		'Noto Sans Devanagari Regular v1': face('text-var')
 	};
 };
 

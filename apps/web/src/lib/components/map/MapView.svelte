@@ -161,7 +161,7 @@
 			filter: ['has', 'point_count'],
 			layout: {
 				'text-field': ['get', 'point_count_abbreviated'],
-				'text-font': ['Suna Sans Medium'],
+				'text-font': ['Anek'],
 				'text-size': 14,
 				'text-allow-overlap': true
 			},
@@ -239,7 +239,7 @@
 			minzoom: 12,
 			layout: {
 				'text-field': ['match', ['get', 'source'], 'live', heatLabels.live, heatLabels.typical],
-				'text-font': ['Suna Sans Medium'],
+				'text-font': ['Anek'],
 				'text-size': 12,
 				'text-offset': [0, 1.6]
 			},

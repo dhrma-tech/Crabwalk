@@ -12,7 +12,7 @@
 	<div class="flex items-center gap-2">
 		{#if agg.is_new}
 			<span class="h-1 flex-1 border border-text-2" aria-hidden="true"></span>
-			<span class="type-tiny text-text-2">{m.verdict_new()}</span>
+			<span class="type-label text-text-2">{m.verdict_new()}</span>
 		{:else}
 			<span class="flex h-1 flex-1 gap-0.5 overflow-hidden" aria-hidden="true">
 				{#each agg.counts as c, i (i)}{#if c}<span

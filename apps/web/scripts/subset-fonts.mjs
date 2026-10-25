@@ -1,8 +1,8 @@
-// Build the self-hosted WOFF2 files (Suna, DECISIONS P10a-3). 4 weights, each split by unicode-range into a
-// Latin file and a Devanagari file (P10-4), so English pages never download Devanagari glyphs.
+// Build the self-hosted WOFF2 files (Tideline, DECISIONS T-1, Report 2 §4.1): Eczar 700 for display and Anek
+// (variable wght 400–700, wdth pinned to 100) for text. Each is split by unicode-range into a Latin file and a
+// Devanagari file (P10-4), so English pages never download Devanagari glyphs: 4 files in all.
 // Usage: node scripts/subset-fonts.mjs <dir with the source TTFs below>
-// Sources (SIL OFL 1.1, github.com/google/fonts): ofl/shipporimincho, ofl/notoserifdevanagari,
-// ofl/zenkakugothicnew, ofl/notosansdevanagari.
+// Sources (SIL OFL 1.1, github.com/google/fonts): ofl/eczar, ofl/aneklatin, ofl/anekdevanagari.
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -20,7 +20,7 @@ export const LATIN = [
 	[0x02c6, 0x02c6],
 	[0x02dc, 0x02dc],
 	[0x2010, 0x2027],
-	[0x2030, 0x203a],
+	[0x2030, 0x203a], // incl. ‹ › of the wordmark
 	[0x20b9, 0x20b9], // ₹
 	[0x2122, 0x2122],
 	[0x2212, 0x2212]
@@ -36,28 +36,30 @@ const chars = (ranges) =>
 	ranges
 		.flatMap(([a, b]) => Array.from({ length: b - a + 1 }, (_, i) => String.fromCodePoint(a + i)))
 		.join('');
-// The 蟹 (crab) logo mark is set in the serif (U+87F9 in the serif Latin file only).
-const LOGO = '蟹';
 
-const SERIF_DEVA = 'NotoSerifDevanagari[wdth,wght].ttf';
-const SANS_DEVA = 'NotoSansDevanagari[wdth,wght].ttf';
+// Anek keeps its weight axis (one file serves 400–700); default 400 is what the map draws with (MapLibre
+// font-faces use a file's default instance).
+const TEXT = { wdth: 100, wght: { min: 400, max: 700, default: 400 } };
 const jobs = [
-	{ name: 'serif-400', latin: 'ShipporiMincho-Regular.ttf', deva: SERIF_DEVA, wght: 400 },
-	{ name: 'sans-400', latin: 'ZenKakuGothicNew-Regular.ttf', deva: SANS_DEVA, wght: 400 },
-	{ name: 'sans-500', latin: 'ZenKakuGothicNew-Medium.ttf', deva: SANS_DEVA, wght: 500 },
-	{ name: 'sans-700', latin: 'ZenKakuGothicNew-Bold.ttf', deva: SANS_DEVA, wght: 700 }
+	{ name: 'display-700', latin: 'Eczar[wght].ttf', deva: 'Eczar[wght].ttf', axes: { wght: 700 } },
+	{
+		name: 'text-var',
+		latin: 'AnekLatin[wdth,wght].ttf',
+		deva: 'AnekDevanagari[wdth,wght].ttf',
+		axes: TEXT
+	}
 ];
 
 const outDir = fileURLToPath(new URL('../static/fonts/', import.meta.url));
 await mkdir(outDir, { recursive: true });
 for (const job of jobs) {
-	for (const [part, file, text, axes] of [
-		['latin', job.latin, chars(LATIN) + (job.name.startsWith('serif') ? LOGO : ''), undefined],
-		['deva', job.deva, chars(DEVA), { wght: job.wght, wdth: 100 }]
+	for (const [part, file, text] of [
+		['latin', job.latin, chars(LATIN)],
+		['deva', job.deva, chars(DEVA)]
 	]) {
 		const woff2 = await subsetFont(await readFile(join(dir, file)), text, {
 			targetFormat: 'woff2',
-			...(axes && { variationAxes: axes })
+			variationAxes: job.axes
 		});
 		await writeFile(join(outDir, `${job.name}-${part}.woff2`), woff2);
 		console.log(`${job.name}-${part}.woff2`, (woff2.length / 1024).toFixed(1), 'KB');

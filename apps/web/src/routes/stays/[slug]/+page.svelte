@@ -43,7 +43,7 @@
 			<TagList tags={s.vibes.map((v) => msg(`vibe_${v}`))} max={9} />
 			<div class="flex flex-wrap gap-1.5">
 				{#if s.verified}<StatusBadge kind="verified" />{/if}
-				{#if s.style}<span class="bg-bg px-2.5 py-1 type-tiny text-text-2"
+				{#if s.style}<span class="bg-bg px-2.5 py-1 type-label text-text-2"
 						>{msg(`service_${s.style}`)}</span
 					>{/if}
 			</div>

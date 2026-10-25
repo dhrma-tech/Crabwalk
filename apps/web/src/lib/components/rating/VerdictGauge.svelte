@@ -35,7 +35,7 @@
 	{:else if agg.is_new}
 		<div class="flex h-1.5 overflow-hidden border border-text-2" aria-hidden="true"></div>
 		<p class="flex flex-wrap items-center gap-2 type-body">
-			<span class="border border-text-2 px-2 py-px type-tiny text-text-2">{m.verdict_new()}</span>
+			<span class="border border-text-2 px-2 py-px type-label text-text-2">{m.verdict_new()}</span>
 			<span class="text-text-2" data-testid="gauge-count"
 				>{m.verdict_votes({ n: formatNumber(agg.total) })}</span
 			>
