@@ -1,4 +1,10 @@
 <script lang="ts">
+	import Clock from '@lucide/svelte/icons/clock';
+	import Ticket from '@lucide/svelte/icons/ticket';
+	import CalendarDays from '@lucide/svelte/icons/calendar-days';
+	import Route from '@lucide/svelte/icons/route';
+	import TrainFront from '@lucide/svelte/icons/train-front';
+	import Bus from '@lucide/svelte/icons/bus';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
@@ -221,12 +227,12 @@
 				<h2 class="type-h2">{m.facts()}</h2>
 				<Facts
 					rows={[
-						{ label: m.fact_timings(), value: timings },
-						{ label: m.fact_fee(), value: p.fee },
-						{ label: m.fact_best_time(), value: p.bestTime },
-						{ label: m.fact_how_to_reach(), value: p.howToReach },
-						{ label: m.fact_station(), value: p.station },
-						{ label: m.fact_bus(), value: p.bus }
+						{ label: m.fact_timings(), value: timings, icon: Clock },
+						{ label: m.fact_fee(), value: p.fee, icon: Ticket },
+						{ label: m.fact_best_time(), value: p.bestTime, icon: CalendarDays },
+						{ label: m.fact_how_to_reach(), value: p.howToReach, icon: Route },
+						{ label: m.fact_station(), value: p.station, icon: TrainFront },
+						{ label: m.fact_bus(), value: p.bus, icon: Bus }
 					]}
 				/>
 			</section>

@@ -49,17 +49,17 @@ test('gauge shows winner, % and count per group type; New below 10 votes', async
 	await expect(g.getByTestId('gauge-pct')).toContainText('47%');
 	await expect(g.getByTestId('gauge-count')).toHaveText('15 votes');
 
-	await g.getByRole('button', { name: 'Family' }).click();
+	await g.getByRole('radio', { name: 'Family' }).click();
 	await expect(g.getByTestId('gauge-winner')).toHaveText('Must visit');
 	await expect(g.getByTestId('gauge-pct')).toContainText('58%');
 	await expect(g.getByTestId('gauge-count')).toHaveText('12 votes');
 
-	await g.getByRole('button', { name: 'Couple' }).click();
+	await g.getByRole('radio', { name: 'Couple' }).click();
 	await expect(g.getByText('New', { exact: true })).toBeVisible();
 	await expect(g.getByTestId('gauge-count')).toHaveText('3 votes');
 	await expect(g.getByTestId('gauge-winner')).toHaveCount(0);
 
-	await g.getByRole('button', { name: 'Solo' }).click();
+	await g.getByRole('radio', { name: 'Solo' }).click();
 	await expect(g.getByText('No votes yet. Be the first.')).toBeVisible();
 });
 
@@ -106,7 +106,7 @@ test('signed-in vote updates the gauge; unverified hygiene refused server-side; 
 	await vote
 		.locator('input[type="file"][accept^="image/jpeg"]')
 		.setInputFiles('static/icons/icon-192.png');
-	await vote.getByRole('button', { name: 'Upload' }).click();
+	await vote.getByRole('button', { name: 'Upload', exact: true }).click();
 	await expect(vote.getByText('Uploaded — a verifier will check it.')).toBeVisible();
 
 	const v = await userWithRole(browser, `proofv-${run}@e2e.local`, 'verifier');

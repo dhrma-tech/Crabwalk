@@ -9,6 +9,7 @@
 	import Crabby from '../Crabby.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';
+	import ActionPreviewCard from './ActionPreviewCard.svelte';
 	import { page } from '$app/state';
 	import { loginHref } from '#lib/login.ts';
 
@@ -83,7 +84,7 @@
 		{#each crabby.turns as t, i (i)}
 			{#if t.role === 'user'}
 				<p
-					class="max-w-[85%] self-end bg-fuji px-3.5 py-2.5 type-body text-text"
+					class="max-w-[85%] self-end rounded-lg rounded-br-sm bg-kokum-50 px-3.5 py-2.5 type-body text-kokum-ink"
 					data-testid="bubble-user"
 				>
 					{t.content}
@@ -91,7 +92,10 @@
 			{:else}
 				<div class="flex items-start gap-2.5 self-start">
 					<Crabby size={30} />
-					<div class="flex min-w-0 flex-1 flex-col gap-2.5" data-testid="bubble-crabby">
+					<div
+						class="flex min-w-0 flex-1 flex-col gap-2.5 rounded-lg rounded-tl-sm bg-surface-2 px-3.5 py-2.5"
+						data-testid="bubble-crabby"
+					>
 						{#if t.kind === 'limit'}
 							<p class="type-body" data-testid="crabby-limit">{m.crabby_limit()}</p>
 						{:else if t.kind === 'refused'}
@@ -114,37 +118,7 @@
 							</ul>
 						{/if}
 						{#each t.actions ?? [] as a (a.id)}
-							<div
-								class="flex flex-col gap-1 border border-text p-3.5"
-								data-testid="action-preview"
-							>
-								<p class="type-label font-normal text-text-2">{m.crabby_proposed()}</p>
-								<p class="font-display text-[18px] leading-snug">{a.preview.title}</p>
-								{#each a.preview.lines as l, k (k)}<p class="type-small text-text-2">{l}</p>{/each}
-								{#each a.preview.links ?? [] as l (l.href)}
-									<!-- eslint-disable svelte/no-navigation-without-resolve -- our routes or booking deep links -->
-									<a
-										href={l.href}
-										class="type-small"
-										target={l.href.startsWith('/') ? undefined : '_blank'}
-										rel="noopener">{l.label}</a
-									>
-								{/each}
-								{#if a.state === 'applied'}
-									<p class="type-small text-text-2" role="status">{m.crabby_applied()}</p>
-								{:else if a.state === 'discarded'}
-									<p class="type-small text-text-2" role="status">{m.crabby_discarded()}</p>
-								{:else}
-									<div class="mt-2 grid grid-cols-2 gap-2.5">
-										<Button loading={a.state === 'busy'} onclick={() => act(a, true)}
-											>{m.crabby_apply()}</Button
-										>
-										<Button variant="secondary" onclick={() => act(a, false)}
-											>{m.crabby_discard()}</Button
-										>
-									</div>
-								{/if}
-							</div>
+							<ActionPreviewCard action={a} onact={(apply) => act(a, apply)} />
 						{/each}
 					</div>
 				</div>
@@ -172,18 +146,18 @@
 				{#each chips as c (c)}
 					<button
 						type="button"
-						class="min-h-11 border border-border px-3 text-left type-small text-text-2"
+						class="min-h-11 rounded-full bg-surface-2 px-4 py-2 text-left type-label text-text hover:bg-surface-3"
 						onclick={() => ((text = c), send())}>{c}</button
 					>
 				{/each}
 			</div>
 		{/if}
-		<form onsubmit={send} class="mx-6 flex items-end gap-1 border-b border-text">
+		<form onsubmit={send} class="field mx-6 flex items-end gap-1 rounded-xl p-0.5">
 			{#if SR}
 				<button
 					type="button"
 					class={[
-						'flex size-11 shrink-0 items-center justify-center',
+						'flex size-11 shrink-0 items-center justify-center rounded-full',
 						listening ? 'animate-pulse bg-text text-bg motion-reduce:animate-none' : 'text-text-2'
 					]}
 					aria-label={listening ? m.crabby_mic_stop() : m.crabby_mic()}
@@ -198,7 +172,7 @@
 				rows="1"
 				maxlength="1000"
 				placeholder={m.crabby_placeholder()}
-				class="min-h-11 flex-1 resize-none bg-transparent py-2.5 type-body text-text placeholder:text-text-2"
+				class="min-h-11 flex-1 resize-none bg-transparent px-2 py-2.5 type-body text-text placeholder:text-muted"
 				onkeydown={(e) => {
 					if (e.key === 'Enter' && !e.shiftKey) {
 						e.preventDefault();
@@ -208,13 +182,13 @@
 			<button
 				type="submit"
 				disabled={!text.trim() || crabby.busy}
-				class="flex size-11 shrink-0 items-center justify-center text-cta disabled:text-text-2"
+				class="flex size-11 shrink-0 items-center justify-center rounded-full bg-kokum text-on-kokum transition-colors duration-(--dur-state) disabled:bg-transparent disabled:text-muted"
 				aria-label={m.crabby_send()}
 			>
 				<Send size={20} aria-hidden="true" />
 			</button>
 		</form>
-		<p class="flex flex-wrap gap-x-1.5 px-6 pt-1.5 pb-4 text-[11px] text-text-2">
+		<p class="flex flex-wrap items-center gap-x-1.5 px-6 pt-1 pb-3 type-small text-text-2">
 			{#if crabby.remaining != null}<span>{m.crabby_remaining({ n: crabby.remaining })}</span><span
 					aria-hidden="true">·</span
 				>{/if}<a href={resolve('/privacy')} class="inline-flex min-h-11 items-center"

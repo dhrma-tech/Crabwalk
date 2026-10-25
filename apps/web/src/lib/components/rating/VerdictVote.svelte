@@ -5,12 +5,14 @@
 	import Star from '@lucide/svelte/icons/star';
 	import Lock from '@lucide/svelte/icons/lock';
 	import Camera from '@lucide/svelte/icons/camera';
+	import Check from '@lucide/svelte/icons/check';
 	import { invalidateAll } from '$app/navigation';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import { processPhoto, type Processed } from '#lib/field/photos.ts';
 	import Button from '../Button.svelte';
+	import Segmented from '../Segmented.svelte';
 	import type { EntityType } from './VerdictGauge.svelte';
 	import { page } from '$app/state';
 	import { loginHref } from '#lib/login.ts';
@@ -38,6 +40,7 @@
 
 	const groups = ['family', 'couple', 'solo', 'friends'] as const;
 	const icons = [ThumbsDown, CircleMinus, ThumbsUp, Star];
+	const colours = ['var(--v1)', 'var(--v2)', 'var(--v3)', 'var(--v4)'];
 	const locked = (d: string) => (d === 'hygiene' || d === 'cleanliness') && !mine.verified;
 	let group = $state<(typeof groups)[number]>('family');
 	let text = $state('');
@@ -113,42 +116,42 @@
 	}
 </script>
 
-<section class="flex flex-col gap-4 border-t border-text pt-4" data-testid="verdict-vote">
+<section class="flex flex-col gap-4" data-testid="verdict-vote">
 	<h2 class="type-h2">{m.vote_title()}</h2>
 	{#if !signedIn}
 		<div><Button href={loginHref(page.url)} variant="secondary">{m.vote_signin()}</Button></div>
 	{:else}
 		<div class="flex flex-col gap-1.5">
 			<span class="type-small text-text-2">{m.vote_as()}</span>
-			<div
-				class="flex w-fit flex-wrap border border-text"
-				role="radiogroup"
-				aria-label={m.vote_as()}
-			>
-				{#each groups as g (g)}
-					<button
-						type="button"
-						role="radio"
-						aria-checked={group === g}
-						class={['min-h-11 px-3 type-small', group === g ? 'bg-text text-bg' : 'text-text-2']}
-						onclick={() => (group = g)}>{msg(`group_${g}`)}</button
-					>
-				{/each}
+			<div>
+				<Segmented
+					bind:value={group}
+					label={m.vote_as()}
+					options={groups.map((g) => ({ value: g, label: msg(`group_${g}`) }))}
+				/>
 			</div>
 		</div>
 
+		<!-- Report 2 §8: 2×2 tiles (4×1 on wide screens); the chosen one gets its verdict colour + a check. -->
 		<div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
 			{#each [1, 2, 3, 4] as level (level)}
 				{@const Icon = icons[level - 1]}
+				{@const on = mine.verdicts[group] === level}
 				<button
 					type="button"
-					aria-pressed={mine.verdicts[group] === level}
+					aria-pressed={on}
 					class={[
-						'flex min-h-16 flex-col items-center justify-center gap-1 border border-text px-2 py-2 type-body',
-						mine.verdicts[group] === level ? 'bg-text text-bg' : 'bg-bg text-text'
+						'relative flex min-h-20 flex-col items-center justify-center gap-1.5 rounded-md border-2 px-2 py-3 type-body-strong text-text',
+						'transition-[transform,background-color,border-color] duration-(--dur-press) ease-brand active:scale-[.97]',
+						on ? '' : 'border-transparent bg-surface-2 hover:bg-surface-3'
 					]}
+					style:border-color={on ? colours[level - 1] : undefined}
+					style:background-color={on
+						? `color-mix(in srgb, ${colours[level - 1]} 14%, var(--surface))`
+						: undefined}
 					onclick={() => vote(level)}
 				>
+					{#if on}<Check size={16} aria-hidden="true" class="absolute top-2 right-2" />{/if}
 					<Icon size={24} aria-hidden="true" />{msg(`verdict_${type}_${level}`)}
 				</button>
 			{/each}
@@ -174,8 +177,10 @@
 									disabled={locked(d)}
 									aria-label={m.score_of({ dim: msg(`dim_${d}`), n })}
 									class={[
-										'size-11 border border-text type-small disabled:opacity-40',
-										mine.subs[d] === n ? 'border-text bg-text text-bg' : 'bg-bg'
+										'size-11 rounded-full type-label transition-colors duration-(--dur-state) disabled:text-muted',
+										mine.subs[d] === n
+											? 'bg-text text-bg'
+											: 'bg-surface-2 text-text enabled:hover:bg-surface-3'
 									]}
 									onclick={() => score(d, n)}>{n}</button
 								>
@@ -190,17 +195,18 @@
 					{#if proofSent || mine.proofPending}
 						<p class="type-small" role="status">{m.proof_sent()}</p>
 					{:else}
-						<form onsubmit={proof} class="flex flex-col gap-2 border border-border p-3">
-							<h4 class="type-h3">{m.proof_title()}</h4>
+						<form onsubmit={proof} class="flex flex-col gap-2 rounded-md bg-surface-2 p-4">
+							<h4 class="type-h3" id={`proof-${id}`}>{m.proof_title()}</h4>
 							<p class="type-small text-text-2">{m.proof_body()}</p>
 							<input
 								type="file"
 								accept="image/jpeg,image/png,image/webp"
 								bind:files={proofFile}
 								required
+								aria-labelledby={`proof-${id}`}
 								class="type-small"
 							/>
-							<div><Button type="submit" variant="secondary">{m.proof_send()}</Button></div>
+							<div><Button type="submit" variant="outline">{m.proof_send()}</Button></div>
 						</form>
 					{/if}
 				{/if}
@@ -217,10 +223,10 @@
 						bind:value={text}
 						maxlength="2000"
 						rows="3"
-						class="border border-text bg-transparent p-3 type-body text-text"></textarea>
+						class="field p-3 type-body text-text"></textarea>
 				</label>
 				<label
-					class="flex min-h-11 w-fit cursor-pointer items-center gap-2 border border-text px-4 type-small"
+					class="flex min-h-11 w-fit cursor-pointer items-center gap-2 rounded-full bg-surface-2 px-4 type-label text-text hover:bg-surface-3 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus"
 				>
 					<Camera size={20} aria-hidden="true" />{m.review_photos()}
 					<input type="file" accept="image/*" multiple class="sr-only" onchange={addPhotos} />

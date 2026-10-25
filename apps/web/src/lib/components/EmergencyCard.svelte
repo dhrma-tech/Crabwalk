@@ -84,7 +84,8 @@
 
 <svelte:window onkeydown={(e) => e.key === 'Escape' && onclose()} />
 
-<!-- Suna 4a: full-screen sheet over anything; red header is the 112 call itself. Calm: no motion. -->
+<!-- Full-screen sheet over anything; the red header is the 112 call itself (system font, bold). Calm: no motion,
+     no mascot. -->
 <div
 	role="alertdialog"
 	aria-modal="true"
@@ -96,14 +97,14 @@
 		href="tel:112"
 		class="block bg-emergency px-6 pt-[calc(36px+env(safe-area-inset-top))] pb-8 text-white no-underline"
 	>
-		<h2 id="emergency-title" class="text-[14px] font-normal">{m.emergency_title()}</h2>
-		<span class="flex items-center gap-3 text-[56px] leading-tight font-bold"
+		<h2 id="emergency-title" class="type-small">{m.emergency_title()}</h2>
+		<span class="flex items-center gap-3 [font:700_56px/1.15_system-ui,sans-serif]"
 			><Phone size={40} aria-hidden="true" />{m.qr_call_112()}</span
 		>
 	</a>
 	<div class="mx-auto flex max-w-[680px] flex-col gap-5 p-6">
 		<div class="flex flex-col gap-1" aria-live="polite">
-			<h3 class="text-[13px] font-normal text-text-2">{m.emergency_hospital()}</h3>
+			<h3 class="type-small text-text-2">{m.emergency_hospital()}</h3>
 			{#if status === 'locating'}
 				<p class="type-small text-text-2">{m.emergency_locating()}</p>
 			{:else if status === 'no-gps'}
@@ -111,7 +112,7 @@
 			{:else if status === 'none' || !hospital}
 				<p class="type-small">{m.emergency_no_hospital()}</p>
 			{:else}
-				<p class="text-[22px] leading-snug font-medium">{hospital.name ?? m.util_hospital()}</p>
+				<p class="type-h2">{hospital.name ?? m.util_hospital()}</p>
 				<p class="text-text-2">
 					{m.km_away({ km: formatNumber(Math.round(hospital.km * 10) / 10) })}
 				</p>
@@ -119,7 +120,7 @@
 					{#if hospital.phone}
 						<a
 							href="tel:{hospital.phone}"
-							class="flex min-h-12 items-center justify-center gap-2 bg-text px-3 text-bg no-underline"
+							class="flex min-h-12 items-center justify-center gap-2 rounded-md bg-text px-3 type-body-strong text-bg no-underline"
 							><Phone size={18} aria-hidden="true" />{m.emergency_call_hospital()}</a
 						>
 					{/if}
@@ -128,7 +129,7 @@
 						target="_blank"
 						rel="noopener"
 						class={[
-							'flex min-h-12 items-center justify-center gap-2 border border-text px-3 text-text no-underline',
+							'flex min-h-12 items-center justify-center gap-2 rounded-md border-[1.5px] border-border-strong px-3 type-body-strong text-text no-underline',
 							!hospital.phone && 'col-span-2'
 						]}><Navigation size={18} aria-hidden="true" />{m.emergency_navigate()}</a
 					>
@@ -141,7 +142,7 @@
 				type="button"
 				disabled={!pos}
 				onclick={share}
-				class="flex min-h-12 items-center justify-center gap-2 border border-text text-text disabled:opacity-50"
+				class="flex min-h-12 items-center justify-center gap-2 rounded-md border-[1.5px] border-border-strong type-body-strong text-text disabled:text-muted"
 				><Share2 size={20} aria-hidden="true" />{m.qr_share_location()}</button
 			>
 		</div>
