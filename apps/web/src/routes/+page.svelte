@@ -14,7 +14,8 @@
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
 	import CategoryIcon, {
 		categoryIcons,
-		categoryTone,
+		categoryFamily,
+		familyTint,
 		type Category
 	} from '#lib/components/CategoryIcon.svelte';
 	import type { PageProps } from './$types';
@@ -95,11 +96,10 @@
 								href={resolve(`/?category=${c}`)}
 								aria-current={on ? 'page' : undefined}
 								class={[
-									'flex h-full min-h-20 flex-col justify-between gap-2 border border-border p-3 text-[13px] leading-tight text-text no-underline outline-text -outline-offset-2 hover:outline-1',
+									'flex h-full min-h-20 flex-col justify-between gap-2 rounded-md p-3 type-label text-text no-underline outline-text -outline-offset-2 hover:outline-1',
+									familyTint[categoryFamily[c as Category]].bg,
 									on && 'outline-2 -outline-offset-2 outline-text'
-								]}
-								style:background="var(--{categoryTone[c as Category]})"
-								><CategoryIcon category={c as Category} />{msg(`cat_${c}`)}</a
+								]}><CategoryIcon category={c as Category} />{msg(`cat_${c}`)}</a
 							>
 						</li>
 					{/each}
@@ -118,7 +118,6 @@
 								photo={p.photo}
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
-								boxed
 							>
 								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
 							</PlaceCard>
@@ -143,7 +142,6 @@
 									photo={p.photo}
 									category={p.category}
 									categoryLabel={msg(`cat_${p.category}`)}
-									boxed
 								>
 									{#snippet badges()}<StatusBadge kind="gem" />{/snippet}
 									{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
@@ -196,7 +194,7 @@
 												alt={d.photo.alt}
 												loading="lazy"
 												class="h-full w-full object-cover"
-											/>{:else}<NoPhoto tone="sakura" label={false} />{/if}
+											/>{:else}<NoPhoto kind="dish" label={false} />{/if}
 									</div>
 									<span class="px-3 pt-2 pb-2.5 type-h3">{d.name}</span>
 								</a>
@@ -217,7 +215,6 @@
 								photo={p.photo}
 								category={p.category}
 								categoryLabel={msg(`cat_${p.category}`)}
-								boxed
 								distanceKm={p.km}
 							>
 								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
@@ -231,7 +228,7 @@
 						<Button variant="secondary" onclick={nearMe}>{m.discover_near_me_cta()}</Button>
 					</div>
 				{:else}
-					<EmptyState title={m.soon_title()} body={m.soon_discover()} tone="asagi" />
+					<EmptyState title={m.soon_title()} body={m.soon_discover()} />
 				{/if}
 			</section>
 		{/if}

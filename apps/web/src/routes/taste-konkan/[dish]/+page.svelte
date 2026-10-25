@@ -16,7 +16,7 @@
 
 <Page title={d.name} back description={d.what || d.story} image={d.photo?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<Hero photo={d.photo} tone="sakura" />
+		<Hero photo={d.photo} kind="dish" />
 		<header>
 			<h2 class="type-display">{d.name}</h2>
 			{#if secondary && secondary !== d.name}<p

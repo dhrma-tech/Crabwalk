@@ -37,15 +37,19 @@
 
 	const dot: Record<Diet, string> = {
 		veg: 'bg-ok',
-		nonveg: 'bg-sakura-s',
-		jain: 'bg-yama-s'
+		nonveg: 'bg-danger',
+		jain: 'bg-caution'
 	};
 	const dietText = { veg: m.diet_veg, nonveg: m.diet_nonveg, jain: m.diet_jain };
 </script>
 
-<ListingCard {href} {photo} {names} tone="yama" {row} {level} {saved} {onsave}>
+<ListingCard {href} {photo} {names} kind="eatery" {row} {level} {saved} {onsave}>
 	{#if authenticity}
-		<p class="w-fit bg-yama px-2.5 py-px text-[13px] text-text">{authenticity}</p>
+		<p
+			class="flex min-h-7 w-fit items-center rounded-full bg-alphonso-50 px-2.5 type-label text-alphonso-ink"
+		>
+			{authenticity}
+		</p>
 	{/if}
 	{#if signatureDish}<p class="type-body">{signatureDish}</p>{/if}
 	{#if priceForTwo != null}

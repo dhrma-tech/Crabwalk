@@ -29,7 +29,7 @@
 
 <Page title={primary} back description={e.description} image={e.photos[0]?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<Hero photo={e.photos[0] ?? null} tone="yama" />
+		<Hero photo={e.photos[0] ?? null} kind="eatery" />
 		<header class="flex flex-col gap-2">
 			<h2 class="type-display">{primary}</h2>
 			{#if secondary && secondary !== primary}<p

@@ -39,7 +39,7 @@
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} tone="asagi" {row} {level} {saved} {onsave}>
+<ListingCard {href} {photo} {names} kind="stay" {row} {level} {saved} {onsave}>
 	{#if tags.length}<TagList {tags} />{/if}
 	{#if priceMin != null && priceMax != null && priceSource}
 		<p class="type-small text-text-2">

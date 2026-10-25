@@ -7,6 +7,7 @@
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import StayCard from '#lib/components/StayCard.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
+	import InsetList from '#lib/components/InsetList.svelte';
 	import FilterBar from '#lib/components/listing/FilterBar.svelte';
 	import type { PageProps } from './$types';
 
@@ -47,7 +48,7 @@
 			]}
 		/>
 		{#if data.stays.length}
-			<div class="grid gap-x-10 gap-y-3 lg:grid-cols-2">
+			<InsetList>
 				{#each data.stays as s (s.slug)}
 					<StayCard
 						row
@@ -64,7 +65,7 @@
 						{#snippet verdict()}<MiniVerdict type="stay" agg={s.agg} />{/snippet}
 					</StayCard>
 				{/each}
-			</div>
+			</InsetList>
 		{:else}
 			<EmptyState title={m.soon_title()} body={m.no_results()} />
 		{/if}

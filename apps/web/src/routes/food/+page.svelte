@@ -6,6 +6,7 @@
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import EateryCard from '#lib/components/EateryCard.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
+	import InsetList from '#lib/components/InsetList.svelte';
 	import FilterBar from '#lib/components/listing/FilterBar.svelte';
 	import type { PageProps } from './$types';
 
@@ -46,7 +47,7 @@
 			]}
 		/>
 		{#if data.eateries.length}
-			<div class="grid gap-x-10 gap-y-3 lg:grid-cols-2">
+			<InsetList>
 				{#each data.eateries as e (e.slug)}
 					<EateryCard
 						row
@@ -62,7 +63,7 @@
 						{#snippet verdict()}<MiniVerdict type="eatery" agg={e.agg} />{/snippet}
 					</EateryCard>
 				{/each}
-			</div>
+			</InsetList>
 		{:else}
 			<EmptyState title={m.soon_title()} body={m.no_results()} />
 		{/if}

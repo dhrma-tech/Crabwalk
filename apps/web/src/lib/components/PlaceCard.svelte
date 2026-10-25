@@ -5,7 +5,7 @@
 	import ListingCard, { type Names, type Photo } from './ListingCard.svelte';
 	import type { Category } from './CategoryIcon.svelte';
 
-	// FRONTEND §6.3 PlaceCard. `verdict` = mini gauge (P5); `badges` = up to 2 StatusBadges.
+	// FRONTEND §6.3 PlaceCard. `verdict` = mini gauge (P5); `badges` = up to 2 glass StatusBadges over the photo.
 	let {
 		href,
 		photo,
@@ -15,7 +15,6 @@
 		distanceKm,
 		saved,
 		onsave,
-		boxed,
 		verdict,
 		badges
 	}: {
@@ -27,18 +26,16 @@
 		distanceKm?: number | null;
 		saved?: boolean;
 		onsave?: () => void;
-		boxed?: boolean;
 		verdict?: Snippet;
 		badges?: Snippet;
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} fallbackCategory={category} {saved} {onsave} {boxed}>
-	<p class="flex items-center gap-1.5 text-[13px] text-text-2">
+<ListingCard {href} {photo} {names} {category} {saved} {onsave} overlay={badges}>
+	<p class="flex flex-wrap items-center gap-x-1.5 type-small text-text-2">
 		<span>{categoryLabel}</span>
 		{#if distanceKm != null}<span aria-hidden="true">·</span>
 			<span>{m.distance_km({ km: formatNumber(distanceKm) })}</span>{/if}
 	</p>
 	{@render verdict?.()}
-	{#if badges}<div class="flex flex-wrap gap-1.5">{@render badges()}</div>{/if}
 </ListingCard>

@@ -31,7 +31,7 @@
 
 <Page title={primary} back description={s.description} image={s.photos[0]?.src}>
 	<article class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<Hero photo={s.photos[0] ?? null} tone="asagi" />
+		<Hero photo={s.photos[0] ?? null} kind="stay" />
 		<header class="flex flex-col gap-2">
 			<h2 class="type-display">{primary}</h2>
 			{#if secondary && secondary !== primary}<p

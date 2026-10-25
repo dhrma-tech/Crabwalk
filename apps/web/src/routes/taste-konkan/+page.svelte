@@ -8,13 +8,12 @@
 
 	// FRONTEND §7.7: dish grid (Suna 6a: tint tiles cycling through the palette when there is no photo).
 	let { data }: PageProps = $props();
-	const tones = ['yama', 'sakura', 'asagi', 'wakaba', 'fuji'] as const;
 </script>
 
 <Page title={m.taste_title()} description={m.meta_taste()}>
 	{#if data.dishes.length}
 		<ul class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-			{#each data.dishes as d, i (d.slug)}
+			{#each data.dishes as d (d.slug)}
 				<li>
 					<a
 						href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
@@ -32,7 +31,7 @@
 									alt={d.photo.alt}
 									loading="lazy"
 									class="h-full w-full object-cover"
-								/>{:else}<NoPhoto tone={tones[i % tones.length]} label={false} />{/if}
+								/>{:else}<NoPhoto kind="dish" label={false} />{/if}
 						</div>
 						<span class="type-h3">{d.name}</span>
 						{#if d.what}<span class="line-clamp-2 type-small text-text-2">{d.what}</span>{/if}

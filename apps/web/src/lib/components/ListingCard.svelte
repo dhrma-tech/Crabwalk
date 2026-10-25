@@ -6,38 +6,41 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import Heart from '@lucide/svelte/icons/heart';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import { categoryTone, type Category } from './CategoryIcon.svelte';
-	import NoPhoto, { type Tone } from './NoPhoto.svelte';
+	import type { Category } from './CategoryIcon.svelte';
+	import NoPhoto, { type Kind } from './NoPhoto.svelte';
+	import IconButton from './IconButton.svelte';
 
-	// Shared shell for Place/Stay/Eatery cards (FRONTEND §6.3): 4:3 photo (or the no-photo pattern), heart,
-	// bilingual name, body. Suna: no box, just the image and the words under it; `row` = list row with a
-	// 110×84 thumbnail (Stays / Food lists, design 4a/6a); `boxed` = hairline card (Discover).
+	// Shared shell for Place/Stay/Eatery cards (Report 2 §8): a surface card, 4:3 photo (or the designed no-photo
+	// card) with glass badges top-left (`overlay`) and the heart top-right, then name, other script and body.
+	// Pointer hover zooms the photo and lifts the card. `row` = inset list row (InsetList) with a 96 px thumbnail
+	// and a chevron (the heart takes the chevron's place when the row can be saved).
 	let {
 		href,
 		photo,
 		names,
-		fallbackCategory,
-		tone,
+		category,
+		kind,
 		row = false,
-		boxed = false,
 		level = 3,
 		saved = false,
 		onsave,
+		overlay,
 		children
 	}: {
 		href: string;
 		photo?: Photo | null;
 		names: Names;
-		fallbackCategory?: Category;
-		tone?: Tone;
+		category?: Category;
+		kind?: Kind;
 		row?: boolean;
-		boxed?: boolean;
 		/** Heading level of the name: 2 when the cards sit right under the page title (lists). */
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
+		overlay?: Snippet;
 		children?: Snippet;
 	} = $props();
 
@@ -52,9 +55,9 @@
 
 <article
 	class={[
-		'relative text-text',
-		row && 'border-t border-border pt-3',
-		boxed && 'h-full border border-border'
+		'group relative text-text',
+		!row &&
+			'h-full rounded-lg bg-surface shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2'
 	]}
 	data-clip-check
 >
@@ -62,15 +65,17 @@
 	<a
 		{href}
 		class={[
-			'group text-text no-underline',
-			row ? 'flex gap-3.5' : 'block',
-			boxed && 'row-link h-full'
+			'text-text no-underline',
+			row
+				? 'row-link flex items-center gap-3.5 p-3 focus-visible:-outline-offset-2'
+				: 'flex h-full flex-col rounded-lg',
+			row && onsave && 'pr-16'
 		]}
 	>
 		<div
 			class={[
-				row ? 'h-[84px] w-[110px] shrink-0' : 'aspect-[4/3] w-full',
-				'bg-border bg-cover bg-center'
+				'shrink-0 overflow-hidden bg-surface-2 bg-cover bg-center',
+				row ? 'size-24 rounded-md' : 'aspect-[4/3] w-full rounded-t-lg'
 			]}
 			style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
 		>
@@ -78,49 +83,48 @@
 				<img
 					src={photo.src}
 					srcset={photo.srcset}
-					sizes={row ? '110px' : '(min-width: 1024px) 360px, 100vw'}
+					sizes={row ? '96px' : '(min-width: 1024px) 360px, 100vw'}
 					alt={photo.alt}
 					loading="lazy"
 					decoding="async"
 					width="400"
 					height="300"
-					class="h-full w-full object-cover"
+					class="h-full w-full object-cover transition-transform duration-300 ease-brand group-hover:scale-[1.03]"
 				/>
 			{:else}
-				<NoPhoto
-					tone={tone ?? (fallbackCategory ? categoryTone[fallbackCategory] : 'asagi')}
-					label={!row}
-				/>
+				<NoPhoto {category} {kind} label={!row} />
 			{/if}
 		</div>
-		<div
-			class={['flex min-w-0 flex-col gap-1.5', row ? 'pr-11' : boxed ? 'px-3 pt-2.5 pb-3' : 'pt-2']}
-		>
+		<div class={['flex min-w-0 flex-1 flex-col gap-1.5', !row && 'p-3.5']}>
 			<div>
-				<svelte:element
-					this={`h${level}`}
-					class="type-h3 decoration-1 underline-offset-4 group-hover:underline"
-					>{primary}</svelte:element
-				>
+				<svelte:element this={`h${level}`} class="type-h3">{primary}</svelte:element>
 				{#if secondary && secondary !== primary}
-					<p class="text-[13px] text-text-2" lang={secondaryLang}>{secondary}</p>
+					<p class="type-small text-text-2" lang={secondaryLang}>{secondary}</p>
 				{/if}
 			</div>
 			{@render children?.()}
 		</div>
+		{#if row && !onsave}<ChevronRight size={20} aria-hidden="true" class="text-muted" />{/if}
 	</a>
+	{#if overlay && !row}
+		<div class="pointer-events-none absolute top-3 left-3 flex flex-wrap gap-1.5 pr-14">
+			{@render overlay()}
+		</div>
+	{/if}
 	{#if onsave}
-		<button
-			type="button"
-			class={[
-				'absolute right-0 flex size-11 items-center justify-center bg-bg/70 text-text',
-				row ? 'top-2' : 'top-0'
-			]}
+		<IconButton
+			glass={!row}
+			label={saved ? m.saved() : m.save()}
 			aria-pressed={saved}
-			aria-label={saved ? m.saved() : m.save()}
+			class={['absolute right-2', row ? 'top-1/2 -translate-y-1/2' : 'top-2']}
 			onclick={onsave}
 		>
-			<Heart size={20} fill={saved ? 'currentColor' : 'none'} aria-hidden="true" />
-		</button>
+			<Heart
+				size={20}
+				fill={saved ? 'currentColor' : 'none'}
+				aria-hidden="true"
+				class={saved ? 'text-kokum' : undefined}
+			/>
+		</IconButton>
 	{/if}
 </article>
