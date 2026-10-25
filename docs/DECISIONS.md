@@ -141,6 +141,25 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | R-7 | Named z-layers and hover tokens (`--cta-hover`, `--emergency-hover`, `row-link`) join the Suna tokens in `app.css`. |
 | R-8 | Text fields and textareas show no focus outline while typing (user; overrides design 3a "Focus" for text fields only). Buttons, links, checkboxes, radios, sliders and file pickers keep the ink ring. |
 
+## Tideline redesign (phase-10b)
+Source: `docs/reports/01-gaps-fixes-improvements.md` (Report 1), `02-ui-redesign-tideline.md` (Report 2), `03-claude-code-prompt.md` (plan, steps A–G). Branch `redesign/tideline` → PR → `main`, tag `phase-10b`.
+| Ref | Decision |
+|---|---|
+| T-1 | **Tideline adopted** (user, T-Q1): Report 2 tokens, type, radii, elevation, motion, components and screens replace the Suna visuals — **supersedes P10a-1, P10a-3, P10a-5** (and the P10a-2 contrast list, now Report 2 §3.4). Locked screen section order (FRONTEND §7), honest-UI and emergency rules unchanged. |
+| T-2 | Display font (T-Q2): Eczar 700 vs Poppins 600 fallback — **asked after step D2** with Discover/Place screenshots at 360 and 1280. Default Eczar. |
+| T-3 | Laptop nav (user, T-Q3): persistent 72 px top nav (wordmark · Discover · Map · Plan · Itineraries · Taste Konkan · search · language pill · avatar) + right-docked 360 px Crabby panel, collapsible to a kokum button (per-viewer localStorage, try/catch; default collapsed on Discover/lists, open on Plan). **Overrides P10a-4.** |
+| T-4 | Sticky action bar (user, T-Q4): Directions · Add to trip (primary) · Save · Share on **place, stay and eatery** detail pages (Report 1 §3.9). Doesn't reorder FRONTEND §7. |
+| T-5 | Saved (user, T-Q5): `saved_items(user_id, entity_type, entity_id, created_at)` for places, stays, eateries; own-row RLS + pgTAP; `/api/saved`; heart on every card (optimistic; guest → sign-in with `?next`); Me "Saved"; service worker never caches it. |
+| T-6 | Content tooling (user, T-Q6): `/admin/field` desk-entry mode (typed or map-picked lat/lng, file upload, no GPS requirement); `pipelines/content-import` CSV importer (Zod, dry run default, `--live` writes `content_drafts` only, idempotent by slug, rejected-rows report, `template.csv`); migration `places.verification_method` (`desk`/`field`) + `source_urls text[]`; StatusBadge "Checked online · date" (desk) vs "Visited · date" (field, the only rows with the verified tick). |
+| T-7 | Photos (user, T-Q7): own photos + openly licensed (CC BY / CC BY-SA, e.g. Wikimedia Commons) with `photos.credit`, `licence`, `source_url` required for non-own photos and shown under the image. **Never unlicensed web images.** Narrows the "verifier-shot only" rule to "own or CC-licensed with credit". |
+| T-8 | Branching (user, T-Q8): `refinement` landed via PR #1 (merge commit `c7d91de`, CI green); `redesign/tideline` cut from `main`; merge via PR; tag `phase-10b`. |
+| T-9 | "Today on the coast" (user): SSR shows the region's default weather point and its nearest tide station (from data/config, never a hard-coded region); switches to the nearest point after "Use my location". Each item labelled + timestamped + attributed; any missing item is hidden. |
+| T-10 | Report 1 extras in scope (user): §4.1 empty states, §4.2 grouped search + recent searches, §4.3 place → map hand-off, §4.4 plan route strip, §4.5 live-trip hero, §4.6 vote live counts + "Done" state, §4.7 Me order, §4.8 admin queue counter, §3.10 back-to-list fallback, §3.11 per-category canonical/meta/h1. |
+| T-11 | `AUDIT.md` moves to `docs/AUDIT.md` (user); links updated. |
+| T-12 | `.vscode/` is git-ignored (Claude: it held only a personal setting). |
+| T-13 | Dev auth bypass split (Claude, Report 1 §1.2): the gate `devBypass` stays in a shared `lib/devAuth.ts` (env only) because both the server hook and the layout's DEV badge need it; hook + roles in `devAuth.server.ts`, toast + fetch wrapper in `devAuth.client.ts`, so server bundles never import client state. CI (`pnpm run lint` → `scripts/check-env-files.mjs`) fails if a committed env file sets `DEV_BYPASS_AUTH=true`. The DEV badge needs `vite dev`, so it never appears in preview-based snapshots or the clip check. |
+| T-14 | CI repair (user) while landing refinement: see "Found issues" (p9 migration `$$`, build env placeholders, e2e on a fresh Supabase). |
+
 ## P10a decisions (Suna redesign)
 | Ref | Decision |
 |---|---|
