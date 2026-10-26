@@ -91,10 +91,10 @@
 			const own = await fetch(`/api/map/search?q=${encodeURIComponent(term)}`).then((r) =>
 				r.ok ? r.json() : []
 			);
-			results = (own as { name: string; lon: number; lat: number }[]).map((r) => ({
-				...r,
-				source: 'own' as const
-			}));
+			// Dishes have no location (T-24), so the map leaves them out.
+			results = (own as { name: string; lon: number | null; lat: number | null }[])
+				.filter((r): r is { name: string; lon: number; lat: number } => r.lon != null)
+				.map((r) => ({ ...r, source: 'own' as const }));
 			if (!results.length && data.signedIn && term.length >= 3) {
 				if (!olaSessionCache.has(term)) {
 					const ola: {

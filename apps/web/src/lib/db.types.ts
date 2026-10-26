@@ -637,17 +637,23 @@ isOneToOne: false
                   ]
                 },"regions": {
                   Row: {
-                    "code_prefix": string,"created_at": string,"id": string,"name": string,"updated_at": string | null
+                    "code_prefix": string,"created_at": string,"default_weather_point_id": string | null,"id": string,"name": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "code_prefix": string,"created_at"?: string,"id"?: string,"name": string,"updated_at"?: string | null
+                    "code_prefix": string,"created_at"?: string,"default_weather_point_id"?: string | null,"id"?: string,"name": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "code_prefix"?: string,"created_at"?: string,"id"?: string,"name"?: string,"updated_at"?: string | null
+                    "code_prefix"?: string,"created_at"?: string,"default_weather_point_id"?: string | null,"id"?: string,"name"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
-                    
+                    {
+      foreignKeyName: "regions_default_weather_point_id_fkey"
+      columns: ["default_weather_point_id"]
+isOneToOne: false
+      referencedRelation: "weather_points"
+      referencedColumns: ["id"]
+    }
                   ]
                 },"reports": {
                   Row: {
