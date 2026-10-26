@@ -395,7 +395,7 @@
 						oninput={onSearch}
 						type="search"
 						placeholder={m.map_search()}
-						class="h-full min-w-0 flex-1 bg-transparent type-body text-text placeholder:text-text-muted"
+						class="h-full min-w-0 flex-1 bg-transparent type-body text-text placeholder:text-muted"
 					/>
 				</label>
 				{#if results.length || searched}
@@ -535,7 +535,7 @@
 							<p class="flex flex-wrap gap-x-3 type-small text-text-2">
 								<span><span class="text-ok">●</span> {m.tide_ok()}</span>
 								<span><span class="text-danger">●</span> {m.tide_cut()}</span>
-								<span><span class="text-text-muted">●</span> {m.tide_unknown()}</span>
+								<span><span class="text-muted">●</span> {m.tide_unknown()}</span>
 								{#each layerInfo?.tideAttribution ?? [] as a (a.url)}
 									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- provider attribution link -->
 									<a href={a.url} target="_blank" rel="noopener">{a.text}</a>

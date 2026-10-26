@@ -25,19 +25,28 @@
 	import ThumbsDown from '@lucide/svelte/icons/thumbs-down';
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatDate } from '#lib/format.ts';
+	import RouteStrip from './RouteStrip.svelte';
+	import type { StripLeg } from '#lib/nav/strip.ts';
 
 	// FRONTEND §7.9: day tabs → timeline (time, travel time, reason chip) → drag to reorder → add stay/meal.
+	// Tideline (Report 2 §9.8, T-32): segmented day tabs, the day's route strip, a lagoon timeline with the time on
+	// the left and stop cards on the right, dotted car connectors between stops. `links=false`: the plan view moves
+	// the Google Maps links into its overflow sheet.
 	let {
 		days,
 		editable = false,
 		add = [],
 		votes = {},
+		routes = [],
+		links = true,
 		onchange
 	}: {
 		days: PlanDay[];
 		editable?: boolean;
 		add?: AddOption[][];
 		votes?: Record<string, { up: number; down: number }>;
+		routes?: { day: number; legs: (StripLeg & { to: { name: string } })[] }[];
+		links?: boolean;
 		onchange?: (days: { kind: PlanStop['kind']; entity_id: string }[][]) => void;
 	} = $props();
 
@@ -84,31 +93,36 @@
 	}
 	const kindLabel = (k: PlanStop['kind']) =>
 		k === 'meal' ? m.plan_kind_meal() : k === 'stay' ? m.plan_kind_stay() : null;
-	// Suna timeline (2a): a dot per stop on a hairline; tint by kind.
-	const tint = (k: PlanStop['kind']) => (k === 'meal' ? 'sakura' : k === 'stay' ? 'asagi' : 'yama');
+	// Stop dots in the map pin colours (T-26): places kokum, meals alphonso, stays lagoon.
+	const dot = (k: PlanStop['kind']) =>
+		k === 'meal' ? 'bg-alphonso' : k === 'stay' ? 'bg-lagoon' : 'bg-kokum';
+	const iconBtn =
+		'flex size-11 items-center justify-center rounded-full text-text-2 transition-colors duration-200 hover:bg-surface-2 hover:text-text disabled:text-muted disabled:hover:bg-transparent';
 </script>
 
-<div class="flex flex-col gap-4">
-	<div
-		class="flex gap-5 overflow-x-auto border-b border-border print:hidden"
-		role="tablist"
-		aria-label={m.plan_days()}
-	>
-		{#each days as d, i (i)}
-			<button
-				type="button"
-				role="tab"
-				id="day-tab-{i}"
-				aria-selected={tab === i}
-				aria-controls="day-{i}"
-				class={[
-					'-mb-px min-h-11 shrink-0 border-b-2 type-body',
-					tab === i ? 'border-text font-medium text-text' : 'border-transparent text-text-2'
-				]}
-				onclick={() => (tab = i)}
-				>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${formatDate(d.date)}` : ''}</button
-			>
-		{/each}
+<div class="flex flex-col gap-5">
+	<div class="-mx-5 overflow-x-auto px-5 print:hidden lg:mx-0 lg:px-0">
+		<div
+			class="inline-flex rounded-full bg-surface-2 p-0.5"
+			role="tablist"
+			aria-label={m.plan_days()}
+		>
+			{#each days as d, i (i)}
+				<button
+					type="button"
+					role="tab"
+					id="day-tab-{i}"
+					aria-selected={tab === i}
+					aria-controls="day-{i}"
+					class={[
+						'min-h-11 shrink-0 rounded-full px-4 type-label whitespace-nowrap transition-[background-color,box-shadow,color] duration-200',
+						tab === i ? 'bg-surface text-text shadow-e1' : 'text-text-2 hover:text-text'
+					]}
+					onclick={() => (tab = i)}
+					>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${formatDate(d.date)}` : ''}</button
+				>
+			{/each}
+		</div>
 	</div>
 
 	{#each days as d, i (i)}
@@ -116,12 +130,15 @@
 			id="day-{i}"
 			role="tabpanel"
 			aria-labelledby="day-tab-{i}"
-			class={['flex flex-col gap-3', tab !== i && 'hidden print:flex']}
+			class={['flex flex-col gap-4', tab !== i && 'hidden print:flex']}
 			data-testid="plan-day"
 		>
 			<h2 class="hidden type-h2 print:block">
 				{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${formatDate(d.date)}` : ''}
 			</h2>
+			{#if routes[i]?.legs.length}
+				<RouteStrip legs={routes[i]!.legs} label={m.plan_day_n({ n: i + 1 })} />
+			{/if}
 			{#if !work[i]?.length}
 				<p class="type-body text-text-2">{m.plan_day_empty()}</p>
 			{:else}
@@ -141,73 +158,86 @@
 				>
 					{#each work[i]! as s, k (s.id)}
 						<li
-							class="grid grid-cols-[3.5rem_9px_1fr] gap-x-3.5 bg-bg"
+							class="grid grid-cols-[4rem_1rem_1fr] gap-x-3"
 							data-testid="plan-stop"
 							data-kind={s.kind}
 						>
-							<span class="pt-0.5 text-[13px] leading-snug text-text-2" data-testid="stop-time"
-								>{s.arrive ?? '—'}{s.depart && s.kind !== 'stay' ? `–${s.depart}` : ''}</span
+							{#if s.travelMin}
+								<!-- Drive from the previous stop: a dotted connector with a car. -->
+								<span></span>
+								<span class="flex justify-center" aria-hidden="true"
+									><span class="w-0 border-l-2 border-dotted border-lagoon"></span></span
+								>
+								<p class="flex items-center gap-1.5 py-2 type-small text-text-2">
+									<Car size={16} aria-hidden="true" />{m.plan_travel({ n: s.travelMin })}
+								</p>
+							{/if}
+							<span
+								class="pt-3 text-right type-small text-text-2 tabular-nums"
+								data-testid="stop-time"
+								>{s.arrive ?? '—'}{#if s.depart && s.kind !== 'stay'}–<br />{s.depart}{/if}</span
 							>
 							<span class="flex flex-col items-center" aria-hidden="true">
-								<span
-									class="mt-2 size-[9px] rounded-full"
-									style:background="var(--{tint(s.kind)}-s)"
+								<span class={['mt-4 size-3 shrink-0 rounded-full ring-2 ring-bg', dot(s.kind)]}
 								></span>
-								<span class="w-px flex-1 bg-border"></span>
+								<span class="w-0.5 flex-1 bg-lagoon"></span>
 							</span>
-							<div class="flex items-start justify-between gap-3 pb-4">
-								<div class="flex min-w-0 flex-col">
-									{#if s.travelMin}
-										<p class="flex items-center gap-1.5 text-[12px] text-text-2">
-											<Car size={14} aria-hidden="true" />{m.plan_travel({ n: s.travelMin })}
-										</p>
-									{/if}
-									{#if kindLabel(s.kind)}<span class="text-[12px] text-text-2"
-											>{kindLabel(s.kind)}</span
-										>{/if}
-									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
-									{#if s.href}<a href={s.href} class="inline-flex min-h-11 items-center type-h3"
-											>{s.name}</a
-										>{:else}<span class="type-h3">{s.name ?? '—'}</span>{/if}
-									{#if s.reason}<span
-											class="mt-1 self-start px-2 text-[12px]"
-											style:background="var(--{tint(s.kind)})"
-											data-testid="stop-reason">{s.reason}</span
-										>{/if}
-									{#if votes[s.entity_id]}<span
-											class="mt-1 flex items-center gap-1.5 type-small text-text-2"
-											data-testid="stop-votes"
-											><ThumbsUp size={16} aria-label={m.gvote_up()} />{votes[s.entity_id]!
-												.up}<ThumbsDown size={16} aria-label={m.gvote_down()} />{votes[s.entity_id]!
-												.down}</span
-										>{/if}
-								</div>
-								{#if editable}
-									<div class="flex shrink-0 gap-1 print:hidden">
-										<button
-											type="button"
-											class="flex size-11 items-center justify-center text-link disabled:opacity-40"
-											aria-label={m.plan_move_up()}
-											disabled={k === 0}
-											onclick={() => move(i, k, -1)}
-											><ArrowUp size={20} aria-hidden="true" /></button
-										>
-										<button
-											type="button"
-											class="flex size-11 items-center justify-center text-link disabled:opacity-40"
-											aria-label={m.plan_move_down()}
-											disabled={k === work[i]!.length - 1}
-											onclick={() => move(i, k, 1)}
-											><ArrowDown size={20} aria-hidden="true" /></button
-										>
-										<button
-											type="button"
-											class="flex size-11 items-center justify-center text-text-2"
-											aria-label={m.plan_remove()}
-											onclick={() => remove(i, k)}><X size={20} aria-hidden="true" /></button
-										>
+							<div class="pb-3">
+								<div
+									class="flex flex-col gap-1 rounded-md bg-surface p-3 shadow-e1 sm:flex-row sm:items-start sm:justify-between sm:gap-2"
+								>
+									<div class="flex min-w-0 flex-col gap-1">
+										{#if kindLabel(s.kind)}<span class="type-label text-text-2"
+												>{kindLabel(s.kind)}</span
+											>{/if}
+										<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
+										{#if s.href}<a href={s.href} class="type-h3 text-text">{s.name}</a>{:else}<span
+												class="type-h3">{s.name ?? '—'}</span
+											>{/if}
+										{#if s.reason}<span class="flex flex-wrap gap-1" data-testid="stop-reason"
+												>{#each s.reason.split(' · ') as r, n (n)}<span
+														class="rounded-full bg-surface-2 px-2.5 py-0.5 type-label text-text-2"
+														>{r}</span
+													>{/each}</span
+											>{/if}
+										{#if votes[s.entity_id]}<span
+												class="flex items-center gap-1.5 type-small text-text-2"
+												data-testid="stop-votes"
+												><ThumbsUp size={16} aria-label={m.gvote_up()} />{votes[s.entity_id]!
+													.up}<ThumbsDown size={16} aria-label={m.gvote_down()} />{votes[
+													s.entity_id
+												]!.down}</span
+											>{/if}
 									</div>
-								{/if}
+									{#if editable}
+										<div
+											class="-mr-1.5 -mb-1.5 flex shrink-0 self-end print:hidden sm:-my-1.5 sm:self-start"
+										>
+											<button
+												type="button"
+												class={iconBtn}
+												aria-label={m.plan_move_up()}
+												disabled={k === 0}
+												onclick={() => move(i, k, -1)}
+												><ArrowUp size={20} aria-hidden="true" /></button
+											>
+											<button
+												type="button"
+												class={iconBtn}
+												aria-label={m.plan_move_down()}
+												disabled={k === work[i]!.length - 1}
+												onclick={() => move(i, k, 1)}
+												><ArrowDown size={20} aria-hidden="true" /></button
+											>
+											<button
+												type="button"
+												class={iconBtn}
+												aria-label={m.plan_remove()}
+												onclick={() => remove(i, k)}><X size={20} aria-hidden="true" /></button
+											>
+										</div>
+									{/if}
+								</div>
 							</div>
 						</li>
 					{/each}
@@ -218,7 +248,7 @@
 				<label class="flex flex-col gap-1.5 type-small text-text-2 print:hidden">
 					{m.plan_add()}
 					<select
-						class="h-11 border-b border-text bg-bg type-body text-text"
+						class="field h-12 px-3 type-body text-text"
 						onchange={(e) => {
 							addStop(i, e.currentTarget.value);
 							e.currentTarget.value = '';
@@ -234,7 +264,7 @@
 				</label>
 			{/if}
 
-			{#if d.links.length}
+			{#if links && d.links.length}
 				<div class="flex flex-wrap gap-2 print:hidden" data-testid="gmaps">
 					{#each d.links as l, j (l)}
 						<!-- eslint-disable svelte/no-navigation-without-resolve -- external Google Maps link -->
@@ -242,8 +272,11 @@
 							href={l}
 							target="_blank"
 							rel="noopener"
-							class="flex min-h-11 items-center border border-text px-4 type-small text-text no-underline"
-							>{m.plan_gmaps()}{d.links.length > 1 ? ` ${j + 1}/${d.links.length}` : ''}</a
+							class="group inline-flex min-h-11 items-center no-underline"
+							><span
+								class="inline-flex min-h-9 items-center rounded-full border-[1.5px] border-border-strong px-4 type-label text-text group-hover:bg-surface-2"
+								>{m.plan_gmaps()}{d.links.length > 1 ? ` ${j + 1}/${d.links.length}` : ''}</span
+							></a
 						>
 					{/each}
 				</div>

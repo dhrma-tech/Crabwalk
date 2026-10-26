@@ -122,7 +122,7 @@
 		m.plan_standout
 	];
 	const round =
-		'flex size-14 shrink-0 items-center justify-center rounded-full bg-surface-2 text-text transition-colors duration-200 hover:bg-surface-3 disabled:text-text-muted disabled:hover:bg-surface-2';
+		'flex size-14 shrink-0 items-center justify-center rounded-full bg-surface-2 text-text transition-colors duration-200 hover:bg-surface-3 disabled:text-muted disabled:hover:bg-surface-2';
 </script>
 
 <Page title={m.nav_plan()}>
