@@ -779,5 +779,7 @@
 	"filter_up_to": "{amount} पर्यंत",
 	"amenity_missing": "उपलब्ध नाही",
 	"filters_clear_all": "सर्व फिल्टर काढा",
-	"dish_best_here": "सर्वोत्तम ठिकाण"
+	"dish_best_here": "सर्वोत्तम ठिकाण",
+	"plan_step": "पायरी {n} / {total}",
+	"plan_next": "पुढे"
 }

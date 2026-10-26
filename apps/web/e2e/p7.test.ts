@@ -81,8 +81,16 @@ test('generate: no stop outside hours or tide cut-off; meals, stay, budget, Maps
 	await signIn(owner, `p7-${run}@e2e.local`);
 	await owner.goto('/plan/new');
 	await owner.waitForLoadState('networkidle'); // hydrated: chip clicks register
+	// One question per step (T-31): days → start → group → budget → interests → pace → Standout.
+	const next = () => owner.getByRole('button', { name: 'Next' }).click();
+	await next();
 	await owner.getByLabel('Railway station or bus stand').fill(`P7 Station ${run}`);
+	await next();
+	await next();
+	await next();
 	await owner.getByRole('button', { name: 'Orchard' }).click();
+	await next();
+	await next();
 	await owner.getByRole('button', { name: 'Generate plan' }).click();
 	await owner.waitForURL(/\/plan\/[0-9a-f-]{36}$/);
 	tripId = owner.url().split('/').at(-1)!;
