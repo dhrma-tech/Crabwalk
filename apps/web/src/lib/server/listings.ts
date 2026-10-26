@@ -172,7 +172,7 @@ export async function getEatery(db: DB, slug: string) {
 	const { data: e } = await db
 		.from('eateries')
 		.select(
-			'*, eatery_translations(lang, name, description), eatery_hours(*), eatery_dishes(is_signature, is_best_for, dishes(slug, dish_translations(lang, name)))'
+			'*, eatery_translations(lang, name, description), eatery_hours(*), eatery_dishes(is_signature, is_best_for, dishes(id, slug, dish_translations(lang, name)))'
 		)
 		.eq('slug', slug)
 		.eq('status', 'published')

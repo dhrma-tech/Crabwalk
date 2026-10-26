@@ -27,3 +27,12 @@ export const relTime = (iso: string, locale?: Locale) => {
 	const h = Math.round(min / 60);
 	return Math.abs(h) < 48 ? rtf.format(h, 'hour') : rtf.format(Math.round(h / 24), 'day');
 };
+
+/**
+ * A menu line as the owner typed it (BACKEND §3.5 `menu.items`), split for a dot leader only when it ends in an
+ * explicit rupee price ("Fish thali – ₹250"); anything else stays one plain line (T-28).
+ */
+export function menuLine(line: string): { name: string; price: string | null } {
+	const m = line.trim().match(/^(.*?\S)[\s·:–—-]*(₹\s?[\d,]+(?:\.\d{1,2})?)$/);
+	return m ? { name: m[1]!, price: m[2]!.replace(/\s/g, '') } : { name: line.trim(), price: null };
+}

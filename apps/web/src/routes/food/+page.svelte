@@ -7,17 +7,37 @@
 	import EateryCard from '#lib/components/EateryCard.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import InsetList from '#lib/components/InsetList.svelte';
-	import FilterBar from '#lib/components/listing/FilterBar.svelte';
+	import ListControls from '#lib/components/listing/ListControls.svelte';
+	import Button from '#lib/components/Button.svelte';
 	import type { PageProps } from './$types';
 
-	// FRONTEND §7.6: filters (veg, authenticity, price) → cards.
+	// FRONTEND §7.6: filters (veg, authenticity, price) → cards. Report 2 §9.4 (T-27): sticky chips + count +
+	// sort; inset rows on phones, a 3-up card grid on laptops.
 	let { data }: PageProps = $props();
 	const dietMap = { veg: 'veg', non_veg: 'nonveg', jain: 'jain' } as const;
 </script>
 
+{#snippet card(e: (typeof data.eateries)[number], row: boolean)}
+	<EateryCard
+		{row}
+		level={2}
+		href={resolve('/food/[slug]', { slug: e.slug })}
+		names={e.names}
+		photo={e.photo}
+		authenticity={e.authenticity ? msg(`auth_${e.authenticity}`) : null}
+		signatureDish={e.signature}
+		priceForTwo={e.priceForTwo}
+		diet={e.diet.map((d) => dietMap[d])}
+	>
+		{#snippet verdict()}<MiniVerdict type="eatery" agg={e.agg} />{/snippet}
+	</EateryCard>
+{/snippet}
+
 <Page title={m.food_title()} description={m.meta_food()}>
 	<div class="flex flex-col gap-4">
-		<FilterBar
+		<ListControls
+			count={data.eateries.length}
+			sort={data.sort}
 			fields={[
 				{
 					name: 'diet',
@@ -47,25 +67,24 @@
 			]}
 		/>
 		{#if data.eateries.length}
-			<InsetList>
+			<div class="lg:hidden">
+				<InsetList>
+					{#each data.eateries as e (e.slug)}
+						{@render card(e, true)}
+					{/each}
+				</InsetList>
+			</div>
+			<div class="hidden gap-5 lg:grid lg:grid-cols-3">
 				{#each data.eateries as e (e.slug)}
-					<EateryCard
-						row
-						level={2}
-						href={resolve('/food/[slug]', { slug: e.slug })}
-						names={e.names}
-						photo={e.photo}
-						authenticity={e.authenticity ? msg(`auth_${e.authenticity}`) : null}
-						signatureDish={e.signature}
-						priceForTwo={e.priceForTwo}
-						diet={e.diet.map((d) => dietMap[d])}
-					>
-						{#snippet verdict()}<MiniVerdict type="eatery" agg={e.agg} />{/snippet}
-					</EateryCard>
+					{@render card(e, false)}
 				{/each}
-			</InsetList>
+			</div>
 		{:else}
-			<EmptyState title={m.soon_title()} body={m.no_results()} />
+			<EmptyState title={m.soon_title()} body={m.no_results()}>
+				{#snippet action()}<Button href={resolve('/food')} variant="secondary"
+						>{m.filters_clear_all()}</Button
+					>{/snippet}
+			</EmptyState>
 		{/if}
 	</div>
 </Page>
