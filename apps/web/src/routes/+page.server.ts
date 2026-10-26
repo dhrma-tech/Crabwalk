@@ -5,6 +5,7 @@ import {
 	names,
 	photoUrls,
 	seasonStrip,
+	todayOnCoast,
 	tr,
 	type Lang
 } from '#lib/server/listings.ts';
@@ -14,16 +15,17 @@ import { listItineraries } from '#lib/server/planner/itineraries.ts';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import type { PageServerLoad } from './$types';
 
-// Discover (FRONTEND §7.1). ?category= filters the place grid.
+// Discover (FRONTEND §7.1, Report 2 §9.1). ?category= filters the place grid (own title, canonical, meta: Report 1 §3.11).
 export const load: PageServerLoad = async ({ locals, url }) => {
 	const lang = getLocale() as Lang;
 	const category = readFilter(placeFilter, url.searchParams)?.category;
-	const [places, gems, dishes, season, itineraries] = await Promise.all([
+	const [places, gems, dishes, season, itineraries, today] = await Promise.all([
 		listPlaces(locals.supabase, { category }),
 		category ? Promise.resolve([]) : listPlaces(locals.supabase, { hiddenGem: true, limit: 10 }),
 		category ? Promise.resolve([]) : listDishes(locals.supabase),
 		seasonStrip(locals.supabase),
-		category ? Promise.resolve([]) : listItineraries(locals.supabase, lang, 5)
+		category ? Promise.resolve([]) : listItineraries(locals.supabase, lang, 6),
+		category ? Promise.resolve(null) : todayOnCoast(locals.supabase)
 	]);
 	const aggs = await cardAggs(
 		locals.supabase,
@@ -52,6 +54,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 			photo: d.hero ? photoUrls(d.hero, tr(d.dish_translations, lang) ?? d.slug) : null
 		})),
 		season,
-		itineraries
+		itineraries,
+		today
 	};
 };

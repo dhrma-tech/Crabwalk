@@ -1,15 +1,17 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
-	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import PlaceCard from '#lib/components/PlaceCard.svelte';
+	import HeroCard from '#lib/components/HeroCard.svelte';
+	import Carousel from '#lib/components/Carousel.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import SearchBox from '#lib/components/SearchBox.svelte';
+	import TodayStrip from '#lib/components/TodayStrip.svelte';
 	import NoPhoto from '#lib/components/NoPhoto.svelte';
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
 	import CategoryIcon, {
@@ -21,10 +23,9 @@
 	import type { PageProps } from './$types';
 
 	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
-	// → Taste Konkan → near me. Suna 2a/5a: on laptops the search sits in the top bar, and season +
-	// categories share a row under the heading.
+	// → Taste Konkan → near me. Tideline (Report 2 §9.1): a hero block (greeting, search, "Today on the coast"),
+	// on laptops split 7/5 with the first photographed gem; gems 4-up, itineraries 3-up, dishes 6-up.
 	let { data }: PageProps = $props();
-	const lang = getLocale();
 
 	let here = $state<{ lon: number; lat: number } | null>(null);
 	let locError = $state(false);
@@ -47,65 +48,78 @@
 			? [...data.places]
 					.map((p) => ({ ...p, km: km(p.coords) }))
 					.sort((a, b) => (a.km ?? 1e9) - (b.km ?? 1e9))
-					.slice(0, 6)
+					.slice(0, 8)
 			: []
 	);
-	const seasonDots = ['var(--yama-s)', 'var(--asagi-s)', 'var(--fuji-s)', 'var(--wakaba-s)'];
+	const featured = $derived(data.gems.find((g) => g.photo));
+	const categoryName = $derived(data.category ? msg(`cat_${data.category}`) : null);
 </script>
 
-<Page title={data.category ? msg(`cat_${data.category}`) : m.app_name()} back={!!data.category}>
-	<div class="flex flex-col gap-8">
-		<SearchBox id="search" class="lg:hidden" />
+{#snippet seeAll(href: string, label: string)}
+	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
+	<a
+		{href}
+		class="inline-flex min-h-11 min-w-11 items-center justify-end type-small text-lagoon-ink"
+		>{label}</a
+	>
+	<!-- eslint-enable svelte/no-navigation-without-resolve -->
+{/snippet}
+
+<Page
+	title={categoryName ?? m.app_name()}
+	back={!!data.category}
+	heading={!!data.category}
+	description={categoryName ? m.meta_category({ category: categoryName }) : null}
+	canonical={data.category ? `/?category=${data.category}` : undefined}
+>
+	<div class="flex flex-col gap-10 lg:gap-14">
 		{#if !data.category}
-			<p class="hidden font-display text-[38px] leading-snug lg:block" aria-hidden="true">
-				{m.discover_heading()}
-			</p>
+			<div class="grid gap-8 lg:grid-cols-12">
+				<div class="flex flex-col gap-5 lg:col-span-7 lg:justify-center">
+					<p class="type-display-xl">{m.discover_heading()}</p>
+					<SearchBox id="search" />
+					{#if data.today}<TodayStrip today={data.today} season={data.season} {here} />{/if}
+				</div>
+				{#if featured}
+					<div class="hidden lg:col-span-5 lg:block">
+						<HeroCard
+							href={resolve('/place/[slug]', { slug: featured.slug })}
+							photo={featured.photo}
+							names={featured.names}
+							category={featured.category}
+							sub={msg(`cat_${featured.category}`)}
+						>
+							{#snippet badges()}<StatusBadge kind="gem" glass />{/snippet}
+						</HeroCard>
+					</div>
+				{/if}
+			</div>
 		{/if}
 
-		<div class="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:gap-12">
-			{#if !data.category && (data.season.seasons.length || data.season.events.length)}
-				<section aria-label={m.discover_season()}>
-					<h2 class="mb-1.5 type-h2">{m.discover_season()}</h2>
-					<ul class="grid grid-cols-2 gap-2">
-						{#each data.season.seasons as s, i (s)}
-							<li class="flex items-center gap-2.5 border border-border px-3 py-2.5">
-								<span
-									class="size-2 shrink-0 rounded-full"
-									style:background={seasonDots[i % seasonDots.length]}
-									aria-hidden="true"
-								></span>{msg(`season_${s}`)}
-							</li>
-						{/each}
-						{#each data.season.events as e (e.name_en)}
-							<li class="flex items-center gap-2.5 border border-border px-3 py-2.5">
-								<span class="size-2 shrink-0 rounded-full bg-fuji-s" aria-hidden="true"></span>
-								{(lang === 'hi' ? e.name_hi : lang === 'mr' ? e.name_mr : null) || e.name_en}
-							</li>
-						{/each}
-					</ul>
-				</section>
-			{/if}
-
-			<section class="flex flex-col gap-2.5">
-				<h2 class="type-h2">{m.discover_categories()}</h2>
-				<ul class="grid grid-cols-3 gap-2 sm:grid-cols-4">
-					{#each Object.keys(categoryIcons) as c (c)}
-						{@const on = data.category === c}
-						<li>
-							<a
-								href={resolve(`/?category=${c}`)}
-								aria-current={on ? 'page' : undefined}
-								class={[
-									'flex h-full min-h-20 flex-col justify-between gap-2 rounded-md p-3 type-label text-text no-underline outline-text -outline-offset-2 hover:outline-1',
-									familyTint[categoryFamily[c as Category]].bg,
-									on && 'outline-2 -outline-offset-2 outline-text'
-								]}><CategoryIcon category={c as Category} />{msg(`cat_${c}`)}</a
-							>
-						</li>
-					{/each}
-				</ul>
-			</section>
-		</div>
+		<section aria-labelledby="cat-title" class="flex flex-col gap-3">
+			<h2 id="cat-title" class={data.category ? 'sr-only' : 'type-h2'}>
+				{m.discover_categories()}
+			</h2>
+			<ul
+				class="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0"
+				data-clip-check
+			>
+				{#each Object.keys(categoryIcons) as c (c)}
+					{@const on = data.category === c}
+					<li class="shrink-0">
+						<a
+							href={resolve(`/?category=${c}`)}
+							aria-current={on ? 'page' : undefined}
+							class={[
+								'flex h-22 min-w-18 flex-col items-center justify-center gap-2 rounded-md px-2 type-label text-text no-underline outline-text -outline-offset-2 hover:outline-1',
+								familyTint[categoryFamily[c as Category]].bg,
+								on && 'outline-2'
+							]}><CategoryIcon category={c as Category} size={24} />{msg(`cat_${c}`)}</a
+						>
+					</li>
+				{/each}
+			</ul>
+		</section>
 
 		{#if data.category}
 			<section class="flex flex-col gap-3">
@@ -124,79 +138,75 @@
 						{/each}
 					</div>
 				{:else}
-					<EmptyState title={m.soon_title()} body={m.discover_empty()} />
+					<EmptyState title={m.soon_title()} body={m.discover_empty()}>
+						{#snippet action()}<Button href={resolve('/')} variant="secondary"
+								>{m.discover_all()}</Button
+							>{/snippet}
+					</EmptyState>
 				{/if}
 			</section>
 		{:else}
 			{#if data.gems.length}
-				<section class="flex flex-col gap-2.5">
-					<h2 class="type-h2">{m.discover_hidden_gems()}</h2>
-					<div
-						class="-mx-6 flex snap-x gap-4 overflow-x-auto px-6 pb-2 lg:mx-0 lg:grid lg:grid-cols-4 lg:gap-5 lg:overflow-visible lg:px-0"
-					>
+				<section aria-labelledby="gems-title" class="flex flex-col gap-3">
+					<h2 id="gems-title" class="type-h2">{m.discover_hidden_gems()}</h2>
+					<Carousel label={m.discover_hidden_gems()}>
 						{#each data.gems as p (p.slug)}
-							<div class="w-[210px] shrink-0 snap-start lg:w-auto">
-								<PlaceCard
+							<li>
+								<HeroCard
 									href={resolve('/place/[slug]', { slug: p.slug })}
-									names={p.names}
 									photo={p.photo}
+									names={p.names}
 									category={p.category}
-									categoryLabel={msg(`cat_${p.category}`)}
+									sub={msg(`cat_${p.category}`)}
 								>
-									{#snippet badges()}<StatusBadge kind="gem" />{/snippet}
-									{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
-								</PlaceCard>
-							</div>
+									{#snippet badges()}<StatusBadge kind="gem" glass />{/snippet}
+								</HeroCard>
+							</li>
 						{/each}
-					</div>
+					</Carousel>
 				</section>
 			{/if}
 
 			{#if data.itineraries.length}
-				<section class="flex flex-col gap-2.5">
-					<div class="flex items-baseline justify-between">
-						<h2 class="type-h2">{m.itin_title()}</h2>
-						<a
-							href={resolve('/itineraries')}
-							class="inline-flex min-h-11 min-w-11 items-center justify-end type-small text-text"
-							>{m.itin_all()}</a
-						>
+				<section aria-labelledby="itin-title" class="flex flex-col gap-3">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 id="itin-title" class="type-h2">{m.itin_title()}</h2>
+						{@render seeAll(resolve('/itineraries'), m.itin_all())}
 					</div>
 					<ItineraryList items={data.itineraries} cards />
 				</section>
 			{/if}
 
 			{#if data.dishes.length}
-				<section class="flex flex-col gap-2.5">
-					<div class="flex items-baseline justify-between">
-						<h2 class="type-h2">{m.discover_taste()}</h2>
-						<a
-							href={resolve('/taste-konkan')}
-							class="inline-flex min-h-11 min-w-11 items-center justify-end type-small text-text"
-							>{m.see_all()}</a
-						>
+				<section aria-labelledby="taste-title" class="flex flex-col gap-3">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 id="taste-title" class="type-h2">{m.discover_taste()}</h2>
+						{@render seeAll(resolve('/taste-konkan'), m.see_all())}
 					</div>
-					<ul class="-mx-6 flex gap-3 overflow-x-auto px-6 pb-2 lg:mx-0 lg:px-0">
+					<ul
+						class="-mx-5 flex gap-4 overflow-x-auto px-5 pb-1 lg:mx-0 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0"
+						data-clip-check
+					>
 						{#each data.dishes as d (d.slug)}
-							<li class="w-36 shrink-0">
+							<li class="w-22 shrink-0 lg:w-auto">
 								<a
 									href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
-									class="row-link flex h-full flex-col border border-border text-text no-underline"
+									class="group flex flex-col items-center gap-2 text-center text-text no-underline"
 								>
 									<div
-										class="aspect-square overflow-hidden bg-border bg-cover"
+										class="size-22 overflow-hidden rounded-full bg-surface-2 bg-cover shadow-e1 transition-shadow duration-300 ease-brand group-hover:shadow-e2"
 										style:background-image={d.photo?.lqip ? `url(${d.photo.lqip})` : undefined}
 									>
 										{#if d.photo}<img
 												src={d.photo.src}
 												srcset={d.photo.srcset}
-												sizes="144px"
+												sizes="88px"
 												alt={d.photo.alt}
 												loading="lazy"
 												class="h-full w-full object-cover"
 											/>{:else}<NoPhoto kind="dish" label={false} />{/if}
 									</div>
-									<span class="px-3 pt-2 pb-2.5 type-h3">{d.name}</span>
+									<span class="type-small font-semibold">{d.name}</span>
 								</a>
 							</li>
 						{/each}
@@ -204,8 +214,8 @@
 				</section>
 			{/if}
 
-			<section class="flex flex-col gap-2.5">
-				<h2 class="type-h2">{m.discover_near_me()}</h2>
+			<section aria-labelledby="near-title" class="flex flex-col gap-3">
+				<h2 id="near-title" class="type-h2">{m.discover_near_me()}</h2>
 				{#if near.length}
 					<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
 						{#each near as p (p.slug)}
@@ -228,7 +238,11 @@
 						<Button variant="secondary" onclick={nearMe}>{m.discover_near_me_cta()}</Button>
 					</div>
 				{:else}
-					<EmptyState title={m.soon_title()} body={m.soon_discover()} />
+					<EmptyState title={m.soon_title()} body={m.soon_discover()}>
+						{#snippet action()}<Button href={resolve('/map')} variant="secondary"
+								>{m.nav_map()}</Button
+							>{/snippet}
+					</EmptyState>
 				{/if}
 			</section>
 		{/if}

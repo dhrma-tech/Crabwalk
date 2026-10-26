@@ -13,7 +13,9 @@ export async function listItineraries(db: DB, lang: Lang = 'en', limit = 30) {
 	const community = (approved ?? []).map((r) => r.trip_id);
 	let q = db
 		.from('trips')
-		.select('id, slug, title, days, pace, is_ready_made, trip_stops(kind, entity_id, day, order)')
+		.select(
+			'id, slug, title, days, pace, is_ready_made, trip_stops(kind, entity_id, day, order), trip_budget(stay, food, fuel, entry, activities)'
+		)
 		.order('is_ready_made', { ascending: false })
 		.order('created_at', { ascending: false })
 		.limit(limit);
@@ -33,6 +35,7 @@ export async function listItineraries(db: DB, lang: Lang = 'en', limit = 30) {
 		: { data: [] };
 	const name = new Map((places ?? []).map((p) => [p.id, tr(p.place_translations, lang) ?? p.slug]));
 	return (data ?? []).map((t) => {
+		const b = t.trip_budget;
 		const stops = [...t.trip_stops]
 			.filter((s) => s.kind === 'place')
 			.sort((a, b) => a.day - b.day || a.order - b.order);
@@ -44,6 +47,9 @@ export async function listItineraries(db: DB, lang: Lang = 'en', limit = 30) {
 			pace: t.pace,
 			readyMade: t.is_ready_made,
 			places: stops.length,
+			// Place stops per day, for the card's mini route line (Discover, Report 2 §9.1).
+			perDay: Array.from({ length: t.days }, (_, d) => stops.filter((s) => s.day === d + 1).length),
+			budget: b ? b.stay + b.food + b.fuel + b.entry + b.activities || null : null,
 			highlights: stops
 				.slice(0, 3)
 				.map((s) => name.get(s.entity_id))

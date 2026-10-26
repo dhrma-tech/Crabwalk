@@ -8,14 +8,20 @@
 	let {
 		title,
 		description,
-		image
-	}: { title: string; description?: string | null; image?: string | null } = $props();
+		image,
+		canonical
+	}: {
+		title: string;
+		description?: string | null;
+		image?: string | null;
+		canonical?: string;
+	} = $props();
 
 	const full = $derived(title === m.app_name() ? title : `${title} · ${m.app_name()}`);
 	const desc = $derived(
 		(description || m.meta_default()).replace(/\s+/g, ' ').trim().slice(0, 160)
 	);
-	const url = $derived(page.url.origin + page.url.pathname);
+	const url = $derived(page.url.origin + (canonical ?? page.url.pathname));
 	const img = $derived(image || `${page.url.origin}/icons/icon-512.png`);
 	const locale = { en: 'en_IN', hi: 'hi_IN', mr: 'mr_IN' }[getLocale()];
 </script>

@@ -3,6 +3,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import { SUPABASE_URL } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
 import { AMENITIES, DIETS, VIBES } from '#lib/vocab.ts';
+import { nextLow, WEATHER_MAX_AGE_MS, type TideStation, type WeatherPoint } from '#lib/today.ts';
 
 type DB = SupabaseClient<Database>;
 type Enums = Database['public']['Enums'];
@@ -237,6 +238,79 @@ export async function seasonStrip(db: DB) {
 		events: events ?? []
 	};
 }
+
+/**
+ * "Today on the coast" (T-9/T-24): every fresh weather reading (latest per point) and every station's next low
+ * tide, plus the region's default point. The page picks one of each on the device (`pickToday`).
+ */
+export async function todayOnCoast(db: DB, now = Date.now()) {
+	const istDay = (ms: number) => new Date(ms + 5.5 * 3600e3).toISOString().slice(0, 10);
+	const [{ data: region }, { data: wx }, { data: stations }, { data: tides }] = await Promise.all([
+		db
+			.from('regions')
+			.select('default_weather_point_id, weather_points(location)')
+			.not('default_weather_point_id', 'is', null)
+			.order('name')
+			.limit(1)
+			.maybeSingle(),
+		db
+			.from('weather_cache')
+			.select('point_id, fetched_at, summary, weather_points(name, location)')
+			.gte('fetched_at', new Date(now - WEATHER_MAX_AGE_MS).toISOString())
+			.order('fetched_at', { ascending: false })
+			.limit(200),
+		db.from('tide_stations').select('id, name, location'),
+		db
+			.from('tide_cache')
+			.select('station_id, extremes, provider')
+			.in('date', [istDay(now), istDay(now + 864e5)])
+	]);
+	const defaultAt = lonLat((region?.weather_points as { location: unknown } | null)?.location);
+	const points = new Map<string, WeatherPoint>();
+	for (const r of wx ?? []) {
+		const s = r.summary as { temp_c?: number | null; condition?: string | null } | null;
+		const p = r.weather_points as { name: string; location: unknown } | null;
+		const c = lonLat(p?.location);
+		if (points.has(r.point_id) || !p || !c || s?.temp_c == null) continue;
+		points.set(r.point_id, {
+			id: r.point_id,
+			name: p.name,
+			lon: c[0],
+			lat: c[1],
+			temp_c: s.temp_c,
+			condition: s.condition ?? null,
+			observed_at: r.fetched_at
+		});
+	}
+	const byStation = new Map<string, { extremes: TideExtreme[]; provider: TideProvider }>();
+	for (const t of tides ?? []) {
+		const e = byStation.get(t.station_id);
+		const ex = (t.extremes as TideExtreme[] | null) ?? [];
+		byStation.set(t.station_id, {
+			extremes: [...(e?.extremes ?? []), ...ex],
+			provider: t.provider
+		});
+	}
+	const tideList: TideStation[] = [];
+	for (const s of stations ?? []) {
+		const c = lonLat(s.location);
+		const d = byStation.get(s.id);
+		const low = d && nextLow(d.extremes, now);
+		if (c && d && low)
+			tideList.push({ name: s.name, lon: c[0], lat: c[1], low, provider: d.provider });
+	}
+	return {
+		defaultPoint: defaultAt && {
+			id: region!.default_weather_point_id!,
+			lon: defaultAt[0],
+			lat: defaultAt[1]
+		},
+		points: [...points.values()],
+		stations: tideList
+	};
+}
+type TideExtreme = { type: string; time: string; height_m: number };
+type TideProvider = Enums['tide_provider'];
 
 /** Published stays/food + utilities within ~5 km (uses the P3 map RPCs). */
 export async function nearby(db: DB, lon: number, lat: number) {
