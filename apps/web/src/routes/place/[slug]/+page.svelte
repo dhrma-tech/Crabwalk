@@ -7,22 +7,18 @@
 	import Bus from '@lucide/svelte/icons/bus';
 	import Check from '@lucide/svelte/icons/check';
 	import X from '@lucide/svelte/icons/x';
-	import BedDouble from '@lucide/svelte/icons/bed-double';
-	import UtensilsCrossed from '@lucide/svelte/icons/utensils-crossed';
-	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { clock, msg } from '#lib/msg.ts';
 	import { formatNumber } from '#lib/format.ts';
-	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
-	import InsetList from '#lib/components/InsetList.svelte';
 	import CategoryIcon, { type Category } from '#lib/components/CategoryIcon.svelte';
 	import Hero from '#lib/components/listing/Hero.svelte';
+	import NearbyList from '#lib/components/listing/NearbyList.svelte';
 	import Facts from '#lib/components/listing/Facts.svelte';
 	import { todayLine } from '#lib/components/listing/Hours.svelte';
 	import AudioGuide from '#lib/components/listing/AudioGuide.svelte';
@@ -49,8 +45,6 @@
 	);
 	// Story: the first paragraph is the lead (Report 2 §9.2).
 	const story = $derived(p.text.story?.split(/\n\s*\n/) ?? []);
-	const hrefFor = (kind: string, slug: string) =>
-		kind === 'stay' ? resolve('/stays/[slug]', { slug }) : resolve('/food/[slug]', { slug });
 	const pinName = (x: {
 		name_en: string | null;
 		name_hi: string | null;
@@ -69,8 +63,6 @@
 			clock
 		)
 	);
-	const tile =
-		'flex size-10 shrink-0 items-center justify-center rounded-md bg-surface-2 text-text-2';
 </script>
 
 {#snippet altCard(
@@ -189,42 +181,7 @@
 			{#if data.nearby.listings.length || data.nearby.utilities.length}
 				<section class="order-9 flex flex-col gap-3 lg:order-none">
 					<h2 class="type-h2">{m.nearby()}</h2>
-					{#if data.nearby.listings.length}
-						<h3 class="type-label text-text-2">{m.nearby_listings()}</h3>
-						<InsetList>
-							{#each data.nearby.listings as x (x.id)}
-								{@const Icon = x.kind === 'stay' ? BedDouble : UtensilsCrossed}
-								<a
-									href={hrefFor(x.kind, x.slug)}
-									class="row-link flex min-h-14 items-center gap-3 px-4 py-2.5 text-text no-underline"
-								>
-									<span class={tile}><Icon size={20} aria-hidden="true" /></span>
-									<span class="min-w-0 flex-1 type-body">{pinName(x)}</span>
-									<span class="type-small text-text-2">{m.km_away({ km: formatNumber(x.km) })}</span
-									>
-									<ChevronRight size={20} aria-hidden="true" class="text-text-2" />
-								</a>
-							{/each}
-						</InsetList>
-					{/if}
-					{#if data.nearby.utilities.length}
-						<h3 class="mt-2 type-label text-text-2">{m.nearby_services()}</h3>
-						<InsetList>
-							{#each data.nearby.utilities as u (u.id)}
-								{@const Icon = utilityIcons[u.type as UtilityType]}
-								<div class="flex min-h-14 items-center gap-3 px-4 py-2.5">
-									<span class={tile}
-										>{#if Icon}<Icon size={20} aria-hidden="true" />{/if}</span
-									>
-									<span class="min-w-0 flex-1 type-body"
-										>{msg(`util_${u.type}`)}{u.name ? ` · ${u.name}` : ''}</span
-									>
-									<span class="type-small text-text-2">{m.km_away({ km: formatNumber(u.km) })}</span
-									>
-								</div>
-							{/each}
-						</InsetList>
-					{/if}
+					<NearbyList listings={data.nearby.listings} utilities={data.nearby.utilities} />
 				</section>
 			{/if}
 

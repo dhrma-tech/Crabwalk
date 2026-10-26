@@ -2,13 +2,11 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatINR } from '#lib/format.ts';
 
-	// Ready-made itineraries (team) first, then approved community routes. `cards` = Discover's wide cards
-	// (Report 2 §9.1): a mini route line (one dot per place stop, a gap between days), days, budget.
+	// Ready-made itineraries (team) first, then approved community routes, as wide cards (Report 2 §9.1, T-30):
+	// a mini route line (one dot per place stop, a gap between days), days, budget.
 	let {
-		items,
-		cards = false
+		items
 	}: {
-		cards?: boolean;
 		items: {
 			id: string;
 			href: string;
@@ -23,23 +21,15 @@
 	} = $props();
 </script>
 
-<ul
-	class={cards ? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5' : 'flex flex-col'}
-	data-testid="itineraries-list"
->
+<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5" data-testid="itineraries-list">
 	{#each items as it (it.id)}
 		<li>
 			<!-- eslint-disable svelte/no-navigation-without-resolve -- href built server-side from a known route + slug -->
 			<a
 				href={it.href}
-				class={[
-					'flex text-text no-underline',
-					cards
-						? 'h-full flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2'
-						: 'row-link flex-col gap-0.5 border-t border-border py-3'
-				]}
+				class="flex h-full flex-col gap-3 rounded-lg bg-surface p-4 text-text no-underline shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2"
 			>
-				{#if cards && it.perDay?.some((n) => n)}
+				{#if it.perDay?.some((n) => n)}
 					<div class="flex items-center gap-3" aria-hidden="true">
 						{#each it.perDay as n, d (d)}
 							{#if n}
@@ -59,7 +49,7 @@
 					{[
 						m.plan_n_days({ n: it.days }),
 						m.itin_places({ n: it.places }),
-						cards && it.budget && m.itin_budget({ amount: formatINR(it.budget) }),
+						it.budget && m.itin_budget({ amount: formatINR(it.budget) }),
 						it.readyMade ? m.itin_ready_made() : m.itin_community()
 					]
 						.filter(Boolean)

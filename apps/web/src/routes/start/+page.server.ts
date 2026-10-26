@@ -6,7 +6,7 @@ import type { PageServerLoad } from './$types';
 
 // Station/bus-stand landing (FRONTEND §7.17): ready-made itineraries + planner CTA + what's near.
 export const load: PageServerLoad = async (event) => ({
-	itineraries: await listItineraries(event.locals.supabase, getLocale() as Lang, 5),
+	itineraries: await listItineraries(event.locals.supabase, getLocale() as Lang, 6),
 	...(await stop(event))
 });
 

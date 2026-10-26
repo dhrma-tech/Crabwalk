@@ -173,7 +173,7 @@
 						<h2 id="itin-title" class="type-h2">{m.itin_title()}</h2>
 						{@render seeAll(resolve('/itineraries'), m.itin_all())}
 					</div>
-					<ItineraryList items={data.itineraries} cards />
+					<ItineraryList items={data.itineraries} />
 				</section>
 			{/if}
 
