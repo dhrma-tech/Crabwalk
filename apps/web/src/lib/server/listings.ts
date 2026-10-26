@@ -88,7 +88,7 @@ export async function getPlace(db: DB, slug: string) {
 	const { data: p } = await db
 		.from('places')
 		.select(
-			`*, place_translations(${PLACE_TR}), place_hours(*), place_seasonal(*), crowd_typical(*), audio_guides(*)`
+			`*, place_translations(${PLACE_TR}), place_hours(*), place_seasonal(*), crowd_typical(*), audio_guides(*), talukas(name_en, name_hi, name_mr)`
 		)
 		.eq('slug', slug)
 		.eq('status', 'published')

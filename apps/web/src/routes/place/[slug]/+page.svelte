@@ -5,13 +5,21 @@
 	import Route from '@lucide/svelte/icons/route';
 	import TrainFront from '@lucide/svelte/icons/train-front';
 	import Bus from '@lucide/svelte/icons/bus';
+	import Check from '@lucide/svelte/icons/check';
+	import X from '@lucide/svelte/icons/x';
+	import BedDouble from '@lucide/svelte/icons/bed-double';
+	import UtensilsCrossed from '@lucide/svelte/icons/utensils-crossed';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { clock, msg } from '#lib/msg.ts';
 	import { formatNumber } from '#lib/format.ts';
+	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import Page from '#lib/components/Page.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
+	import InsetList from '#lib/components/InsetList.svelte';
+	import CategoryIcon, { type Category } from '#lib/components/CategoryIcon.svelte';
 	import Hero from '#lib/components/listing/Hero.svelte';
 	import Facts from '#lib/components/listing/Facts.svelte';
 	import { todayLine } from '#lib/components/listing/Hours.svelte';
@@ -24,8 +32,9 @@
 	import Reviews from '#lib/components/rating/Reviews.svelte';
 	import type { PageProps } from './$types';
 
-	// Layout order LOCKED (FRONTEND §7.2) on phones. Suna 5a: laptops split into a story column and a
-	// facts column (verdict, facts, status, verified); CSS order keeps the phone order.
+	// Layout order LOCKED (FRONTEND §7.2) on phones; CSS `order` keeps it while laptops split into a story
+	// column (7/12) and a facts column (5/12: verdict, vote, facts, status). Tideline (Report 2 §9.2): an
+	// immersive hero under a transparent bar, the content sheet overlapping it by 28 px.
 	let { data }: PageProps = $props();
 	const p = $derived(data.place);
 	const lang = getLocale();
@@ -36,6 +45,8 @@
 			.filter(([, v]) => v)
 			.map(([k]) => k)
 	);
+	// Story: the first paragraph is the lead (Report 2 §9.2).
+	const story = $derived(p.text.story?.split(/\n\s*\n/) ?? []);
 	const hrefFor = (kind: string, slug: string) =>
 		kind === 'stay' ? resolve('/stays/[slug]', { slug }) : resolve('/food/[slug]', { slug });
 	const pinName = (x: {
@@ -56,34 +67,64 @@
 			clock
 		)
 	);
+	const tile =
+		'flex size-10 shrink-0 items-center justify-center rounded-md bg-surface-2 text-text-2';
 </script>
+
+{#snippet altCard(
+	x: {
+		slug: string;
+		category: string;
+		km: number | string;
+		name_en: string | null;
+		name_hi: string | null;
+		name_mr: string | null;
+	},
+	meta: string
+)}
+	<li class="w-64 shrink-0 lg:w-auto">
+		<a
+			href={resolve('/place/[slug]', { slug: x.slug })}
+			class="flex h-full items-center gap-3 rounded-lg bg-surface p-3 text-text no-underline shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2"
+		>
+			<CategoryIcon category={x.category as Category} tile />
+			<span class="flex min-w-0 flex-col">
+				<span class="type-body-strong">{pinName(x)}</span>
+				<span class="type-small text-text-2"
+					>{meta} · {m.km_away({ km: formatNumber(Number(x.km)) })}</span
+				>
+			</span>
+		</a>
+	</li>
+{/snippet}
 
 <Page
 	title={primary}
 	back
+	overlay
+	heading={false}
 	description={p.text.story || p.text.significance}
 	image={p.photos[0]?.src}
 >
-	<article
-		class="flex flex-col gap-6 lg:grid lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:items-start lg:gap-x-10"
-	>
-		<div class="contents lg:flex lg:flex-col lg:gap-6">
-			<div class="order-1 lg:order-none">
-				<Hero photo={p.photos[0] ?? null} category={p.category} />
-			</div>
+	<Hero photo={p.photos[0] ?? null} category={p.category} immersive />
 
-			<header class="order-2 flex flex-col gap-2 lg:order-none">
+	<!-- Phones: a sheet over the photo. Laptops: the 7/5 grid under the hero. -->
+	<article
+		class="relative -mx-5 -mt-7 flex flex-col gap-8 rounded-t-xl bg-bg px-5 pt-6 lg:mx-0 lg:mt-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10 lg:rounded-none lg:px-0 lg:pt-0"
+	>
+		<div class="contents lg:col-span-7 lg:flex lg:flex-col lg:gap-10">
+			<header class="order-1 flex flex-col gap-3 lg:order-none">
 				<div>
-					<h2 class="type-display lg:text-[34px]">{primary}</h2>
-					<p class="type-small text-text-2">
+					<h2 class="type-display">{primary}</h2>
+					<p class="mt-1 type-small text-text-2">
 						{#if secondary && secondary !== primary}<span lang={lang === 'en' ? 'mr' : 'en'}
 								>{secondary}</span
 							>
 							·
-						{/if}{msg(`cat_${p.category}`)}
+						{/if}{[msg(`cat_${p.category}`), p.taluka].filter(Boolean).join(' · ')}
 					</p>
 				</div>
-				<div class="flex flex-wrap gap-2">
+				<div class="flex flex-wrap gap-2 empty:hidden">
 					{#if p.isGem}<StatusBadge kind="gem" />{/if}
 					{#if p.crowdToday}<StatusBadge kind="crowd" level={p.crowdToday} live={false} />{/if}
 					{#if p.monsoon !== 'open'}<StatusBadge
@@ -94,108 +135,118 @@
 				</div>
 			</header>
 
-			{#if p.audio}<div class="order-3 lg:order-none">
+			{#if p.audio}<div class="order-2 lg:order-none">
 					<AudioGuide path={p.audio.storage_path} transcript={p.audio.transcript} />
 				</div>{/if}
 
-			<div class="order-7 flex flex-col gap-6 empty:hidden lg:order-none">
-				{#each [['place_story', p.text.story], ['place_history', p.text.history], ['place_significance', p.text.significance]] as [k, v] (k)}
-					{#if v}<section class="flex max-w-[680px] flex-col gap-2">
-							<h2 class="type-h2">{msg(k!)}</h2>
-							<p class="type-body whitespace-pre-line text-text-2">{v}</p>
-						</section>{/if}
-				{/each}
-			</div>
+			{#if story.length || p.text.history || p.text.significance}
+				<div class="order-6 flex max-w-170 flex-col gap-8 lg:order-none">
+					{#if story.length}
+						<section class="flex flex-col gap-3">
+							<h2 class="type-h2">{m.place_story()}</h2>
+							{#each story as para, i (i)}
+								<p class={[i ? 'type-body' : 'type-lead', 'whitespace-pre-line']}>{para}</p>
+							{/each}
+						</section>
+					{/if}
+					{#each [['place_history', p.text.history], ['place_significance', p.text.significance]] as [k, v] (k)}
+						{#if v}<section class="flex flex-col gap-3">
+								<h2 class="type-h2">{msg(k!)}</h2>
+								<p class="type-body whitespace-pre-line text-text-2">{v}</p>
+							</section>{/if}
+					{/each}
+				</div>
+			{/if}
 
 			{#if p.text.dos || p.text.donts}
-				<section class="order-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:order-none">
-					{#if p.text.dos}<div class="border-t border-text pt-2">
-							<h2 class="type-h3">{m.place_dos()}</h2>
+				<section class="order-7 grid gap-3 sm:grid-cols-2 lg:order-none" data-clip-check>
+					{#if p.text.dos}<div class="flex flex-col gap-2 rounded-lg bg-ok-50 p-4">
+							<h2 class="flex items-center gap-2 type-h3">
+								<Check size={20} aria-hidden="true" class="text-ok" />{m.place_dos()}
+							</h2>
 							<p class="type-body whitespace-pre-line">{p.text.dos}</p>
 						</div>{/if}
-					{#if p.text.donts}<div class="border-t border-text pt-2">
-							<h2 class="type-h3">{m.place_donts()}</h2>
+					{#if p.text.donts}<div class="flex flex-col gap-2 rounded-lg bg-danger-50 p-4">
+							<h2 class="flex items-center gap-2 type-h3">
+								<X size={20} aria-hidden="true" class="text-danger" />{m.place_donts()}
+							</h2>
 							<p class="type-body whitespace-pre-line">{p.text.donts}</p>
 						</div>{/if}
 				</section>
 			{/if}
 
 			{#if data.nearby.listings.length || data.nearby.utilities.length}
-				<section class="order-10 flex flex-col gap-2 lg:order-none">
+				<section class="order-9 flex flex-col gap-3 lg:order-none">
 					<h2 class="type-h2">{m.nearby()}</h2>
 					{#if data.nearby.listings.length}
-						<h3 class="text-[13px] text-text-2">{m.nearby_listings()}</h3>
-						<ul class="flex flex-col border-t border-text">
+						<h3 class="type-label text-text-2">{m.nearby_listings()}</h3>
+						<InsetList>
 							{#each data.nearby.listings as x (x.id)}
-								<li class="border-b border-border">
-									<a
-										href={hrefFor(x.kind, x.slug)}
-										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
-										><span class="type-body">{pinName(x)}</span><span class="type-small text-text-2"
-											>{m.km_away({ km: formatNumber(x.km) })}</span
-										></a
+								{@const Icon = x.kind === 'stay' ? BedDouble : UtensilsCrossed}
+								<a
+									href={hrefFor(x.kind, x.slug)}
+									class="row-link flex min-h-14 items-center gap-3 px-4 py-2.5 text-text no-underline"
+								>
+									<span class={tile}><Icon size={20} aria-hidden="true" /></span>
+									<span class="min-w-0 flex-1 type-body">{pinName(x)}</span>
+									<span class="type-small text-text-2">{m.km_away({ km: formatNumber(x.km) })}</span
 									>
-								</li>
+									<ChevronRight size={20} aria-hidden="true" class="text-text-2" />
+								</a>
 							{/each}
-						</ul>
+						</InsetList>
 					{/if}
 					{#if data.nearby.utilities.length}
-						<h3 class="mt-2 text-[13px] text-text-2">{m.nearby_services()}</h3>
-						<ul class="flex flex-col border-t border-text">
+						<h3 class="mt-2 type-label text-text-2">{m.nearby_services()}</h3>
+						<InsetList>
 							{#each data.nearby.utilities as u (u.id)}
-								<li class="flex justify-between gap-3 border-b border-border py-2">
-									<span class="type-body"
-										>{msg(`util_${u.type}`)}{u.name ? ` · ${u.name}` : ''}</span
-									><span class="type-small text-text-2"
-										>{m.km_away({ km: formatNumber(u.km) })}</span
+								{@const Icon = utilityIcons[u.type as UtilityType]}
+								<div class="flex min-h-14 items-center gap-3 px-4 py-2.5">
+									<span class={tile}
+										>{#if Icon}<Icon size={20} aria-hidden="true" />{/if}</span
 									>
-								</li>
+									<span class="min-w-0 flex-1 type-body"
+										>{msg(`util_${u.type}`)}{u.name ? ` · ${u.name}` : ''}</span
+									>
+									<span class="type-small text-text-2">{m.km_away({ km: formatNumber(u.km) })}</span
+									>
+								</div>
 							{/each}
-						</ul>
+						</InsetList>
 					{/if}
 				</section>
 			{/if}
 
 			{#if data.lessCrowded.length || data.similar.length}
-				<section class="order-11 flex flex-col gap-2 lg:order-none" data-testid="similar">
+				<div class="order-10 flex flex-col gap-8 lg:order-none" data-testid="similar">
 					{#if data.lessCrowded.length}
-						<h2 class="type-h2">{m.less_crowded_title()}</h2>
-						<ul class="flex flex-col border-t border-text">
-							{#each data.lessCrowded as x (x.slug)}
-								<li class="border-b border-border">
-									<a
-										href={resolve('/place/[slug]', { slug: x.slug })}
-										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
-										><span class="type-body">{pinName(x)} · {msg(`crowd_${x.level}`)}</span><span
-											class="type-small text-text-2"
-											>{m.km_away({ km: formatNumber(Number(x.km)) })}</span
-										></a
-									>
-								</li>
-							{/each}
-						</ul>
+						<section class="flex flex-col gap-3">
+							<h2 class="type-h2">{m.less_crowded_title()}</h2>
+							<ul
+								class="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:grid lg:grid-cols-2 lg:overflow-visible lg:px-0"
+							>
+								{#each data.lessCrowded as x (x.slug)}
+									{@render altCard(x, msg(`crowd_${x.level}`))}
+								{/each}
+							</ul>
+						</section>
 					{/if}
 					{#if data.similar.length}
-						<h2 class="mt-2 type-h2">{m.similar_title()}</h2>
-						<ul class="flex flex-col border-t border-text">
-							{#each data.similar as x (x.slug)}
-								<li class="border-b border-border">
-									<a
-										href={resolve('/place/[slug]', { slug: x.slug })}
-										class="row-link flex justify-between gap-3 py-2.5 text-text no-underline"
-										><span class="type-body">{pinName(x)} · {msg(`cat_${x.category}`)}</span><span
-											class="type-small text-text-2"
-											>{m.km_away({ km: formatNumber(Number(x.km)) })}</span
-										></a
-									>
-								</li>
-							{/each}
-						</ul>
+						<section class="flex flex-col gap-3">
+							<h2 class="type-h2">{m.similar_title()}</h2>
+							<ul
+								class="-mx-5 flex gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:grid lg:grid-cols-2 lg:overflow-visible lg:px-0"
+							>
+								{#each data.similar as x (x.slug)}
+									{@render altCard(x, msg(`cat_${x.category}`))}
+								{/each}
+							</ul>
+						</section>
 					{/if}
-				</section>
+				</div>
 			{/if}
 
-			<section class="order-12 flex flex-col gap-1 lg:order-none">
+			<section class="order-11 flex flex-col gap-2 lg:order-none">
 				<h2 class="type-h2">{m.food_delivery()}</h2>
 				<p class="type-body text-text-2">
 					{apps.length
@@ -204,16 +255,21 @@
 				</p>
 			</section>
 
-			<div class="order-13 lg:order-none">
+			<div class="order-12 lg:order-none">
 				<Reviews reviews={data.ratings.reviews} summaries={data.ratings.summaries} />
 			</div>
+
+			<footer class="order-13 flex flex-col items-start gap-3 lg:order-none">
+				{#if p.lastVerified}<StatusBadge kind="last-verified" date={p.lastVerified} />{/if}
+				<ReportProblem entityType="place" entityId={p.id} />
+			</footer>
 		</div>
 
-		<div class="contents lg:flex lg:flex-col lg:gap-6">
-			<div class="order-4 lg:order-none">
+		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
+			<div class="order-3 lg:order-none">
 				<VerdictGauge type="place" all={data.ratings.all} groups={data.ratings.groups} />
 			</div>
-			<div class="order-5 lg:order-none">
+			<div class="order-4 lg:order-none">
 				<VerdictVote
 					type="place"
 					id={p.id}
@@ -223,7 +279,7 @@
 				/>
 			</div>
 
-			<section class="order-6 flex flex-col gap-2 lg:order-none">
+			<section class="order-5 flex flex-col gap-3 lg:order-none">
 				<h2 class="type-h2">{m.facts()}</h2>
 				<Facts
 					rows={[
@@ -237,15 +293,20 @@
 				/>
 			</section>
 
-			<section class="order-9 flex flex-col gap-3 border-t border-text pt-3 lg:order-none">
-				<h2 class="type-h2">{m.place_status()}</h2>
-				<StatusBadge
-					kind="monsoon"
-					state={p.monsoon}
-					label={p.monsoonReason
-						? `${msg(`monsoon_${p.monsoon}`)} · ${p.monsoonReason}`
-						: msg(`monsoon_${p.monsoon}`)}
-				/>
+			<section
+				class="order-8 flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1 lg:order-none"
+				aria-labelledby="status-title"
+			>
+				<h2 id="status-title" class="type-h2">{m.place_status()}</h2>
+				<div>
+					<StatusBadge
+						kind="monsoon"
+						state={p.monsoon}
+						label={p.monsoonReason
+							? `${msg(`monsoon_${p.monsoon}`)} · ${p.monsoonReason}`
+							: msg(`monsoon_${p.monsoon}`)}
+					/>
+				</div>
 				{#if p.tideDependent}<p class="type-small text-text-2">{m.tide_dependent()}</p>{/if}
 				{#if p.tideStation}<TideToday station={p.tideStation} />{/if}
 				{#if p.tideDependent && p.coords}<TideSlider
@@ -254,15 +315,10 @@
 						lat={p.coords[1]}
 					/>{/if}
 				{#if p.text.safety}<p class="type-body whitespace-pre-line">
-						<strong class="type-h3">{m.place_safety()}:</strong>
+						<strong class="type-body-strong">{m.place_safety()}:</strong>
 						{p.text.safety}
 					</p>{/if}
 			</section>
-
-			<footer class="order-14 flex flex-col gap-3 lg:order-none">
-				{#if p.lastVerified}<StatusBadge kind="last-verified" date={p.lastVerified} />{/if}
-				<ReportProblem entityType="place" entityId={p.id} />
-			</footer>
 		</div>
 	</article>
 </Page>

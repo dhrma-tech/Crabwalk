@@ -19,6 +19,10 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			slug: p.slug,
 			category: p.category,
 			names: n,
+			taluka: p.talukas
+				? (lang === 'hi' ? p.talukas.name_hi : lang === 'mr' ? p.talukas.name_mr : null) ||
+					p.talukas.name_en
+				: null,
 			isGem: p.is_hidden_gem,
 			tideDependent: p.is_tide_dependent,
 			tideStation: p.tide_station_id,

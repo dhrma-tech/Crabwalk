@@ -387,6 +387,14 @@
 		line-height: 1.65;
 	}
 }
+/* Story lead paragraph (Report 2 §9.2: "first paragraph larger, body 18/30"). */
+@utility type-lead {
+	font: 400 18px/30px var(--font-body);
+	&:lang(mr),
+	&:lang(hi) {
+		line-height: 1.75;
+	}
+}
 @utility type-body-strong {
 	font: 600 16px/26px var(--font-body);
 	&:lang(mr),
