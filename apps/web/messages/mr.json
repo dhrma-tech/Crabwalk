@@ -778,5 +778,6 @@
 	"filter_clear": "{filter} काढा",
 	"filter_up_to": "{amount} पर्यंत",
 	"amenity_missing": "उपलब्ध नाही",
-	"filters_clear_all": "सर्व फिल्टर काढा"
+	"filters_clear_all": "सर्व फिल्टर काढा",
+	"dish_best_here": "सर्वोत्तम ठिकाण"
 }

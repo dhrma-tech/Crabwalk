@@ -778,5 +778,6 @@
 	"filter_clear": "{filter} हटाएँ",
 	"filter_up_to": "{amount} तक",
 	"amenity_missing": "उपलब्ध नहीं",
-	"filters_clear_all": "सभी फ़िल्टर हटाएँ"
+	"filters_clear_all": "सभी फ़िल्टर हटाएँ",
+	"dish_best_here": "सबसे अच्छी जगह"
 }

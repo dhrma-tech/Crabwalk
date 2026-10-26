@@ -778,5 +778,6 @@
 	"filter_clear": "Clear {filter}",
 	"filter_up_to": "Up to {amount}",
 	"amenity_missing": "Not available",
-	"filters_clear_all": "Clear all filters"
+	"filters_clear_all": "Clear all filters",
+	"dish_best_here": "Best pick"
 }
