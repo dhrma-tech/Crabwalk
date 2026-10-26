@@ -1,5 +1,5 @@
 Fonts in this folder (subset WOFF2, see apps/web/scripts/subset-fonts.mjs):
-- display-700-latin, display-700-deva: Eczar — Copyright 2014 The Eczar Project Authors (https://github.com/rosettatype/eczar)
+- display-700-latin: Eczar — Copyright 2014 The Eczar Project Authors (https://github.com/rosettatype/eczar)
 - text-var-latin: Anek Latin — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
 - text-var-deva: Anek Devanagari — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
 

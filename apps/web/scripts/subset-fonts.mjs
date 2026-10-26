@@ -1,6 +1,7 @@
 // Build the self-hosted WOFF2 files (Tideline, DECISIONS T-1, Report 2 §4.1): Eczar 700 for display and Anek
 // (variable wght 400–700, wdth pinned to 100) for text. Each is split by unicode-range into a Latin file and a
-// Devanagari file (P10-4), so English pages never download Devanagari glyphs: 4 files in all.
+// Devanagari file (P10-4), so English pages never download Devanagari glyphs. Display Devanagari reuses the
+// Anek file at 700 (T-23: Eczar's Marathi forms break the reph), so 3 files in all.
 // Usage: node scripts/subset-fonts.mjs <dir with the source TTFs below>
 // Sources (SIL OFL 1.1, github.com/google/fonts): ofl/eczar, ofl/aneklatin, ofl/anekdevanagari.
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -41,7 +42,7 @@ const chars = (ranges) =>
 // font-faces use a file's default instance).
 const TEXT = { wdth: 100, wght: { min: 400, max: 700, default: 400 } };
 const jobs = [
-	{ name: 'display-700', latin: 'Eczar[wght].ttf', deva: 'Eczar[wght].ttf', axes: { wght: 700 } },
+	{ name: 'display-700', latin: 'Eczar[wght].ttf', axes: { wght: 700 } },
 	{
 		name: 'text-var',
 		latin: 'AnekLatin[wdth,wght].ttf',
@@ -57,6 +58,7 @@ for (const job of jobs) {
 		['latin', job.latin, chars(LATIN)],
 		['deva', job.deva, chars(DEVA)]
 	]) {
+		if (!file) continue;
 		const woff2 = await subsetFont(await readFile(join(dir, file)), text, {
 			targetFormat: 'woff2',
 			variationAxes: job.axes

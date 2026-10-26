@@ -194,9 +194,10 @@
 	letter-spacing: 0;
 }
 
-/* Fonts (Report 2 §4.1, T-17): Eczar 700 for display, Anek variable 400–700 for text. Each is a Latin file +
-   a Devanagari file picked by unicode-range (P10-4). Keep ranges in sync with scripts/subset-fonts.mjs and
-   src/lib/map/style.ts. */
+/* Fonts (Report 2 §4.1, T-17, T-23): Eczar 700 for display, Anek variable 400–700 for text. Each is a Latin
+   file + a Devanagari file picked by unicode-range (P10-4). Display Devanagari is Anek at 700 (the text file):
+   Eczar's Marathi forms show र् with a halant instead of the reph. Keep ranges in sync with
+   scripts/subset-fonts.mjs and src/lib/map/style.ts. */
 @font-face {
 	font-family: 'Eczar';
 	font-weight: 700;
@@ -210,7 +211,7 @@
 	font-family: 'Eczar';
 	font-weight: 700;
 	font-display: swap;
-	src: url('/fonts/display-700-deva.woff2') format('woff2');
+	src: url('/fonts/text-var-deva.woff2') format('woff2');
 	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 @font-face {
