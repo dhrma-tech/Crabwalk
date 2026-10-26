@@ -763,5 +763,11 @@
 	"search_kind_eatery": "Food",
 	"search_kind_dish": "Dishes",
 	"itin_budget": "about {amount}",
-	"meta_category": "{category} on the Konkan coast, checked by our team, with honest visitor verdicts, tide and monsoon status."
+	"meta_category": "{category} on the Konkan coast, checked by our team, with honest visitor verdicts, tide and monsoon status.",
+	"map_see_on_map": "See on map",
+	"map_open_listing": "Open",
+	"layers_show": "Show on map",
+	"layers_live": "Live & safety",
+	"map_in_view": "{n} on this part of the map",
+	"map_in_view_none": "Nothing here. Zoom out or clear filters."
 }

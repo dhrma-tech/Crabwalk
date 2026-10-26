@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { mapColors } from './map/style.ts';
 
 // FRONTEND §12: WCAG 2.2 AA, the pairs of Report 2 §3.4 (T-1). Reads the tokens straight from app.css so a
 // token change is re-checked. Text ≥ 4.5; UI parts and graphics (borders, dots, bars, icons, pins) ≥ 3.
@@ -101,14 +102,36 @@ describe('fixed pairs used by components', () => {
 	// The QR page carries its own inline CSS (P6-9); restyled to Tideline in step E.
 	it('QR page ink on washi ≥ 4.5', () =>
 		expect(ratio('#1f1e1c', '#f4f0e8')).toBeGreaterThanOrEqual(4.5));
-	// Map pins until step E moves them to the Tideline pin colours (PIN in map/style.ts, glyphs in map/icons.ts).
-	const pins: [string, string, string][] = [
-		['ink glyph on place pin', '#1f1e1c', '#d99a00'],
-		['white glyph on stay pin', '#ffffff', '#00808a'],
-		['white glyph on food pin', '#ffffff', '#c45a78'],
-		['white glyph on utility pin', '#ffffff', '#5c584f'],
-		['washi count on cluster', '#f4f0e8', '#6c6ba8']
+});
+
+// Map overlays (Report 2 §10, T-26): mapColors() mirrors the tokens, and every pin reads on the land colour.
+describe.each(['light', 'dark'] as const)('map colours (%s)', (theme) => {
+	const c = mapColors(theme);
+	const t = theme === 'light' ? light : dark;
+	it('pins use the token hues', () => {
+		expect([c.place, c.stay, c.eatery, c.route].map((x) => x.toLowerCase())).toEqual(
+			[t.kokum, t.lagoon, t.alphonso, t.lagoon].map((x) => x!.toLowerCase())
+		);
+	});
+	const graphics: [string, string, string][] = [
+		['place glyph on place pin', c.placeGlyph, c.place],
+		['stay glyph on stay pin', c.stayGlyph, c.stay],
+		['food glyph on food pin', c.eateryGlyph, c.eatery],
+		['utility glyph on utility pin', c.utilityGlyph, c.utility],
+		['place pin on land', c.place, c.land],
+		['stay pin on land', c.stay, c.land],
+		['food pin ring on land', c.eateryRing === c.ring ? c.eatery : c.eateryRing, c.land],
+		['utility ring on land', c.utilityRing, c.land],
+		['cluster on land', c.cluster, c.land],
+		['route on land', c.route, c.land]
 	];
-	for (const [label, fg, bg] of pins)
-		it(`${label} ≥ 3`, () => expect(ratio(fg, bg)).toBeGreaterThanOrEqual(3));
+	for (const [label, fg, bg] of graphics)
+		it(`${label} ≥ 3`, () =>
+			expect(ratio(fg.toLowerCase(), bg.toLowerCase())).toBeGreaterThanOrEqual(3));
+	it('cluster count ≥ 4.5', () =>
+		expect(ratio(c.clusterText.toLowerCase(), c.cluster.toLowerCase())).toBeGreaterThanOrEqual(
+			4.5
+		));
+	it('labels on their halo ≥ 4.5', () =>
+		expect(ratio(c.label.toLowerCase(), c.halo.toLowerCase())).toBeGreaterThanOrEqual(4.5));
 });

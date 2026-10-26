@@ -17,13 +17,13 @@
 	import 'maplibre-gl/dist/maplibre-gl.css';
 	// Self-contained ES-module worker; Vite emits it as a hashed asset.
 	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-	import { onMount } from 'svelte';
+	import { onMount, untrack } from 'svelte';
 	import { m as msg } from '#lib/paraglide/messages.js';
 	import Crabby from '../Crabby.svelte';
 	import type { GeoJSONSource, Map as MLMap, Marker } from 'maplibre-gl';
 	import type { FeatureCollection, Point } from 'geojson';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import { buildStyle, ATTRIBUTION_OLA, PIN, MAP, type MapTheme } from '#lib/map/style.ts';
+	import { buildStyle, ATTRIBUTION_OLA, mapColors, type MapTheme } from '#lib/map/style.ts';
 	import { addPinImages, type UtilityType } from '#lib/map/icons.ts';
 	import { tideState } from '#lib/tides.ts';
 	import { offlineData, savedPacks } from '#lib/packs.ts';
@@ -52,10 +52,13 @@
 		layers = {},
 		tideMinute = 0,
 		heatLabels = { live: 'Live', typical: 'Typical' },
+		initial = null,
+		padBottom = 0,
 		onselect,
 		onerror,
 		onfeature,
-		oninfo
+		oninfo,
+		onpins
 	}: {
 		tilesBase: string;
 		kinds?: string[];
@@ -71,6 +74,12 @@
 		/** Alert or trail tapped (P9 layers). */
 		onfeature?: (f: { kind: 'alert' | 'trail'; props: Record<string, unknown> }) => void;
 		oninfo?: (info: LayerInfo) => void;
+		/** Pins drawn after each load (the laptop results list, Report 2 §9.3). */
+		onpins?: (pins: Pin[]) => void;
+		/** Open zoomed in on this point (place → map hand-off, Report 1 §4.3). */
+		initial?: { lon: number; lat: number } | null;
+		/** Pixels hidden under a bottom sheet: the camera centres in the visible part above it. */
+		padBottom?: number;
 		/** Navigation (P9): pins off, stored route line, straight guide line, GPS dot, camera follows. */
 		showPins?: boolean;
 		route?: [number, number][] | null;
@@ -112,7 +121,8 @@
 
 	async function overlays() {
 		const m = map!;
-		await addPinImages(m);
+		const c = mapColors(theme());
+		await addPinImages(m, c);
 		m.addSource('utilities', { type: 'geojson', data: utils });
 		m.addLayer({
 			id: 'util',
@@ -120,9 +130,9 @@
 			source: 'utilities',
 			paint: {
 				'circle-radius': 11,
-				'circle-color': PIN.utility,
+				'circle-color': c.utility,
 				'circle-stroke-width': 1.5,
-				'circle-stroke-color': MAP.halo
+				'circle-stroke-color': c.utilityRing
 			}
 		});
 		m.addLayer({
@@ -148,10 +158,10 @@
 			source: 'pins',
 			filter: ['has', 'point_count'],
 			paint: {
-				'circle-color': PIN.cluster,
+				'circle-color': c.cluster,
 				'circle-radius': ['step', ['get', 'point_count'], 16, 10, 20, 50, 26],
 				'circle-stroke-width': 2,
-				'circle-stroke-color': MAP.halo
+				'circle-stroke-color': c.ring
 			}
 		});
 		m.addLayer({
@@ -165,7 +175,7 @@
 				'text-size': 14,
 				'text-allow-overlap': true
 			},
-			paint: { 'text-color': MAP.halo }
+			paint: { 'text-color': c.clusterText }
 		});
 		m.addLayer({
 			id: 'pin',
@@ -174,17 +184,9 @@
 			filter: ['!', ['has', 'point_count']],
 			paint: {
 				'circle-radius': 15,
-				'circle-color': [
-					'match',
-					['get', 'kind'],
-					'stay',
-					PIN.stay,
-					'eatery',
-					PIN.eatery,
-					PIN.place
-				],
+				'circle-color': ['match', ['get', 'kind'], 'stay', c.stay, 'eatery', c.eatery, c.place],
 				'circle-stroke-width': 2,
-				'circle-stroke-color': MAP.halo
+				'circle-stroke-color': ['match', ['get', 'kind'], 'eatery', c.eateryRing, c.ring]
 			}
 		});
 		m.addLayer({
@@ -219,13 +221,13 @@
 						['linear'],
 						['heatmap-density'],
 						0,
-						MAP.heat[0],
+						c.heat[0],
 						0.3,
-						MAP.heat[1],
+						c.heat[1],
 						0.7,
-						MAP.heat[2],
+						c.heat[2],
 						1,
-						MAP.heat[3]
+						c.heat[3]
 					]
 				}
 			},
@@ -243,7 +245,7 @@
 				'text-size': 12,
 				'text-offset': [0, 1.6]
 			},
-			paint: { 'text-color': MAP.ink, 'text-halo-color': MAP.halo, 'text-halo-width': 1.5 }
+			paint: { 'text-color': c.label, 'text-halo-color': c.halo, 'text-halo-width': 1.5 }
 		});
 		m.addSource('trails', { type: 'geojson', data: EMPTY });
 		m.addLayer(
@@ -258,25 +260,19 @@
 						'match',
 						['get', 'difficulty'],
 						'easy',
-						MAP.ok,
+						c.ok,
 						'moderate',
-						MAP.caution,
+						c.caution,
 						'hard',
-						MAP.danger,
-						MAP.unknown
+						c.danger,
+						c.unknown
 					]
 				}
 			},
 			'util'
 		);
 		m.addSource('alerts', { type: 'geojson', data: EMPTY });
-		const sev = [
-			'match',
-			['get', 'severity'],
-			'danger',
-			MAP.danger,
-			MAP.caution
-		] as unknown as string;
+		const sev = ['match', ['get', 'severity'], 'danger', c.danger, c.caution] as unknown as string;
 		m.addLayer(
 			{
 				id: 'alerts-fill',
@@ -306,7 +302,7 @@
 				'circle-radius': 12,
 				'circle-color': sev,
 				'circle-stroke-width': 3,
-				'circle-stroke-color': MAP.halo
+				'circle-stroke-color': c.ring
 			}
 		});
 		m.addSource('tides', { type: 'geojson', data: EMPTY });
@@ -323,10 +319,10 @@
 						'match',
 						['get', 'state'],
 						'ok',
-						MAP.ok,
+						c.ok,
 						'cut',
-						MAP.caution,
-						MAP.unknown
+						c.caution,
+						c.unknown
 					]
 				}
 			},
@@ -338,7 +334,7 @@
 			type: 'line',
 			source: 'route',
 			layout: { 'line-cap': 'round', 'line-join': 'round' },
-			paint: { 'line-color': MAP.halo, 'line-width': 10 }
+			paint: { 'line-color': c.routeCasing, 'line-width': 10 }
 		});
 		m.addLayer({
 			id: 'route',
@@ -346,7 +342,7 @@
 			source: 'route',
 			layout: { 'line-cap': 'round', 'line-join': 'round' },
 			paint: {
-				'line-color': MAP.route,
+				'line-color': c.route,
 				'line-width': 6,
 				'line-dasharray': [
 					'case',
@@ -363,9 +359,9 @@
 			source: 'me',
 			paint: {
 				'circle-radius': 9,
-				'circle-color': MAP.me,
+				'circle-color': c.route,
 				'circle-stroke-width': 3,
-				'circle-stroke-color': MAP.halo
+				'circle-stroke-color': c.ring
 			}
 		});
 		for (const id of ['clusters', 'cluster-count', 'pin', 'pin-icon'])
@@ -433,7 +429,33 @@
 		else if (offline || !navigator.onLine) pins = await offlinePins();
 		else return;
 		(map.getSource('pins') as GeoJSONSource | undefined)?.setData(pins);
+		onpins?.(
+			pins.features.map((f) => {
+				const [lon, lat] = (f.geometry as Point).coordinates as [number, number];
+				return { ...(f.properties as Omit<Pin, 'lon' | 'lat'>), lon, lat };
+			})
+		);
 	}
+
+	$effect(() => {
+		const bottom = padBottom;
+		// Only on a real change: every easeTo ends in a moveend, which reloads pins.
+		if (!map || map.getPadding().bottom === bottom) return;
+		map.easeTo({ padding: { top: 0, right: 0, left: 0, bottom }, duration: 300 });
+	});
+
+	// All kinds switched off in the layers sheet hides the pins (the API treats "no kinds" as "all"). Only on a
+	// change: the first load already draws them (overlays()).
+	let shownPins = untrack(() => showPins);
+	$effect(() => {
+		const on = showPins;
+		if (!map || !ready || on === shownPins) return;
+		shownPins = on;
+		for (const id of ['clusters', 'cluster-count', 'pin', 'pin-icon'])
+			map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
+		if (on) loadPins();
+		else onpins?.([]);
+	});
 
 	/** Pins from downloaded packs (no network). */
 	async function offlinePins(): Promise<FeatureCollection> {
@@ -486,7 +508,8 @@
 		const media = matchMedia('(prefers-color-scheme: dark)');
 		const restyle = () => {
 			ready = false;
-			map?.setStyle(buildStyle(tilesUrl, theme(), getLocale(), location.origin));
+			// Full reload (no diff): pin glyph images carry the theme's colours and must be redrawn.
+			map?.setStyle(buildStyle(tilesUrl, theme(), getLocale(), location.origin), { diff: false });
 		};
 
 		(async () => {
@@ -533,8 +556,8 @@
 				const mm = new maplibregl.Map({
 					container,
 					style: buildStyle(tilesUrl, theme(), getLocale(), location.origin),
-					center: [h.centerLon, h.centerLat],
-					zoom: Math.max(h.centerZoom, 9),
+					center: initial ? [initial.lon, initial.lat] : [h.centerLon, h.centerLat],
+					zoom: initial ? 14 : Math.max(h.centerZoom, 9),
 					minZoom: h.minZoom,
 					maxBounds: [
 						[h.minLon - 0.2, h.minLat - 0.2],
@@ -543,11 +566,10 @@
 					attributionControl: { compact: false }
 				});
 				map = mm;
-				mm.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'bottom-right');
-				mm.addControl(
-					new maplibregl.GeolocateControl({ trackUserLocation: false }),
-					'bottom-right'
-				);
+				// Laptops: top-right, clear of the collapsed Crabby button in the bottom-right corner (T-26).
+				const corner = matchMedia('(min-width: 1024px)').matches ? 'top-right' : 'bottom-right';
+				mm.addControl(new maplibregl.NavigationControl({ showCompass: false }), corner);
+				mm.addControl(new maplibregl.GeolocateControl({ trackUserLocation: false }), corner);
 				mm.once('load', () => (painted = true));
 				mm.on('style.load', async () => {
 					await overlays();
@@ -677,7 +699,7 @@
 		marker = undefined;
 		if (map.getSource('ola')) map.removeSource('ola');
 		if (olaPoint && MarkerCtor) {
-			marker = new MarkerCtor({ color: PIN.cluster })
+			marker = new MarkerCtor({ color: mapColors(theme()).cluster })
 				.setLngLat([olaPoint.lon, olaPoint.lat])
 				.addTo(map);
 			map.addSource('ola', {
@@ -706,19 +728,26 @@
 	/* Attribution must always be visible (FRONTEND §8): themed, and lifted clear of the raised Crabby tab. */
 	:global(.maplibregl-ctrl-attrib.maplibregl-ctrl) {
 		font: 400 12px/16px var(--font-body);
-		background: color-mix(in srgb, var(--surface-raised) 90%, transparent);
+		background: color-mix(in srgb, var(--surface) 90%, transparent);
 		color: var(--text-2);
 	}
-	/* WCAG 2.5.8 target size + comfortable touch: map control buttons 44 px. Suna: square, hairline, no shadow. */
+	/* WCAG 2.5.8 target size + comfortable touch: map control buttons 44 px. Tideline: glass, --r-md, e2. */
 	:global(.maplibregl-ctrl-group button) {
 		width: 44px;
 		height: 44px;
 	}
 	:global(.maplibregl-ctrl.maplibregl-ctrl-group) {
-		border-radius: 0;
-		box-shadow: none;
-		border: 1px solid var(--text);
-		background: var(--bg);
+		border-radius: var(--radius-md);
+		overflow: hidden;
+		box-shadow: var(--shadow-e2);
+		border: 0;
+		background: var(--glass);
+		backdrop-filter: blur(14px) saturate(1.2);
+	}
+	@supports not (backdrop-filter: blur(1px)) {
+		:global(.maplibregl-ctrl.maplibregl-ctrl-group) {
+			background: var(--surface);
+		}
 	}
 	:global(.maplibregl-ctrl-group button + button) {
 		border-top-color: var(--border);
@@ -732,7 +761,7 @@
 		}
 	}
 	:global(.maplibregl-ctrl-attrib a) {
-		color: var(--link);
+		color: var(--lagoon-ink);
 	}
 	@media (max-width: 1023px) {
 		:global(.maplibregl-ctrl-bottom-right),

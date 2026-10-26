@@ -10,6 +10,7 @@
 	import BedDouble from '@lucide/svelte/icons/bed-double';
 	import UtensilsCrossed from '@lucide/svelte/icons/utensils-crossed';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import MapPin from '@lucide/svelte/icons/map-pin';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
@@ -17,6 +18,7 @@
 	import { formatNumber } from '#lib/format.ts';
 	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import Page from '#lib/components/Page.svelte';
+	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import InsetList from '#lib/components/InsetList.svelte';
 	import CategoryIcon, { type Category } from '#lib/components/CategoryIcon.svelte';
@@ -133,6 +135,15 @@
 							label={p.monsoonReason || msg(`monsoon_${p.monsoon}`)}
 						/>{/if}
 				</div>
+				{#if p.coords}
+					<!-- Place → map hand-off (Report 1 §4.3): the map opens on this pin, sheet at half height. -->
+					<div>
+						<Button variant="secondary" href={`${resolve('/map')}?focus=place/${p.slug}`}>
+							{#snippet icon()}<MapPin size={20} aria-hidden="true" />{/snippet}
+							{m.map_see_on_map()}
+						</Button>
+					</div>
+				{/if}
 			</header>
 
 			{#if p.audio}<div class="order-2 lg:order-none">

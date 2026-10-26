@@ -15,6 +15,7 @@ import Bus from '@lucide/svelte/icons/bus';
 import TrainFront from '@lucide/svelte/icons/train-front';
 import Ship from '@lucide/svelte/icons/ship';
 import { categoryIcons } from '#lib/components/CategoryIcon.svelte';
+import type { MapColors } from './style.ts';
 
 export const utilityIcons = {
 	fuel: Fuel,
@@ -49,18 +50,21 @@ async function toImage(icon: Component<Record<string, unknown>>, color: string) 
 	return img;
 }
 
-/** Registers `place-<category>`, `stay`, `eatery`, `util-<type>` images on the map (call after each style load). */
-export async function addPinImages(map: MLMap) {
+/**
+ * Registers `place-<category>`, `stay`, `eatery`, `util-<type>` images on the map (call after each style load),
+ * in the theme's glyph colours (a theme switch reloads the style, which drops the old images).
+ */
+export async function addPinImages(map: MLMap, c: MapColors) {
 	const jobs: [string, Component<Record<string, unknown>>, string][] = [
 		...Object.entries(categoryIcons).map(
-			([k, c]) =>
-				[`place-${k}`, c, '#1F1E1C'] as [string, Component<Record<string, unknown>>, string]
+			([k, icon]) =>
+				[`place-${k}`, icon, c.placeGlyph] as [string, Component<Record<string, unknown>>, string]
 		),
-		['stay', BedDouble as Component<Record<string, unknown>>, '#FFFFFF'],
-		['eatery', UtensilsCrossed as Component<Record<string, unknown>>, '#FFFFFF'],
+		['stay', BedDouble as Component<Record<string, unknown>>, c.stayGlyph],
+		['eatery', UtensilsCrossed as Component<Record<string, unknown>>, c.eateryGlyph],
 		...Object.entries(utilityIcons).map(
-			([k, c]) =>
-				[`util-${k}`, c, '#FFFFFF'] as [string, Component<Record<string, unknown>>, string]
+			([k, icon]) =>
+				[`util-${k}`, icon, c.utilityGlyph] as [string, Component<Record<string, unknown>>, string]
 		)
 	];
 	// One glyph that fails to load must not take the other pins (and every overlay after them) down.
