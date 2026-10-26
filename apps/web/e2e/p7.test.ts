@@ -170,7 +170,7 @@ test('guest votes without login; owner sees the tally', async ({ browser }) => {
 	await guest.getByLabel('Your name').fill('Asha');
 	const spot = guest.getByTestId('vote-spot').filter({ hasText: `P7 afternoon ${run}` });
 	await spot.getByText('Yes', { exact: true }).click();
-	await guest.getByRole('button', { name: 'Send votes' }).click();
+	await guest.getByRole('button', { name: 'Done, send to organiser' }).click();
 	await expect(guest.getByText('Thanks! Your votes are in.')).toBeVisible();
 	await expect(spot).toContainText('1 yes');
 

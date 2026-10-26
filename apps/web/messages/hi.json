@@ -781,5 +781,8 @@
 	"filters_clear_all": "सभी फ़िल्टर हटाएँ",
 	"dish_best_here": "सबसे अच्छी जगह",
 	"plan_step": "चरण {n} / {total}",
-	"plan_next": "आगे"
+	"plan_next": "आगे",
+	"gvote_done": "हो गया, आयोजक को भेजें",
+	"gvote_done_body": "आयोजक अपनी योजना पर आपके वोट देखेंगे।",
+	"gvote_see_plan": "योजना देखें"
 }

@@ -781,5 +781,8 @@
 	"filters_clear_all": "सर्व फिल्टर काढा",
 	"dish_best_here": "सर्वोत्तम ठिकाण",
 	"plan_step": "पायरी {n} / {total}",
-	"plan_next": "पुढे"
+	"plan_next": "पुढे",
+	"gvote_done": "झाले, आयोजकाला पाठवा",
+	"gvote_done_body": "आयोजकाला त्यांच्या योजनेत तुमची मते दिसतील.",
+	"gvote_see_plan": "योजना पाहा"
 }

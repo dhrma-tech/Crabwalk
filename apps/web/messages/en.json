@@ -781,5 +781,8 @@
 	"filters_clear_all": "Clear all filters",
 	"dish_best_here": "Best pick",
 	"plan_step": "Step {n} of {total}",
-	"plan_next": "Next"
+	"plan_next": "Next",
+	"gvote_done": "Done, send to organiser",
+	"gvote_done_body": "The organiser sees your votes on their plan.",
+	"gvote_see_plan": "See the plan"
 }
