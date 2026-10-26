@@ -769,5 +769,14 @@
 	"layers_show": "नकाशावर दाखवा",
 	"layers_live": "लाइव्ह आणि सुरक्षा",
 	"map_in_view": "नकाशाच्या या भागात {n}",
-	"map_in_view_none": "इथे काही नाही. झूम आउट करा किंवा फिल्टर काढा."
+	"map_in_view_none": "इथे काही नाही. झूम आउट करा किंवा फिल्टर काढा.",
+	"results_count": "{n} निकाल",
+	"sort_label": "क्रम",
+	"sort_best": "सर्वोत्तम मत",
+	"sort_price_asc": "किंमत: कमी ते जास्त",
+	"sort_price_desc": "किंमत: जास्त ते कमी",
+	"filter_clear": "{filter} काढा",
+	"filter_up_to": "{amount} पर्यंत",
+	"amenity_missing": "उपलब्ध नाही",
+	"filters_clear_all": "सर्व फिल्टर काढा"
 }

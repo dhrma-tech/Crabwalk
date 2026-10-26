@@ -769,5 +769,14 @@
 	"layers_show": "Show on map",
 	"layers_live": "Live & safety",
 	"map_in_view": "{n} on this part of the map",
-	"map_in_view_none": "Nothing here. Zoom out or clear filters."
+	"map_in_view_none": "Nothing here. Zoom out or clear filters.",
+	"results_count": "{n} results",
+	"sort_label": "Sort",
+	"sort_best": "Best rated",
+	"sort_price_asc": "Price: low to high",
+	"sort_price_desc": "Price: high to low",
+	"filter_clear": "Clear {filter}",
+	"filter_up_to": "Up to {amount}",
+	"amenity_missing": "Not available",
+	"filters_clear_all": "Clear all filters"
 }

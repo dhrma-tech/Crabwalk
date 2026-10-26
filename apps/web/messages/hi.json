@@ -769,5 +769,14 @@
 	"layers_show": "नक्शे पर दिखाएँ",
 	"layers_live": "लाइव और सुरक्षा",
 	"map_in_view": "नक्शे के इस हिस्से में {n}",
-	"map_in_view_none": "यहाँ कुछ नहीं। ज़ूम आउट करें या फ़िल्टर हटाएँ।"
+	"map_in_view_none": "यहाँ कुछ नहीं। ज़ूम आउट करें या फ़िल्टर हटाएँ।",
+	"results_count": "{n} नतीजे",
+	"sort_label": "क्रम",
+	"sort_best": "सबसे अच्छी राय",
+	"sort_price_asc": "कीमत: कम से ज़्यादा",
+	"sort_price_desc": "कीमत: ज़्यादा से कम",
+	"filter_clear": "{filter} हटाएँ",
+	"filter_up_to": "{amount} तक",
+	"amenity_missing": "उपलब्ध नहीं",
+	"filters_clear_all": "सभी फ़िल्टर हटाएँ"
 }

@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
-import { getStay, names, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
+import { getStay, lonLat, names, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
 import { ratingsFor, DIMENSIONS } from '#lib/server/ratings.ts';
 import { priceRows } from '#lib/server/prices.ts';
 import type { PageServerLoad } from './$types';
@@ -26,6 +26,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			verified: s.is_verified,
 			claimed: !!s.owner_id,
 			lastVerified: s.last_verified_at,
+			coords: lonLat(s.location),
 			photos: s.photos.map((p) => photoUrls(p, n[lang] || n.en))
 		},
 		prices: await priceRows(s),
