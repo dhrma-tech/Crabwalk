@@ -77,7 +77,7 @@
 			>
 			<div class="flex min-w-0 flex-1 flex-col items-start gap-2">
 				{#if data.email}
-					<p class="type-body break-all text-text">{m.me_signed_in_as({ email: data.email })}</p>
+					<p class="type-body break-words text-text">{m.me_signed_in_as({ email: data.email })}</p>
 				{:else}
 					<p class="type-body text-text">{m.me_guest()}</p>
 					<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
