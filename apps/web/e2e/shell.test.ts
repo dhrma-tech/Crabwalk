@@ -78,7 +78,8 @@ test('language switch sets lang and persists', async ({ page }) => {
 	await page.goto('/me');
 	await Promise.all([
 		page.waitForResponse((r) => r.url().endsWith('/me') && r.request().method() === 'GET'),
-		page.getByRole('button', { name: 'मराठी' }).click()
+		// The top bar's switch (Me has its own language row too).
+		page.getByRole('banner').getByRole('button', { name: 'मराठी' }).click()
 	]);
 	await expect(page.locator('html')).toHaveAttribute('lang', 'mr');
 	await expect(page).toHaveURL(/\/me$/);
