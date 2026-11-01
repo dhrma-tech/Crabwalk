@@ -6,6 +6,7 @@
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import PhotoUpload from '#lib/components/listing/PhotoUpload.svelte';
+	import Info from '@lucide/svelte/icons/info';
 	import type { PageProps } from './$types';
 
 	// Facts only: photos, prices, menu, timings, contact (BACKEND §4 [LOCKED]). Ratings are read-only.
@@ -66,16 +67,25 @@
 		busy = false;
 		toast(res.ok ? m.owner_saved() : m.send_failed());
 	}
-	const input = 'h-11 w-full border-b border-text bg-bg type-body text-text';
-	const label = 'flex flex-col gap-1.5 type-small text-text-2';
+	const input = 'field h-12 w-full min-w-0 px-3 type-body text-text';
+	const label = 'flex min-w-0 flex-col gap-1.5 type-small text-text-2';
+	const card = 'flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-e1';
+	const pair = 'grid grid-cols-2 gap-3 rounded-lg bg-surface p-4 shadow-e1';
 </script>
 
 <Page title={data.name ?? m.owner_edit()} back>
-	<form onsubmit={save} class="mx-auto flex max-w-[680px] flex-col gap-5" data-testid="owner-form">
-		<p class="bg-asagi p-3 type-small text-text">{m.owner_ratings_readonly()}</p>
-		<PhotoUpload type={data.type as 'stay' | 'eatery'} id={data.id} />
+	<!-- Tideline tool variant (Report 2 §9.15, T-40): grouped surface cards, `field` inputs, no banner. -->
+	<form onsubmit={save} class="mx-auto flex max-w-170 flex-col gap-4" data-testid="owner-form">
+		<p class="flex gap-2.5 rounded-md bg-lagoon-50 p-3 type-small text-text">
+			<Info
+				size={18}
+				class="mt-0.5 shrink-0 text-lagoon"
+				aria-hidden="true"
+			/>{m.owner_ratings_readonly()}
+		</p>
+		<div class={card}><PhotoUpload type={data.type as 'stay' | 'eatery'} id={data.id} /></div>
 		{#if data.type === 'stay'}
-			<div class="grid grid-cols-2 gap-3">
+			<div class={pair}>
 				<label class={label}
 					>{m.field_price_min()}<input
 						class={input}
@@ -96,52 +106,55 @@
 				>
 			</div>
 		{:else}
-			<label class={label}
-				>{m.field_price_two()}<input
-					class={input}
-					type="number"
-					min="0"
-					bind:value={priceTwo}
-					name="price_for_two"
-				/></label
-			>
-			<label class={label}
-				>{m.menu()}<span class="type-small">{m.owner_menu_hint()}</span>
-				<textarea
-					rows="6"
-					class="border border-text bg-transparent p-3 type-body text-text"
-					bind:value={menu}
-					name="menu"></textarea>
-			</label>
-			<fieldset class="flex flex-col gap-2">
-				<legend class="mb-2 type-h3">{m.field_hours()}</legend>
+			<div class={card}>
+				<label class={label}
+					>{m.field_price_two()}<input
+						class={input}
+						type="number"
+						min="0"
+						bind:value={priceTwo}
+						name="price_for_two"
+					/></label
+				>
+				<label class={label}
+					>{m.menu()}<span class="type-small">{m.owner_menu_hint()}</span>
+					<textarea rows="6" class="field p-3 type-body text-text" bind:value={menu} name="menu"
+					></textarea>
+				</label>
+			</div>
+			<fieldset class={card}>
+				<legend class="float-left mb-1 w-full type-h3">{m.field_hours()}</legend>
 				{#each hours as h (h.weekday)}
 					<div
 						class="grid grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 type-small"
 					>
-						<span>{msg(`wd_${h.weekday}`)}</span>
+						<span class="text-text">{msg(`wd_${h.weekday}`)}</span>
 						<input
 							type="time"
-							class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
+							class="field h-11 w-full min-w-0 px-2 text-text disabled:text-muted"
 							bind:value={h.opens}
 							disabled={h.closed}
 							aria-label={`${msg(`wd_${h.weekday}`)} opens`}
 						/>
 						<input
 							type="time"
-							class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
+							class="field h-11 w-full min-w-0 px-2 text-text disabled:text-muted"
 							bind:value={h.closes}
 							disabled={h.closed}
 							aria-label={`${msg(`wd_${h.weekday}`)} closes`}
 						/>
-						<label class="flex min-h-11 items-center gap-1"
-							><input type="checkbox" bind:checked={h.closed} />{m.closed()}</label
+						<label class="flex min-h-11 items-center gap-1.5 text-text"
+							><input
+								type="checkbox"
+								class="size-5 accent-(--kokum)"
+								bind:checked={h.closed}
+							/>{m.closed()}</label
 						>
 					</div>
 				{/each}
 			</fieldset>
 		{/if}
-		<div class="grid grid-cols-2 gap-3">
+		<div class={pair}>
 			<label class={label}
 				>{m.field_phone()}<input class={input} type="tel" bind:value={phone} name="phone" /></label
 			>
@@ -154,6 +167,6 @@
 				/></label
 			>
 		</div>
-		<Button type="submit" loading={busy}>{m.owner_save()}</Button>
+		<div class="[&>*]:w-full"><Button type="submit" loading={busy}>{m.owner_save()}</Button></div>
 	</form>
 </Page>

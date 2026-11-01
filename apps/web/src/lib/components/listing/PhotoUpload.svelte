@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Camera from '@lucide/svelte/icons/camera';
 	import { m } from '#lib/paraglide/messages.js';
+	import Crabby from '../Crabby.svelte';
 	import { processPhoto, uploadPhoto } from '#lib/field/photos.ts';
 
 	// Online photo upload for owners (same WebP pipeline as the field form).
@@ -26,16 +27,22 @@
 	}
 </script>
 
-<div class="flex flex-col gap-2">
+<!-- Tideline (T-40): an outline button (the file input inside is focusable, so focus shows on the label). -->
+<div class="flex flex-col gap-3">
 	<label
-		class="flex min-h-11 w-fit cursor-pointer items-center gap-2 border border-text px-4 type-small"
+		class="inline-flex min-h-12 w-fit cursor-pointer items-center gap-2 rounded-md border-[1.5px] border-border-strong px-5 type-body-strong text-text transition-colors duration-(--dur-state) hover:bg-surface-2 has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-(--focus)"
 		aria-busy={busy}
 	>
-		<Camera size={20} aria-hidden="true" />{m.field_photos()}
+		{#if busy}<Crabby size={20} walking tone="kokum" />{:else}<Camera
+				size={20}
+				aria-hidden="true"
+			/>{/if}{m.field_photos()}
 		<input type="file" accept="image/*" multiple class="sr-only" onchange={pick} disabled={busy} />
 	</label>
-	{#if failed}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
+	{#if failed}<p class="rounded-md bg-danger-50 p-3 type-small text-text" role="alert">
+			{m.send_failed()}
+		</p>{/if}
 	{#if done.length}<div class="flex flex-wrap gap-2">
-			{#each done as src, i (i)}<img {src} alt="" class="size-20 object-cover" />{/each}
+			{#each done as src, i (i)}<img {src} alt="" class="size-20 rounded-md object-cover" />{/each}
 		</div>{/if}
 </div>
