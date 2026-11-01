@@ -1,8 +1,13 @@
 <script lang="ts">
+	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import Send from '@lucide/svelte/icons/send';
+	import X from '@lucide/svelte/icons/x';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 
 	// PLAN P10 task 5 / DECISIONS P10-3 (+ P8-4 AI section): full policy DRAFT until legal approval.
+	// Tideline (T-39): Report 2 draws no privacy screen, so it reuses the reading column (dish page) and the
+	// do's/don'ts cards (place page) for what Crabby sends and never sends.
 	const sections = [
 		[m.privacy_s1_title(), m.privacy_s1_body()],
 		[m.privacy_s2_title(), m.privacy_s2_body()],
@@ -24,13 +29,15 @@
 </script>
 
 <Page title={m.privacy_title()}>
-	<article class="mx-auto flex max-w-[680px] flex-col gap-4">
-		<p class="bg-yama p-3 type-small">{m.privacy_draft()}</p>
+	<article class="mx-auto flex max-w-170 flex-col gap-8">
+		<p class="flex gap-2.5 rounded-lg bg-caution-50 p-4 type-small text-text">
+			<TriangleAlert size={18} class="mt-0.5 shrink-0" aria-hidden="true" />{m.privacy_draft()}
+		</p>
 		{#each sections as [title, body] (title)}
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h2">{title}</h2>
 				{#if lines(body).length > 1}
-					<ul class="list-disc pl-6 type-body">
+					<ul class="flex list-disc flex-col gap-1.5 pl-6 type-body marker:text-text-2">
 						{#each lines(body) as line (line)}<li>{line}</li>{/each}
 					</ul>
 				{:else}
@@ -38,19 +45,32 @@
 				{/if}
 			</section>
 		{/each}
-		<h2 class="type-h2">{m.privacy_ai_title()}</h2>
-		<p class="type-body">{m.privacy_ai_intro()}</p>
-		<h3 class="type-h3">{m.privacy_ai_sent()}</h3>
-		<ul class="list-disc pl-6 type-body">
-			{#each sent as s (s)}<li>{s}</li>{/each}
-		</ul>
-		<h3 class="type-h3">{m.privacy_ai_never()}</h3>
-		<ul class="list-disc pl-6 type-body">
-			{#each never as s (s)}<li>{s}</li>{/each}
-		</ul>
-		<h3 class="type-h3">{m.privacy_ai_staff_title()}</h3>
-		<p class="type-body">{m.privacy_ai_staff()}</p>
-		<h3 class="type-h3">{m.privacy_ai_limits_title()}</h3>
-		<p class="type-body">{m.privacy_ai_limits()}</p>
+
+		<section class="flex flex-col gap-4">
+			<h2 class="type-h2">{m.privacy_ai_title()}</h2>
+			<p class="type-body">{m.privacy_ai_intro()}</p>
+			<div class="grid gap-3 sm:grid-cols-2">
+				<div class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
+					<h3 class="type-h3">{m.privacy_ai_sent()}</h3>
+					<ul class="flex flex-col gap-2 type-body">
+						{#each sent as s (s)}<li class="flex gap-2.5">
+								<Send size={18} class="mt-1 shrink-0 text-lagoon" aria-hidden="true" />{s}
+							</li>{/each}
+					</ul>
+				</div>
+				<div class="flex flex-col gap-3 rounded-lg bg-danger-50 p-4">
+					<h3 class="type-h3 text-text">{m.privacy_ai_never()}</h3>
+					<ul class="flex flex-col gap-2 type-body text-text">
+						{#each never as s (s)}<li class="flex gap-2.5">
+								<X size={18} class="mt-1 shrink-0" aria-hidden="true" />{s}
+							</li>{/each}
+					</ul>
+				</div>
+			</div>
+			<h3 class="type-h3">{m.privacy_ai_staff_title()}</h3>
+			<p class="type-body">{m.privacy_ai_staff()}</p>
+			<h3 class="type-h3">{m.privacy_ai_limits_title()}</h3>
+			<p class="type-body">{m.privacy_ai_limits()}</p>
+		</section>
 	</article>
 </Page>
