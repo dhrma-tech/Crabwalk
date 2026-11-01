@@ -6,6 +6,12 @@
 	import CornerUpRight from '@lucide/svelte/icons/corner-up-right';
 	import RotateCw from '@lucide/svelte/icons/rotate-cw';
 	import Undo2 from '@lucide/svelte/icons/undo-2';
+	import MapPin from '@lucide/svelte/icons/map-pin';
+	import Navigation from '@lucide/svelte/icons/navigation';
+	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import Moon from '@lucide/svelte/icons/moon';
+	import ExternalLink from '@lucide/svelte/icons/external-link';
+	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import { PMTILES_BASE_URL } from '$app/env/public';
@@ -211,125 +217,160 @@
 			/>
 		</div>
 
-		<div
-			class="absolute inset-x-3 top-3 z-map-ui mx-auto flex max-w-[560px] flex-col gap-2"
-			data-testid="nav-card"
-		>
+		<!-- Tideline (Report 2 §9.10, T-35): ink next-turn card on top; a solid bottom bar with ETA, voice, wake lock and
+		     Google Maps. Solid, not glass: both hold text over the map (Report 2 §11). The phone nav is hidden here. -->
+		<div class="absolute inset-x-3 top-3 z-map-ui mx-auto max-w-140" data-testid="nav-card">
 			{#if leg}
-				<div class="bg-text p-4 text-bg">
-					{#if arrived}
-						<p class="font-display text-[24px] leading-snug" data-testid="nav-arrived">
-							{m.nav_arrived({ place: leg.to.name })}
-						</p>
-					{:else if nav?.offRoute}
-						<p class="type-h2" role="alert">{m.nav_off_route()}</p>
-					{:else if nav?.next}
-						{@const Icon = nav.next.code.startsWith('O')
-							? RotateCw
-							: nav.next.code === 'U'
-								? Undo2
-								: nav.next.code.endsWith('L')
-									? CornerUpLeft
-									: CornerUpRight}
-						<p
-							class="flex items-center gap-2 font-display text-[24px] leading-snug"
-							data-testid="nav-next"
-						>
-							<Icon size={28} aria-hidden="true" />{turnText(nav.next.code)}
-						</p>
-						<p class="type-h3">{m.nav_in()} {dist(nav.next.in)}</p>
-					{:else}
-						<p class="type-h2">{m.nav_head_to({ place: leg.to.name })}</p>
-					{/if}
-					<p class="mt-1 type-small" data-testid="nav-left">
-						{#if nav}{nav.etaMin != null
-								? `${m.nav_left({ d: dist(nav.left) })} · ${m.nav_eta({ n: nav.etaMin })}`
-								: m.nav_left({ d: dist(nav.left) })}
-						{:else if straightKm != null}{m.nav_straight({
-								d: dist(straightKm * 1000)
-							})}{:else}{m.emergency_locating()}{/if}
-					</p>
+				{@const Icon = arrived
+					? MapPin
+					: nav?.offRoute
+						? TriangleAlert
+						: !nav?.next
+							? Navigation
+							: nav.next.code.startsWith('O')
+								? RotateCw
+								: nav.next.code === 'U'
+									? Undo2
+									: nav.next.code.endsWith('L')
+										? CornerUpLeft
+										: CornerUpRight}
+				<div class="flex items-center gap-4 rounded-xl bg-text p-4 text-bg shadow-e3">
+					<span
+						class="flex size-16 shrink-0 items-center justify-center rounded-lg bg-bg/15"
+						aria-hidden="true"><Icon size={40} strokeWidth={2.25} /></span
+					>
+					<div class="min-w-0 flex-1">
+						{#if arrived}
+							<p class="type-h2 break-words" data-testid="nav-arrived">
+								{m.nav_arrived({ place: leg.to.name })}
+							</p>
+						{:else if nav?.offRoute}
+							<p class="type-h2" role="alert">{m.nav_off_route()}</p>
+						{:else if nav?.next}
+							<p class="type-display tabular-nums">{dist(nav.next.in)}</p>
+							<p class="type-h3 break-words" data-testid="nav-next">{turnText(nav.next.code)}</p>
+						{:else}
+							<p class="type-h2 break-words">{m.nav_head_to({ place: leg.to.name })}</p>
+						{/if}
+					</div>
 				</div>
 			{/if}
-			<div class="flex flex-wrap items-center gap-2">
-				<button
-					type="button"
-					class="flex min-h-11 items-center gap-2 border border-text bg-bg px-3 type-small"
-					aria-pressed={voice}
-					onclick={() => (voice = !voice)}
-				>
-					{#if voice}<Volume2 size={18} aria-hidden="true" />{:else}<VolumeX
-							size={18}
-							aria-hidden="true"
-						/>{/if}{m.nav_voice()}
-				</button>
-				<span
-					class="flex min-h-11 items-center gap-2 border border-text bg-bg px-3 type-small"
-					data-testid="wake-lock"
-				>
-					<Sun size={18} aria-hidden="true" />{awake ? m.nav_awake_on() : m.nav_awake_off()}
-				</span>
-			</div>
 		</div>
 
 		<div
-			class="absolute inset-x-3 bottom-[calc(80px+env(safe-area-inset-bottom))] z-map-ui mx-auto flex max-w-[560px] flex-col gap-2 lg:bottom-6"
+			class="absolute inset-x-0 bottom-[calc(--spacing(3)+env(safe-area-inset-bottom))] z-map-ui mx-auto flex max-h-[calc(100%-9.5rem)] max-w-146 flex-col gap-2 overflow-y-auto px-3 pt-3"
 		>
-			{#if leg}
-				<div class="flex flex-wrap gap-2">
-					<Button variant={longDrive ? 'primary' : 'secondary'} href={gmaps}
-						>{m.map_open_gmaps()}</Button
-					>
-					{#if arrived && idx < legs.length - 1}
-						<Button onclick={() => ((idx += 1), (spoken = new Set()))}
-							>{m.nav_next_stop({ place: legs[idx + 1]!.to.name })}</Button
-						>
-					{/if}
-				</div>
-				{#if olaLine && !leg.shape}
-					<!-- BACKEND §6.1: Ola results are attributed wherever they show. -->
-					<p class="border border-border bg-bg px-3 py-2 type-small" data-testid="ola-attribution">
-						{m.nav_route_by()}
-						<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
-							>Ola Maps</a
-						>
-					</p>
-				{/if}
-				{#if longDrive}<p class="border border-border bg-bg px-3 py-2 type-small">
-						{m.nav_long_drive()}
-					</p>{/if}
-				{#if turns.length}
-					<details class="border border-border bg-bg px-3 py-2" data-testid="nav-steps">
-						<summary class="min-h-11 cursor-pointer content-center type-small"
-							>{m.nav_steps({ n: turns.length })}</summary
-						>
-						<ol class="flex flex-col gap-1 pb-2 type-small">
-							{#each turns as t, i (i)}
-								<li>{turnText(t.code)} · {dist(cum[t.at] ?? 0)}</li>
-							{/each}
-						</ol>
-					</details>
-				{/if}
-			{/if}
+			<!-- Capped under the turn card (open steps scroll instead of covering it); px/pt keep the shadows unclipped. -->
 			{#if suggestDark}
 				<form
 					method="POST"
 					action="/prefs"
-					class="flex flex-wrap items-center gap-2 bg-fuji px-3 py-2"
+					class="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg bg-surface p-3 shadow-e2"
 					data-testid="dark-suggest"
 				>
 					<input type="hidden" name="theme" value="dark" />
 					<input type="hidden" name="return" value={page.url.pathname + page.url.search} />
-					<p class="flex-1 type-small">{m.nav_dark_hint()}</p>
-					<Button type="submit" variant="secondary">{m.nav_dark_on()}</Button>
-					<Button type="button" variant="ghost" onclick={() => (darkDismissed = true)}
-						>{m.nav_dark_no()}</Button
-					>
+					<p class="flex min-w-0 flex-[1_1_15rem] items-center gap-2 type-small text-text">
+						<Moon size={18} class="shrink-0 text-text-2" aria-hidden="true" />{m.nav_dark_hint()}
+					</p>
+					<div class="flex items-center gap-2">
+						<Button type="submit" variant="outline">{m.nav_dark_on()}</Button>
+						<Button type="button" variant="ghost" onclick={() => (darkDismissed = true)}
+							>{m.nav_dark_no()}</Button
+						>
+					</div>
 				</form>
 			{/if}
-			<p class="border border-border bg-bg px-3 py-2 type-small text-text-2">
-				{m.nav_limits()}
-			</p>
+			<div class="flex flex-col gap-3 rounded-xl bg-surface p-4 shadow-e3">
+				{#if leg}
+					<div class="flex items-center gap-3">
+						<p class="min-w-0 flex-1 type-body-strong tabular-nums" data-testid="nav-left">
+							{#if nav}{nav.etaMin != null
+									? `${m.nav_left({ d: dist(nav.left) })} · ${m.nav_eta({ n: nav.etaMin })}`
+									: m.nav_left({ d: dist(nav.left) })}
+							{:else if straightKm != null}{m.nav_straight({
+									d: dist(straightKm * 1000)
+								})}{:else}{m.emergency_locating()}{/if}
+						</p>
+						<button
+							type="button"
+							class={[
+								'inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full px-4 type-label transition-colors duration-200',
+								voice ? 'bg-text text-bg' : 'bg-surface-2 text-text hover:bg-surface-3'
+							]}
+							aria-pressed={voice}
+							onclick={() => (voice = !voice)}
+						>
+							{#if voice}<Volume2 size={18} aria-hidden="true" />{:else}<VolumeX
+									size={18}
+									aria-hidden="true"
+								/>{/if}{m.nav_voice()}
+						</button>
+					</div>
+					<div class="flex flex-wrap items-center gap-x-3 gap-y-2">
+						<span
+							class="inline-flex min-h-9 items-center gap-2 type-label text-text-2"
+							data-testid="wake-lock"
+						>
+							<span
+								class={['size-2.5 rounded-full', awake ? 'bg-ok' : 'bg-border-strong']}
+								aria-hidden="true"
+							></span>
+							<Sun size={16} aria-hidden="true" />{awake ? m.nav_awake_on() : m.nav_awake_off()}
+						</span>
+						{#if olaLine && !leg.shape}
+							<!-- BACKEND §6.1: Ola results are attributed wherever they show. -->
+							<p class="type-label text-text-2" data-testid="ola-attribution">
+								{m.nav_route_by()}
+								<a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener"
+									>Ola Maps</a
+								>
+							</p>
+						{/if}
+					</div>
+					{#if longDrive}<p class="rounded-md bg-surface-2 px-3 py-2 type-small text-text">
+							{m.nav_long_drive()}
+						</p>{/if}
+					<div class="flex flex-wrap gap-2 [&>*]:flex-1">
+						<Button
+							variant={longDrive && !(arrived && idx < legs.length - 1) ? 'primary' : 'outline'}
+							href={gmaps}
+						>
+							{#snippet icon()}<ExternalLink size={18} aria-hidden="true" />{/snippet}
+							{m.map_open_gmaps()}
+						</Button>
+						{#if arrived && idx < legs.length - 1}
+							<Button onclick={() => ((idx += 1), (spoken = new Set()))}
+								>{m.nav_next_stop({ place: legs[idx + 1]!.to.name })}</Button
+							>
+						{/if}
+					</div>
+					{#if turns.length}
+						<details class="group border-t border-border pt-1" data-testid="nav-steps">
+							<summary
+								class="flex min-h-11 cursor-pointer list-none items-center justify-between type-label text-text-2"
+								>{m.nav_steps({ n: turns.length })}<ChevronDown
+									size={18}
+									class="transition-transform duration-200 group-open:rotate-180"
+									aria-hidden="true"
+								/></summary
+							>
+							<ol class="flex max-h-40 flex-col overflow-y-auto pb-1">
+								{#each turns as t, i (i)}
+									<li
+										class="flex justify-between gap-3 border-b border-border py-2 type-small last:border-0"
+									>
+										<span>{turnText(t.code)}</span><span class="text-text-2 tabular-nums"
+											>{dist(cum[t.at] ?? 0)}</span
+										>
+									</li>
+								{/each}
+							</ol>
+						</details>
+					{/if}
+				{/if}
+				<p class="type-small text-text-2">{m.nav_limits()}</p>
+			</div>
 		</div>
 	{/if}
 </main>
