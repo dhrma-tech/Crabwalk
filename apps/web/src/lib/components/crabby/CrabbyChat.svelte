@@ -1,6 +1,8 @@
 <script lang="ts">
 	import Mic from '@lucide/svelte/icons/mic';
 	import Send from '@lucide/svelte/icons/send';
+	import MapPin from '@lucide/svelte/icons/map-pin';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
@@ -76,9 +78,9 @@
 		aria-live="polite"
 	>
 		{#if !crabby.turns.length}
-			<div class="flex items-start gap-2.5">
-				<Crabby size={30} />
-				<p class="type-small text-text-2">{m.crabby_hello()}</p>
+			<div class="my-auto flex flex-col items-center gap-3 px-2 py-6 text-center">
+				<Crabby size={64} />
+				<p class="max-w-80 type-body text-text-2">{m.crabby_hello()}</p>
 			</div>
 		{/if}
 		{#each crabby.turns as t, i (i)}
@@ -90,10 +92,14 @@
 					{t.content}
 				</p>
 			{:else}
-				<div class="flex items-start gap-2.5 self-start">
+				<div class="flex max-w-[92%] items-start gap-2.5 self-start">
 					<Crabby size={30} />
+					<!-- Report 2 §9.11: Crabby bubbles surface + e1; the daily limit is a friendly lagoon card. -->
 					<div
-						class="flex min-w-0 flex-1 flex-col gap-2.5 rounded-lg rounded-tl-sm bg-surface-2 px-3.5 py-2.5"
+						class={[
+							'flex min-w-0 flex-1 flex-col gap-2.5 rounded-lg rounded-tl-sm px-3.5 py-2.5',
+							t.kind === 'limit' ? 'bg-lagoon-50' : 'bg-surface shadow-e1'
+						]}
 						data-testid="bubble-crabby"
 					>
 						{#if t.kind === 'limit'}
@@ -107,11 +113,15 @@
 						{/if}
 						{#if t.alternatives?.length}
 							<p class="type-small text-text-2">{m.crabby_alternatives()}</p>
-							<ul class="flex flex-col gap-1" data-testid="crabby-alternatives">
+							<ul class="flex flex-col gap-1.5" data-testid="crabby-alternatives">
 								{#each t.alternatives as alt (alt.slug)}
 									<li>
-										<a href={resolve('/place/[slug]', { slug: alt.slug })} class="type-body"
-											>{alt.name}</a
+										<a
+											href={resolve('/place/[slug]', { slug: alt.slug })}
+											class="flex min-h-11 items-center gap-2.5 rounded-md bg-surface-2 px-3 py-2 type-body-strong text-text no-underline hover:bg-surface-3"
+											><MapPin size={18} class="shrink-0 text-kokum" aria-hidden="true" /><span
+												class="min-w-0 flex-1">{alt.name}</span
+											><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" /></a
 										>
 									</li>
 								{/each}
@@ -134,11 +144,14 @@
 
 	{#if crabby.signin}
 		<div
-			class="flex flex-col items-start gap-3 border-t border-border px-6 py-4"
+			class="mx-4 mb-4 flex flex-col items-center gap-3 rounded-xl bg-lagoon-50 p-5 text-center"
 			data-testid="crabby-signin"
 		>
-			<p class="type-body">{m.crabby_signin()}</p>
-			<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
+			<Crabby size={48} />
+			<p class="type-body-strong text-text">{m.crabby_signin()}</p>
+			<div class="w-full [&>*]:w-full">
+				<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
+			</div>
 		</div>
 	{:else}
 		{#if chips.length && !crabby.turns.length}
@@ -158,7 +171,9 @@
 					type="button"
 					class={[
 						'flex size-11 shrink-0 items-center justify-center rounded-full',
-						listening ? 'animate-pulse bg-text text-bg motion-reduce:animate-none' : 'text-text-2'
+						listening
+							? 'animate-pulse bg-lagoon text-on-lagoon motion-reduce:animate-none'
+							: 'text-text-2 hover:text-text'
 					]}
 					aria-label={listening ? m.crabby_mic_stop() : m.crabby_mic()}
 					aria-pressed={listening}
@@ -188,9 +203,11 @@
 				<Send size={20} aria-hidden="true" />
 			</button>
 		</form>
-		<p class="flex flex-wrap items-center gap-x-1.5 px-6 pt-1 pb-3 type-small text-text-2">
-			{#if crabby.remaining != null}<span>{m.crabby_remaining({ n: crabby.remaining })}</span><span
-					aria-hidden="true">·</span
+		<p
+			class="flex flex-wrap items-center justify-between gap-x-3 px-6 pt-1 pb-2 type-small text-text-2"
+		>
+			{#if crabby.remaining != null}<span class="tabular-nums"
+					>{m.crabby_remaining({ n: crabby.remaining })}</span
 				>{/if}<a href={resolve('/privacy')} class="inline-flex min-h-11 items-center"
 				>{m.crabby_privacy()}</a
 			>
