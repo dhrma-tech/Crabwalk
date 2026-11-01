@@ -7,6 +7,13 @@
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import { pushStatus, enablePush } from '#lib/push.ts';
+	import MapPin from '@lucide/svelte/icons/map-pin';
+	import Clock from '@lucide/svelte/icons/clock';
+	import Car from '@lucide/svelte/icons/car';
+	import Navigation from '@lucide/svelte/icons/navigation';
+	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
+	import CircleCheck from '@lucide/svelte/icons/circle-check';
+	import Bell from '@lucide/svelte/icons/bell';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.11. Nudges are decided by rules on our plan times + matrix (no LLM); "Why?" asks Crabby.
@@ -118,6 +125,9 @@
 			if (watch != null) navigator.geolocation.clearWatch(watch);
 		};
 	});
+	// Stop dots in the map pin colours (T-26), as on the plan timeline.
+	const dot = (k: string) =>
+		k === 'meal' ? 'bg-alphonso' : k === 'stay' ? 'bg-lagoon' : 'bg-kokum';
 	const clock = (iso: string | null) =>
 		iso
 			? new Intl.DateTimeFormat(`${getLocale()}-IN`, {
@@ -129,81 +139,135 @@
 </script>
 
 <Page title={data.trip.title} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-4" data-testid="live-trip">
+	<!-- Tideline (Report 2 §9.9, T-34), in the locked order: current-stop hero → next stop + ETA → nudge → Navigate. -->
+	<div class="mx-auto flex max-w-170 flex-col gap-4" data-testid="live-trip">
 		<form
 			method="POST"
 			action={data.live ? '?/stop' : '?/start'}
 			use:submitting
-			class={['flex flex-wrap items-center gap-2', data.live && 'bg-wakaba px-3.5 py-2']}
+			class={[
+				'flex flex-wrap items-center gap-x-3 gap-y-2 rounded-lg px-4 py-3',
+				data.live ? 'bg-ok-50' : 'bg-surface-2'
+			]}
 		>
-			<p class={['flex-1 type-small', data.live ? 'text-text' : 'text-text-2']}>
+			{#if data.live}<span class="size-2.5 shrink-0 rounded-full bg-ok" aria-hidden="true"
+				></span>{/if}
+			<p class={['min-w-0 flex-1 type-small', data.live ? 'text-text' : 'text-text-2']}>
 				{data.live ? m.live_on() : m.live_off()}
 			</p>
-			<Button type="submit" variant={data.live ? 'ghost' : 'primary'}
-				>{data.live ? m.live_stop() : m.live_start()}</Button
-			>
+			<Button type="submit" variant="outline">{data.live ? m.live_stop() : m.live_start()}</Button>
 		</form>
 
-		{#if lateMin >= 20 && next && next.kind === 'place'}
-			<div class="flex flex-col gap-2 bg-yama px-3.5 py-2.5" role="status" data-testid="nudge-late">
-				<p class="type-body">{m.nudge_late({ n: lateMin, place: next.name ?? '' })}</p>
-				<div class="flex flex-wrap gap-2">
-					<form method="POST" action="?/skip" use:submitting>
-						<input type="hidden" name="day" value={data.day} />
-						<input type="hidden" name="entity_id" value={next.entity_id} />
-						<Button type="submit" variant="secondary">{m.nudge_skip()}</Button>
-					</form>
-					<Button
-						variant="ghost"
-						href={`${resolve('/crabby')}?ask=${encodeURIComponent(m.nudge_why_q({ place: next.name ?? '' }))}`}
-						>{m.nudge_why()}</Button
-					>
-				</div>
-			</div>
-		{:else if leaveNow && next}
-			<p class="bg-yama px-3.5 py-2.5 type-body" role="status" data-testid="nudge-leave">
-				{m.nudge_leave({ place: next.name ?? '' })}
-			</p>
-		{/if}
-
 		{#if atIdx >= 0 && day?.stops[atIdx]}
-			<section class="border border-text px-3.5 py-3" data-testid="current-stop">
-				<p class="text-[12px] text-text-2">{m.live_here()}</p>
-				<p class="font-display text-[18px] leading-normal">{day.stops[atIdx].name}</p>
-				{#if day.stops[atIdx].depart}<p class="text-[13px] text-text-2">
-						{m.live_until({ t: day.stops[atIdx].depart })}
+			{@const here = day.stops[atIdx]}
+			<section
+				class="flex flex-col gap-2 rounded-xl bg-lagoon-50 p-5 lg:p-8"
+				data-testid="current-stop"
+			>
+				<p class="flex items-center gap-2 type-label text-lagoon-ink">
+					<MapPin size={18} class="text-lagoon" aria-hidden="true" />{m.live_here()}
+				</p>
+				<h2 class="type-display break-words text-text" data-clip-check>
+					<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built from a known route + slug -->
+					{#if here.href}<a href={here.href} class="text-text no-underline hover:underline"
+							>{here.name}</a
+						>{:else}{here.name}{/if}
+				</h2>
+				{#if here.depart}<p class="type-body text-text tabular-nums">
+						{m.live_until({ t: here.depart })}
 					</p>{/if}
 			</section>
 		{/if}
 
 		{#if next}
-			<section class="flex flex-col gap-1 border border-text px-3.5 py-3" data-testid="next-stop">
-				<p class="text-[12px] text-text-2">{m.live_next()}</p>
-				<p class="font-display text-[18px] leading-normal">{next.name}</p>
-				<p class="text-[13px] text-text-2">
-					{m.live_planned({ t: clock(raw[nextIdx]?.arrive_at ?? null) })}{#if legDur[nextIdx]}
-						· {m.live_drive({ n: Math.round(legDur[nextIdx]! / 60) })}{/if}
+			<section
+				class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1 lg:p-5"
+				data-testid="next-stop"
+			>
+				<p class="flex items-center gap-2 type-label text-text-2">
+					<span class={['size-2.5 rounded-full', dot(next.kind)]} aria-hidden="true"
+					></span>{m.live_next()}
 				</p>
-				<div class="mt-2">
-					<Button
-						href={`${resolve('/navigate')}?trip=${data.trip.id}&day=${data.day}&leg=${nextIdx}`}
-						>{m.live_navigate()}</Button
+				<h2 class="type-h2 break-words">{next.name}</h2>
+				<p
+					class="flex flex-wrap items-center gap-x-4 gap-y-1 type-body text-text-2 tabular-nums"
+					data-testid="next-eta"
+				>
+					<span class="flex items-center gap-1.5"
+						><Clock size={18} aria-hidden="true" />{m.live_planned({
+							t: clock(raw[nextIdx]?.arrive_at ?? null)
+						})}</span
 					>
-				</div>
+					{#if legDur[nextIdx]}<span class="flex items-center gap-1.5"
+							><Car size={18} aria-hidden="true" />{m.live_drive({
+								n: Math.round(legDur[nextIdx]! / 60)
+							})}</span
+						>{/if}
+				</p>
 			</section>
+
+			{#if lateMin >= 20 && next.kind === 'place'}
+				<div
+					class="flex flex-col gap-3 rounded-lg bg-caution-50 p-4"
+					role="status"
+					data-testid="nudge-late"
+				>
+					<p class="flex gap-2.5 type-body text-text">
+						<TriangleAlert size={20} class="mt-0.5 shrink-0" aria-hidden="true" />
+						{m.nudge_late({ n: lateMin, place: next.name ?? '' })}
+					</p>
+					<div class="flex flex-wrap gap-2">
+						<form method="POST" action="?/skip" use:submitting>
+							<input type="hidden" name="day" value={data.day} />
+							<input type="hidden" name="entity_id" value={next.entity_id} />
+							<Button type="submit" variant="outline">{m.nudge_skip()}</Button>
+						</form>
+						<Button
+							variant="outline"
+							href={`${resolve('/crabby')}?ask=${encodeURIComponent(m.nudge_why_q({ place: next.name ?? '' }))}`}
+							>{m.nudge_why()}</Button
+						>
+					</div>
+				</div>
+			{:else if leaveNow}
+				<p
+					class="flex gap-2.5 rounded-lg bg-caution-50 p-4 type-body text-text"
+					role="status"
+					data-testid="nudge-leave"
+				>
+					<Clock size={20} class="mt-0.5 shrink-0" aria-hidden="true" />
+					{m.nudge_leave({ place: next.name ?? '' })}
+				</p>
+			{/if}
+
+			<div class="[&>*]:min-h-14 [&>*]:w-full">
+				<Button
+					href={`${resolve('/navigate')}?trip=${data.trip.id}&day=${data.day}&leg=${nextIdx}`}
+				>
+					{#snippet icon()}<Navigation size={22} aria-hidden="true" />{/snippet}
+					{m.live_navigate()}
+				</Button>
+			</div>
 		{:else}
-			<p class="type-body text-text-2">{m.live_done()}</p>
+			<p
+				class="flex items-center gap-2.5 rounded-lg bg-surface p-4 type-body text-text shadow-e1"
+				data-testid="live-done"
+			>
+				<CircleCheck size={20} class="shrink-0 text-ok" aria-hidden="true" />{m.live_done()}
+			</p>
 		{/if}
 
 		{#if push === 'off'}
-			<button
-				type="button"
-				class="self-start type-body text-text underline underline-offset-4"
-				onclick={async () => (push = (await enablePush()) ? 'on' : 'off')}
-			>
-				{m.push_enable()}
-			</button>
-			<p class="type-small text-text-2">{m.push_iphone()}</p>
+			<div class="flex flex-col items-start gap-2 rounded-lg bg-surface-2 p-4">
+				<Button
+					variant="outline"
+					onclick={async () => (push = (await enablePush()) ? 'on' : 'off')}
+				>
+					{#snippet icon()}<Bell size={20} aria-hidden="true" />{/snippet}
+					{m.push_enable()}
+				</Button>
+				<p class="type-small text-text-2">{m.push_iphone()}</p>
+			</div>
 		{/if}
 	</div>
 </Page>
