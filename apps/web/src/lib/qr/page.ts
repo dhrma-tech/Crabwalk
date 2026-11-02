@@ -14,25 +14,26 @@ export const esc = (s: string | number) =>
 	);
 const para = (s: string) => esc(s).replace(/\n/g, '<br>');
 
-// Suna in system fonts (design 4a, DECISIONS P10a-1): washi, sumi, aizome; hairlines, no radii; red = 112 only.
-const CSS = `:root{--bg:#f4f0e8;--sf:#f4f0e8;--bd:#d6cfc0;--tx:#1f1e1c;--t2:#5c584f;--mu:#5c584f;--ln:#2b3f5c;--cta:#2b3f5c;--oc:#f4f0e8;--em:#b3261e;--ok:#5f6f3e;--ca:#88661c;--dg:#c45a78;color-scheme:light}
-@media(prefers-color-scheme:dark){:root{--bg:#16171a;--sf:#16171a;--bd:#34363b;--tx:#ece7db;--t2:#a39e92;--mu:#a39e92;--ln:#9db4d6;--cta:#9db4d6;--oc:#16171a;--ok:#a5b47f;--ca:#d1a650;--dg:#e8a0b4;color-scheme:dark}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,"Noto Sans Devanagari",sans-serif;padding-bottom:96px}
-:lang(hi),:lang(mr){line-height:1.65}main{max-width:640px;margin:0 auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px}
-h1{font:600 26px/1.3 Georgia,serif;margin:0}h2{font:400 19px/1.4 Georgia,serif;margin:0 0 6px}p{margin:0}a{color:var(--tx)}
-.alt{color:var(--t2);margin-top:2px}.hero{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--bd);display:block}
-.card{border-top:1px solid var(--tx);padding-top:10px}.small{font-size:14px;color:var(--t2)}
-audio{width:100%}ul{margin:0;padding-left:20px}.near{list-style:none;padding:0}.near li{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--bd)}.near li:first-child{border:0}
-.st-open::before,.st-risky::before,.st-closed::before{content:"● "}.st-open::before{color:var(--ok)}.st-risky::before{color:var(--ca)}.st-closed::before{color:var(--dg)}b{font-weight:600}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:1px solid var(--tx);background:transparent;color:var(--tx);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
-.pri{background:var(--cta);border-color:var(--cta);color:var(--oc)}.row{display:flex;flex-wrap:wrap;gap:8px}
-.btn[aria-pressed=true]{background:var(--tx);border-color:var(--tx);color:var(--bg);opacity:1}
-.sos{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--bg);border-top:1px solid var(--bd)}
-.sos a,.sos button{flex:1;min-height:52px;border:0;font:inherit;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;text-decoration:none}
-.sos a{flex:1.3;background:var(--em);color:#fff}.sos button{background:var(--bg);color:var(--tx);border:1px solid var(--tx);font-weight:400}
-label{display:flex;gap:8px;align-items:center;min-height:44px}textarea{width:100%;font:inherit;border:1px solid var(--tx);background:transparent;color:var(--tx);padding:12px}
-summary{cursor:pointer;color:var(--tx);text-decoration:underline;text-underline-offset:4px;min-height:44px;display:flex;align-items:center}.sponsor{color:var(--mu);font-size:12px}.hp{display:none}
-:focus-visible{outline:2px solid var(--tx);outline-offset:3px}`;
+// Tideline in system fonts (Report 2 §9 item 14, T-42): app.css token values, white cards with --r-lg, kokum
+// actions, ok/caution/laterite status dots; --emergency red = the pinned 112 bar only. Georgia = title fallback.
+const CSS = `:root{--bg:#f7f5f0;--sf:#fff;--s2:#efece5;--bd:#e4dfd5;--tx:#15171a;--t2:#4a4f57;--ln:#0f6b66;--ko:#7a2048;--oko:#fff;--em:#c8102e;--gn:#2f7d4f;--ca:#8a5a00;--dg:#a8492e;--e1:0 1px 2px rgba(21,23,26,.04),0 4px 12px rgba(21,23,26,.05);color-scheme:light}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1215;--sf:#171b1f;--s2:#1f2429;--bd:#2a3036;--tx:#f2efe9;--t2:#b9bcc2;--ln:#5cc4bb;--ko:#e68ab0;--oko:#2a0716;--em:#d93036;--gn:#7cc69a;--ca:#e0b04a;--dg:#f08e6e;--e1:inset 0 0 0 1px rgba(255,255,255,.06);color-scheme:dark}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,"Noto Sans Devanagari",sans-serif;padding-bottom:104px}
+:lang(hi),:lang(mr){line-height:1.65}main{max-width:640px;margin:0 auto;padding:16px 20px;display:flex;flex-direction:column;gap:16px}
+h1{font:700 28px/1.25 Georgia,serif;margin:0}h2{font:600 20px/1.35 Georgia,serif;margin:0 0 8px}p{margin:0}a{color:var(--ln)}
+.alt{color:var(--t2);margin-top:2px}.hero{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--s2);display:block;border-radius:20px}
+.card{background:var(--sf);border-radius:20px;padding:16px;box-shadow:var(--e1)}.small{font-size:14px;color:var(--t2)}
+audio,input{accent-color:var(--ko)}audio{width:100%}ul{margin:0;padding-left:20px}.near{list-style:none;padding:0}.near li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--bd)}.near li:first-child{border:0}
+.st-open::before,.st-risky::before,.st-closed::before{content:"● "}.st-open::before{color:var(--gn)}.st-risky::before{color:var(--ca)}.st-closed::before{color:var(--dg)}b{font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--s2);color:var(--tx);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
+.pri{background:var(--ko);color:var(--oko)}.row{display:flex;flex-wrap:wrap;gap:8px}.col{display:flex;flex-direction:column;gap:12px;margin-top:8px}
+.btn[aria-pressed=true]{background:var(--tx);color:var(--bg);opacity:1}
+.sos{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--sf);border-top:1px solid var(--bd)}
+.sos a,.sos button{flex:1;min-height:52px;border:0;border-radius:16px;font:inherit;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.sos a{flex:1.3;background:var(--em);color:#fff}.sos button{background:var(--s2);color:var(--tx);font-weight:600}
+label{display:flex;gap:8px;align-items:center;min-height:44px}textarea{width:100%;font:inherit;border:1.5px solid transparent;border-radius:12px;background:var(--s2);color:var(--tx);padding:12px}textarea:focus{border-color:var(--tx);background:var(--sf);outline:0}
+summary{cursor:pointer;color:var(--ln);font-weight:600;min-height:44px;display:flex;align-items:center}.sponsor{color:var(--t2);font-size:14px}.hp{display:none}
+:focus-visible{outline:2px solid var(--ln);outline-offset:2px}`;
 
 // Scan beacon (position only if already granted), GPS-verified visit, emergency location share (P6-2).
 export const JS = `(()=>{const b=document.body.dataset,$=i=>document.getElementById(i),
@@ -63,7 +64,7 @@ function shell(lang: Lang, title: string, body: string, data: Record<string, str
 	const attrs = Object.entries(data)
 		.map(([k, v]) => ` data-${k.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase())}="${esc(v)}"`)
 		.join('');
-	return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F4F0E8"><title>${esc(title)} · Crabwalk</title><style>${CSS}</style></head><body${attrs}>${body}</body></html>`;
+	return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)"><title>${esc(title)} · Crabwalk</title><style>${CSS}</style></head><body${attrs}>${body}</body></html>`;
 }
 
 function langSwitch(lang: Lang, ret: string) {
@@ -87,7 +88,7 @@ function report(code: string, reported: boolean) {
 				`<label><input type="radio" name="type" value="${t}"${i ? '' : ' checked'}>${esc(msg(`report_type_${t}`))}</label>`
 		)
 		.join('');
-	return `<details id="report"><summary>${esc(m.report_problem())}</summary><form method="post" action="/q/${esc(code)}/report" class="card"><fieldset style="border:0;padding:0;margin:0"><legend class="small">${esc(m.report_problem())}</legend>${types}</fieldset><label style="flex-direction:column;align-items:stretch">${esc(m.report_details())}<textarea name="text" rows="3" maxlength="1000"></textarea></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="btn">${esc(m.report_send())}</button></form></details>`;
+	return `<details id="report" class="card"><summary>${esc(m.report_problem())}</summary><form method="post" action="/q/${esc(code)}/report" class="col"><fieldset style="border:0;padding:0;margin:0"><legend class="small">${esc(m.report_problem())}</legend>${types}</fieldset><label style="flex-direction:column;align-items:stretch">${esc(m.report_details())}<textarea name="text" rows="3" maxlength="1000"></textarea></label><input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"><button class="btn pri">${esc(m.report_send())}</button></form></details>`;
 }
 
 const section = (title: string, html: string) =>
