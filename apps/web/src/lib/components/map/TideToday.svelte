@@ -3,6 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import type { TideDay } from '#lib/tides.ts';
+	import Skeleton from '../Skeleton.svelte';
 
 	// Today's extremes for a station, attribution right next to the data (TideCheck terms, BACKEND §8).
 	let { station }: { station: string } = $props();
@@ -29,7 +30,7 @@
 		<Waves size={20} aria-hidden="true" />{m.map_tides()}
 	</h3>
 	{#if day === undefined}
-		<div class="h-5 w-2/3 bg-border" aria-hidden="true"></div>
+		<Skeleton class="h-5 w-2/3 rounded-sm" />
 	{:else if day === null || !day.extremes.length}
 		<p class="type-small text-text-2">{m.tide_unavailable()}</p>
 	{:else}

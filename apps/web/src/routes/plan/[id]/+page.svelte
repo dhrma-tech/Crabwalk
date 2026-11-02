@@ -33,14 +33,17 @@
 	type Routes = { days: { day: number; legs: (StripLeg & { to: { name: string } })[] }[] };
 	let routes = $state<Routes | null>(null);
 	let routesCached = $state(false);
+	let routesLoading = $state(true);
 	$effect(() => {
 		void data.days;
+		routesLoading = true;
 		fetch(`/api/trips/${data.trip.id}/routes`)
 			.then(async (r) => {
 				routesCached = r.ok;
 				routes = r.ok ? ((await r.json()) as Routes) : null;
 			})
-			.catch(() => (routesCached = false));
+			.catch(() => (routesCached = false))
+			.finally(() => (routesLoading = false));
 	});
 	async function applyMerge(a: Action, apply: boolean) {
 		await decide(a, apply);
@@ -121,6 +124,7 @@
 				editable
 				links={false}
 				routes={routes?.days ?? []}
+				{routesLoading}
 				add={data.add}
 				votes={data.votes}
 				onchange={(days) => patch({ days })}

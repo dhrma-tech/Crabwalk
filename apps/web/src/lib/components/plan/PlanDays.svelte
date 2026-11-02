@@ -26,6 +26,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatDate } from '#lib/format.ts';
 	import RouteStrip from './RouteStrip.svelte';
+	import Skeleton from '../Skeleton.svelte';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 
 	// FRONTEND §7.9: day tabs → timeline (time, travel time, reason chip) → drag to reorder → add stay/meal.
@@ -38,6 +39,7 @@
 		add = [],
 		votes = {},
 		routes = [],
+		routesLoading = false,
 		links = true,
 		onchange
 	}: {
@@ -46,6 +48,8 @@
 		add?: AddOption[][];
 		votes?: Record<string, { up: number; down: number }>;
 		routes?: { day: number; legs: (StripLeg & { to: { name: string } })[] }[];
+		/** The routes are still being fetched: hold the strip's space with a skeleton (Report 1 §2.4). */
+		routesLoading?: boolean;
 		links?: boolean;
 		onchange?: (days: { kind: PlanStop['kind']; entity_id: string }[][]) => void;
 	} = $props();
@@ -138,6 +142,8 @@
 			</h2>
 			{#if routes[i]?.legs.length}
 				<RouteStrip legs={routes[i]!.legs} label={m.plan_day_n({ n: i + 1 })} />
+			{:else if routesLoading && work[i]?.length}
+				<Skeleton class="aspect-[10/3] w-full rounded-lg print:hidden" />
 			{/if}
 			{#if !work[i]?.length}
 				<p class="type-body text-text-2">{m.plan_day_empty()}</p>

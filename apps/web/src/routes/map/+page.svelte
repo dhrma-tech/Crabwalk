@@ -13,6 +13,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import TopBar from '#lib/components/TopBar.svelte';
 	import Chip from '#lib/components/Chip.svelte';
+	import Skeleton from '#lib/components/Skeleton.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import IconButton from '#lib/components/IconButton.svelte';
 	import BottomSheet, { type Snap } from '#lib/components/BottomSheet.svelte';
@@ -70,16 +71,21 @@
 		agg: unknown;
 	};
 	let detail = $state<Detail | null>(focus as unknown as Detail | null);
+	let detailLoading = $state<string | null>(null);
 	$effect(() => {
 		const p = selected;
 		if (!p || detail?.slug === p.slug) return;
 		detail = null;
+		detailLoading = p.slug;
 		fetch(`/api/map/pin?${new URLSearchParams({ kind: p.kind, slug: p.slug })}`)
 			.then((r) => (r.ok ? (r.json() as Promise<Detail>) : null))
 			.then((d) => {
 				if (d && selected?.slug === p.slug) detail = d;
 			})
-			.catch(() => {});
+			.catch(() => {})
+			.finally(() => {
+				if (detailLoading === p.slug) detailLoading = null;
+			});
 	});
 
 	// P9 live & safety layers (FRONTEND §8, §6.9, §6.10).
@@ -241,6 +247,10 @@
 					alt={detail.photo.alt}
 					class="aspect-video w-full rounded-md object-cover"
 				/>{/if}
+		{:else if detailLoading === p.slug}
+			<!-- Report 1 §2.4: hold the verdict line and photo while the pin details load. -->
+			<Skeleton class="h-5 w-1/2 rounded-sm" />
+			<Skeleton class="aspect-video w-full rounded-md" />
 		{/if}
 		{#if p.tide_station_id}<TideToday station={p.tide_station_id} />{/if}
 		<div class="flex flex-wrap gap-2">

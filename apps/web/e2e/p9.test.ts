@@ -50,6 +50,29 @@ test('sign in; opt in and out of dwell time in Me (revocable)', async ({ browser
 	expect(r.status()).toBe(403);
 });
 
+test('offline packs: skeleton rows while the list loads, never a false "No packs"', async ({
+	browser
+}) => {
+	// Report 1 §2.4. No service worker, so the route below sees the request.
+	const ctx = await browser.newContext({ serviceWorkers: 'block' });
+	const p = await ctx.newPage();
+	await signIn(p, `p9-packs-${run}@e2e.local`);
+	let release!: () => void;
+	const gate = new Promise<void>((r) => (release = r));
+	await p.route('**/api/packs', async (route) => {
+		await gate;
+		await route.continue();
+	});
+	await p.goto('/me');
+	await expect(p.getByTestId('packs-loading')).toBeVisible();
+	await expect(p.getByTestId('packs')).toHaveAttribute('aria-busy', 'true');
+	await expect(p.getByText('No taluka packs saved')).toHaveCount(0);
+	release();
+	await expect(p.getByTestId('packs-loading')).toHaveCount(0);
+	await expect(p.getByTestId('pack-row').first()).toBeVisible();
+	await ctx.close();
+});
+
 test('map layers: heatmap legend names Live/Typical; tide slider with attribution; trails GPX', async () => {
 	await page.goto('/map');
 	await page.waitForLoadState('networkidle'); // hydrated: the layers toggle registers

@@ -4,6 +4,7 @@
 	import { formatNumber } from '#lib/format.ts';
 	import { deletePack, downloadPack, savedPacks, type Pack, type Saved } from '#lib/packs.ts';
 	import Button from './Button.svelte';
+	import Skeleton from './Skeleton.svelte';
 	import CircleCheck from '@lucide/svelte/icons/circle-check';
 	import Download from '@lucide/svelte/icons/download';
 
@@ -12,12 +13,15 @@
 	let saved = $state<Saved>({});
 	let busy = $state<string | null>(null);
 	let error = $state(false);
+	// Until the list arrives, skeleton rows — never "No packs" (Report 1 §2.4).
+	let loaded = $state(false);
 	const mb = (b: number) => formatNumber(Math.round(b / 104857.6) / 10);
 
 	onMount(async () => {
 		saved = await savedPacks();
 		const res = await fetch('/api/packs').catch(() => null);
 		packs = res?.ok ? await res.json() : Object.values(saved);
+		loaded = true;
 	});
 
 	async function toggle(p: Pack) {
@@ -36,10 +40,27 @@
 
 <!-- Tideline (T-37): an inset list; a saved pack shows an ok tick. No progress ring: the download is two fetches with
      no progress events, so the button shows the Crabby walker while it runs. -->
-<section class="flex flex-col gap-3" data-testid="packs">
+<section class="flex flex-col gap-3" data-testid="packs" aria-busy={!loaded}>
 	<h2 class="type-h2">{m.packs_title()}</h2>
 	<p class="type-small text-text-2">{m.packs_hint()}</p>
-	{#if !packs.length}
+	{#if !loaded}
+		<ul
+			class="divide-y divide-border overflow-hidden rounded-lg bg-surface shadow-e1"
+			aria-hidden="true"
+			data-testid="packs-loading"
+		>
+			{#each [0, 1] as i (i)}
+				<li class="flex items-center gap-3 px-4 py-3">
+					<Skeleton class="size-5 shrink-0 rounded-full" />
+					<div class="flex flex-1 flex-col gap-2">
+						<Skeleton class="h-5 w-1/2 rounded-sm" />
+						<Skeleton class="h-4 w-2/3 rounded-sm" />
+					</div>
+					<Skeleton class="h-11 w-28 shrink-0 rounded-full" />
+				</li>
+			{/each}
+		</ul>
+	{:else if !packs.length}
 		<p class="type-body text-text-2">{m.packs_none()}</p>
 	{:else}
 		<ul class="divide-y divide-border overflow-hidden rounded-lg bg-surface shadow-e1">
