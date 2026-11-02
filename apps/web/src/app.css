@@ -60,6 +60,8 @@
 	--bar-h: 56px;
 	--nav-h: calc(96px + env(safe-area-inset-bottom));
 	--dock-w: 360px;
+	/* Listing action bar on phones (T-47): pinned above the nav; pages keep this much room for it. */
+	--actions-h: 64px;
 	color-scheme: light;
 }
 @media (width >= 1024px) {

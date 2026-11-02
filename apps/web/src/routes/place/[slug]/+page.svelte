@@ -14,6 +14,7 @@
 	import { clock, msg } from '#lib/msg.ts';
 	import { formatNumber } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
+	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import CategoryIcon, { type Category } from '#lib/components/CategoryIcon.svelte';
@@ -234,6 +235,7 @@
 		</div>
 
 		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
+			<ActionBar type="place" slug={p.slug} name={primary} coords={p.coords} />
 			<div class="order-3 lg:order-none">
 				<VerdictGauge type="place" all={data.ratings.all} groups={data.ratings.groups} />
 			</div>

@@ -87,7 +87,7 @@
 	{/if}
 	{#if chips.length}
 		<div
-			class="fixed right-4 bottom-(--nav-h) z-bar flex flex-col items-end gap-2 lg:hidden print:hidden"
+			class="fixed right-4 bottom-[calc(var(--nav-h)+var(--actions-h)+8px)] z-bar flex flex-col items-end gap-2 lg:hidden print:hidden"
 		>
 			{#each chips as c (c)}
 				<button

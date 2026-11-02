@@ -10,6 +10,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
+	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import TagList from '#lib/components/TagList.svelte';
@@ -166,6 +167,7 @@
 		</div>
 
 		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
+			<ActionBar type="stay" slug={s.slug} name={primary} coords={s.coords} />
 			<div class="order-2 lg:order-none">
 				<VerdictGauge type="stay" all={data.ratings.all} groups={data.ratings.groups} />
 			</div>

@@ -6,6 +6,7 @@
 	import { msg } from '#lib/msg.ts';
 	import { formatINR, menuLine } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
+	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import NoPhoto from '#lib/components/NoPhoto.svelte';
@@ -147,6 +148,7 @@
 		</div>
 
 		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
+			<ActionBar type="eatery" slug={e.slug} name={primary} coords={e.coords} />
 			<div class="order-2 lg:order-none">
 				<VerdictGauge type="eatery" all={data.ratings.all} groups={data.ratings.groups} />
 			</div>
