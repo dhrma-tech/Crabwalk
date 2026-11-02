@@ -61,6 +61,9 @@ export default defineConfig(({ mode }) => ({
 					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
 			},
 			adapter: adapter(),
+			// Step G (Report 1 §3.4): inline the tiny per-component CSS files (Button, StatusBadge, Skeleton,
+			// NoPhoto: < 0.5 KB each) instead of one render-blocking request each; the 57 KB app CSS stays cached.
+			inlineStyleThreshold: 1024,
 			env: { dir: '../../' },
 			csp: csp(mode)
 		})
