@@ -19,7 +19,7 @@
 	);
 </script>
 
-<Page {title} back>
+<Page {title} back heading={false}>
 	{#if kind === 'missing'}
 		<ErrorState {title} body={m.not_found_body()} art="fort">
 			{#snippet action()}<Button href="/">{m.go_discover()}</Button>{/snippet}
@@ -27,18 +27,18 @@
 	{:else if kind === 'denied'}
 		<ErrorState {title} body={m.not_allowed_body()}>
 			{#snippet action()}
-				<div class="flex flex-wrap items-center gap-4">
+				<div class="flex flex-wrap items-center justify-center gap-3">
 					<Button href="/">{m.go_discover()}</Button>
 					<Button variant="ghost" href={loginHref(page.url)}>{m.sign_in()}</Button>
 				</div>
 			{/snippet}
 		</ErrorState>
 	{:else}
-		<ErrorState {title} body={m.error_body()}>
+		<ErrorState {title} body={m.error_body()} art="boat">
 			{#snippet action()}
-				<div class="flex flex-col items-start gap-3">
+				<div class="flex flex-col items-center gap-3">
 					<Button onclick={() => location.reload()}>{m.try_again()}</Button>
-					{#if page.error?.id}<p class="text-[12px] text-text-2">
+					{#if page.error?.id}<p class="type-small text-text-2">
 							{m.error_ref({ id: page.error.id })}
 						</p>{/if}
 				</div>
