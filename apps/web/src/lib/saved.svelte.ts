@@ -10,8 +10,13 @@ const key = (t: SavedKind, slug: string) => `${t}/${slug}`;
 const ids = new SvelteSet<string>();
 let loading: Promise<boolean> | null = null;
 
-/** Fetch the saved list once. Resolves false for a guest (401), and then retries next time (they may sign in). */
+// A guest has no Supabase auth cookie (@supabase/ssr sets it readable by scripts), so no request is made and no
+// 401 lands in the console on every listing page.
+const signedIn = () => document.cookie.includes('-auth-token');
+
+/** Fetch the saved list once. Resolves false for a guest (no cookie or 401), and then retries next time. */
 export function loadSaved() {
+	if (!signedIn()) return Promise.resolve(false);
 	loading ??= fetch('/api/saved')
 		.then(async (r) => {
 			if (!r.ok) {
