@@ -363,6 +363,14 @@
 <svelte:window bind:innerHeight />
 
 <Meta title={m.nav_map()} description={m.meta_map()} />
+<!-- Report 1 §3.4: open the connection to the tiles host while the page and MapLibre load. -->
+<svelte:head
+	>{#if PMTILES_BASE_URL}<link
+			rel="preconnect"
+			href={new URL(PMTILES_BASE_URL).origin}
+			crossorigin="anonymous"
+		/>{/if}</svelte:head
+>
 
 <TopBar title={m.nav_map()} />
 <main id="main" class="relative min-h-0 flex-1">

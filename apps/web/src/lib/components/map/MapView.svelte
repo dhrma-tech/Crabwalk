@@ -24,6 +24,7 @@
 	import type { FeatureCollection, Point } from 'geojson';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { buildStyle, ATTRIBUTION_OLA, mapColors, type MapTheme } from '#lib/map/style.ts';
+	type MapColors = ReturnType<typeof mapColors>;
 	import { addPinImages, type UtilityType } from '#lib/map/icons.ts';
 	import { tideState } from '#lib/tides.ts';
 	import { offlineData, savedPacks } from '#lib/packs.ts';
@@ -122,6 +123,158 @@
 		map?.flyTo({ center: [lon, lat], zoom: Math.max(map.getZoom(), 14) });
 	}
 
+	// P9 live & safety layers (FRONTEND §8), under the pins and above the basemap. Created on first use only
+	// (Report 1 §3.4: fewer layers and shaders to build before the first frame); a restyle drops them and
+	// loadLayers() adds back the ones that are on.
+	const LAZY: Record<keyof Layers, (m: MLMap, c: MapColors) => void> = {
+		heat: (m: MLMap, c: MapColors) => {
+			m.addSource('heat', { type: 'geojson', data: EMPTY });
+			m.addLayer(
+				{
+					id: 'heat',
+					type: 'heatmap',
+					source: 'heat',
+					maxzoom: 16,
+					paint: {
+						'heatmap-weight': ['get', 'weight'],
+						'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 18, 14, 40],
+						'heatmap-opacity': 0.75,
+						'heatmap-color': [
+							'interpolate',
+							['linear'],
+							['heatmap-density'],
+							0,
+							c.heat[0],
+							0.3,
+							c.heat[1],
+							0.7,
+							c.heat[2],
+							1,
+							c.heat[3]
+						]
+					}
+				},
+				'util'
+			);
+			// Every point names its source (acceptance: the heatmap labels its data source every time).
+			m.addLayer(
+				{
+					id: 'heat-label',
+					type: 'symbol',
+					source: 'heat',
+					minzoom: 12,
+					layout: {
+						'text-field': ['match', ['get', 'source'], 'live', heatLabels.live, heatLabels.typical],
+						'text-font': ['Anek'],
+						'text-size': 12,
+						'text-offset': [0, 1.6]
+					},
+					paint: { 'text-color': c.label, 'text-halo-color': c.halo, 'text-halo-width': 1.5 }
+				},
+				'route-casing'
+			);
+		},
+		trails: (m: MLMap, c: MapColors) => {
+			m.addSource('trails', { type: 'geojson', data: EMPTY });
+			m.addLayer(
+				{
+					id: 'trails',
+					type: 'line',
+					source: 'trails',
+					paint: {
+						'line-width': ['interpolate', ['linear'], ['zoom'], 10, 2, 15, 5],
+						'line-dasharray': [2, 1.5],
+						'line-color': [
+							'match',
+							['get', 'difficulty'],
+							'easy',
+							c.ok,
+							'moderate',
+							c.caution,
+							'hard',
+							c.danger,
+							c.unknown
+						]
+					}
+				},
+				'util'
+			);
+		},
+		alerts: (m: MLMap, c: MapColors) => {
+			m.addSource('alerts', { type: 'geojson', data: EMPTY });
+			const sev = [
+				'match',
+				['get', 'severity'],
+				'danger',
+				c.danger,
+				c.caution
+			] as unknown as string;
+			m.addLayer(
+				{
+					id: 'alerts-fill',
+					type: 'fill',
+					source: 'alerts',
+					filter: ['==', ['geometry-type'], 'Polygon'],
+					paint: { 'fill-color': sev, 'fill-opacity': 0.25 }
+				},
+				'util'
+			);
+			m.addLayer(
+				{
+					id: 'alerts-line',
+					type: 'line',
+					source: 'alerts',
+					filter: ['!=', ['geometry-type'], 'Point'],
+					paint: { 'line-color': sev, 'line-width': 5 }
+				},
+				'util'
+			);
+			m.addLayer(
+				{
+					id: 'alerts-point',
+					type: 'circle',
+					source: 'alerts',
+					filter: ['==', ['geometry-type'], 'Point'],
+					paint: {
+						'circle-radius': 12,
+						'circle-color': sev,
+						'circle-stroke-width': 3,
+						'circle-stroke-color': c.ring
+					}
+				},
+				'route-casing'
+			);
+		},
+		tides: (m: MLMap, c: MapColors) => {
+			m.addSource('tides', { type: 'geojson', data: EMPTY });
+			m.addLayer(
+				{
+					id: 'tides',
+					type: 'circle',
+					source: 'tides',
+					paint: {
+						'circle-radius': 20,
+						'circle-color': 'rgba(0,0,0,0)',
+						'circle-stroke-width': 4,
+						'circle-stroke-color': [
+							'match',
+							['get', 'state'],
+							'ok',
+							c.ok,
+							'cut',
+							c.caution,
+							c.unknown
+						]
+					}
+				},
+				'pin'
+			);
+		}
+	};
+	function ensureLayer(k: keyof Layers) {
+		if (map && !map.getSource(k)) LAZY[k](map, mapColors(theme()));
+	}
+
 	async function overlays() {
 		const m = map!;
 		const c = mapColors(theme());
@@ -207,130 +360,6 @@
 				'icon-allow-overlap': true
 			}
 		});
-		// P9 live & safety layers (FRONTEND §8): under the pins, above the basemap.
-		m.addSource('heat', { type: 'geojson', data: EMPTY });
-		m.addLayer(
-			{
-				id: 'heat',
-				type: 'heatmap',
-				source: 'heat',
-				maxzoom: 16,
-				paint: {
-					'heatmap-weight': ['get', 'weight'],
-					'heatmap-radius': ['interpolate', ['linear'], ['zoom'], 8, 18, 14, 40],
-					'heatmap-opacity': 0.75,
-					'heatmap-color': [
-						'interpolate',
-						['linear'],
-						['heatmap-density'],
-						0,
-						c.heat[0],
-						0.3,
-						c.heat[1],
-						0.7,
-						c.heat[2],
-						1,
-						c.heat[3]
-					]
-				}
-			},
-			'util'
-		);
-		// Every point names its source (acceptance: the heatmap labels its data source every time).
-		m.addLayer({
-			id: 'heat-label',
-			type: 'symbol',
-			source: 'heat',
-			minzoom: 12,
-			layout: {
-				'text-field': ['match', ['get', 'source'], 'live', heatLabels.live, heatLabels.typical],
-				'text-font': ['Anek'],
-				'text-size': 12,
-				'text-offset': [0, 1.6]
-			},
-			paint: { 'text-color': c.label, 'text-halo-color': c.halo, 'text-halo-width': 1.5 }
-		});
-		m.addSource('trails', { type: 'geojson', data: EMPTY });
-		m.addLayer(
-			{
-				id: 'trails',
-				type: 'line',
-				source: 'trails',
-				paint: {
-					'line-width': ['interpolate', ['linear'], ['zoom'], 10, 2, 15, 5],
-					'line-dasharray': [2, 1.5],
-					'line-color': [
-						'match',
-						['get', 'difficulty'],
-						'easy',
-						c.ok,
-						'moderate',
-						c.caution,
-						'hard',
-						c.danger,
-						c.unknown
-					]
-				}
-			},
-			'util'
-		);
-		m.addSource('alerts', { type: 'geojson', data: EMPTY });
-		const sev = ['match', ['get', 'severity'], 'danger', c.danger, c.caution] as unknown as string;
-		m.addLayer(
-			{
-				id: 'alerts-fill',
-				type: 'fill',
-				source: 'alerts',
-				filter: ['==', ['geometry-type'], 'Polygon'],
-				paint: { 'fill-color': sev, 'fill-opacity': 0.25 }
-			},
-			'util'
-		);
-		m.addLayer(
-			{
-				id: 'alerts-line',
-				type: 'line',
-				source: 'alerts',
-				filter: ['!=', ['geometry-type'], 'Point'],
-				paint: { 'line-color': sev, 'line-width': 5 }
-			},
-			'util'
-		);
-		m.addLayer({
-			id: 'alerts-point',
-			type: 'circle',
-			source: 'alerts',
-			filter: ['==', ['geometry-type'], 'Point'],
-			paint: {
-				'circle-radius': 12,
-				'circle-color': sev,
-				'circle-stroke-width': 3,
-				'circle-stroke-color': c.ring
-			}
-		});
-		m.addSource('tides', { type: 'geojson', data: EMPTY });
-		m.addLayer(
-			{
-				id: 'tides',
-				type: 'circle',
-				source: 'tides',
-				paint: {
-					'circle-radius': 20,
-					'circle-color': 'rgba(0,0,0,0)',
-					'circle-stroke-width': 4,
-					'circle-stroke-color': [
-						'match',
-						['get', 'state'],
-						'ok',
-						c.ok,
-						'cut',
-						c.caution,
-						c.unknown
-					]
-				}
-			},
-			'pin'
-		);
 		m.addSource('route', { type: 'geojson', data: EMPTY });
 		m.addLayer({
 			id: 'route-casing',
@@ -401,6 +430,7 @@
 
 	async function loadLayers() {
 		if (!map || !ready) return;
+		for (const k of Object.keys(LAZY) as (keyof Layers)[]) if (layers[k]) ensureLayer(k);
 		const [heat, alerts, trails, tides] = await Promise.all([
 			layers.heat ? fetchFC('/api/map/heatmap') : EMPTY,
 			layers.alerts ? fetchFC('/api/map/alerts') : EMPTY,
@@ -566,7 +596,9 @@
 						[h.minLon - 0.2, h.minLat - 0.2],
 						[h.maxLon + 0.2, h.maxLat + 0.2]
 					],
-					attributionControl: { compact: false }
+					attributionControl: { compact: false },
+					// No symbol fade-in (Report 1 §3.4): labels and pins draw at once, less work per frame.
+					fadeDuration: 0
 				});
 				map = mm;
 				if (onpick) mm.on('click', (e) => onpick([e.lngLat.lng, e.lngLat.lat]));
