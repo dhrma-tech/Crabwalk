@@ -90,10 +90,12 @@ test.describe('with seed data', () => {
 			lonlat
 		);
 		await page.waitForResponse((r) => r.url().includes('/api/map/pins'), { timeout: 20_000 });
-		await page.waitForTimeout(1000);
 		const box = (await page.getByTestId('map').boundingBox())!;
-		await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
-		await expect(page.getByTestId('pin-sheet')).toBeVisible({ timeout: 10_000 });
+		// The pin draws a frame or more after the response (slower under a full run): click until it opens.
+		await expect(async () => {
+			await page.mouse.click(box.x + box.width / 2, box.y + box.height / 2);
+			await expect(page.getByTestId('pin-sheet')).toBeVisible({ timeout: 1_000 });
+		}).toPass({ timeout: 15_000 });
 		await expect(page.getByTestId('tides')).toContainText('Tide data by TideCheck');
 		await expect(page.getByRole('link', { name: 'Tide data by TideCheck' })).toHaveAttribute(
 			'href',

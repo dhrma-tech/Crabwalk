@@ -158,9 +158,10 @@ test('reorder re-times and flags a stop moved outside its hours', async () => {
 	await expect(first).toContainText(`P7 morning ${run}`);
 	// Move the 09:00–11:00 stop below lunch: it can no longer fit its hours.
 	await first.getByRole('button', { name: 'Move down' }).click();
+	// Waits for the PATCH + re-timed reload, which takes longer than 5 s under a slow full run.
 	await expect(
 		owner.getByTestId('plan-stop').filter({ hasText: `P7 morning ${run}` })
-	).toContainText('May be closed at this time');
+	).toContainText('May be closed at this time', { timeout: 15_000 });
 });
 
 test('guest votes without login; owner sees the tally', async ({ browser }) => {
