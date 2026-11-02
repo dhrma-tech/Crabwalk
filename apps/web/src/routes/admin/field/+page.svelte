@@ -7,17 +7,22 @@
 	import { toast } from '#lib/toast.svelte.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
+	import Segmented from '#lib/components/Segmented.svelte';
+	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { categoryIcons } from '#lib/components/CategoryIcon.svelte';
 	import { processPhoto, type Processed } from '#lib/field/photos.ts';
 	import { all, flush, put, send, type Submission } from '#lib/field/queue.ts';
 	import type { PageProps } from './$types';
 
 	// Verifier field form (FRONTEND §7.15, PLAN P4 task 1). The fixed checklist = the same fact fields on every
-	// visit (DECISIONS P4-5). Offline-first: everything goes through the IndexedDB queue.
+	// visit (DECISIONS P4-5). Offline-first: everything goes through the IndexedDB queue. Desk mode (T-49): the place
+	// was researched online, so no GPS — the point is typed or tapped on the map (loaded only in desk mode, keeping
+	// the on-site form light), photos come from files, and a place cites its sources.
 	let { data }: PageProps = $props();
 
 	type Kind = 'places' | 'stays' | 'eateries';
 	let kind = $state<Kind>('places');
+	let mode = $state<'field' | 'desk'>('field');
 	const days = [1, 2, 3, 4, 5, 6, 0];
 	const blankHours = () => days.map((d) => ({ weekday: d, opens: '', closes: '', closed: false }));
 
@@ -46,6 +51,7 @@
 			hours: blankHours(),
 			crowd: {} as Record<number, string>,
 			notes: '',
+			sources: '',
 			vibes: [] as string[],
 			style: '',
 			amenities: {} as Record<string, boolean>,
@@ -86,16 +92,31 @@
 				f.lat = p.coords.latitude.toFixed(6);
 				accuracy = Math.round(p.coords.accuracy);
 				gps = 'idle';
-				const r = await fetch(`/api/admin/taluka-at?lon=${f.lon}&lat=${f.lat}`)
-					.then((x) => (x.ok ? (x.json() as Promise<{ taluka_id: string | null }>) : null))
-					.catch(() => null);
-				if (r?.taluka_id && data.talukas.some((t) => t.id === r.taluka_id))
-					f.taluka_id = r.taluka_id;
+				await detectTaluka();
 			},
 			() => (gps = 'denied'),
 			{ enableHighAccuracy: true, timeout: 20000 }
 		);
 	}
+
+	async function detectTaluka() {
+		const r = await fetch(`/api/admin/taluka-at?lon=${f.lon}&lat=${f.lat}`)
+			.then((x) => (x.ok ? (x.json() as Promise<{ taluka_id: string | null }>) : null))
+			.catch(() => null);
+		if (r?.taluka_id && data.talukas.some((t) => t.id === r.taluka_id)) f.taluka_id = r.taluka_id;
+	}
+
+	function pick([lon, lat]: [number, number]) {
+		f.lon = lon.toFixed(6);
+		f.lat = lat.toFixed(6);
+		accuracy = null;
+		void detectTaluka();
+	}
+	const picked = $derived<[number, number] | null>(
+		f.lon !== '' && f.lat !== '' && Number.isFinite(+f.lon) && Number.isFinite(+f.lat)
+			? [+f.lon, +f.lat]
+			: null
+	);
 
 	async function addPhotos(e: Event) {
 		const files = [...((e.target as HTMLInputElement).files ?? [])];
@@ -149,7 +170,9 @@
 				crowd: Object.entries(f.crowd)
 					.filter(([, l]) => l)
 					.map(([w, l]) => ({ weekday: Number(w), level: l })),
-				notes: f.notes
+				notes: f.notes,
+				verification_method: mode,
+				source_urls: mode === 'desk' ? f.sources.split(/\s+/).filter(Boolean) : []
 			};
 		if (kind === 'stays')
 			return {
@@ -182,6 +205,13 @@
 
 	async function submit(e: SubmitEvent) {
 		e.preventDefault();
+		const sources = f.sources.split(/\s+/).filter(Boolean);
+		if (
+			mode === 'desk' &&
+			kind === 'places' &&
+			(sources.length > 10 || sources.some((u) => !/^https:\/\/\S+\.\S+/.test(u)))
+		)
+			return toast(m.field_sources_invalid());
 		busy = true;
 		const id = crypto.randomUUID();
 		const s: Submission = {
@@ -227,6 +257,18 @@
 			</p>
 		{/if}
 
+		<div class={card}>
+			<p class="type-h3">{m.field_mode()}</p>
+			<Segmented
+				label={m.field_mode()}
+				options={[
+					{ value: 'field', label: m.mode_field() },
+					{ value: 'desk', label: m.mode_desk() }
+				]}
+				bind:value={mode}
+			/>
+		</div>
+
 		<fieldset class={chips}>
 			<legend class={legend}>{m.field_type()}</legend>
 			{#each [['places', m.type_place], ['stays', m.type_stay], ['eateries', m.type_eatery]] as const as [k, l] (k)}
@@ -258,18 +300,37 @@
 
 		<fieldset class={card}>
 			<legend class={legend}>{m.field_location()}</legend>
-			<div>
-				<Button variant="secondary" onclick={locate} loading={gps === 'busy'}
-					>{#snippet icon()}<LocateFixed
-							size={20}
-							aria-hidden="true"
-						/>{/snippet}{m.gps_use()}</Button
-				>
-			</div>
-			{#if gps === 'denied'}<p class="type-small" role="alert">{m.gps_denied()}</p>{/if}
-			{#if accuracy != null}<p class="type-small text-text-2">
-					{m.gps_accuracy({ m: accuracy })}
-				</p>{/if}
+			{#if mode === 'field'}
+				<div>
+					<Button variant="secondary" onclick={locate} loading={gps === 'busy'}
+						>{#snippet icon()}<LocateFixed
+								size={20}
+								aria-hidden="true"
+							/>{/snippet}{m.gps_use()}</Button
+					>
+				</div>
+				{#if gps === 'denied'}<p class="type-small" role="alert">{m.gps_denied()}</p>{/if}
+				{#if accuracy != null}<p class="type-small text-text-2">
+						{m.gps_accuracy({ m: accuracy })}
+					</p>{/if}
+			{:else}
+				<p class="type-small text-text-2">{m.field_map_pick()}</p>
+				{#if PMTILES_BASE_URL}
+					{#await import('#lib/components/map/MapView.svelte') then { default: MapView }}
+						<div class="h-64 overflow-hidden rounded-md" data-testid="desk-map">
+							<MapView
+								tilesBase={PMTILES_BASE_URL.replace(/\/$/, '')}
+								showPins={false}
+								me={picked}
+								initial={picked ? { lon: picked[0], lat: picked[1] } : null}
+								onpick={pick}
+								onselect={() => {}}
+								onerror={() => {}}
+							/>
+						</div>
+					{/await}
+				{/if}
+			{/if}
 			<div class="grid grid-cols-2 gap-3">
 				<label class={label}
 					>{m.field_lat()}<input
@@ -301,18 +362,33 @@
 			</label>
 		</fieldset>
 
+		{#if mode === 'desk' && kind === 'places'}
+			<!-- A desk place must say where it was checked (T-48): 1–10 https links, shown to reviewers. -->
+			<label class={[label, 'rounded-lg bg-surface p-4 shadow-e1']}
+				>{m.field_sources()}<textarea
+					class="field p-3 type-body text-text"
+					rows="3"
+					required
+					placeholder="https://"
+					bind:value={f.sources}
+					name="source_urls"></textarea></label
+			>
+		{/if}
+
 		<fieldset class={card}>
-			<legend class={legend}>{m.field_photos()}</legend>
+			<legend class={legend}>{mode === 'field' ? m.field_photos() : m.field_photos_files()}</legend>
 			<label
 				class={[
 					box,
 					'w-fit cursor-pointer has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus'
 				]}
-				><Camera size={20} aria-hidden="true" />{m.field_photos()}
+				><Camera size={20} aria-hidden="true" />{mode === 'field'
+					? m.field_photos()
+					: m.field_photos_files()}
 				<input
 					type="file"
 					accept="image/*"
-					capture="environment"
+					capture={mode === 'field' ? 'environment' : undefined}
 					multiple
 					class="sr-only"
 					onchange={addPhotos}

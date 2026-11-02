@@ -58,7 +58,8 @@
 		onerror,
 		onfeature,
 		oninfo,
-		onpins
+		onpins,
+		onpick
 	}: {
 		tilesBase: string;
 		kinds?: string[];
@@ -76,6 +77,8 @@
 		oninfo?: (info: LayerInfo) => void;
 		/** Pins drawn after each load (the laptop results list, Report 2 §9.3). */
 		onpins?: (pins: Pin[]) => void;
+		/** A tap on the map itself (desk entry picks a point, T-49): [lon, lat]. */
+		onpick?: (at: [number, number]) => void;
 		/** Open zoomed in on this point (place → map hand-off, Report 1 §4.3). */
 		initial?: { lon: number; lat: number } | null;
 		/** Pixels hidden under a bottom sheet: the camera centres in the visible part above it. */
@@ -566,6 +569,7 @@
 					attributionControl: { compact: false }
 				});
 				map = mm;
+				if (onpick) mm.on('click', (e) => onpick([e.lngLat.lng, e.lngLat.lat]));
 				// Laptops: top-right, clear of the collapsed Crabby button in the bottom-right corner (T-26).
 				const corner = matchMedia('(min-width: 1024px)').matches ? 'top-right' : 'bottom-right';
 				mm.addControl(new maplibregl.NavigationControl({ showCompass: false }), corner);

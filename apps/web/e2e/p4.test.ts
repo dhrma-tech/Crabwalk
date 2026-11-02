@@ -10,6 +10,58 @@ const run = Date.now().toString(36);
 
 const name = `E2E Cove ${run}`;
 
+test('desk entry: no GPS, point from the map or typed, sources required; page says "Checked online"', async ({
+	browser
+}) => {
+	// T-48 / T-49: a place researched online is never shown as "Visited".
+	const v = await userWithRole(browser, `desk-${run}@e2e.local`, 'verifier');
+	await v.page.goto('/admin/field');
+	await v.page.waitForLoadState('networkidle');
+	const form = v.page.getByTestId('field-form');
+	await form.getByRole('radio', { name: 'From desk' }).click();
+	await expect(form.getByRole('button', { name: 'Use my location' })).toHaveCount(0);
+	await expect(form.locator('input[type="file"]')).not.toHaveAttribute('capture');
+	if (process.env.E2E_TILES) {
+		// Tap the map: the point fills lat/lng (the map loads only in desk mode).
+		const map = form.getByTestId('desk-map');
+		await expect(map.locator('canvas')).toBeVisible();
+		await expect
+			.poll(async () => {
+				await map.click({ position: { x: 120, y: 120 } });
+				return form.locator('input[name="lat"]').inputValue();
+			})
+			.toMatch(/^\d+\.\d{6}$/);
+	}
+	const deskName = `E2E Desk ${run}`;
+	await form.locator('input[name="name_en"]').fill(deskName);
+	await form.locator('input[name="lat"]').fill('16.9970');
+	await form.locator('input[name="lon"]').fill('73.2910');
+	await form.locator('select[name="taluka_id"]').selectOption({ label: 'Ratnagiri' });
+	await form.locator('select[name="category"]').selectOption('beach');
+	await form.locator('textarea[name="source_urls"]').fill('http://example.org/not-https');
+	await form.getByRole('button', { name: 'Submit for review' }).click();
+	await expect(v.page.getByText('Add 1 to 10 sources')).toBeVisible();
+	await form
+		.locator('textarea[name="source_urls"]')
+		.fill('https://example.org/desk-a\nhttps://example.org/desk-b');
+	await form.getByRole('button', { name: 'Submit for review' }).click();
+	await expect(v.page.getByText('Sent for review')).toBeVisible();
+
+	const where = `from places p join place_translations t on t.place_id = p.id where t.name = '${deskName}'`;
+	await expect
+		.poll(() =>
+			psql(`select p.verification_method || ' ' || array_to_string(p.source_urls, ',') ${where}`)
+		)
+		.toBe('desk https://example.org/desk-a,https://example.org/desk-b');
+	const slug = psql(`select p.slug ${where}`);
+	psql(`update places set status = 'published' where slug = '${slug}'`);
+	const anon = await browser.newPage();
+	await anon.goto(`/place/${slug}`);
+	await expect(anon.getByText(/^Checked online · \d/)).toBeVisible();
+	await expect(anon.getByText(/^Visited ·/)).toHaveCount(0);
+	await anon.close();
+});
+
 test('verifier creates a place in the field; it appears after reviewer approval', async ({
 	browser
 }) => {
