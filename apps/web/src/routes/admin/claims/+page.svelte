@@ -9,11 +9,11 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.claims_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
+<Page title={m.claims_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<p class="type-small text-text-2">{m.claim_call_first()}</p>
 		{#each data.claims as c (c.id)}
-			<article class="flex flex-col gap-2 border border-border bg-surface p-4">
+			<article class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1">
 				<p class="type-h3">
 					{c.name} · <span class="type-small text-text-2">{msg(`type_${c.type}`)}</span>
 				</p>

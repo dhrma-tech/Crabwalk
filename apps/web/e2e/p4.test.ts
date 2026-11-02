@@ -156,7 +156,13 @@ test('owner claims a stay, admin approves, owner edits facts only', async ({ bro
 	psql(
 		`insert into user_roles (user_id, role) select id, 'admin' from auth.users where email = 'admin-${run}@e2e.local'`
 	);
-	await ap.goto('/admin/claims');
+	// Queue counter (Report 1 §4.8): the pending claim is counted and the tile opens the queue.
+	await ap.goto('/admin');
+	await ap
+		.getByTestId('queue-counter')
+		.getByRole('link', { name: /^[1-9]\d* Owner claims$/ })
+		.click();
+	await expect(ap).toHaveURL(/\/admin\/claims$/);
 	await ap
 		.locator('article', { hasText: ownerEmail })
 		.getByRole('button', { name: 'Approve' })

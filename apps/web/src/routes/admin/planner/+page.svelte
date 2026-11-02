@@ -7,17 +7,12 @@
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
-	const field = 'h-11 w-28 border-b border-text bg-bg type-body text-text';
+	const field = 'field h-12 w-28 px-3 type-body text-text';
 </script>
 
-<Page title={m.planner_settings()} back>
-	<form
-		method="POST"
-		action="?/save"
-		use:submitting
-		class="mx-auto flex max-w-[680px] flex-col gap-6"
-	>
-		<section class="flex flex-col gap-3">
+<Page title={m.planner_settings()} back tool>
+	<form method="POST" action="?/save" use:submitting class="mx-auto flex max-w-170 flex-col gap-4">
+		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.budget_fuel()}</h2>
 			<p class="type-small text-text-2">{m.planner_fuel_hint()}</p>
 			<label class="flex items-center justify-between gap-3 type-body"
@@ -41,7 +36,7 @@
 				/></label
 			>
 		</section>
-		<section class="flex flex-col gap-3">
+		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.planner_visit_minutes()}</h2>
 			{#each data.cats as c (c.category)}
 				<label class="flex items-center justify-between gap-3 type-body"

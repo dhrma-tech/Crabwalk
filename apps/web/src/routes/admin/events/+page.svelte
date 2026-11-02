@@ -8,7 +8,7 @@
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
-	const field = 'h-11 w-full border-b border-text bg-bg type-body text-text';
+	const field = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 	type Ev = {
 		id: string;
 		name_en: string;
@@ -102,9 +102,9 @@
 	</form>
 {/snippet}
 
-<Page title={m.events_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
-		<section class="flex flex-col gap-3 border border-border bg-surface p-4">
+<Page title={m.events_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
+		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.event_add()}</h2>
 			{@render editor(blank)}
 			{#if form?.saved}<p class="type-small" role="status">{m.owner_saved()}</p>{/if}
@@ -112,7 +112,7 @@
 		</section>
 		<ul class="flex flex-col gap-3">
 			{#each data.events as e (e.id)}
-				<li class="border border-border bg-surface p-4">
+				<li class="rounded-lg bg-surface p-4 shadow-e1">
 					<details>
 						<summary class="flex min-h-11 cursor-pointer flex-wrap items-center gap-2">
 							<span class="type-h3">{e.name_en}</span>

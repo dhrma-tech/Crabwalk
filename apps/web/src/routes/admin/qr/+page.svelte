@@ -8,11 +8,11 @@
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
-	const field = 'min-h-11 w-full border-b border-text bg-bg type-body text-text';
+	const field = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 </script>
 
-<Page title={m.qr_admin_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
+<Page title={m.qr_admin_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<nav class="flex flex-wrap items-center gap-2" aria-label={m.qr_admin_type()}>
 			<span class="type-small text-text-2">{m.qr_admin_type()}</span>
 			{#each data.types as t (t)}
@@ -20,8 +20,8 @@
 					href="{resolve('/admin/qr')}?type={t}"
 					aria-current={t === data.type ? 'page' : undefined}
 					class={[
-						'flex min-h-11 items-center border border-border px-4 type-small no-underline',
-						t === data.type ? 'bg-text text-bg' : 'bg-raised text-text'
+						'flex min-h-11 items-center rounded-full px-4 type-label no-underline',
+						t === data.type ? 'bg-text text-bg' : 'bg-surface-2 text-text'
 					]}>{msg(`qr_type_${t}`)}</a
 				>
 			{/each}
@@ -31,7 +31,7 @@
 			method="POST"
 			action="?/create"
 			use:submitting
-			class="flex flex-col gap-3 border border-border bg-surface p-4"
+			class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1"
 		>
 			<input type="hidden" name="type" value={data.type} />
 			<label class="flex flex-col gap-1.5 type-small text-text-2">
@@ -48,7 +48,7 @@
 		{#if data.codes.length}
 			<ul class="flex flex-col gap-3">
 				{#each data.codes as c (c.code)}
-					<li class="flex flex-col gap-3 border border-border bg-surface p-4">
+					<li class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 						<div class="flex flex-wrap items-baseline justify-between gap-2">
 							<a href={resolve('/q/[code]', { code: c.code })} class="type-h3">{c.code}</a>
 							<span class="type-small text-text-2"

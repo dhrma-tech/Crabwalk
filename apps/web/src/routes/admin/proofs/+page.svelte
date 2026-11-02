@@ -10,11 +10,11 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.proofs_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
+<Page title={m.proofs_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#each data.proofs as p (p.id)}
 			<article
-				class="flex flex-col gap-2 border border-border bg-surface p-4"
+				class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1"
 				data-testid="pending-proof"
 			>
 				<p class="type-h3">

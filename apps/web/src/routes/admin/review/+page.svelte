@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -10,22 +11,22 @@
 	let { data, form }: PageProps = $props();
 </script>
 
-<Page title={m.review_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
+<Page title={m.review_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.items.length}
 			<ul
-				class="flex flex-col divide-y divide-border border-t border-text"
+				class="divide-y divide-border overflow-hidden rounded-lg bg-surface shadow-e1"
 				data-testid="review-queue"
 			>
 				{#each data.items as it (it.id)}
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: it.type, id: it.id })}
-							class="row-link flex justify-between gap-3 py-3 text-text no-underline"
+							class="row-link flex min-h-14 items-center gap-3 px-4 py-2.5 text-text no-underline"
 						>
-							<span class="type-body">{it.name}</span><span class="type-small text-text-2"
-								>{msg(`type_${it.type}`)}</span
-							>
+							<span class="min-w-0 flex-1 type-body-strong">{it.name}</span><span
+								class="type-small text-text-2">{msg(`type_${it.type}`)}</span
+							><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" />
 						</a>
 					</li>
 				{/each}
@@ -41,7 +42,7 @@
 					<li>
 						<a
 							href={resolve('/admin/review/[type]/[id]', { type: 'dish', id: d.id })}
-							class="inline-flex min-h-11 items-center border border-text px-4 type-small text-text no-underline hover:bg-text/5"
+							class="row-link inline-flex min-h-11 items-center rounded-full border border-border px-4 type-label text-text no-underline"
 							>{d.name ?? d.slug}</a
 						>
 					</li>

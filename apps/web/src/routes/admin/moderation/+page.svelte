@@ -10,11 +10,11 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.moderation_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
+<Page title={m.moderation_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#each data.reviews as r (r.id)}
 			<article
-				class="flex flex-col gap-2 border border-border bg-surface p-4"
+				class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1"
 				data-testid="pending-review"
 			>
 				<p class="type-small text-text-2">
@@ -25,8 +25,8 @@
 				{#if r.text}<p class="type-body whitespace-pre-line">{r.text}</p>{/if}
 				{#if r.ai_flag}<p
 						class={[
-							'self-start px-3 py-0.5 type-small',
-							r.ai_flag === 'flagged' ? 'bg-sakura text-text' : 'bg-raised text-text-2'
+							'self-start rounded-full px-3 py-0.5 type-small',
+							r.ai_flag === 'flagged' ? 'bg-danger-50 text-text' : 'bg-surface-2 text-text-2'
 						]}
 						data-testid="ai-flag"
 					>
@@ -36,7 +36,11 @@
 					</p>{/if}
 				{#if r.photos.length}
 					<div class="flex flex-wrap gap-2">
-						{#each r.photos as src (src)}<img {src} alt="" class="size-24 object-cover" />{/each}
+						{#each r.photos as src (src)}<img
+								{src}
+								alt=""
+								class="size-24 rounded-md object-cover"
+							/>{/each}
 					</div>
 				{/if}
 				<form method="POST" action="?/decide" use:submitting class="flex gap-2">

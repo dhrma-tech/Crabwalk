@@ -203,54 +203,61 @@
 		accuracy = null;
 	}
 
-	const input = 'h-11 w-full border-b border-text bg-bg type-body text-text';
+	const input = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 	const label = 'flex flex-col gap-1.5 type-small text-text-2';
+	// Tideline tool variant (Report 2 §9.15, T-41): grouped surface cards; choices are chips (kokum when on).
 	const box =
-		'flex min-h-11 items-center gap-2 border border-border bg-surface px-4 type-small text-text';
+		'flex min-h-11 items-center gap-2 rounded-full bg-surface-2 px-4 type-label text-text has-checked:bg-kokum-50 has-checked:text-kokum-ink [&>input]:accent-(--kokum)';
+	const card = 'flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-e1';
+	const chips = 'flex flex-wrap gap-2 rounded-lg bg-surface p-4 shadow-e1';
+	const pair = 'grid grid-cols-2 gap-3 rounded-lg bg-surface p-4 shadow-e1';
+	const legend = 'float-left mb-1 w-full type-h3';
 </script>
 
-<Page title={m.field_title()} back>
+<Page title={m.field_title()} back tool>
 	<form
 		onsubmit={submit}
-		class="mx-auto flex max-w-[680px] flex-col gap-6 pb-8"
+		class="mx-auto flex max-w-170 flex-col gap-4 pb-8"
 		data-testid="field-form"
 	>
 		{#if queued.length}
-			<p class="bg-yama p-3 type-small text-text" role="status">
+			<p class="rounded-md bg-caution-50 p-3 type-small text-text" role="status">
 				{m.queue_count({ n: queued.length })}{#each queued.filter((q) => q.error) as q (q.id)}<br
 					/>{q.payload.name_en}: {q.error}{/each}
 			</p>
 		{/if}
 
-		<fieldset class="flex flex-wrap gap-2">
-			<legend class="mb-2 type-h3">{m.field_type()}</legend>
+		<fieldset class={chips}>
+			<legend class={legend}>{m.field_type()}</legend>
 			{#each [['places', m.type_place], ['stays', m.type_stay], ['eateries', m.type_eatery]] as const as [k, l] (k)}
 				<label class={box}><input type="radio" bind:group={kind} value={k} />{l()}</label>
 			{/each}
 		</fieldset>
 
-		<label class={label}
-			>{m.field_name_en()}<input
-				class={input}
-				bind:value={f.name_en}
-				required
-				minlength="2"
-				maxlength="120"
-				name="name_en"
-			/></label
-		>
-		<label class={label}
-			>{m.field_name_mr()}<input
-				class={input}
-				bind:value={f.name_mr}
-				maxlength="120"
-				lang="mr"
-				name="name_mr"
-			/></label
-		>
+		<div class={card}>
+			<label class={label}
+				>{m.field_name_en()}<input
+					class={input}
+					bind:value={f.name_en}
+					required
+					minlength="2"
+					maxlength="120"
+					name="name_en"
+				/></label
+			>
+			<label class={label}
+				>{m.field_name_mr()}<input
+					class={input}
+					bind:value={f.name_mr}
+					maxlength="120"
+					lang="mr"
+					name="name_mr"
+				/></label
+			>
+		</div>
 
-		<fieldset class="flex flex-col gap-3">
-			<legend class="mb-2 type-h3">{m.field_location()}</legend>
+		<fieldset class={card}>
+			<legend class={legend}>{m.field_location()}</legend>
 			<div>
 				<Button variant="secondary" onclick={locate} loading={gps === 'busy'}
 					>{#snippet icon()}<LocateFixed
@@ -294,9 +301,13 @@
 			</label>
 		</fieldset>
 
-		<fieldset class="flex flex-col gap-3">
-			<legend class="mb-2 type-h3">{m.field_photos()}</legend>
-			<label class={[box, 'w-fit cursor-pointer']}
+		<fieldset class={card}>
+			<legend class={legend}>{m.field_photos()}</legend>
+			<label
+				class={[
+					box,
+					'w-fit cursor-pointer has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus'
+				]}
 				><Camera size={20} aria-hidden="true" />{m.field_photos()}
 				<input
 					type="file"
@@ -308,73 +319,79 @@
 				/>
 			</label>
 			{#if previews.length}<div class="flex flex-wrap gap-2">
-					{#each previews as src, i (i)}<img {src} alt="" class="size-20 object-cover" />{/each}
+					{#each previews as src, i (i)}<img
+							{src}
+							alt=""
+							class="size-20 rounded-md object-cover"
+						/>{/each}
 				</div>{/if}
 		</fieldset>
 
 		{#if kind === 'places'}
-			<label class={label}
-				>{m.field_category()}
-				<select class={input} bind:value={f.category} name="category"
-					>{#each Object.keys(categoryIcons) as c (c)}<option value={c}>{msg(`cat_${c}`)}</option
-						>{/each}</select
-				>
-			</label>
-			{#each [['fee', m.field_fee], ['best', m.fact_best_time], ['reach', m.fact_how_to_reach], ['station', m.fact_station], ['bus', m.fact_bus]] as const as [k, l] (k)}
+			<div class={card}>
 				<label class={label}
-					>{l()}<input class={input} bind:value={f[k]} maxlength="1000" name={k} /></label
-				>
-			{/each}
-			<label class={label}
-				>{m.field_fee_inr()}<input
-					class={input}
-					type="number"
-					min="0"
-					step="1"
-					inputmode="numeric"
-					bind:value={f.feeInr}
-					name="fee_inr"
-				/></label
-			>
-			<label class={label}
-				>{m.field_visit_minutes()}<input
-					class={input}
-					type="number"
-					min="10"
-					max="600"
-					step="5"
-					inputmode="numeric"
-					bind:value={f.visitMin}
-					name="visit_minutes"
-				/></label
-			>
-			<div class="flex flex-wrap gap-2">
-				<label class={box}
-					><input type="checkbox" bind:checked={f.gem} />{m.field_hidden_gem()}</label
-				>
-				<label class={box}><input type="checkbox" bind:checked={f.tide} />{m.field_tide()}</label>
-			</div>
-			<label class={label}
-				>{m.field_monsoon()}
-				<select class={input} bind:value={f.monsoon}
-					>{#each ['open', 'risky', 'closed'] as s (s)}<option value={s}
-							>{msg(`monsoon_${s}`)}</option
-						>{/each}</select
-				>
-			</label>
-			{#if f.monsoon !== 'open'}<label class={label}
-					>{m.field_monsoon_reason()}<input
+					>{m.field_category()}
+					<select class={input} bind:value={f.category} name="category"
+						>{#each Object.keys(categoryIcons) as c (c)}<option value={c}>{msg(`cat_${c}`)}</option
+							>{/each}</select
+					>
+				</label>
+				{#each [['fee', m.field_fee], ['best', m.fact_best_time], ['reach', m.fact_how_to_reach], ['station', m.fact_station], ['bus', m.fact_bus]] as const as [k, l] (k)}
+					<label class={label}
+						>{l()}<input class={input} bind:value={f[k]} maxlength="1000" name={k} /></label
+					>
+				{/each}
+				<label class={label}
+					>{m.field_fee_inr()}<input
 						class={input}
-						bind:value={f.monsoonReason}
-						maxlength="1000"
+						type="number"
+						min="0"
+						step="1"
+						inputmode="numeric"
+						bind:value={f.feeInr}
+						name="fee_inr"
 					/></label
-				>{/if}
-			<fieldset class="flex flex-col gap-2">
-				<legend class="mb-2 type-h3">{m.field_crowd()}</legend>
+				>
+				<label class={label}
+					>{m.field_visit_minutes()}<input
+						class={input}
+						type="number"
+						min="10"
+						max="600"
+						step="5"
+						inputmode="numeric"
+						bind:value={f.visitMin}
+						name="visit_minutes"
+					/></label
+				>
+				<div class="flex flex-wrap gap-2">
+					<label class={box}
+						><input type="checkbox" bind:checked={f.gem} />{m.field_hidden_gem()}</label
+					>
+					<label class={box}><input type="checkbox" bind:checked={f.tide} />{m.field_tide()}</label>
+				</div>
+				<label class={label}
+					>{m.field_monsoon()}
+					<select class={input} bind:value={f.monsoon}
+						>{#each ['open', 'risky', 'closed'] as s (s)}<option value={s}
+								>{msg(`monsoon_${s}`)}</option
+							>{/each}</select
+					>
+				</label>
+				{#if f.monsoon !== 'open'}<label class={label}
+						>{m.field_monsoon_reason()}<input
+							class={input}
+							bind:value={f.monsoonReason}
+							maxlength="1000"
+						/></label
+					>{/if}
+			</div>
+			<fieldset class={card}>
+				<legend class={legend}>{m.field_crowd()}</legend>
 				{#each days as d (d)}
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{msg(`wd_${d}`)}
-						<select class="h-11 border-b border-text bg-bg type-small" bind:value={f.crowd[d]}>
+						<select class="field h-11 px-2 type-small text-text" bind:value={f.crowd[d]}>
 							<option value="">—</option>{#each ['empty', 'calm', 'busy'] as l (l)}<option value={l}
 									>{msg(`crowd_${l}`)}</option
 								>{/each}
@@ -382,8 +399,8 @@
 					</label>
 				{/each}
 			</fieldset>
-			<fieldset class="flex flex-wrap gap-2">
-				<legend class="mb-2 type-h3">{m.field_delivery()}</legend>
+			<fieldset class={chips}>
+				<legend class={legend}>{m.field_delivery()}</legend>
 				{#each ['swiggy', 'zomato', 'eatsure', 'magicpin'] as a (a)}<label class={box}
 						><input type="checkbox" bind:checked={f.delivery[a]} />{a[0].toUpperCase() +
 							a.slice(1)}</label
@@ -392,26 +409,26 @@
 		{/if}
 
 		{#if kind === 'stays'}
-			<fieldset class="flex flex-wrap gap-2">
-				<legend class="mb-2 type-h3">{m.filter_vibe()}</legend>
+			<fieldset class={chips}>
+				<legend class={legend}>{m.filter_vibe()}</legend>
 				{#each ['traditional_konkani_home', 'family', 'luxury', 'business', 'backpacker', 'couple_friendly', 'pet_friendly', 'beachfront', 'orchard_stay'] as v (v)}
 					<label class={box}
 						><input type="checkbox" bind:group={f.vibes} value={v} />{msg(`vibe_${v}`)}</label
 					>
 				{/each}
 			</fieldset>
-			<fieldset class="flex flex-wrap gap-2">
-				<legend class="mb-2 type-h3">{m.amenities()}</legend>
+			<fieldset class={chips}>
+				<legend class={legend}>{m.amenities()}</legend>
 				{#each ['ac', 'hot_water', 'wifi', 'parking', 'power_backup'] as a (a)}<label class={box}
 						><input type="checkbox" bind:checked={f.amenities[a]} />{msg(`amenity_${a}`)}</label
 					>{/each}
 			</fieldset>
-			<fieldset class="flex flex-col gap-2">
-				<legend class="mb-2 type-h3">{m.network_title()}</legend>
+			<fieldset class={card}>
+				<legend class={legend}>{m.network_title()}</legend>
 				{#each ['Jio', 'Airtel', 'Vi', 'BSNL'] as op (op)}
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{op}
-						<select class="h-11 border-b border-text bg-bg type-small" bind:value={f.network[op]}>
+						<select class="field h-11 px-2 type-small text-text" bind:value={f.network[op]}>
 							<option value="">—</option>{#each ['none', 'weak', 'good'] as l (l)}<option value={l}
 									>{msg(`network_${l}`)}</option
 								>{/each}
@@ -419,13 +436,13 @@
 					</label>
 				{/each}
 			</fieldset>
-			<fieldset class="flex flex-wrap gap-2">
-				<legend class="mb-2 type-h3">{m.food_at_stay()}</legend>
+			<fieldset class={chips}>
+				<legend class={legend}>{m.food_at_stay()}</legend>
 				{#each ['veg', 'non_veg', 'malvani', 'jain', 'homemade_included'] as k (k)}<label
 						class={box}><input type="checkbox" bind:checked={f.food[k]} />{msg(`food_${k}`)}</label
 					>{/each}
 			</fieldset>
-			<div class="grid grid-cols-2 gap-3">
+			<div class={pair}>
 				<label class={label}
 					>{m.field_price_min()}<input
 						class={input}
@@ -446,31 +463,33 @@
 		{/if}
 
 		{#if kind === 'eateries'}
-			<label class={label}
-				>{m.filter_authenticity()}
-				<select class={input} bind:value={f.auth}
-					><option value="">—</option
-					>{#each ['home_style', 'local_legend', 'tourist_oriented'] as a (a)}<option value={a}
-							>{msg(`auth_${a}`)}</option
-						>{/each}</select
+			<div class={card}>
+				<label class={label}
+					>{m.filter_authenticity()}
+					<select class={input} bind:value={f.auth}
+						><option value="">—</option
+						>{#each ['home_style', 'local_legend', 'tourist_oriented'] as a (a)}<option value={a}
+								>{msg(`auth_${a}`)}</option
+							>{/each}</select
+					>
+				</label>
+				<label class={label}
+					>{m.field_price_two()}<input
+						class={input}
+						type="number"
+						min="0"
+						bind:value={f.priceTwo}
+					/></label
 				>
-			</label>
-			<label class={label}
-				>{m.field_price_two()}<input
-					class={input}
-					type="number"
-					min="0"
-					bind:value={f.priceTwo}
-				/></label
-			>
-			<fieldset class="flex flex-wrap gap-2">
-				<legend class="mb-2 type-h3">{m.filter_diet()}</legend>
+			</div>
+			<fieldset class={chips}>
+				<legend class={legend}>{m.filter_diet()}</legend>
 				{#each [['veg', m.diet_veg], ['non_veg', m.diet_nonveg], ['jain', m.diet_jain]] as const as [k, l] (k)}<label
 						class={box}><input type="checkbox" bind:checked={f.diet[k]} />{l()}</label
 					>{/each}
 			</fieldset>
-			<fieldset class="flex flex-col gap-2">
-				<legend class="mb-2 type-h3">{m.field_food_apps()}</legend>
+			<fieldset class={card}>
+				<legend class={legend}>{m.field_food_apps()}</legend>
 				{#each ['swiggy', 'zomato', 'eatsure', 'magicpin'] as a (a)}
 					<label class={label}
 						>{a[0].toUpperCase() + a.slice(1)}<input
@@ -484,8 +503,8 @@
 				{/each}
 			</fieldset>
 			{#if data.dishes.length}
-				<fieldset class="flex flex-wrap gap-2">
-					<legend class="mb-2 type-h3">{m.field_signature()}</legend>
+				<fieldset class={chips}>
+					<legend class={legend}>{m.field_signature()}</legend>
 					{#each data.dishes as d (d.id)}<label class={box}
 							><input type="checkbox" bind:group={f.dishes} value={d.id} />{d.name}</label
 						>{/each}
@@ -494,27 +513,29 @@
 		{/if}
 
 		{#if kind !== 'places'}
-			<label class={label}
-				>{m.filter_style()}
-				<select class={input} bind:value={f.style}
-					><option value="">—</option><option value="homely">{m.service_homely()}</option><option
-						value="professional">{m.service_professional()}</option
-					></select
-				>
-			</label>
-			<div class="grid grid-cols-2 gap-3">
+			<div class={card}>
 				<label class={label}
-					>{m.field_phone()}<input class={input} type="tel" bind:value={f.phone} /></label
-				>
-				<label class={label}
-					>{m.field_whatsapp()}<input class={input} type="tel" bind:value={f.whatsapp} /></label
-				>
+					>{m.filter_style()}
+					<select class={input} bind:value={f.style}
+						><option value="">—</option><option value="homely">{m.service_homely()}</option><option
+							value="professional">{m.service_professional()}</option
+						></select
+					>
+				</label>
+				<div class="grid grid-cols-2 gap-3">
+					<label class={label}
+						>{m.field_phone()}<input class={input} type="tel" bind:value={f.phone} /></label
+					>
+					<label class={label}
+						>{m.field_whatsapp()}<input class={input} type="tel" bind:value={f.whatsapp} /></label
+					>
+				</div>
 			</div>
 		{/if}
 
 		{#if kind !== 'stays'}
-			<fieldset class="flex flex-col gap-2">
-				<legend class="mb-2 type-h3">{m.field_hours()}</legend>
+			<fieldset class={card}>
+				<legend class={legend}>{m.field_hours()}</legend>
 				<label class={[box, 'w-fit']}
 					><input type="checkbox" bind:checked={f.hoursUnknown} />{m.field_hours_unknown()}</label
 				>
@@ -523,23 +544,27 @@
 						<div
 							class="grid grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 type-small"
 						>
-							<span>{msg(`wd_${h.weekday}`)}</span>
+							<span class="text-text">{msg(`wd_${h.weekday}`)}</span>
 							<input
 								type="time"
-								class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
+								class="field h-11 w-full min-w-0 px-2 text-text disabled:text-muted"
 								bind:value={h.opens}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} opens`}
 							/>
 							<input
 								type="time"
-								class="h-11 w-full min-w-0 border-b border-text bg-bg px-1"
+								class="field h-11 w-full min-w-0 px-2 text-text disabled:text-muted"
 								bind:value={h.closes}
 								disabled={h.closed}
 								aria-label={`${msg(`wd_${h.weekday}`)} closes`}
 							/>
-							<label class="flex min-h-11 items-center gap-1"
-								><input type="checkbox" bind:checked={h.closed} />{m.closed()}</label
+							<label class="flex min-h-11 items-center gap-1.5 text-text"
+								><input
+									type="checkbox"
+									class="size-5 accent-(--kokum)"
+									bind:checked={h.closed}
+								/>{m.closed()}</label
 							>
 						</div>
 					{/each}
@@ -548,9 +573,9 @@
 		{/if}
 
 		{#if kind === 'places'}
-			<label class={label}
+			<label class={[label, 'rounded-lg bg-surface p-4 shadow-e1']}
 				>{m.field_notes()}<textarea
-					class="border border-text bg-transparent p-3 type-body text-text"
+					class="field p-3 type-body text-text"
 					rows="4"
 					maxlength="1000"
 					bind:value={f.notes}

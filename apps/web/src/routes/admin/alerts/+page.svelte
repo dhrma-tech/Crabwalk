@@ -11,7 +11,7 @@
 	let { data, form }: PageProps = $props();
 	let lon = $state('');
 	let lat = $state('');
-	const field = 'h-11 w-full border-b border-text bg-bg type-body text-text';
+	const field = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 	function gps() {
 		navigator.geolocation?.getCurrentPosition(
 			(p) => {
@@ -24,13 +24,13 @@
 	}
 </script>
 
-<Page title={m.alerts_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
+<Page title={m.alerts_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<form
 			method="POST"
 			action="?/create"
 			use:submitting
-			class="grid gap-3 border border-border bg-surface p-4 sm:grid-cols-2"
+			class="grid gap-3 rounded-lg bg-surface p-4 shadow-e1 sm:grid-cols-2"
 		>
 			<h2 class="type-h2 sm:col-span-2">{m.alerts_add()}</h2>
 			<label class="flex flex-col gap-1 type-small text-text-2"
@@ -88,7 +88,7 @@
 
 		<ul class="flex flex-col gap-3">
 			{#each data.alerts as a (a.id)}
-				<li class="flex flex-col gap-2 border border-border bg-surface p-4" data-testid="alert-row">
+				<li class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1" data-testid="alert-row">
 					<p class="type-h3">
 						{msg(`alert_${a.type}`)} ·
 						<span class="inline-flex items-center gap-1.5"

@@ -10,12 +10,12 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.reports_title()} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-4">
+<Page title={m.reports_title()} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.reports.length}
 			{#each data.reports as r (r.id)}
 				<article
-					class="flex flex-col gap-2 border border-border bg-surface p-4"
+					class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1"
 					data-testid="report"
 				>
 					<p class="type-h3">

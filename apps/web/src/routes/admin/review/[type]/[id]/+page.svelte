@@ -33,16 +33,16 @@
 		const a = new Audio(URL.createObjectURL(file));
 		a.onloadedmetadata = () => (duration = Math.round(a.duration));
 	}
-	const field = 'w-full border border-text bg-transparent p-3 type-body text-text';
+	const field = 'field w-full p-3 type-body text-text';
 </script>
 
-<Page title={data.text.en.name ?? msg(`type_${data.type}`)} back>
-	<div class="mx-auto flex max-w-[680px] flex-col gap-6">
+<Page title={data.text.en.name ?? msg(`type_${data.type}`)} back tool>
+	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<form
 			method="POST"
 			action="?/draft"
 			use:submitting
-			class="flex flex-col gap-2 bg-asagi p-3 text-text"
+			class="flex flex-col gap-3 rounded-lg bg-lagoon-50 p-4 text-text"
 		>
 			<p class="type-small">{m.review_ai_pending()}</p>
 			<div><Button type="submit" variant="secondary">{m.review_ai_draft()}</Button></div>
@@ -59,12 +59,12 @@
 				{#each data.photos as p, i (i)}<img
 						src={p.src}
 						alt=""
-						class="size-24 object-cover"
+						class="size-24 rounded-md object-cover"
 					/>{/each}
 			</div>
 		{/if}
 
-		<details class="border border-border bg-surface p-3">
+		<details class="rounded-lg bg-surface p-3 shadow-e1">
 			<summary class="min-h-11 cursor-pointer type-h3">{m.facts()}</summary>
 			<dl class="mt-2 grid gap-1 type-small">
 				{#each Object.entries(data.facts) as [k, v] (k)}
@@ -80,7 +80,7 @@
 			<section class="flex flex-col gap-2">
 				<h2 class="type-h2">{m.review_notes()}</h2>
 				{#each data.notes as n, i (i)}<p
-						class="border border-border bg-surface p-3 type-body whitespace-pre-line"
+						class="rounded-lg bg-surface p-3 shadow-e1 type-body whitespace-pre-line"
 					>
 						{n.notes}
 					</p>{/each}
@@ -94,14 +94,17 @@
 			class="flex flex-col gap-4"
 			data-testid="review-form"
 		>
-			<div class="flex border border-text w-fit" role="tablist">
+			<div class="inline-flex w-fit rounded-full bg-surface-2 p-0.5" role="tablist">
 				{#each tabs as t (t.k)}
 					<button
 						type="button"
 						role="tab"
 						aria-selected={tab === t.k}
 						lang={t.k}
-						class={['min-h-10 px-4 type-small', tab === t.k ? 'bg-text text-bg' : 'text-text-2']}
+						class={[
+							'min-h-11 rounded-full px-4 type-label',
+							tab === t.k ? 'bg-surface text-text shadow-e1' : 'text-text-2 hover:text-text'
+						]}
 						onclick={() => (tab = t.k)}>{t.label}</button
 					>
 				{/each}
@@ -138,7 +141,7 @@
 		</form>
 
 		{#if data.type === 'stay' && data.isAdmin}
-			<section class="flex flex-col gap-3">
+			<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 				<h2 class="type-h2">{m.offers_title()}</h2>
 				{#each data.offers as o (o.id)}
 					<form
@@ -183,7 +186,7 @@
 				action="?/audio"
 				enctype="multipart/form-data"
 				use:submitting
-				class="flex flex-col gap-3"
+				class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1"
 			>
 				<h2 class="type-h2">{m.audio_upload()}</h2>
 				<input
