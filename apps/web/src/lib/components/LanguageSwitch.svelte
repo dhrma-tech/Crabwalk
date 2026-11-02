@@ -24,17 +24,16 @@
 				lang={o.locale}
 				aria-label={o.name}
 				aria-pressed={on}
-				class={[
-					'group flex size-11 items-center justify-center type-label',
-					// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
-					// web-font files are never downloaded just for this switch.
-					current === 'en' && o.locale !== 'en' && 'font-[system-ui]'
-				]}
+				class="group flex size-11 items-center justify-center type-label"
 			>
 				<span
 					class={[
 						'flex h-9 min-w-9 items-center justify-center rounded-full px-2 transition-colors duration-200',
-						on ? 'bg-surface text-text shadow-e1' : 'text-text-2 group-hover:text-text'
+						on ? 'bg-surface text-text shadow-e1' : 'text-text-2 group-hover:text-text',
+						// P10-4: on English pages the हि / म labels use the system font, so the Devanagari
+						// web-font file (230 KB) is never downloaded just for this switch. On the span, not the
+						// button: type-label's `font` shorthand would override it there.
+						current === 'en' && o.locale !== 'en' && 'font-[system-ui]'
 					]}>{o.short}</span
 				>
 			</button>
