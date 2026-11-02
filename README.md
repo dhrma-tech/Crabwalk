@@ -55,7 +55,7 @@ and security headers (CSP, HSTS, frame denial, `X-Robots-Tag` on private pages).
 ```
 apps/web/                 SvelteKit app
   src/routes/             pages, form actions and /api/* endpoints
-  src/lib/components/     UI (Suna design system: tokens in src/app.css)
+  src/lib/components/     UI (Tideline design system: tokens in src/app.css, Eczar display + Anek body)
   src/lib/server/         data access, validation schemas, AI router + tools, planner
   src/service-worker/     offline shell, content and taluka-pack caches
   messages/               en / hi / mr strings

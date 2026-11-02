@@ -32,6 +32,42 @@ Lighthouse runs in software (SwiftShader); real phones compile on the GPU. Every
 all four categories. Small TBT drift on other pages (20 → 140–210 ms mobile) is within run-to-run variance on
 this laptop.
 
+## Lighthouse — phase-10b (Tideline redesign, step G)
+
+Same setup (`vite build --mode audit` + `wrangler pages dev`, local Supabase, Lighthouse 13.5 simulated). Each cell
+is the **median of 3 runs** — single runs on this laptop swing by up to 25 points, and the CPU benchmark index
+moved between ~700 and ~2900 during the session. "Before" = `main` @ `c7d91de` (after refinement, before
+Tideline), measured back to back with "After" (`HEAD` of step G) so both ran at the same benchmark (~2000–2900).
+
+| Page | Before (mobile) | Before (desktop) | After (mobile) | After (desktop) |
+|---|---|---|---|---|
+| `/` | 98 / 100 / 100 / 100 | 100 / 100 / 100 / 100 | **82** / 100 / 100 / 100 | 99 / 100 / 100 / 100 |
+| `/place/:slug` | 98 / 100 / 100 / 100 | 100 / 100 / 100 / 100 | **85** / 100 / 100 / 100 | 96 / 100 / 100 / 100 |
+| `/stays` | 97 / 100 / 100 / 100 | 100 / 100 / 100 / 100 | **88** / 100 / 100 / 100 | 93 / 100 / 100 / 100 |
+| `/map` (excepted) | 31 / 100 / 100 / 100† | 61 / 100 / 100 / 100† | 32 / 100 / 100 / 100‡ | 51 / 100 / 100 / 100‡ |
+
+† refinement "after" above. ‡ a separate median-of-3 run at benchmark ~750 (map wasn't in the back-to-back pair).
+
+**Targets:** Accessibility, Best practices and SEO are 100 on all four pages (step G fixed BP 96 → 100 and the
+Devanagari font download on English pages: T-53, T-54). **Perf ≥ 90 is met on desktop but not on mobile.**
+Other targets: QR scan page `/q/:code` **5 KB** total transfer (3.8 KB HTML, no JS; target < 100 KB); app shell
+JS **137.8 KB gz** (e2e budget test; target < 200 KB); fonts on Latin pages **55 KB** (Anek variable 40 KB +
+Eczar 700 15 KB, both preloaded), Hindi/Marathi pages add `text-var-deva.woff2` (230 KB) only when Devanagari
+text is on screen.
+
+**Why mobile dropped:** before, the first paint landed right at the load event (~545 ms observed); now it lands
+400–1300 ms *after* it, and Lighthouse's mobile model scales that up (FCP 1.7 s → 2.2–3.6 s; LCP element is the
+Discover display heading). JS (166 vs 160 KB) and fonts (55 vs 57 KB) barely changed. The cause is the Tideline
+**glass** (`backdrop-filter: blur(14px)` on the top bar, bottom nav, chips and photo badges), which headless
+Lighthouse rasterises in software: one build with the blur removed scored **92** on `/` mobile (runs 90/92/97)
+even on a slower machine state (benchmark ~1180). Real phones blur on the GPU, so this mostly reflects the test
+setup, but the target is not met as built. Glass is part of the locked design (T-1), so it was not changed —
+options are listed in DECISIONS T-57.
+
+Fixed in step G on the way: map overlay layers built lazily + `fadeDuration: 0` + tiles preconnect (T-52),
+tiny CSS files inlined (T-55, `/place` mobile 80 → 91 at that time), `/stays` and `/food` render each listing
+once instead of twice (T-56).
+
 ## Findings
 
 ### Critical
