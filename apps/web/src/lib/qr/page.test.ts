@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest';
-import type { QrData } from '#lib/server/qr.ts';
+import { clip, type QrData } from '#lib/server/qr.ts';
 import { renderQrMissing, renderQrPage } from './page.ts';
 
 // PLAN P6 acceptance / FRONTEND §11: scan page < 100 KB total, no webfonts, no framework.
-// The only other transfer is the 480 px hero (WebP); the HTML budget leaves ≥ 60 KB for it.
-const HTML_BUDGET = 40_000;
+// The only other transfer is the 480 px hero (WebP); the HTML budget leaves ≥ 58 KB for it. 42 KB (user, T-44):
+// was 40 KB until the nearby-alerts block (Report 1 §2.2) was added.
+const HTML_BUDGET = 42_000;
 const bytes = (s: string) => new TextEncoder().encode(s).length;
 const deva = (n: number) => 'कोकणातील किल्ला '.repeat(Math.ceil(n / 16)).slice(0, n);
 const time = (iso: string) => iso.slice(11, 16);
@@ -34,7 +35,15 @@ const base: QrData = {
 				{ type: 'low', time: '2026-10-18T10:30:00Z', height_m: 0.41 }
 			],
 			attribution: { text: 'Tide data by TideCheck', url: 'https://tidecheck.com' }
-		}
+		},
+		// Worst case for the budget: the 3-alert cap, reasons clipped to 80 characters (T-44).
+		alerts: Array.from({ length: 3 }, (_, i) => ({
+			type: 'landslide',
+			severity: i ? ('caution' as const) : ('danger' as const),
+			reason: clip(deva(300), 80),
+			reported_at: new Date(Date.now() - 2 * 3600e3).toISOString(),
+			expires_at: new Date(Date.now() + 20 * 3600e3).toISOString()
+		}))
 	},
 	menu: [],
 	verdict: null,
@@ -80,6 +89,28 @@ describe('QR scan page', () => {
 		].map(at);
 		expect(order.every((i) => i >= 0)).toBe(true);
 		expect([...order].sort((a, b) => a - b)).toEqual(order);
+	});
+
+	it('safety block lists nearby alerts first: dot + severity word, reported and expiry times', () => {
+		const e = renderQrPage(base, { lang: 'en', reported: false, time });
+		const row = e.match(/<p class="st-danger">(.*?)<\/p><p class="small">(.*?)<\/p>/);
+		expect(row?.[1]).toContain('<b>Landslide</b> · Danger');
+		expect(row?.[2]).toMatch(/^Reported 2 hours ago · expires in 20 hours$/);
+		expect(e.indexOf('class="st-danger"')).toBeLessThan(e.indexOf('class="st-risky"'));
+		expect(e.match(/class="st-caution"/g)).toHaveLength(2);
+		expect(e).toContain('href="/map?focus=place/jaigad-fort&amp;layers=alerts"');
+	});
+
+	it('clips alert reasons by grapheme, never inside a Devanagari conjunct', () => {
+		expect(clip('short', 80)).toBe('short');
+		expect(clip('a'.repeat(81), 80)).toBe('a'.repeat(80) + '…');
+		expect(clip('क्षक्ष', 1)).toBe('क्ष…');
+	});
+
+	it('GPS failure on share is inline status text, never a browser alert()', async () => {
+		const { JS } = await import('./page.ts');
+		expect(JS).not.toMatch(/\balert\(/);
+		expect(html).toContain('<p id="smsg" role="status" aria-live="polite"></p>');
 	});
 
 	it('escapes listing content', () => {

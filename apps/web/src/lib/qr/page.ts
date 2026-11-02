@@ -2,6 +2,7 @@
 // fonts only, no framework (C14, DECISIONS P6-1). Everything works without JS except GPS features.
 import { m } from '#lib/paraglide/messages.js';
 import { msg } from '#lib/msg.ts';
+import { relTime } from '#lib/format.ts';
 import type { Near, QrData } from '#lib/server/qr.ts';
 
 type Lang = 'en' | 'hi' | 'mr';
@@ -24,13 +25,14 @@ h1{font:700 28px/1.25 Georgia,serif;margin:0}h2{font:600 20px/1.35 Georgia,serif
 .alt{color:var(--t2);margin-top:2px}.hero{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--s2);display:block;border-radius:20px}
 .card{background:var(--sf);border-radius:20px;padding:16px;box-shadow:var(--e1)}.small{font-size:14px;color:var(--t2)}
 audio,input{accent-color:var(--ko)}audio{width:100%}ul{margin:0;padding-left:20px}.near{list-style:none;padding:0}.near li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--bd)}.near li:first-child{border:0}
-.st-open::before,.st-risky::before,.st-closed::before{content:"● "}.st-open::before{color:var(--gn)}.st-risky::before{color:var(--ca)}.st-closed::before{color:var(--dg)}b{font-weight:600}
+[class^=st-]::before{content:"● "}.st-open::before{color:var(--gn)}.st-risky::before,.st-caution::before{color:var(--ca)}.st-closed::before,.st-danger::before{color:var(--dg)}b{font-weight:600}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--s2);color:var(--tx);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
 .pri{background:var(--ko);color:var(--oko)}.row{display:flex;flex-wrap:wrap;gap:8px}.col{display:flex;flex-direction:column;gap:12px;margin-top:8px}
 .btn[aria-pressed=true]{background:var(--tx);color:var(--bg);opacity:1}
 .sos{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:var(--sf);border-top:1px solid var(--bd)}
 .sos a,.sos button{flex:1;min-height:52px;border:0;border-radius:16px;font:inherit;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;text-decoration:none}
 .sos a{flex:1.3;background:var(--em);color:#fff}.sos button{background:var(--s2);color:var(--tx);font-weight:600}
+.sos p{position:absolute;left:16px;right:16px;bottom:100%;margin:0 0 8px;padding:8px 12px;border-radius:12px;background:var(--tx);color:var(--bg)}.sos p:empty{display:none}
 label{display:flex;gap:8px;align-items:center;min-height:44px}textarea{width:100%;font:inherit;border:1.5px solid transparent;border-radius:12px;background:var(--s2);color:var(--tx);padding:12px}textarea:focus{border-color:var(--tx);background:var(--sf);outline:0}
 summary{cursor:pointer;color:var(--ln);font-weight:600;min-height:44px;display:flex;align-items:center}.sponsor{color:var(--t2);font-size:14px}.hp{display:none}
 :focus-visible{outline:2px solid var(--ln);outline-offset:2px}`;
@@ -45,7 +47,7 @@ document.querySelectorAll('[data-js]').forEach(e=>e.hidden=!1);
 const say=t=>{$('vmsg').textContent=t};
 $('verify')&&($('verify').onclick=()=>{say(b.tWait);gps().then(c=>post('visit',{lat:c.latitude,lng:c.longitude}).then(async r=>{if(r.status==401){say(b.tSignin);$('vlogin').hidden=!1;return}if(!r.ok)return say(b.tFail);const j=await r.json();say(j.verified?b.tOk:b.tFar.replace('{m}',j.distance_m))},()=>say(b.tFail)),()=>say(b.tGps))});
 $('share').onclick=()=>{const send=(la,ln)=>{const t=b.tShare+' https://maps.google.com/?q='+la+','+ln;navigator.share?navigator.share({text:t}).catch(()=>{}):location.href='sms:?&body='+encodeURIComponent(t)};
-gps().then(c=>send(c.latitude.toFixed(5),c.longitude.toFixed(5)),()=>b.lat?send(b.lat,b.lng):alert(b.tGps))}})()`;
+$('smsg').textContent='';gps().then(c=>send(c.latitude.toFixed(5),c.longitude.toFixed(5)),()=>b.lat?send(b.lat,b.lng):$('smsg').textContent=b.tGps)}})()`;
 
 const dist = (mtr: number) =>
 	mtr < 1000 ? m.qr_m({ n: mtr }) : m.qr_km({ n: (mtr / 1000).toFixed(mtr < 10_000 ? 1 : 0) });
@@ -78,7 +80,7 @@ function langSwitch(lang: Lang, ret: string) {
 }
 
 const sos = () =>
-	`<nav class="sos" aria-label="${esc(m.qr_emergency())}"><a href="tel:112">${esc(m.qr_call_112())}</a><button type="button" id="share" data-js hidden>${esc(m.qr_share_location())}</button></nav>`;
+	`<nav class="sos" aria-label="${esc(m.qr_emergency())}"><a href="tel:112">${esc(m.qr_call_112())}</a><button type="button" id="share" data-js hidden>${esc(m.qr_share_location())}</button><p id="smsg" role="status" aria-live="polite"></p></nav>`;
 
 function report(code: string, reported: boolean) {
 	if (reported) return `<p class="small" id="report" role="status">${esc(m.report_sent())}</p>`;
@@ -124,6 +126,15 @@ export function renderQrPage(
 			);
 		const s = d.safety;
 		const status = [
+			// Active alerts within ~2 km (Report 1 §2.2, T-44): dot + severity word, short reason, reported / expires;
+			// the full reasons are on the map with the alerts layer on.
+			...s.alerts.map(
+				(a) =>
+					`<p class="st-${a.severity}"><b>${esc(msg(`alert_${a.type}`))}</b> · ${esc(msg(`severity_${a.severity}`))}${a.reason ? ` · ${esc(a.reason)}` : ''}</p><p class="small">${esc(m.alert_times({ ago: relTime(a.reported_at, o.lang), left: relTime(a.expires_at, o.lang) }))}</p>`
+			),
+			s.alerts.length
+				? `<p class="small"><a href="/map?focus=place/${esc(d.href.split('/').pop()!)}&amp;layers=alerts">${esc(m.map_see_on_map())}</a></p>`
+				: '',
 			s.monsoon
 				? `<p class="st-${s.monsoon}"><b>${esc(msg(`monsoon_${s.monsoon}`))}</b>${s.monsoonReason ? ` · ${esc(s.monsoonReason)}` : ''}</p>`
 				: '',

@@ -58,6 +58,29 @@ test('scan page: < 100 KB, no webfonts, no framework, no login, scan recorded', 
 	await expect.poll(() => psql(`select count(*) from qr_scans where code = '${CODE}'`)).toBe('1');
 });
 
+test('safety block: active alerts within ~2 km, with severity and times; map opens with alerts on', async ({
+	page
+}) => {
+	// ~1 km north (shown) and ~5 km north (outside the box, not shown).
+	const ids = [0.009, 0.045].map((d, i) =>
+		psql(
+			`insert into alerts (type, geometry, severity, reason_en, source, expires_at)
+			 values ('landslide', 'SRID=4326;POINT(${LNG} ${LAT + d})', 'danger', 'E2E slip ${run} ${i}', 'verifier', now() + interval '20 hours')
+			 returning id`
+		)
+	);
+	await page.goto(`/q/${CODE}`);
+	const row = page.locator('p.st-danger', { hasText: `E2E slip ${run} 0` });
+	await expect(row).toContainText('Landslide · Danger');
+	await expect(row.locator('+ p')).toHaveText(/^Reported .+ · expires in 20 hours$/);
+	await expect(page.getByText(`E2E slip ${run} 1`)).toHaveCount(0);
+	const alerts = page.waitForRequest(/\/api\/map\/alerts\?bbox=/);
+	await page.getByRole('link', { name: 'See on map' }).click();
+	await expect(page).toHaveURL(new RegExp(`/map\\?focus=place/e2e-qr-${run}&layers=alerts`));
+	await alerts;
+	psql(`delete from alerts where id in ('${ids.join("','")}')`);
+});
+
 test('emergency: tel:112 and share location (GPS, then place location when GPS is denied)', async ({
 	browser
 }) => {

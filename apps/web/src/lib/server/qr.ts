@@ -20,6 +20,14 @@ export type Near = {
 	phone: string | null;
 };
 
+export type QrAlert = {
+	type: string;
+	severity: 'caution' | 'danger';
+	reason: string | null;
+	reported_at: string;
+	expires_at: string;
+};
+
 export type QrData = {
 	code: string;
 	kind: QrKind;
@@ -40,6 +48,7 @@ export type QrData = {
 			extremes: { type: 'high' | 'low'; time: string; height_m: number }[];
 			attribution: { text: string; url: string };
 		} | null;
+		alerts: QrAlert[];
 	};
 	menu: string[];
 	verdict: { level: number | null; pct: number | null; total: number; isNew: boolean } | null;
@@ -78,7 +87,10 @@ export async function resolveQr(db: DB, code: string, lang: Lang): Promise<Resol
 
 	const listing = await loadListing(db, kind, q.entity_id, lang);
 	if (!listing) return { type: 'missing' };
-	const { data: near } = await db.rpc('qr_near_me', { _code: code });
+	const [{ data: near }, alerts] = await Promise.all([
+		db.rpc('qr_near_me', { _code: code }),
+		kind === 'place' && listing.coords ? alertsNear(db, listing.coords, lang) : []
+	]);
 	const n = names(listing.translations);
 	const name = n[lang] || n.en;
 	const t = (f: string) => tr(listing.translations, lang, f as never);
@@ -106,7 +118,8 @@ export async function resolveQr(db: DB, code: string, lang: Lang): Promise<Resol
 				monsoonReason: listing.monsoonReason,
 				text: t('safety_text'),
 				tideDependent: listing.tideDependent,
-				tide: listing.tide
+				tide: listing.tide,
+				alerts
 			},
 			menu: listing.menu,
 			verdict: listing.verdict,
@@ -124,6 +137,46 @@ export async function resolveQr(db: DB, code: string, lang: Lang): Promise<Resol
 			coords: listing.coords
 		}
 	};
+}
+
+/** First `n` user-perceived characters (grapheme clusters, so a Devanagari conjunct is never split) + "…". */
+export function clip(s: string | null, n: number) {
+	if (!s) return s;
+	const g = [...new Intl.Segmenter(undefined, { granularity: 'grapheme' }).segment(s)];
+	return g.length <= n
+		? s
+		: g
+				.slice(0, n)
+				.map((x) => x.segment)
+				.join('')
+				.trimEnd() + '…';
+}
+
+/** Active alerts in a ~2 km box around the spot (Report 1 §2.2, T-44): danger first, newest first, at most 3,
+ * reasons clipped to 80 characters (the full text is on the map) to keep the page inside its 42 KB HTML budget. */
+async function alertsNear(db: DB, [lon, lat]: [number, number], lang: Lang): Promise<QrAlert[]> {
+	const dy = 2 / 111.32;
+	const dx = dy / Math.cos((lat * Math.PI) / 180);
+	const { data } = await db.rpc('map_alerts', {
+		min_lon: lon - dx,
+		min_lat: lat - dy,
+		max_lon: lon + dx,
+		max_lat: lat + dy
+	});
+	return (data ?? [])
+		.sort(
+			(a, b) =>
+				Number(b.severity === 'danger') - Number(a.severity === 'danger') ||
+				b.reported_at.localeCompare(a.reported_at)
+		)
+		.slice(0, 3)
+		.map((a) => ({
+			type: a.type,
+			severity: a.severity as QrAlert['severity'],
+			reason: clip((lang !== 'en' && a[`reason_${lang}`]) || a.reason_en, 80),
+			reported_at: a.reported_at,
+			expires_at: a.expires_at
+		}));
 }
 
 async function loadListing(db: DB, kind: QrKind, id: string, lang: Lang) {

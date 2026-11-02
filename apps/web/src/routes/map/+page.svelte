@@ -87,7 +87,10 @@
 		const d = new Date(Date.now() + 5.5 * 3600e3);
 		return d.getUTCHours() * 60 + d.getUTCMinutes();
 	};
-	let layers = $state<Layers>({});
+	// ?layers=alerts (QR safety block → map, Report 1 §2.2) opens with that layer on.
+	let layers = $state<Layers>(
+		page.url.searchParams.get('layers') === 'alerts' ? { alerts: true } : {}
+	);
 	let showLayers = $state(false);
 	let tideMinute = $state(istNow());
 	let layerInfo = $state<LayerInfo | null>(null);
