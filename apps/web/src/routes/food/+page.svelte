@@ -22,6 +22,7 @@
 		{row}
 		level={2}
 		href={resolve('/food/[slug]', { slug: e.slug })}
+		slug={e.slug}
 		names={e.names}
 		photo={e.photo}
 		authenticity={e.authenticity ? msg(`auth_${e.authenticity}`) : null}

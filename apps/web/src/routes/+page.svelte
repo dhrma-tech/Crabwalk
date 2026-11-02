@@ -128,6 +128,7 @@
 						{#each data.places as p (p.slug)}
 							<PlaceCard
 								href={resolve('/place/[slug]', { slug: p.slug })}
+								slug={p.slug}
 								names={p.names}
 								photo={p.photo}
 								category={p.category}
@@ -154,6 +155,7 @@
 							<li>
 								<HeroCard
 									href={resolve('/place/[slug]', { slug: p.slug })}
+									item={{ type: 'place', slug: p.slug }}
 									photo={p.photo}
 									names={p.names}
 									category={p.category}
@@ -221,6 +223,7 @@
 						{#each near as p (p.slug)}
 							<PlaceCard
 								href={resolve('/place/[slug]', { slug: p.slug })}
+								slug={p.slug}
 								names={p.names}
 								photo={p.photo}
 								category={p.category}

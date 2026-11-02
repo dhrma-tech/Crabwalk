@@ -4,7 +4,8 @@
 </script>
 
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { onMount, type Snippet } from 'svelte';
+	import { isSaved, loadSaved, toggleSaved, type SavedKind } from '#lib/saved.svelte.ts';
 	import Heart from '@lucide/svelte/icons/heart';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { m } from '#lib/paraglide/messages.js';
@@ -27,6 +28,7 @@
 		level = 3,
 		saved = false,
 		onsave,
+		item,
 		overlay,
 		children
 	}: {
@@ -40,9 +42,15 @@
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
+		/** The listing behind the card: its heart then follows the visitor's saved list (T-46). */
+		item?: { type: SavedKind; slug: string };
 		overlay?: Snippet;
 		children?: Snippet;
 	} = $props();
+
+	onMount(() => void (item && loadSaved()));
+	const on = $derived(item ? isSaved(item.type, item.slug) : saved);
+	const save = $derived(item ? () => toggleSaved(item.type, item.slug) : onsave);
 
 	// Primary language on top, the other script below (§2.3).
 	const locale = getLocale();
@@ -69,7 +77,7 @@
 			row
 				? 'row-link flex items-center gap-3.5 p-3 focus-visible:-outline-offset-2'
 				: 'flex h-full flex-col rounded-lg',
-			row && onsave && 'pr-16'
+			row && save && 'pr-16'
 		]}
 	>
 		<div
@@ -104,26 +112,26 @@
 			</div>
 			{@render children?.()}
 		</div>
-		{#if row && !onsave}<ChevronRight size={20} aria-hidden="true" class="text-muted" />{/if}
+		{#if row && !save}<ChevronRight size={20} aria-hidden="true" class="text-muted" />{/if}
 	</a>
 	{#if overlay && !row}
 		<div class="pointer-events-none absolute top-3 left-3 flex flex-wrap gap-1.5 pr-14">
 			{@render overlay()}
 		</div>
 	{/if}
-	{#if onsave}
+	{#if save}
 		<IconButton
 			glass={!row}
-			label={saved ? m.saved() : m.save()}
-			aria-pressed={saved}
+			label={on ? m.saved() : m.save()}
+			aria-pressed={on}
 			class={['absolute right-2', row ? 'top-1/2 -translate-y-1/2' : 'top-2']}
-			onclick={onsave}
+			onclick={save}
 		>
 			<Heart
 				size={20}
-				fill={saved ? 'currentColor' : 'none'}
+				fill={on ? 'currentColor' : 'none'}
 				aria-hidden="true"
-				class={saved ? 'text-kokum' : undefined}
+				class={on ? 'text-kokum' : undefined}
 			/>
 		</IconButton>
 	{/if}

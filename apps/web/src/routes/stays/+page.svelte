@@ -24,6 +24,7 @@
 		{row}
 		level={2}
 		href={resolve('/stays/[slug]', { slug: s.slug })}
+		slug={s.slug}
 		names={s.names}
 		photo={s.photo}
 		tags={s.vibe_tags.map((v) => msg(`vibe_${v}`))}

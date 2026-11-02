@@ -19,6 +19,7 @@
 		level,
 		saved,
 		onsave,
+		slug,
 		verdict
 	}: {
 		href: string;
@@ -32,6 +33,8 @@
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
+		/** Turns on the saved-list heart (T-46). */
+		slug?: string;
 		verdict?: Snippet;
 	} = $props();
 
@@ -43,7 +46,17 @@
 	const dietText = { veg: m.diet_veg, nonveg: m.diet_nonveg, jain: m.diet_jain };
 </script>
 
-<ListingCard {href} {photo} {names} kind="eatery" {row} {level} {saved} {onsave}>
+<ListingCard
+	{href}
+	{photo}
+	{names}
+	kind="eatery"
+	{row}
+	{level}
+	{saved}
+	{onsave}
+	item={slug ? { type: 'eatery', slug } : undefined}
+>
 	{#if authenticity}
 		<p
 			class="flex min-h-7 w-fit items-center rounded-full bg-alphonso-50 px-2.5 type-label text-alphonso-ink"

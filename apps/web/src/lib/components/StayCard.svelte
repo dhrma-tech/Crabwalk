@@ -21,6 +21,7 @@
 		level,
 		saved,
 		onsave,
+		slug,
 		verdict
 	}: {
 		href: string;
@@ -35,11 +36,23 @@
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
+		/** Turns on the saved-list heart (T-46). */
+		slug?: string;
 		verdict?: Snippet;
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} kind="stay" {row} {level} {saved} {onsave}>
+<ListingCard
+	{href}
+	{photo}
+	{names}
+	kind="stay"
+	{row}
+	{level}
+	{saved}
+	{onsave}
+	item={slug ? { type: 'stay', slug } : undefined}
+>
 	{#if tags.length}<TagList {tags} />{/if}
 	{#if priceMin != null && priceMax != null && priceSource}
 		<p class="type-small text-text-2">

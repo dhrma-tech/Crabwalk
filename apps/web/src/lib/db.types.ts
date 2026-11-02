@@ -757,6 +757,20 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"saved_items": {
+                  Row: {
+                    "created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"user_id"?: string
+                  }
+                  Update: {
+                    "created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"sponsors": {
                   Row: {
                     "created_at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"id": string,"name": string,"updated_at": string | null

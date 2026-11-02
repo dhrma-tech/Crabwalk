@@ -6,6 +6,9 @@
 	import Wrench from '@lucide/svelte/icons/wrench';
 	import Store from '@lucide/svelte/icons/store';
 	import Shield from '@lucide/svelte/icons/shield';
+	import MapPin from '@lucide/svelte/icons/map-pin';
+	import BedDouble from '@lucide/svelte/icons/bed-double';
+	import Utensils from '@lucide/svelte/icons/utensils';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import Page from '#lib/components/Page.svelte';
@@ -21,8 +24,9 @@
 	import { loginHref } from '#lib/login.ts';
 
 	// Me (FRONTEND §7.14). Tideline (Report 2 §9.12, Report 1 §4.7, T-37): profile card, then trips → offline packs
-	// → preferences → privacy choices → language & theme → tools → privacy → sign out. Saved lands in step F (T-5).
+	// → preferences → privacy choices → language & theme → tools → privacy → sign out. Saved follows trips (T-46).
 	let { data, form }: PageProps = $props();
+	const SAVED_ICON = { place: MapPin, stay: BedDouble, eatery: Utensils };
 	let push = $state<'on' | 'off' | 'unsupported' | 'denied'>('unsupported');
 	onMount(async () => (push = await pushStatus()));
 	async function togglePush() {
@@ -112,6 +116,33 @@
 					<p class="type-body text-text-2">{m.me_no_trips()}</p>
 				{/if}
 				<div><Button href={resolve('/plan/new')} variant="outline">{m.plan_new()}</Button></div>
+			</section>
+
+			<!-- Saved (T-5 / T-46): hearted places, stays and food, newest first. -->
+			<section class="flex flex-col gap-3" data-testid="my-saved">
+				<h2 class="type-h2">{m.saved()}</h2>
+				{#if data.saved.length}
+					<InsetList>
+						<ul>
+							{#each data.saved as s (s.href)}
+								{@const Icon = SAVED_ICON[s.type]}
+								<li class="border-b border-border last:border-0">
+									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- href built server-side from a known route + slug -->
+									<a href={s.href} class={row}
+										><Icon size={20} class="shrink-0 text-kokum" aria-hidden="true" /><span
+											class="flex min-w-0 flex-1 flex-col"
+											><span class="type-h3 break-words">{s.name}</span><span
+												class="type-small text-text-2">{msg(`type_${s.type}`)}</span
+											></span
+										><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" /></a
+									>
+								</li>
+							{/each}
+						</ul>
+					</InsetList>
+				{:else}
+					<p class="type-body text-text-2">{m.saved_empty()}</p>
+				{/if}
 			</section>
 		{/if}
 

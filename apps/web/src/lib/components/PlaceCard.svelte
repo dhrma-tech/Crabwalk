@@ -15,6 +15,7 @@
 		distanceKm,
 		saved,
 		onsave,
+		slug,
 		verdict,
 		badges
 	}: {
@@ -26,12 +27,23 @@
 		distanceKm?: number | null;
 		saved?: boolean;
 		onsave?: () => void;
+		/** Turns on the saved-list heart (T-46). */
+		slug?: string;
 		verdict?: Snippet;
 		badges?: Snippet;
 	} = $props();
 </script>
 
-<ListingCard {href} {photo} {names} {category} {saved} {onsave} overlay={badges}>
+<ListingCard
+	{href}
+	{photo}
+	{names}
+	{category}
+	{saved}
+	{onsave}
+	item={slug ? { type: 'place', slug } : undefined}
+	overlay={badges}
+>
 	<p class="flex flex-wrap items-center gap-x-1.5 type-small text-text-2">
 		<span>{categoryLabel}</span>
 		{#if distanceKm != null}<span aria-hidden="true">·</span>

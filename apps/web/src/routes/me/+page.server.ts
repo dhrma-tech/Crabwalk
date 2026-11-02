@@ -1,9 +1,51 @@
 import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
+import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
+import { tr, type Lang } from '#lib/server/listings.ts';
 import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
 import type { Actions, PageServerLoad } from './$types';
+
+// Saved listings (T-5 / T-46), newest first, named in the page language; unpublished ones drop out (RLS).
+async function savedList(db: App.Locals['supabase']) {
+	const { data } = await db
+		.from('saved_items')
+		.select('entity_type, entity_id')
+		.order('created_at', { ascending: false });
+	const rows = data ?? [];
+	const ids = (t: string) => rows.filter((r) => r.entity_type === t).map((r) => r.entity_id);
+	const [p, s, e] = await Promise.all([
+		db.from('places').select('id, slug, place_translations(lang, name)').in('id', ids('place')),
+		db.from('stays').select('id, slug, stay_translations(lang, name)').in('id', ids('stay')),
+		db.from('eateries').select('id, slug, eatery_translations(lang, name)').in('id', ids('eatery'))
+	]);
+	const lang = getLocale() as Lang;
+	const by = new Map<string, { name: string; href: string }>([
+		...(p.data ?? []).map(
+			(x) =>
+				[
+					x.id,
+					{ name: tr(x.place_translations, lang) ?? x.slug, href: `/place/${x.slug}` }
+				] as const
+		),
+		...(s.data ?? []).map(
+			(x) =>
+				[x.id, { name: tr(x.stay_translations, lang) ?? x.slug, href: `/stays/${x.slug}` }] as const
+		),
+		...(e.data ?? []).map(
+			(x) =>
+				[
+					x.id,
+					{ name: tr(x.eatery_translations, lang) ?? x.slug, href: `/food/${x.slug}` }
+				] as const
+		)
+	]);
+	return rows.flatMap((r) => {
+		const l = by.get(r.entity_id);
+		return l ? [{ type: r.entity_type, ...l }] : [];
+	});
+}
 
 export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 	const user = await locals.getUser();
@@ -35,8 +77,10 @@ export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 				.order('created_at', { ascending: false })
 				.limit(50)
 		: { data: [] };
+	const saved = user ? await savedList(locals.supabase) : [];
 	return {
 		email: user?.email ?? null,
+		saved,
 		theme: isTheme(theme) ? theme : 'system',
 		isStaff: has('verifier') || has('reviewer') || has('admin'),
 		isOwner: has('owner'),

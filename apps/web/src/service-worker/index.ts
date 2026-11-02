@@ -23,7 +23,9 @@ const NO_CACHE = [
 	'/owner',
 	'/ola',
 	'/api/admin',
-	'/api/owner'
+	'/api/owner',
+	// The user's own saved list (T-5): always from the network.
+	'/api/saved'
 ];
 // Not pins (open-now is time-sensitive) and not tides (safety data, provider 24 h rule).
 const PUBLISHED = /^\/api\/(places|stays|eateries|dishes|map\/utilities)(\/|$)/;

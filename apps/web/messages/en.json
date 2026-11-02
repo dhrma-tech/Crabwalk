@@ -26,6 +26,7 @@
 	"close": "Close",
 	"save": "Save",
 	"saved": "Saved",
+	"saved_empty": "Nothing saved yet. Tap the heart on any place, stay or food card.",
 	"more_count": "+{count}",
 	"soon_title": "Not here yet",
 	"soon_discover": "Verified places, stays and food will show up here.",
