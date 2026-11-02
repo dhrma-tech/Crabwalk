@@ -229,7 +229,11 @@
 			</div>
 
 			<footer class="order-13 flex flex-col items-start gap-3 lg:order-none">
-				{#if p.lastVerified}<StatusBadge kind="last-verified" date={p.lastVerified} />{/if}
+				{#if p.lastVerified}<StatusBadge
+						kind="last-verified"
+						date={p.lastVerified}
+						method={p.verification}
+					/>{/if}
 				<ReportProblem entityType="place" entityId={p.id} />
 			</footer>
 		</div>

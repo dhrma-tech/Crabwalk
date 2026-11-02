@@ -248,7 +248,7 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			const { data: p } = await db
 				.from('places')
 				.select(
-					'id, slug, category, entry_fee_text, entry_fee_inr, best_time_text, how_to_reach_text, nearest_station_text, monsoon_status, monsoon_reason, is_tide_dependent, is_hidden_gem, last_verified_at, place_translations(lang, name, short_story, dos, donts, safety_text), place_hours(weekday, opens, closes, hours_unknown), crowd_typical(weekday, level)'
+					'id, slug, category, entry_fee_text, entry_fee_inr, best_time_text, how_to_reach_text, nearest_station_text, monsoon_status, monsoon_reason, is_tide_dependent, is_hidden_gem, last_verified_at, verification_method, place_translations(lang, name, short_story, dos, donts, safety_text), place_hours(weekday, opens, closes, hours_unknown), crowd_typical(weekday, level)'
 				)
 				.eq('slug', s('slug') ?? '')
 				.eq('status', 'published')
@@ -295,6 +295,8 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 					lang
 				),
 				last_verified: p.last_verified_at?.slice(0, 10) ?? null,
+				// Desk rows were checked online, not visited (T-48): Crabby must not claim a visit.
+				checked: p.verification_method === 'desk' ? 'online' : 'on site',
 				link: `/place/${p.slug}`
 			};
 		}

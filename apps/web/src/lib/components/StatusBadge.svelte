@@ -13,7 +13,8 @@
 		| { kind: 'crowd'; level: 'empty' | 'calm' | 'busy'; live: boolean }
 		| { kind: 'gem' }
 		| { kind: 'verified' }
-		| { kind: 'last-verified'; date: Date | string }
+		// Places say how they were checked (T-48): only a field visit gets the tick and "Visited".
+		| { kind: 'last-verified'; date: Date | string; method?: 'desk' | 'field' }
 	) & { glass?: boolean };
 	let props: Props = $props();
 
@@ -60,6 +61,16 @@
 {:else if props.kind === 'verified'}
 	<span class={pill}
 		><BadgeCheck size={16} aria-hidden="true" class="text-lagoon" />{m.verified()}</span
+	>
+{:else if props.method === 'field'}
+	<span class="inline-flex items-center gap-1.5 type-small text-text-2"
+		><BadgeCheck size={16} aria-hidden="true" class="text-lagoon" />{m.last_visited({
+			date: formatDate(props.date)
+		})}</span
+	>
+{:else if props.method === 'desk'}
+	<span class="type-small text-text-2"
+		>{m.last_checked_online({ date: formatDate(props.date) })}</span
 	>
 {:else}
 	<span class="type-small text-text-2">{m.last_verified({ date: formatDate(props.date) })}</span>

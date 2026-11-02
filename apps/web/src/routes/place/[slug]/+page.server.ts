@@ -35,6 +35,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			bus: p.nearest_bus_stop_text,
 			foodDelivery: (p.food_delivery ?? {}) as Record<string, boolean>,
 			lastVerified: p.last_verified_at,
+			verification: p.verification_method,
 			hours: p.place_hours,
 			crowdToday: p.crowd_typical.find((c) => c.weekday === wd)?.level ?? null,
 			text: {

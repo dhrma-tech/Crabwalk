@@ -191,6 +191,8 @@
 			<StatusBadge kind="gem" />
 			<StatusBadge kind="verified" />
 			<StatusBadge kind="last-verified" date="2026-10-03" />
+			<StatusBadge kind="last-verified" date="2026-10-03" method="field" />
+			<StatusBadge kind="last-verified" date="2026-10-03" method="desk" />
 		</section>
 
 		<section class="flex flex-col gap-3" data-clip-check>

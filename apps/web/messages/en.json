@@ -72,6 +72,8 @@
 	"hidden_gem": "Hidden gem",
 	"verified": "Verified",
 	"last_verified": "Verified {date}",
+	"last_visited": "Visited · {date}",
+	"last_checked_online": "Checked online · {date}",
 	"diet_veg": "Veg",
 	"diet_nonveg": "Non-veg",
 	"diet_jain": "Jain",

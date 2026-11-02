@@ -72,6 +72,8 @@
 	"hidden_gem": "छिपा रत्न",
 	"verified": "जाँचा गया",
 	"last_verified": "{date} को जाँचा गया",
+	"last_visited": "देखा गया · {date}",
+	"last_checked_online": "ऑनलाइन जाँचा · {date}",
 	"diet_veg": "शाकाहारी",
 	"diet_nonveg": "मांसाहारी",
 	"diet_jain": "जैन",

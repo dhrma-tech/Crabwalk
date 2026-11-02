@@ -65,7 +65,8 @@ test('verifier creates a place in the field; it appears after reviewer approval'
 	await a.goto(`/place/${slug}`);
 	await expect(a.getByRole('heading', { name, level: 2 })).toBeVisible();
 	await expect(a.getByText('A quiet cove south of town.')).toBeVisible();
-	await expect(a.getByText(/^Verified \d/)).toBeVisible();
+	// A field-form place was visited (T-48): "Visited · date", never "Checked online".
+	await expect(a.getByText(/^Visited · \d/)).toBeVisible();
 	await a.goto('/?category=beach');
 	await expect(a.getByRole('link', { name: new RegExp(name) })).toBeVisible();
 	await Promise.all([v.ctx.close(), r.ctx.close(), anon.close()]);

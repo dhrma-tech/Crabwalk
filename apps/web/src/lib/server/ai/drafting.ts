@@ -10,7 +10,7 @@ type DB = SupabaseClient<Database>;
 
 // Never sent: contacts, coordinates, owner/staff ids, status/bookkeeping.
 const OMIT =
-	/^(id|phone|whatsapp|location|taluka_id|owner_id|status|created_at|updated_at|next_recheck_at|last_verified_at|is_seed|tide_station_id|slug)$/;
+	/^(id|phone|whatsapp|location|taluka_id|owner_id|status|created_at|updated_at|next_recheck_at|last_verified_at|is_seed|tide_station_id|slug|verification_method|source_urls)$/;
 
 const PROMPT = (
 	type: ReviewType,

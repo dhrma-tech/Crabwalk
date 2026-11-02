@@ -45,26 +45,37 @@ const base = z.object({
 	taluka_id: z.uuid()
 });
 
-export const placeInput = base.extend({
-	category: z.enum(E.place_category),
-	entry_fee_text: text,
-	entry_fee_inr: z.number().int().min(0).max(100_000).nullish(), // nullish: offline drafts queued before P7
-	visit_minutes: z.number().int().min(10).max(600).nullish(),
-	best_time_text: text,
-	how_to_reach_text: text,
-	nearest_station_text: text,
-	nearest_bus_stop_text: text,
-	is_hidden_gem: z.boolean(),
-	is_tide_dependent: z.boolean(),
-	monsoon_status: z.enum(E.monsoon_status),
-	monsoon_reason: text,
-	food_delivery: z.partialRecord(z.enum(FOOD_APPS), z.boolean()),
-	hours,
-	crowd: z
-		.array(z.object({ weekday: z.number().int().min(0).max(6), level: z.enum(E.crowd_level) }))
-		.max(7),
-	notes: text
-});
+export const placeInput = base
+	.extend({
+		category: z.enum(E.place_category),
+		entry_fee_text: text,
+		entry_fee_inr: z.number().int().min(0).max(100_000).nullish(), // nullish: offline drafts queued before P7
+		visit_minutes: z.number().int().min(10).max(600).nullish(),
+		best_time_text: text,
+		how_to_reach_text: text,
+		nearest_station_text: text,
+		nearest_bus_stop_text: text,
+		is_hidden_gem: z.boolean(),
+		is_tide_dependent: z.boolean(),
+		monsoon_status: z.enum(E.monsoon_status),
+		monsoon_reason: text,
+		food_delivery: z.partialRecord(z.enum(FOOD_APPS), z.boolean()),
+		hours,
+		crowd: z
+			.array(z.object({ weekday: z.number().int().min(0).max(6), level: z.enum(E.crowd_level) }))
+			.max(7),
+		notes: text,
+		// Provenance (T-48): desk entries cite 1–10 https sources; queued drafts from before T-48 are field visits.
+		verification_method: z.enum(['desk', 'field']).default('field'),
+		source_urls: z
+			.array(z.url({ protocol: /^https$/ }).max(500))
+			.max(10)
+			.default([])
+	})
+	.refine((p) => p.verification_method === 'field' || p.source_urls.length > 0, {
+		path: ['source_urls'],
+		message: 'a desk entry needs a source'
+	});
 
 export const stayInput = base
 	.extend({
@@ -162,6 +173,8 @@ export async function createPlace(db: DB, userId: string, p: z.infer<typeof plac
 		monsoon_status: p.monsoon_status,
 		monsoon_reason: p.monsoon_reason,
 		food_delivery: p.food_delivery,
+		verification_method: p.verification_method,
+		source_urls: p.source_urls,
 		status: 'in_review',
 		last_verified_at: new Date().toISOString()
 	});
