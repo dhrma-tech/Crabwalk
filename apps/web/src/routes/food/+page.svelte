@@ -17,9 +17,9 @@
 	const dietMap = { veg: 'veg', non_veg: 'nonveg', jain: 'jain' } as const;
 </script>
 
-{#snippet card(e: (typeof data.eateries)[number], row: boolean)}
+{#snippet card(e: (typeof data.eateries)[number])}
 	<EateryCard
-		{row}
+		row="below-lg"
 		level={2}
 		href={resolve('/food/[slug]', { slug: e.slug })}
 		slug={e.slug}
@@ -68,18 +68,12 @@
 			]}
 		/>
 		{#if data.eateries.length}
-			<div class="lg:hidden">
-				<InsetList>
-					{#each data.eateries as e (e.slug)}
-						{@render card(e, true)}
-					{/each}
-				</InsetList>
-			</div>
-			<div class="hidden gap-5 lg:grid lg:grid-cols-3">
+			<!-- Rows on phones, a 3-column card grid from lg up; each eatery rendered once. -->
+			<InsetList gridLg>
 				{#each data.eateries as e (e.slug)}
-					{@render card(e, false)}
+					{@render card(e)}
 				{/each}
-			</div>
+			</InsetList>
 		{:else}
 			<EmptyState title={m.soon_title()} body={m.no_results()}>
 				{#snippet action()}<Button href={resolve('/food')} variant="secondary"

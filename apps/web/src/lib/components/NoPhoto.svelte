@@ -29,7 +29,8 @@
 		category,
 		kind,
 		label = true
-	}: { category?: Category; kind?: Kind; label?: boolean } = $props();
+		/** `'lg'`: the label shows from lg up only (a ListingCard that is a row below lg). */
+	}: { category?: Category; kind?: Kind; label?: boolean | 'lg' } = $props();
 
 	const look = $derived(
 		kind
@@ -48,7 +49,9 @@
 		aria-hidden="true"
 		class={['absolute right-1 bottom-1 h-auto w-[min(72px,60%)] opacity-[.22]', tint.fg]}
 	/>
-	{#if label}<span class="relative type-small text-text-2">{m.photo_soon()}</span>{/if}
+	{#if label}<span class={['relative type-small text-text-2', label === 'lg' && 'max-lg:hidden']}
+			>{m.photo_soon()}</span
+		>{/if}
 </div>
 
 <style>

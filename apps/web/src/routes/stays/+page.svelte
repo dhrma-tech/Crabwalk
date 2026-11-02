@@ -19,9 +19,9 @@
 		keys.map((k) => ({ value: k, label: msg(`${prefix}${k}`) }));
 </script>
 
-{#snippet card(s: (typeof data.stays)[number], row: boolean)}
+{#snippet card(s: (typeof data.stays)[number])}
 	<StayCard
-		{row}
+		row="below-lg"
 		level={2}
 		href={resolve('/stays/[slug]', { slug: s.slug })}
 		slug={s.slug}
@@ -70,18 +70,12 @@
 			]}
 		/>
 		{#if data.stays.length}
-			<div class="lg:hidden">
-				<InsetList>
-					{#each data.stays as s (s.slug)}
-						{@render card(s, true)}
-					{/each}
-				</InsetList>
-			</div>
-			<div class="hidden gap-5 lg:grid lg:grid-cols-3">
+			<!-- Rows on phones, a 3-column card grid from lg up; each stay rendered once. -->
+			<InsetList gridLg>
 				{#each data.stays as s (s.slug)}
-					{@render card(s, false)}
+					{@render card(s)}
 				{/each}
-			</div>
+			</InsetList>
 		{:else}
 			<!-- Report 1 §4.1: one helpful action. -->
 			<EmptyState title={m.soon_title()} body={m.no_results()}>

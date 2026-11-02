@@ -32,7 +32,7 @@
 		priceMax?: number | null;
 		priceSource?: string | null;
 		serviceStyle?: 'homely' | 'professional' | null;
-		row?: boolean;
+		row?: boolean | 'below-lg';
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;

@@ -29,7 +29,7 @@
 		signatureDish?: string | null;
 		priceForTwo?: number | null;
 		diet?: Diet[];
-		row?: boolean;
+		row?: boolean | 'below-lg';
 		level?: 2 | 3;
 		saved?: boolean;
 		onsave?: () => void;
