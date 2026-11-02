@@ -2,6 +2,7 @@
 import type { SupabaseClient } from '@supabase/supabase-js';
 import { SUPABASE_URL } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
+import type { Credit } from '#lib/photoCredit.ts';
 import { AMENITIES, DIETS, VIBES } from '#lib/vocab.ts';
 import { nextLow, WEATHER_MAX_AGE_MS, type TideStation, type WeatherPoint } from '#lib/today.ts';
 
@@ -29,7 +30,14 @@ export const names = (rows: Tr[] | null | undefined) => ({
 // Photos are stored as <path>-<width>.webp (client-side resize, DECISIONS P4-2).
 export const PHOTO_WIDTHS = [480, 960, 1600] as const;
 export function photoUrls(
-	p: { storage_path: string; lqip: string | null; width: number | null },
+	p: {
+		storage_path: string;
+		lqip: string | null;
+		width: number | null;
+		credit?: string | null;
+		licence?: string | null;
+		source_url?: string | null;
+	},
 	alt: string
 ) {
 	const base = `${SUPABASE_URL}/storage/v1/object/public/photos/${p.storage_path}`;
@@ -38,7 +46,12 @@ export function photoUrls(
 		src: `${base}-${widths.at(-1)}.webp`,
 		srcset: widths.map((w) => `${base}-${w}.webp ${w}w`).join(', '),
 		lqip: p.lqip ?? undefined,
-		alt
+		alt,
+		// Openly licensed photos carry their attribution (T-51); our own photos have none.
+		credit:
+			p.credit && p.licence && p.source_url
+				? ({ name: p.credit, licence: p.licence, source: p.source_url } as Credit)
+				: undefined
 	};
 }
 

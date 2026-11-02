@@ -11,6 +11,7 @@
 	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { categoryIcons } from '#lib/components/CategoryIcon.svelte';
 	import { processPhoto, type Processed } from '#lib/field/photos.ts';
+	import { LICENCES, creditComplete } from '#lib/photoCredit.ts';
 	import { all, flush, put, send, type Submission } from '#lib/field/queue.ts';
 	import type { PageProps } from './$types';
 
@@ -74,6 +75,8 @@
 	let accuracy = $state<number | null>(null);
 	let queued = $state<Submission[]>([]);
 	let busy = $state(false);
+	let licensed = $state(false);
+	let credit = $state({ credit: '', licence: '', source_url: '' });
 
 	const refresh = async () => (queued = await all());
 	onMount(() => {
@@ -212,6 +215,8 @@
 			(sources.length > 10 || sources.some((u) => !/^https:\/\/\S+\.\S+/.test(u)))
 		)
 			return toast(m.field_sources_invalid());
+		const licensedNow = mode === 'desk' && licensed;
+		if (licensedNow && !creditComplete(credit)) return toast(m.photo_credit_invalid());
 		busy = true;
 		const id = crypto.randomUUID();
 		const s: Submission = {
@@ -219,6 +224,9 @@
 			type: kind,
 			payload: $state.snapshot(payload(id)) as Record<string, unknown>,
 			photos: $state.snapshot(photos) as Processed[],
+			credit: licensedNow
+				? { ...$state.snapshot(credit), credit: credit.credit.trim() }
+				: undefined,
 			done: []
 		};
 		await put(s);
@@ -231,6 +239,8 @@
 		photos = [];
 		previews = [];
 		accuracy = null;
+		licensed = false;
+		credit = { credit: '', licence: '', source_url: '' };
 	}
 
 	const input = 'field h-12 w-full min-w-0 px-3 type-body text-text';
@@ -401,6 +411,41 @@
 							class="size-20 rounded-md object-cover"
 						/>{/each}
 				</div>{/if}
+			{#if mode === 'desk'}
+				<!-- Not our photos (T-51): CC BY / CC BY-SA only, with author and source, shown on the page. -->
+				<label class={[box, 'w-fit']}
+					><input type="checkbox" bind:checked={licensed} />{m.photo_licensed()}</label
+				>
+				{#if licensed}
+					<label class={label}
+						>{m.photo_credit()}<input
+							class={input}
+							bind:value={credit.credit}
+							maxlength="200"
+							name="photo_credit"
+						/></label
+					>
+					<label class={label}
+						>{m.photo_licence()}<select
+							class={input}
+							bind:value={credit.licence}
+							name="photo_licence"
+						>
+							<option value="">—</option>
+							{#each LICENCES as l (l)}<option value={l}>{l}</option>{/each}
+						</select></label
+					>
+					<label class={label}
+						>{m.photo_source()}<input
+							class={input}
+							type="url"
+							placeholder="https://"
+							bind:value={credit.source_url}
+							name="photo_source"
+						/></label
+					>
+				{/if}
+			{/if}
 		</fieldset>
 
 		{#if kind === 'places'}

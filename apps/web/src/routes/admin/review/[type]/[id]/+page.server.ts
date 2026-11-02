@@ -4,6 +4,7 @@ import { requireStaff } from '#lib/server/auth.ts';
 import { photosFor, photoUrls } from '#lib/server/listings.ts';
 import { entity, FIELDS, isReviewType, loadText, publish, saveDrafts } from '#lib/server/review.ts';
 import { draftContent } from '#lib/server/ai/drafting.ts';
+import { creditInput } from '#lib/server/photoCredit.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
@@ -42,7 +43,7 @@ export const load: PageServerLoad = async (event) => {
 		facts,
 		notes: notes.data ?? [],
 		offers: offers.data ?? [],
-		photos: (photos.get(id) ?? []).map((p) => photoUrls(p, '')),
+		photos: (photos.get(id) ?? []).map((p) => ({ id: p.id, ...photoUrls(p, '') })),
 		isAdmin: s.isAdmin
 	};
 };
@@ -61,6 +62,26 @@ const offer = z.object({
 });
 
 export const actions: Actions = {
+	// Photo credit (T-51): a reviewer adds or fixes author + licence + source for a licensed photo, or clears all
+	// three for our own photo. The database refuses anything in between.
+	photoCredit: async (event) => {
+		await requireStaff(event, 'reviewer');
+		const f = await event.request.formData();
+		const photo = z.uuid().safeParse(f.get('photo'));
+		const c = creditInput.safeParse({
+			credit: String(f.get('credit') ?? ''),
+			licence: String(f.get('licence') ?? ''),
+			source_url: String(f.get('source_url') ?? '')
+		});
+		if (!photo.success || !c.success) return fail(400, { creditError: photo.data ?? true });
+		const { error: err } = await event.locals.supabase
+			.from('photos')
+			.update(c.data)
+			.eq('id', photo.data)
+			.eq('entity_id', event.params.id);
+		if (err) return fail(403, { creditError: photo.data });
+		return { creditSaved: photo.data };
+	},
 	// AI drafts fill empty fields only; the reviewer still checks every fact (PLAN P8 task 9).
 	draft: async (event) => {
 		await requireStaff(event, 'reviewer');

@@ -1,12 +1,14 @@
 // Offline draft queue for the field form (FRONTEND §7.15 [DEFAULT]): IndexedDB, replayed when online.
 // Listing ids/photo ids are client-generated, so a retry never creates duplicates.
-import { uploadPhoto, type Processed } from './photos.ts';
+import { uploadPhoto, type PhotoCredit, type Processed } from './photos.ts';
 
 export type Submission = {
 	id: string;
 	type: 'places' | 'stays' | 'eateries';
 	payload: Record<string, unknown>;
 	photos: Processed[];
+	/** Set when this batch of photos is openly licensed rather than ours (T-51). */
+	credit?: PhotoCredit;
 	done: string[];
 	error?: string;
 };
@@ -49,7 +51,7 @@ export async function send(s: Submission): Promise<'sent' | 'queued' | 'failed'>
 		}
 		for (const [i, p] of s.photos.entries()) {
 			if (s.done.includes(p.id)) continue;
-			await uploadPhoto(p, { type: entityType[s.type], id: s.id }, i === 0);
+			await uploadPhoto(p, { type: entityType[s.type], id: s.id }, i === 0, s.credit);
 			s.done.push(p.id);
 			await put(s);
 		}

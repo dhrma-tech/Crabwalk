@@ -1,5 +1,6 @@
 // Client-side photo processing (DECISIONS P4-2): WebP at 480/960/1600 px (never upscaled) + ~20 px LQIP.
 export const WIDTHS = [480, 960, 1600] as const;
+export type PhotoCredit = { credit: string; licence: string; source_url: string };
 export type Processed = {
 	id: string;
 	width: number;
@@ -40,7 +41,9 @@ export async function processPhoto(file: File): Promise<Processed> {
 export async function uploadPhoto(
 	p: Processed,
 	entity: { type: string; id: string },
-	hero: boolean
+	hero: boolean,
+	/** An openly licensed photo (T-51): author, CC licence, https source page. Our own photos: none. */
+	credit?: PhotoCredit
 ) {
 	const f = new FormData();
 	Object.entries({
@@ -50,7 +53,8 @@ export async function uploadPhoto(
 		is_hero: hero ? '1' : '0',
 		width: String(p.width),
 		height: String(p.height),
-		lqip: p.lqip
+		lqip: p.lqip,
+		...credit
 	}).forEach(([k, v]) => f.set(k, v));
 	for (const [w, b] of Object.entries(p.blobs))
 		f.set(`w${w}`, new File([b!], `${p.id}-${w}.webp`, { type: 'image/webp' }));

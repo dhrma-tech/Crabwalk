@@ -2,6 +2,7 @@
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
+	import { LICENCES } from '#lib/photoCredit.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import type { PageProps } from './$types';
@@ -55,13 +56,57 @@
 		</form>
 
 		{#if data.photos.length}
-			<div class="flex flex-wrap gap-2">
-				{#each data.photos as p, i (i)}<img
-						src={p.src}
-						alt=""
-						class="size-24 rounded-md object-cover"
-					/>{/each}
-			</div>
+			<!-- Photo credit (T-51): empty = our own photo; a licensed photo needs author, licence and source. -->
+			<ul class="flex flex-col gap-3" data-testid="review-photos">
+				{#each data.photos as p (p.id)}
+					<li class="flex flex-col gap-3 rounded-lg bg-surface p-3 shadow-e1 sm:flex-row">
+						<img src={p.src} alt="" class="size-24 shrink-0 rounded-md object-cover" />
+						<form
+							method="POST"
+							action="?/photoCredit"
+							use:submitting
+							class="grid flex-1 gap-2 sm:grid-cols-2"
+						>
+							<input type="hidden" name="photo" value={p.id} />
+							<label class="flex flex-col gap-1 type-small text-text-2"
+								>{m.photo_credit()}<input
+									name="credit"
+									maxlength="200"
+									value={p.credit?.name ?? ''}
+									class={[field, 'h-12']}
+								/></label
+							>
+							<label class="flex flex-col gap-1 type-small text-text-2"
+								>{m.photo_licence()}<select name="licence" class={[field, 'h-12']}
+									><option value="">—</option>{#each LICENCES as l (l)}<option
+											value={l}
+											selected={p.credit?.licence === l}>{l}</option
+										>{/each}</select
+								></label
+							>
+							<label class="flex flex-col gap-1 type-small text-text-2 sm:col-span-2"
+								>{m.photo_source()}<input
+									name="source_url"
+									type="url"
+									placeholder="https://"
+									value={p.credit?.source ?? ''}
+									class={[field, 'h-12']}
+								/></label
+							>
+							<div class="flex flex-wrap items-center gap-3 sm:col-span-2">
+								<Button type="submit" variant="secondary">{m.photo_credit_save()}</Button>
+								{#if form?.creditSaved === p.id}<span class="type-small" role="status"
+										>{m.owner_saved()}</span
+									>{/if}
+								{#if form?.creditError === p.id || form?.creditError === true}<span
+										class="type-small"
+										role="alert">{m.photo_credit_invalid()}</span
+									>{/if}
+							</div>
+						</form>
+					</li>
+				{/each}
+			</ul>
 		{/if}
 
 		<details class="rounded-lg bg-surface p-3 shadow-e1">

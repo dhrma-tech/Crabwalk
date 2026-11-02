@@ -44,8 +44,17 @@ test('desk entry: no GPS, point from the map or typed, sources required; page sa
 	await form
 		.locator('textarea[name="source_urls"]')
 		.fill('https://example.org/desk-a\nhttps://example.org/desk-b');
+	// A photo that isn't ours (T-51): half a credit is refused, then author + CC licence + source.
+	await form.locator('input[type="file"]').setInputFiles('static/icons/icon-512.png');
+	await form.getByLabel('Photos are openly licensed (not ours)').check();
+	await form.locator('input[name="photo_credit"]').fill(`E2E Photographer ${run}`);
 	await form.getByRole('button', { name: 'Submit for review' }).click();
-	await expect(v.page.getByText('Sent for review')).toBeVisible();
+	await expect(v.page.getByText('Give the author, licence and an https source page')).toBeVisible();
+	await form.locator('select[name="photo_licence"]').selectOption('CC BY-SA 4.0');
+	await form.locator('input[name="photo_source"]').fill('https://example.org/photo-page');
+	await form.getByRole('button', { name: 'Submit for review' }).click();
+	// Photo processing + three uploads can take a while on a shared runner.
+	await expect(v.page.getByText('Sent for review')).toBeVisible({ timeout: 30_000 });
 
 	const where = `from places p join place_translations t on t.place_id = p.id where t.name = '${deskName}'`;
 	await expect
@@ -59,6 +68,16 @@ test('desk entry: no GPS, point from the map or typed, sources required; page sa
 	await anon.goto(`/place/${slug}`);
 	await expect(anon.getByText(/^Checked online · \d/)).toBeVisible();
 	await expect(anon.getByText(/^Visited ·/)).toHaveCount(0);
+	const credit = anon.getByTestId('photo-credit');
+	await expect(credit).toContainText(`Photo: E2E Photographer ${run} · CC BY-SA 4.0`);
+	await expect(credit.getByRole('link', { name: `E2E Photographer ${run}` })).toHaveAttribute(
+		'href',
+		'https://example.org/photo-page'
+	);
+	await expect(credit.getByRole('link', { name: 'CC BY-SA 4.0' })).toHaveAttribute(
+		'href',
+		'https://creativecommons.org/licenses/by-sa/4.0/'
+	);
 	await anon.close();
 });
 
@@ -109,6 +128,27 @@ test('verifier creates a place in the field; it appears after reviewer approval'
 	await r.page.goto('/admin/review');
 	await r.page.waitForLoadState('networkidle');
 	await r.page.getByTestId('review-queue').getByRole('link', { name }).click();
+	// Photo credit on review (T-51): half a credit is refused; a full one saves; clearing all three = our own photo.
+	const ph = r.page.getByTestId('review-photos').locator('form').first();
+	const photoCredit = () =>
+		psql(
+			`select coalesce(ph.credit, '-') || '|' || coalesce(ph.licence, '-') from photos ph join place_translations t on t.place_id = ph.entity_id where t.name = '${name}'`
+		);
+	await ph.locator('input[name="credit"]').fill('Reviewer Test');
+	await ph.getByRole('button', { name: 'Save credit' }).click();
+	await expect(ph.getByRole('alert')).toBeVisible();
+	await ph.locator('select[name="licence"]').selectOption('CC BY 4.0');
+	await ph.locator('input[name="source_url"]').fill('https://example.org/review-photo');
+	await ph.getByRole('button', { name: 'Save credit' }).click();
+	await expect.poll(photoCredit).toBe('Reviewer Test|CC BY 4.0');
+	// Wait for the page to reload its data (it refills the inputs) before clearing them.
+	await expect(ph.getByRole('status')).toHaveText('Saved');
+	await expect(ph.locator('input[name="credit"]')).toHaveValue('Reviewer Test');
+	await ph.locator('input[name="credit"]').fill('');
+	await ph.locator('select[name="licence"]').selectOption('');
+	await ph.locator('input[name="source_url"]').fill('');
+	await ph.getByRole('button', { name: 'Save credit' }).click();
+	await expect.poll(photoCredit).toBe('-|-');
 	await r.page.locator('textarea[name="en.short_story"]').fill('A quiet cove south of town.');
 	await r.page.getByRole('button', { name: 'Approve and publish' }).click();
 	await expect(r.page.getByText('Published', { exact: true })).toBeVisible();

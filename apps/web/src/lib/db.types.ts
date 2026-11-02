@@ -395,14 +395,14 @@ isOneToOne: false
                   ]
                 },"photos": {
                   Row: {
-                    "created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["listing_type"],"height": number | null,"id": string,"is_hero": boolean,"lqip": string | null,"storage_path": string,"updated_at": string | null,"uploaded_by": string,"width": number | null
+                    "created_at": string,"credit": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["listing_type"],"height": number | null,"id": string,"is_hero": boolean,"licence": string | null,"lqip": string | null,"source_url": string | null,"storage_path": string,"updated_at": string | null,"uploaded_by": string,"width": number | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["listing_type"],"height"?: number | null,"id"?: string,"is_hero"?: boolean,"lqip"?: string | null,"storage_path": string,"updated_at"?: string | null,"uploaded_by": string,"width"?: number | null
+                    "created_at"?: string,"credit"?: string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["listing_type"],"height"?: number | null,"id"?: string,"is_hero"?: boolean,"licence"?: string | null,"lqip"?: string | null,"source_url"?: string | null,"storage_path": string,"updated_at"?: string | null,"uploaded_by": string,"width"?: number | null
                   }
                   Update: {
-                    "created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["listing_type"],"height"?: number | null,"id"?: string,"is_hero"?: boolean,"lqip"?: string | null,"storage_path"?: string,"updated_at"?: string | null,"uploaded_by"?: string,"width"?: number | null
+                    "created_at"?: string,"credit"?: string | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["listing_type"],"height"?: number | null,"id"?: string,"is_hero"?: boolean,"licence"?: string | null,"lqip"?: string | null,"source_url"?: string | null,"storage_path"?: string,"updated_at"?: string | null,"uploaded_by"?: string,"width"?: number | null
                   }
                   Relationships: [
                     

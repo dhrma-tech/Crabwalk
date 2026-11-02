@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { PHOTO_WIDTHS } from '#lib/server/listings.ts';
 import { formBody } from '#lib/server/http.ts';
+import { creditInput } from '#lib/server/photoCredit.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({
@@ -15,13 +16,20 @@ const meta = z.object({
 	lqip: z.string().startsWith('data:image/webp;base64,').max(4000)
 });
 
-// POST /api/admin/photos (multipart) — verifier/owner photos only (no stock photos, BACKEND §3.3).
+// POST /api/admin/photos (multipart) — own photos, or openly licensed ones with author + licence + source (T-7 /
+// T-51; never stock or unlicensed web images, BACKEND §3.3).
 // Client already resized to WebP at 480/960/1600 (DECISIONS P4-2). Storage + photos RLS decide who may write.
 export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
 	const form = await formBody(event.request);
 	const m = meta.safeParse(Object.fromEntries([...form].filter(([, v]) => typeof v === 'string')));
 	if (!m.success) error(400, 'bad photo metadata');
+	const credit = creditInput.safeParse({
+		credit: String(form.get('credit') ?? ''),
+		licence: String(form.get('licence') ?? ''),
+		source_url: String(form.get('source_url') ?? '')
+	});
+	if (!credit.success) error(400, 'photo credit: author, licence and source together');
 	const { id, entity_type, entity_id } = m.data;
 	const path = `${entity_type}/${entity_id}/${id}`;
 	const storage = event.locals.supabase.storage.from('photos');
@@ -47,7 +55,8 @@ export const POST: RequestHandler = async (event) => {
 			width: m.data.width,
 			height: m.data.height,
 			uploaded_by: user.id,
-			is_hero: m.data.is_hero === '1'
+			is_hero: m.data.is_hero === '1',
+			...credit.data
 		},
 		{ onConflict: 'id' }
 	);
