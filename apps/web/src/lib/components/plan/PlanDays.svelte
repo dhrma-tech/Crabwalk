@@ -66,6 +66,8 @@
 
 	// Local copy for drag preview (writable derived): reset whenever the server sends a new plan.
 	let work = $derived(days.map((d) => d.stops.map((s) => ({ ...s }))));
+	// A derived value is not a deep proxy: replace the array so the timeline (and the drag zone) redraws.
+	const set = (d: number, items: PlanStop[]) => (work = work.map((x, k) => (k === d ? items : x)));
 
 	const emit = () =>
 		onchange?.(work.map((d) => d.map((s) => ({ kind: s.kind, entity_id: s.entity_id }))));
@@ -73,11 +75,14 @@
 		const list = [...work[d]!];
 		const [x] = list.splice(i, 1);
 		list.splice(i + by, 0, x!);
-		work[d] = list;
+		set(d, list);
 		emit();
 	}
 	function remove(d: number, i: number) {
-		work[d] = work[d]!.filter((_, k) => k !== i);
+		set(
+			d,
+			work[d]!.filter((_, k) => k !== i)
+		);
 		emit();
 	}
 	function addStop(d: number, value: string) {
@@ -98,10 +103,12 @@
 			travelMin: null,
 			reason: null
 		};
-		if (o.kind === 'stay') work[d] = [...list.filter((s) => s.kind !== 'stay'), stop];
+		if (o.kind === 'stay') set(d, [...list.filter((s) => s.kind !== 'stay'), stop]);
 		else
-			work[d] =
-				stayAt < 0 ? [...list, stop] : [...list.slice(0, stayAt), stop, ...list.slice(stayAt)];
+			set(
+				d,
+				stayAt < 0 ? [...list, stop] : [...list.slice(0, stayAt), stop, ...list.slice(stayAt)]
+			);
 		emit();
 	}
 	const kindLabel = (k: PlanStop['kind']) =>
@@ -162,12 +169,13 @@
 					use:dndzone={{
 						items: work[i]!,
 						flipDurationMs: 150,
+						type: 'stop', // shared with the workspace lists (P11)
 						dragDisabled: !editable,
 						dropTargetStyle: {}
 					}}
-					onconsider={(e) => (work[i] = e.detail.items)}
+					onconsider={(e) => set(i, e.detail.items)}
 					onfinalize={(e) => {
-						work[i] = e.detail.items;
+						set(i, e.detail.items);
 						emit();
 					}}
 				>

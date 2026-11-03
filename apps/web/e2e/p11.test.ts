@@ -106,6 +106,82 @@ test('1280 px: a stop pans the map to its pin; a pin picks its stop', async () =
 	await expect(stop).toBeInViewport();
 });
 
+test('lists: add a place → drag into Day 2 → it shows on the map; move to day, checklist, notes', async () => {
+	await page.setViewportSize({ width: 1280, height: 800 });
+	await page.goto(`/plan/${trip}`);
+	await page.waitForLoadState('networkidle');
+	const list = page.getByTestId('trip-list').first();
+	await expect(list).toContainText('Nothing here yet');
+
+	// Add a place from search (starts the default list).
+	await list.getByPlaceholder('Add place').fill('Seed Beach');
+	await list.getByTestId('list-hits').getByRole('button', { name: 'Seed Beach 1' }).click();
+	const beach = page.getByTestId('list-place').filter({ hasText: 'Seed Beach 1' });
+	await expect(beach).toBeVisible();
+
+	// Drag it into Day 2's timeline.
+	await page.getByRole('tab', { name: /Day 2/ }).click();
+	const day2 = page.getByTestId('plan-day').nth(1);
+	const target = day2.getByTestId('plan-stop').first();
+	// A tall laptop screen with Overview folded: the list place and Day 2 fit on one screen, no auto-scroll.
+	await page.setViewportSize({ width: 1280, height: 1000 });
+	await section('Overview').click();
+	await beach.evaluate((el) => el.scrollIntoView({ block: 'start' }));
+	await expect(target).toBeInViewport();
+	const from = (await beach.boundingBox())!;
+	await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
+	await page.mouse.down();
+	await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2 + 10, { steps: 4 });
+	const to = (await target.boundingBox())!;
+	await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 20 });
+	await page.waitForTimeout(400); // dnd-action looks for the zone under the card every ~150 ms
+	await page.mouse.up();
+	await expect(day2.getByTestId('plan-stop').filter({ hasText: 'Seed Beach 1' })).toBeVisible({
+		timeout: 15_000
+	});
+	await expect(beach).toHaveCount(0);
+	// Day 2's map now has both stops.
+	await page.waitForFunction(() => {
+		const m = (window as unknown as { __map?: E2EMap }).__map;
+		return m && !m.isMoving() && m.queryRenderedFeatures({ layers: ['stop'] }).length === 2;
+	});
+
+	// Recommended "+" → list; "Move to day…" sends it to Day 1.
+	const rec = list.getByTestId('recommended');
+	const pick = rec.getByRole('button', { name: /^Add / }).first();
+	const name = (await pick.getAttribute('aria-label'))!.slice(4);
+	await pick.click();
+	const viewpoint = page.getByTestId('list-place').filter({ hasText: name });
+	await expect(viewpoint).toBeVisible();
+	await list.getByRole('button', { name: 'Show list on the map' }).click();
+	await page.waitForFunction(() => {
+		const m = (window as unknown as { __map?: E2EMap }).__map;
+		const f = m && !m.isMoving() && m.queryRenderedFeatures({ layers: ['stop'] });
+		return f && f.length === 1;
+	});
+	await viewpoint.getByLabel('Move to day…').selectOption('1');
+	await expect(viewpoint).toHaveCount(0);
+	await page.getByRole('tab', { name: /Day 1/ }).click();
+	await expect(
+		page.getByTestId('plan-day').first().getByTestId('plan-stop').filter({ hasText: name })
+	).toBeVisible();
+
+	// Checklist item + trip notes survive a reload.
+	await list.getByPlaceholder('Note or checklist item').fill('Carry cash for the ferry');
+	await list.getByRole('button', { name: 'Add to checklist' }).click();
+	const check = page.getByRole('checkbox', { name: 'Done: Carry cash for the ferry' });
+	await check.check();
+	await page.getByLabel('Trip notes').fill('Ferry leaves at 7');
+	await page.getByLabel('Trip notes').blur();
+	await expect(page.getByText('Updating times…')).toHaveCount(0); // save queue drained
+	await page.waitForLoadState('networkidle');
+	await page.reload();
+	await expect(
+		page.getByRole('checkbox', { name: 'Done: Carry cash for the ferry' })
+	).toBeChecked();
+	await expect(page.getByLabel('Trip notes')).toHaveValue('Ferry leaves at 7');
+});
+
 test('390 px: map on top, sections in a sheet, outline chips', async () => {
 	await page.setViewportSize({ width: 390, height: 844 });
 	await page.goto(`/plan/${trip}`);

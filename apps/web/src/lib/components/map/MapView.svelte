@@ -64,6 +64,7 @@
 		initial = null,
 		padBottom = 0,
 		stops = [],
+		stopLine = true,
 		activeStop = null,
 		onselect,
 		onerror,
@@ -103,6 +104,8 @@
 		follow?: boolean;
 		/** Plan workspace (P11): the day's numbered stops joined by a connector; the camera fits them. */
 		stops?: StopPin[];
+		/** Join the stops with the connector (a day); off for a list's places. */
+		stopLine?: boolean;
 		/** This stop's pin pulses and the camera pans to it. */
 		activeStop?: string | null;
 		onstop?: (id: string) => void;
@@ -800,15 +803,15 @@
 		if (me && follow) map.easeTo({ center: me, zoom: Math.max(map.getZoom(), 16), duration: 500 });
 	});
 
-	// Plan workspace stops (P11): redraw and fit when the day's stops change.
+	// Plan workspace stops (P11): redraw and fit when the day's (or list's) stops change.
 	$effect(() => {
-		void [stops, ready];
+		void [stops, stopLine, ready];
 		if (!map || !ready) return;
 		const at = stops.map((s): [number, number] => [s.lon, s.lat]);
 		setData('stops', {
 			type: 'FeatureCollection',
 			features: [
-				...(at.length > 1
+				...(at.length > 1 && stopLine
 					? [
 							{
 								type: 'Feature' as const,

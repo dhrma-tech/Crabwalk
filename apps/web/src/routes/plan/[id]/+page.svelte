@@ -4,7 +4,7 @@
 	import Users from '@lucide/svelte/icons/users';
 	import FileDown from '@lucide/svelte/icons/file-down';
 	import X from '@lucide/svelte/icons/x';
-	import { onMount, tick } from 'svelte';
+	import { onMount, tick, untrack } from 'svelte';
 	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { submitting } from '#lib/forms.ts';
 	import { invalidateAll } from '$app/navigation';
@@ -24,12 +24,14 @@
 	import BudgetCard from '#lib/components/plan/BudgetCard.svelte';
 	import WorkspaceSection from '#lib/components/plan/WorkspaceSection.svelte';
 	import Outline, { type OutlineItem } from '#lib/components/plan/Outline.svelte';
+	import TripList, { asStop, type ListItem } from '#lib/components/plan/TripList.svelte';
+	import type { WorkspaceOp } from '#lib/server/planner/workspace.ts';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.9: day tabs → timeline → reorder → add stay/meal → budget → share / PDF / Google Maps.
 	// P11 workspace (docs/P11 Plan workspace.md §2–§3): laptops = outline · sections column · map; phones = map
-	// on top with the sections in a bottom sheet. Sections fold; the outline unfolds and scrolls to one. Share,
+	// on top with the sections in a bottom sheet. Sections: overview, places to visit (lists), itinerary, notes. Sections fold; the outline unfolds and scrolls to one. Share,
 	// vote link, PDF and each day's Google Maps links sit in a Share sheet.
 	let { data, form }: PageProps = $props();
 	let snap = $state<Snap>('half');
@@ -56,19 +58,52 @@
 			s.pt ? [{ id: s.id, n: k + 1, kind: s.kind, lon: s.pt.lon, lat: s.pt.lat }] : []
 		)
 	);
-	function pickStop(id: string) {
+	// Or a list's places (§2): set by the list's map button or a place's number, cleared by the day tabs.
+	let focusList = $state<string | null>(null);
+	const focused = $derived(data.lists.find((l) => l.id === focusList));
+	const mapStops = $derived<StopPin[]>(
+		focused
+			? focused.items
+					.filter((i) => i.kind === 'place')
+					.flatMap((i, k) =>
+						i.pt ? [{ id: i.id, n: k + 1, kind: asStop(i).kind, lon: i.pt.lon, lat: i.pt.lat }] : []
+					)
+			: dayStops
+	);
+	$effect(() => {
+		void tab;
+		untrack(() => (focusList = null));
+	});
+	function pickStop(id: string, list: string | null = null) {
+		focusList = list;
 		activeStop = id;
+		if (!wide && snap === 'full') snap = 'half';
+	}
+	function showList(id: string | null) {
+		focusList = id;
+		activeStop = null;
 		if (!wide && snap === 'full') snap = 'half';
 	}
 	async function showStop(id: string) {
 		activeStop = id;
-		open.itinerary = true;
+		open[focusList ? 'places' : 'itinerary'] = true;
 		if (!wide && snap === 'peek') snap = 'half';
 		await tick();
-		document.getElementById(`stop-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+		document
+			.getElementById(`${focusList ? 'item' : 'stop'}-${id}`)
+			?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 	}
+	const lists = $derived(
+		data.lists.length ? data.lists : [{ id: null, title: m.plan_places(), items: [] as ListItem[] }]
+	);
 
-	const open = $state({ overview: true, itinerary: true, publish: true });
+	const open = $state({
+		overview: true,
+		places: true,
+		itinerary: true,
+		notes: true,
+		publish: true
+	});
 	const allOpen = $derived(Object.values(open).every(Boolean));
 	function toggleAll() {
 		const to = !allOpen;
@@ -76,6 +111,13 @@
 	}
 	const outline = $derived<OutlineItem[]>([
 		{ id: 'overview', label: m.plan_overview(), section: 'overview' },
+		{ id: 'places', label: m.plan_places(), section: 'places' },
+		...data.lists.map((l) => ({
+			id: `list-${l.id}`,
+			label: l.title,
+			section: 'places',
+			sub: true
+		})),
 		{ id: 'itinerary', label: m.plan_itinerary(), section: 'itinerary' },
 		...data.days.map((_, i) => ({
 			id: `day-${i}`, // PlanDays' panel id
@@ -83,14 +125,17 @@
 			section: 'itinerary',
 			sub: true
 		})),
+		{ id: 'notes', label: m.plan_notes(), section: 'notes' },
 		{ id: 'publish', label: m.plan_publish_title(), section: 'publish' }
 	]);
 	async function pick(item: OutlineItem) {
 		open[item.section as keyof typeof open] = true;
-		if (item.sub) tab = Number(item.id.slice(4));
+		if (item.sub && item.section === 'itinerary') tab = Number(item.id.slice(4));
 		if (!wide && snap !== 'full') snap = 'full';
 		await tick();
-		document.getElementById(item.section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+		document
+			.getElementById(item.sub && item.section === 'places' ? item.id : item.section)
+			?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 	let saving = $state(false);
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
@@ -119,20 +164,32 @@
 	}
 	const origin = $derived(page.url.origin);
 
-	// Edits are saved in order: each PATCH carries the full latest order, so a queue avoids races.
+	// Edits are saved in order: each PATCH carries the full latest order, so a queue avoids races. List and
+	// notes edits (POST …/workspace) share it, so every edit lands in the order it was made.
 	let queue: Promise<void> = Promise.resolve();
-	function patch(body: unknown) {
+	function send(path: string, method: string, body: unknown, reload = true) {
 		saving = true;
 		queue = queue.then(async () => {
-			const res = await fetch(`/api/trips/${data.trip.id}`, {
-				method: 'PATCH',
+			const res = await fetch(`/api/trips/${data.trip.id}${path}`, {
+				method,
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body)
 			}).catch(() => null);
 			if (!res?.ok) toast(m.send_failed());
-			await invalidateAll();
+			if (reload) await invalidateAll();
 			saving = false;
 		});
+	}
+	const patch = (body: unknown) => send('', 'PATCH', body);
+	// Notes save as you type (not reloaded: the field keeps what is being typed).
+	const op = (o: WorkspaceOp) => send('/workspace', 'POST', o, o.op !== 'notes.save');
+	let notes = $derived(data.notes);
+	let notesTimer: ReturnType<typeof setTimeout> | undefined;
+	function flushNotes() {
+		if (!notesTimer) return;
+		clearTimeout(notesTimer);
+		notesTimer = undefined;
+		op({ op: 'notes.save', body: notes });
 	}
 	async function copy(text: string) {
 		await navigator.clipboard?.writeText(text).catch(() => {});
@@ -178,7 +235,8 @@
 				showPins={false}
 				initial={firstPt}
 				{padBottom}
-				stops={dayStops}
+				stops={mapStops}
+				stopLine={!focused}
 				{activeStop}
 				onstop={showStop}
 				onselect={() => {}}
@@ -284,6 +342,27 @@
 				</div>
 			</WorkspaceSection>
 
+			<WorkspaceSection id="places" title={m.plan_places()} bind:open={open.places}>
+				{#each lists as l (l.id ?? 'default')}
+					<TripList
+						list={l}
+						days={data.days.length}
+						recommended={data.recommended}
+						active={activeStop}
+						onop={op}
+						onmap={() => showList(l.id)}
+						onpick={(it) => pickStop(it.id, l.id)}
+					/>
+				{/each}
+				<div class="print:hidden">
+					<Button
+						variant="secondary"
+						onclick={() => op({ op: 'list.create', title: m.plan_list_new() })}
+						>{m.plan_list_new()}</Button
+					>
+				</div>
+			</WorkspaceSection>
+
 			<WorkspaceSection id="itinerary" title={m.plan_itinerary()} bind:open={open.itinerary}>
 				<PlanDays
 					bind:tab
@@ -344,6 +423,24 @@
 						{/if}
 					</div>
 				{/if}
+			</WorkspaceSection>
+
+			<WorkspaceSection id="notes" title={m.plan_notes()} bind:open={open.notes}>
+				<label class="flex flex-col gap-1.5 type-small text-text-2">
+					{m.plan_notes_label()}
+					<textarea
+						rows="6"
+						maxlength="20000"
+						placeholder={m.plan_notes_hint()}
+						class="field min-h-36 p-3 type-body text-text"
+						value={notes}
+						oninput={(e) => {
+							notes = e.currentTarget.value;
+							clearTimeout(notesTimer);
+							notesTimer = setTimeout(flushNotes, 800);
+						}}
+						onblur={flushNotes}></textarea>
+				</label>
 			</WorkspaceSection>
 
 			<WorkspaceSection id="publish" title={m.plan_publish_title()} bind:open={open.publish}>

@@ -5,6 +5,7 @@ import { session } from '#lib/server/auth.ts';
 import { nearby, type Lang } from '#lib/server/listings.ts';
 import { describeStops, editTrip, suggestOrder, tripView } from '#lib/server/planner/trips.ts';
 import { mergeVotes } from '#lib/server/ai/assist.ts';
+import { workspaceView } from '#lib/server/planner/workspace.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 // Plan view (FRONTEND §7.9): owner edits; group votes shown per stop; share/vote links; publish route.
@@ -48,8 +49,15 @@ export const load: PageServerLoad = async (event) => {
 		x[v.vote as 'up' | 'down']++;
 	}
 	const route = Array.isArray(t.published_routes) ? t.published_routes[0] : t.published_routes;
+	const workspace = await workspaceView(
+		db,
+		t.id,
+		t.trip_stops as { entity_type: 'place' | 'stay' | 'eatery'; entity_id: string }[],
+		lang
+	);
 	return {
 		...view,
+		...workspace,
 		add,
 		votes: tally,
 		voters: new Set((votes ?? []).map((v) => v.voter_token)).size,
