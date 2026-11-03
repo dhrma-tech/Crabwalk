@@ -141,6 +141,16 @@ Every `[OPEN]` resolved by the user is logged here. No dates or deadlines. Spec 
 | R-7 | Named z-layers and hover tokens (`--cta-hover`, `--emergency-hover`, `row-link`) join the Suna tokens in `app.css`. |
 | R-8 | Text fields and textareas show no focus outline while typing (user; overrides design 3a "Focus" for text fields only). Buttons, links, checkboxes, radios, sliders and file pickers keep the ink ring. |
 
+## P11 — Plan workspace (user, 2026-11-03)
+Plan: `docs/P11 Plan workspace.md` (approved). Overrides FRONTEND §7.9 layout; everything §7.9 lists stays.
+| Ref | Decision |
+|---|---|
+| P11-0 | Post-MVP phase `P11` (user): `/plan/:id` becomes a Wanderlog-style workspace — itinerary + MapLibre map split (laptop: outline · content · map; phone: map on top, workspace as a snap sheet), collapsible sections, lists + recommended places + notes + checklists, expenses + balances, realtime co-editing. Left out under §2 rules: Google Maps, in-app hotel booking, email/Gmail import, Tripadvisor content, paywalls. Crabby stays the AI entry point. |
+| P11-1 | Invites: edit/view links **and** email. Email = add an existing account directly (no mail sent) or open the inviter's own mail app via `mailto:` — no mail service (₹0; custom SMTP still deferred, P1-19). |
+| P11-2 | Expense splits: equal or custom rupee amounts per tripmate (must sum to the total). Tripmates can be names without accounts. Tracking only, no payment links. |
+| P11-3 | At most 20 tripmates per trip (owner included), enforced in the DB. |
+| P11-4 | Design changes before P11 (user, 2026-11-03, uncommitted at the time): brand mark = Crabby crab + `crabwalk` in Figtree 700 (logo still [OPEN] for the artist); action colour sky blue `#0270AE` (dark `#5CC2F2`) under the `--kokum` token names, cool neutrals (overrides T-1's kokum/warm paper; contrast tests pass); `--radius-lg` 24 px, `--radius-xl` 32 px; category tiles are Commons demo photos with a scrim (overrides P10a-5 tinted text tiles; credits in `static/categories/CREDITS.md`, not shown — **must be replaced or credited before launch**, T-7); Discover sections are sideways scroll rows on every screen with a scroll-timeline pill (overrides the laptop grids). |
+
 ## Tideline redesign (phase-10b)
 Source: `docs/reports/01-gaps-fixes-improvements.md` (Report 1), `02-ui-redesign-tideline.md` (Report 2), `03-claude-code-prompt.md` (plan, steps A–G). Work lands on `main` directly (T-8), tag `phase-10b`.
 | Ref | Decision |

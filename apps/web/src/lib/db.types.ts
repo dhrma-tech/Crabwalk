@@ -973,6 +973,170 @@ isOneToOne: true
       referencedColumns: ["id"]
     }
                   ]
+                },"trip_expense_shares": {
+                  Row: {
+                    "amount": number,"expense_id": string,"member_id": string,"trip_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "amount": number,"expense_id": string,"member_id": string,"trip_id": string
+                  }
+                  Update: {
+                    "amount"?: number,"expense_id"?: string,"member_id"?: string,"trip_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_expense_shares_trip_id_expense_id_fkey"
+      columns: ["trip_id","expense_id"]
+isOneToOne: false
+      referencedRelation: "trip_expenses"
+      referencedColumns: ["trip_id","id"]
+    },{
+      foreignKeyName: "trip_expense_shares_trip_id_member_id_fkey"
+      columns: ["trip_id","member_id"]
+isOneToOne: false
+      referencedRelation: "trip_members"
+      referencedColumns: ["trip_id","id"]
+    }
+                  ]
+                },"trip_expenses": {
+                  Row: {
+                    "amount": number,"category": Database["public"]['Enums']["expense_category"],"created_at": string,"created_by": string | null,"id": string,"label": string | null,"paid_by": string,"spent_on": string | null,"split_custom": boolean,"stop_id": string | null,"trip_id": string,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "amount": number,"category"?: Database["public"]['Enums']["expense_category"],"created_at"?: string,"created_by"?: string | null,"id"?: string,"label"?: string | null,"paid_by": string,"spent_on"?: string | null,"split_custom"?: boolean,"stop_id"?: string | null,"trip_id": string,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "amount"?: number,"category"?: Database["public"]['Enums']["expense_category"],"created_at"?: string,"created_by"?: string | null,"id"?: string,"label"?: string | null,"paid_by"?: string,"spent_on"?: string | null,"split_custom"?: boolean,"stop_id"?: string | null,"trip_id"?: string,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_expenses_stop_id_fkey"
+      columns: ["stop_id"]
+isOneToOne: false
+      referencedRelation: "trip_stops"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_expenses_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_expenses_trip_id_paid_by_fkey"
+      columns: ["trip_id","paid_by"]
+isOneToOne: false
+      referencedRelation: "trip_members"
+      referencedColumns: ["trip_id","id"]
+    }
+                  ]
+                },"trip_invites": {
+                  Row: {
+                    "created_at": string,"created_by": string,"id": string,"revoked_at": string | null,"role": Database["public"]['Enums']["trip_role"],"token": string,"trip_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"created_by"?: string,"id"?: string,"revoked_at"?: string | null,"role": Database["public"]['Enums']["trip_role"],"token"?: string,"trip_id": string
+                  }
+                  Update: {
+                    "created_at"?: string,"created_by"?: string,"id"?: string,"revoked_at"?: string | null,"role"?: Database["public"]['Enums']["trip_role"],"token"?: string,"trip_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_invites_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"trip_list_items": {
+                  Row: {
+                    "body": string | null,"created_at": string,"done": boolean,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"id": string,"kind": Database["public"]['Enums']["list_item_kind"],"list_id": string,"position": number,"trip_id": string,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "body"?: string | null,"created_at"?: string,"done"?: boolean,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"id"?: string,"kind": Database["public"]['Enums']["list_item_kind"],"list_id": string,"position"?: number,"trip_id": string,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "body"?: string | null,"created_at"?: string,"done"?: boolean,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"id"?: string,"kind"?: Database["public"]['Enums']["list_item_kind"],"list_id"?: string,"position"?: number,"trip_id"?: string,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_list_items_list_id_fkey"
+      columns: ["list_id"]
+isOneToOne: false
+      referencedRelation: "trip_lists"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_list_items_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"trip_lists": {
+                  Row: {
+                    "created_at": string,"id": string,"position": number,"title": string,"trip_id": string,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"id"?: string,"position"?: number,"title": string,"trip_id": string,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "created_at"?: string,"id"?: string,"position"?: number,"title"?: string,"trip_id"?: string,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_lists_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"trip_members": {
+                  Row: {
+                    "display_name": string,"id": string,"joined_at": string,"role": Database["public"]['Enums']["trip_role"] | null,"trip_id": string,"updated_at": string | null,"user_id": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "display_name": string,"id"?: string,"joined_at"?: string,"role"?: Database["public"]['Enums']["trip_role"] | null,"trip_id": string,"updated_at"?: string | null,"user_id"?: string | null
+                  }
+                  Update: {
+                    "display_name"?: string,"id"?: string,"joined_at"?: string,"role"?: Database["public"]['Enums']["trip_role"] | null,"trip_id"?: string,"updated_at"?: string | null,"user_id"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_members_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"trip_notes": {
+                  Row: {
+                    "body": string,"created_at": string,"trip_id": string,"updated_at": string | null,"updated_by": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "body"?: string,"created_at"?: string,"trip_id": string,"updated_at"?: string | null,"updated_by"?: string | null
+                  }
+                  Update: {
+                    "body"?: string,"created_at"?: string,"trip_id"?: string,"updated_at"?: string | null,"updated_by"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_notes_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: true
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"trip_stops": {
                   Row: {
                     "arrive_at": string | null,"created_at": string,"day": number,"depart_at": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at": string | null,"order": number,"reason_en": string | null,"reason_hi": string | null,"reason_mr": string | null,"travel_from_prev_s": number | null,"trip_id": string,"updated_at": string | null
@@ -1171,7 +1335,10 @@ isOneToOne: false
                 }
           }
           Functions: {
-            "ai_take_message":
+            "add_trip_member_by_email":
+{ Args: { "_email": string,"_role": Database["public"]['Enums']["trip_role"],"_trip": string }; Returns: boolean
+                           },
+"ai_take_message":
 { Args: Record<PropertyKey, never>; Returns: number
                            },
 "approve_listing":
@@ -1254,6 +1421,9 @@ isOneToOne: false
 "rate_take":
 { Args: { "_key": string,"_limit": number,"_window_s": number }; Returns: boolean
                            },
+"redeem_trip_invite":
+{ Args: { "_token": string }; Returns: string
+                           },
 "refresh_patterns":
 { Args: Record<PropertyKey, never>; Returns: undefined
                            },
@@ -1298,7 +1468,7 @@ isOneToOne: false
                            }
           }
           Enums: {
-            "ai_action_status": "proposed"|"applied"|"discarded","alert_type": "road_condition"|"ghat"|"landslide"|"closure","app_role": "user"|"verifier"|"reviewer"|"owner"|"admin","audio_source": "tts"|"recorded","consent_type": "dwell_time"|"push"|"ai_processing","content_status": "draft"|"in_review"|"published","correction_type": "ghat"|"coastal"|"monsoon","crowd_level": "empty"|"calm"|"busy","draft_status": "draft"|"approved"|"rejected","eatery_authenticity": "home_style"|"local_legend"|"tourist_oriented","entity_type": "place"|"stay"|"eatery","group_type": "family"|"couple"|"solo"|"friends","lang": "en"|"hi"|"mr","listing_type": "place"|"stay"|"eatery"|"dish","monsoon_status": "open"|"risky"|"closed","place_category": "beach"|"fort"|"temple"|"waterfall"|"viewpoint"|"backwater"|"cave"|"museum"|"village"|"market"|"orchard","price_source": "owner"|"agoda"|"affiliate","qr_entity_type": "place"|"stay"|"eatery"|"station"|"bus_stand","report_status": "new"|"triaged"|"fixed"|"rejected","report_type": "broken_qr"|"garbage"|"unsafe_spot"|"wrong_info","review_status": "pending"|"approved"|"rejected","season": "turtle_nesting"|"mango"|"firefly"|"waterfall","service_style": "homely"|"professional","stop_kind": "place"|"stay"|"meal","sub_score_dimension": "taste"|"authenticity"|"hygiene"|"value"|"cleanliness"|"host"|"location","theme": "system"|"light"|"dark","tide_provider": "tidesatlas"|"tidecheck","trip_pace": "relaxed"|"balanced"|"packed","trip_status": "draft"|"saved"|"completed","utility_type": "fuel"|"atm"|"hospital"|"pharmacy"|"police"|"toilet"|"ev_charger"|"mechanic"|"bus_stand"|"railway_station"|"ferry_jetty","verification_method": "desk"|"field","visit_method": "qr_gps"|"booking_proof"
+            "ai_action_status": "proposed"|"applied"|"discarded","alert_type": "road_condition"|"ghat"|"landslide"|"closure","app_role": "user"|"verifier"|"reviewer"|"owner"|"admin","audio_source": "tts"|"recorded","consent_type": "dwell_time"|"push"|"ai_processing","content_status": "draft"|"in_review"|"published","correction_type": "ghat"|"coastal"|"monsoon","crowd_level": "empty"|"calm"|"busy","draft_status": "draft"|"approved"|"rejected","eatery_authenticity": "home_style"|"local_legend"|"tourist_oriented","entity_type": "place"|"stay"|"eatery","expense_category": "stay"|"food"|"fuel"|"entry"|"activities"|"other","group_type": "family"|"couple"|"solo"|"friends","lang": "en"|"hi"|"mr","list_item_kind": "place"|"note"|"check","listing_type": "place"|"stay"|"eatery"|"dish","monsoon_status": "open"|"risky"|"closed","place_category": "beach"|"fort"|"temple"|"waterfall"|"viewpoint"|"backwater"|"cave"|"museum"|"village"|"market"|"orchard","price_source": "owner"|"agoda"|"affiliate","qr_entity_type": "place"|"stay"|"eatery"|"station"|"bus_stand","report_status": "new"|"triaged"|"fixed"|"rejected","report_type": "broken_qr"|"garbage"|"unsafe_spot"|"wrong_info","review_status": "pending"|"approved"|"rejected","season": "turtle_nesting"|"mango"|"firefly"|"waterfall","service_style": "homely"|"professional","stop_kind": "place"|"stay"|"meal","sub_score_dimension": "taste"|"authenticity"|"hygiene"|"value"|"cleanliness"|"host"|"location","theme": "system"|"light"|"dark","tide_provider": "tidesatlas"|"tidecheck","trip_pace": "relaxed"|"balanced"|"packed","trip_role": "owner"|"editor"|"viewer","trip_status": "draft"|"saved"|"completed","utility_type": "fuel"|"atm"|"hospital"|"pharmacy"|"police"|"toilet"|"ev_charger"|"mechanic"|"bus_stand"|"railway_station"|"ferry_jetty","verification_method": "desk"|"field","visit_method": "qr_gps"|"booking_proof"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -1414,7 +1584,7 @@ export type CompositeTypes<
 export const Constants = {
   "public": {
           Enums: {
-            "ai_action_status": ["proposed", "applied", "discarded"],"alert_type": ["road_condition", "ghat", "landslide", "closure"],"app_role": ["user", "verifier", "reviewer", "owner", "admin"],"audio_source": ["tts", "recorded"],"consent_type": ["dwell_time", "push", "ai_processing"],"content_status": ["draft", "in_review", "published"],"correction_type": ["ghat", "coastal", "monsoon"],"crowd_level": ["empty", "calm", "busy"],"draft_status": ["draft", "approved", "rejected"],"eatery_authenticity": ["home_style", "local_legend", "tourist_oriented"],"entity_type": ["place", "stay", "eatery"],"group_type": ["family", "couple", "solo", "friends"],"lang": ["en", "hi", "mr"],"listing_type": ["place", "stay", "eatery", "dish"],"monsoon_status": ["open", "risky", "closed"],"place_category": ["beach", "fort", "temple", "waterfall", "viewpoint", "backwater", "cave", "museum", "village", "market", "orchard"],"price_source": ["owner", "agoda", "affiliate"],"qr_entity_type": ["place", "stay", "eatery", "station", "bus_stand"],"report_status": ["new", "triaged", "fixed", "rejected"],"report_type": ["broken_qr", "garbage", "unsafe_spot", "wrong_info"],"review_status": ["pending", "approved", "rejected"],"season": ["turtle_nesting", "mango", "firefly", "waterfall"],"service_style": ["homely", "professional"],"stop_kind": ["place", "stay", "meal"],"sub_score_dimension": ["taste", "authenticity", "hygiene", "value", "cleanliness", "host", "location"],"theme": ["system", "light", "dark"],"tide_provider": ["tidesatlas", "tidecheck"],"trip_pace": ["relaxed", "balanced", "packed"],"trip_status": ["draft", "saved", "completed"],"utility_type": ["fuel", "atm", "hospital", "pharmacy", "police", "toilet", "ev_charger", "mechanic", "bus_stand", "railway_station", "ferry_jetty"],"verification_method": ["desk", "field"],"visit_method": ["qr_gps", "booking_proof"]
+            "ai_action_status": ["proposed", "applied", "discarded"],"alert_type": ["road_condition", "ghat", "landslide", "closure"],"app_role": ["user", "verifier", "reviewer", "owner", "admin"],"audio_source": ["tts", "recorded"],"consent_type": ["dwell_time", "push", "ai_processing"],"content_status": ["draft", "in_review", "published"],"correction_type": ["ghat", "coastal", "monsoon"],"crowd_level": ["empty", "calm", "busy"],"draft_status": ["draft", "approved", "rejected"],"eatery_authenticity": ["home_style", "local_legend", "tourist_oriented"],"entity_type": ["place", "stay", "eatery"],"expense_category": ["stay", "food", "fuel", "entry", "activities", "other"],"group_type": ["family", "couple", "solo", "friends"],"lang": ["en", "hi", "mr"],"list_item_kind": ["place", "note", "check"],"listing_type": ["place", "stay", "eatery", "dish"],"monsoon_status": ["open", "risky", "closed"],"place_category": ["beach", "fort", "temple", "waterfall", "viewpoint", "backwater", "cave", "museum", "village", "market", "orchard"],"price_source": ["owner", "agoda", "affiliate"],"qr_entity_type": ["place", "stay", "eatery", "station", "bus_stand"],"report_status": ["new", "triaged", "fixed", "rejected"],"report_type": ["broken_qr", "garbage", "unsafe_spot", "wrong_info"],"review_status": ["pending", "approved", "rejected"],"season": ["turtle_nesting", "mango", "firefly", "waterfall"],"service_style": ["homely", "professional"],"stop_kind": ["place", "stay", "meal"],"sub_score_dimension": ["taste", "authenticity", "hygiene", "value", "cleanliness", "host", "location"],"theme": ["system", "light", "dark"],"tide_provider": ["tidesatlas", "tidecheck"],"trip_pace": ["relaxed", "balanced", "packed"],"trip_role": ["owner", "editor", "viewer"],"trip_status": ["draft", "saved", "completed"],"utility_type": ["fuel", "atm", "hospital", "pharmacy", "police", "toilet", "ev_charger", "mechanic", "bus_stand", "railway_station", "ferry_jetty"],"verification_method": ["desk", "field"],"visit_method": ["qr_gps", "booking_proof"]
           }
         }
 } as const
