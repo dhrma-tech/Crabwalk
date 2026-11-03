@@ -203,15 +203,11 @@
 				<Send size={20} aria-hidden="true" />
 			</button>
 		</form>
-		<p
-			class="flex flex-wrap items-center justify-between gap-x-3 px-6 pt-1 pb-2 type-small text-text-2"
-		>
-			{#if crabby.remaining != null}<span class="tabular-nums"
-					>{m.crabby_remaining({ n: crabby.remaining })}</span
-				>{/if}<a href={resolve('/privacy')} class="inline-flex min-h-11 items-center"
-				>{m.crabby_privacy()}</a
-			>
-		</p>
+		{#if crabby.remaining != null}
+			<p class="flex min-h-11 items-center px-6 pt-1 pb-2 type-small text-text-2">
+				<span class="tabular-nums">{m.crabby_remaining({ n: crabby.remaining })}</span>
+			</p>
+		{/if}
 	{/if}
 </div>
 

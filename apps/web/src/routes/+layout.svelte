@@ -14,10 +14,8 @@
 
 	let { children }: LayoutProps = $props();
 	onMount(guardPlainForms);
-	let devMode = $state(false);
 	onMount(() => {
-		devMode = devBypass(location.hostname);
-		if (devMode) return devClient();
+		if (devBypass(location.hostname)) return devClient();
 	});
 	// Report 2 §5: client navigations cross-fade (View Transitions, where supported); none under reduced motion.
 	onNavigate((nav) => {
@@ -31,14 +29,6 @@
 		});
 	});
 </script>
-
-{#if devMode}
-	<div
-		class="pointer-events-none fixed bottom-[calc(var(--nav-h)+8px)] left-2 z-overlay rounded-sm bg-text px-2 py-0.5 text-[11px] font-bold text-bg"
-	>
-		DEV MODE
-	</div>
-{/if}
 
 <a
 	href="#main"
