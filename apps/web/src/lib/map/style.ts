@@ -1,4 +1,4 @@
-// Map style (FRONTEND §8, Tideline colours per Report 2 §10, DECISIONS T-26): Protomaps basemap layers. Labels use our self-hosted Anek text font through MapLibre `font-faces` (Devanagari shaping);
+// Map style (FRONTEND §8, Tideline colours per Report 2 §10, DECISIONS T-26): Protomaps basemap layers. Labels use our self-hosted Figtree text font (Anek for Devanagari) through MapLibre `font-faces` (Devanagari shaping);
 // no external glyph server, no Ola tiles.
 import { layers, namedFlavor, type Flavor } from '@protomaps/basemaps';
 import type { StyleSpecification, LayerSpecification } from 'maplibre-gl';
@@ -91,9 +91,9 @@ export function buildStyle(
 	const flavor: Flavor = {
 		...namedFlavor(theme),
 		...flavors[theme],
-		regular: 'Anek',
-		bold: 'Anek',
-		italic: 'Anek',
+		regular: 'Figtree',
+		bold: 'Figtree',
+		italic: 'Figtree',
 		pois: undefined // our own pins replace basemap POIs (they would need a sprite sheet)
 	};
 	// No sprite sheet: drop basemap POIs (our pins replace them) and strip icons from label layers
@@ -121,7 +121,7 @@ export function buildStyle(
 
 const fontFaces = (origin: string) => {
 	// P10-4: Latin + Devanagari halves, chosen by unicode-range (same as app.css). MapLibre draws a font file at
-	// its default instance, so every label is Anek 400: one name, no regular/bold pair (T-17).
+	// its default instance, so every label is Figtree / Anek 400: one name, no regular/bold pair (T-17).
 	const face = (n: string) => [
 		{ url: `${origin}/fonts/${n}-latin.woff2`, 'unicode-range': ['U+0020-00FF', 'U+2010-2212'] },
 		{
@@ -130,7 +130,7 @@ const fontFaces = (origin: string) => {
 		}
 	];
 	return {
-		Anek: face('text-var'),
+		Figtree: face('text-var'),
 		'Noto Sans Devanagari Regular v1': face('text-var')
 	};
 };

@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Wordmark placeholder (Report 2 §6; the logo is [OPEN], artist pending): a sideways double chevron ‹› (a crab's
-	// sidestep) and `crabwalk` in lowercase Eczar 700, kokum. Decorative: the link around it carries the name.
+	// sidestep) and `crabwalk` in lowercase EB Garamond 400 (type-h1), kokum. Decorative: the link around it carries the name.
 	let { size = 24, wordmark = false }: { size?: number; wordmark?: boolean } = $props();
 </script>
 

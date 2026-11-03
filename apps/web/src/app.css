@@ -49,8 +49,8 @@
 	--e1: 0 1px 2px rgba(21, 23, 26, 0.04), 0 4px 12px rgba(21, 23, 26, 0.05);
 	--e2: 0 8px 28px rgba(21, 23, 26, 0.1);
 	--e3: 0 18px 48px rgba(21, 23, 26, 0.18);
-	--font-display: 'Eczar', Georgia, serif;
-	--font-body: 'Anek', system-ui, sans-serif;
+	--font-display: 'EB Garamond', Georgia, serif;
+	--font-body: 'Figtree', system-ui, sans-serif;
 	--ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 	--dur-press: 120ms;
 	--dur-state: 200ms;
@@ -196,28 +196,28 @@
 	letter-spacing: 0;
 }
 
-/* Fonts (Report 2 §4.1, T-17, T-23): Eczar 700 for display, Anek variable 400–700 for text. Each is a Latin
-   file + a Devanagari file picked by unicode-range (P10-4). Display Devanagari is Anek at 700 (the text file):
-   Eczar's Marathi forms show र् with a halant instead of the reph. Keep ranges in sync with
-   scripts/subset-fonts.mjs and src/lib/map/style.ts. */
+/* Fonts (T-58): EB Garamond 400 for display, Figtree variable 400–700 for text. Each is a Latin file + a
+   Devanagari file picked by unicode-range (P10-4). Neither has Devanagari, so both families' Devanagari half is
+   Anek Devanagari (the text file; T-17, T-23). Keep ranges in sync with scripts/subset-fonts.mjs and
+   src/lib/map/style.ts. */
 @font-face {
-	font-family: 'Eczar';
-	font-weight: 700;
+	font-family: 'EB Garamond';
+	font-weight: 400;
 	font-display: swap;
-	src: url('/fonts/display-700-latin.woff2') format('woff2');
+	src: url('/fonts/display-400-latin.woff2') format('woff2');
 	unicode-range:
 		U+0020-007E, U+00A0-00FF, U+0131, U+0152-0153, U+02C6, U+02DC, U+2010-2027, U+2030-203A, U+20B9,
 		U+2122, U+2212;
 }
 @font-face {
-	font-family: 'Eczar';
-	font-weight: 700;
+	font-family: 'EB Garamond';
+	font-weight: 400;
 	font-display: swap;
 	src: url('/fonts/text-var-deva.woff2') format('woff2');
 	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 @font-face {
-	font-family: 'Anek';
+	font-family: 'Figtree';
 	font-weight: 400 700;
 	font-display: swap;
 	src: url('/fonts/text-var-latin.woff2') format('woff2');
@@ -226,7 +226,7 @@
 		U+2122, U+2212;
 }
 @font-face {
-	font-family: 'Anek';
+	font-family: 'Figtree';
 	font-weight: 400 700;
 	font-display: swap;
 	src: url('/fonts/text-var-deva.woff2') format('woff2');
@@ -243,8 +243,8 @@
 	--breakpoint-sm: 640px;
 	--breakpoint-lg: 1024px;
 	--breakpoint-xl: 1280px;
-	--font-display: 'Eczar', Georgia, serif;
-	--font-body: 'Anek', system-ui, sans-serif;
+	--font-display: 'EB Garamond', Georgia, serif;
+	--font-body: 'Figtree', system-ui, sans-serif;
 	/* Report 2 §5 --r-sm … --r-xl; rounded-full stays for chips, avatars and icon buttons. */
 	--radius-sm: 12px;
 	--radius-md: 16px;
@@ -332,10 +332,11 @@
 }
 
 /* Type scale (Report 2 §4.2), phone → laptop. Body never < 16 px, secondary text never < 14 px; `label` is
-   for chips, badges and nav only. Devanagari gets no letter-spacing and taller lines (T-20). */
+   for chips, badges and nav only. Display sizes are EB Garamond 400 at -3 % tracking (T-58); Devanagari gets no
+   letter-spacing and taller lines (T-20). */
 @utility type-display-xl {
-	font: 700 34px/40px var(--font-display);
-	letter-spacing: -0.01em;
+	font: 400 34px/40px var(--font-display);
+	letter-spacing: -0.03em;
 	@media (width >= 1024px) {
 		font-size: 48px;
 		line-height: 54px;
@@ -347,24 +348,28 @@
 	}
 }
 @utility type-display {
-	font: 700 28px/34px var(--font-display);
+	font: 400 28px/34px var(--font-display);
+	letter-spacing: -0.03em;
 	@media (width >= 1024px) {
 		font-size: 36px;
 		line-height: 42px;
 	}
 	&:lang(mr),
 	&:lang(hi) {
+		letter-spacing: 0;
 		line-height: 1.35;
 	}
 }
 @utility type-h1 {
-	font: 700 24px/30px var(--font-display);
+	font: 400 24px/30px var(--font-display);
+	letter-spacing: -0.03em;
 	@media (width >= 1024px) {
 		font-size: 28px;
 		line-height: 34px;
 	}
 	&:lang(mr),
 	&:lang(hi) {
+		letter-spacing: 0;
 		line-height: 1.35;
 	}
 }
@@ -383,7 +388,7 @@
 	}
 }
 @utility type-body {
-	font: 400 16px/26px var(--font-body);
+	font: 500 16px/26px var(--font-body);
 	&:lang(mr),
 	&:lang(hi) {
 		line-height: 1.65;
@@ -391,7 +396,7 @@
 }
 /* Story lead paragraph (Report 2 §9.2: "first paragraph larger, body 18/30"). */
 @utility type-lead {
-	font: 400 18px/30px var(--font-body);
+	font: 500 18px/30px var(--font-body);
 	&:lang(mr),
 	&:lang(hi) {
 		line-height: 1.75;
@@ -405,7 +410,7 @@
 	}
 }
 @utility type-small {
-	font: 450 14px/20px var(--font-body);
+	font: 500 14px/20px var(--font-body);
 	&:lang(mr),
 	&:lang(hi) {
 		line-height: 1.6;
@@ -482,7 +487,7 @@
 	html {
 		background: var(--bg);
 		color: var(--text);
-		font: 400 16px/26px var(--font-body);
+		font: 500 16px/26px var(--font-body);
 		-webkit-text-size-adjust: 100%;
 	}
 	body {

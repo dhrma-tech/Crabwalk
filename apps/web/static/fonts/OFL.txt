@@ -1,6 +1,6 @@
 Fonts in this folder (subset WOFF2, see apps/web/scripts/subset-fonts.mjs):
-- display-700-latin: Eczar — Copyright 2014 The Eczar Project Authors (https://github.com/rosettatype/eczar)
-- text-var-latin: Anek Latin — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
+- display-400-latin: EB Garamond — Copyright 2017 The EB Garamond Project Authors (https://github.com/octaviopardo/EBGaramond12)
+- text-var-latin: Figtree — Copyright 2022 The Figtree Project Authors (https://github.com/erikdkennedy/figtree)
 - text-var-deva: Anek Devanagari — Copyright 2021 The Anek Project Authors (https://github.com/EkType/Anek)
 
 All are licensed under the SIL Open Font License, Version 1.1 (text below).
