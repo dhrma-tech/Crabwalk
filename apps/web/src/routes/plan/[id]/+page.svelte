@@ -17,7 +17,7 @@
 	import Meta from '#lib/components/Meta.svelte';
 	import TopBar from '#lib/components/TopBar.svelte';
 	import BottomSheet, { type Snap } from '#lib/components/BottomSheet.svelte';
-	import MapView from '#lib/components/map/MapView.svelte';
+	import MapView, { type StopPin } from '#lib/components/map/MapView.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import IconButton from '#lib/components/IconButton.svelte';
 	import PlanDays from '#lib/components/plan/PlanDays.svelte';
@@ -49,6 +49,24 @@
 		wide ? 0 : snap === 'peek' ? 132 : snap === 'half' ? innerHeight * 0.5 : 0
 	);
 	const firstPt = $derived(data.days.flatMap((d) => d.stops).find((s) => s.pt)?.pt ?? null);
+	// Map ↔ list sync (§2): the map shows the selected day; a stop's number pans to its pin, a pin picks its stop.
+	let activeStop = $state<string | null>(null);
+	const dayStops = $derived<StopPin[]>(
+		(data.days[tab]?.stops ?? []).flatMap((s, k) =>
+			s.pt ? [{ id: s.id, n: k + 1, kind: s.kind, lon: s.pt.lon, lat: s.pt.lat }] : []
+		)
+	);
+	function pickStop(id: string) {
+		activeStop = id;
+		if (!wide && snap === 'full') snap = 'half';
+	}
+	async function showStop(id: string) {
+		activeStop = id;
+		open.itinerary = true;
+		if (!wide && snap === 'peek') snap = 'half';
+		await tick();
+		document.getElementById(`stop-${id}`)?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+	}
 
 	const open = $state({ overview: true, itinerary: true, publish: true });
 	const allOpen = $derived(Object.values(open).every(Boolean));
@@ -130,7 +148,11 @@
 
 <Meta title={data.trip.title} />
 <TopBar title={data.trip.title} back />
-<main id="main" class="relative min-h-0 flex-1 lg:flex print:block">
+<!-- Laptops: exactly the viewport under the top bar, so only the sections column scrolls. -->
+<main
+	id="main"
+	class="relative min-h-0 flex-1 lg:flex lg:h-[calc(100dvh-var(--bar-h))] lg:flex-none print:block print:h-auto"
+>
 	<h1 class="sr-only">{data.trip.title}</h1>
 	<aside
 		class="hidden w-56 shrink-0 flex-col gap-4 overflow-y-auto border-r border-border p-4 lg:flex print:hidden"
@@ -156,6 +178,9 @@
 				showPins={false}
 				initial={firstPt}
 				{padBottom}
+				stops={dayStops}
+				{activeStop}
+				onstop={showStop}
 				onselect={() => {}}
 				onerror={() => (mapFailed = true)}
 			/>
@@ -262,6 +287,8 @@
 			<WorkspaceSection id="itinerary" title={m.plan_itinerary()} bind:open={open.itinerary}>
 				<PlanDays
 					bind:tab
+					active={activeStop}
+					onpick={(s) => pickStop(s.id)}
 					days={data.days}
 					editable
 					links={false}

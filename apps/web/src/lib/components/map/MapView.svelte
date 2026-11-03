@@ -30,6 +30,14 @@
 	import { offlineData, savedPacks } from '#lib/packs.ts';
 
 	export type Layers = { heat?: boolean; alerts?: boolean; tides?: boolean; trails?: boolean };
+	/** A numbered trip stop (plan workspace, P11): meals use the eatery colour. */
+	export type StopPin = {
+		id: string;
+		n: number;
+		kind: 'place' | 'meal' | 'stay';
+		lon: number;
+		lat: number;
+	};
 	export type LayerInfo = {
 		live: number;
 		typical: number;
@@ -55,12 +63,15 @@
 		heatLabels = { live: 'Live', typical: 'Typical' },
 		initial = null,
 		padBottom = 0,
+		stops = [],
+		activeStop = null,
 		onselect,
 		onerror,
 		onfeature,
 		oninfo,
 		onpins,
-		onpick
+		onpick,
+		onstop
 	}: {
 		tilesBase: string;
 		kinds?: string[];
@@ -90,6 +101,11 @@
 		guide?: [number, number][] | null;
 		me?: [number, number] | null;
 		follow?: boolean;
+		/** Plan workspace (P11): the day's numbered stops joined by a connector; the camera fits them. */
+		stops?: StopPin[];
+		/** This stop's pin pulses and the camera pans to it. */
+		activeStop?: string | null;
+		onstop?: (id: string) => void;
 	} = $props();
 	const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 	let tideData: FeatureCollection & { date?: string } = EMPTY;
@@ -396,6 +412,58 @@
 				'circle-stroke-color': c.ring
 			}
 		});
+		// Trip stops (P11): lagoon connector, a halo under the active stop, numbered pins in the pin colours.
+		m.addSource('stops', { type: 'geojson', data: EMPTY });
+		m.addLayer({
+			id: 'stop-line',
+			type: 'line',
+			source: 'stops',
+			filter: ['==', ['geometry-type'], 'LineString'],
+			layout: { 'line-cap': 'round', 'line-join': 'round' },
+			paint: { 'line-color': c.route, 'line-width': 3, 'line-dasharray': [2, 1.5] }
+		});
+		m.addLayer({
+			id: 'stop-halo',
+			type: 'circle',
+			source: 'stops',
+			filter: ['==', ['get', 'id'], ''],
+			paint: { 'circle-radius': 24, 'circle-color': c.place, 'circle-opacity': 0.3 }
+		});
+		m.addLayer({
+			id: 'stop',
+			type: 'circle',
+			source: 'stops',
+			filter: ['==', ['geometry-type'], 'Point'],
+			paint: {
+				'circle-radius': 14,
+				'circle-color': ['match', ['get', 'kind'], 'stay', c.stay, 'meal', c.eatery, c.place],
+				'circle-stroke-width': 2,
+				'circle-stroke-color': ['match', ['get', 'kind'], 'meal', c.eateryRing, c.ring]
+			}
+		});
+		m.addLayer({
+			id: 'stop-num',
+			type: 'symbol',
+			source: 'stops',
+			filter: ['==', ['geometry-type'], 'Point'],
+			layout: {
+				'text-field': ['to-string', ['get', 'n']],
+				'text-font': ['Figtree'],
+				'text-size': 14,
+				'text-allow-overlap': true
+			},
+			paint: {
+				'text-color': [
+					'match',
+					['get', 'kind'],
+					'stay',
+					c.stayGlyph,
+					'meal',
+					c.eateryGlyph,
+					c.placeGlyph
+				]
+			}
+		});
 		for (const id of ['clusters', 'cluster-count', 'pin', 'pin-icon'])
 			m.setLayoutProperty(id, 'visibility', showPins ? 'visible' : 'none');
 		ready = true;
@@ -632,13 +700,17 @@
 					const zoom = await src.getClusterExpansionZoom(f.properties.cluster_id);
 					mm.easeTo({ center: (f.geometry as Point).coordinates as [number, number], zoom });
 				});
+				mm.on('click', 'stop', (e) => {
+					const id = e.features?.[0]?.properties.id;
+					if (id) onstop?.(id);
+				});
 				mm.on('click', 'pin', (e) => {
 					const f = e.features?.[0];
 					if (!f) return;
 					const [lon, lat] = (f.geometry as Point).coordinates;
 					onselect({ ...(f.properties as Omit<Pin, 'lon' | 'lat'>), lon, lat });
 				});
-				for (const id of ['pin', 'clusters']) {
+				for (const id of ['pin', 'clusters', 'stop']) {
 					mm.on('mouseenter', id, () => (mm.getCanvas().style.cursor = 'pointer'));
 					mm.on('mouseleave', id, () => (mm.getCanvas().style.cursor = ''));
 				}
@@ -726,6 +798,71 @@
 				: []
 		});
 		if (me && follow) map.easeTo({ center: me, zoom: Math.max(map.getZoom(), 16), duration: 500 });
+	});
+
+	// Plan workspace stops (P11): redraw and fit when the day's stops change.
+	$effect(() => {
+		void [stops, ready];
+		if (!map || !ready) return;
+		const at = stops.map((s): [number, number] => [s.lon, s.lat]);
+		setData('stops', {
+			type: 'FeatureCollection',
+			features: [
+				...(at.length > 1
+					? [
+							{
+								type: 'Feature' as const,
+								geometry: { type: 'LineString' as const, coordinates: at },
+								properties: {}
+							}
+						]
+					: []),
+				...stops.map((s) => ({
+					type: 'Feature' as const,
+					geometry: { type: 'Point' as const, coordinates: [s.lon, s.lat] },
+					properties: { id: s.id, n: s.n, kind: s.kind }
+				}))
+			]
+		});
+		const xs = at.map((p) => p[0]);
+		const ys = at.map((p) => p[1]);
+		// The jump cancels the sheet padding's ease (above) half-way: set its final value first.
+		if (at.length) map.setPadding({ top: 0, right: 0, left: 0, bottom: untrack(() => padBottom) });
+		if (at.length > 1)
+			map.fitBounds(
+				[
+					[Math.min(...xs), Math.min(...ys)],
+					[Math.max(...xs), Math.max(...ys)]
+				],
+				{ padding: 60, maxZoom: 15, duration: 0 }
+			);
+		else if (at.length) map.jumpTo({ center: at[0]!, zoom: Math.max(map.getZoom(), 13) });
+	});
+	// Active stop: pan to it and pulse its halo (a steady halo under reduced motion).
+	$effect(() => {
+		void [activeStop, ready];
+		if (!map || !ready) return;
+		const m = map;
+		m.setFilter('stop-halo', ['==', ['get', 'id'], activeStop ?? '']);
+		const s = untrack(() => stops.find((x) => x.id === activeStop));
+		if (!s) return;
+		m.easeTo({
+			center: [s.lon, s.lat],
+			zoom: Math.max(m.getZoom(), 13),
+			padding: { top: 0, right: 0, left: 0, bottom: untrack(() => padBottom) },
+			duration: 400
+		});
+		if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+		const start = performance.now();
+		let raf = requestAnimationFrame(function step(now) {
+			const t = (now - start) / 600; // three 600 ms pulses
+			const k = t % 1;
+			m.setPaintProperty('stop-halo', 'circle-radius', 14 + 16 * k);
+			m.setPaintProperty('stop-halo', 'circle-opacity', t < 3 ? 0.4 * (1 - k) : 0.3);
+			if (t < 3) raf = requestAnimationFrame(step);
+			else m.setPaintProperty('stop-halo', 'circle-radius', 24);
+		});
+		return () => cancelAnimationFrame(raf);
 	});
 
 	// Ola search marker: shown with "Ola Maps" attribution only while on screen (BACKEND §6.1).

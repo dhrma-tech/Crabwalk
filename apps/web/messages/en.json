@@ -519,6 +519,7 @@
 	"plan_itinerary": "Itinerary",
 	"plan_collapse_all": "Collapse all",
 	"plan_expand_all": "Expand all",
+	"plan_stop_on_map": "Stop {n} on the map",
 	"plan_map": "Trip map",
 	"budget_stay": "Stay",
 	"budget_food": "Food",

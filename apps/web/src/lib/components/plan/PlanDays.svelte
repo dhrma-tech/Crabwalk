@@ -44,6 +44,8 @@
 		routesLoading = false,
 		links = true,
 		tab = $bindable(0),
+		active = null,
+		onpick,
 		onchange
 	}: {
 		days: PlanDay[];
@@ -56,6 +58,9 @@
 		links?: boolean;
 		/** Selected day (0-based); the plan workspace binds it to its outline and map. */
 		tab?: number;
+		/** Plan workspace map sync (P11): the selected stop, and a tap on a stop's number. */
+		active?: string | null;
+		onpick?: (stop: PlanStop) => void;
 		onchange?: (days: { kind: PlanStop['kind']; entity_id: string }[][]) => void;
 	} = $props();
 
@@ -168,9 +173,14 @@
 				>
 					{#each work[i]! as s, k (s.id)}
 						<li
-							class="grid grid-cols-[4rem_1rem_1fr] gap-x-3"
+							id="stop-{s.id}"
+							class={[
+								'grid scroll-my-24 gap-x-3',
+								onpick ? 'grid-cols-[4rem_1.5rem_1fr]' : 'grid-cols-[4rem_1rem_1fr]'
+							]}
 							data-testid="plan-stop"
 							data-kind={s.kind}
+							data-active={active === s.id || undefined}
 						>
 							{#if s.travelMin}
 								<!-- Drive from the previous stop: a dotted connector with a car. -->
@@ -187,14 +197,37 @@
 								data-testid="stop-time"
 								>{s.arrive ?? '—'}{#if s.depart && s.kind !== 'stay'}–<br />{s.depart}{/if}</span
 							>
-							<span class="flex flex-col items-center" aria-hidden="true">
-								<span class={['mt-4 size-3 shrink-0 rounded-full ring-2 ring-bg', dot(s.kind)]}
-								></span>
-								<span class="w-0.5 flex-1 bg-lagoon"></span>
-							</span>
+							{#if onpick}
+								<!-- Numbered like its map pin; a tap pans the map to it (44 px hit area). -->
+								<span class="flex flex-col items-center">
+									<button
+										type="button"
+										class={[
+											'relative mt-2.5 flex size-6 shrink-0 items-center justify-center rounded-full type-label ring-2 ring-bg after:absolute after:-inset-2.5 print:pointer-events-none',
+											s.kind === 'meal'
+												? 'bg-alphonso text-on-alphonso'
+												: s.kind === 'stay'
+													? 'bg-lagoon text-on-lagoon'
+													: 'bg-kokum text-on-kokum'
+										]}
+										aria-label={m.plan_stop_on_map({ n: k + 1 })}
+										onclick={() => onpick(s)}>{k + 1}</button
+									>
+									<span class="w-0.5 flex-1 bg-lagoon" aria-hidden="true"></span>
+								</span>
+							{:else}
+								<span class="flex flex-col items-center" aria-hidden="true">
+									<span class={['mt-4 size-3 shrink-0 rounded-full ring-2 ring-bg', dot(s.kind)]}
+									></span>
+									<span class="w-0.5 flex-1 bg-lagoon"></span>
+								</span>
+							{/if}
 							<div class="pb-3">
 								<div
-									class="flex flex-col gap-1 rounded-md bg-surface p-3 shadow-e1 sm:flex-row sm:items-start sm:justify-between sm:gap-2"
+									class={[
+										'flex flex-col gap-1 rounded-md bg-surface p-3 shadow-e1 sm:flex-row sm:items-start sm:justify-between sm:gap-2',
+										active === s.id && 'ring-2 ring-kokum'
+									]}
 								>
 									<div class="flex min-w-0 flex-col gap-1">
 										{#if kindLabel(s.kind)}<span class="type-label text-text-2"

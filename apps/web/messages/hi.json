@@ -519,6 +519,7 @@
 	"plan_itinerary": "यात्रा कार्यक्रम",
 	"plan_collapse_all": "सब बंद करें",
 	"plan_expand_all": "सब खोलें",
+	"plan_stop_on_map": "नक्शे पर पड़ाव {n}",
 	"plan_map": "यात्रा का नक्शा",
 	"budget_stay": "ठहरना",
 	"budget_food": "खाना",

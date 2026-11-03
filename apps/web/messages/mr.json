@@ -519,6 +519,7 @@
 	"plan_itinerary": "सफरीचा कार्यक्रम",
 	"plan_collapse_all": "सर्व बंद करा",
 	"plan_expand_all": "सर्व उघडा",
+	"plan_stop_on_map": "नकाशावर थांबा {n}",
 	"plan_map": "सफरीचा नकाशा",
 	"budget_stay": "मुक्काम",
 	"budget_food": "जेवण",
