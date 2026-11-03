@@ -6,7 +6,12 @@
 
 	// Report 2 §8: surface sheet, 28 px top corners, e3, 36×4 handle; peek (132 px) → half → full. Drag the
 	// handle, or tap it to cycle (keyboard too). Sits above the phone nav and left of the docked Crabby.
-	let { snap = $bindable<Snap>('peek'), children }: { snap?: Snap; children: Snippet } = $props();
+	// `column` (plan workspace, P11): from `lg` up it is a plain full-height scrolling column instead.
+	let {
+		snap = $bindable<Snap>('peek'),
+		column = false,
+		children
+	}: { snap?: Snap; column?: boolean; children: Snippet } = $props();
 
 	const order: Snap[] = ['peek', 'half', 'full'];
 	let sheet: HTMLElement;
@@ -54,13 +59,18 @@
 	bind:this={sheet}
 	class={[
 		'fixed inset-x-0 bottom-(--nav-h) z-panel flex flex-col rounded-t-xl bg-surface shadow-e3 lg:bottom-0 lg:[:root:has([data-dock])_&]:right-(--dock-w)',
-		!drag && 'transition-[height] duration-(--dur-sheet) ease-brand'
+		!drag && 'transition-[height] duration-(--dur-sheet) ease-brand',
+		column &&
+			'lg:static lg:z-auto lg:h-full! lg:w-140 lg:shrink-0 lg:rounded-none lg:bg-bg lg:shadow-none print:static print:h-auto! print:shadow-none'
 	]}
 	style:height="{height}px"
 >
 	<button
 		type="button"
-		class="flex h-11 w-full shrink-0 touch-none items-center justify-center rounded-t-xl"
+		class={[
+			'flex h-11 w-full shrink-0 touch-none items-center justify-center rounded-t-xl',
+			column && 'lg:hidden print:hidden'
+		]}
 		aria-label={m.sheet_handle()}
 		aria-expanded={snap !== 'peek'}
 		onpointerdown={down}
@@ -70,7 +80,7 @@
 	>
 		<span class="h-1 w-9 rounded-full bg-border-strong" aria-hidden="true"></span>
 	</button>
-	<div class="min-h-0 flex-1 overflow-y-auto px-5 pb-4 lg:px-8">
+	<div class="min-h-0 flex-1 overflow-y-auto px-5 pb-4 lg:px-8 print:overflow-visible">
 		{@render children()}
 	</div>
 </section>

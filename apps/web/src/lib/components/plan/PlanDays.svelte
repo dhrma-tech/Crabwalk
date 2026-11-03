@@ -10,6 +10,8 @@
 		depart: string | null;
 		travelMin: number | null;
 		reason: string | null;
+		/** Map position (plan workspace, P11); null when the listing has no point. */
+		pt?: { lon: number; lat: number } | null;
 	};
 	export type PlanDay = { date: string | null; stops: PlanStop[]; links: string[] };
 	export type AddOption = { kind: 'meal' | 'stay'; entity_id: string; name: string };
@@ -41,6 +43,7 @@
 		routes = [],
 		routesLoading = false,
 		links = true,
+		tab = $bindable(0),
 		onchange
 	}: {
 		days: PlanDay[];
@@ -51,10 +54,11 @@
 		/** The routes are still being fetched: hold the strip's space with a skeleton (Report 1 §2.4). */
 		routesLoading?: boolean;
 		links?: boolean;
+		/** Selected day (0-based); the plan workspace binds it to its outline and map. */
+		tab?: number;
 		onchange?: (days: { kind: PlanStop['kind']; entity_id: string }[][]) => void;
 	} = $props();
 
-	let tab = $state(0);
 	// Local copy for drag preview (writable derived): reset whenever the server sends a new plan.
 	let work = $derived(days.map((d) => d.stops.map((s) => ({ ...s }))));
 

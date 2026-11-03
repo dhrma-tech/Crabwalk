@@ -498,7 +498,8 @@ export async function tripView(
 					arrive: hhmm(s.arrive_at),
 					depart: hhmm(s.depart_at),
 					travelMin: s.travel_from_prev_s != null ? Math.round(s.travel_from_prev_s / 60) : null,
-					reason: (s[`reason_${lang}` as const] ?? s.reason_en) || null
+					reason: (s[`reason_${lang}` as const] ?? s.reason_en) || null,
+					pt: i?.pt ? { lon: i.pt.lon, lat: i.pt.lat } : null
 				};
 			}),
 			pts: list.map((s) => info.get(s.entity_id)?.pt).filter((p): p is Pt => !!p)

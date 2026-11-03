@@ -4,6 +4,8 @@
 	import Users from '@lucide/svelte/icons/users';
 	import FileDown from '@lucide/svelte/icons/file-down';
 	import X from '@lucide/svelte/icons/x';
+	import { onMount, tick } from 'svelte';
+	import { PMTILES_BASE_URL } from '$app/env/public';
 	import { submitting } from '#lib/forms.ts';
 	import { invalidateAll } from '$app/navigation';
 	import { page } from '$app/state';
@@ -12,19 +14,66 @@
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import { decide, type Action } from '#lib/crabby.svelte.ts';
-	import Page from '#lib/components/Page.svelte';
+	import Meta from '#lib/components/Meta.svelte';
+	import TopBar from '#lib/components/TopBar.svelte';
+	import BottomSheet, { type Snap } from '#lib/components/BottomSheet.svelte';
+	import MapView from '#lib/components/map/MapView.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import IconButton from '#lib/components/IconButton.svelte';
 	import PlanDays from '#lib/components/plan/PlanDays.svelte';
 	import BudgetCard from '#lib/components/plan/BudgetCard.svelte';
+	import WorkspaceSection from '#lib/components/plan/WorkspaceSection.svelte';
+	import Outline, { type OutlineItem } from '#lib/components/plan/Outline.svelte';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.9: day tabs → timeline → reorder → add stay/meal → budget → share / PDF / Google Maps.
-	// Tideline (Report 2 §9.8, T-32): timeline (with the day's route strip) on the left; budget, "On the day",
-	// group votes and publishing on the right on laptops. Share, vote link, PDF and each day's Google Maps links
-	// sit in a Share sheet.
+	// P11 workspace (docs/P11 Plan workspace.md §2–§3): laptops = outline · sections column · map; phones = map
+	// on top with the sections in a bottom sheet. Sections fold; the outline unfolds and scrolls to one. Share,
+	// vote link, PDF and each day's Google Maps links sit in a Share sheet.
 	let { data, form }: PageProps = $props();
+	let snap = $state<Snap>('half');
+	let wide = $state(false);
+	let innerHeight = $state(800);
+	let tab = $state(0);
+	let mapFailed = $state(!PMTILES_BASE_URL);
+	onMount(() => {
+		const mq = matchMedia('(min-width: 1024px)');
+		const on = () => (wide = mq.matches);
+		on();
+		mq.addEventListener('change', on);
+		return () => mq.removeEventListener('change', on);
+	});
+	// Phones: keep the map's focus above the sheet.
+	const padBottom = $derived(
+		wide ? 0 : snap === 'peek' ? 132 : snap === 'half' ? innerHeight * 0.5 : 0
+	);
+	const firstPt = $derived(data.days.flatMap((d) => d.stops).find((s) => s.pt)?.pt ?? null);
+
+	const open = $state({ overview: true, itinerary: true, publish: true });
+	const allOpen = $derived(Object.values(open).every(Boolean));
+	function toggleAll() {
+		const to = !allOpen;
+		for (const k of Object.keys(open) as (keyof typeof open)[]) open[k] = to;
+	}
+	const outline = $derived<OutlineItem[]>([
+		{ id: 'overview', label: m.plan_overview(), section: 'overview' },
+		{ id: 'itinerary', label: m.plan_itinerary(), section: 'itinerary' },
+		...data.days.map((_, i) => ({
+			id: `day-${i}`, // PlanDays' panel id
+			label: m.plan_day_n({ n: i + 1 }),
+			section: 'itinerary',
+			sub: true
+		})),
+		{ id: 'publish', label: m.plan_publish_title(), section: 'publish' }
+	]);
+	async function pick(item: OutlineItem) {
+		open[item.section as keyof typeof open] = true;
+		if (item.sub) tab = Number(item.id.slice(4));
+		if (!wide && snap !== 'full') snap = 'full';
+		await tick();
+		document.getElementById(item.section)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
 	let saving = $state(false);
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
 	let mergeState = $state<'applied' | 'discarded' | null>(null);
@@ -72,14 +121,49 @@
 		toast(m.plan_link_copied());
 	}
 	let sheet: HTMLDialogElement | undefined = $state();
-	const card = 'flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1 print:hidden';
+	const block = 'flex flex-col gap-3 rounded-md bg-surface-2 p-4 print:hidden';
 	const row =
 		'row-link flex min-h-12 w-full items-center gap-3 rounded-md px-3 text-left type-body text-text no-underline';
 </script>
 
-<Page title={data.trip.title} back heading={false}>
-	<div class="flex flex-col gap-8 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-10">
-		<div class="flex flex-col gap-6 lg:col-span-7">
+<svelte:window bind:innerHeight />
+
+<Meta title={data.trip.title} />
+<TopBar title={data.trip.title} back />
+<main id="main" class="relative min-h-0 flex-1 lg:flex print:block">
+	<h1 class="sr-only">{data.trip.title}</h1>
+	<aside
+		class="hidden w-56 shrink-0 flex-col gap-4 overflow-y-auto border-r border-border p-4 lg:flex print:hidden"
+	>
+		<Outline items={outline} label={m.plan_outline()} variant="rail" onpick={pick} />
+		<button
+			type="button"
+			class="row-link inline-flex min-h-10 items-center rounded-md px-3 type-small text-text-2"
+			onclick={toggleAll}>{allOpen ? m.plan_collapse_all() : m.plan_expand_all()}</button
+		>
+	</aside>
+
+	<div
+		class="absolute inset-0 lg:relative lg:inset-auto lg:order-last lg:flex-1 print:hidden"
+		role="region"
+		aria-label={m.plan_map()}
+	>
+		{#if mapFailed}
+			<div class="size-full bg-surface-2"></div>
+		{:else}
+			<MapView
+				tilesBase={PMTILES_BASE_URL!.replace(/\/$/, '')}
+				showPins={false}
+				initial={firstPt}
+				{padBottom}
+				onselect={() => {}}
+				onerror={() => (mapFailed = true)}
+			/>
+		{/if}
+	</div>
+
+	<BottomSheet bind:snap column>
+		<div class="flex flex-col gap-5 lg:py-6">
 			<header class="flex flex-col gap-3">
 				<div class="flex items-start gap-2">
 					<form
@@ -119,116 +203,123 @@
 				</p>
 			</header>
 
-			<PlanDays
-				days={data.days}
-				editable
-				links={false}
-				routes={routes?.days ?? []}
-				{routesLoading}
-				add={data.add}
-				votes={data.votes}
-				onchange={(days) => patch({ days })}
-			/>
-		</div>
+			<div class="sticky top-0 z-map-ui -mx-5 bg-surface px-5 py-2 lg:hidden print:hidden">
+				<Outline items={outline} label={m.plan_outline()} variant="chips" onpick={pick} />
+			</div>
 
-		<div class="flex flex-col gap-6 lg:col-span-5">
-			{#if data.budget}
-				<BudgetCard budget={data.budget} editable onsave={(budget) => patch({ budget })} />
-			{/if}
-
-			<section class={card} data-testid="on-the-day">
-				<h2 class="type-h2">{m.live_title()}</h2>
-				<div class="flex flex-wrap gap-2">
-					<Button href={resolve('/trip/live/[id]', { id: data.trip.id })}>{m.live_open()}</Button>
-					<Button variant="secondary" href={`${resolve('/navigate')}?trip=${data.trip.id}&day=1`}
-						>{m.live_navigate_day()}</Button
-					>
-				</div>
-				<p class="type-small text-text-2" data-testid="offline-ready">
-					{routesCached ? m.plan_offline_ready() : m.plan_offline_pending()}
-				</p>
-				<form
-					method="POST"
-					action="?/suggest"
-					use:submitting={() =>
-						async ({ update }) =>
-							update({ reset: false })}
-					class="flex flex-wrap items-end gap-2"
-				>
-					<label class="flex flex-col gap-1.5 type-small text-text-2"
-						>{m.plan_days()}<select name="day" class="field h-12 px-3 type-body text-text"
-							>{#each data.days as d, i (i)}<option value={i + 1}
-									>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
-								>{/each}</select
-						></label
-					>
-					<Button type="submit" variant="ghost">{m.plan_suggest_order()}</Button>
-				</form>
-				{#if form?.suggest}
-					<div
-						class="flex flex-col gap-2 rounded-md bg-surface-2 p-3"
-						data-testid="order-suggestion"
-					>
-						{#if form.suggest.savedMin > 0}
-							<p class="type-body">{m.plan_suggest_saves({ n: form.suggest.savedMin })}</p>
-							<p class="type-small">{form.suggest.names.join(' → ')}</p>
-							<form method="POST" action="?/applyOrder" use:submitting>
-								<input type="hidden" name="day" value={form.suggest.day} />
-								<Button type="submit">{m.crabby_apply()}</Button>
-							</form>
-						{:else}
-							<p class="type-body">{m.plan_suggest_none()}</p>
-						{/if}
-					</div>
+			<WorkspaceSection id="overview" title={m.plan_overview()} bind:open={open.overview}>
+				{#if data.budget}
+					<BudgetCard budget={data.budget} flat editable onsave={(budget) => patch({ budget })} />
 				{/if}
-			</section>
-
-			{#if data.voters || form?.merge}
-				<section class={card}>
-					{#if data.voters}<p class="type-body" data-testid="voters">
-							{m.plan_voters({ n: data.voters })}
-						</p>
-						<form
-							method="POST"
-							action="?/merge"
-							use:submitting={() =>
-								async ({ update }) =>
-									update({ reset: false })}
+				<div class={block} data-testid="on-the-day">
+					<h3 class="type-h3">{m.live_title()}</h3>
+					<div class="flex flex-wrap gap-2">
+						<Button href={resolve('/trip/live/[id]', { id: data.trip.id })}>{m.live_open()}</Button>
+						<Button variant="secondary" href={`${resolve('/navigate')}?trip=${data.trip.id}&day=1`}
+							>{m.live_navigate_day()}</Button
 						>
-							<Button type="submit" variant="secondary">{m.plan_merge_votes()}</Button>
-						</form>{/if}
-					{#if form?.merge}
-						{@const r = form.merge}
-						<div class="flex flex-col gap-2 rounded-md bg-surface-2 p-3" data-testid="merge-result">
-							{#if r.kind === 'limit'}<p class="type-body">{m.crabby_limit()}</p>
-							{:else if r.kind === 'unavailable'}<p class="type-body">{m.crabby_unavailable()}</p>
-							{:else if r.kind === 'nothing'}<p class="type-body">{m.plan_merge_nothing()}</p>
-							{:else if r.kind === 'merge'}
-								{#if r.text}<p class="type-body">{r.text}</p>{/if}
-								<p class="type-h3">{r.action.preview.title}</p>
-								{#each r.action.preview.lines as l, k (k)}<p class="type-small">{l}</p>{/each}
-								{#if mergeState === 'applied'}<p class="type-small" role="status">
-										{m.crabby_applied()}
-									</p>
-								{:else if mergeState === 'discarded'}<p class="type-small" role="status">
-										{m.crabby_discarded()}
-									</p>
-								{:else}
-									<div class="flex gap-2">
-										<Button onclick={() => applyMerge(r.action, true)}>{m.crabby_apply()}</Button>
-										<Button variant="ghost" onclick={() => applyMerge(r.action, false)}
-											>{m.crabby_discard()}</Button
-										>
-									</div>
-								{/if}
+					</div>
+					<p class="type-small text-text-2" data-testid="offline-ready">
+						{routesCached ? m.plan_offline_ready() : m.plan_offline_pending()}
+					</p>
+					<form
+						method="POST"
+						action="?/suggest"
+						use:submitting={() =>
+							async ({ update }) =>
+								update({ reset: false })}
+						class="flex flex-wrap items-end gap-2"
+					>
+						<label class="flex flex-col gap-1.5 type-small text-text-2"
+							>{m.plan_days()}<select name="day" class="field h-12 px-3 type-body text-text"
+								>{#each data.days as d, i (i)}<option value={i + 1}
+										>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
+									>{/each}</select
+							></label
+						>
+						<Button type="submit" variant="ghost">{m.plan_suggest_order()}</Button>
+					</form>
+					{#if form?.suggest}
+						<div
+							class="flex flex-col gap-2 rounded-md bg-surface-2 p-3"
+							data-testid="order-suggestion"
+						>
+							{#if form.suggest.savedMin > 0}
+								<p class="type-body">{m.plan_suggest_saves({ n: form.suggest.savedMin })}</p>
+								<p class="type-small">{form.suggest.names.join(' → ')}</p>
+								<form method="POST" action="?/applyOrder" use:submitting>
+									<input type="hidden" name="day" value={form.suggest.day} />
+									<Button type="submit">{m.crabby_apply()}</Button>
+								</form>
+							{:else}
+								<p class="type-body">{m.plan_suggest_none()}</p>
 							{/if}
 						</div>
 					{/if}
-				</section>
-			{/if}
+				</div>
+			</WorkspaceSection>
 
-			<section class={card}>
-				<h2 class="type-h3">{m.plan_publish_title()}</h2>
+			<WorkspaceSection id="itinerary" title={m.plan_itinerary()} bind:open={open.itinerary}>
+				<PlanDays
+					bind:tab
+					days={data.days}
+					editable
+					links={false}
+					routes={routes?.days ?? []}
+					{routesLoading}
+					add={data.add}
+					votes={data.votes}
+					onchange={(days) => patch({ days })}
+				/>
+				{#if data.voters || form?.merge}
+					<div class={block}>
+						{#if data.voters}<p class="type-body" data-testid="voters">
+								{m.plan_voters({ n: data.voters })}
+							</p>
+							<form
+								method="POST"
+								action="?/merge"
+								use:submitting={() =>
+									async ({ update }) =>
+										update({ reset: false })}
+							>
+								<Button type="submit" variant="secondary">{m.plan_merge_votes()}</Button>
+							</form>{/if}
+						{#if form?.merge}
+							{@const r = form.merge}
+							<div
+								class="flex flex-col gap-2 rounded-md bg-surface-2 p-3"
+								data-testid="merge-result"
+							>
+								{#if r.kind === 'limit'}<p class="type-body">{m.crabby_limit()}</p>
+								{:else if r.kind === 'unavailable'}<p class="type-body">{m.crabby_unavailable()}</p>
+								{:else if r.kind === 'nothing'}<p class="type-body">{m.plan_merge_nothing()}</p>
+								{:else if r.kind === 'merge'}
+									{#if r.text}<p class="type-body">{r.text}</p>{/if}
+									<p class="type-h3">{r.action.preview.title}</p>
+									{#each r.action.preview.lines as l, k (k)}<p class="type-small">{l}</p>{/each}
+									{#if mergeState === 'applied'}<p class="type-small" role="status">
+											{m.crabby_applied()}
+										</p>
+									{:else if mergeState === 'discarded'}<p class="type-small" role="status">
+											{m.crabby_discarded()}
+										</p>
+									{:else}
+										<div class="flex gap-2">
+											<Button onclick={() => applyMerge(r.action, true)}>{m.crabby_apply()}</Button>
+											<Button variant="ghost" onclick={() => applyMerge(r.action, false)}
+												>{m.crabby_discard()}</Button
+											>
+										</div>
+									{/if}
+								{/if}
+							</div>
+						{/if}
+					</div>
+				{/if}
+			</WorkspaceSection>
+
+			<WorkspaceSection id="publish" title={m.plan_publish_title()} bind:open={open.publish}>
 				{#if data.published}
 					<p class="type-body" data-testid="publish-status">{msg(`route_${data.published}`)}</p>
 				{/if}
@@ -262,7 +353,7 @@
 							>{/if}
 					</form>
 				{/if}
-			</section>
+			</WorkspaceSection>
 
 			<div class="flex flex-wrap items-center justify-between gap-2 print:hidden">
 				<a href={resolve('/plan/new')} class="inline-flex min-h-11 items-center type-body"
@@ -279,8 +370,8 @@
 				</form>
 			</div>
 		</div>
-	</div>
-</Page>
+	</BottomSheet>
+</main>
 
 <!-- Share sheet: always rendered (closed) so the day links stay in the page for print-free sharing and tests. -->
 <dialog

@@ -23,10 +23,13 @@
 	let {
 		budget,
 		editable = false,
+		flat = false,
 		onsave
 	}: {
 		budget: B;
 		editable?: boolean;
+		/** Inside a plan workspace section (P11): no card of its own, the heading drops to h3. */
+		flat?: boolean;
 		onsave?: (b: {
 			people: number;
 			fuel_price: number | null;
@@ -67,10 +70,15 @@
 	const sw = (c: string) => ['mr-2 inline-block size-2.5 rounded-full', c];
 </script>
 
-<section class="flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-e1" data-testid="budget">
+<section
+	class={['flex flex-col gap-4', !flat && 'rounded-lg bg-surface p-4 shadow-e1']}
+	data-testid="budget"
+>
 	<div class="flex items-baseline justify-between gap-3">
-		<h2 class="type-h2">{m.plan_budget()}</h2>
-		<p class="type-h2 tabular-nums">{formatINR(budget.total)}</p>
+		<svelte:element this={flat ? 'h3' : 'h2'} class={flat ? 'type-h3' : 'type-h2'}
+			>{m.plan_budget()}</svelte:element
+		>
+		<p class={[flat ? 'type-h3' : 'type-h2', 'tabular-nums']}>{formatINR(budget.total)}</p>
 	</div>
 	{#if parts.length}
 		<div class="flex h-3 gap-0.5 overflow-hidden rounded-full" aria-hidden="true">
