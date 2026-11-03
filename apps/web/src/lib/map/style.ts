@@ -168,8 +168,8 @@ export function mapColors(theme: MapTheme) {
 	const light = theme === 'light';
 	return {
 		land: light ? '#F3F0E8' : '#12161A',
-		place: light ? '#7A2048' : '#E68AB0',
-		placeGlyph: light ? '#FFFFFF' : '#2A0716',
+		place: light ? '#0270AE' : '#5CC2F2',
+		placeGlyph: light ? '#FFFFFF' : '#04263A',
 		stay: light ? '#0F6B66' : '#5CC4BB',
 		stayGlyph: light ? '#FFFFFF' : '#0F1215',
 		eatery: light ? '#F4B740' : '#F6C35E',

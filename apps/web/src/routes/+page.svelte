@@ -14,17 +14,14 @@
 	import TodayStrip from '#lib/components/TodayStrip.svelte';
 	import NoPhoto from '#lib/components/NoPhoto.svelte';
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
-	import CategoryIcon, {
-		categoryIcons,
-		categoryFamily,
-		familyTint,
-		type Category
-	} from '#lib/components/CategoryIcon.svelte';
+	import ScrollProgress from '#lib/components/ScrollProgress.svelte';
+	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
 	import type { PageProps } from './$types';
 
 	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
 	// → Taste Konkan → near me. Tideline (Report 2 §9.1): a hero block (greeting, search, "Today on the coast"),
-	// on laptops split 7/5 with the first photographed gem; gems 4-up, itineraries 3-up, dishes 6-up.
+	// on laptops split 7/5 with the first photographed gem. Categories (photo tiles), gems, itineraries, dishes and
+	// near me are sideways scroll rows on every screen (user, 2026-11-03).
 	let { data }: PageProps = $props();
 
 	let here = $state<{ lon: number; lat: number } | null>(null);
@@ -96,12 +93,12 @@
 			</div>
 		{/if}
 
-		<section aria-labelledby="cat-title" class="flex flex-col gap-3">
+		<section aria-labelledby="cat-title" class="flex scroll-scope flex-col gap-3">
 			<h2 id="cat-title" class={data.category ? 'sr-only' : 'type-h2'}>
 				{m.discover_categories()}
 			</h2>
 			<ul
-				class="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:flex-wrap lg:overflow-visible lg:px-0"
+				class="scroll-row -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:px-0"
 				data-clip-check
 			>
 				{#each Object.keys(categoryIcons) as c (c)}
@@ -111,14 +108,25 @@
 							href={resolve(`/?category=${c}`)}
 							aria-current={on ? 'page' : undefined}
 							class={[
-								'flex h-22 min-w-18 flex-col items-center justify-center gap-2 rounded-md px-2 type-label text-text no-underline outline-text -outline-offset-2 hover:outline-1',
-								familyTint[categoryFamily[c as Category]].bg,
+								'relative isolate flex h-22 min-w-22 flex-col items-center justify-center gap-2 overflow-hidden rounded-md px-2 type-label text-white no-underline outline-white -outline-offset-2 hover:outline-1',
 								on && 'outline-2'
-							]}><CategoryIcon category={c as Category} size={24} />{msg(`cat_${c}`)}</a
+							]}
+							><img
+								src="/categories/{c}.webp"
+								alt=""
+								width="240"
+								height="240"
+								decoding="async"
+								class="absolute inset-0 -z-10 size-full object-cover"
+							/><span class="absolute inset-0 -z-10 bg-scrim"></span><CategoryIcon
+								category={c as Category}
+								size={24}
+							/>{msg(`cat_${c}`)}</a
 						>
 					</li>
 				{/each}
 			</ul>
+			<ScrollProgress />
 		</section>
 
 		{#if data.category}
@@ -170,27 +178,27 @@
 			{/if}
 
 			{#if data.itineraries.length}
-				<section aria-labelledby="itin-title" class="flex flex-col gap-3">
+				<section aria-labelledby="itin-title" class="flex scroll-scope flex-col gap-3">
 					<div class="flex items-baseline justify-between gap-4">
 						<h2 id="itin-title" class="type-h2">{m.itin_title()}</h2>
 						{@render seeAll(resolve('/itineraries'), m.itin_all())}
 					</div>
-					<ItineraryList items={data.itineraries} />
+					<ItineraryList items={data.itineraries} row />
 				</section>
 			{/if}
 
 			{#if data.dishes.length}
-				<section aria-labelledby="taste-title" class="flex flex-col gap-3">
+				<section aria-labelledby="taste-title" class="flex scroll-scope flex-col gap-3">
 					<div class="flex items-baseline justify-between gap-4">
 						<h2 id="taste-title" class="type-h2">{m.discover_taste()}</h2>
 						{@render seeAll(resolve('/taste-konkan'), m.see_all())}
 					</div>
 					<ul
-						class="-mx-5 flex gap-4 overflow-x-auto px-5 pb-1 lg:mx-0 lg:grid lg:grid-cols-6 lg:gap-5 lg:overflow-visible lg:px-0"
+						class="scroll-row -mx-5 flex gap-4 overflow-x-auto px-5 pb-1 lg:mx-0 lg:gap-5 lg:px-0"
 						data-clip-check
 					>
 						{#each data.dishes as d (d.slug)}
-							<li class="w-22 shrink-0 lg:w-auto">
+							<li class="w-22 shrink-0">
 								<a
 									href={resolve('/taste-konkan/[dish]', { dish: d.slug })}
 									class="group flex flex-col items-center gap-2 text-center text-text no-underline"
@@ -213,27 +221,30 @@
 							</li>
 						{/each}
 					</ul>
+					<ScrollProgress />
 				</section>
 			{/if}
 
 			<section aria-labelledby="near-title" class="flex flex-col gap-3">
 				<h2 id="near-title" class="type-h2">{m.discover_near_me()}</h2>
 				{#if near.length}
-					<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+					<Carousel label={m.discover_near_me()}>
 						{#each near as p (p.slug)}
-							<PlaceCard
-								href={resolve('/place/[slug]', { slug: p.slug })}
-								slug={p.slug}
-								names={p.names}
-								photo={p.photo}
-								category={p.category}
-								categoryLabel={msg(`cat_${p.category}`)}
-								distanceKm={p.km}
-							>
-								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
-							</PlaceCard>
+							<li>
+								<PlaceCard
+									href={resolve('/place/[slug]', { slug: p.slug })}
+									slug={p.slug}
+									names={p.names}
+									photo={p.photo}
+									category={p.category}
+									categoryLabel={msg(`cat_${p.category}`)}
+									distanceKm={p.km}
+								>
+									{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
+								</PlaceCard>
+							</li>
 						{/each}
-					</div>
+					</Carousel>
 				{:else if locError}
 					<p class="type-body text-text-2">{m.discover_location_denied()}</p>
 				{:else if data.places.length}

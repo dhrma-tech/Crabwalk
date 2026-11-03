@@ -1,17 +1,19 @@
 <script lang="ts">
-	// Wordmark placeholder (Report 2 §6; the logo is [OPEN], artist pending): a sideways double chevron ‹› (a crab's
-	// sidestep) and `crabwalk` in lowercase EB Garamond 400 (type-h1), kokum. Decorative: the link around it carries the name.
-	let { size = 24, wordmark = false }: { size?: number; wordmark?: boolean } = $props();
+	// Brand mark (user choice, 2026-11-03): the Crabby crab silhouette and `crabwalk` in lowercase Figtree 700, kokum.
+	// Decorative: the link around it carries the name.
+	import Crabby from './Crabby.svelte';
+
+	let { size = 32, wordmark = false }: { size?: number; wordmark?: boolean } = $props();
 </script>
 
-<span class="flex shrink-0 items-center gap-1.5 text-kokum" aria-hidden="true">
-	<svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-		<path
-			d="M9.5 6 3.5 12l6 6M14.5 6l6 6-6 6"
-			stroke-width="2.75"
-			stroke-linecap="round"
-			stroke-linejoin="round"
-		/>
-	</svg>
-	{#if wordmark}<span class="type-h1 leading-none" lang="en">crabwalk</span>{/if}
+<span class="flex shrink-0 items-center gap-1 text-kokum" aria-hidden="true">
+	<Crabby {size} />
+	{#if wordmark}<span class="wordmark leading-none" lang="en">crabwalk</span>{/if}
 </span>
+
+<style>
+	.wordmark {
+		font: 700 24px/30px var(--font-body);
+		letter-spacing: -0.02em;
+	}
+</style>

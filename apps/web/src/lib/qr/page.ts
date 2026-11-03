@@ -17,13 +17,13 @@ const para = (s: string) => esc(s).replace(/\n/g, '<br>');
 
 // Tideline in system fonts (Report 2 §9 item 14, T-42): app.css token values, white cards with --r-lg, kokum
 // actions, ok/caution/laterite status dots; --emergency red = the pinned 112 bar only. Georgia = title fallback.
-const CSS = `:root{--bg:#f7f5f0;--sf:#fff;--s2:#efece5;--bd:#e4dfd5;--tx:#15171a;--t2:#4a4f57;--ln:#0f6b66;--ko:#7a2048;--oko:#fff;--em:#c8102e;--gn:#2f7d4f;--ca:#8a5a00;--dg:#a8492e;--e1:0 1px 2px rgba(21,23,26,.04),0 4px 12px rgba(21,23,26,.05);color-scheme:light}
+const CSS = `:root{--bg:#f5f7fa;--sf:#fff;--s2:#edf1f5;--bd:#e1e6ec;--tx:#15171a;--t2:#4a4f57;--ln:#0f6b66;--ko:#0270ae;--oko:#fff;--em:#c8102e;--gn:#2f7d4f;--ca:#8a5a00;--dg:#a8492e;--e1:0 1px 2px rgba(21,23,26,.04),0 4px 12px rgba(21,23,26,.05);color-scheme:light}
 @media(prefers-color-scheme:dark){:root{--bg:#0f1215;--sf:#171b1f;--s2:#1f2429;--bd:#2a3036;--tx:#f2efe9;--t2:#b9bcc2;--ln:#5cc4bb;--ko:#e68ab0;--oko:#2a0716;--em:#d93036;--gn:#7cc69a;--ca:#e0b04a;--dg:#f08e6e;--e1:inset 0 0 0 1px rgba(255,255,255,.06);color-scheme:dark}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,"Noto Sans Devanagari",sans-serif;padding-bottom:104px}
 :lang(hi),:lang(mr){line-height:1.65}main{max-width:640px;margin:0 auto;padding:16px 20px;display:flex;flex-direction:column;gap:16px}
 h1{font:700 28px/1.25 Georgia,serif;margin:0}h2{font:600 20px/1.35 Georgia,serif;margin:0 0 8px}p{margin:0}a{color:var(--ln)}
-.alt{color:var(--t2);margin-top:2px}.hero{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--s2);display:block;border-radius:20px}
-.card{background:var(--sf);border-radius:20px;padding:16px;box-shadow:var(--e1)}.small{font-size:14px;color:var(--t2)}
+.alt{color:var(--t2);margin-top:2px}.hero{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--s2);display:block;border-radius:24px}
+.card{background:var(--sf);border-radius:24px;padding:16px;box-shadow:var(--e1)}.small{font-size:14px;color:var(--t2)}
 audio,input{accent-color:var(--ko)}audio{width:100%}ul{margin:0;padding-left:20px}.near{list-style:none;padding:0}.near li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--bd)}.near li:first-child{border:0}
 [class^=st-]::before{content:"● "}.st-open::before{color:var(--gn)}.st-risky::before,.st-caution::before{color:var(--ca)}.st-closed::before,.st-danger::before{color:var(--dg)}b{font-weight:600}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:999px;background:var(--s2);color:var(--tx);font:inherit;font-weight:600;text-decoration:none;cursor:pointer}
@@ -66,7 +66,7 @@ function shell(lang: Lang, title: string, body: string, data: Record<string, str
 	const attrs = Object.entries(data)
 		.map(([k, v]) => ` data-${k.replace(/[A-Z]/g, (c) => '-' + c.toLowerCase())}="${esc(v)}"`)
 		.join('');
-	return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F7F5F0" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)"><title>${esc(title)} · Crabwalk</title><style>${CSS}</style></head><body${attrs}>${body}</body></html>`;
+	return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#F5F7FA" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0F1215" media="(prefers-color-scheme: dark)"><title>${esc(title)} · Crabwalk</title><style>${CSS}</style></head><body${attrs}>${body}</body></html>`;
 }
 
 function langSwitch(lang: Lang, ret: string) {

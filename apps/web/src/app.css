@@ -1,23 +1,23 @@
 @import 'tailwindcss';
 
-/* Tideline (DECISIONS T-1, Report 2 §3–§5): shell paper, basalt ink, one kokum action, lagoon for maps and
-   information, alphonso for delight (fill only, never text). Depth from surfaces and soft shadows; red is
+/* Tideline (DECISIONS T-1, Report 2 §3–§5), recoloured 2026-11-03: cool paper, basalt ink, one sky-blue action (still
+   named --kokum), lagoon for maps and information, alphonso for delight (fill only, never text). Depth from surfaces and soft shadows; red is
    emergency only. contrast.test.ts reads these blocks, so a changed value is re-checked. */
 :root {
-	--bg: #f7f5f0;
+	--bg: #f5f7fa;
 	--surface: #ffffff;
-	--surface-2: #efece5;
-	--surface-3: #e6e2d9;
-	--border: #e4dfd5;
-	--border-strong: #8f887b;
+	--surface-2: #edf1f5;
+	--surface-3: #e3e8ee;
+	--border: #e1e6ec;
+	--border-strong: #7d8794;
 	--text: #15171a;
 	--text-2: #4a4f57;
 	--text-muted: #646973;
-	--kokum: #7a2048;
-	--kokum-hover: #651a3b;
-	--kokum-ink: #5e1838;
-	--kokum-50: #f7e9ef;
-	--kokum-100: #eed0dc;
+	--kokum: #0270ae;
+	--kokum-hover: #015a8c;
+	--kokum-ink: #014f7a;
+	--kokum-50: #e6f4fc;
+	--kokum-100: #cce9f8;
 	--on-kokum: #ffffff;
 	--lagoon: #0f6b66;
 	--lagoon-ink: #0b4f4b;
@@ -84,12 +84,12 @@
 		--text: #f2efe9;
 		--text-2: #b9bcc2;
 		--text-muted: #8d939b;
-		--kokum: #e68ab0;
-		--kokum-hover: #efa6c4;
-		--kokum-ink: #f3c6d8;
-		--kokum-50: #3a1a28;
-		--kokum-100: #4a2236;
-		--on-kokum: #2a0716;
+		--kokum: #5cc2f2;
+		--kokum-hover: #86d3f6;
+		--kokum-ink: #bfe7fb;
+		--kokum-50: #0e2a3a;
+		--kokum-100: #123547;
+		--on-kokum: #04263a;
 		--lagoon: #5cc4bb;
 		--lagoon-ink: #a6e6dd;
 		--lagoon-50: #12302e;
@@ -133,12 +133,12 @@
 	--text: #f2efe9;
 	--text-2: #b9bcc2;
 	--text-muted: #8d939b;
-	--kokum: #e68ab0;
-	--kokum-hover: #efa6c4;
-	--kokum-ink: #f3c6d8;
-	--kokum-50: #3a1a28;
-	--kokum-100: #4a2236;
-	--on-kokum: #2a0716;
+	--kokum: #5cc2f2;
+	--kokum-hover: #86d3f6;
+	--kokum-ink: #bfe7fb;
+	--kokum-50: #0e2a3a;
+	--kokum-100: #123547;
+	--on-kokum: #04263a;
 	--lagoon: #5cc4bb;
 	--lagoon-ink: #a6e6dd;
 	--lagoon-50: #12302e;
@@ -245,11 +245,11 @@
 	--breakpoint-xl: 1280px;
 	--font-display: 'EB Garamond', Georgia, serif;
 	--font-body: 'Figtree', system-ui, sans-serif;
-	/* Report 2 §5 --r-sm … --r-xl; rounded-full stays for chips, avatars and icon buttons. */
+	/* Report 2 §5 --r-sm … --r-xl, lg/xl raised for curvier cards (2026-11-03); rounded-full stays for chips, avatars and icon buttons. */
 	--radius-sm: 12px;
 	--radius-md: 16px;
-	--radius-lg: 20px;
-	--radius-xl: 28px;
+	--radius-lg: 24px;
+	--radius-xl: 32px;
 	--color-white: #ffffff;
 	--color-transparent: transparent;
 	--color-current: currentColor;
@@ -434,6 +434,20 @@
 	&:active {
 		background-color: var(--surface-3);
 	}
+}
+/* Sideways scroll rows (user, 2026-11-03): the row publishes an x scroll timeline that `ScrollProgress` (a sibling
+   under a `scroll-scope` parent) follows. Where scroll timelines work the native bar is hidden; elsewhere it's a
+   thin bar in the action colour. */
+@utility scroll-row {
+	scroll-timeline: --row x;
+	scrollbar-width: thin;
+	scrollbar-color: var(--kokum) transparent;
+	@supports (animation-timeline: scroll()) {
+		scrollbar-width: none;
+	}
+}
+@utility scroll-scope {
+	timeline-scope: --row;
 }
 /* Glass (Report 2 §5): only over photos and the map, never behind body text. Solid where blur is missing or
    the viewer asks for less transparency. */
