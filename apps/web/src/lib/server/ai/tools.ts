@@ -21,7 +21,8 @@ export type ActionType =
 	| 'start_nav'
 	| 'shortlist_stays'
 	| 'save_share'
-	| 'add_to_trip';
+	| 'add_to_trip'
+	| 'ask_team';
 export type Preview = { title: string; lines: string[]; links?: { label: string; href: string }[] };
 export type Proposed = { id: string; type: ActionType; preview: Preview };
 export type Ctx = {
@@ -235,6 +236,18 @@ export const TOOL_DEFS: ToolDef[] = [
 		)
 	},
 	{
+		name: 'ask_team',
+		description:
+			'Offer to ask our local team when no tool has a verified answer to a factual question (road status, timings, prices, closures). The user confirms; the team answers within about a day. Never answer such facts yourself.',
+		parameters: obj(
+			{
+				question: str("The question for the team, in the user's words"),
+				place: str('Place slug it is about, if any')
+			},
+			['question']
+		)
+	},
+	{
 		name: 'ask_user',
 		description:
 			"Ask the user instead of guessing when an answer changes the result (dates, budget, pace, food, which stay, trade-offs). 1–4 questions in one card, 2–4 short options each, mark the one you recommend, multi=true when several answers fit, decide=true to offer 'Let Crabby decide'. Never ask what the user already said or what a tool can look up. Options must come from what the user said or from tool results.",
@@ -439,6 +452,23 @@ const paceQuestion = (lang: Lang): Question => ({
 	})),
 	decide: true
 });
+
+/** "Ask our team" (10.1): a preview with the promised wait; applying it files the question for verifiers. */
+export async function proposeAskTeam(ctx: Ctx, question: string, place?: string) {
+	const q = question.trim().slice(0, 500);
+	if (q.length < 3) return { error: 'empty question' };
+	const p = place ? await placeBySlug(ctx.db, place) : null;
+	const name = p ? (n(p.place_translations, ctx.lang) ?? p.slug) : null;
+	return propose(
+		ctx,
+		'ask_team',
+		{
+			title: msg('team_ask_title', {}, ctx.lang),
+			lines: [`“${q}”`, ...(name ? [name] : []), msg('team_wait', {}, ctx.lang)]
+		},
+		{ question: q, lang: ctx.lang, ...(p ? { entity_type: 'place', entity_id: p.id } : {}) }
+	);
+}
 
 async function propose(ctx: Ctx, type: ActionType, preview: Preview, payload: unknown) {
 	const { data, error } = await ctx.db
@@ -837,6 +867,8 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			);
 			return { ...res, days: lines, ...(chose.length ? { crabby_chose: chose } : {}) };
 		}
+		case 'ask_team':
+			return proposeAskTeam(ctx, s('question') ?? '', s('place'));
 		case 'ask_user': {
 			const q = questionCard.safeParse(a.questions);
 			if (!q.success) return { error: 'bad question card: 1–4 questions, 2–4 options each' };

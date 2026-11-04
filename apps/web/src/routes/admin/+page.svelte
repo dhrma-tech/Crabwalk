@@ -24,7 +24,8 @@
 			{ n: c.proofs, href: resolve('/admin/proofs'), label: m.proofs_title() },
 			{ n: c.moderation, href: resolve('/admin/moderation'), label: m.moderation_title() },
 			{ n: c.routes, href: resolve('/admin/routes'), label: m.routes_title() },
-			{ n: c.claims, href: resolve('/admin/claims'), label: m.claims_title() }
+			{ n: c.claims, href: resolve('/admin/claims'), label: m.claims_title() },
+			{ n: c.questions, href: resolve('/admin/questions'), label: m.team_title() }
 		].filter((q) => q.n != null)
 	);
 	const tools = $derived([

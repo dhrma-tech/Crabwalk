@@ -63,7 +63,19 @@ export type Bubble = {
 	answered?: boolean;
 };
 
+/** A question the user asked our team (10.1): Pending until a verifier answers. */
+export type TeamQuestion = {
+	id: string;
+	question: string;
+	status: 'open' | 'answered' | 'expired' | 'closed';
+	answer: string | null;
+	answered_on: string | null;
+	/** Answered and not shown yet. */
+	fresh: boolean;
+};
+
 export const crabby = $state({
+	team: [] as TeamQuestion[],
 	turns: [] as Bubble[],
 	busy: false,
 	remaining: null as number | null,
@@ -134,6 +146,15 @@ export async function ask(text: string) {
 	} finally {
 		crabby.busy = false;
 	}
+}
+
+/** The user's questions to our team; new answers are marked seen once shown. */
+export async function loadTeamQuestions() {
+	const r = await fetch('/api/me/questions').catch(() => null);
+	if (!r?.ok) return;
+	crabby.team = (await r.json()) as TeamQuestion[];
+	if (crabby.team.some((q) => q.fresh))
+		void fetch('/api/me/questions', { method: 'POST' }).catch(() => {});
 }
 
 /** Send a question card's answers as the next message. */

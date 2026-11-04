@@ -138,6 +138,17 @@ export const mock: Provider = {
 		const names = [...block.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]);
 		if (/^REFUSED: /m.test(block))
 			return { content: "Mock: I can't open that page.", tool_calls: [] };
+		// P12 Ask our team: a stored team answer is reused; nothing known → offer to ask.
+		const team =
+			/"tool":"team_answers","result":\[\{[^}]*"answer":"([^"]+)","answered_on":"([^"]+)"/.exec(
+				block
+			);
+		if (team) return { content: `Mock: our team says: ${team[1]} (${team[2]}).`, tool_calls: [] };
+		if (/^PROPOSED PREVIEWS: ask_team$/m.test(block))
+			return {
+				content: "Mock: I don't know that yet — I can ask our team (usually within a day).",
+				tool_calls: []
+			};
 		if (/^QUESTIONS: /m.test(block))
 			return { content: 'Mock: a few quick questions first.', tool_calls: [] };
 		const chose = /^CRABBY CHOSE: (.+)$/m.exec(block)?.[1];

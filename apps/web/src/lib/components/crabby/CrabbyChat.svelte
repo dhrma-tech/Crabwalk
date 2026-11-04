@@ -7,7 +7,15 @@
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import { answerCard, ask, crabby, decide, type Action } from '#lib/crabby.svelte.ts';
+	import {
+		answerCard,
+		ask,
+		crabby,
+		decide,
+		loadTeamQuestions,
+		type Action
+	} from '#lib/crabby.svelte.ts';
+	import { onMount } from 'svelte';
 	import Crabby from '../Crabby.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';
@@ -63,8 +71,12 @@
 		list?.scrollTo({ top: list.scrollHeight, behavior: 'smooth' });
 	}
 
+	// Questions to our team (10.1): Pending ones and fresh answers show at the top of the chat.
+	onMount(() => void loadTeamQuestions());
+
 	async function act(a: Action, apply: boolean) {
 		const href = await decide(a, apply);
+		if (apply && a.type === 'ask_team') await loadTeamQuestions();
 		if (!href) return;
 		// eslint-disable-next-line svelte/no-navigation-without-resolve -- href is one of our routes built server-side
 		if (href.startsWith('/')) await goto(href);
@@ -78,6 +90,36 @@
 		class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-6 py-4"
 		aria-live="polite"
 	>
+		{#if crabby.team.length}
+			<section class="flex flex-col gap-2 rounded-lg bg-surface-2 p-3" data-testid="team-questions">
+				<h2 class="type-label text-text-2">{m.team_yours()}</h2>
+				<ul class="flex flex-col gap-2">
+					{#each crabby.team as q (q.id)}
+						<li
+							class="flex flex-col gap-1 rounded-md bg-surface p-3 shadow-e1"
+							data-testid="team-question"
+						>
+							<p class="type-small text-text-2">“{q.question}”</p>
+							{#if q.status === 'answered'}
+								<p class="type-body">{q.answer}</p>
+								<p class="type-label text-lagoon-ink">
+									{q.fresh ? `${m.team_new()} · ` : ''}{m.team_answered_on({
+										date: q.answered_on ?? ''
+									})}
+								</p>
+							{:else}
+								<p class="type-label text-text-2">
+									<span class="rounded-full bg-alphonso-50 px-2 py-0.5 text-text"
+										>{m.pending()}</span
+									>
+									{m.team_wait()}
+								</p>
+							{/if}
+						</li>
+					{/each}
+				</ul>
+			</section>
+		{/if}
 		{#if !crabby.turns.length}
 			<div class="my-auto flex flex-col items-center gap-3 px-2 py-6 text-center">
 				<Crabby size={64} />

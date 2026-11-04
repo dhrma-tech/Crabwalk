@@ -53,6 +53,19 @@ export async function decide(db: DB, userId: string, id: string, apply: boolean)
 			case 'shortlist_stays':
 				href = null; // the preview already lists the stays + booking links
 				break;
+			case 'ask_team': {
+				// Filed for verifiers (10.1); the answer reaches the user in Crabby + by push.
+				const { error } = await db.from('team_questions').insert({
+					question: String(payload.question),
+					lang: payload.lang as 'en' | 'hi' | 'mr',
+					...(payload.entity_id
+						? { entity_type: 'place' as const, entity_id: String(payload.entity_id) }
+						: {})
+				});
+				if (error) return { status: 404 as const };
+				href = null;
+				break;
+			}
 			case 'add_to_trip': {
 				// Same path as the listing pages' "Add to trip" (P11 addToDay): re-timed like any edit.
 				const tripId = String(payload.trip_id);

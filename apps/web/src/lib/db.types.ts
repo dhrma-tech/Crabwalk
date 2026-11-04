@@ -635,6 +635,20 @@ isOneToOne: true
       referencedColumns: ["id"]
     }
                   ]
+                },"push_queue": {
+                  Row: {
+                    "created_at": string,"id": number,"kind": string,"params": NonNullable<Json>,"sent_at": string | null,"url": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"id"?: never,"kind": string,"params"?: NonNullable<Json>,"sent_at"?: string | null,"url": string,"user_id": string
+                  }
+                  Update: {
+                    "created_at"?: string,"id"?: never,"kind"?: string,"params"?: NonNullable<Json>,"sent_at"?: string | null,"url"?: string,"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"push_subscriptions": {
                   Row: {
                     "auth": string,"created_at": string,"endpoint": string,"id": string,"p256dh": string,"updated_at": string | null,"user_id": string
@@ -963,14 +977,14 @@ isOneToOne: false
                   ]
                 },"team_questions": {
                   Row: {
-                    "answer": string | null,"answered_at": string | null,"answered_by": string | null,"asker": string | null,"created_at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"expires_at": string | null,"id": string,"lang": Database["public"]['Enums']["lang"],"question": string,"status": Database["public"]['Enums']["team_question_status"],"updated_at": string | null
+                    "answer": string | null,"answered_at": string | null,"answered_by": string | null,"asker": string | null,"created_at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"expires_at": string | null,"id": string,"lang": Database["public"]['Enums']["lang"],"question": string,"seen_at": string | null,"status": Database["public"]['Enums']["team_question_status"],"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question": string,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
+                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question": string,"seen_at"?: string | null,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
                   }
                   Update: {
-                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question"?: string,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
+                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question"?: string,"seen_at"?: string | null,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
                   }
                   Relationships: [
                     
@@ -1626,6 +1640,9 @@ isOneToOne: false
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number,"types": (Database["public"]['Enums']["utility_type"])[] }; Returns: {
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
             }[]
+                           },
+"mark_team_answers_seen":
+{ Args: Record<PropertyKey, never>; Returns: undefined
                            },
 "match_team_answers":
 { Args: { "_entity"?: string,"_q": string }; Returns: {

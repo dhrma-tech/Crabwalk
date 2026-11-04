@@ -192,3 +192,51 @@ test('D: profile — quiz, correct / delete lines, sources, plain style; only th
 	expect(log).toContain('Tone: plain');
 	expect(log).not.toContain('No seafood');
 });
+
+test('E: ask our team — Pending, a verifier answers, the asker is told, others reuse the answer', async ({
+	browser
+}) => {
+	const q = `where can I see a unicorn ${run}?`;
+	await page.goto('/crabby');
+	await ask(q);
+	await expect(lastAnswer()).toContainText("I don't know that yet");
+	const card = page.getByTestId('action-preview').locator('visible=true').last();
+	await expect(card).toContainText('Ask our team?');
+	await expect(card).toContainText('Usually answered within a day');
+	await card.getByRole('button', { name: 'Apply' }).click();
+	const mine = page.getByTestId('team-question').filter({ hasText: q });
+	await expect(mine).toContainText('Pending');
+
+	// A verifier answers from the team dashboard.
+	const team = await (await browser.newContext()).newPage();
+	const vEmail = `p12-verifier-${run}@e2e.local`;
+	await signIn(team, vEmail);
+	psql(
+		`insert into user_roles (user_id, role) select id, 'verifier' from auth.users where email = '${vEmail}'`
+	);
+	await team.goto('/admin/questions');
+	const open = team.getByTestId('team-open').filter({ hasText: q });
+	await open
+		.getByRole('textbox', { name: 'Answer', exact: true })
+		.fill('Unicorns live only in stories; try the Seed Beach sunset.');
+	await open.getByRole('button', { name: 'Send answer' }).click();
+	await expect(team.getByTestId('team-answered').filter({ hasText: q })).toBeVisible();
+	expect(
+		psql(`select count(*) from push_queue p join auth.users u on u.id = p.user_id
+		      where u.email = 'p12-${run}@e2e.local' and p.kind = 'team_answer'`)
+	).toBe('1');
+
+	// The asker sees it as new in Crabby.
+	await page.goto('/crabby');
+	await expect(mine).toContainText('Unicorns live only in stories');
+	await expect(mine).toContainText('New · Answered by our team');
+
+	// Someone else asking the same thing gets the stored answer straight away.
+	await team.goto('/crabby');
+	await team.getByLabel('Ask Crabby…').locator('visible=true').fill(q);
+	await team.getByRole('button', { name: 'Send' }).locator('visible=true').click();
+	await expect(team.getByTestId('bubble-crabby').locator('visible=true').last()).toContainText(
+		'our team says: Unicorns live only in stories'
+	);
+	await team.context().close();
+});

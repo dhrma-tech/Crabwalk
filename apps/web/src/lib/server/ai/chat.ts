@@ -8,7 +8,7 @@ import type { Lang } from '../listings.ts';
 import { istToday } from '../planner/data.ts';
 import type { Msg } from './providers.ts';
 import { chain, route } from './router.ts';
-import { runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
+import { proposeAskTeam, runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
 import type { DriveStep } from '#lib/drive.ts';
 import type { Question } from '#lib/questions.ts';
 import { learnFromChat, loadProfile, profileSummary, refreshProfile } from '../profile.ts';
@@ -78,6 +78,8 @@ If a preview was proposed, say it is ready to review and that nothing changes un
 If DOING lists app steps, say in one short line what you are opening or filtering; if REFUSED lists any, say you can't do that.
 If QUESTIONS were asked, say in one short line that you need a few answers first — don't answer them yourself.
 If CRABBY CHOSE lists choices, say what you picked and why.
+Results from team_answers were checked by our local team: use them, say they come from our team and give the date.
+If an ask_team preview was proposed, say you don't know yet and can ask our team (usually within a day).
 Every plan stop you mention gets a short reason from the results. No jokes on safety topics.
 Keep it under 120 words. No markdown tables.`;
 
@@ -174,7 +176,19 @@ export async function crabbyTurn(
 			if (ctx.questions) break;
 		}
 
-		// "Don't know" path (§11.4): nothing found → honest answer + verified alternatives.
+		// Verified answers from our team (10.1) are reused for everyone who asks something similar.
+		const { data: team } = await db.rpc('match_team_answers', { _q: message.slice(0, 500) });
+		if (team?.length)
+			results.push({
+				tool: 'team_answers',
+				result: team.map((t) => ({
+					question: t.question,
+					answer: t.answer,
+					answered_on: t.answered_at.slice(0, 10)
+				}))
+			});
+
+		// "Don't know" path (§11.4): nothing found → honest answer + verified alternatives + "Ask our team".
 		let alternatives: { slug: string; name: string }[] = [];
 		const unknown = !results.length || results.every((x) => empty(x.result));
 		if (unknown && !ctx.proposed.length && !ctx.drive.length && !ctx.questions) {
@@ -183,6 +197,7 @@ export async function crabbyTurn(
 				name: string;
 			}[];
 			alternatives = alt.map((a) => ({ slug: a.slug, name: a.name }));
+			await proposeAskTeam(ctx, message);
 		}
 
 		const final = await route(chain('explain'), {
