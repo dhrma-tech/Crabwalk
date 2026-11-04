@@ -1714,6 +1714,9 @@ isOneToOne: false
               "geojson": string,"name_en": string
             }[]
                            },
+"trip_group_profile":
+{ Args: { "_trip": string }; Returns: Json
+                           },
 "trip_report_by_token":
 { Args: { "_lang": Database["public"]['Enums']["lang"],"_token": string }; Returns: {
               "created_at": string,"payload": Json,"summary": string,"title": string,"version": number

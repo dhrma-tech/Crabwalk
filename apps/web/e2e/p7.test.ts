@@ -164,30 +164,6 @@ test('reorder re-times and flags a stop moved outside its hours', async () => {
 	).toContainText('May be closed at this time', { timeout: 15_000 });
 });
 
-test('guest votes without login; owner sees the tally', async ({ browser }) => {
-	const token = psql(`select share_token from trips where id = '${tripId}'`);
-	const guest = await (await browser.newContext()).newPage();
-	await guest.goto(`/plan/vote/${token}`);
-	await guest.getByLabel('Your name').fill('Asha');
-	const spot = guest.getByTestId('vote-spot').filter({ hasText: `P7 afternoon ${run}` });
-	await spot.getByText('Yes', { exact: true }).click();
-	await guest.getByRole('button', { name: 'Done, send to organiser' }).click();
-	await expect(guest.getByText('Thanks! Your votes are in.')).toBeVisible();
-	await expect(spot).toContainText('1 yes');
-
-	await guest.goto(`/plan/share/${token}`);
-	await expect(guest.getByTestId('plan-stop').first()).toBeVisible();
-
-	await owner.reload();
-	await expect(owner.getByTestId('voters')).toHaveText('1 people voted');
-	await expect(
-		owner
-			.getByTestId('plan-stop')
-			.filter({ hasText: `P7 afternoon ${run}` })
-			.getByTestId('stop-votes')
-	).toBeVisible();
-});
-
 test('publish → reviewer approves → public itinerary another user can plan from', async ({
 	browser
 }) => {

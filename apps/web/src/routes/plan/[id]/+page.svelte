@@ -1,7 +1,6 @@
 <script lang="ts">
 	import Share2 from '@lucide/svelte/icons/share-2';
 	import Link from '@lucide/svelte/icons/link';
-	import Users from '@lucide/svelte/icons/users';
 	import FileDown from '@lucide/svelte/icons/file-down';
 	import X from '@lucide/svelte/icons/x';
 	import { onMount, tick, untrack } from 'svelte';
@@ -13,7 +12,6 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
-	import { decide, type Action } from '#lib/crabby.svelte.ts';
 	import Meta from '#lib/components/Meta.svelte';
 	import TopBar from '#lib/components/TopBar.svelte';
 	import BottomSheet, { type Snap } from '#lib/components/BottomSheet.svelte';
@@ -26,6 +24,7 @@
 	import Outline, { type OutlineItem } from '#lib/components/plan/Outline.svelte';
 	import TripList, { asStop, type ListItem } from '#lib/components/plan/TripList.svelte';
 	import Expenses from '#lib/components/plan/Expenses.svelte';
+	import TripChat from '#lib/components/plan/TripChat.svelte';
 	import type { PlanStop } from '#lib/components/plan/PlanDays.svelte';
 	import { formatINR } from '#lib/format.ts';
 	import { tripSync, type Req } from '#lib/tripSync.svelte.ts';
@@ -115,6 +114,7 @@
 		places: true,
 		itinerary: true,
 		expenses: true,
+		chat: true,
 		notes: true,
 		publish: true
 	});
@@ -140,6 +140,7 @@
 			sub: true
 		})),
 		{ id: 'expenses', label: m.plan_expenses(), section: 'expenses' },
+		{ id: 'chat', label: m.plan_chat(), section: 'chat' },
 		{ id: 'notes', label: m.plan_notes(), section: 'notes' },
 		{ id: 'publish', label: m.plan_publish_title(), section: 'publish' }
 	]);
@@ -166,7 +167,6 @@
 			?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
-	let mergeState = $state<'applied' | 'discarded' | null>(null);
 	// Saved trips' routes are cached automatically for offline navigation (FRONTEND §9); the same response draws
 	// each day's route strip.
 	type Routes = { days: { day: number; legs: (StripLeg & { to: { name: string } })[] }[] };
@@ -184,11 +184,6 @@
 			.catch(() => (routesCached = false))
 			.finally(() => (routesLoading = false));
 	});
-	async function applyMerge(a: Action, apply: boolean) {
-		await decide(a, apply);
-		mergeState = apply ? 'applied' : 'discarded';
-		if (apply) await invalidateAll();
-	}
 	const origin = $derived(page.url.origin);
 
 	// Edits (P11 §6): one ordered outbox (each PATCH carries the full latest order, so order matters), the
@@ -305,6 +300,7 @@
 	// page data, after our own queued edits land. Deletes can't be filtered by trip, so a delete counts when its
 	// id is one we show. Spend shares change only with their spend, so trip_expenses covers them (Realtime also
 	// refuses a filtered binding on the shares table).
+	let chatTick = $state(0);
 	const LIVE = [
 		'trip_stops',
 		'trip_members',
@@ -365,6 +361,14 @@
 				if (old.id && shown.has(old.id)) changed();
 			});
 		}
+		// The group chat (P12) refreshes on its own, never the whole workspace.
+		for (const table of ['trip_messages', 'trip_poll_votes'] as const)
+			for (const event of ['INSERT', 'UPDATE'] as const)
+				ch.on(
+					'postgres_changes',
+					{ event, schema: 'public', table, filter: `trip_id=eq.${id}` },
+					() => chatTick++
+				);
 		// Join as the signed-in tripmate (the client hands its session to Realtime only after the first auth event).
 		void db.auth.getSession().then(async ({ data: { session } }) => {
 			await db.realtime.setAuth(session?.access_token ?? null);
@@ -657,59 +661,17 @@
 					routes={routes?.days ?? []}
 					{routesLoading}
 					add={data.add}
-					votes={data.votes}
 					onchange={moveStops}
 				/>
-				{#if editable && (data.voters || form?.merge)}
-					<div class={block}>
-						{#if data.voters}<p class="type-body" data-testid="voters">
-								{m.plan_voters({ n: data.voters })}
-							</p>
-							<form
-								method="POST"
-								action="?/merge"
-								use:submitting={() =>
-									async ({ update }) =>
-										update({ reset: false })}
-							>
-								<Button type="submit" variant="secondary">{m.plan_merge_votes()}</Button>
-							</form>{/if}
-						{#if form?.merge}
-							{@const r = form.merge}
-							<div
-								class="flex flex-col gap-2 rounded-md bg-surface-2 p-3"
-								data-testid="merge-result"
-							>
-								{#if r.kind === 'limit'}<p class="type-body">{m.crabby_limit()}</p>
-								{:else if r.kind === 'unavailable'}<p class="type-body">{m.crabby_unavailable()}</p>
-								{:else if r.kind === 'nothing'}<p class="type-body">{m.plan_merge_nothing()}</p>
-								{:else if r.kind === 'merge'}
-									{#if r.text}<p class="type-body">{r.text}</p>{/if}
-									<p class="type-h3">{r.action.preview.title}</p>
-									{#each r.action.preview.lines as l, k (k)}<p class="type-small">{l}</p>{/each}
-									{#if mergeState === 'applied'}<p class="type-small" role="status">
-											{m.crabby_applied()}
-										</p>
-									{:else if mergeState === 'discarded'}<p class="type-small" role="status">
-											{m.crabby_discarded()}
-										</p>
-									{:else}
-										<div class="flex gap-2">
-											<Button onclick={() => applyMerge(r.action, true)}>{m.crabby_apply()}</Button>
-											<Button variant="ghost" onclick={() => applyMerge(r.action, false)}
-												>{m.crabby_discard()}</Button
-											>
-										</div>
-									{/if}
-								{/if}
-							</div>
-						{/if}
-					</div>
-				{/if}
 			</WorkspaceSection>
 
 			<WorkspaceSection id="expenses" title={m.plan_expenses()} bind:open={open.expenses}>
 				<Expenses tripmates={data.tripmates} spends={data.spends} {editable} onop={op} />
+			</WorkspaceSection>
+
+			<!-- P12 step G: the trip's group chat (tripmates, polls, Crabby); replaces the old vote link. -->
+			<WorkspaceSection id="chat" title={m.plan_chat()} bind:open={open.chat}>
+				<TripChat tripId={data.trip.id} {editable} tick={chatTick} />
 			</WorkspaceSection>
 
 			<WorkspaceSection id="notes" title={m.plan_notes()} bind:open={open.notes}>
@@ -804,12 +766,6 @@
 				class={row}
 				onclick={() => copy(`${origin}/plan/share/${data.shareToken}`)}
 				><Link size={20} aria-hidden="true" class="text-text-2" />{m.plan_share()}</button
-			>
-			<button
-				type="button"
-				class={row}
-				onclick={() => copy(`${origin}/plan/vote/${data.shareToken}`)}
-				><Users size={20} aria-hidden="true" class="text-text-2" />{m.plan_invite_vote()}</button
 			>
 			<button
 				type="button"

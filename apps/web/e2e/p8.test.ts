@@ -77,6 +77,10 @@ test('answers only from tools; no phone or location in any payload', async () =>
 });
 
 test("don't know → honest answer + verified alternatives", async () => {
+	// A team answer about unicorns (P12 "Ask our team" tests) would rightly be reused; start without one.
+	psql(
+		`update team_questions set expires_at = now() where question ilike '%unicorn%' and status = 'answered'`
+	);
 	await say('where can I see a unicorn?');
 	await expect(lastAnswer()).toContainText("I don't know");
 	await expect(
@@ -172,24 +176,4 @@ test('similar places on the place page (embeddings, no LLM) and the privacy page
 	await anon.goto('/privacy');
 	await expect(anon.getByRole('heading', { name: 'AI assistant (Crabby)' })).toBeVisible();
 	await expect(anon.getByText(/Phone numbers — they are removed/)).toBeVisible();
-});
-
-test('group vote merge: preview + trade-off text, Apply drops the voted-down place', async () => {
-	psql(
-		`update ai_usage set message_count = 0 where user_id = (select id from auth.users where email = '${email}')`
-	);
-	const trip = psql(
-		`select t.id from trips t join auth.users u on u.id = t.owner_id where u.email = '${email}' order by t.created_at desc limit 1`
-	);
-	const tok = psql(`select share_token from trips where id = '${trip}'`);
-	const place = psql(`select id from places where slug = 'e2e-p8-cave-${run}'`);
-	for (const g of ['g1', 'g2'])
-		psql(`select cast_group_vote('${tok}', '${g}-${run}', '${g}', '${place}', 'down')`);
-	await page.goto(`/plan/${trip}`);
-	await page.getByRole('button', { name: 'Ask Crabby to merge votes' }).click();
-	const res = page.getByTestId('merge-result');
-	await expect(res).toContainText(`P8 Cave ${run}`);
-	await res.getByRole('button', { name: 'Apply' }).click();
-	await expect(res).toContainText('Done.');
-	await expect(page.getByTestId('plan-stop').filter({ hasText: `P8 Cave ${run}` })).toHaveCount(0);
 });

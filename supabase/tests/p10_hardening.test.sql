@@ -14,8 +14,8 @@ select is(
    from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and p.prosecdef
      and has_function_privilege('anon', p.oid, 'execute')
-     and p.proname not in ('cast_group_vote', 'get_shared_trip', 'map_heatmap', 'qr_record_scan',
-                           'sub_score_summary', 'trip_vote_counts', 'rate_take',
+     and p.proname not in ('get_shared_trip', 'map_heatmap', 'qr_record_scan',
+                           'sub_score_summary', 'rate_take',
                            'trip_report_by_token', 'journal_by_token')), -- P12 share links
   '', 'anon can execute only the allowlisted security-definer functions');
 

@@ -28,8 +28,9 @@ async function ask(text: string) {
 	const box = page.getByLabel('Ask Crabby…').locator('visible=true');
 	if (!(await box.count()))
 		await page.getByRole('button', { name: 'Crabby', exact: true }).first().click();
-	await page.getByLabel('Ask Crabby…').locator('visible=true').fill(text);
-	await page.getByRole('button', { name: 'Send' }).locator('visible=true').click();
+	const panel = page.getByTestId('crabby-chat').locator('visible=true');
+	await panel.getByLabel('Ask Crabby…').fill(text);
+	await panel.getByRole('button', { name: 'Send' }).click();
 }
 const lastAnswer = () => page.getByTestId('bubble-crabby').locator('visible=true').last();
 
@@ -243,6 +244,8 @@ test('E: ask our team — Pending, a verifier answers, the asker is told, others
 		'our team says: Unicorns live only in stories'
 	);
 	await team.context().close();
+	// Leave no reusable unicorn answer behind for other suites.
+	psql(`update team_questions set expires_at = now() where question = '${q}'`);
 });
 
 test("F: Crabby at the spot — QR link, place facts + today's trip; signed-out visitors get the FAQ", async ({
@@ -281,4 +284,72 @@ test("F: Crabby at the spot — QR link, place facts + today's trip; signed-out 
 	await expect(anon.getByTestId('spot-faq')).toContainText('Sign in to ask Crabby about this spot');
 	await expect(anon.getByLabel('Ask Crabby…')).toHaveCount(0);
 	await anon.context().close();
+});
+
+test('G: group chat — live messages, @Crabby with a poll, proactive within the cap, editor applies a card', async ({
+	browser
+}) => {
+	const token = `p12g${run}`;
+	psql(
+		`insert into trip_invites (trip_id, role, token, created_by) select id, 'editor', '${token}', owner_id from trips where id = '${trip}'`
+	);
+	const ed = await (await browser.newContext()).newPage();
+	await ed.setViewportSize({ width: 1280, height: 800 });
+	await signIn(ed, `p12-ed-${run}@e2e.local`);
+	await ed.goto(`/plan/join/${token}`);
+	await expect(ed).toHaveURL(new RegExp(`/plan/${trip}$`));
+	await page.goto(`/plan/${trip}`);
+	const chat = (p: Page) => p.getByTestId('trip-chat');
+	const say = async (p: Page, t: string) => {
+		await chat(p).getByLabel('Message the group — tag @Crabby to ask').fill(t);
+		await chat(p).getByRole('button', { name: 'Send to group' }).click();
+	};
+	const crabbyMsgs = (p: Page) =>
+		chat(p).locator('[data-testid="chat-message"][data-crabby="true"]');
+	await expect(chat(page)).toContainText('Crabby reads this chat');
+
+	await say(page, `Hi all ${run}`);
+	await expect(chat(ed).getByText(`Hi all ${run}`)).toBeVisible({ timeout: 3000 });
+
+	// Tagged: Crabby answers on the tagger's cap, posts a poll; it knows the group's totals (owner is veg).
+	await say(ed, '@Crabby which beach?');
+	await expect(crabbyMsgs(page).filter({ hasText: "I've posted a poll" })).toContainText(
+		'1 of you veg',
+		{
+			timeout: 15_000
+		}
+	);
+	const poll = chat(page).locator('[data-kind="poll"]').last();
+	await expect(poll).toContainText('Which beach?');
+	await poll.getByRole('button').first().click();
+	await expect(poll).toContainText('1 votes');
+
+	// Untagged planning question: Crabby may chip in once; the cooldown keeps it quiet right after.
+	const before = await crabbyMsgs(page).count();
+	await say(page, 'where should we eat?');
+	await expect(crabbyMsgs(page)).toHaveCount(before + 1, { timeout: 15_000 });
+	await say(page, 'which fort?');
+	await page.waitForTimeout(4000);
+	await expect(crabbyMsgs(page)).toHaveCount(before + 1);
+	expect(psql(`select proactive from crabby_group_usage where trip_id = '${trip}'`)).toBe('1');
+
+	// A plan change is a card any editor applies (once).
+	await say(ed, '@Crabby drop seed-fort-1');
+	const card = chat(ed).locator('[data-kind="card"]').filter({ hasText: 'Crabby suggests' }).last();
+	await card.getByRole('button', { name: 'Apply' }).click({ timeout: 15_000 });
+	await expect(chat(ed).locator('[data-kind="system"]').last()).toContainText('Applied');
+	expect(
+		psql(`select count(*) from trip_stops s join places p on p.id = s.entity_id
+		      where s.trip_id = '${trip}' and p.slug = 'seed-fort-1'`)
+	).toBe('0');
+
+	// Moderation: an unsafe message is refused and never stored.
+	await say(page, 'mockunsafe words');
+	await expect(page.getByText("That message wasn't sent")).toBeVisible();
+	expect(
+		psql(`select count(*) from trip_messages where trip_id = '${trip}' and body like 'mockunsafe%'`)
+	).toBe('0');
+	// The old no-login vote link is gone.
+	expect((await page.request.get('/plan/vote/anything')).status()).toBe(404);
+	await ed.context().close();
 });

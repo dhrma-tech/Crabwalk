@@ -45,6 +45,51 @@ export const mock: Provider = {
 		if (sys.startsWith('You screen'))
 			return { content: JSON.stringify({ safe: !text.includes('mockunsafe') }), tool_calls: [] };
 
+		// P12 group chat: speak when the newest message asks something; polls and plan changes on cue.
+		const last = text.split('\n').at(-1) ?? '';
+		if (sys.startsWith('You decide whether Crabby'))
+			return { content: JSON.stringify({ speak: last.includes('?') }), tool_calls: [] };
+		if (sys.includes("inside a trip's group chat") && req.tools?.length) {
+			const done = req.messages.filter(
+				(m) => m.role === 'assistant' && m.tool_calls?.length
+			).length;
+			const found = req.messages
+				.filter((m) => m.role === 'tool')
+				.flatMap((m) => [...m.content.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]!));
+			const gplan: ToolCall[][] = [];
+			const drop = /drop (seed-[a-z0-9-]+)/.exec(last)?.[1];
+			if (last.includes('which beach'))
+				gplan.push(
+					[call('search_places', { category: 'beach' })],
+					[call('ask_group', { question: 'Which beach?', options: found.slice(0, 2) })]
+				);
+			else if (drop)
+				gplan.push([
+					call('edit_plan', { trip: 'T1', ops: [{ op: 'remove', day: 1, place: drop }] })
+				]);
+			else {
+				const cat = CATS.find((c) => last.includes(c));
+				if (cat) gplan.push([call('search_places', { category: cat })]);
+			}
+			return { content: '', tool_calls: gplan[done] ?? [] };
+		}
+		if (sys.startsWith("You are Crabby replying in a trip's group chat")) {
+			const block = req.messages.at(-1)?.content ?? '';
+			const veg = /"veg":(\d+)/.exec(block)?.[1];
+			const names = [...block.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]);
+			const say = block.includes('POLL POSTED')
+				? "I've posted a poll — vote below!"
+				: block.includes('PROPOSED: ')
+					? 'a plan change is ready — any editor can apply it below.'
+					: names.length
+						? [...new Set(names)].slice(0, 3).join(', ')
+						: "I don't know that.";
+			return {
+				content: `Mock (group): ${say}${veg ? ` (${veg} of you veg)` : ''}`,
+				tool_calls: []
+			};
+		}
+
 		if (req.tools?.length) {
 			const done = req.messages.filter(
 				(m) => m.role === 'assistant' && m.tool_calls?.length
@@ -82,8 +127,6 @@ export const mock: Provider = {
 						})
 					]
 				);
-			else if (text.includes('merge'))
-				plan.push([call('list_my_trips', {})], [call('merge_group_votes', { trip: 'T1' })]);
 			else if (text.includes('plan') || /^(dates|pace|group|start point|days): /m.test(text)) {
 				// A plan request, or a question card's answers to one: read every user turn (history included).
 				const said = req.messages

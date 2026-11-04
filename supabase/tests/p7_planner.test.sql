@@ -61,13 +61,14 @@ grant select on tok to anon, authenticated;
 select pg_temp.anon();
 select ok((public.get_shared_trip((select share_token from tok)) -> 'trip' ->> 'title') = 'P7 trip', 'anon reads the shared trip by token');
 select ok(not (public.get_shared_trip((select share_token from tok)) -> 'trip') ? 'owner_id', 'shared payload has no owner id');
-select lives_ok($$ select public.cast_group_vote((select share_token from tok), 'guest-1', 'Asha', (select p1 from ids), 'up') $$, 'guest votes without login');
-select lives_ok($$ select public.cast_group_vote((select share_token from tok), 'guest-1', 'Asha', (select p1 from ids), 'down') $$, 'guest can change their vote');
-select public.cast_group_vote((select share_token from tok), 'guest-2', 'Ravi', (select p1 from ids), 'up');
-select is((select up from public.trip_vote_counts((select share_token from tok)) where entity_id = (select p1 from ids)), 1, 'vote counts: one up');
-select is((select down from public.trip_vote_counts((select share_token from tok)) where entity_id = (select p1 from ids)), 1, 'vote counts: one down (changed vote)');
-select throws_ok($$ select public.cast_group_vote('0000', 'g', 'x', (select p1 from ids), 'up') $$, '42501', null, 'bad token refused');
+-- P12 retired the no-login vote link (DECISIONS P12-0): group votes are poll cards in the trip chat now.
+select throws_ok($$ select public.cast_group_vote((select share_token from tok), 'guest-1', 'Asha', (select p1 from ids), 'up') $$,
+  '42501', null, 'guest voting is retired (P12)');
 select is((select count(*)::int from public.group_votes), 0, 'guests cannot read voter names');
+reset role;
+-- Votes cast before P12 stay readable to the trip owner.
+insert into public.group_votes (trip_id, voter_token, voter_name, entity_id, vote)
+  select trip, 'guest-' || g, 'Guest', p1, 'up' from ids, generate_series(1, 2) g;
 select pg_temp.login('00000000-0000-0000-0007-0000000000a1');
 select is((select count(*)::int from public.group_votes where trip_id = (select trip from ids)), 2, 'owner sees each voter');
 

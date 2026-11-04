@@ -4,11 +4,11 @@ import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { nearby, type Lang } from '#lib/server/listings.ts';
 import { describeStops, editTrip, suggestOrder, tripView } from '#lib/server/planner/trips.ts';
-import { mergeVotes } from '#lib/server/ai/assist.ts';
 import { workspaceView } from '#lib/server/planner/workspace.ts';
 import type { Actions, PageServerLoad } from './$types';
 
-// Plan view (FRONTEND §7.9): owner and editors edit, viewers read (P11 §6); group votes shown per stop; share/vote links; publish route.
+// Plan view (FRONTEND §7.9): owner and editors edit, viewers read (P11 §6); share links; publish route. Group
+// votes moved into the trip chat as polls (P12 step G).
 export const load: PageServerLoad = async (event) => {
 	const s = await session(event);
 	if (!z.uuid().safeParse(event.params.id).success) error(404, 'not found');
@@ -49,15 +49,6 @@ export const load: PageServerLoad = async (event) => {
 		})
 	);
 
-	const { data: votes } = await db
-		.from('group_votes')
-		.select('entity_id, vote, voter_token')
-		.eq('trip_id', t.id);
-	const tally: Record<string, { up: number; down: number }> = {};
-	for (const v of votes ?? []) {
-		const x = (tally[v.entity_id] ??= { up: 0, down: 0 });
-		x[v.vote as 'up' | 'down']++;
-	}
 	const route = Array.isArray(t.published_routes) ? t.published_routes[0] : t.published_routes;
 	const workspace = await workspaceView(
 		db,
@@ -80,8 +71,6 @@ export const load: PageServerLoad = async (event) => {
 		role,
 		invites: invites ?? [],
 		add,
-		votes: tally,
-		voters: new Set((votes ?? []).map((v) => v.voter_token)).size,
 		shareToken: t.share_token,
 		published: (route as { status: string } | null)?.status ?? null,
 		isAdmin: s.isAdmin
@@ -102,22 +91,6 @@ export const actions: Actions = {
 		const r = await suggestOrder(event.locals.supabase, event.params.id, day);
 		if (r?.days) await editTrip(event.locals.supabase, event.params.id, { days: r.days });
 		return { ordered: true };
-	},
-	// Crabby merges friends' votes into a proposed edit + trade-off text (PLAN P8 task 8, BACKEND §10.4).
-	merge: async (event) => {
-		const s = await session(event);
-		try {
-			return {
-				merge: await mergeVotes(
-					event.locals.supabase,
-					s.user.id,
-					event.params.id,
-					getLocale() as Lang
-				)
-			};
-		} catch {
-			return fail(503, { merge: { kind: 'unavailable' as const } });
-		}
 	},
 	rename: async (event) => {
 		await session(event);

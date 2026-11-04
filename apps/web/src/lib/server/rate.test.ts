@@ -8,8 +8,8 @@ describe('rate-limit rules (P10)', () => {
 		expect(ruleFor('POST', u('/api/reports'))?.name).toBe('report');
 		expect(ruleFor('POST', u('/q/RTN-001/report'))?.name).toBe('report');
 		expect(ruleFor('POST', u('/q/RTN-001/scan'))?.name).toBe('qr-scan');
-		expect(ruleFor('POST', u('/api/trips/abc/vote'))?.name).toBe('vote');
-		expect(ruleFor('POST', u('/plan/vote/0123abcd'))?.name).toBe('vote');
+		expect(ruleFor('POST', u('/api/trips/abc/chat'))?.name).toBe('chat');
+		expect(ruleFor('POST', u('/api/trips/abc/chat/def/vote'))?.name).toBe('chat');
 		expect(ruleFor('POST', u('/api/trips/plan'))?.name).toBe('plan');
 		expect(ruleFor('POST', u('/api/ai/chat'))?.name).toBe('ai');
 		expect(ruleFor('POST', u('/login?/sendCode'))?.name).toBe('login-code');

@@ -227,7 +227,7 @@ test('co-editing: invite links, live edits both ways, viewer reads only', async 
 	await page.setViewportSize({ width: 1280, height: 800 });
 	await page.goto(`/plan/${trip}`);
 	await page.waitForLoadState('networkidle');
-	await page.getByRole('button', { name: 'Share' }).click();
+	await page.getByRole('button', { name: 'Share', exact: true }).click();
 	const invites = page.getByTestId('invites');
 	await invites.getByRole('button', { name: 'Copy edit link' }).click();
 	await invites.getByRole('button', { name: 'Copy view link' }).click();

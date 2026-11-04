@@ -24,7 +24,8 @@ export type ActionType =
 	| 'add_to_trip'
 	| 'ask_team';
 export type Preview = { title: string; lines: string[]; links?: { label: string; href: string }[] };
-export type Proposed = { id: string; type: ActionType; preview: Preview };
+/** In a group chat (P12) the payload travels in the chat card instead of a private ai_actions row. */
+export type Proposed = { id: string; type: ActionType; preview: Preview; payload?: unknown };
 export type Ctx = {
 	db: DB;
 	userId: string;
@@ -40,6 +41,8 @@ export type Ctx = {
 	questions: Question[] | null;
 	/** The user's profile (10.7) for planner defaults; null = none / not loaded. */
 	profile: Profile | null;
+	/** Crabby in a trip's group chat: proposals become chat cards any editor applies (P12 step G). */
+	group?: boolean;
 };
 
 const CATS = [
@@ -170,12 +173,6 @@ export const TOOL_DEFS: ToolDef[] = [
 			},
 			['trip', 'ops']
 		)
-	},
-	{
-		name: 'merge_group_votes',
-		description:
-			"Merge friends' votes on a trip into a proposed edit (drops places most voted down) with the tally.",
-		parameters: obj({ trip: str('Trip ref, e.g. T1') }, ['trip'])
 	},
 	{
 		name: 'propose_action',
@@ -471,6 +468,14 @@ export async function proposeAskTeam(ctx: Ctx, question: string, place?: string)
 }
 
 async function propose(ctx: Ctx, type: ActionType, preview: Preview, payload: unknown) {
+	if (ctx.group) {
+		ctx.proposed.push({ id: crypto.randomUUID(), type, preview, payload });
+		return {
+			proposed: type,
+			title: preview.title,
+			note: 'Posted as a card in the group chat; any editor can apply it.'
+		};
+	}
 	const { data, error } = await ctx.db
 		.from('ai_actions')
 		.insert({ user_id: ctx.userId, type, preview: { ...preview, payload } as never })
@@ -875,8 +880,7 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			ctx.questions = [...(ctx.questions ?? []), ...q.data].slice(0, 4);
 			return { asked_user: q.data.map((x) => x.header), note: 'Shown as a card. Stop and wait.' };
 		}
-		case 'edit_plan':
-		case 'merge_group_votes': {
+		case 'edit_plan': {
 			const tripId = ctx.trips.get(s('trip') ?? '');
 			if (!tripId) return { error: 'unknown trip ref — call list_my_trips first' };
 			const { data: t } = await db
@@ -894,31 +898,7 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			const info = await describeStops(db, t.trip_stops, lang);
 			const slugOf = (id: string) => info.get(id)?.href?.split('/').at(-1);
 			const changes: string[] = [];
-			let tally: { place: string; up: number; down: number }[] = [];
-			if (name === 'merge_group_votes') {
-				const { data: votes } = await db
-					.from('group_votes')
-					.select('entity_id, vote')
-					.eq('trip_id', t.id);
-				const net = new Map<string, { up: number; down: number }>();
-				for (const v of votes ?? []) {
-					const x = net.get(v.entity_id) ?? { up: 0, down: 0 };
-					x[v.vote as 'up' | 'down']++;
-					net.set(v.entity_id, x);
-				}
-				tally = [...net].map(([id, x]) => ({ place: info.get(id)?.name ?? '?', ...x }));
-				if (!tally.length) return { votes: 0, note: 'no group votes yet' };
-				for (const day of order)
-					for (let k = day.length - 1; k >= 0; k--) {
-						const x = net.get(day[k]!.entity_id);
-						if (day[k]!.kind === 'place' && x && x.down > x.up) {
-							changes.push(`− ${info.get(day[k]!.entity_id)?.name} (${x.up}↑ ${x.down}↓)`);
-							day.splice(k, 1);
-						}
-					}
-				if (!changes.length)
-					return { votes: tally, note: 'no place has more down than up votes; nothing to change' };
-			} else {
+			{
 				const ops = Array.isArray(a.ops) ? (a.ops as Record<string, unknown>[]) : [];
 				for (const op of ops) {
 					const day = Number(op.day) - 1;
@@ -959,7 +939,7 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 				{ title: t.title, lines: changes },
 				{ trip_id: t.id, days: order }
 			);
-			return { ...res, changes, ...(tally.length ? { votes: tally } : {}) };
+			return { ...res, changes };
 		}
 		case 'propose_action': {
 			const type = s('type') as ActionType;

@@ -252,18 +252,19 @@ select pg_temp.anon();
 select is((select count(*)::int from public.trips where id = (select trip1 from ids)), 0, 'anon cannot list trips');
 select isnt(public.get_shared_trip('tok-u1'), null, 'anon reads trip via share token');
 select is(public.get_shared_trip('bad-token'), null, 'bad token returns nothing');
-select lives_ok(
-  $$ select public.cast_group_vote('tok-u1', 'guest-1', 'Asha', gen_random_uuid(), 'up') $$,
-  'guest votes with valid token');
+-- P12 retired the no-login vote link (DECISIONS P12-0).
 select throws_ok(
-  $$ select public.cast_group_vote('bad-token', 'guest-1', 'Asha', gen_random_uuid(), 'up') $$,
-  '42501', null, 'guest vote with bad token rejected');
+  $$ select public.cast_group_vote('tok-u1', 'guest-1', 'Asha', gen_random_uuid(), 'up') $$,
+  '42501', null, 'guest voting is retired (P12)');
 select throws_ok(
   $$ insert into public.group_votes (trip_id, voter_token, entity_id, vote)
      select trip1, 'g', gen_random_uuid(), 'up' from ids $$,
   '42501', null, 'direct guest insert rejected');
 
 reset role;
+-- An existing vote from before P12 (votes are data now; casting is retired).
+insert into public.group_votes (trip_id, voter_token, voter_name, entity_id, vote)
+  select trip1, 'guest-1', 'Asha', gen_random_uuid(), 'up' from ids;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a1');
 select is((select count(*)::int from public.trips where id = (select trip1 from ids)), 1, 'owner reads own trip');
 select is((select count(*)::int from public.group_votes), 1, 'trip owner reads votes');

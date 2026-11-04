@@ -8,7 +8,7 @@ describe('isActive', () => {
 	});
 	it('an item covers its first path segment', () => {
 		expect(isActive('/plan/abc', '/plan/new')).toBe(true);
-		expect(isActive('/plan/vote/t1', '/plan/new')).toBe(true);
+		expect(isActive('/plan/join/t1', '/plan/new')).toBe(true);
 		expect(isActive('/me', '/me')).toBe(true);
 	});
 	it('needs a segment boundary', () => {

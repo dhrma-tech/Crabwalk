@@ -32,10 +32,11 @@ export const RULES: Rule[] = [
 	},
 	{ name: 'qr-scan', method: 'POST', path: /^\/q\/[^/]+\/scan$/, limit: 60, windowS: 600 },
 	{ name: 'qr-visit', method: 'POST', path: /^\/q\/[^/]+\/visit$/, limit: 20, windowS: 600 },
+	// Trip group chat (P12): messages, poll votes, applying Crabby's cards. The no-login vote link is retired.
 	{
-		name: 'vote',
+		name: 'chat',
 		method: 'POST',
-		path: /^\/api\/trips\/[^/]+\/vote$|^\/plan\/vote\/[^/]+$/,
+		path: /^\/api\/trips\/[^/]+\/chat(\/[^/]+\/(vote|apply))?$/,
 		limit: 60,
 		windowS: 600
 	},

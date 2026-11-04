@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Users from '@lucide/svelte/icons/users';
 	import FileDown from '@lucide/svelte/icons/file-down';
-	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -25,10 +23,6 @@
 		</p>
 		<PlanDays days={data.days} />
 		<div class="flex flex-wrap gap-2 print:hidden">
-			<Button href={resolve('/plan/vote/[token]', { token: data.token })}>
-				{#snippet icon()}<Users size={20} aria-hidden="true" />{/snippet}
-				{m.plan_vote_cta()}
-			</Button>
 			<Button variant="secondary" onclick={() => window.print()}>
 				{#snippet icon()}<FileDown size={20} aria-hidden="true" />{/snippet}
 				{m.plan_pdf()}
