@@ -29,7 +29,8 @@ export async function mergeVotes(db: DB, userId: string, tripId: string, lang: L
 		trips: new Map([['T1', tripId]]),
 		proposed: [],
 		drive: [],
-		path: null
+		path: null,
+		questions: null
 	};
 	const result = (await runTool(
 		ctx,

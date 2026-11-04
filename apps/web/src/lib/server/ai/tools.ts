@@ -8,6 +8,7 @@ import { getDish, lonLat, nearby as nearbyListings, tr, type Lang } from '../lis
 import { addDays, istToday } from '../planner/data.ts';
 import { computeTrip, describeStops, planInput } from '../planner/trips.ts';
 import { driveStep, PAGES, SECTIONS, type DriveStep } from '#lib/drive.ts';
+import { questionCard, type Question } from '#lib/questions.ts';
 import { eateryFilter, placeFilter, readFilter, stayFilter } from '../filters.ts';
 import type { ToolDef } from './providers.ts';
 
@@ -33,6 +34,8 @@ export type Ctx = {
 	drive: DriveStep[];
 	/** The page the user is on, so Crabby can act in context (switchTab needs an open trip). */
 	path: string | null;
+	/** A question card for the user ("Ask, don't assume"); the turn stops and waits for the answers. */
+	questions: Question[] | null;
 };
 
 const CATS = [
@@ -119,12 +122,17 @@ export const TOOL_DEFS: ToolDef[] = [
 	{
 		name: 'build_plan',
 		description:
-			'Plan a trip with our deterministic planner. Needs a start railway station or bus stand name. Returns a preview the user must apply.',
+			"Plan a trip with our deterministic planner. Pass what the user said; anything missing that changes the plan comes back as a question card the user answers (don't guess it). If the user picked 'Let Crabby decide' for days or pace, list it in crabby_decides. Returns a preview the user must apply.",
 		parameters: obj(
 			{
 				days: int('1–7'),
 				start: str('Railway station or bus stand name'),
-				start_date: str('YYYY-MM-DD; default tomorrow'),
+				start_date: str('YYYY-MM-DD, from what the user said (today is in the system prompt)'),
+				crabby_decides: {
+					type: 'array',
+					items: str('field', { enum: ['days', 'pace'] }),
+					description: "Fields the user left to Crabby ('Let Crabby decide')"
+				},
 				interests: { type: 'array', items: str('category', { enum: CATS }) },
 				pace: str('pace', { enum: ['relaxed', 'balanced', 'packed'] }),
 				standout: { type: 'boolean', description: 'Prefer hidden gems and calm spots' },
@@ -133,7 +141,7 @@ export const TOOL_DEFS: ToolDef[] = [
 				group_type: str('group', { enum: ['family', 'couple', 'solo', 'friends'] }),
 				diet: str('diet', { enum: ['veg', 'non_veg', 'jain'] })
 			},
-			['days', 'start']
+			[]
 		)
 	},
 	{
@@ -221,6 +229,36 @@ export const TOOL_DEFS: ToolDef[] = [
 				}
 			},
 			['steps']
+		)
+	},
+	{
+		name: 'ask_user',
+		description:
+			"Ask the user instead of guessing when an answer changes the result (dates, budget, pace, food, which stay, trade-offs). 1–4 questions in one card, 2–4 short options each, mark the one you recommend, multi=true when several answers fit, decide=true to offer 'Let Crabby decide'. Never ask what the user already said or what a tool can look up. Options must come from what the user said or from tool results.",
+		parameters: obj(
+			{
+				questions: {
+					type: 'array',
+					minItems: 1,
+					maxItems: 4,
+					items: obj(
+						{
+							header: str('2–3 word label, e.g. "Pace"'),
+							question: str('The question'),
+							options: {
+								type: 'array',
+								minItems: 2,
+								maxItems: 4,
+								items: obj({ label: str('Option'), recommended: { type: 'boolean' } }, ['label'])
+							},
+							multi: { type: 'boolean' },
+							decide: { type: 'boolean' }
+						},
+						['header', 'question', 'options']
+					)
+				}
+			},
+			['questions']
 		)
 	}
 ];
@@ -319,6 +357,85 @@ async function listingBySlug(db: DB, kind: keyof typeof TR, slug: string) {
 		names: { lang: string; name: string | null }[];
 	} | null;
 }
+
+// Plan question cards ("Ask, don't assume", §4): options from our data and enums, in the user's language.
+async function startQuestion(db: DB, lang: Lang): Promise<Question> {
+	const { data: cfg } = await db
+		.from('app_config')
+		.select('value')
+		.eq('key', 'plan_start_suggestions')
+		.maybeSingle();
+	const wanted = Array.isArray(cfg?.value) ? (cfg.value as string[]) : [];
+	const { data } = await db
+		.from('utility_pois')
+		.select('name')
+		.in('type', ['railway_station', 'bus_stand'])
+		.in('name', wanted.length ? wanted : ['-'])
+		.limit(8);
+	const found = new Set((data ?? []).map((x) => x.name));
+	const names = wanted.filter((w) => found.has(w)).slice(0, 4);
+	if (names.length < 2) {
+		const { data: any } = await db
+			.from('utility_pois')
+			.select('name')
+			.eq('type', 'railway_station')
+			.order('name')
+			.limit(4);
+		names.push(...(any ?? []).map((x) => x.name ?? '').filter(Boolean));
+	}
+	return {
+		header: msg('plan_start', {}, lang),
+		question: msg('q_start', {}, lang),
+		options: names.slice(0, 4).map((label) => ({ label }))
+	};
+}
+const daysQuestion = (lang: Lang): Question => ({
+	header: msg('plan_days', {}, lang),
+	question: msg('q_days', {}, lang),
+	options: [1, 2, 3, 4].map((n) => ({
+		label: n === 1 ? msg('q_one_day', {}, lang) : msg('plan_n_days', { n }, lang),
+		...(n === 2 ? { recommended: true } : {})
+	})),
+	decide: true
+});
+function dateQuestion(lang: Lang): Question {
+	const today = istToday();
+	const dow = new Date(`${today}T00:00:00Z`).getUTCDay();
+	const sat = addDays(today, (6 - dow + 7) % 7 || 7).date;
+	const fmt = (d: string) =>
+		new Intl.DateTimeFormat(`${lang}-IN`, {
+			weekday: 'short',
+			day: 'numeric',
+			month: 'short',
+			timeZone: 'UTC'
+		}).format(new Date(`${d}T00:00:00Z`));
+	const tomorrow = addDays(today, 1).date;
+	return {
+		header: msg('q_when_header', {}, lang),
+		question: msg('q_when', {}, lang),
+		options: [
+			{ label: `${msg('q_tomorrow', {}, lang)} (${fmt(tomorrow)})` },
+			...(sat !== tomorrow ? [{ label: fmt(sat) }] : []),
+			{ label: fmt(addDays(sat, 7).date) }
+		]
+	};
+}
+const groupQuestion = (lang: Lang): Question => ({
+	header: msg('q_group_header', {}, lang),
+	question: msg('plan_group', {}, lang),
+	options: (['family', 'couple', 'solo', 'friends'] as const).map((g) => ({
+		label: msg(`group_${g}`, {}, lang)
+	}))
+});
+const paceQuestion = (lang: Lang): Question => ({
+	header: msg('plan_pace', {}, lang),
+	question: msg('q_pace', {}, lang),
+	options: (['relaxed', 'balanced', 'packed'] as const).map((p) => ({
+		label: msg(`pace_${p}`, {}, lang),
+		...(p === 'balanced' ? { recommended: true } : {})
+	})),
+	decide: true
+});
 
 async function propose(ctx: Ctx, type: ActionType, preview: Preview, payload: unknown) {
 	const { data, error } = await ctx.db
@@ -628,31 +745,56 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			});
 		}
 		case 'build_plan': {
-			const startName = s('start') ?? '';
-			const { data: st } = await db
-				.from('utility_pois')
-				.select('name, location')
-				.in('type', ['railway_station', 'bus_stand'])
-				.ilike('name', `%${startName.replace(/[%_]/g, '')}%`)
-				.limit(1)
-				.maybeSingle();
+			// "Ask, don't assume" (§4): anything missing that changes the plan comes back as one question card
+			// built here from our data (start points, dates, enums) — the model never invents the options.
+			// Preferences fall back to what the user told us before, or to "Let Crabby decide".
+			const decide = new Set(Array.isArray(a.crabby_decides) ? (a.crabby_decides as string[]) : []);
+			const startName = (s('start') ?? '').replace(/[%_]/g, '');
+			const { data: st } = startName
+				? await db
+						.from('utility_pois')
+						.select('name, location')
+						.in('type', ['railway_station', 'bus_stand'])
+						.ilike('name', `%${startName}%`)
+						.order('type', { ascending: false })
+						.limit(1)
+						.maybeSingle()
+				: { data: null };
 			const c = st ? lonLat(st.location) : null;
-			if (!st || !c)
-				return { error: 'start not found — ask the user for a railway station or bus stand name' };
 			const { data: pref } = await db
 				.from('user_preferences')
 				.select('diet, group_type')
 				.eq('user_id', ctx.userId)
 				.maybeSingle();
+			const known = { pace: null as string | null, group_type: pref?.group_type ?? null };
+			const ask: Question[] = [];
+			if (!st || !c) ask.push(await startQuestion(db, lang));
+			if (!i('days') && !decide.has('days')) ask.push(daysQuestion(lang));
+			if (!s('start_date')) ask.push(dateQuestion(lang));
+			if (!s('group_type') && !known.group_type) ask.push(groupQuestion(lang));
+			if (!s('pace') && !known.pace && !decide.has('pace')) ask.push(paceQuestion(lang));
+			if (ask.length) {
+				ctx.questions = ask.slice(0, 4);
+				return {
+					asked_user: ctx.questions.map((q) => q.header),
+					note: 'Shown to the user as a question card. Stop and wait for their answers.'
+				};
+			}
+			// "Let Crabby decide": pick, and say which and why (the explanation repeats it).
+			const chose: string[] = [];
+			if (decide.has('days')) chose.push(msg('q_chose_days', {}, lang));
+			if (decide.has('pace')) chose.push(msg('q_chose_pace', {}, lang));
+			const group = s('group_type') ?? known.group_type ?? 'family';
 			const p = planInput.safeParse({
-				days: i('days') ?? 2,
-				start_date: s('start_date') ?? addDays(istToday(), 1).date,
-				start: { label: st.name ?? startName, lon: c[0], lat: c[1] },
-				group_type: s('group_type') ?? pref?.group_type ?? 'family',
-				people: i('people') ?? 2,
+				days: decide.has('days') ? 2 : i('days'),
+				start_date: s('start_date'),
+				start: { label: st!.name ?? startName, lon: c![0], lat: c![1] },
+				group_type: group,
+				// Group size only scales the budget estimate (editable on the plan); stated in the preview.
+				people: i('people') ?? (group === 'solo' ? 1 : 2),
 				budget: i('budget') ?? null,
 				interests: Array.isArray(a.interests) ? a.interests : [],
-				pace: s('pace') ?? 'balanced',
+				pace: decide.has('pace') ? 'balanced' : (s('pace') ?? known.pace),
 				standout: a.standout === true,
 				diet: s('diet') ?? pref?.diet ?? null
 			});
@@ -690,11 +832,17 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 				'create_plan',
 				{
 					title: msg('plan_default_title', { days: p.data.days, from: p.data.start.label }, lang),
-					lines
+					lines: [...lines, ...chose, msg('q_people_note', { n: p.data.people }, lang)]
 				},
 				p.data
 			);
-			return { ...res, days: lines };
+			return { ...res, days: lines, ...(chose.length ? { crabby_chose: chose } : {}) };
+		}
+		case 'ask_user': {
+			const q = questionCard.safeParse(a.questions);
+			if (!q.success) return { error: 'bad question card: 1–4 questions, 2–4 options each' };
+			ctx.questions = [...(ctx.questions ?? []), ...q.data].slice(0, 4);
+			return { asked_user: q.data.map((x) => x.header), note: 'Shown as a card. Stop and wait.' };
 		}
 		case 'edit_plan':
 		case 'merge_group_votes': {

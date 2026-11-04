@@ -84,15 +84,33 @@ export const mock: Provider = {
 				);
 			else if (text.includes('merge'))
 				plan.push([call('list_my_trips', {})], [call('merge_group_votes', { trip: 'T1' })]);
-			else if (text.includes('plan')) {
-				const from = /from ([\p{L}\p{N} ]+?)(?: for|$)/u.exec(user)?.[1]?.trim() ?? '';
-				plan.push([
-					call('build_plan', {
-						days: 1,
-						start: from,
-						interests: CATS.filter((c) => text.includes(c))
-					})
-				]);
+			else if (text.includes('plan') || /^(dates|pace|group|start point|days): /m.test(text)) {
+				// A plan request, or a question card's answers to one: read every user turn (history included).
+				const said = req.messages
+					.filter((m) => m.role === 'user')
+					.map((m) => m.content)
+					.join('\n');
+				const low = said.toLowerCase();
+				const from =
+					/from ([\p{L}\p{N} ]+?)(?: for|$)/mu.exec(said)?.[1]?.trim() ??
+					/^start point: (.+)$/im.exec(said)?.[1]?.trim() ??
+					'';
+				const args: Record<string, unknown> = {
+					start: from,
+					interests: CATS.filter((c) => low.includes(c))
+				};
+				const days = /^days: (\d)/m.exec(low)?.[1];
+				if (days) args.days = Number(days);
+				else if (/\bday\b/.test(low)) args.days = 1;
+				if (/^dates: tomorrow/m.test(low))
+					args.start_date = new Date(Date.now() + (5.5 + 24) * 3600e3).toISOString().slice(0, 10);
+				const group = /^group: (family|couple|solo|friends)/m.exec(low)?.[1];
+				if (group) args.group_type = group;
+				const pace = /^pace: (relaxed|balanced|packed)/m.exec(low)?.[1];
+				if (pace) args.pace = pace;
+				const decides = [...low.matchAll(/^(days|pace): let crabby decide/gm)].map((x) => x[1]);
+				if (decides.length) args.crabby_decides = decides;
+				plan.push([call('build_plan', args)]);
 			} else if (text.includes('stays near')) {
 				const slug = /stays near ([a-z0-9-]+)/.exec(text)?.[1] ?? '';
 				plan.push([call('search_stays', { near_place: slug })]);
@@ -120,6 +138,14 @@ export const mock: Provider = {
 		const names = [...block.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]);
 		if (/^REFUSED: /m.test(block))
 			return { content: "Mock: I can't open that page.", tool_calls: [] };
+		if (/^QUESTIONS: /m.test(block))
+			return { content: 'Mock: a few quick questions first.', tool_calls: [] };
+		const chose = /^CRABBY CHOSE: (.+)$/m.exec(block)?.[1];
+		if (chose)
+			return {
+				content: `Mock: your preview is ready. Nothing changes until you tap Apply. I picked ${chose}`,
+				tool_calls: []
+			};
 		if (/^DOING: /m.test(block))
 			return { content: 'Mock: on it — opening that for you.', tool_calls: [] };
 		const previews = /PROPOSED PREVIEWS: (.+)$/m.exec(block)?.[1];

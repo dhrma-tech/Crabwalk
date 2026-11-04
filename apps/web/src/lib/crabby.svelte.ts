@@ -4,6 +4,7 @@ import { page } from '$app/state';
 import { isEmergency } from './emergency.ts';
 import { m } from './paraglide/messages.js';
 import type { DriveStep, PageName } from './drive.ts';
+import type { Question } from './questions.ts';
 import { drive } from './drive.svelte.ts';
 
 const PAGE_NAME: Record<PageName, () => string> = {
@@ -57,6 +58,9 @@ export type Bubble = {
 	kind?: 'refused' | 'unavailable' | 'limit' | 'unknown';
 	actions?: Action[];
 	alternatives?: { slug: string; name: string }[];
+	/** "Ask, don't assume" card; answered once the user sends their picks. */
+	questions?: Question[];
+	answered?: boolean;
 };
 
 export const crabby = $state({
@@ -100,6 +104,7 @@ export async function ask(text: string) {
 					reply: string;
 					actions: Action[];
 					drive: DriveStep[];
+					questions: Question[] | null;
 					alternatives: Bubble['alternatives'];
 					remaining: number;
 			  };
@@ -115,6 +120,7 @@ export async function ask(text: string) {
 				content: r.reply,
 				actions: r.actions,
 				alternatives: r.alternatives,
+				...(r.questions?.length ? { questions: r.questions } : {}),
 				...(unknown ? { kind: 'unknown' as const } : {})
 			});
 			// Crabby drives the app (10.11): auto steps run now, visibly, with Stop.
@@ -128,6 +134,12 @@ export async function ask(text: string) {
 	} finally {
 		crabby.busy = false;
 	}
+}
+
+/** Send a question card's answers as the next message. */
+export async function answerCard(t: Bubble, text: string) {
+	t.answered = true;
+	await ask(text);
 }
 
 /** Apply / Discard a preview. Returns where to go next (our page or Google Maps) when applied. */

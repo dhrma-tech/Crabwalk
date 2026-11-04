@@ -7,11 +7,12 @@
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
-	import { ask, crabby, decide, type Action } from '#lib/crabby.svelte.ts';
+	import { answerCard, ask, crabby, decide, type Action } from '#lib/crabby.svelte.ts';
 	import Crabby from '../Crabby.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';
 	import ActionPreviewCard from './ActionPreviewCard.svelte';
+	import QuestionCard from './QuestionCard.svelte';
 	import { page } from '$app/state';
 	import { loginHref } from '#lib/login.ts';
 
@@ -126,6 +127,13 @@
 									</li>
 								{/each}
 							</ul>
+						{/if}
+						{#if t.questions}
+							<QuestionCard
+								questions={t.questions}
+								answered={t.answered}
+								onanswer={(answer) => answerCard(t, answer)}
+							/>
 						{/if}
 						{#each t.actions ?? [] as a (a.id)}
 							<ActionPreviewCard action={a} onact={(apply) => act(a, apply)} />

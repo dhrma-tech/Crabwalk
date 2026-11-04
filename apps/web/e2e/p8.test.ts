@@ -89,6 +89,12 @@ test('plan preview changes nothing until Apply', async () => {
 		`select count(*) from trips t join auth.users u on u.id = t.owner_id where u.email = '${email}'`
 	);
 	await say(`plan a cave day from P8 Station ${run}`);
+	// P12 "Ask, don't assume": dates, group and pace are asked, not guessed.
+	const q = page.getByTestId('question-card').last();
+	await q.getByRole('radio', { name: /^Tomorrow/ }).click();
+	await q.getByRole('radio', { name: 'Family' }).click();
+	await q.getByRole('radio', { name: 'Let Crabby decide' }).click();
+	await q.getByRole('button', { name: 'Send answers' }).click();
 	const card = page.getByTestId('action-preview').last();
 	await expect(card).toBeVisible();
 	await expect(card).toContainText(`P8 Cave ${run}`);

@@ -84,3 +84,37 @@ test('B: Stop cancels what Crabby is doing; data changes stay previews', async (
 		      where s.trip_id = '${trip}' and p.slug = 'seed-temple-1'`)
 	).toBe('1');
 });
+
+test('C: ask, don\'t assume — a question card instead of guesses; "Let Crabby decide" is explained', async () => {
+	await page.goto('/crabby');
+	// No start point: Crabby offers our start points (app_config), not invented ones.
+	await ask('plan a beach trip');
+	const card = page.getByTestId('question-card').locator('visible=true').last();
+	await expect(card).toContainText('Where does the trip start?');
+	await expect(card.getByRole('radio', { name: 'Chiplun' })).toBeVisible();
+	await expect(lastAnswer()).toContainText('a few quick questions first');
+	const trips = () =>
+		psql(
+			`select count(*) from trips t join auth.users u on u.id = t.owner_id where u.email = 'p12-${run}@e2e.local'`
+		);
+	const before = trips();
+
+	await card.getByRole('radio', { name: 'Chiplun' }).click();
+	await card.getByRole('radio', { name: '2 days' }).click();
+	await card.getByRole('radio', { name: /^Tomorrow/ }).click();
+	await card.getByRole('radio', { name: 'Couple' }).click();
+	await expect(card.getByRole('button', { name: 'Send answers' })).toBeEnabled();
+	await card.getByRole('button', { name: 'Send answers' }).click();
+	await expect(card).toContainText('Answers sent');
+
+	// Pace is still open → asked next, with "Let Crabby decide".
+	const pace = page.getByTestId('question-card').locator('visible=true').last();
+	await expect(pace).toContainText('What pace suits you?');
+	await pace.getByRole('radio', { name: 'Let Crabby decide' }).click();
+	await pace.getByRole('button', { name: 'Send answers' }).click();
+	const preview = page.getByTestId('action-preview').locator('visible=true').last();
+	await expect(preview).toContainText("Pace: Balanced — Crabby's pick");
+	await expect(preview).toContainText('Budget estimate for 2 people');
+	await expect(lastAnswer()).toContainText('I picked Pace: Balanced');
+	expect(trips()).toBe(before);
+});

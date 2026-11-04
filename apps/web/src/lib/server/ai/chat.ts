@@ -10,6 +10,7 @@ import type { Msg } from './providers.ts';
 import { chain, route } from './router.ts';
 import { runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
 import type { DriveStep } from '#lib/drive.ts';
+import type { Question } from '#lib/questions.ts';
 
 type DB = SupabaseClient<Database>;
 export type Turn = { role: 'user' | 'assistant'; content: string };
@@ -24,6 +25,8 @@ export type ChatReply =
 			actions: Proposed[];
 			/** Steps the browser runs right away (P12 drive). */
 			drive: DriveStep[];
+			/** A question card to answer before Crabby goes on ("Ask, don't assume"). */
+			questions: Question[] | null;
 			alternatives: { slug: string; name: string }[];
 			remaining: number;
 	  };
@@ -53,7 +56,11 @@ RULES — follow strictly:
   merge_group_votes / propose_action. These only create a preview; the user taps Apply. Never claim something was done.
 - To show the user something in the app (open a page or listing, filter a list, open the map or one of their trips,
   switch the open trip's section) call drive — it runs right away, no confirm. Never for admin, staff or owner pages.
-- Plans need a start railway station or bus stand; ask for it if missing.
+- Ask, don't assume: when something that changes the result is missing or unclear (dates, budget, pace, food,
+  which stay, a trade-off), ask with ask_user — or call build_plan and let it ask — never fill the gap yourself.
+  Batch related questions into one card; don't ask what the user already said or what a tool can look up.
+- When the user's message answers a card ("Header: choice" lines), use those answers. For "Let Crabby decide",
+  choose and say which option you picked and why (build_plan: list it in crabby_decides).
 - Never joke about safety. For emergencies tell the user to call 112.
 User preferences (may use as defaults): ${prefs}`;
 
@@ -64,6 +71,8 @@ Write the final reply in ${LANG_NAME[lang]}. Use ONLY the facts in the TOOL RESU
 If the results do not answer the question, say honestly that you don't know (one sentence).
 If a preview was proposed, say it is ready to review and that nothing changes until they tap Apply.
 If DOING lists app steps, say in one short line what you are opening or filtering; if REFUSED lists any, say you can't do that.
+If QUESTIONS were asked, say in one short line that you need a few answers first — don't answer them yourself.
+If CRABBY CHOSE lists choices, say what you picked and why.
 Every plan stop you mention gets a short reason from the results. No jokes on safety topics.
 Keep it under 120 words. No markdown tables.`;
 
@@ -73,6 +82,12 @@ const refusedSteps = (results: { tool: string; result: unknown }[]) => {
 		x.tool === 'drive' ? ((x.result as { refused?: string[] }).refused ?? []) : []
 	);
 	return r.length ? `\nREFUSED: ${r.join('; ')}` : '';
+};
+
+/** What Crabby picked when the user said "Let Crabby decide" (build_plan), so the reply says which and why. */
+const chosen = (results: { tool: string; result: unknown }[]) => {
+	const c = results.flatMap((x) => (x.result as { crabby_chose?: string[] })?.crabby_chose ?? []);
+	return c.length ? `\nCRABBY CHOSE: ${c.join('; ')}` : '';
 };
 
 const empty = (r: unknown) =>
@@ -119,7 +134,16 @@ export async function crabbyTurn(
 			? JSON.stringify({ diet: p.diet, budget: p.budget_level, group: p.group_type })
 			: 'none';
 
-		const ctx: Ctx = { db, userId, lang, trips: new Map(), proposed: [], drive: [], path };
+		const ctx: Ctx = {
+			db,
+			userId,
+			lang,
+			trips: new Map(),
+			proposed: [],
+			drive: [],
+			path,
+			questions: null
+		};
 		const convo: Msg[] = [
 			// The model never sees ids (tools.ts): /plan/<uuid> → /plan/:id.
 			{
@@ -143,12 +167,14 @@ export async function crabbyTurn(
 					content: JSON.stringify(result).slice(0, 6000)
 				});
 			}
+			// A question card ends the turn: Crabby waits for the answers instead of guessing.
+			if (ctx.questions) break;
 		}
 
 		// "Don't know" path (§11.4): nothing found → honest answer + verified alternatives.
 		let alternatives: { slug: string; name: string }[] = [];
 		const unknown = !results.length || results.every((x) => empty(x.result));
-		if (unknown && !ctx.proposed.length && !ctx.drive.length) {
+		if (unknown && !ctx.proposed.length && !ctx.drive.length && !ctx.questions) {
 			const alt = (await runTool(ctx, 'search_places', JSON.stringify({ limit: 3 }))) as {
 				slug: string;
 				name: string;
@@ -163,7 +189,7 @@ export async function crabbyTurn(
 				{ role: 'user', content: message },
 				{
 					role: 'system',
-					content: `TOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}`
+					content: `TOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}${ctx.questions ? `\nQUESTIONS: ${ctx.questions.map((q) => q.header).join(', ')}` : ''}${chosen(results)}`
 				}
 			],
 			maxTokens: 400
@@ -173,6 +199,7 @@ export async function crabbyTurn(
 			reply: final.content.trim(),
 			actions: ctx.proposed,
 			drive: ctx.drive,
+			questions: ctx.questions,
 			alternatives,
 			remaining
 		};
