@@ -25,6 +25,10 @@ alter table public.team_questions add column seen_at timestamptz;
 create or replace function app.guard_team_question() returns trigger
 language plpgsql security definer set search_path = '' as $$
 begin
+  -- No signed-in user = service role or the SQL editor (maintenance).
+  if auth.uid() is null then
+    return new;
+  end if;
   if tg_op = 'INSERT' then
     if new.asker is distinct from auth.uid() or new.status <> 'open' or new.answer is not null then
       raise exception 'bad question' using errcode = '42501';
@@ -92,6 +96,62 @@ language sql stable security definer set search_path = '' as $$
 $$;
 
 -- ---------------------------------------------------------------- stay requests (10.2)
+-- Same maintenance rule as the team questions guard (service role / SQL editor pass).
+create or replace function app.guard_stay_request() returns trigger
+language plpgsql security definer set search_path = '' as $$
+declare
+  _owner uuid := app.listing_owner(new.entity_type, new.entity_id);
+  _answerer boolean := auth.uid() = _owner or (_owner is null and app.is_team());
+begin
+  -- No signed-in user = service role or the SQL editor (maintenance): not a traveller, owner or team edit.
+  if auth.uid() is null then
+    return new;
+  end if;
+  if tg_op = 'INSERT' then
+    if new.user_id is distinct from auth.uid() or new.status <> 'sent' or new.owner_price is not null
+       or new.counter_price is not null or new.contact_phone is not null then
+      raise exception 'bad request' using errcode = '42501';
+    end if;
+    if (select count(*) from public.stay_requests
+        where user_id = auth.uid() and created_at > now() - interval '1 day') >= 10 then
+      raise exception 'too many requests today' using errcode = 'CW429';
+    end if;
+    return new;
+  end if;
+  if (new.user_id, new.entity_type, new.entity_id, new.check_in, new.check_out, new.guests, new.budget, new.note)
+     is distinct from (old.user_id, old.entity_type, old.entity_id, old.check_in, old.check_out, old.guests, old.budget, old.note) then
+    raise exception 'request details are fixed' using errcode = '42501';
+  end if;
+  if auth.uid() = old.user_id and not _answerer then
+    if new.status not in ('cancelled', 'accepted', 'declined')
+       or (new.status = 'accepted' and old.status not in ('available', 'countered'))
+       or (new.owner_price, new.owner_note, new.counter_price, new.relayed_by)
+          is distinct from (old.owner_price, old.owner_note, old.counter_price, old.relayed_by) then
+      raise exception 'not allowed' using errcode = '42501';
+    end if;
+    if new.contact_phone is not null and old.contact_phone is null then
+      new.contact_shared_at := now();
+    end if;
+  elsif _answerer then
+    if new.contact_phone is distinct from old.contact_phone
+       or new.status not in ('relayed', 'available', 'unavailable', 'countered')
+       or old.status in ('accepted', 'declined', 'cancelled') then
+      raise exception 'not allowed' using errcode = '42501';
+    end if;
+    if new.counter_price is distinct from old.counter_price and old.counter_price is not null then
+      raise exception 'one counter offer only' using errcode = '42501';
+    end if;
+    if new.status = 'relayed' then
+      new.relayed_by := auth.uid();
+    end if;
+  else
+    raise exception 'not allowed' using errcode = '42501';
+  end if;
+  new.updated_at := now();
+  return new;
+end;
+$$;
+
 -- A claimed owner hears about a new request; the traveller hears about the reply. Unclaimed listings go to the
 -- team's queue in the dashboard instead (relayed by WhatsApp, no push).
 create function app.queue_stay_request() returns trigger

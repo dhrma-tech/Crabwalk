@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { crabbyTurn } from '#lib/server/ai/chat.ts';
+import { CODE_RE } from '#lib/server/qr.ts';
 import type { Lang } from '#lib/server/listings.ts';
 import type { RequestHandler } from './$types';
 
@@ -17,7 +18,9 @@ const body = z.object({
 		.string()
 		.regex(/^\/[\w\-/]{0,200}$/)
 		.nullable()
-		.default(null)
+		.default(null),
+	// QR code of the spot the user scanned (P12 at the spot).
+	spot: z.string().regex(CODE_RE).nullable().default(null)
 });
 
 // POST /api/ai/chat — login required (BACKEND §11.5); nothing about the conversation is stored.
@@ -31,7 +34,8 @@ export const POST: RequestHandler = async (event) => {
 		getLocale() as Lang,
 		b.data.message,
 		b.data.history,
-		b.data.path
+		b.data.path,
+		b.data.spot
 	);
 	return json(r, { status: r.kind === 'limit' ? 429 : 200 });
 };

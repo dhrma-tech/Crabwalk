@@ -197,6 +197,10 @@ test('E: ask our team — Pending, a verifier answers, the asker is told, others
 	browser
 }) => {
 	const q = `where can I see a unicorn ${run}?`;
+	// Earlier runs' answers would be (rightly) reused for this near-identical question.
+	psql(
+		`update team_questions set expires_at = now() where question like 'where can I see a unicorn%' and status = 'answered'`
+	);
 	await page.goto('/crabby');
 	await ask(q);
 	await expect(lastAnswer()).toContainText("I don't know that yet");
@@ -239,4 +243,42 @@ test('E: ask our team — Pending, a verifier answers, the asker is told, others
 		'our team says: Unicorns live only in stories'
 	);
 	await team.context().close();
+});
+
+test("F: Crabby at the spot — QR link, place facts + today's trip; signed-out visitors get the FAQ", async ({
+	browser
+}) => {
+	const [code, slug] = psql(
+		`select q.code || '|' || p.slug from qr_codes q join places p on p.id = q.entity_id where q.entity_type = 'place' and p.status = 'published' order by q.code limit 1`
+	).split('|');
+	const name = psql(
+		`select t.name from places p join place_translations t on t.place_id = p.id and t.lang = 'en' where p.slug = '${slug}'`
+	);
+	// Today's trip with a stop later today.
+	const today = psql(
+		`insert into trips (owner_id, title, days, start_date, start_point, status) select id, 'P12 today ${run}', 1, (now() at time zone 'Asia/Kolkata')::date, jsonb_build_object('label','Start','lon',73.279,'lat',16.999), 'saved' from auth.users where email = 'p12-${run}@e2e.local' returning id`
+	);
+	psql(
+		`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind, arrive_at)
+		 select '${today}', 1, 0, 'place', id, 'place', now() + interval '2 hours' from places where slug = 'seed-temple-1'`
+	);
+
+	const scan = await (await page.request.get(`/q/${code}`)).text();
+	expect(scan).toContain(`href="/crabby?spot=${code}"`);
+	expect(scan).toContain('Ask Crabby about this spot');
+
+	await page.goto(`/crabby?spot=${code}`);
+	await expect(page.getByTestId('spot')).toContainText(name);
+	await page.getByRole('button', { name: "What's next on my trip?" }).click();
+	await expect(lastAnswer()).toContainText('next on your trip:');
+	await expect(lastAnswer()).toContainText('Seed Temple 1');
+	const log = await (await page.request.get('/api/ai/mock-log')).text();
+	expect(log).toContain(`The user is at ${name} right now`);
+
+	const anon = await (await browser.newContext()).newPage();
+	await anon.goto(`/crabby?spot=${code}`);
+	await expect(anon.getByTestId('spot')).toContainText(name);
+	await expect(anon.getByTestId('spot-faq')).toContainText('Sign in to ask Crabby about this spot');
+	await expect(anon.getByLabel('Ask Crabby…')).toHaveCount(0);
+	await anon.context().close();
 });

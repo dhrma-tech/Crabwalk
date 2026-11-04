@@ -138,6 +138,18 @@ export const mock: Provider = {
 		const names = [...block.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]);
 		if (/^REFUSED: /m.test(block))
 			return { content: "Mock: I can't open that page.", tool_calls: [] };
+		// P12 at the spot: answer from the scanned place's facts and today's trip.
+		const at = /"tool":"at_the_spot","result":\{"place":"([^"]+)"/.exec(block)?.[1];
+		if (at) {
+			const next = /"next":\["([^"]+)"/.exec(block)?.[1];
+			return {
+				content:
+					/next on my trip|आगे|पुढे/.test(text) && next
+						? `Mock: next on your trip: ${next}.`
+						: `Mock: you're at ${at}.`,
+				tool_calls: []
+			};
+		}
 		// P12 Ask our team: a stored team answer is reused; nothing known → offer to ask.
 		const team =
 			/"tool":"team_answers","result":\[\{[^}]*"answer":"([^"]+)","answered_on":"([^"]+)"/.exec(

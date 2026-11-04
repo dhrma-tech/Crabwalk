@@ -84,6 +84,7 @@ describe('QR scan page', () => {
 			deva(20),
 			'class="st-risky"',
 			'class="near"',
+			'href="/crabby?spot=RTN-001"',
 			'class="sponsor"',
 			'href="tel:112"'
 		].map(at);

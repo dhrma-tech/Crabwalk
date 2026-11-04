@@ -71,8 +71,8 @@ select pg_temp.login('00000000-0000-0000-0012-0000000000a2');
 select is((select count(*)::int from public.team_questions), 0, 'others don''t see open questions');
 select pg_temp.login('00000000-0000-0000-0012-0000000000a3');
 select lives_ok($$ update public.team_questions set status = 'answered', answer = 'Closed 2 h either side of high tide.',
-  answered_at = now() $$, 'verifier answers');
-select is((select answered_by from public.team_questions), '00000000-0000-0000-0012-0000000000a3'::uuid, 'answered_by is the verifier');
+  answered_at = now() where asker = '00000000-0000-0000-0012-0000000000a1' $$, 'verifier answers');
+select is((select answered_by from public.team_questions where asker = '00000000-0000-0000-0012-0000000000a1'), '00000000-0000-0000-0012-0000000000a3'::uuid, 'answered_by is the verifier');
 select pg_temp.login('00000000-0000-0000-0012-0000000000a2');
 select is((select count(*)::int from public.match_team_answers('causeway to the sea fort open at high tide')), 1,
   'a similar question finds the verified answer');
@@ -89,12 +89,14 @@ select throws_ok($$ update public.stay_requests set status = 'accepted', contact
 select pg_temp.login('00000000-0000-0000-0012-0000000000a2');
 select is((select count(*)::int from public.stay_requests), 0, 'outsiders see no requests');
 select pg_temp.login('00000000-0000-0000-0012-0000000000a3');
-select is((select count(*)::int from public.stay_requests), 0, 'team doesn''t see a claimed owner''s requests');
+select is((select count(*)::int from public.stay_requests where entity_id = (select claimed from fx)), 0,
+  'team doesn''t see a claimed owner''s requests');
 select pg_temp.login('00000000-0000-0000-0012-0000000000a4');
-select is((select contact_phone from public.stay_requests), null, 'owner sees the request, no phone yet');
-select lives_ok($$ update public.stay_requests set status = 'countered', owner_price = 3000, counter_price = 2800 $$,
+select is((select contact_phone from public.stay_requests where user_id = '00000000-0000-0000-0012-0000000000a1'), null, 'owner sees the request, no phone yet');
+select lives_ok($$ update public.stay_requests set status = 'countered', owner_price = 3000, counter_price = 2800
+  where user_id = '00000000-0000-0000-0012-0000000000a1' $$,
   'owner counters once');
-select throws_ok($$ update public.stay_requests set counter_price = 2700 $$, '42501', null, 'one counter offer only');
+select throws_ok($$ update public.stay_requests set counter_price = 2700 where user_id = '00000000-0000-0000-0012-0000000000a1' $$, '42501', null, 'one counter offer only');
 select pg_temp.login('00000000-0000-0000-0012-0000000000a1');
 select lives_ok($$ update public.stay_requests set status = 'accepted', contact_phone = '+91 98000 00000' $$,
   'user accepts and shares their phone');
@@ -105,7 +107,7 @@ insert into public.stay_requests (entity_type, entity_id, check_in, guests)
 select pg_temp.login('00000000-0000-0000-0012-0000000000a3');
 select lives_ok($$ update public.stay_requests set status = 'relayed' where entity_id = (select unclaimed from fx) $$,
   'team relays an unclaimed stay''s request');
-select is((select relayed_by from public.stay_requests), '00000000-0000-0000-0012-0000000000a3'::uuid, 'relayed_by set');
+select is((select relayed_by from public.stay_requests where user_id = '00000000-0000-0000-0012-0000000000a1' and entity_id = (select unclaimed from fx)), '00000000-0000-0000-0012-0000000000a3'::uuid, 'relayed_by set');
 
 -- ---------------------------------------------------------------- group chat
 select pg_temp.login('00000000-0000-0000-0012-0000000000a1');

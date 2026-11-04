@@ -13,6 +13,7 @@ import type { DriveStep } from '#lib/drive.ts';
 import type { Question } from '#lib/questions.ts';
 import { learnFromChat, loadProfile, profileSummary, refreshProfile } from '../profile.ts';
 import { personaRules, type Persona } from './persona.ts';
+import { spotContext, todaysTrip } from './spot.ts';
 
 type DB = SupabaseClient<Database>;
 export type Turn = { role: 'user' | 'assistant'; content: string };
@@ -109,7 +110,9 @@ export async function crabbyTurn(
 	lang: Lang,
 	message: string,
 	history: Turn[],
-	path: string | null = null
+	path: string | null = null,
+	/** QR code of the spot the user scanned (10.3): Crabby starts from that place's facts. */
+	spot: string | null = null
 ): Promise<ChatReply> {
 	// Second guard (the browser already checked): no LLM call at all.
 	if (isEmergency(message)) return { kind: 'emergency' };
@@ -159,6 +162,28 @@ export async function crabbyTurn(
 			{ role: 'user', content: message }
 		];
 		const results: { tool: string; result: unknown }[] = [];
+		// At the spot (10.3): its live status, do's & don'ts, what's nearby and today's trip, from our DB.
+		const at = spot ? await spotContext(db, spot, lang) : null;
+		if (at) {
+			const today = await todaysTrip(db, userId, lang);
+			if (today) ctx.trips.set('T1', today.id);
+			results.push({
+				tool: 'at_the_spot',
+				result: {
+					place: at.name,
+					slug: at.slug,
+					facts: at.facts,
+					nearby: at.near,
+					...(today
+						? { trip_today: { ref: 'T1', title: today.title, day: today.day, next: today.next } }
+						: {})
+				}
+			});
+			convo.push({
+				role: 'system',
+				content: `The user is at ${at.name} right now (they scanned its QR code; ${at.kind} slug "${at.slug}"). Use that slug with get_conditions / nearby. Facts: ${JSON.stringify(results[0]!.result).slice(0, 3000)}`
+			});
+		}
 		for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
 			const r = await route(chain('intent'), { messages: convo, tools: TOOL_DEFS, maxTokens: 400 });
 			if (!r.tool_calls.length) break;

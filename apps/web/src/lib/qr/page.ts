@@ -184,6 +184,8 @@ export function renderQrPage(
 	);
 	if (d.near.length)
 		parts.push(section(m.qr_near_me(), `<ul class="near">${d.near.map(nearRow).join('')}</ul>`));
+	// Crabby at the spot (P12, 10.3): after the locked sections, opens Crabby with this place (login to chat).
+	parts.push(`<p><a class="btn" href="/crabby?spot=${esc(d.code)}">${esc(m.spot_ask())}</a></p>`);
 	parts.push(`<p><a href="${esc(d.href)}">${esc(m.qr_full_page())}</a></p>`);
 	parts.push(report(d.code, o.reported));
 	parts.push(langSwitch(o.lang, `/q/${d.code}`));

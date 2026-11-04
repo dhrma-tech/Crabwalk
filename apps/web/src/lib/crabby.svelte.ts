@@ -76,6 +76,8 @@ export type TeamQuestion = {
 
 export const crabby = $state({
 	team: [] as TeamQuestion[],
+	/** QR code of the spot the user scanned (/crabby?spot=…): Crabby answers about that place. */
+	spot: null as string | null,
 	turns: [] as Bubble[],
 	busy: false,
 	remaining: null as number | null,
@@ -100,7 +102,7 @@ export async function ask(text: string) {
 		const res = await fetch('/api/ai/chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ message, history, path: page.url.pathname })
+			body: JSON.stringify({ message, history, path: page.url.pathname, spot: crabby.spot })
 		});
 		if (res.status === 401) {
 			crabby.signin = true;

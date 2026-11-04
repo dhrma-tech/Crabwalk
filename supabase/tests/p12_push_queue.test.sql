@@ -31,7 +31,8 @@ select pg_temp.login('00000000-0000-0000-0012-0000000001a1');
 insert into public.team_questions (question) values ('Is the Ganpatipule beach road open after the rains?');
 select throws_ok($$ select * from public.push_queue $$, '42501', null, 'nobody reads the queue through the API');
 select pg_temp.login('00000000-0000-0000-0012-0000000001a3');
-update public.team_questions set status = 'answered', answer = 'Open, one lane near the bridge.', answered_at = now();
+update public.team_questions set status = 'answered', answer = 'Open, one lane near the bridge.', answered_at = now()
+  where asker = '00000000-0000-0000-0012-0000000001a1';
 select pg_temp.su();
 select is(pg_temp.queued('00000000-0000-0000-0012-0000000001a1', 'team_answer'), 1, 'asker is notified of the answer');
 
@@ -45,9 +46,10 @@ insert into public.stay_requests (entity_type, entity_id, check_in, guests)
   values ('stay', (select stay from fx), current_date + 5, 3);
 select pg_temp.su();
 select is(pg_temp.queued('00000000-0000-0000-0012-0000000001a4', 'stay_request'), 1, 'claimed owner is notified');
-select is((select params ->> 'guests' from public.push_queue where kind = 'stay_request'), '3', 'with the guest count only');
+select is((select params ->> 'guests' from public.push_queue
+  where kind = 'stay_request' and user_id = '00000000-0000-0000-0012-0000000001a4'), '3', 'with the guest count only');
 select pg_temp.login('00000000-0000-0000-0012-0000000001a4');
-update public.stay_requests set status = 'available', owner_price = 2200;
+update public.stay_requests set status = 'available', owner_price = 2200 where user_id = '00000000-0000-0000-0012-0000000001a1';
 select pg_temp.su();
 select is(pg_temp.queued('00000000-0000-0000-0012-0000000001a1', 'stay_reply'), 1, 'traveller is notified of the reply');
 
@@ -56,7 +58,7 @@ insert into public.trips (owner_id, title, days, start_date)
           ((now() at time zone 'Asia/Kolkata')::date - interval '1 year')::date - 1);
 select app.queue_year_ago();
 select is(pg_temp.queued('00000000-0000-0000-0012-0000000001a1', 'year_ago'), 1, 'one year after the last day');
-select matches((select url from public.push_queue where kind = 'year_ago'), '^/plan/[0-9a-f-]+/journal$',
+select matches((select url from public.push_queue where kind = 'year_ago' and user_id = '00000000-0000-0000-0012-0000000001a1'), '^/plan/[0-9a-f-]+/journal$',
   'the nudge opens the journal');
 
 select * from finish();
