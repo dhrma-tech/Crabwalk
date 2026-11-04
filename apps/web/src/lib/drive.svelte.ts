@@ -13,6 +13,8 @@ export const driver = $state({
 });
 
 type Handler = (s: DriveStep) => void | Promise<void>;
+// Not reactive state: a lookup of functions pages register.
+// eslint-disable-next-line svelte/prefer-svelte-reactivity
 const handlers = new Map<DriveStep['action'], Handler>();
 /** A page offers an on-page action (e.g. the plan workspace's switchTab); returns the unregister function. */
 export function onDrive(action: DriveStep['action'], fn: Handler) {
