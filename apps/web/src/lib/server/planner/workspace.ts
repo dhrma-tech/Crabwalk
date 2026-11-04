@@ -99,7 +99,7 @@ export async function workspaceView(
 		db.from('trip_notes').select('body').eq('trip_id', tripId).maybeSingle(),
 		db
 			.from('trip_members')
-			.select('id, display_name, user_id')
+			.select('id, display_name, user_id, role')
 			.eq('trip_id', tripId)
 			.order('joined_at'),
 		db
@@ -139,11 +139,12 @@ export async function workspaceView(
 				.filter((i) => i.kind !== 'place' || i.name)
 		})),
 		notes: notes?.body ?? '',
-		// Expenses (§5): tripmates by name only (no account ids or emails reach the page).
+		// Expenses (§5) and roles (§6): tripmates by name only (no account ids or emails reach the page).
 		tripmates: (mates ?? []).map((t) => ({
 			id: t.id,
 			name: t.display_name,
-			account: !!t.user_id
+			account: !!t.user_id,
+			role: t.role
 		})),
 		spends: (spends ?? []).map((s) => ({
 			...s,
@@ -207,7 +208,7 @@ async function recommended(
 }
 
 const text = z.string().trim().min(1);
-const placeRef = { type: z.enum(['place', 'stay', 'eatery']), slug: z.string().min(1).max(200) };
+const role = z.enum(['editor', 'viewer']);
 /** POST /api/trips/:id/workspace operations. A new item without `list_id` starts the default list. */
 export const workspaceOp = z.discriminatedUnion('op', [
 	z.object({ op: z.literal('list.create'), title: text.max(80) }),
@@ -218,8 +219,18 @@ export const workspaceOp = z.discriminatedUnion('op', [
 		list_id: z.uuid().nullable(),
 		list_title: text.max(80),
 		item: z.discriminatedUnion('kind', [
-			z.object({ kind: z.literal('place'), ...placeRef }),
-			z.object({ kind: z.enum(['note', 'check']), body: text.max(2000) })
+			// By slug (search, Recommended) or by id (undo puts a removed place back).
+			z.object({
+				kind: z.literal('place'),
+				type: z.enum(['place', 'stay', 'eatery']),
+				slug: z.string().min(1).max(200).optional(),
+				entity_id: z.uuid().optional()
+			}),
+			z.object({
+				kind: z.enum(['note', 'check']),
+				body: text.max(2000),
+				done: z.boolean().optional()
+			})
 		])
 	}),
 	z.object({ op: z.literal('item.done'), id: z.uuid(), done: z.boolean() }),
@@ -229,6 +240,7 @@ export const workspaceOp = z.discriminatedUnion('op', [
 	z.object({ op: z.literal('notes.save'), body: z.string().max(20000) }),
 	z.object({ op: z.literal('mate.add'), name: text.max(60) }),
 	z.object({ op: z.literal('mate.remove'), id: z.uuid() }),
+	z.object({ op: z.literal('mate.role'), id: z.uuid(), role }),
 	z.object({
 		op: z.literal('spend.add'),
 		amount: z.number().int().min(1).max(10_000_000),
@@ -247,13 +259,19 @@ export const workspaceOp = z.discriminatedUnion('op', [
 			})
 		])
 	}),
-	z.object({ op: z.literal('spend.delete'), id: z.uuid() })
+	z.object({ op: z.literal('spend.delete'), id: z.uuid() }),
+	// Invites (§6, owner only via RLS): one live link per role, turned off together; email = add an account.
+	z.object({ op: z.literal('invite.link'), role }),
+	z.object({ op: z.literal('invite.revoke') }),
+	z.object({ op: z.literal('invite.email'), email: z.email().max(254), role })
 ]);
 export type WorkspaceOp = z.infer<typeof workspaceOp>;
+/** What an applied operation hands back: new row ids (undo needs them), an invite token, an email result. */
+export type OpResult = { id?: string; list_id?: string; token?: string; added?: boolean };
 
 /** Apply one operation; false = not found / not allowed (RLS) / trip can't take it. */
-export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<boolean> {
-	const ok = ({ error }: { error: unknown }) => !error;
+export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<OpResult | false> {
+	const ok = ({ error }: { error: unknown }) => (error ? false : {});
 	switch (o.op) {
 		case 'list.create': {
 			const { count } = await db
@@ -288,17 +306,27 @@ export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<b
 				.select('id', { count: 'exact', head: true })
 				.eq('list_id', listId);
 			const base = { list_id: listId, trip_id: tripId, position: count ?? 0 };
-			if (o.item.kind !== 'place')
-				return ok(
-					await db.from('trip_list_items').insert({ ...base, kind: o.item.kind, body: o.item.body })
-				);
-			const id = await listingId(db, o.item.type, o.item.slug);
-			if (!id) return false;
-			return ok(
-				await db
-					.from('trip_list_items')
-					.insert({ ...base, kind: 'place', entity_type: o.item.type, entity_id: id })
-			);
+			let row;
+			if (o.item.kind !== 'place') {
+				row = { ...base, kind: o.item.kind, body: o.item.body, done: o.item.done ?? false };
+			} else {
+				const id = o.item.entity_id
+					? ((
+							await db
+								.from(TABLE[o.item.type])
+								.select('id')
+								.eq('id', o.item.entity_id)
+								.eq('status', 'published')
+								.maybeSingle()
+						).data?.id ?? null)
+					: o.item.slug
+						? await listingId(db, o.item.type, o.item.slug)
+						: null;
+				if (!id) return false;
+				row = { ...base, kind: 'place' as const, entity_type: o.item.type, entity_id: id };
+			}
+			const { data, error } = await db.from('trip_list_items').insert(row).select('id').single();
+			return error ? false : { id: data.id, list_id: listId };
 		}
 		case 'item.done':
 			return ok(
@@ -321,7 +349,7 @@ export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<b
 						.eq('trip_id', tripId)
 				)
 			);
-			return res.every(ok);
+			return res.every((r) => !r.error) && {};
 		}
 		case 'item.toDay': {
 			const { data: it } = await db
@@ -341,40 +369,74 @@ export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<b
 					.from('trip_notes')
 					.upsert({ trip_id: tripId, body: o.body }, { onConflict: 'trip_id' })
 			);
-		// Name-only tripmates (P11-2); account tripmates come and go through invites. One with spends or shares
-		// can't be removed (the deferred foreign keys refuse it).
+		// Name-only tripmates (P11-2) are added by owner or editors; the owner can also remove account tripmates
+		// (RLS). One with spends or shares can't be removed (the deferred foreign keys refuse it).
 		case 'mate.add':
 			return ok(await db.from('trip_members').insert({ trip_id: tripId, display_name: o.name }));
 		case 'mate.remove':
+			return ok(await db.from('trip_members').delete().eq('id', o.id).eq('trip_id', tripId));
+		case 'mate.role':
 			return ok(
 				await db
 					.from('trip_members')
-					.delete()
+					.update({ role: o.role })
 					.eq('id', o.id)
 					.eq('trip_id', tripId)
-					.is('user_id', null)
+					.not('user_id', 'is', null)
 			);
 		case 'spend.add': {
 			const shares = o.split.custom
 				? o.split.shares.filter((s) => s.amount > 0)
 				: equalShares(o.amount, o.split.members);
 			if (shares.reduce((t, s) => t + s.amount, 0) !== o.amount) return false;
-			return ok(
-				await db.rpc('log_trip_expense', {
-					_trip: tripId,
-					_amount: o.amount,
-					_category: o.category,
-					_label: o.label,
-					_paid_by: o.paid_by,
-					// Generated types mark every function argument non-null; these two are nullable in SQL.
-					_spent_on: o.spent_on as string,
-					_stop_id: null as unknown as string,
-					_split_custom: o.split.custom,
-					_shares: shares
-				})
-			);
+			const { data, error } = await db.rpc('log_trip_expense', {
+				_trip: tripId,
+				_amount: o.amount,
+				_category: o.category,
+				_label: o.label,
+				_paid_by: o.paid_by,
+				// Generated types mark every function argument non-null; these two are nullable in SQL.
+				_spent_on: o.spent_on as string,
+				_stop_id: null as unknown as string,
+				_split_custom: o.split.custom,
+				_shares: shares
+			});
+			return error ? false : { id: data };
 		}
 		case 'spend.delete':
 			return ok(await db.from('trip_expenses').delete().eq('id', o.id).eq('trip_id', tripId));
+		case 'invite.link': {
+			const { data: live } = await db
+				.from('trip_invites')
+				.select('token')
+				.eq('trip_id', tripId)
+				.eq('role', o.role)
+				.is('revoked_at', null)
+				.limit(1)
+				.maybeSingle();
+			if (live) return { token: live.token };
+			const { data, error } = await db
+				.from('trip_invites')
+				.insert({ trip_id: tripId, role: o.role })
+				.select('token')
+				.single();
+			return error ? false : { token: data.token };
+		}
+		case 'invite.revoke':
+			return ok(
+				await db
+					.from('trip_invites')
+					.update({ revoked_at: new Date().toISOString() })
+					.eq('trip_id', tripId)
+					.is('revoked_at', null)
+			);
+		case 'invite.email': {
+			const { data, error } = await db.rpc('add_trip_member_by_email', {
+				_trip: tripId,
+				_email: o.email,
+				_role: o.role
+			});
+			return error ? false : { added: data };
+		}
 	}
 }

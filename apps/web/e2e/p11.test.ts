@@ -221,6 +221,91 @@ test('expenses: name-only tripmates, equal and custom splits, settle list, estim
 	await expect(box.getByRole('button', { name: 'Remove Meera' })).toBeDisabled();
 });
 
+// Step F: an edit link joins as editor, a view link as viewer; edits reach the other browser in under 2 s.
+test('co-editing: invite links, live edits both ways, viewer reads only', async ({ browser }) => {
+	await page.setViewportSize({ width: 1280, height: 800 });
+	await page.goto(`/plan/${trip}`);
+	await page.waitForLoadState('networkidle');
+	await page.getByRole('button', { name: 'Share' }).click();
+	const invites = page.getByTestId('invites');
+	await invites.getByRole('button', { name: 'Copy edit link' }).click();
+	await invites.getByRole('button', { name: 'Copy view link' }).click();
+	await expect(invites.getByRole('button', { name: 'Turn off invite links' })).toBeVisible();
+	await page.keyboard.press('Escape');
+	const token = (role: string) =>
+		psql(
+			`select token from trip_invites where trip_id = '${trip}' and role = '${role}' and revoked_at is null`
+		);
+
+	const editor = await (await browser.newContext()).newPage();
+	await editor.setViewportSize({ width: 1280, height: 800 });
+	await signIn(editor, `p11-ed-${run}@e2e.local`);
+	await editor.goto(`/plan/join/${token('editor')}`);
+	await expect(editor).toHaveURL(new RegExp(`/plan/${trip}$`));
+	await editor.waitForLoadState('networkidle');
+	await expect(editor.getByTestId('save-status')).toHaveText('Saved');
+
+	const add = async (p: Page, text: string) => {
+		const list = p.getByTestId('trip-list').first();
+		await list.getByPlaceholder('Note or checklist item').fill(text);
+		await list.getByRole('button', { name: 'Add to checklist' }).click();
+	};
+	await add(page, `Ferry cash ${run}`);
+	await expect(
+		editor.getByTestId('list-text').filter({ hasText: `Ferry cash ${run}` })
+	).toBeVisible({
+		timeout: 2000
+	});
+	await add(editor, `Sunscreen ${run}`);
+	await expect(page.getByTestId('list-text').filter({ hasText: `Sunscreen ${run}` })).toBeVisible({
+		timeout: 2000
+	});
+
+	const viewer = await (await browser.newContext()).newPage();
+	await signIn(viewer, `p11-view-${run}@e2e.local`);
+	await viewer.goto(`/plan/join/${token('viewer')}`);
+	await expect(viewer).toHaveURL(new RegExp(`/plan/${trip}$`));
+	await expect(viewer.getByText('View only')).toBeVisible();
+	await expect(
+		viewer.getByTestId('list-text').filter({ hasText: `Sunscreen ${run}` })
+	).toBeVisible();
+	await expect(viewer.getByRole('button', { name: 'Add to checklist' })).toHaveCount(0);
+	await expect(viewer.getByTestId('save-status')).toHaveCount(0);
+	await expect(viewer.getByRole('button', { name: 'Log spend' })).toHaveCount(0);
+	// The joined trip shows in the editor's trips.
+	await editor.goto('/me');
+	await expect(editor.getByText(`P11 ${run}`)).toBeVisible();
+	await editor.context().close();
+	await viewer.context().close();
+});
+
+test('undo / redo and the offline queue', async () => {
+	await page.goto(`/plan/${trip}`);
+	await page.waitForLoadState('networkidle');
+	const status = page.getByTestId('save-status');
+	const list = page.getByTestId('trip-list').first();
+	const item = (t: string) => page.getByTestId('list-text').filter({ hasText: t });
+	await list.getByPlaceholder('Note or checklist item').fill(`Undo me ${run}`);
+	await list.getByRole('button', { name: 'Add note' }).click();
+	await expect(item(`Undo me ${run}`)).toBeVisible();
+	await expect(status).toHaveText('Saved');
+	await page.getByRole('button', { name: 'Undo' }).click();
+	await expect(item(`Undo me ${run}`)).toHaveCount(0);
+	await page.getByRole('button', { name: 'Redo' }).click();
+	await expect(item(`Undo me ${run}`)).toBeVisible();
+	await expect(status).toHaveText('Saved');
+
+	// Offline: the edit waits in the queue, then lands when the connection returns.
+	await page.context().setOffline(true);
+	await list.getByPlaceholder('Note or checklist item').fill(`Offline ${run}`);
+	await list.getByRole('button', { name: 'Add note' }).click();
+	await expect(status).toHaveText('Offline — will sync');
+	await page.context().setOffline(false);
+	await expect(status).toHaveText('Saved');
+	await expect(item(`Offline ${run}`)).toBeVisible();
+	expect(psql(`select count(*) from trip_list_items where body = 'Offline ${run}'`)).toBe('1');
+});
+
 test('390 px: map on top, sections in a sheet, outline chips', async () => {
 	await page.setViewportSize({ width: 390, height: 844 });
 	await page.goto(`/plan/${trip}`);

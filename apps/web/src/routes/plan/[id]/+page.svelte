@@ -26,8 +26,17 @@
 	import Outline, { type OutlineItem } from '#lib/components/plan/Outline.svelte';
 	import TripList, { asStop, type ListItem } from '#lib/components/plan/TripList.svelte';
 	import Expenses from '#lib/components/plan/Expenses.svelte';
+	import type { PlanStop } from '#lib/components/plan/PlanDays.svelte';
 	import { formatINR } from '#lib/format.ts';
-	import type { WorkspaceOp } from '#lib/server/planner/workspace.ts';
+	import { tripSync, type Req } from '#lib/tripSync.svelte.ts';
+	import { browserClient } from '#lib/supabase.ts';
+	import Undo2 from '@lucide/svelte/icons/undo-2';
+	import Redo2 from '@lucide/svelte/icons/redo-2';
+	import Check from '@lucide/svelte/icons/check';
+	import CloudOff from '@lucide/svelte/icons/cloud-off';
+	import Pencil from '@lucide/svelte/icons/pencil';
+	import Eye from '@lucide/svelte/icons/eye';
+	import type { OpResult, WorkspaceOp } from '#lib/server/planner/workspace.ts';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 	import type { PageProps } from './$types';
 
@@ -142,7 +151,6 @@
 			.getElementById(item.sub && item.section === 'places' ? item.id : item.section)
 			?.scrollIntoView({ behavior: 'smooth', block: 'start' });
 	}
-	let saving = $state(false);
 	const SLUG_PATTERN = '[a-z0-9-]{3,60}';
 	let mergeState = $state<'applied' | 'discarded' | null>(null);
 	// Saved trips' routes are cached automatically for offline navigation (FRONTEND §9); the same response draws
@@ -169,33 +177,230 @@
 	}
 	const origin = $derived(page.url.origin);
 
-	// Edits are saved in order: each PATCH carries the full latest order, so a queue avoids races. List and
-	// notes edits (POST …/workspace) share it, so every edit lands in the order it was made.
-	let queue: Promise<void> = Promise.resolve();
-	function send(path: string, method: string, body: unknown, reload = true) {
-		saving = true;
-		queue = queue.then(async () => {
-			const res = await fetch(`/api/trips/${data.trip.id}${path}`, {
-				method,
-				headers: { 'Content-Type': 'application/json' },
-				body: JSON.stringify(body)
-			}).catch(() => null);
-			if (!res?.ok) toast(m.send_failed());
-			if (reload) await invalidateAll();
-			saving = false;
-		});
+	// Edits (P11 §6): one ordered outbox (each PATCH carries the full latest order, so order matters), the
+	// Saved / Saving… / Offline status, and undo/redo — each undoable edit is sent with its inverse.
+	const sync = tripSync(
+		untrack(() => data.trip.id),
+		() => invalidateAll()
+	);
+	const editable = $derived(data.role !== 'viewer');
+	const isOwner = $derived(data.role === 'owner');
+	type Days = { kind: PlanStop['kind']; entity_id: string }[][];
+	const wreq = (body: Record<string, unknown>, reload = true): Req => ({
+		path: '/workspace',
+		method: 'POST',
+		body,
+		reload
+	});
+	const daysReq = (days: Days): Req => ({ path: '', method: 'PATCH', body: { days } });
+	const currentDays = (): Days =>
+		data.days.map((d) => d.stops.map((s) => ({ kind: s.kind, entity_id: s.entity_id })));
+	const patch = (body: Record<string, unknown>) => sync.send({ path: '', method: 'PATCH', body });
+	const moveStops = (days: Days) => sync.send(daysReq(days), [daysReq(currentDays())]);
+	const op = (o: WorkspaceOp) => {
+		const r = wreq(o);
+		sync.send(r, inverse(o, r));
+	};
+	/** The edit that undoes `o` (null = not undoable). New row ids come back in responses and are written into
+	 * the paired request, so undo → redo → undo keeps pointing at the right row. */
+	function inverse(o: WorkspaceOp, r: Req): Req[] | null {
+		switch (o.op) {
+			case 'item.add': {
+				const u = wreq({ op: 'item.delete', id: '' });
+				r.onres = (x) => {
+					u.body.id = x.id;
+					r.body.list_id = x.list_id;
+				};
+				return [u];
+			}
+			case 'item.delete':
+			case 'item.toDay': {
+				const l = data.lists.find((l) => l.items.some((i) => i.id === o.id));
+				const it = l?.items.find((i) => i.id === o.id);
+				if (!l || !it) return null;
+				const add = wreq({
+					op: 'item.add',
+					list_id: l.id,
+					list_title: l.title,
+					item:
+						it.kind === 'place'
+							? { kind: 'place', type: it.entity_type, entity_id: it.entity_id }
+							: { kind: it.kind, body: it.body, done: it.done }
+				});
+				add.onres = (x) => (r.body.id = x.id);
+				return o.op === 'item.toDay' ? [daysReq(currentDays()), add] : [add];
+			}
+			case 'item.done':
+				return [wreq({ ...o, done: !o.done })];
+			case 'spend.add': {
+				const u = wreq({ op: 'spend.delete', id: '' });
+				r.onres = (x) => (u.body.id = x.id);
+				return [u];
+			}
+			case 'spend.delete': {
+				const s = data.spends.find((s) => s.id === o.id);
+				if (!s) return null;
+				const add = wreq({
+					op: 'spend.add',
+					amount: s.amount,
+					category: s.category,
+					label: s.label ?? '',
+					paid_by: s.paid_by,
+					spent_on: s.spent_on,
+					split: { custom: true, shares: s.shares }
+				});
+				add.onres = (x) => (r.body.id = x.id);
+				return [add];
+			}
+			default:
+				return null;
+		}
 	}
-	const patch = (body: unknown) => send('', 'PATCH', body);
-	// Notes save as you type (not reloaded: the field keeps what is being typed).
-	const op = (o: WorkspaceOp) => send('/workspace', 'POST', o, o.op !== 'notes.save');
+	// Notes save as you type (not reloaded: the field keeps what is being typed); each save is one undo step.
 	let notes = $derived(data.notes);
+	let savedNotes = $derived(data.notes);
 	let notesTimer: ReturnType<typeof setTimeout> | undefined;
 	function flushNotes() {
 		if (!notesTimer) return;
 		clearTimeout(notesTimer);
 		notesTimer = undefined;
-		op({ op: 'notes.save', body: notes });
+		const before = savedNotes;
+		const after = notes;
+		if (before === after) return;
+		savedNotes = after;
+		const set = (v: string) => () => {
+			notes = v;
+			savedNotes = v;
+		};
+		sync.send({ ...wreq({ op: 'notes.save', body: after }, false), apply: set(after) }, [
+			{ ...wreq({ op: 'notes.save', body: before }), apply: set(before) }
+		]);
 	}
+	// Ctrl/⌘+Z undo, Ctrl/⌘+Shift+Z or Ctrl+Y redo — not while typing in a field (the field's own undo wins).
+	function keys(e: KeyboardEvent) {
+		if (!editable || !(e.ctrlKey || e.metaKey) || e.altKey) return;
+		if ((e.target as HTMLElement).closest('input, textarea, select, [contenteditable]')) return;
+		const k = e.key.toLowerCase();
+		if (k === 'z' && !e.shiftKey) sync.undo();
+		else if (k === 'y' || (k === 'z' && e.shiftKey)) sync.redo();
+		else return;
+		e.preventDefault();
+	}
+
+	// Live co-editing (§6): Realtime Postgres changes on this trip's rows (RLS applies per subscriber) reload the
+	// page data, after our own queued edits land. Deletes can't be filtered by trip, so a delete counts when its
+	// id is one we show. Spend shares change only with their spend, so trip_expenses covers them (Realtime also
+	// refuses a filtered binding on the shares table).
+	const LIVE = [
+		'trip_stops',
+		'trip_members',
+		'trip_lists',
+		'trip_list_items',
+		'trip_notes',
+		'trip_expenses'
+	] as const;
+	const shown = $derived(
+		new Set([
+			...data.lists.flatMap((l) => [l.id, ...l.items.map((i) => i.id)]),
+			...data.spends.map((s) => s.id),
+			...data.tripmates.map((t) => t.id)
+		])
+	);
+	onMount(() => {
+		sync.flush();
+		const online = () => sync.flush();
+		addEventListener('online', online);
+		const id = data.trip.id;
+		const db = browserClient();
+		let t: ReturnType<typeof setTimeout> | undefined;
+		const changed = () => {
+			clearTimeout(t);
+			t = setTimeout(() => {
+				flushNotes();
+				sync.refresh();
+			}, 250);
+		};
+		// Filtered and unfiltered bindings go on separate channels: mixed on one, Realtime refuses the join.
+		const ch = db.channel(`trip:${id}`);
+		const del = db.channel(`trip:${id}:deletes`);
+		for (const table of LIVE) {
+			for (const event of ['INSERT', 'UPDATE'] as const)
+				ch.on(
+					'postgres_changes',
+					{ event, schema: 'public', table, filter: `trip_id=eq.${id}` },
+					changed
+				);
+			del.on('postgres_changes', { event: 'DELETE', schema: 'public', table }, (p) => {
+				const old = p.old as { id?: string };
+				if (old.id && shown.has(old.id)) changed();
+			});
+		}
+		// Join as the signed-in tripmate (the client hands its session to Realtime only after the first auth event).
+		void db.auth.getSession().then(async ({ data: { session } }) => {
+			await db.realtime.setAuth(session?.access_token ?? null);
+			ch.subscribe();
+			del.subscribe();
+		});
+		return () => {
+			removeEventListener('online', online);
+			clearTimeout(t);
+			void db.removeChannel(ch);
+			void db.removeChannel(del);
+		};
+	});
+
+	// Invites (§6, owner): one live edit link and one view link, copied on demand; email adds an account straight
+	// away or opens the owner's own mail app with the link (no mail service).
+	async function call(o: WorkspaceOp) {
+		const r = await fetch(`/api/trips/${data.trip.id}/workspace`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(o)
+		}).catch(() => null);
+		if (!r?.ok) {
+			toast(m.send_failed());
+			return null;
+		}
+		return (await r.json()) as OpResult;
+	}
+	async function inviteLink(role: 'editor' | 'viewer') {
+		let token = data.invites.find((i) => i.role === role)?.token;
+		if (!token) {
+			token = (await call({ op: 'invite.link', role }))?.token;
+			if (token) void invalidateAll();
+		}
+		return token ? `${origin}/plan/join/${token}` : null;
+	}
+	async function copyInvite(role: 'editor' | 'viewer') {
+		const url = await inviteLink(role);
+		if (url) await copy(url);
+	}
+	async function revokeInvites() {
+		if (!(await call({ op: 'invite.revoke' }))) return;
+		toast(m.plan_invite_revoked());
+		await invalidateAll();
+	}
+	let inviteEmail = $state('');
+	let inviteRole = $state<'editor' | 'viewer'>('editor');
+	async function invite(e: SubmitEvent) {
+		e.preventDefault();
+		const email = inviteEmail.trim();
+		const r = await call({ op: 'invite.email', email, role: inviteRole });
+		if (!r) return;
+		if (r.added) {
+			toast(m.plan_invite_added({ email }));
+			inviteEmail = '';
+			await invalidateAll();
+			return;
+		}
+		const url = await inviteLink(inviteRole);
+		if (!url) return;
+		const q = (s: string) => encodeURIComponent(s);
+		location.href = `mailto:${q(email)}?subject=${q(m.plan_invite_mail_subject())}&body=${q(
+			m.plan_invite_mail_body({ title: data.trip.title, link: url })
+		)}`;
+	}
+	const accountMates = $derived(data.tripmates.filter((t) => t.account && t.role !== 'owner'));
 	async function copy(text: string) {
 		await navigator.clipboard?.writeText(text).catch(() => {});
 		toast(m.plan_link_copied());
@@ -206,7 +411,7 @@
 		'row-link flex min-h-12 w-full items-center gap-3 rounded-md px-3 text-left type-body text-text no-underline';
 </script>
 
-<svelte:window bind:innerHeight />
+<svelte:window bind:innerHeight onkeydown={keys} />
 
 <Meta title={data.trip.title} />
 <TopBar title={data.trip.title} back />
@@ -254,22 +459,26 @@
 		<div class="flex flex-col gap-5 lg:py-6">
 			<header class="flex flex-col gap-3">
 				<div class="flex items-start gap-2">
-					<form
-						method="POST"
-						action="?/rename"
-						use:submitting
-						class="flex min-w-0 flex-1 gap-2 print:hidden"
-					>
-						<label class="sr-only" for="trip-title">{m.plan_rename()}</label>
-						<input
-							id="trip-title"
-							name="title"
-							value={data.trip.title}
-							maxlength="120"
-							class="field h-12 min-w-0 flex-1 px-3 type-h3 text-text"
-						/>
-						<Button type="submit" variant="secondary">{m.plan_save()}</Button>
-					</form>
+					{#if isOwner}
+						<form
+							method="POST"
+							action="?/rename"
+							use:submitting
+							class="flex min-w-0 flex-1 gap-2 print:hidden"
+						>
+							<label class="sr-only" for="trip-title">{m.plan_rename()}</label>
+							<input
+								id="trip-title"
+								name="title"
+								value={data.trip.title}
+								maxlength="120"
+								class="field h-12 min-w-0 flex-1 px-3 type-h3 text-text"
+							/>
+							<Button type="submit" variant="secondary">{m.plan_save()}</Button>
+						</form>
+					{:else}
+						<p class="min-w-0 flex-1 py-2.5 type-h3 print:hidden">{data.trip.title}</p>
+					{/if}
 					<div class="print:hidden">
 						<IconButton
 							label={m.plan_share_title()}
@@ -286,9 +495,34 @@
 							>{t}</span
 						>
 					{/each}
-					{#if saving}<span class="type-small text-text-2" role="status">{m.plan_updating()}</span
+					{#if !editable}<span
+							class="inline-flex min-h-7 items-center rounded-full bg-surface-2 px-3 type-label text-text-2"
+							>{m.plan_view_only()}</span
 						>{/if}
 				</p>
+				{#if editable}
+					<div class="flex items-center gap-1 print:hidden">
+						<span
+							class="inline-flex min-w-0 flex-1 items-center gap-1.5 type-small text-text-2"
+							role="status"
+							data-testid="save-status"
+							data-status={sync.status}
+						>
+							{#if sync.status === 'offline'}<CloudOff
+									size={16}
+									aria-hidden="true"
+								/>{m.plan_offline_sync()}
+							{:else if sync.status === 'saving'}{m.plan_saving()}
+							{:else}<Check size={16} aria-hidden="true" />{m.plan_saved()}{/if}
+						</span>
+						<IconButton label={m.plan_undo()} disabled={!sync.canUndo} onclick={() => sync.undo()}
+							><Undo2 size={20} aria-hidden="true" /></IconButton
+						>
+						<IconButton label={m.plan_redo()} disabled={!sync.canRedo} onclick={() => sync.redo()}
+							><Redo2 size={20} aria-hidden="true" /></IconButton
+						>
+					</div>
+				{/if}
 			</header>
 
 			<div class="sticky top-0 z-map-ui -mx-5 bg-surface px-5 py-2 lg:hidden print:hidden">
@@ -297,7 +531,7 @@
 
 			<WorkspaceSection id="overview" title={m.plan_overview()} bind:open={open.overview}>
 				{#if data.budget}
-					<BudgetCard budget={data.budget} flat editable onsave={(budget) => patch({ budget })} />
+					<BudgetCard budget={data.budget} flat {editable} onsave={(budget) => patch({ budget })} />
 				{/if}
 				<!-- Estimate vs actual (§5): the budget card's total against the sum of logged spends. -->
 				{#if data.spends.length}
@@ -318,23 +552,23 @@
 					<p class="type-small text-text-2" data-testid="offline-ready">
 						{routesCached ? m.plan_offline_ready() : m.plan_offline_pending()}
 					</p>
-					<form
-						method="POST"
-						action="?/suggest"
-						use:submitting={() =>
-							async ({ update }) =>
-								update({ reset: false })}
-						class="flex flex-wrap items-end gap-2"
-					>
-						<label class="flex flex-col gap-1.5 type-small text-text-2"
-							>{m.plan_days()}<select name="day" class="field h-12 px-3 type-body text-text"
-								>{#each data.days as d, i (i)}<option value={i + 1}
-										>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
-									>{/each}</select
-							></label
+					{#if editable}<form
+							method="POST"
+							action="?/suggest"
+							use:submitting={() =>
+								async ({ update }) =>
+									update({ reset: false })}
+							class="flex flex-wrap items-end gap-2"
 						>
-						<Button type="submit" variant="ghost">{m.plan_suggest_order()}</Button>
-					</form>
+							<label class="flex flex-col gap-1.5 type-small text-text-2"
+								>{m.plan_days()}<select name="day" class="field h-12 px-3 type-body text-text"
+									>{#each data.days as d, i (i)}<option value={i + 1}
+											>{m.plan_day_n({ n: i + 1 })}{d.date ? ` · ${d.date}` : ''}</option
+										>{/each}</select
+								></label
+							>
+							<Button type="submit" variant="ghost">{m.plan_suggest_order()}</Button>
+						</form>{/if}
 					{#if form?.suggest}
 						<div
 							class="flex flex-col gap-2 rounded-md bg-surface-2 p-3"
@@ -361,19 +595,22 @@
 						list={l}
 						days={data.days.length}
 						recommended={data.recommended}
+						{editable}
 						active={activeStop}
 						onop={op}
 						onmap={() => showList(l.id)}
 						onpick={(it) => pickStop(it.id, l.id)}
 					/>
 				{/each}
-				<div class="print:hidden">
-					<Button
-						variant="secondary"
-						onclick={() => op({ op: 'list.create', title: m.plan_list_new() })}
-						>{m.plan_list_new()}</Button
-					>
-				</div>
+				{#if editable}
+					<div class="print:hidden">
+						<Button
+							variant="secondary"
+							onclick={() => op({ op: 'list.create', title: m.plan_list_new() })}
+							>{m.plan_list_new()}</Button
+						>
+					</div>
+				{/if}
 			</WorkspaceSection>
 
 			<WorkspaceSection id="itinerary" title={m.plan_itinerary()} bind:open={open.itinerary}>
@@ -382,15 +619,15 @@
 					active={activeStop}
 					onpick={(s) => pickStop(s.id)}
 					days={data.days}
-					editable
+					{editable}
 					links={false}
 					routes={routes?.days ?? []}
 					{routesLoading}
 					add={data.add}
 					votes={data.votes}
-					onchange={(days) => patch({ days })}
+					onchange={moveStops}
 				/>
-				{#if data.voters || form?.merge}
+				{#if editable && (data.voters || form?.merge)}
 					<div class={block}>
 						{#if data.voters}<p class="type-body" data-testid="voters">
 								{m.plan_voters({ n: data.voters })}
@@ -439,7 +676,7 @@
 			</WorkspaceSection>
 
 			<WorkspaceSection id="expenses" title={m.plan_expenses()} bind:open={open.expenses}>
-				<Expenses tripmates={data.tripmates} spends={data.spends} onop={op} />
+				<Expenses tripmates={data.tripmates} spends={data.spends} {editable} onop={op} />
 			</WorkspaceSection>
 
 			<WorkspaceSection id="notes" title={m.plan_notes()} bind:open={open.notes}>
@@ -449,6 +686,7 @@
 						rows="6"
 						maxlength="20000"
 						placeholder={m.plan_notes_hint()}
+						readonly={!editable}
 						class="field min-h-36 p-3 type-body text-text"
 						value={notes}
 						oninput={(e) => {
@@ -464,7 +702,7 @@
 				{#if data.published}
 					<p class="type-body" data-testid="publish-status">{msg(`route_${data.published}`)}</p>
 				{/if}
-				{#if !data.published || data.published === 'rejected'}
+				{#if isOwner && (!data.published || data.published === 'rejected')}
 					<p class="type-small text-text-2">{m.plan_publish_hint()}</p>
 					<form method="POST" action="?/publish" use:submitting>
 						<Button type="submit" variant="secondary">{m.plan_publish()}</Button>
@@ -500,15 +738,15 @@
 				<a href={resolve('/plan/new')} class="inline-flex min-h-11 items-center type-body"
 					>{m.plan_new()}</a
 				>
-				<form
-					method="POST"
-					action="?/delete"
-					onsubmit={(e) => {
-						if (!confirm(m.plan_delete_confirm())) e.preventDefault();
-					}}
-				>
-					<Button type="submit" variant="ghost">{m.plan_delete()}</Button>
-				</form>
+				{#if isOwner}<form
+						method="POST"
+						action="?/delete"
+						onsubmit={(e) => {
+							if (!confirm(m.plan_delete_confirm())) e.preventDefault();
+						}}
+					>
+						<Button type="submit" variant="ghost">{m.plan_delete()}</Button>
+					</form>{/if}
 			</div>
 		</div>
 	</BottomSheet>
@@ -549,6 +787,81 @@
 				}}><FileDown size={20} aria-hidden="true" class="text-text-2" />{m.plan_pdf()}</button
 			>
 		</div>
+		{#if isOwner}
+			<div class="flex flex-col gap-2 border-t border-border pt-3" data-testid="invites">
+				<h3 class="type-h3">{m.plan_invite_title()}</h3>
+				<p class="type-small text-text-2">{m.plan_invite_hint()}</p>
+				<div class="flex flex-col">
+					<button type="button" class={row} onclick={() => copyInvite('editor')}
+						><Pencil
+							size={20}
+							aria-hidden="true"
+							class="text-text-2"
+						/>{m.plan_invite_edit()}</button
+					>
+					<button type="button" class={row} onclick={() => copyInvite('viewer')}
+						><Eye size={20} aria-hidden="true" class="text-text-2" />{m.plan_invite_view()}</button
+					>
+					{#if data.invites.length}
+						<button type="button" class={row} onclick={revokeInvites}
+							><X
+								size={20}
+								aria-hidden="true"
+								class="text-text-2"
+							/>{m.plan_invite_revoke()}</button
+						>
+					{/if}
+				</div>
+				<form class="flex flex-wrap gap-2" onsubmit={invite}>
+					<input
+						type="email"
+						required
+						maxlength="254"
+						bind:value={inviteEmail}
+						aria-label={m.plan_invite_email()}
+						placeholder={m.plan_invite_email()}
+						class="field h-11 min-w-0 flex-1 basis-48 px-3 type-body text-text"
+					/>
+					<select
+						bind:value={inviteRole}
+						aria-label={m.plan_invite_role()}
+						class="field h-11 px-2 type-body text-text"
+					>
+						<option value="editor">{m.plan_role_editor()}</option>
+						<option value="viewer">{m.plan_role_viewer()}</option>
+					</select>
+					<Button type="submit" variant="secondary">{m.plan_invite_send()}</Button>
+				</form>
+				{#if accountMates.length}
+					<ul class="flex flex-col gap-1">
+						{#each accountMates as t (t.id)}
+							<li class="flex items-center gap-2" data-testid="account-mate">
+								<span class="min-w-0 flex-1 truncate type-body">{t.name}</span>
+								<select
+									value={t.role}
+									aria-label={m.plan_tripmate_role({ name: t.name })}
+									class="field h-11 px-2 type-small text-text"
+									onchange={(e) =>
+										op({
+											op: 'mate.role',
+											id: t.id,
+											role: e.currentTarget.value as 'editor' | 'viewer'
+										})}
+								>
+									<option value="editor">{m.plan_role_editor()}</option>
+									<option value="viewer">{m.plan_role_viewer()}</option>
+								</select>
+								<IconButton
+									label={m.plan_tripmate_remove({ name: t.name })}
+									onclick={() => op({ op: 'mate.remove', id: t.id })}
+									><X size={20} aria-hidden="true" /></IconButton
+								>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+			</div>
+		{/if}
 		{#each data.days as d, i (i)}
 			{#if d.links.length}
 				<div class="flex flex-col gap-2 border-t border-border pt-3">

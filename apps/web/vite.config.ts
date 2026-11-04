@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { paraglideVitePlugin } from '@inlang/paraglide-js';
 
 // P10 CSP (BACKEND §14): hashes/nonces for SvelteKit's own inline scripts; Supabase + tiles hosts only.
-// Dev/e2e builds also allow the local stack (Supabase :54321, tile server :4174).
+// Dev/e2e builds also allow the local stack (Supabase :54321 incl. the Realtime socket, tile server :4174).
 type Csp = NonNullable<NonNullable<Parameters<typeof sveltekit>[0]>['csp']>;
 const csp = (mode: string): Csp => {
 	const local =
@@ -15,7 +15,8 @@ const csp = (mode: string): Csp => {
 					'http://127.0.0.1:54321',
 					'http://localhost:54321',
 					'http://localhost:4174',
-					'ws://localhost:*'
+					'ws://localhost:*',
+					'ws://127.0.0.1:54321' // Realtime (P11 plan workspace)
 				];
 	const supabase = ['https://*.supabase.co', 'wss://*.supabase.co'];
 	return {

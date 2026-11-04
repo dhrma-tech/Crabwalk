@@ -8,7 +8,7 @@ import { mergeVotes } from '#lib/server/ai/assist.ts';
 import { workspaceView } from '#lib/server/planner/workspace.ts';
 import type { Actions, PageServerLoad } from './$types';
 
-// Plan view (FRONTEND §7.9): owner edits; group votes shown per stop; share/vote links; publish route.
+// Plan view (FRONTEND §7.9): owner and editors edit, viewers read (P11 §6); group votes shown per stop; share/vote links; publish route.
 export const load: PageServerLoad = async (event) => {
 	const s = await session(event);
 	if (!z.uuid().safeParse(event.params.id).success) error(404, 'not found');
@@ -19,7 +19,17 @@ export const load: PageServerLoad = async (event) => {
 		.select('*, trip_stops(*), trip_budget(*), published_routes(status)')
 		.eq('id', event.params.id)
 		.maybeSingle();
-	if (!t || (t.owner_id !== s.user.id && !s.isAdmin)) error(404, 'not found');
+	// Tripmates open it with their role (P11 §6); RLS already hides the trip from everyone else.
+	const { data: me } = t
+		? await db
+				.from('trip_members')
+				.select('role')
+				.eq('trip_id', t.id)
+				.eq('user_id', s.user.id)
+				.maybeSingle()
+		: { data: null };
+	const role = t?.owner_id === s.user.id || s.isAdmin ? 'owner' : (me?.role ?? null);
+	if (!t || !role) error(404, 'not found');
 	const budget = Array.isArray(t.trip_budget) ? (t.trip_budget[0] ?? null) : t.trip_budget;
 	const view = await tripView(db, t, t.trip_stops, budget, lang);
 
@@ -55,9 +65,20 @@ export const load: PageServerLoad = async (event) => {
 		t.trip_stops as { entity_type: 'place' | 'stay' | 'eatery'; entity_id: string }[],
 		lang
 	);
+	// The owner's live invite links (one per role), so the share sheet can copy them without a round trip.
+	const { data: invites } =
+		role === 'owner'
+			? await db
+					.from('trip_invites')
+					.select('role, token')
+					.eq('trip_id', t.id)
+					.is('revoked_at', null)
+			: { data: [] };
 	return {
 		...view,
 		...workspace,
+		role,
+		invites: invites ?? [],
 		add,
 		votes: tally,
 		voters: new Set((votes ?? []).map((v) => v.voter_token)).size,

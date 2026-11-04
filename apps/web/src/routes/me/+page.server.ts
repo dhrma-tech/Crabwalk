@@ -69,11 +69,17 @@ export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 				.select('type, granted, revoked_at')
 				.eq('user_id', user.id)
 		: { data: [] };
+	// Own trips and the ones you were invited to (P11 §6).
+	const { data: joined } = user
+		? await locals.supabase.from('trip_members').select('trip_id').eq('user_id', user.id)
+		: { data: [] };
 	const { data: trips } = user
 		? await locals.supabase
 				.from('trips')
 				.select('id, title, days, start_date, status')
-				.eq('owner_id', user.id)
+				.or(
+					[`owner_id.eq.${user.id}`, ...(joined ?? []).map((j) => `id.eq.${j.trip_id}`)].join(',')
+				)
 				.order('created_at', { ascending: false })
 				.limit(50)
 		: { data: [] };
