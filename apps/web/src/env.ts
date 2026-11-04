@@ -22,6 +22,10 @@ export const variables = defineEnvVars({
 	AI_MODEL_EXPLAIN: { schema: optional },
 	AI_MODEL_DRAFT: { schema: optional },
 	AI_PROVIDER: { schema: optional },
+	// P12-4: snap and ask / reel screenshots go to a Groq vision model (travellers stay on Groq, P8-1).
+	AI_MODEL_VISION: { schema: optional },
+	// P12 group chat: HMAC key the server signs messages with (same value as Vault `crabby_key`).
+	CRABBY_SIGNING_KEY: { schema: optional },
 	// Web push (DECISIONS P9-3). Public key only — the private key lives in the trip-nudges function.
 	VAPID_PUBLIC_KEY: { public: true, schema: optional },
 	// P10 rate limits: HMAC secret for client keys (IPs are never stored).

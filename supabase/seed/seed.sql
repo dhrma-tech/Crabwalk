@@ -37,3 +37,8 @@ begin
   select id, 'en', initcap(replace(slug, '-', ' ')), true from public.dishes where is_seed;
 end;
 $$;
+
+-- P12: dev-only group chat signing key (Vault `crabby_key` = the server's CRABBY_SIGNING_KEY). Production sets its
+-- own random value (docs/DEPLOY.md).
+select vault.create_secret('local-dev-crabby-key', 'crabby_key')
+where not exists (select 1 from vault.secrets where name = 'crabby_key');

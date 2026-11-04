@@ -41,8 +41,9 @@ export default defineConfig({
 	use: { baseURL: 'http://localhost:4173', ...devices['Desktop Chrome'], channel: 'chromium' },
 	webServer: [
 		{
-			// Local stack: Crabby runs on the scripted mock provider (DECISIONS P8-2) — no real LLM calls.
-			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''}${local ? ' -b AI_PROVIDER=mock' : ''}`,
+			// Local stack: Crabby runs on the scripted mock provider (DECISIONS P8-2) — no real LLM calls; the group chat
+			// signing key is the dev value seeded into Vault (supabase/seed/seed.sql).
+			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''}${local ? ' -b AI_PROVIDER=mock -b CRABBY_SIGNING_KEY=local-dev-crabby-key' : ''}`,
 			url: 'http://localhost:4173',
 			timeout: 180_000,
 			reuseExistingServer: false

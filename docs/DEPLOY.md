@@ -32,6 +32,8 @@ Vault secrets used by the crons (`app.invoke_edge`), in the SQL editor:
 ```sql
 select vault.create_secret('https://uwaqcutysdcmxfjpfktt.supabase.co', 'project_url');
 select vault.create_secret('<CRON_SECRET>', 'cron_secret');
+-- P12 group chat: random key; the same value goes into the web app's CRABBY_SIGNING_KEY (§7).
+select vault.create_secret('<CRABBY_SIGNING_KEY>', 'crabby_key');
 ```
 Auth: set `site_url` / `additional_redirect_urls` to `https://<app>.pages.dev` (+ `/auth/callback`), enable
 `[auth.email.smtp]` with the SMTP creds, then `npx supabase config push`. Verify the 6-digit email template.
@@ -78,7 +80,8 @@ Note the worker URL → `OLA_PROXY_URL`. Verify one autocomplete + one direction
 
 ## 7. Web app (Cloudflare Pages project `crabwalk`)
 Env vars (production): `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `PMTILES_BASE_URL`, `OLA_PROXY_URL`, `GROQ_API_KEY`,
-`GEMINI_API_KEY`, `AI_MODEL_INTENT`, `AI_MODEL_EXPLAIN`, `AI_MODEL_DRAFT`, `VAPID_PUBLIC_KEY`, `RATE_LIMIT_SALT`,
+`GEMINI_API_KEY`, `AI_MODEL_INTENT`, `AI_MODEL_EXPLAIN`, `AI_MODEL_DRAFT`, `AI_MODEL_VISION`, `CRABBY_SIGNING_KEY`
+(P12, = Vault `crabby_key`), `VAPID_PUBLIC_KEY`, `RATE_LIMIT_SALT`,
 `AGODA_ENABLED=false`. **Leave `AI_PROVIDER` unset** (mock is local-only, P8-14).
 ```bash
 cd apps/web && pnpm build && pnpm exec wrangler pages deploy .svelte-kit/cloudflare --project-name crabwalk --branch main

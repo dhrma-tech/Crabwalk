@@ -19,6 +19,34 @@ export type Database = {
                   Relationships: [
                     
                   ]
+                },"ai_feature_usage": {
+                  Row: {
+                    "count": number,"date": string,"feature": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "count"?: number,"date": string,"feature": string,"user_id": string
+                  }
+                  Update: {
+                    "count"?: number,"date"?: string,"feature"?: string,"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
+                },"ai_leads": {
+                  Row: {
+                    "created_at": string,"id": string,"input": string,"kind": string,"status": string,"url": string | null,"user_id": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"id"?: string,"input": string,"kind": string,"status"?: string,"url"?: string | null,"user_id"?: string | null
+                  }
+                  Update: {
+                    "created_at"?: string,"id"?: string,"input"?: string,"kind"?: string,"status"?: string,"url"?: string | null,"user_id"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"ai_usage": {
                   Row: {
                     "created_at": string,"date": string,"id": string,"message_count": number,"updated_at": string | null,"user_id": string
@@ -164,6 +192,26 @@ isOneToOne: false
                   }
                   Relationships: [
                     
+                  ]
+                },"crabby_group_usage": {
+                  Row: {
+                    "date": string,"last_spoke_at": string | null,"proactive": number,"trip_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "date": string,"last_spoke_at"?: string | null,"proactive"?: number,"trip_id": string
+                  }
+                  Update: {
+                    "date"?: string,"last_spoke_at"?: string | null,"proactive"?: number,"trip_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "crabby_group_usage_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
                   ]
                 },"crowd_typical": {
                   Row: {
@@ -362,6 +410,26 @@ isOneToOne: false
       columns: ["trip_id"]
 isOneToOne: false
       referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"journal_photos": {
+                  Row: {
+                    "caption": string | null,"created_at": string,"id": string,"journal_id": string,"path": string,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "caption"?: string | null,"created_at"?: string,"id"?: string,"journal_id": string,"path": string,"user_id"?: string
+                  }
+                  Update: {
+                    "caption"?: string | null,"created_at"?: string,"id"?: string,"journal_id"?: string,"path"?: string,"user_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "journal_photos_journal_id_fkey"
+      columns: ["journal_id"]
+isOneToOne: false
+      referencedRelation: "trip_journals"
       referencedColumns: ["id"]
     }
                   ]
@@ -805,6 +873,20 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"stay_requests": {
+                  Row: {
+                    "budget": number | null,"check_in": string,"check_out": string | null,"contact_phone": string | null,"contact_shared_at": string | null,"counter_price": number | null,"created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"guests": number,"id": string,"note": string | null,"owner_note": string | null,"owner_price": number | null,"relayed_by": string | null,"status": Database["public"]['Enums']["stay_request_status"],"updated_at": string | null,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "budget"?: number | null,"check_in": string,"check_out"?: string | null,"contact_phone"?: string | null,"contact_shared_at"?: string | null,"counter_price"?: number | null,"created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"guests": number,"id"?: string,"note"?: string | null,"owner_note"?: string | null,"owner_price"?: number | null,"relayed_by"?: string | null,"status"?: Database["public"]['Enums']["stay_request_status"],"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Update: {
+                    "budget"?: number | null,"check_in"?: string,"check_out"?: string | null,"contact_phone"?: string | null,"contact_shared_at"?: string | null,"counter_price"?: number | null,"created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"guests"?: number,"id"?: string,"note"?: string | null,"owner_note"?: string | null,"owner_price"?: number | null,"relayed_by"?: string | null,"status"?: Database["public"]['Enums']["stay_request_status"],"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"stay_translations": {
                   Row: {
                     "created_at": string,"description": string | null,"id": string,"is_seed": boolean,"lang": Database["public"]['Enums']["lang"],"name": string,"stay_id": string,"updated_at": string | null
@@ -878,6 +960,20 @@ isOneToOne: false
       referencedRelation: "regions"
       referencedColumns: ["id"]
     }
+                  ]
+                },"team_questions": {
+                  Row: {
+                    "answer": string | null,"answered_at": string | null,"answered_by": string | null,"asker": string | null,"created_at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"expires_at": string | null,"id": string,"lang": Database["public"]['Enums']["lang"],"question": string,"status": Database["public"]['Enums']["team_question_status"],"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question": string,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
+                  }
+                  Update: {
+                    "answer"?: string | null,"answered_at"?: string | null,"answered_by"?: string | null,"asker"?: string | null,"created_at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["entity_type"] | null,"expires_at"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"question"?: string,"status"?: Database["public"]['Enums']["team_question_status"],"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    
                   ]
                 },"tide_cache": {
                   Row: {
@@ -1051,6 +1147,26 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"trip_journals": {
+                  Row: {
+                    "answers": NonNullable<Json>,"created_at": string,"id": string,"lang": Database["public"]['Enums']["lang"],"share_token": string | null,"status": string,"story": string | null,"trip_id": string,"updated_at": string | null,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "answers"?: NonNullable<Json>,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"share_token"?: string | null,"status"?: string,"story"?: string | null,"trip_id": string,"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Update: {
+                    "answers"?: NonNullable<Json>,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"share_token"?: string | null,"status"?: string,"story"?: string | null,"trip_id"?: string,"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_journals_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
                 },"trip_list_items": {
                   Row: {
                     "body": string | null,"created_at": string,"done": boolean,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"id": string,"kind": Database["public"]['Enums']["list_item_kind"],"list_id": string,"position": number,"trip_id": string,"updated_at": string | null
@@ -1117,6 +1233,32 @@ isOneToOne: false
       referencedColumns: ["id"]
     }
                   ]
+                },"trip_messages": {
+                  Row: {
+                    "body": string | null,"created_at": string,"from_crabby": boolean,"id": string,"kind": Database["public"]['Enums']["message_kind"],"member_id": string | null,"nonce": string,"payload": Json | null,"proactive": boolean,"trip_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "body"?: string | null,"created_at"?: string,"from_crabby"?: boolean,"id"?: string,"kind"?: Database["public"]['Enums']["message_kind"],"member_id"?: string | null,"nonce": string,"payload"?: Json | null,"proactive"?: boolean,"trip_id": string
+                  }
+                  Update: {
+                    "body"?: string | null,"created_at"?: string,"from_crabby"?: boolean,"id"?: string,"kind"?: Database["public"]['Enums']["message_kind"],"member_id"?: string | null,"nonce"?: string,"payload"?: Json | null,"proactive"?: boolean,"trip_id"?: string
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_messages_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_messages_trip_id_member_id_fkey"
+      columns: ["trip_id","member_id"]
+isOneToOne: false
+      referencedRelation: "trip_members"
+      referencedColumns: ["trip_id","id"]
+    }
+                  ]
                 },"trip_notes": {
                   Row: {
                     "body": string,"created_at": string,"trip_id": string,"updated_at": string | null,"updated_by": string | null
@@ -1133,6 +1275,58 @@ isOneToOne: false
       foreignKeyName: "trip_notes_trip_id_fkey"
       columns: ["trip_id"]
 isOneToOne: true
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    }
+                  ]
+                },"trip_poll_votes": {
+                  Row: {
+                    "created_at": string,"member_id": string,"message_id": string,"options": (number)[],"trip_id": string,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"member_id": string,"message_id": string,"options": (number)[],"trip_id": string,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "created_at"?: string,"member_id"?: string,"message_id"?: string,"options"?: (number)[],"trip_id"?: string,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_poll_votes_message_id_fkey"
+      columns: ["message_id"]
+isOneToOne: false
+      referencedRelation: "trip_messages"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_poll_votes_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
+      referencedRelation: "trips"
+      referencedColumns: ["id"]
+    },{
+      foreignKeyName: "trip_poll_votes_trip_id_member_id_fkey"
+      columns: ["trip_id","member_id"]
+isOneToOne: false
+      referencedRelation: "trip_members"
+      referencedColumns: ["trip_id","id"]
+    }
+                  ]
+                },"trip_reports": {
+                  Row: {
+                    "created_at": string,"created_by": string | null,"id": string,"lang": Database["public"]['Enums']["lang"],"payload": NonNullable<Json>,"summary": string | null,"trip_id": string,"version": number
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"created_by"?: string | null,"id"?: string,"lang": Database["public"]['Enums']["lang"],"payload": NonNullable<Json>,"summary"?: string | null,"trip_id": string,"version": number
+                  }
+                  Update: {
+                    "created_at"?: string,"created_by"?: string | null,"id"?: string,"lang"?: Database["public"]['Enums']["lang"],"payload"?: NonNullable<Json>,"summary"?: string | null,"trip_id"?: string,"version"?: number
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "trip_reports_trip_id_fkey"
+      columns: ["trip_id"]
+isOneToOne: false
       referencedRelation: "trips"
       referencedColumns: ["id"]
     }
@@ -1171,6 +1365,20 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"user_activity": {
+                  Row: {
+                    "at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["listing_type"] | null,"id": number,"kind": string,"query": string | null,"user_id": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["listing_type"] | null,"id"?: never,"kind": string,"query"?: string | null,"user_id"?: string
+                  }
+                  Update: {
+                    "at"?: string,"entity_id"?: string | null,"entity_type"?: Database["public"]['Enums']["listing_type"] | null,"id"?: never,"kind"?: string,"query"?: string | null,"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"user_preferences": {
                   Row: {
                     "budget_level": string | null,"created_at": string,"diet": string | null,"group_type": Database["public"]['Enums']["group_type"] | null,"id": string,"past_trip_ids": (string)[],"updated_at": string | null,"user_id": string
@@ -1181,6 +1389,20 @@ isOneToOne: false
                   }
                   Update: {
                     "budget_level"?: string | null,"created_at"?: string,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"id"?: string,"past_trip_ids"?: (string)[],"updated_at"?: string | null,"user_id"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
+                },"user_profile": {
+                  Row: {
+                    "budget_band": Database["public"]['Enums']["budget_band"] | null,"created_at": string,"diet": string | null,"group_type": Database["public"]['Enums']["group_type"] | null,"interests": (Database["public"]['Enums']["place_category"])[],"lines": NonNullable<Json>,"mileage_kmpl": number | null,"pace": Database["public"]['Enums']["trip_pace"] | null,"persona": Database["public"]['Enums']["persona"],"quiz_done_at": string | null,"scores": NonNullable<Json>,"seafood": boolean | null,"updated_at": string | null,"use_activity": boolean,"use_chats": boolean,"use_quiz": boolean,"use_trips": boolean,"user_id": string,"vehicle": Database["public"]['Enums']["vehicle"] | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "budget_band"?: Database["public"]['Enums']["budget_band"] | null,"created_at"?: string,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"interests"?: (Database["public"]['Enums']["place_category"])[],"lines"?: NonNullable<Json>,"mileage_kmpl"?: number | null,"pace"?: Database["public"]['Enums']["trip_pace"] | null,"persona"?: Database["public"]['Enums']["persona"],"quiz_done_at"?: string | null,"scores"?: NonNullable<Json>,"seafood"?: boolean | null,"updated_at"?: string | null,"use_activity"?: boolean,"use_chats"?: boolean,"use_quiz"?: boolean,"use_trips"?: boolean,"user_id": string,"vehicle"?: Database["public"]['Enums']["vehicle"] | null
+                  }
+                  Update: {
+                    "budget_band"?: Database["public"]['Enums']["budget_band"] | null,"created_at"?: string,"diet"?: string | null,"group_type"?: Database["public"]['Enums']["group_type"] | null,"interests"?: (Database["public"]['Enums']["place_category"])[],"lines"?: NonNullable<Json>,"mileage_kmpl"?: number | null,"pace"?: Database["public"]['Enums']["trip_pace"] | null,"persona"?: Database["public"]['Enums']["persona"],"quiz_done_at"?: string | null,"scores"?: NonNullable<Json>,"seafood"?: boolean | null,"updated_at"?: string | null,"use_activity"?: boolean,"use_chats"?: boolean,"use_quiz"?: boolean,"use_trips"?: boolean,"user_id"?: string,"vehicle"?: Database["public"]['Enums']["vehicle"] | null
                   }
                   Relationships: [
                     
@@ -1338,6 +1560,9 @@ isOneToOne: false
             "add_trip_member_by_email":
 { Args: { "_email": string,"_role": Database["public"]['Enums']["trip_role"],"_trip": string }; Returns: boolean
                            },
+"ai_take":
+{ Args: { "_feature": string }; Returns: number
+                           },
 "ai_take_message":
 { Args: Record<PropertyKey, never>; Returns: number
                            },
@@ -1358,6 +1583,11 @@ isOneToOne: false
                            },
 "get_shared_trip":
 { Args: { "_token": string }; Returns: Json
+                           },
+"journal_by_token":
+{ Args: { "_token": string }; Returns: {
+              "lang": Database["public"]['Enums']["lang"],"photos": Json,"story": string,"title": string,"updated_at": string
+            }[]
                            },
 "less_crowded_alternatives":
 { Args: { "_slug": string,"_weekday": number }; Returns: {
@@ -1397,6 +1627,11 @@ isOneToOne: false
               "id": string,"lat": number,"lon": number,"name": string,"phone": string,"type": string
             }[]
                            },
+"match_team_answers":
+{ Args: { "_entity"?: string,"_q": string }; Returns: {
+              "answer": string,"answered_at": string,"entity_id": string,"id": string,"question": string,"sim": number
+            }[]
+                           },
 "nav_leg":
 { Args: { "_from": string,"_to": string }; Returns: {
               "distance_m": number,"duration_s": number,"shape": string,"turns": string
@@ -1407,6 +1642,9 @@ isOneToOne: false
                            },
 "planner_matrix":
 { Args: { "_ids": (string)[] }; Returns: Json
+                           },
+"post_trip_message":
+{ Args: { "_body": string,"_crabby": boolean,"_kind": Database["public"]['Enums']["message_kind"],"_nonce": string,"_payload": string,"_proactive": boolean,"_sig": string,"_trip": string }; Returns: string
                            },
 "qr_near_me":
 { Args: { "_code": string }; Returns: {
@@ -1459,6 +1697,11 @@ isOneToOne: false
               "geojson": string,"name_en": string
             }[]
                            },
+"trip_report_by_token":
+{ Args: { "_lang": Database["public"]['Enums']["lang"],"_token": string }; Returns: {
+              "created_at": string,"payload": Json,"summary": string,"title": string,"version": number
+            }[]
+                           },
 "trip_vote_counts":
 { Args: { "_token": string }; Returns: {
               "down": number,"entity_id": string,"up": number
@@ -1471,7 +1714,7 @@ isOneToOne: false
                            }
           }
           Enums: {
-            "ai_action_status": "proposed"|"applied"|"discarded","alert_type": "road_condition"|"ghat"|"landslide"|"closure","app_role": "user"|"verifier"|"reviewer"|"owner"|"admin","audio_source": "tts"|"recorded","consent_type": "dwell_time"|"push"|"ai_processing","content_status": "draft"|"in_review"|"published","correction_type": "ghat"|"coastal"|"monsoon","crowd_level": "empty"|"calm"|"busy","draft_status": "draft"|"approved"|"rejected","eatery_authenticity": "home_style"|"local_legend"|"tourist_oriented","entity_type": "place"|"stay"|"eatery","expense_category": "stay"|"food"|"fuel"|"entry"|"activities"|"other","group_type": "family"|"couple"|"solo"|"friends","lang": "en"|"hi"|"mr","list_item_kind": "place"|"note"|"check","listing_type": "place"|"stay"|"eatery"|"dish","monsoon_status": "open"|"risky"|"closed","place_category": "beach"|"fort"|"temple"|"waterfall"|"viewpoint"|"backwater"|"cave"|"museum"|"village"|"market"|"orchard","price_source": "owner"|"agoda"|"affiliate","qr_entity_type": "place"|"stay"|"eatery"|"station"|"bus_stand","report_status": "new"|"triaged"|"fixed"|"rejected","report_type": "broken_qr"|"garbage"|"unsafe_spot"|"wrong_info","review_status": "pending"|"approved"|"rejected","season": "turtle_nesting"|"mango"|"firefly"|"waterfall","service_style": "homely"|"professional","stop_kind": "place"|"stay"|"meal","sub_score_dimension": "taste"|"authenticity"|"hygiene"|"value"|"cleanliness"|"host"|"location","theme": "system"|"light"|"dark","tide_provider": "tidesatlas"|"tidecheck","trip_pace": "relaxed"|"balanced"|"packed","trip_role": "owner"|"editor"|"viewer","trip_status": "draft"|"saved"|"completed","utility_type": "fuel"|"atm"|"hospital"|"pharmacy"|"police"|"toilet"|"ev_charger"|"mechanic"|"bus_stand"|"railway_station"|"ferry_jetty","verification_method": "desk"|"field","visit_method": "qr_gps"|"booking_proof"
+            "ai_action_status": "proposed"|"applied"|"discarded","alert_type": "road_condition"|"ghat"|"landslide"|"closure","app_role": "user"|"verifier"|"reviewer"|"owner"|"admin","audio_source": "tts"|"recorded","budget_band": "budget"|"mid"|"premium","consent_type": "dwell_time"|"push"|"ai_processing","content_status": "draft"|"in_review"|"published","correction_type": "ghat"|"coastal"|"monsoon","crowd_level": "empty"|"calm"|"busy","draft_status": "draft"|"approved"|"rejected","eatery_authenticity": "home_style"|"local_legend"|"tourist_oriented","entity_type": "place"|"stay"|"eatery","expense_category": "stay"|"food"|"fuel"|"entry"|"activities"|"other","group_type": "family"|"couple"|"solo"|"friends","lang": "en"|"hi"|"mr","list_item_kind": "place"|"note"|"check","listing_type": "place"|"stay"|"eatery"|"dish","message_kind": "text"|"card"|"poll"|"question"|"report"|"system","monsoon_status": "open"|"risky"|"closed","persona": "playful"|"plain","place_category": "beach"|"fort"|"temple"|"waterfall"|"viewpoint"|"backwater"|"cave"|"museum"|"village"|"market"|"orchard","price_source": "owner"|"agoda"|"affiliate","qr_entity_type": "place"|"stay"|"eatery"|"station"|"bus_stand","report_status": "new"|"triaged"|"fixed"|"rejected","report_type": "broken_qr"|"garbage"|"unsafe_spot"|"wrong_info","review_status": "pending"|"approved"|"rejected","season": "turtle_nesting"|"mango"|"firefly"|"waterfall","service_style": "homely"|"professional","stay_request_status": "sent"|"relayed"|"available"|"unavailable"|"countered"|"accepted"|"declined"|"cancelled","stop_kind": "place"|"stay"|"meal","sub_score_dimension": "taste"|"authenticity"|"hygiene"|"value"|"cleanliness"|"host"|"location","team_question_status": "open"|"answered"|"expired"|"closed","theme": "system"|"light"|"dark","tide_provider": "tidesatlas"|"tidecheck","trip_pace": "relaxed"|"balanced"|"packed","trip_role": "owner"|"editor"|"viewer","trip_status": "draft"|"saved"|"completed","utility_type": "fuel"|"atm"|"hospital"|"pharmacy"|"police"|"toilet"|"ev_charger"|"mechanic"|"bus_stand"|"railway_station"|"ferry_jetty","vehicle": "car"|"two_wheeler"|"public_transport","verification_method": "desk"|"field","visit_method": "qr_gps"|"booking_proof"
           }
           CompositeTypes: {
             [_ in never]: never
@@ -1587,7 +1830,7 @@ export type CompositeTypes<
 export const Constants = {
   "public": {
           Enums: {
-            "ai_action_status": ["proposed", "applied", "discarded"],"alert_type": ["road_condition", "ghat", "landslide", "closure"],"app_role": ["user", "verifier", "reviewer", "owner", "admin"],"audio_source": ["tts", "recorded"],"consent_type": ["dwell_time", "push", "ai_processing"],"content_status": ["draft", "in_review", "published"],"correction_type": ["ghat", "coastal", "monsoon"],"crowd_level": ["empty", "calm", "busy"],"draft_status": ["draft", "approved", "rejected"],"eatery_authenticity": ["home_style", "local_legend", "tourist_oriented"],"entity_type": ["place", "stay", "eatery"],"expense_category": ["stay", "food", "fuel", "entry", "activities", "other"],"group_type": ["family", "couple", "solo", "friends"],"lang": ["en", "hi", "mr"],"list_item_kind": ["place", "note", "check"],"listing_type": ["place", "stay", "eatery", "dish"],"monsoon_status": ["open", "risky", "closed"],"place_category": ["beach", "fort", "temple", "waterfall", "viewpoint", "backwater", "cave", "museum", "village", "market", "orchard"],"price_source": ["owner", "agoda", "affiliate"],"qr_entity_type": ["place", "stay", "eatery", "station", "bus_stand"],"report_status": ["new", "triaged", "fixed", "rejected"],"report_type": ["broken_qr", "garbage", "unsafe_spot", "wrong_info"],"review_status": ["pending", "approved", "rejected"],"season": ["turtle_nesting", "mango", "firefly", "waterfall"],"service_style": ["homely", "professional"],"stop_kind": ["place", "stay", "meal"],"sub_score_dimension": ["taste", "authenticity", "hygiene", "value", "cleanliness", "host", "location"],"theme": ["system", "light", "dark"],"tide_provider": ["tidesatlas", "tidecheck"],"trip_pace": ["relaxed", "balanced", "packed"],"trip_role": ["owner", "editor", "viewer"],"trip_status": ["draft", "saved", "completed"],"utility_type": ["fuel", "atm", "hospital", "pharmacy", "police", "toilet", "ev_charger", "mechanic", "bus_stand", "railway_station", "ferry_jetty"],"verification_method": ["desk", "field"],"visit_method": ["qr_gps", "booking_proof"]
+            "ai_action_status": ["proposed", "applied", "discarded"],"alert_type": ["road_condition", "ghat", "landslide", "closure"],"app_role": ["user", "verifier", "reviewer", "owner", "admin"],"audio_source": ["tts", "recorded"],"budget_band": ["budget", "mid", "premium"],"consent_type": ["dwell_time", "push", "ai_processing"],"content_status": ["draft", "in_review", "published"],"correction_type": ["ghat", "coastal", "monsoon"],"crowd_level": ["empty", "calm", "busy"],"draft_status": ["draft", "approved", "rejected"],"eatery_authenticity": ["home_style", "local_legend", "tourist_oriented"],"entity_type": ["place", "stay", "eatery"],"expense_category": ["stay", "food", "fuel", "entry", "activities", "other"],"group_type": ["family", "couple", "solo", "friends"],"lang": ["en", "hi", "mr"],"list_item_kind": ["place", "note", "check"],"listing_type": ["place", "stay", "eatery", "dish"],"message_kind": ["text", "card", "poll", "question", "report", "system"],"monsoon_status": ["open", "risky", "closed"],"persona": ["playful", "plain"],"place_category": ["beach", "fort", "temple", "waterfall", "viewpoint", "backwater", "cave", "museum", "village", "market", "orchard"],"price_source": ["owner", "agoda", "affiliate"],"qr_entity_type": ["place", "stay", "eatery", "station", "bus_stand"],"report_status": ["new", "triaged", "fixed", "rejected"],"report_type": ["broken_qr", "garbage", "unsafe_spot", "wrong_info"],"review_status": ["pending", "approved", "rejected"],"season": ["turtle_nesting", "mango", "firefly", "waterfall"],"service_style": ["homely", "professional"],"stay_request_status": ["sent", "relayed", "available", "unavailable", "countered", "accepted", "declined", "cancelled"],"stop_kind": ["place", "stay", "meal"],"sub_score_dimension": ["taste", "authenticity", "hygiene", "value", "cleanliness", "host", "location"],"team_question_status": ["open", "answered", "expired", "closed"],"theme": ["system", "light", "dark"],"tide_provider": ["tidesatlas", "tidecheck"],"trip_pace": ["relaxed", "balanced", "packed"],"trip_role": ["owner", "editor", "viewer"],"trip_status": ["draft", "saved", "completed"],"utility_type": ["fuel", "atm", "hospital", "pharmacy", "police", "toilet", "ev_charger", "mechanic", "bus_stand", "railway_station", "ferry_jetty"],"vehicle": ["car", "two_wheeler", "public_transport"],"verification_method": ["desk", "field"],"visit_method": ["qr_gps", "booking_proof"]
           }
         }
 } as const
