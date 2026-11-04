@@ -118,3 +118,77 @@ test('C: ask, don\'t assume — a question card instead of guesses; "Let Crabby 
 	await expect(lastAnswer()).toContainText('I picked Pace: Balanced');
 	expect(trips()).toBe(before);
 });
+
+test('D: profile — quiz, correct / delete lines, sources, plain style; only the summary reaches the AI', async () => {
+	await page.goto('/me');
+	await page.getByTestId('crabby-profile-link').click();
+	await expect(page).toHaveURL(/\/me\/crabby$/);
+	const quiz = page.getByTestId('quiz');
+	await quiz.getByLabel('How do you travel?').selectOption('car');
+	await quiz.getByLabel('Mileage (km per litre)').fill('18');
+	await quiz.getByLabel('Pace').selectOption('relaxed');
+	await quiz.getByLabel('Food preference').selectOption('veg');
+	await quiz.getByLabel('Seafood').selectOption('no');
+	await quiz.getByLabel('Who is travelling?').selectOption('couple');
+	await quiz.getByText('Beach', { exact: true }).click();
+	await quiz.getByText('Fort', { exact: true }).click();
+	await quiz.getByRole('button', { name: 'Save' }).click();
+	const thinks = page.getByTestId('thinks');
+	await expect(thinks).toContainText('Likes: Beach, Fort');
+	await expect(thinks).toContainText('Travels by: Car (18 km/l)');
+
+	// Delete one line, correct another (the user's words replace it).
+	await thinks
+		.getByTestId('thinks-line')
+		.filter({ hasText: 'No seafood' })
+		.getByRole('button', { name: 'Delete this line' })
+		.click();
+	await expect(thinks).not.toContainText('No seafood');
+	await thinks
+		.getByTestId('thinks-line')
+		.filter({ hasText: 'Pace: Relaxed' })
+		.getByRole('button', { name: 'Correct this line' })
+		.click();
+	await thinks.getByRole('textbox', { name: 'Correct this line' }).fill('Slow mornings, please');
+	await thinks.getByRole('button', { name: 'Save' }).click();
+	await expect(
+		thinks.getByTestId('thinks-line').filter({ hasText: 'Slow mornings, please' })
+	).toContainText('You');
+	await expect(thinks).not.toContainText('Pace: Relaxed');
+
+	// Activity source: on → views are kept; off → deleted.
+	const sources = page.getByTestId('sources');
+	await sources.getByRole('switch', { name: /What you search, open and save/ }).check();
+	await sources.getByRole('button', { name: 'Save' }).click();
+	await expect(sources).toContainText('Saved');
+	await page.goto('/place/seed-fort-1');
+	await page.waitForLoadState('networkidle');
+	const acts = () =>
+		psql(
+			`select count(*) from user_activity a join auth.users u on u.id = a.user_id where u.email = 'p12-${run}@e2e.local'`
+		);
+	await expect.poll(acts).toBe('1');
+	await page.goto('/me/crabby');
+	await page
+		.getByTestId('sources')
+		.getByRole('switch', { name: /What you search, open and save/ })
+		.uncheck();
+	await page.getByTestId('sources').getByRole('button', { name: 'Save' }).click();
+	await expect(page.getByTestId('sources')).toContainText('Saved');
+	expect(acts()).toBe('0');
+
+	// Plain style; the quiz answers count as known (only Dates is asked); the model sees the summary only.
+	await page.getByTestId('persona').getByLabel(/Plain/).check();
+	await page.getByTestId('persona').getByRole('button', { name: 'Save' }).click();
+	await expect(page.getByTestId('persona')).toContainText('Saved');
+	await page.goto('/crabby');
+	await ask('plan a beach day from Chiplun');
+	const card = page.getByTestId('question-card').locator('visible=true').last();
+	await expect(card).toContainText('When do you start?');
+	await expect(card).not.toContainText('What pace suits you?');
+	await expect(card).not.toContainText('Who is travelling?');
+	const log = await (await page.request.get('/api/ai/mock-log')).text();
+	expect(log).toContain('Slow mornings, please');
+	expect(log).toContain('Tone: plain');
+	expect(log).not.toContain('No seafood');
+});

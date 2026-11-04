@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { logActivity } from '#lib/activity.ts';
 	import SearchIcon from '@lucide/svelte/icons/search';
 	import History from '@lucide/svelte/icons/history';
 	import { resolve } from '$app/paths';
@@ -46,6 +47,7 @@
 	}
 	function remember() {
 		const term = q.trim();
+		logActivity({ kind: 'search', query: term });
 		recent = [term, ...recent.filter((t) => t !== term)].slice(0, 5);
 		try {
 			localStorage.setItem(RECENT_KEY, JSON.stringify(recent));

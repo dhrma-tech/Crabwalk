@@ -9,6 +9,7 @@ import { addDays, istToday } from '../planner/data.ts';
 import { computeTrip, describeStops, planInput } from '../planner/trips.ts';
 import { driveStep, PAGES, SECTIONS, type DriveStep } from '#lib/drive.ts';
 import { questionCard, type Question } from '#lib/questions.ts';
+import { plannerDefaults, type Profile } from '../profile.ts';
 import { eateryFilter, placeFilter, readFilter, stayFilter } from '../filters.ts';
 import type { ToolDef } from './providers.ts';
 
@@ -36,6 +37,8 @@ export type Ctx = {
 	path: string | null;
 	/** A question card for the user ("Ask, don't assume"); the turn stops and waits for the answers. */
 	questions: Question[] | null;
+	/** The user's profile (10.7) for planner defaults; null = none / not loaded. */
+	profile: Profile | null;
 };
 
 const CATS = [
@@ -761,12 +764,8 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 						.maybeSingle()
 				: { data: null };
 			const c = st ? lonLat(st.location) : null;
-			const { data: pref } = await db
-				.from('user_preferences')
-				.select('diet, group_type')
-				.eq('user_id', ctx.userId)
-				.maybeSingle();
-			const known = { pace: null as string | null, group_type: pref?.group_type ?? null };
+			// What the user told us in the profile quiz counts as known (10.7); everything else is asked.
+			const known = plannerDefaults(ctx.profile);
 			const ask: Question[] = [];
 			if (!st || !c) ask.push(await startQuestion(db, lang));
 			if (!i('days') && !decide.has('days')) ask.push(daysQuestion(lang));
@@ -793,10 +792,10 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 				// Group size only scales the budget estimate (editable on the plan); stated in the preview.
 				people: i('people') ?? (group === 'solo' ? 1 : 2),
 				budget: i('budget') ?? null,
-				interests: Array.isArray(a.interests) ? a.interests : [],
+				interests: Array.isArray(a.interests) && a.interests.length ? a.interests : known.interests,
 				pace: decide.has('pace') ? 'balanced' : (s('pace') ?? known.pace),
 				standout: a.standout === true,
-				diet: s('diet') ?? pref?.diet ?? null
+				diet: s('diet') ?? known.diet
 			});
 			if (!p.success)
 				return {

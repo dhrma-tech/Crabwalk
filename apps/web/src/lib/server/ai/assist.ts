@@ -30,7 +30,8 @@ export async function mergeVotes(db: DB, userId: string, tripId: string, lang: L
 		proposed: [],
 		drive: [],
 		path: null,
-		questions: null
+		questions: null,
+		profile: null
 	};
 	const result = (await runTool(
 		ctx,

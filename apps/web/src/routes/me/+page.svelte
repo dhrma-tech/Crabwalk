@@ -17,6 +17,7 @@
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
 	import OfflinePacks from '#lib/components/OfflinePacks.svelte';
+	import Crabby from '#lib/components/Crabby.svelte';
 	import { enablePush, disablePush, pushStatus } from '#lib/push.ts';
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';
@@ -24,8 +25,8 @@
 	import { loginHref } from '#lib/login.ts';
 
 	// Me (FRONTEND §7.14). Tideline (Report 2 §9.12, Report 1 §4.7, T-37): profile card, then trips → offline packs
-	// → preferences → privacy choices → language & theme → tools → privacy → sign out. Saved follows trips (T-46).
-	let { data, form }: PageProps = $props();
+	// → Crabby & you (P12 profile) → privacy choices → language & theme → tools → privacy → sign out. Saved follows trips (T-46).
+	let { data }: PageProps = $props();
 	const SAVED_ICON = { place: MapPin, stay: BedDouble, eatery: Utensils };
 	let push = $state<'on' | 'off' | 'unsupported' | 'denied'>('unsupported');
 	onMount(async () => (push = await pushStatus()));
@@ -149,49 +150,19 @@
 		<OfflinePacks />
 
 		{#if data.email}
-			<form method="POST" action="?/prefs" class="flex flex-col gap-3" data-testid="prefs">
-				<h2 class="type-h2">{m.me_prefs()}</h2>
-				<p class="type-small text-text-2">{m.me_prefs_hint()}</p>
-				<div class="flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-e1">
-					<label class="flex flex-col gap-1.5 type-small text-text-2"
-						>{m.plan_diet()}
-						<select name="diet" class="field h-12 px-3 type-body text-text">
-							<option value="">{m.filter_any()}</option>
-							<option value="veg" selected={data.prefs.diet === 'veg'}>{m.diet_veg()}</option>
-							<option value="non_veg" selected={data.prefs.diet === 'non_veg'}
-								>{m.diet_nonveg()}</option
-							>
-							<option value="jain" selected={data.prefs.diet === 'jain'}>{m.diet_jain()}</option>
-						</select>
-					</label>
-					<label class="flex flex-col gap-1.5 type-small text-text-2"
-						>{m.plan_budget()}
-						<select name="budget_level" class="field h-12 px-3 type-body text-text">
-							<option value="">{m.filter_any()}</option>
-							{#each ['budget', 'mid', 'premium'] as b (b)}<option
-									value={b}
-									selected={data.prefs.budget_level === b}>{msg(`budget_level_${b}`)}</option
-								>{/each}
-						</select>
-					</label>
-					<label class="flex flex-col gap-1.5 type-small text-text-2"
-						>{m.plan_group()}
-						<select name="group_type" class="field h-12 px-3 type-body text-text">
-							<option value="">{m.filter_any()}</option>
-							{#each ['family', 'couple', 'friends', 'solo'] as g (g)}<option
-									value={g}
-									selected={data.prefs.group_type === g}>{msg(`group_${g}`)}</option
-								>{/each}
-						</select>
-					</label>
-					<div class="flex flex-wrap items-center gap-3">
-						<Button type="submit" variant="outline">{m.plan_save()}</Button>
-						{#if form?.prefsSaved}<p class="type-small text-text" role="status">
-								{m.owner_saved()}
-							</p>{/if}
-					</div>
-				</div>
-			</form>
+			<!-- P12: Crabby's memory is the profile (quiz, sources, style) on its own page. -->
+			<a
+				href={resolve('/me/crabby')}
+				class="row-link flex min-h-16 items-center gap-4 rounded-lg bg-surface p-4 text-text no-underline shadow-e1"
+				data-testid="crabby-profile-link"
+			>
+				<Crabby size={40} />
+				<span class="flex min-w-0 flex-1 flex-col">
+					<span class="type-body-strong">{m.crabby_me_title()}</span>
+					<span class="type-small text-text-2">{m.me_crabby_link_hint()}</span>
+				</span>
+				<ChevronRight size={20} class="shrink-0 text-text-2" aria-hidden="true" />
+			</a>
 
 			<section class="flex flex-col gap-3" data-testid="consents">
 				<h2 class="type-h2">{m.consents_title()}</h2>

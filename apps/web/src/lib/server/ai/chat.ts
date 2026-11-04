@@ -11,6 +11,8 @@ import { chain, route } from './router.ts';
 import { runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
 import type { DriveStep } from '#lib/drive.ts';
 import type { Question } from '#lib/questions.ts';
+import { learnFromChat, loadProfile, profileSummary, refreshProfile } from '../profile.ts';
+import { personaRules, type Persona } from './persona.ts';
 
 type DB = SupabaseClient<Database>;
 export type Turn = { role: 'user' | 'assistant'; content: string };
@@ -62,11 +64,14 @@ RULES — follow strictly:
 - When the user's message answers a card ("Header: choice" lines), use those answers. For "Let Crabby decide",
   choose and say which option you picked and why (build_plan: list it in crabby_decides).
 - Never joke about safety. For emergencies tell the user to call 112.
-User preferences (may use as defaults): ${prefs}`;
+What the user told Crabby about themselves (defaults only — what they say now wins):
+${prefs}`;
 
 const explainSystem = (
-	lang: Lang
+	lang: Lang,
+	persona: Persona
 ) => `You are Crabby, a warm, concise local guide for the Konkan coast.
+${personaRules(persona, lang)}
 Write the final reply in ${LANG_NAME[lang]}. Use ONLY the facts in the TOOL RESULTS below — no outside knowledge.
 If the results do not answer the question, say honestly that you don't know (one sentence).
 If a preview was proposed, say it is ready to review and that nothing changes until they tap Apply.
@@ -125,14 +130,11 @@ export async function crabbyTurn(
 		});
 		if (/"safe"\s*:\s*false/.test(mod.content)) return { kind: 'refused', remaining };
 
-		const { data: p } = await db
-			.from('user_preferences')
-			.select('diet, budget_level, group_type')
-			.eq('user_id', userId)
-			.maybeSingle();
-		const prefs = p
-			? JSON.stringify({ diet: p.diet, budget: p.budget_level, group: p.group_type })
-			: 'none';
+		// Profile (10.7): a short summary of the visible lines, refreshed once a day; never raw activity.
+		let profile = await loadProfile(db, userId);
+		if (profile && Date.parse(profile.updated_at ?? profile.created_at) < Date.now() - 864e5)
+			profile = await refreshProfile(db, userId, profile).catch(() => profile);
+		const prefs = profileSummary(profile);
 
 		const ctx: Ctx = {
 			db,
@@ -142,7 +144,8 @@ export async function crabbyTurn(
 			proposed: [],
 			drive: [],
 			path,
-			questions: null
+			questions: null,
+			profile
 		};
 		const convo: Msg[] = [
 			// The model never sees ids (tools.ts): /plan/<uuid> → /plan/:id.
@@ -184,7 +187,7 @@ export async function crabbyTurn(
 
 		const final = await route(chain('explain'), {
 			messages: [
-				{ role: 'system', content: explainSystem(lang) },
+				{ role: 'system', content: explainSystem(lang, profile?.persona ?? 'playful') },
 				...history.slice(-4).map((h) => ({ role: h.role, content: h.content.slice(0, 600) })),
 				{ role: 'user', content: message },
 				{
@@ -194,6 +197,8 @@ export async function crabbyTurn(
 			],
 			maxTokens: 400
 		});
+		// Stated preferences only, when the chat source is on (10.7); the chat itself is never stored.
+		await learnFromChat(db, userId, profile, message).catch(() => {});
 		return {
 			kind: 'answer',
 			reply: final.content.trim(),

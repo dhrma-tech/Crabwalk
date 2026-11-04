@@ -5,6 +5,7 @@ import type { Database } from '#lib/db.types.ts';
 import { lonLat } from '../listings.ts';
 import { createTrip, editInput, editTrip, planInput } from '../planner/trips.ts';
 import { addToDay } from '../planner/workspace.ts';
+import { loadProfile, plannerDefaults } from '../profile.ts';
 
 type DB = SupabaseClient<Database>;
 
@@ -23,7 +24,8 @@ export async function decide(db: DB, userId: string, id: string, apply: boolean)
 		switch (a.type) {
 			case 'create_plan': {
 				const p = planInput.parse(payload);
-				href = `/plan/${(await createTrip(db, userId, p)).id}`;
+				const { mileage } = plannerDefaults(await loadProfile(db, userId));
+				href = `/plan/${(await createTrip(db, userId, p, { mileage })).id}`;
 				break;
 			}
 			case 'edit_plan': {

@@ -102,8 +102,15 @@ export async function computeTrip(db: DB, p: PlanInput) {
 	return { data, days };
 }
 
-export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
+/** `mileage`: the traveller's own vehicle (P12 profile quiz) instead of the region default. */
+export async function createTrip(
+	db: DB,
+	ownerId: string,
+	p: PlanInput,
+	opts: { mileage?: number | null } = {}
+) {
 	const { data, days } = await computeTrip(db, p);
+	const mileage = opts.mileage ?? data.mileage;
 	const { data: trip, error } = await db
 		.from('trips')
 		.insert({
@@ -157,7 +164,7 @@ export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
 			.map((r) => data.places.find((x) => x.id === r.entity_id)?.fee ?? null),
 		km,
 		fuelPrice: data.fuelPrice,
-		mileage: data.mileage,
+		mileage,
 		activities: 0
 	});
 	const { error: e3 } = await db.from('trip_budget').insert({
@@ -169,7 +176,7 @@ export async function createTrip(db: DB, ownerId: string, p: PlanInput) {
 		activities: 0,
 		people: p.people,
 		fuel_price: data.fuelPrice,
-		vehicle_mileage_kmpl: data.mileage
+		vehicle_mileage_kmpl: mileage
 	});
 	if (e3) throw e3;
 	return { id: trip.id, needsTideCheck: data.needsTideCheck.length };

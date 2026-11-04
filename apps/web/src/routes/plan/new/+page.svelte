@@ -5,7 +5,7 @@
 	import Sparkles from '@lucide/svelte/icons/sparkles';
 	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
-	import { tick } from 'svelte';
+	import { tick, untrack } from 'svelte';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
 	import { formatINR } from '#lib/format.ts';
@@ -42,14 +42,18 @@
 	let startDate = $state('');
 	let startQuery = $state('');
 	let gps = $state<{ lon: number; lat: number } | null>(null);
-	let group = $state<'family' | 'couple' | 'solo' | 'friends'>('family');
+	// Defaults from the profile quiz when the traveller filled it (P12).
+	const d = untrack(() => data.defaults);
+	let group = $state<'family' | 'couple' | 'solo' | 'friends'>(d.group_type ?? 'family');
 	let people = $state(2);
 	let budget = $state(15000);
 	let noBudget = $state(false);
-	let interests = $state<string[]>([]);
-	let pace = $state<'relaxed' | 'balanced' | 'packed'>('balanced');
+	let interests = $state<string[]>(d.interests);
+	let pace = $state<'relaxed' | 'balanced' | 'packed'>(d.pace ?? 'balanced');
 	let standout = $state(false);
-	let diet = $state<'' | 'veg' | 'non_veg' | 'jain'>('');
+	let diet = $state<'' | 'veg' | 'non_veg' | 'jain'>(
+		(d.diet as 'veg' | 'non_veg' | 'jain' | null) ?? ''
+	);
 	let status = $state<'idle' | 'busy' | 'error' | 'gps'>('idle');
 	let heading: HTMLElement | undefined = $state();
 	$effect(() => {
