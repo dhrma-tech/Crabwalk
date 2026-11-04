@@ -1,8 +1,9 @@
-// Plan workspace lists, notes and recommendations (docs/P11 Plan workspace.md §3, §7). Writes go through RLS:
+// Plan workspace lists, notes, recommendations and expenses (docs/P11 Plan workspace.md §3, §7). Writes go through RLS:
 // members read, owner/editors write.
 import { z } from 'zod';
 import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '#lib/db.types.ts';
+import { equalShares } from '#lib/expenses.ts';
 import { cardAggs } from '../ratings.ts';
 import { lonLat, tr, type Lang } from '../listings.ts';
 import { describeStops, editTrip } from './trips.ts';
@@ -75,7 +76,14 @@ export async function workspaceView(
 	stops: { entity_type: Kind; entity_id: string }[],
 	lang: Lang
 ) {
-	const [{ data: lists }, { data: items }, { data: notes }] = await Promise.all([
+	const [
+		{ data: lists },
+		{ data: items },
+		{ data: notes },
+		{ data: mates },
+		{ data: spends },
+		{ data: shares }
+	] = await Promise.all([
 		db
 			.from('trip_lists')
 			.select('id, title, position')
@@ -88,7 +96,18 @@ export async function workspaceView(
 			.eq('trip_id', tripId)
 			.order('position')
 			.order('created_at'),
-		db.from('trip_notes').select('body').eq('trip_id', tripId).maybeSingle()
+		db.from('trip_notes').select('body').eq('trip_id', tripId).maybeSingle(),
+		db
+			.from('trip_members')
+			.select('id, display_name, user_id')
+			.eq('trip_id', tripId)
+			.order('joined_at'),
+		db
+			.from('trip_expenses')
+			.select('id, amount, category, label, paid_by, spent_on')
+			.eq('trip_id', tripId)
+			.order('created_at', { ascending: false }),
+		db.from('trip_expense_shares').select('expense_id, member_id, amount').eq('trip_id', tripId)
 	]);
 	const places = (items ?? []).filter((i) => i.kind === 'place') as {
 		entity_type: Kind;
@@ -120,6 +139,18 @@ export async function workspaceView(
 				.filter((i) => i.kind !== 'place' || i.name)
 		})),
 		notes: notes?.body ?? '',
+		// Expenses (§5): tripmates by name only (no account ids or emails reach the page).
+		tripmates: (mates ?? []).map((t) => ({
+			id: t.id,
+			name: t.display_name,
+			account: !!t.user_id
+		})),
+		spends: (spends ?? []).map((s) => ({
+			...s,
+			shares: (shares ?? [])
+				.filter((x) => x.expense_id === s.id)
+				.map((x) => ({ member_id: x.member_id, amount: x.amount }))
+		})),
 		recommended: await recommended(db, stops, taken, lang)
 	};
 }
@@ -195,7 +226,28 @@ export const workspaceOp = z.discriminatedUnion('op', [
 	z.object({ op: z.literal('item.delete'), id: z.uuid() }),
 	z.object({ op: z.literal('item.order'), list_id: z.uuid(), ids: z.array(z.uuid()).max(500) }),
 	z.object({ op: z.literal('item.toDay'), id: z.uuid(), day: z.number().int().min(1).max(7) }),
-	z.object({ op: z.literal('notes.save'), body: z.string().max(20000) })
+	z.object({ op: z.literal('notes.save'), body: z.string().max(20000) }),
+	z.object({ op: z.literal('mate.add'), name: text.max(60) }),
+	z.object({ op: z.literal('mate.remove'), id: z.uuid() }),
+	z.object({
+		op: z.literal('spend.add'),
+		amount: z.number().int().min(1).max(10_000_000),
+		category: z.enum(['stay', 'food', 'fuel', 'entry', 'activities', 'other']),
+		label: z.string().trim().max(120),
+		paid_by: z.uuid(),
+		spent_on: z.iso.date().nullable(),
+		split: z.discriminatedUnion('custom', [
+			z.object({ custom: z.literal(false), members: z.array(z.uuid()).min(1).max(20) }),
+			z.object({
+				custom: z.literal(true),
+				shares: z
+					.array(z.object({ member_id: z.uuid(), amount: z.number().int().min(0) }))
+					.min(1)
+					.max(20)
+			})
+		])
+	}),
+	z.object({ op: z.literal('spend.delete'), id: z.uuid() })
 ]);
 export type WorkspaceOp = z.infer<typeof workspaceOp>;
 
@@ -289,5 +341,40 @@ export async function applyOp(db: DB, tripId: string, o: WorkspaceOp): Promise<b
 					.from('trip_notes')
 					.upsert({ trip_id: tripId, body: o.body }, { onConflict: 'trip_id' })
 			);
+		// Name-only tripmates (P11-2); account tripmates come and go through invites. One with spends or shares
+		// can't be removed (the deferred foreign keys refuse it).
+		case 'mate.add':
+			return ok(await db.from('trip_members').insert({ trip_id: tripId, display_name: o.name }));
+		case 'mate.remove':
+			return ok(
+				await db
+					.from('trip_members')
+					.delete()
+					.eq('id', o.id)
+					.eq('trip_id', tripId)
+					.is('user_id', null)
+			);
+		case 'spend.add': {
+			const shares = o.split.custom
+				? o.split.shares.filter((s) => s.amount > 0)
+				: equalShares(o.amount, o.split.members);
+			if (shares.reduce((t, s) => t + s.amount, 0) !== o.amount) return false;
+			return ok(
+				await db.rpc('log_trip_expense', {
+					_trip: tripId,
+					_amount: o.amount,
+					_category: o.category,
+					_label: o.label,
+					_paid_by: o.paid_by,
+					// Generated types mark every function argument non-null; these two are nullable in SQL.
+					_spent_on: o.spent_on as string,
+					_stop_id: null as unknown as string,
+					_split_custom: o.split.custom,
+					_shares: shares
+				})
+			);
+		}
+		case 'spend.delete':
+			return ok(await db.from('trip_expenses').delete().eq('id', o.id).eq('trip_id', tripId));
 	}
 }

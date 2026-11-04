@@ -1364,6 +1364,9 @@ isOneToOne: false
               "category": string,"km": number,"level": string,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
             }[]
                            },
+"log_trip_expense":
+{ Args: { "_amount": number,"_category": Database["public"]['Enums']["expense_category"],"_label": string,"_paid_by": string,"_shares": Json,"_spent_on": string,"_split_custom": boolean,"_stop_id": string,"_trip": string }; Returns: string
+                           },
 "map_alerts":
 { Args: { "max_lat": number,"max_lon": number,"min_lat": number,"min_lon": number }; Returns: {
               "expires_at": string,"geojson": string,"id": string,"reason_en": string,"reason_hi": string,"reason_mr": string,"reported_at": string,"severity": string,"type": string

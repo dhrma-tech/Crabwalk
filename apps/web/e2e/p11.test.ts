@@ -182,6 +182,45 @@ test('lists: add a place → drag into Day 2 → it shows on the map; move to da
 	await expect(page.getByLabel('Trip notes')).toHaveValue('Ferry leaves at 7');
 });
 
+test('expenses: name-only tripmates, equal and custom splits, settle list, estimate vs actual', async () => {
+	await page.setViewportSize({ width: 1280, height: 800 });
+	await page.goto(`/plan/${trip}`);
+	await page.waitForLoadState('networkidle');
+	const box = page.getByTestId('expenses');
+	await expect(box.getByTestId('tripmate')).toHaveCount(1); // the owner
+	const owner = (await box.getByTestId('tripmate').innerText()).trim();
+	for (const n of ['Ravi', 'Meera']) {
+		await box.getByLabel("Tripmate's name").fill(n);
+		await box.getByRole('button', { name: 'Add tripmate' }).click();
+		await expect(box.getByTestId('tripmate').filter({ hasText: n })).toBeVisible();
+	}
+
+	// ₹900 paid by the owner, split equally between all three.
+	const form = box.getByTestId('spend-form');
+	await form.getByLabel('Amount (₹)').fill('900');
+	await form.getByLabel('What for').fill('Lunch');
+	await form.getByRole('button', { name: 'Log spend' }).click();
+	await expect(box.getByTestId('spend')).toHaveCount(1);
+	await expect(box.getByTestId('settle')).toContainText(`Ravi pays ${owner} ₹300`);
+
+	// ₹400 paid by Ravi: custom shares, the form shows what's left until they add up.
+	await form.getByLabel('Amount (₹)').fill('400');
+	await form.getByLabel('Paid by').selectOption({ label: 'Ravi' });
+	await form.getByLabel('Custom amounts').check();
+	await form.getByLabel(`${owner}'s share`).fill('100');
+	await expect(form.getByTestId('split-left')).toHaveText('₹300 left to split');
+	await expect(form.getByRole('button', { name: 'Log spend' })).toBeDisabled();
+	await form.getByLabel("Meera's share").fill('300');
+	await form.getByRole('button', { name: 'Log spend' }).click();
+	await expect(box.getByTestId('spend')).toHaveCount(2);
+	// Net: owner +500, Ravi +100, Meera −600.
+	const settle = box.getByTestId('settle').getByRole('listitem');
+	await expect(settle).toHaveText([`Meera pays ${owner} ₹500`, 'Meera pays Ravi ₹100']);
+	await expect(page.getByTestId('spent')).toContainText('Spent so far ₹1,300');
+	// A tripmate in a spend can't be removed.
+	await expect(box.getByRole('button', { name: 'Remove Meera' })).toBeDisabled();
+});
+
 test('390 px: map on top, sections in a sheet, outline chips', async () => {
 	await page.setViewportSize({ width: 390, height: 844 });
 	await page.goto(`/plan/${trip}`);

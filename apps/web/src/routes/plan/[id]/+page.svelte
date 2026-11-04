@@ -25,13 +25,15 @@
 	import WorkspaceSection from '#lib/components/plan/WorkspaceSection.svelte';
 	import Outline, { type OutlineItem } from '#lib/components/plan/Outline.svelte';
 	import TripList, { asStop, type ListItem } from '#lib/components/plan/TripList.svelte';
+	import Expenses from '#lib/components/plan/Expenses.svelte';
+	import { formatINR } from '#lib/format.ts';
 	import type { WorkspaceOp } from '#lib/server/planner/workspace.ts';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.9: day tabs → timeline → reorder → add stay/meal → budget → share / PDF / Google Maps.
 	// P11 workspace (docs/P11 Plan workspace.md §2–§3): laptops = outline · sections column · map; phones = map
-	// on top with the sections in a bottom sheet. Sections: overview, places to visit (lists), itinerary, notes. Sections fold; the outline unfolds and scrolls to one. Share,
+	// on top with the sections in a bottom sheet. Sections: overview, places to visit (lists), itinerary, expenses, notes. Sections fold; the outline unfolds and scrolls to one. Share,
 	// vote link, PDF and each day's Google Maps links sit in a Share sheet.
 	let { data, form }: PageProps = $props();
 	let snap = $state<Snap>('half');
@@ -93,6 +95,7 @@
 			.getElementById(`${focusList ? 'item' : 'stop'}-${id}`)
 			?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 	}
+	const spent = $derived(data.spends.reduce((t, s) => t + s.amount, 0));
 	const lists = $derived(
 		data.lists.length ? data.lists : [{ id: null, title: m.plan_places(), items: [] as ListItem[] }]
 	);
@@ -101,6 +104,7 @@
 		overview: true,
 		places: true,
 		itinerary: true,
+		expenses: true,
 		notes: true,
 		publish: true
 	});
@@ -125,6 +129,7 @@
 			section: 'itinerary',
 			sub: true
 		})),
+		{ id: 'expenses', label: m.plan_expenses(), section: 'expenses' },
 		{ id: 'notes', label: m.plan_notes(), section: 'notes' },
 		{ id: 'publish', label: m.plan_publish_title(), section: 'publish' }
 	]);
@@ -294,6 +299,14 @@
 				{#if data.budget}
 					<BudgetCard budget={data.budget} flat editable onsave={(budget) => patch({ budget })} />
 				{/if}
+				<!-- Estimate vs actual (§5): the budget card's total against the sum of logged spends. -->
+				{#if data.spends.length}
+					<p class="type-body" data-testid="spent">
+						{data.budget
+							? m.plan_spent({ spent: formatINR(spent), estimate: formatINR(data.budget.total) })
+							: m.plan_spent_total({ spent: formatINR(spent) })}
+					</p>
+				{/if}
 				<div class={block} data-testid="on-the-day">
 					<h3 class="type-h3">{m.live_title()}</h3>
 					<div class="flex flex-wrap gap-2">
@@ -423,6 +436,10 @@
 						{/if}
 					</div>
 				{/if}
+			</WorkspaceSection>
+
+			<WorkspaceSection id="expenses" title={m.plan_expenses()} bind:open={open.expenses}>
+				<Expenses tripmates={data.tripmates} spends={data.spends} onop={op} />
 			</WorkspaceSection>
 
 			<WorkspaceSection id="notes" title={m.plan_notes()} bind:open={open.notes}>
