@@ -353,3 +353,45 @@ test('G: group chat — live messages, @Crabby with a poll, proactive within the
 	expect((await page.request.get('/plan/vote/anything')).status()).toBe(404);
 	await ed.context().close();
 });
+
+test('H: trip report — live, Pending not guessed, finalize with summary, posted to chat, versions, share link', async ({
+	browser
+}) => {
+	await page.goto(`/plan/${trip}/report`);
+	const report = page.getByTestId('trip-report');
+	await expect(page.getByTestId('report-version')).toHaveText('Live — follows the plan');
+	await expect(report).toContainText(`P12 ${run}`);
+	await expect(report).toContainText('Seed Temple 1');
+	await expect(page.getByTestId('report-asof')).toContainText('Data as of');
+	await expect(page.getByTestId('report-pending')).toContainText('Trip dates');
+	await expect(page.getByTestId('report-emergency')).toContainText('112');
+
+	await page.getByRole('button', { name: 'Finalize report' }).click();
+	await expect(page).toHaveURL(/\/report\?v=1$/);
+	// (The 13-digit run id in the title looks like a phone number, so the scrubber removes it before the model.)
+	await expect(page.getByTestId('report-summary')).toContainText(
+		'Mock summary: P12 [number removed], 2 day(s).'
+	);
+	expect(
+		psql(`select count(*) from trip_messages where trip_id = '${trip}' and kind = 'report'`)
+	).toBe('1');
+
+	// The live report follows plan edits; version 1 stays as it was.
+	psql(
+		`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind)
+		 select '${trip}', 2, 0, 'place', id, 'place' from places where slug = 'seed-beach-1'`
+	);
+	await page.goto(`/plan/${trip}/report`);
+	await expect(page.getByTestId('trip-report')).toContainText('Seed Beach 1');
+	await page.goto(`/plan/${trip}/report?v=1`);
+	await expect(page.getByTestId('trip-report')).not.toContainText('Seed Beach 1');
+
+	// Anyone with the read-only link sees the latest version; tripmates are a count, nobody is named.
+	const shareToken = psql(`select share_token from trips where id = '${trip}'`);
+	const anon = await (await browser.newContext()).newPage();
+	await anon.goto(`/plan/share/${shareToken}/report`);
+	await expect(anon.getByTestId('trip-report')).toContainText(`P12 ${run}`);
+	await expect(anon.getByTestId('trip-report')).toContainText('tripmates');
+	await expect(anon.getByTestId('trip-report')).not.toContainText(`p12-ed-${run}`);
+	await anon.context().close();
+});

@@ -183,6 +183,11 @@
 								{/each}
 							</ul>
 							<p class="type-small text-text-2">{m.chat_votes({ n: total })}</p>
+						{:else if x.kind === 'report'}
+							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- report route from our server -->
+							<a href={String(x.payload?.href ?? '')} class="type-body-strong"
+								>{m.chat_report({ n: Number(x.payload?.version ?? 1) })} · {x.body}</a
+							>
 						{:else if x.kind === 'card' && x.payload?.listing}
 							{@const l = x.payload.listing as { href: string }}
 							<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- listing route from our server -->

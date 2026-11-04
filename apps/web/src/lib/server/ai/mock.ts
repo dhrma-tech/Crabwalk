@@ -73,6 +73,11 @@ export const mock: Provider = {
 			}
 			return { content: '', tool_calls: gplan[done] ?? [] };
 		}
+		// P12 trip report summary: facts only from the JSON it is given.
+		if (sys.startsWith('Write a 2–3 sentence summary of this trip')) {
+			const f = JSON.parse(user) as { title: string; days: unknown[] };
+			return { content: `Mock summary: ${f.title}, ${f.days.length} day(s).`, tool_calls: [] };
+		}
 		if (sys.startsWith("You are Crabby replying in a trip's group chat")) {
 			const block = req.messages.at(-1)?.content ?? '';
 			const veg = /"veg":(\d+)/.exec(block)?.[1];
