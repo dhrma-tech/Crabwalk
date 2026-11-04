@@ -9,6 +9,8 @@ export type Msg = {
 	content: string;
 	tool_calls?: ToolCall[];
 	tool_call_id?: string;
+	/** Vision only (P12 snap and ask / reel screenshots): data URLs of photos, EXIF stripped on the phone. */
+	images?: string[];
 };
 export type ToolDef = { name: string; description: string; parameters: Record<string, unknown> };
 export type ChatRequest = {
@@ -57,7 +59,12 @@ export const groq: Provider = {
 			model: req.model,
 			messages: req.messages.map((m) => ({
 				role: m.role,
-				content: m.content,
+				content: m.images?.length
+					? [
+							{ type: 'text', text: m.content },
+							...m.images.map((url) => ({ type: 'image_url', image_url: { url } }))
+						]
+					: m.content,
 				...(m.tool_calls?.length
 					? {
 							tool_calls: m.tool_calls.map((t) => ({

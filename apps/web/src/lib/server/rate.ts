@@ -41,6 +41,8 @@ export const RULES: Rule[] = [
 		windowS: 600
 	},
 	{ name: 'plan', method: 'POST', path: /^\/api\/trips\/plan$/, limit: 20, windowS: 600 },
+	// Availability requests to owners (P12): the DB also caps 10 a day per traveller.
+	{ name: 'stay-request', method: 'POST', path: /^\/api\/requests$/, limit: 20, windowS: 3600 },
 	{ name: 'trip-edit', method: 'PATCH', path: /^\/api\/trips\/[^/]+$/, limit: 120, windowS: 600 },
 	{ name: 'ai', method: 'POST', path: /^\/api\/ai\//, limit: 40, windowS: 600 },
 	{

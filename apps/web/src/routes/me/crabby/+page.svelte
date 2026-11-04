@@ -31,7 +31,8 @@
 		['use_quiz', m.source_quiz],
 		['use_activity', m.source_activity],
 		['use_chats', m.source_chats],
-		['use_trips', m.source_trips]
+		['use_trips', m.source_trips],
+		['use_photos', m.source_photos]
 	] as const;
 	const SRC: Record<string, () => string> = {
 		quiz: m.src_quiz,

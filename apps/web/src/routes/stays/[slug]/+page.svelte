@@ -17,6 +17,7 @@
 	import Hero from '#lib/components/listing/Hero.svelte';
 	import PriceTable from '#lib/components/listing/PriceTable.svelte';
 	import PriceTip from '#lib/components/crabby/PriceTip.svelte';
+	import RequestForm from '#lib/components/RequestForm.svelte';
 	import Contact from '#lib/components/listing/Contact.svelte';
 	import ReportProblem from '#lib/components/listing/ReportProblem.svelte';
 	import VerdictGauge from '#lib/components/rating/VerdictGauge.svelte';
@@ -189,6 +190,7 @@
 				<PriceTable rows={data.prices} />
 				{#if data.prices.filter((r) => r.price).length >= 2}<PriceTip slug={data.stay.slug} />{/if}
 				<Contact phone={s.phone} whatsapp={s.whatsapp} />
+				<RequestForm type="stay" slug={s.slug} signedIn={data.ratings.signedIn} />
 			</section>
 		</div>
 	</article>

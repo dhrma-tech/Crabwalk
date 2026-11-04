@@ -10,6 +10,7 @@ import { computeTrip, describeStops, planInput } from '../planner/trips.ts';
 import { driveStep, PAGES, SECTIONS, type DriveStep } from '#lib/drive.ts';
 import { questionCard, type Question } from '#lib/questions.ts';
 import { plannerDefaults, type Profile } from '../profile.ts';
+import { requestInput } from '../requests.ts';
 import { eateryFilter, placeFilter, readFilter, stayFilter } from '../filters.ts';
 import type { ToolDef } from './providers.ts';
 
@@ -22,7 +23,8 @@ export type ActionType =
 	| 'shortlist_stays'
 	| 'save_share'
 	| 'add_to_trip'
-	| 'ask_team';
+	| 'ask_team'
+	| 'send_request';
 export type Preview = { title: string; lines: string[]; links?: { label: string; href: string }[] };
 /** In a group chat (P12) the payload travels in the chat card instead of a private ai_actions row. */
 export type Proposed = { id: string; type: ActionType; preview: Preview; payload?: unknown };
@@ -230,6 +232,23 @@ export const TOOL_DEFS: ToolDef[] = [
 				}
 			},
 			['steps']
+		)
+	},
+	{
+		name: 'request_stay',
+		description:
+			"Ask a homestay or eatery that isn't on any booking site whether it is free (dates, guests, budget). The user confirms; the owner or our team replies on Crabwalk. Never claim a booking — there is no booking or payment here. Ask the user for missing dates or guests first.",
+		parameters: obj(
+			{
+				type: str('What to ask', { enum: ['stay', 'eatery'] }),
+				slug: str('Listing slug'),
+				check_in: str('YYYY-MM-DD'),
+				check_out: str('YYYY-MM-DD (stays)'),
+				guests: int('Number of guests'),
+				budget: int('Budget in ₹ per night (stays) or for the meal'),
+				note: str('Short note for the owner')
+			},
+			['type', 'slug', 'check_in', 'guests']
 		)
 	},
 	{
@@ -874,6 +893,38 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 		}
 		case 'ask_team':
 			return proposeAskTeam(ctx, s('question') ?? '', s('place'));
+		case 'request_stay': {
+			const kind = s('type') === 'eatery' ? 'eatery' : 'stay';
+			const r = requestInput.safeParse({
+				type: kind,
+				slug: s('slug'),
+				check_in: s('check_in'),
+				check_out: s('check_out') ?? null,
+				guests: i('guests'),
+				budget: i('budget') ?? null,
+				note: s('note') ?? ''
+			});
+			if (!r.success) return { error: 'missing or bad dates / guests — ask the user' };
+			const l = await listingBySlug(db, kind, r.data.slug);
+			if (!l) return { error: 'listing not found' };
+			const name = n(l.names, lang) ?? l.slug;
+			return propose(
+				ctx,
+				'send_request',
+				{
+					title: msg('req_preview_title', { name }, lang),
+					lines: [
+						r.data.check_out ? `${r.data.check_in} – ${r.data.check_out}` : r.data.check_in,
+						msg('req_guests', { n: r.data.guests }, lang),
+						...(r.data.budget != null
+							? [msg('req_budget', { budget: `₹${r.data.budget}` }, lang)]
+							: []),
+						msg('req_no_booking', {}, lang)
+					]
+				},
+				r.data
+			);
+		}
 		case 'ask_user': {
 			const q = questionCard.safeParse(a.questions);
 			if (!q.success) return { error: 'bad question card: 1–4 questions, 2–4 options each' };

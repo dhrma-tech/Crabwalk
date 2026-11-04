@@ -1,4 +1,5 @@
 <script lang="ts">
+	import RequestForm from '#lib/components/RequestForm.svelte';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
@@ -176,6 +177,7 @@
 
 			<div class="order-10 lg:order-none">
 				<Contact phone={e.phone} whatsapp={e.whatsapp} />
+				<RequestForm type="eatery" slug={e.slug} signedIn={data.ratings.signedIn} />
 			</div>
 		</div>
 	</article>

@@ -19,6 +19,13 @@
 		[m.privacy_s8_title(), m.privacy_s8_body()]
 	];
 	const lines = (b: string) => b.split(String.fromCharCode(10));
+	const p12 = [
+		m.privacy_p12_chat(),
+		m.privacy_p12_profile(),
+		m.privacy_p12_photos(),
+		m.privacy_p12_journal(),
+		m.privacy_p12_requests()
+	];
 	const sent = [m.privacy_ai_sent_1(), m.privacy_ai_sent_2(), m.privacy_ai_sent_3()];
 	const never = [
 		m.privacy_ai_never_1(),
@@ -71,6 +78,14 @@
 			<p class="type-body">{m.privacy_ai_staff()}</p>
 			<h3 class="type-h3">{m.privacy_ai_limits_title()}</h3>
 			<p class="type-body">{m.privacy_ai_limits()}</p>
+		</section>
+
+		<!-- P12: group chat, photos, journal, Crabby profile, stay requests. -->
+		<section class="flex flex-col gap-2" data-testid="privacy-p12">
+			<h2 class="type-h2">{m.privacy_p12_title()}</h2>
+			<ul class="flex list-disc flex-col gap-1.5 pl-6 type-body marker:text-text-2">
+				{#each p12 as line (line)}<li>{line}</li>{/each}
+			</ul>
 		</section>
 	</article>
 </Page>

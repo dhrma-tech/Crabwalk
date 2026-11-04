@@ -89,7 +89,8 @@ export const actions: Actions = {
 				use_quiz: on('use_quiz'),
 				use_activity: on('use_activity'),
 				use_chats: on('use_chats'),
-				use_trips: on('use_trips')
+				use_trips: on('use_trips'),
+				use_photos: on('use_photos')
 			})
 			.eq('user_id', user.id);
 		if (error) return fail(403);

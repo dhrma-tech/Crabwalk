@@ -1,3 +1,4 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 import { psql, signIn } from './helpers.ts';
 
@@ -394,4 +395,335 @@ test('H: trip report — live, Pending not guessed, finalize with summary, poste
 	await expect(anon.getByTestId('trip-report')).toContainText('tripmates');
 	await expect(anon.getByTestId('trip-report')).not.toContainText(`p12-ed-${run}`);
 	await anon.context().close();
+});
+
+test('I: books the unbookable — owner counters once, traveller accepts (phone shared only then); team relays unclaimed', async ({
+	browser
+}) => {
+	const owner = await (await browser.newContext()).newPage();
+	const oEmail = `p12-owner-${run}@e2e.local`;
+	await signIn(owner, oEmail);
+	psql(
+		`update stays set owner_id = (select id from auth.users where email = '${oEmail}') where slug = 'seed-stay-2'`
+	);
+	psql(`update stays set whatsapp = '9822000111' where slug = 'seed-stay-1'`);
+	try {
+		// Traveller asks from the stay page.
+		await page.goto('/stays/seed-stay-2');
+		const form = page.getByTestId('request-form');
+		await form.getByRole('button', { name: 'Ask the owner' }).click();
+		const d = (n: number) =>
+			new Date(Date.now() + (5.5 + 24 * n) * 3600e3).toISOString().slice(0, 10);
+		await form.getByLabel('Check-in').fill(d(10));
+		await form.getByLabel('Check-out').fill(d(12));
+		await form.getByLabel('Guests').fill('3');
+		await form.getByLabel('Budget per night (₹, optional)').fill('2500');
+		await form.getByRole('button', { name: 'Send request' }).click();
+		await expect(form).toContainText('Request sent');
+		const queued = (email: string, kind: string) =>
+			psql(
+				`select count(*) from push_queue q join auth.users u on u.id = q.user_id where u.email = '${email}' and q.kind = '${kind}'`
+			);
+		expect(queued(oEmail, 'stay_request')).toBe('1');
+
+		// The owner sees no phone yet, and counters once.
+		await owner.goto('/owner/requests');
+		const req = owner.getByTestId('incoming-request').first();
+		await expect(req).toContainText('3 guests');
+		await expect(req.getByTestId('request-phone')).toHaveCount(0);
+		await req.getByLabel('Counter offer').check();
+		await req.getByLabel('Price (₹)').fill('2800');
+		await req.getByRole('button', { name: 'Send answer' }).click();
+		await expect(
+			owner.getByTestId('incoming-request').first().getByTestId('request-status')
+		).toHaveText('owner offered a price');
+		expect(queued(`p12-${run}@e2e.local`, 'stay_reply')).toBe('1');
+
+		// The traveller accepts with a phone; only now does the owner see it.
+		await page.goto('/me/requests');
+		const mine = page.getByTestId('my-request').filter({ hasText: 'owner offered a price' });
+		await expect(mine).toContainText('The owner offers ₹2,800');
+		await mine.getByLabel('Your phone for the owner').fill('+91 98000 11122');
+		await mine.getByRole('button', { name: 'Accept and share my phone' }).click();
+		await expect(page.getByTestId('my-request').first().getByTestId('request-status')).toHaveText(
+			'accepted'
+		);
+		await owner.reload();
+		await expect(owner.getByTestId('request-phone').first()).toContainText('+91 98000 11122');
+
+		// Unclaimed stay through Crabby: a preview first, then our team relays and enters the answer.
+		await page.goto('/crabby');
+		await ask('is seed-stay-1 free next week?');
+		const card = page.getByTestId('action-preview').locator('visible=true').last();
+		await expect(card).toContainText('No booking or payment on Crabwalk');
+		await card.getByRole('button', { name: 'Apply' }).click();
+		await expect(page).toHaveURL(/\/me\/requests$/);
+		const team = await (await browser.newContext()).newPage();
+		const vEmail = `p12-relay-${run}@e2e.local`;
+		await signIn(team, vEmail);
+		psql(
+			`insert into user_roles (user_id, role) select id, 'verifier' from auth.users where email = '${vEmail}'`
+		);
+		await team.goto('/admin/requests');
+		const rid = psql(
+			`select r.id from stay_requests r join stays s on s.id = r.entity_id join auth.users u on u.id = r.user_id
+			 where s.slug = 'seed-stay-1' and u.email = 'p12-${run}@e2e.local' order by r.created_at desc limit 1`
+		);
+		const relay = team.locator(`[data-testid="incoming-request"][data-id="${rid}"]`);
+		await expect(relay.getByTestId('relay-link')).toHaveAttribute(
+			'href',
+			/^https:\/\/wa\.me\/919822000111\?text=/
+		);
+		await relay.getByLabel('Available', { exact: true }).check();
+		await relay.getByLabel('Price (₹)').fill('2200');
+		await relay.getByRole('button', { name: 'Send answer' }).click();
+		await expect(relay.getByTestId('request-status')).toHaveText('available');
+		await page.goto('/me/requests');
+		await expect(
+			page.getByTestId('my-request').filter({ hasText: 'Available at ₹2,200' })
+		).toBeVisible();
+		await team.context().close();
+	} finally {
+		psql(`update stays set owner_id = null where slug = 'seed-stay-2'`);
+		psql(`update stays set whatsapp = null where slug = 'seed-stay-1'`);
+		await owner.context().close();
+	}
+});
+
+test('J: Host Crabby — an owner says it in Marathi; Crabby fills prices, phone stays out of the AI', async ({
+	browser
+}) => {
+	const owner = await (await browser.newContext()).newPage();
+	const oEmail = `p12-host-${run}@e2e.local`;
+	await signIn(owner, oEmail);
+	const stayId = psql(`select id from stays where slug = 'seed-stay-2'`);
+	psql(
+		`update stays set owner_id = (select id from auth.users where email = '${oEmail}') where id = '${stayId}'`
+	);
+	psql(
+		`insert into user_roles (user_id, role, entity_type, entity_id) select id, 'owner', 'stay', '${stayId}' from auth.users where email = '${oEmail}'`
+	);
+	const price = () =>
+		psql(`select coalesce(price_min::text, 'null') from stays where id = '${stayId}'`);
+	const before = price();
+	try {
+		await owner.goto(`/owner/stay/${stayId}`);
+		const host = owner.getByTestId('host-crabby');
+		await host
+			.getByLabel('Fill with Crabby')
+			.fill('खोल्या 2000 ते 3500 रुपये प्रति रात्र, फोन 9822012345');
+		await host.getByRole('button', { name: 'Fill the form' }).click();
+		await expect(host).toContainText('Filled — check the fields below');
+		const form = owner.getByTestId('owner-form');
+		await expect(form.locator('input[name="price_min"]')).toHaveValue('2000');
+		await expect(form.locator('input[name="price_max"]')).toHaveValue('3500');
+		await expect(form.locator('input[name="phone"]')).toHaveValue('9822012345');
+		const log = await (await owner.request.get('/api/ai/mock-log')).text();
+		expect(log).toContain('खोल्या 2000 ते 3500');
+		expect(log).not.toContain('9822012345');
+		// Nothing is saved until the owner presses Save.
+		expect(price()).toBe(before);
+	} finally {
+		psql(`update stays set owner_id = null where id = '${stayId}'`);
+		await owner.context().close();
+	}
+});
+
+test('K: snap and ask — off until the traveller allows photos; a match from our data, or "not sure" + a lead', async () => {
+	const png = Buffer.from(
+		'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+		'base64'
+	);
+	const shot = async (caption: string) => {
+		await page.goto('/crabby');
+		const panel = page.getByTestId('crabby-chat').locator('visible=true');
+		await panel.getByLabel('Ask Crabby…').fill(caption);
+		await panel
+			.getByTestId('snap-input')
+			.setInputFiles({ name: 'photo.png', mimeType: 'image/png', buffer: png });
+	};
+	await shot('what is seed fort 1?');
+	await expect(page.getByTestId('snap-consent')).toBeVisible();
+
+	await page.goto('/me/crabby');
+	await page
+		.getByTestId('sources')
+		.getByRole('switch', { name: /Photos I send to Crabby/ })
+		.check();
+	await page.getByTestId('sources').getByRole('button', { name: 'Save' }).click();
+	await expect(page.getByTestId('sources')).toContainText('Saved');
+
+	await shot('what is seed fort 1?');
+	await expect(page.getByTestId('snap-match')).toContainText('Seed Fort 1');
+	const log = await (await page.request.get('/api/ai/mock-log')).text();
+	expect(log).toContain('mock-vision');
+	expect(log).toContain('data:image/jpeg;base64'); // re-encoded on the phone (no EXIF)
+
+	const leads = () => psql(`select count(*) from ai_leads where kind = 'photo'`);
+	const before = Number(leads());
+	await shot('what is this?');
+	await expect(page.getByTestId('snap-unsure')).toBeVisible();
+	await expect(
+		page.getByTestId('snap-unsure').getByRole('button', { name: 'Ask our team' })
+	).toBeVisible();
+	expect(Number(leads())).toBe(before + 1);
+});
+
+test('L: reel to trip — YouTube link → reality check from our data → added to the trip; Instagram asks for the caption; unknown → lead', async () => {
+	await page.goto('/crabby');
+	await ask('https://youtu.be/Seed-Fort-1-sunset-walk');
+	const found = page.getByTestId('reel-found').locator('visible=true').last();
+	await expect(found.getByTestId('reality-check')).toContainText('Seed Fort 1');
+	await expect(found.getByTestId('reality-check')).toContainText('in monsoon');
+	await expect(found.getByTestId('reality-check')).toContainText('Travellers say');
+	const card = page.getByTestId('action-preview').locator('visible=true').last();
+	await expect(card).toContainText('Add to “');
+	await card.getByRole('button', { name: 'Apply' }).click();
+	await expect(page).toHaveURL(/\/plan\/[0-9a-f-]{36}$/);
+	const id = page.url().split('/').at(-1)!;
+	expect(
+		psql(
+			`select count(*) from trip_list_items i join places p on p.id = i.entity_id where i.trip_id = '${id}' and p.slug = 'seed-fort-1'`
+		)
+	).toBe('1');
+
+	// Instagram can't be read: Crabby asks for the caption; the next message is that reel's caption.
+	await page.goto('/crabby');
+	await ask('https://www.instagram.com/reel/AbC123/');
+	await expect(page.getByTestId('reel-caption')).toBeVisible();
+	await ask('मंदिर दर्शन, सकाळची आरती #konkan #ratnagiri');
+	await expect(page.getByTestId('reel-found').locator('visible=true').last()).toContainText(
+		'Seed Temple 1'
+	);
+
+	const leads = () => psql(`select count(*) from ai_leads where kind = 'reel'`);
+	const before = Number(leads());
+	await ask('https://www.youtube.com/watch?v=Unicorn-Island-Tour');
+	const none = page.getByTestId('reel-none').locator('visible=true').last();
+	await expect(none).toContainText('Not in our list yet');
+	await expect(none.getByRole('button', { name: 'Ask our team' })).toBeVisible();
+	expect(Number(leads())).toBe(before + 1);
+});
+
+test('M: trip journal — interview → story only from answers; phone media; shared photo; one-tap vote; share link on/off', async ({
+	browser
+}) => {
+	await page.goto(`/plan/${trip}/journal`);
+	const interview = page.getByTestId('journal-interview');
+	// Earlier steps edit this trip's stops, so answer whichever stop comes first.
+	await interview
+		.getByRole('textbox', { name: /^How was / })
+		.first()
+		.fill('Climbed the walls at sunset. Call me 9822000111');
+	await interview.getByLabel('What will you remember most?').fill('The wind on the ramparts.');
+	await expect(interview.getByRole('link', { name: 'Vote or review' }).first()).toHaveAttribute(
+		'href',
+		/^\/place\/seed-[a-z]+-1#vote$/
+	);
+	await interview.getByRole('button', { name: 'Save answers' }).click();
+	await expect(interview.getByRole('status')).toHaveText('Saved');
+	await interview.getByRole('button', { name: 'Write my story' }).click();
+	const story = page.getByTestId('journal-story');
+	await expect(story).toContainText('Mock story: Climbed the walls at sunset.');
+	await expect(story).toContainText('The wind on the ramparts.');
+	const log = await (await page.request.get('/api/ai/mock-log')).text();
+	expect(log).toContain("Write the traveller's trip story");
+	expect(log).not.toContain('9822000111'); // no phone numbers reach the AI
+	await expect(page.getByTestId('journal-privacy')).toHaveText('Private — only you can see it.');
+
+	// Photos stay on the phone until one is added to the journal.
+	const png = Buffer.from(
+		'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
+		'base64'
+	);
+	await page
+		.getByTestId('journal-add')
+		.setInputFiles({ name: 'beach.png', mimeType: 'image/png', buffer: png });
+	await expect(page.getByTestId('journal-local')).toHaveCount(1);
+	expect(
+		psql(
+			`select count(*) from journal_photos p join trip_journals j on j.id = p.journal_id where j.trip_id = '${trip}'`
+		)
+	).toBe('0');
+	await page.getByTestId('journal-local').getByRole('button', { name: 'Add to journal' }).click();
+	await expect(page.getByTestId('journal-shared').locator('img')).toHaveCount(1);
+	expect(
+		psql(
+			`select count(*) from journal_photos p join trip_journals j on j.id = p.journal_id where j.trip_id = '${trip}'`
+		)
+	).toBe('1');
+
+	// Share link: readable signed out while on; gone when turned off.
+	await page.getByRole('button', { name: 'Turn on share link' }).click();
+	await expect(page.getByTestId('journal-privacy')).toContainText('Anyone with the link');
+	const token = psql(`select share_token from trip_journals where trip_id = '${trip}'`);
+	const anon = await (await browser.newContext()).newPage();
+	await anon.goto(`/journal/${token}`);
+	await expect(anon.getByTestId('journal-shared-page')).toContainText(
+		'Mock story: Climbed the walls'
+	);
+	await expect(anon.getByTestId('journal-shared-page').locator('img')).toHaveCount(1);
+	await page.getByRole('button', { name: 'Turn off share link' }).click();
+	await expect(page.getByTestId('journal-privacy')).toHaveText('Private — only you can see it.');
+	expect((await anon.goto(`/journal/${token}`))?.status()).toBe(404);
+	await anon.context().close();
+});
+
+// Step N: WCAG 2.2 AA on every page P12 added or changed — laptop light EN and phone dark MR.
+test('N: a11y — P12 pages pass axe', async () => {
+	psql(
+		`insert into user_roles (user_id, role) select id, 'verifier' from auth.users where email = 'p12-${run}@e2e.local' on conflict do nothing`
+	);
+	psql(`update trip_journals set share_token = 'p12-a11y-${run}' where trip_id = '${trip}'`);
+	const problems: string[] = [];
+	const pages = [
+		'/crabby',
+		'/me/crabby',
+		'/me/requests',
+		`/plan/${trip}`,
+		`/plan/${trip}/report`,
+		`/plan/${trip}/journal`,
+		`/journal/p12-a11y-${run}`,
+		'/admin/questions',
+		'/admin/requests',
+		'/privacy'
+	];
+	for (const [w, h, scheme, locale] of [
+		[1280, 800, 'light', 'en'],
+		[390, 844, 'dark', 'mr']
+	] as const) {
+		await page.setViewportSize({ width: w, height: h });
+		await page.emulateMedia({ colorScheme: scheme });
+		await page
+			.context()
+			.addCookies([{ name: 'PARAGLIDE_LOCALE', value: locale, url: 'http://localhost:4173' }]);
+		for (const path of pages) {
+			await page.goto(path);
+			await page.waitForLoadState('networkidle');
+			if (path === '/crabby') {
+				// With Crabby's P12 cards on screen: a reel reality check.
+				const box = page.locator('#crabby-input').locator('visible=true'); // any language
+				await box.fill('https://youtu.be/Seed-Fort-1-a11y');
+				await box.press('Enter');
+				await expect(
+					page.getByTestId('reality-check').locator('visible=true').first()
+				).toBeVisible();
+			}
+			const r = await new AxeBuilder({ page })
+				.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+				.exclude('.maplibregl-canvas')
+				.analyze();
+			problems.push(
+				...r.violations.map(
+					(v) =>
+						`${w} ${scheme} ${locale} ${path}: ${v.id} (${v.impact}): ${v.nodes
+							.map((n) => n.target.join(' '))
+							.slice(0, 3)
+							.join(' | ')}`
+				)
+			);
+		}
+	}
+	await page.context().clearCookies({ name: 'PARAGLIDE_LOCALE' });
+	expect(problems).toEqual([]);
 });

@@ -116,7 +116,7 @@
 	}
 </script>
 
-<section class="flex flex-col gap-4" data-testid="verdict-vote">
+<section id="vote" class="flex scroll-mt-20 flex-col gap-4" data-testid="verdict-vote">
 	<h2 class="type-h2">{m.vote_title()}</h2>
 	{#if !signedIn}
 		<div><Button href={loginHref(page.url)} variant="secondary">{m.vote_signin()}</Button></div>

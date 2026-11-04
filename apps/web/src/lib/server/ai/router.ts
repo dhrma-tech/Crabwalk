@@ -1,6 +1,12 @@
 // Provider router (BACKEND §11.1 as overridden by DECISIONS P8-1). On 429 (or 5xx / network / missing key)
 // the next link in the chain is tried. No paid fallback. Model IDs come from env.
-import { AI_MODEL_DRAFT, AI_MODEL_EXPLAIN, AI_MODEL_INTENT, AI_PROVIDER } from '$app/env/private';
+import {
+	AI_MODEL_DRAFT,
+	AI_MODEL_EXPLAIN,
+	AI_MODEL_INTENT,
+	AI_MODEL_VISION,
+	AI_PROVIDER
+} from '$app/env/private';
 import {
 	gemini,
 	groq,
@@ -15,16 +21,19 @@ import { scrubMessages } from './scrub.ts';
 /** Every payload leaving the server passes through here (tests inspect it via `onPayload`). */
 export const audit: { onPayload?: (provider: string, req: ChatRequest) => void } = {};
 
-export type Task = 'intent' | 'explain' | 'draft';
+export type Task = 'intent' | 'explain' | 'draft' | 'vision';
 type Link = { provider: Provider; model: string };
 
 const INTENT = () => AI_MODEL_INTENT || 'llama-3.1-8b-instant';
 const EXPLAIN = () => AI_MODEL_EXPLAIN || 'llama-3.3-70b-versatile';
 const DRAFT = () => AI_MODEL_DRAFT || 'gemini-3.5-flash-lite';
+// P12-4: photos from travellers go to a Groq vision model only (never Gemini — P8-1).
+const VISION = () => AI_MODEL_VISION || 'qwen/qwen3.8-27b';
 
 /** Traveller-facing tasks never reach Gemini (free tier trains on prompts — P8-1). */
 export function chain(task: Task): Link[] {
 	if (AI_PROVIDER === 'mock') return [{ provider: mock, model: `mock-${task}` }];
+	if (task === 'vision') return [{ provider: groq, model: VISION() }];
 	if (task === 'intent')
 		return [
 			{ provider: groq, model: INTENT() },

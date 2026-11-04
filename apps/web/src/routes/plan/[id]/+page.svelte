@@ -578,10 +578,13 @@
 							: m.plan_spent_total({ spent: formatINR(spent) })}
 					</p>
 				{/if}
-				<!-- P12 step H: the full trip report (live, versions, PDF, share). -->
-				<div class="print:hidden">
+				<!-- P12 steps H and M: the full trip report (live, versions, PDF, share) and the user's journal. -->
+				<div class="flex flex-wrap gap-2 print:hidden">
 					<Button variant="secondary" href={resolve('/plan/[id]/report', { id: data.trip.id })}
 						>{m.plan_report()}</Button
+					>
+					<Button variant="secondary" href={resolve('/plan/[id]/journal', { id: data.trip.id })}
+						>{m.journal_title()}</Button
 					>
 				</div>
 				<div class={block} data-testid="on-the-day">

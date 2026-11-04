@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Mic from '@lucide/svelte/icons/mic';
+	import Camera from '@lucide/svelte/icons/camera';
 	import Send from '@lucide/svelte/icons/send';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
@@ -13,6 +14,7 @@
 		crabby,
 		decide,
 		loadTeamQuestions,
+		snap,
 		type Action
 	} from '#lib/crabby.svelte.ts';
 	import { onMount } from 'svelte';
@@ -21,6 +23,7 @@
 	import EmergencyCard from '../EmergencyCard.svelte';
 	import ActionPreviewCard from './ActionPreviewCard.svelte';
 	import QuestionCard from './QuestionCard.svelte';
+	import RealityCheck from './RealityCheck.svelte';
 	import { page } from '$app/state';
 	import { loginHref } from '#lib/login.ts';
 
@@ -177,6 +180,60 @@
 								onanswer={(answer) => answerCard(t, answer)}
 							/>
 						{/if}
+						{#if t.snap?.kind === 'match'}
+							<!-- eslint-disable svelte/no-navigation-without-resolve -- place / dish route from our server -->
+							<div class="flex flex-col gap-1" data-testid="snap-match">
+								<p class="type-label text-text-2">{m.snap_found()}</p>
+								<a href={t.snap.href} class="type-h3">{t.snap.name}</a>
+								{#if t.snap.story}<p class="type-body">{t.snap.story}</p>{/if}
+							</div>
+							<!-- eslint-enable svelte/no-navigation-without-resolve -->
+						{:else if t.snap?.kind === 'unsure'}
+							<div class="flex flex-col gap-2" data-testid="snap-unsure">
+								<p class="type-body">{m.snap_unsure()}</p>
+								<div>
+									<Button
+										variant="secondary"
+										onclick={() =>
+											t.snap?.kind === 'unsure' &&
+											ask(m.snap_ask_team({ what: t.snap.description }))}>{m.snap_team()}</Button
+									>
+								</div>
+							</div>
+						{:else if t.snap?.kind === 'consent'}
+							<p class="type-body" data-testid="snap-consent">
+								{m.snap_consent()}
+								<a href={resolve('/me/crabby')}>{m.crabby_me_title()}</a>
+							</p>
+						{/if}
+						{#if t.reel?.kind === 'found'}
+							<div class="flex flex-col gap-2" data-testid="reel-found">
+								<p class="type-small text-text-2">{m.reel_found()}</p>
+								{#each t.reel.places as p (p.slug)}<RealityCheck place={p} />{/each}
+								{#if !t.reel.action}
+									<a href={resolve('/plan/new')} class="type-label">{m.reel_no_trip()}</a>
+								{/if}
+							</div>
+						{:else if t.reel?.kind === 'none'}
+							<div class="flex flex-col gap-2" data-testid="reel-none">
+								<p class="type-body">{m.reel_none()}</p>
+								<div>
+									<Button
+										variant="secondary"
+										onclick={() =>
+											t.reel?.kind === 'none' && ask(m.reel_ask_team({ what: t.reel.what }))}
+										>{m.snap_team()}</Button
+									>
+								</div>
+							</div>
+						{:else if t.reel?.kind === 'need_caption'}
+							<p class="type-body" data-testid="reel-caption">{m.reel_need_caption()}</p>
+						{:else if t.reel?.kind === 'consent'}
+							<p class="type-body" data-testid="snap-consent">
+								{m.snap_consent()}
+								<a href={resolve('/me/crabby')}>{m.crabby_me_title()}</a>
+							</p>
+						{/if}
 						{#each t.actions ?? [] as a (a.id)}
 							<ActionPreviewCard action={a} onact={(apply) => act(a, apply)} />
 						{/each}
@@ -216,6 +273,28 @@
 			</div>
 		{/if}
 		<form onsubmit={send} class="field mx-6 flex items-end gap-1 rounded-xl p-0.5">
+			<!-- Snap and ask (P12): a photo, with the typed text as its question. -->
+			<label
+				class="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-text-2 hover:text-text"
+			>
+				<span class="sr-only">{m.snap_button()}</span>
+				<Camera size={22} aria-hidden="true" />
+				<input
+					type="file"
+					accept="image/*"
+					capture="environment"
+					class="sr-only"
+					data-testid="snap-input"
+					onchange={async (e) => {
+						const f = e.currentTarget.files?.[0];
+						e.currentTarget.value = '';
+						if (!f) return;
+						const caption = text;
+						text = '';
+						await snap(f, caption);
+					}}
+				/>
+			</label>
 			{#if SR}
 				<button
 					type="button"

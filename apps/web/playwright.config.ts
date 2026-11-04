@@ -38,7 +38,14 @@ export default defineConfig({
 	// Font rendering differs per OS, so baselines are per platform (committed: win32).
 	snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}-{platform}{ext}',
 	expect: { toHaveScreenshot: { maxDiffPixelRatio: 0.01, animations: 'disabled' } },
-	use: { baseURL: 'http://localhost:4173', ...devices['Desktop Chrome'], channel: 'chromium' },
+	use: {
+		baseURL: 'http://localhost:4173',
+		...devices['Desktop Chrome'],
+		channel: 'chromium',
+		// A stuck click or page load fails where it happens, not as a bare test timeout.
+		actionTimeout: 20_000,
+		navigationTimeout: 30_000
+	},
 	webServer: [
 		{
 			// Local stack: Crabby runs on the scripted mock provider (DECISIONS P8-2) — no real LLM calls; the group chat

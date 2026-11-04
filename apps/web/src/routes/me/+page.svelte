@@ -163,6 +163,14 @@
 				</span>
 				<ChevronRight size={20} class="shrink-0 text-text-2" aria-hidden="true" />
 			</a>
+			<a
+				href={resolve('/me/requests')}
+				class="row-link flex min-h-14 items-center gap-4 rounded-lg bg-surface px-4 text-text no-underline shadow-e1"
+				data-testid="my-requests-link"
+			>
+				<span class="min-w-0 flex-1 type-body-strong">{m.req_mine()}</span>
+				<ChevronRight size={20} class="shrink-0 text-text-2" aria-hidden="true" />
+			</a>
 
 			<section class="flex flex-col gap-3" data-testid="consents">
 				<h2 class="type-h2">{m.consents_title()}</h2>

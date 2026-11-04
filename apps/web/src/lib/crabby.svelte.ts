@@ -6,6 +6,7 @@ import { m } from './paraglide/messages.js';
 import type { DriveStep, PageName } from './drive.ts';
 import type { Question } from './questions.ts';
 import { drive } from './drive.svelte.ts';
+import type { ReelResult } from './server/ai/reel.ts';
 
 const PAGE_NAME: Record<PageName, () => string> = {
 	discover: m.nav_discover,
@@ -60,6 +61,13 @@ export type Bubble = {
 	alternatives?: { slug: string; name: string }[];
 	/** "Ask, don't assume" card; answered once the user sends their picks. */
 	questions?: Question[];
+	/** Snap and ask (P12): what Crabby matched, "not sure", or that photos are switched off. */
+	snap?:
+		| { kind: 'match'; type: 'place' | 'dish'; name: string; story: string | null; href: string }
+		| { kind: 'unsure'; description: string }
+		| { kind: 'consent' };
+	/** Reel to trip (P12): reality checks for the places a reel shows, or "Not in our list yet". */
+	reel?: ReelResult | { kind: 'consent' };
 	answered?: boolean;
 };
 
@@ -82,8 +90,14 @@ export const crabby = $state({
 	busy: false,
 	remaining: null as number | null,
 	emergency: false,
-	signin: false
+	signin: false,
+	/** After an Instagram link: the next message or photo is that reel's caption / screenshot. */
+	reelNext: null as string | null
 });
+
+const REEL_URL = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com|youtu\.be|instagram\.com)\/\S+/i;
+/** A pasted reel caption: two or more hashtags. */
+const CAPTION = /#[\p{L}\p{N}_]+[\s\S]*#[\p{L}\p{N}_]+/u;
 
 export async function ask(text: string) {
 	const message = text.trim();
@@ -92,6 +106,12 @@ export async function ask(text: string) {
 		crabby.emergency = true; // EmergencyCard; no request is made
 		return;
 	}
+	const url = REEL_URL.exec(message)?.[0] ?? null;
+	if (url || crabby.reelNext || CAPTION.test(message))
+		return reel(message, {
+			url: url ?? crabby.reelNext,
+			caption: message.replace(url ?? '', '').trim()
+		});
 	const history = crabby.turns
 		.filter((t) => !t.kind && t.content)
 		.slice(-6)
@@ -160,6 +180,98 @@ export async function loadTeamQuestions() {
 }
 
 /** Send a question card's answers as the next message. */
+/** Re-encode on the phone: ≤ 1024 px JPEG, which also drops EXIF/GPS (P12 snap and ask). */
+async function shrink(file: File) {
+	const bmp = await createImageBitmap(file);
+	const scale = Math.min(1, 1024 / Math.max(bmp.width, bmp.height));
+	const c = document.createElement('canvas');
+	c.width = Math.round(bmp.width * scale);
+	c.height = Math.round(bmp.height * scale);
+	c.getContext('2d')!.drawImage(bmp, 0, 0, c.width, c.height);
+	return c.toDataURL('image/jpeg', 0.8);
+}
+/** The traveller's position only if they already allowed it — used to rank our places, never sent to the AI. */
+async function whereIfAllowed() {
+	const p = await navigator.permissions?.query({ name: 'geolocation' }).catch(() => null);
+	if (p?.state !== 'granted') return null;
+	return new Promise<{ lon: number; lat: number } | null>((ok) =>
+		navigator.geolocation.getCurrentPosition(
+			(g) => ok({ lon: g.coords.longitude, lat: g.coords.latitude }),
+			() => ok(null),
+			{ timeout: 5000, maximumAge: 300_000 }
+		)
+	);
+}
+
+/** Snap and ask: a photo (+ optional question) → what it is, from our places and dishes. */
+export async function snap(file: File, caption: string) {
+	if (crabby.busy) return;
+	if (crabby.reelNext) return reel(caption.trim() || m.snap_sent(), { image: file, caption });
+	crabby.turns.push({ role: 'user', content: caption.trim() || m.snap_sent() });
+	crabby.busy = true;
+	try {
+		const [image, near] = await Promise.all([shrink(file), whereIfAllowed()]);
+		const res = await fetch('/api/ai/snap', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ image, caption, near })
+		});
+		if (res.status === 401) {
+			crabby.signin = true;
+			crabby.turns.pop();
+			return;
+		}
+		const r = (await res.json()) as
+			NonNullable<Bubble['snap']> | { kind: 'limit' } | { kind: 'unavailable' };
+		if (r.kind === 'match' || r.kind === 'unsure' || r.kind === 'consent')
+			crabby.turns.push({ role: 'assistant', content: '', snap: r });
+		else crabby.turns.push({ role: 'assistant', content: '', kind: r.kind });
+	} catch {
+		crabby.turns.push({ role: 'assistant', content: '', kind: 'unavailable' });
+	} finally {
+		crabby.busy = false;
+	}
+}
+
+/** Reel to trip: a YouTube / Instagram link, a caption or a screenshot → reality checks + "Add to trip". */
+async function reel(shown: string, input: { url?: string | null; caption?: string; image?: File }) {
+	crabby.turns.push({ role: 'user', content: shown });
+	const url = input.url ?? null;
+	crabby.reelNext = null;
+	crabby.busy = true;
+	try {
+		const image = input.image ? await shrink(input.image) : null;
+		const res = await fetch('/api/ai/reel', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ url, caption: input.caption ?? '', image })
+		});
+		if (res.status === 401) {
+			crabby.signin = true;
+			crabby.turns.pop();
+			return;
+		}
+		if (res.status === 400) throw new Error('not a reel');
+		const r = (await res.json()) as
+			NonNullable<Bubble['reel']> | { kind: 'limit' } | { kind: 'unavailable' };
+		if (r.kind === 'limit' || r.kind === 'unavailable')
+			crabby.turns.push({ role: 'assistant', content: '', kind: r.kind });
+		else {
+			if (r.kind === 'need_caption') crabby.reelNext = url;
+			crabby.turns.push({
+				role: 'assistant',
+				content: '',
+				reel: r,
+				...(r.kind === 'found' && r.action ? { actions: [r.action] } : {})
+			});
+		}
+	} catch {
+		crabby.turns.push({ role: 'assistant', content: '', kind: 'unavailable' });
+	} finally {
+		crabby.busy = false;
+	}
+}
+
 export async function answerCard(t: Bubble, text: string) {
 	t.answered = true;
 	await ask(text);

@@ -73,6 +73,44 @@ export const mock: Provider = {
 			}
 			return { content: '', tool_calls: gplan[done] ?? [] };
 		}
+		// P12 vision (snap and ask, reel screenshots): the mock can't see, so the caption steers it.
+		if (req.model === 'mock-vision') {
+			const said = text;
+			const out = /seed fort 1/.test(said)
+				? { kind: 'place', name_guess: 'Seed Fort 1', category: 'fort', keywords: ['fort'] }
+				: /fort/.test(said)
+					? { kind: 'place', name_guess: null, category: 'fort', keywords: ['fort', 'walls'] }
+					: { kind: 'other', name_guess: null, category: null, keywords: ['statue', 'garden'] };
+			return { content: JSON.stringify(out), tool_calls: [] };
+		}
+		// P12 trip journal: the story is the traveller's own lines, in order (nothing added).
+		if (sys.startsWith("Write the traveller's trip story")) {
+			const f = JSON.parse(user) as { stops: { said: string | null }[]; whole_trip: string | null };
+			const said = [...f.stops.map((s) => s.said), f.whole_trip].filter(Boolean);
+			return { content: `Mock story: ${said.join(' ')}`, tool_calls: [] };
+		}
+		// P12 reel to trip: a Marathi "temple" caption names Seed Temple 1; anything else names nothing.
+		if (sys.startsWith('From a travel reel'))
+			return {
+				content: JSON.stringify({ places: user.includes('मंदिर') ? ['Seed Temple 1'] : [] }),
+				tool_calls: []
+			};
+		// P12 Host Crabby: prices from the owner's words; daily hours from "A to B" with "open".
+		if (sys.startsWith('You fill a')) {
+			const nums = [...user.matchAll(/\b(\d{3,6})\b/g)].map((x) => Number(x[1]));
+			const out: Record<string, unknown> = {};
+			if (sys.includes('homestay')) {
+				if (nums[0]) out.price_min = nums[0];
+				if (nums[1]) out.price_max = nums[1];
+			} else if (nums[0]) out.price_for_two = nums[0];
+			const h = /(\d{1,2})\s*(?:to|ते|से)\s*(\d{1,2})\b/.exec(user);
+			if (h && /open|उघड|खुल/i.test(user)) {
+				const pad = (n: number) => `${String(n).padStart(2, '0')}:00`;
+				const close = Number(h[2]) < 12 ? Number(h[2]) + 12 : Number(h[2]);
+				out.hours = [{ days: [0, 1, 2, 3, 4, 5, 6], opens: pad(Number(h[1])), closes: pad(close) }];
+			}
+			return { content: JSON.stringify(out), tool_calls: [] };
+		}
 		// P12 trip report summary: facts only from the JSON it is given.
 		if (sys.startsWith('Write a 2–3 sentence summary of this trip')) {
 			const f = JSON.parse(user) as { title: string; days: unknown[] };
@@ -102,7 +140,21 @@ export const mock: Provider = {
 			const plan: ToolCall[][] = [];
 			// P12 drive: show / open / filter / switch sections; add-to-trip previews.
 			const listing = /(seed-[a-z0-9-]+)/.exec(text)?.[1];
-			if (text.includes('admin'))
+			const day = (n: number) =>
+				new Date(Date.now() + (5.5 + 24 * n) * 3600e3).toISOString().slice(0, 10);
+			// P12 books the unbookable: "is <stay slug> free" → a request preview.
+			if (text.includes(' free') && listing?.startsWith('seed-stay'))
+				plan.push([
+					call('request_stay', {
+						type: 'stay',
+						slug: listing,
+						check_in: day(7),
+						check_out: day(9),
+						guests: 2,
+						budget: 2500
+					})
+				]);
+			else if (text.includes('admin'))
 				plan.push([call('drive', { steps: [{ action: 'openPage', page: 'admin' }] })]);
 			else if (text.includes('veg food'))
 				plan.push([

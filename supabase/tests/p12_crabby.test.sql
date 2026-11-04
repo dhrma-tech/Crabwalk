@@ -105,7 +105,8 @@ select throws_ok($$ update public.stay_requests set guests = 4 $$, '42501', null
 insert into public.stay_requests (entity_type, entity_id, check_in, guests)
   values ('stay', (select unclaimed from fx), current_date + 20, 3);
 select pg_temp.login('00000000-0000-0000-0012-0000000000a3');
-select lives_ok($$ update public.stay_requests set status = 'relayed' where entity_id = (select unclaimed from fx) $$,
+select lives_ok($$ update public.stay_requests set status = 'relayed'
+  where entity_id = (select unclaimed from fx) and user_id = '00000000-0000-0000-0012-0000000000a1' $$,
   'team relays an unclaimed stay''s request');
 select is((select relayed_by from public.stay_requests where user_id = '00000000-0000-0000-0012-0000000000a1' and entity_id = (select unclaimed from fx)), '00000000-0000-0000-0012-0000000000a3'::uuid, 'relayed_by set');
 

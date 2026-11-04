@@ -20,6 +20,16 @@
 				<Clock size={18} class="mt-0.5 shrink-0" aria-hidden="true" />{m.claim_pending()}
 			</p>{/if}
 		{#if data.listings.length}
+			<!-- P12 step I: availability requests for my listings. -->
+			<a
+				href={resolve('/owner/requests')}
+				class="row-link flex min-h-14 items-center gap-3 rounded-lg bg-surface px-4 text-text no-underline shadow-e1"
+				><span class="min-w-0 flex-1 type-body-strong">{m.req_incoming()}</span><ChevronRight
+					size={18}
+					class="shrink-0 text-text-2"
+					aria-hidden="true"
+				/></a
+			>
 			<InsetList>
 				<ul>
 					{#each data.listings as l (l.id)}

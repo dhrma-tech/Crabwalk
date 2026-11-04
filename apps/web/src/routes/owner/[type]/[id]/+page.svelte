@@ -6,6 +6,8 @@
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import PhotoUpload from '#lib/components/listing/PhotoUpload.svelte';
+	import HostCrabby from '#lib/components/HostCrabby.svelte';
+	import type { HostFill } from '#lib/server/ai/host.ts';
 	import Info from '@lucide/svelte/icons/info';
 	import type { PageProps } from './$types';
 
@@ -34,6 +36,23 @@
 	);
 	let busy = $state(false);
 	const num = (s: string) => (s === '' ? null : Number(s));
+	// Host Crabby (P12 step J): fills what the owner said; they check it and press Save as usual.
+	function onfill(f: HostFill) {
+		if (f.price_min != null) priceMin = String(f.price_min);
+		if (f.price_max != null) priceMax = String(f.price_max);
+		if (f.price_for_two != null) priceTwo = String(f.price_for_two);
+		if (f.menu_add?.length) menu = [...menu.split('\n').filter(Boolean), ...f.menu_add].join('\n');
+		if (f.phone) phone = f.phone;
+		if (f.whatsapp) whatsapp = f.whatsapp;
+		for (const h of f.hours ?? [])
+			for (const d of h.days) {
+				const row = hours.find((x) => x.weekday === d);
+				if (!row) continue;
+				row.closed = !!h.closed;
+				if (h.opens) row.opens = h.opens;
+				if (h.closes) row.closes = h.closes;
+			}
+	}
 
 	async function save(e: SubmitEvent) {
 		e.preventDefault();
@@ -74,6 +93,9 @@
 </script>
 
 <Page title={data.name ?? m.owner_edit()} back>
+	<div class="mx-auto mb-4 max-w-170">
+		<HostCrabby type={data.stay ? 'stay' : 'eatery'} {onfill} />
+	</div>
 	<!-- Tideline tool variant (Report 2 §9.15, T-40): grouped surface cards, `field` inputs, no banner. -->
 	<form onsubmit={save} class="mx-auto flex max-w-170 flex-col gap-4" data-testid="owner-form">
 		<p class="flex gap-2.5 rounded-md bg-lagoon-50 p-3 type-small text-text">
