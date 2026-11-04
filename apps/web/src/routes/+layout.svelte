@@ -4,6 +4,7 @@
 	import AppNav from '#lib/components/AppNav.svelte';
 	import Toaster from '#lib/components/Toaster.svelte';
 	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
+	import CrabbyDriver from '#lib/components/crabby/CrabbyDriver.svelte';
 	import { onMount } from 'svelte';
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/state';
@@ -46,4 +47,5 @@
 </div>
 <AppNav />
 <CrabbyBubble />
+<CrabbyDriver />
 <Toaster />

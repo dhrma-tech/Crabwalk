@@ -15,11 +15,11 @@
 	// the current item gets a kokum icon and dot. Laptops navigate from the top bar (T-3). Hidden while typing
 	// (the on-screen keyboard is up), on /navigate and under the emergency card.
 	const items = [
-		{ href: resolve('/'), label: m.nav_discover, icon: Compass },
-		{ href: resolve('/map'), label: m.nav_map, icon: MapIcon },
-		{ href: resolve('/crabby'), label: m.nav_crabby, icon: null },
-		{ href: resolve('/plan/new'), label: m.nav_plan, icon: Route },
-		{ href: resolve('/me'), label: m.nav_me, icon: CircleUser }
+		{ href: resolve('/'), label: m.nav_discover, icon: Compass, drive: 'discover' },
+		{ href: resolve('/map'), label: m.nav_map, icon: MapIcon, drive: 'map' },
+		{ href: resolve('/crabby'), label: m.nav_crabby, icon: null, drive: 'crabby' },
+		{ href: resolve('/plan/new'), label: m.nav_plan, icon: Route, drive: 'plan_new' },
+		{ href: resolve('/me'), label: m.nav_me, icon: CircleUser, drive: 'me' }
 	];
 
 	let typing = $state(false);
@@ -55,6 +55,7 @@
 			<li class="flex">
 				<a
 					href={item.href}
+					data-drive="openPage:{item.drive}"
 					aria-current={on ? 'page' : undefined}
 					class={[
 						'relative flex flex-1 flex-col items-center justify-center gap-0.5 px-0.5 text-center type-label no-underline',

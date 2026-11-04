@@ -50,7 +50,39 @@ export const mock: Provider = {
 				(m) => m.role === 'assistant' && m.tool_calls?.length
 			).length;
 			const plan: ToolCall[][] = [];
-			if (text.includes('merge'))
+			// P12 drive: show / open / filter / switch sections; add-to-trip previews.
+			const listing = /(seed-[a-z0-9-]+)/.exec(text)?.[1];
+			if (text.includes('admin'))
+				plan.push([call('drive', { steps: [{ action: 'openPage', page: 'admin' }] })]);
+			else if (text.includes('veg food'))
+				plan.push([
+					call('drive', {
+						steps: [{ action: 'setFilters', page: 'food', filters: { diet: 'veg' } }]
+					})
+				]);
+			else if (text.includes('on the map') && listing)
+				plan.push([call('drive', { steps: [{ action: 'openMap', slug: listing }] })]);
+			else if (text.includes('go to expenses'))
+				plan.push([call('drive', { steps: [{ action: 'switchTab', section: 'expenses' }] })]);
+			else if (text.includes('open my trip'))
+				plan.push(
+					[call('list_my_trips', {})],
+					[call('drive', { steps: [{ action: 'openTrip', trip: 'T1' }] })]
+				);
+			else if (text.includes('to my trip') && listing)
+				plan.push(
+					[call('list_my_trips', {})],
+					[
+						call('propose_action', {
+							type: 'add_to_trip',
+							listing_type: 'place',
+							slug: listing,
+							trip: 'T1',
+							day: 1
+						})
+					]
+				);
+			else if (text.includes('merge'))
 				plan.push([call('list_my_trips', {})], [call('merge_group_votes', { trip: 'T1' })]);
 			else if (text.includes('plan')) {
 				const from = /from ([\p{L}\p{N} ]+?)(?: for|$)/u.exec(user)?.[1]?.trim() ?? '';
@@ -86,6 +118,10 @@ export const mock: Provider = {
 		// Explanation: only names found in the TOOL RESULTS block.
 		const block = req.messages.find((m) => m.content.startsWith('TOOL RESULTS:'))?.content ?? '';
 		const names = [...block.matchAll(/"name":"([^"]+)"/g)].map((x) => x[1]);
+		if (/^REFUSED: /m.test(block))
+			return { content: "Mock: I can't open that page.", tool_calls: [] };
+		if (/^DOING: /m.test(block))
+			return { content: 'Mock: on it — opening that for you.', tool_calls: [] };
 		const previews = /PROPOSED PREVIEWS: (.+)$/m.exec(block)?.[1];
 		if (previews)
 			return {

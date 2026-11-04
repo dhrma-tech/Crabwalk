@@ -1,6 +1,48 @@
 // Crabby conversation for this tab only (memory; BACKEND §11.4: nothing stored server-side).
 // Emergency keywords are caught HERE, before any network call (§11.6).
+import { page } from '$app/state';
 import { isEmergency } from './emergency.ts';
+import { m } from './paraglide/messages.js';
+import type { DriveStep, PageName } from './drive.ts';
+import { drive } from './drive.svelte.ts';
+
+const PAGE_NAME: Record<PageName, () => string> = {
+	discover: m.nav_discover,
+	map: m.nav_map,
+	stays: m.stays_title,
+	food: m.food_title,
+	taste_konkan: m.taste_title,
+	itineraries: m.itin_title,
+	start: m.start_title,
+	plan_new: m.plan_new,
+	me: m.nav_me,
+	crabby: m.nav_crabby
+};
+const SECTION_NAME: Record<string, () => string> = {
+	overview: m.plan_overview,
+	places: m.plan_places,
+	itinerary: m.plan_itinerary,
+	expenses: m.plan_expenses,
+	notes: m.plan_notes,
+	publish: m.plan_publish_title
+};
+/** Status line for a step ("Crabby: opening Stays"). */
+export function stepLabel(s: DriveStep): string {
+	switch (s.action) {
+		case 'openPage':
+			return m.drive_open_page({ page: PAGE_NAME[s.page]() });
+		case 'openListing':
+			return m.drive_open_listing();
+		case 'setFilters':
+			return m.drive_filters({ page: PAGE_NAME[s.page]() });
+		case 'openMap':
+			return m.drive_map();
+		case 'openTrip':
+			return m.drive_trip();
+		case 'switchTab':
+			return m.drive_tab({ section: (SECTION_NAME[s.section] ?? m.plan_overview)() });
+	}
+}
 
 export type Preview = { title: string; lines: string[]; links?: { label: string; href: string }[] };
 export type Action = {
@@ -42,7 +84,7 @@ export async function ask(text: string) {
 		const res = await fetch('/api/ai/chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ message, history })
+			body: JSON.stringify({ message, history, path: page.url.pathname })
 		});
 		if (res.status === 401) {
 			crabby.signin = true;
@@ -57,6 +99,7 @@ export async function ask(text: string) {
 					kind: 'answer';
 					reply: string;
 					actions: Action[];
+					drive: DriveStep[];
 					alternatives: Bubble['alternatives'];
 					remaining: number;
 			  };
@@ -74,6 +117,8 @@ export async function ask(text: string) {
 				alternatives: r.alternatives,
 				...(unknown ? { kind: 'unknown' as const } : {})
 			});
+			// Crabby drives the app (10.11): auto steps run now, visibly, with Stop.
+			if (r.drive?.length) void drive(r.drive, stepLabel);
 		} else {
 			crabby.remaining = r.remaining;
 			crabby.turns.push({ role: 'assistant', content: '', kind: r.kind });

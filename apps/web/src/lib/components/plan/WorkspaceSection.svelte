@@ -2,7 +2,8 @@
 	import type { Snippet } from 'svelte';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 
-	// A plan workspace section (P11 §3): surface card whose heading button folds it. `id` is the outline anchor.
+	// A plan workspace section (P11 §3): surface card whose heading button folds it. `id` is the outline anchor and
+	// the section Crabby switches to (P12 drive).
 	let {
 		id,
 		title,
@@ -18,6 +19,7 @@
 			class="flex min-h-14 w-full items-center justify-between gap-3 px-4 text-left print:pointer-events-none"
 			aria-expanded={open}
 			aria-controls="{id}-body"
+			data-drive="switchTab:{id}"
 			onclick={() => (open = !open)}
 		>
 			{title}

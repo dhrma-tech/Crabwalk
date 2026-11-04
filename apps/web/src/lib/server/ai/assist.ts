@@ -22,7 +22,15 @@ async function takeMessage(db: DB) {
 
 export async function mergeVotes(db: DB, userId: string, tripId: string, lang: Lang) {
 	if (!(await takeMessage(db))) return { kind: 'limit' as const };
-	const ctx: Ctx = { db, userId, lang, trips: new Map([['T1', tripId]]), proposed: [] };
+	const ctx: Ctx = {
+		db,
+		userId,
+		lang,
+		trips: new Map([['T1', tripId]]),
+		proposed: [],
+		drive: [],
+		path: null
+	};
 	const result = (await runTool(
 		ctx,
 		'merge_group_votes',

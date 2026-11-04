@@ -30,6 +30,7 @@
 	import { formatINR } from '#lib/format.ts';
 	import { tripSync, type Req } from '#lib/tripSync.svelte.ts';
 	import { browserClient } from '#lib/supabase.ts';
+	import { onDrive } from '#lib/drive.svelte.ts';
 	import Undo2 from '@lucide/svelte/icons/undo-2';
 	import Redo2 from '@lucide/svelte/icons/redo-2';
 	import Check from '@lucide/svelte/icons/check';
@@ -142,6 +143,19 @@
 		{ id: 'notes', label: m.plan_notes(), section: 'notes' },
 		{ id: 'publish', label: m.plan_publish_title(), section: 'publish' }
 	]);
+	// Crabby switches sections the way the outline does (P12 drive).
+	onMount(() =>
+		onDrive('switchTab', (s) => {
+			if (s.action !== 'switchTab') return;
+			const day = s.day && s.section === 'itinerary' ? s.day : 0;
+			return pick({
+				id: day ? `day-${day - 1}` : s.section,
+				label: '',
+				section: s.section,
+				sub: !!day
+			});
+		})
+	);
 	async function pick(item: OutlineItem) {
 		open[item.section as keyof typeof open] = true;
 		if (item.sub && item.section === 'itinerary') tab = Number(item.id.slice(4));

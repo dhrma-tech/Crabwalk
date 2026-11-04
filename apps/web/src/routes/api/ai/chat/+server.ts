@@ -11,7 +11,13 @@ const body = z.object({
 	history: z
 		.array(z.object({ role: z.enum(['user', 'assistant']), content: z.string().max(4000) }))
 		.max(20)
-		.default([])
+		.default([]),
+	// The page the user is on (P12 drive: context + the trip workspace's sections).
+	path: z
+		.string()
+		.regex(/^\/[\w\-/]{0,200}$/)
+		.nullable()
+		.default(null)
 });
 
 // POST /api/ai/chat — login required (BACKEND §11.5); nothing about the conversation is stored.
@@ -24,7 +30,8 @@ export const POST: RequestHandler = async (event) => {
 		user.id,
 		getLocale() as Lang,
 		b.data.message,
-		b.data.history
+		b.data.history,
+		b.data.path
 	);
 	return json(r, { status: r.kind === 'limit' ? 429 : 200 });
 };

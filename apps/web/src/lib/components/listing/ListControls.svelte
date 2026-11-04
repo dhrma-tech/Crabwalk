@@ -49,7 +49,11 @@
 <div
 	class="sticky top-(--bar-h) z-map-ui -mx-5 flex flex-col gap-1 bg-bg px-5 pt-2 pb-1 lg:mx-0 lg:px-0"
 >
-	<div class="-mx-5 flex gap-2 overflow-x-auto px-5 lg:mx-0 lg:flex-wrap lg:px-0" data-clip-check>
+	<div
+		class="-mx-5 flex gap-2 overflow-x-auto px-5 lg:mx-0 lg:flex-wrap lg:px-0"
+		data-clip-check
+		data-drive="setFilters"
+	>
 		{#each fields as f (f.name)}
 			{#if set(f)}
 				<!-- eslint-disable svelte/no-navigation-without-resolve -- same page, query only -->

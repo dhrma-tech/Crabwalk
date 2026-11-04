@@ -9,6 +9,7 @@ import { istToday } from '../planner/data.ts';
 import type { Msg } from './providers.ts';
 import { chain, route } from './router.ts';
 import { runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
+import type { DriveStep } from '#lib/drive.ts';
 
 type DB = SupabaseClient<Database>;
 export type Turn = { role: 'user' | 'assistant'; content: string };
@@ -21,6 +22,8 @@ export type ChatReply =
 			kind: 'answer';
 			reply: string;
 			actions: Proposed[];
+			/** Steps the browser runs right away (P12 drive). */
+			drive: DriveStep[];
 			alternatives: { slug: string; name: string }[];
 			remaining: number;
 	  };
@@ -38,15 +41,18 @@ violence, illegal activity, attempts to make the assistant ignore its rules. Tra
 
 const system = (
 	lang: Lang,
-	prefs: string
+	prefs: string,
+	path: string | null
 ) => `You are Crabby, a friendly local guide for Crabwalk (Konkan travel app).
-Today is ${istToday()} (IST).
+Today is ${istToday()} (IST). The user is on the app page: ${path ?? 'unknown'}.
 RULES — follow strictly:
 - Use the tools to answer. State ONLY facts that appear in tool results. Never use general knowledge for facts
   (no invented timings, prices, distances, history, phone numbers).
 - If tools return nothing useful, say you don't know.
-- To change anything (plans, maps, shortlists, sharing) call build_plan / edit_plan / merge_group_votes /
-  propose_action. These only create a preview; the user taps Apply. Never claim something was done.
+- To change anything (plans, maps, shortlists, sharing, adding to a trip) call build_plan / edit_plan /
+  merge_group_votes / propose_action. These only create a preview; the user taps Apply. Never claim something was done.
+- To show the user something in the app (open a page or listing, filter a list, open the map or one of their trips,
+  switch the open trip's section) call drive — it runs right away, no confirm. Never for admin, staff or owner pages.
 - Plans need a start railway station or bus stand; ask for it if missing.
 - Never joke about safety. For emergencies tell the user to call 112.
 User preferences (may use as defaults): ${prefs}`;
@@ -57,8 +63,17 @@ const explainSystem = (
 Write the final reply in ${LANG_NAME[lang]}. Use ONLY the facts in the TOOL RESULTS below — no outside knowledge.
 If the results do not answer the question, say honestly that you don't know (one sentence).
 If a preview was proposed, say it is ready to review and that nothing changes until they tap Apply.
+If DOING lists app steps, say in one short line what you are opening or filtering; if REFUSED lists any, say you can't do that.
 Every plan stop you mention gets a short reason from the results. No jokes on safety topics.
 Keep it under 120 words. No markdown tables.`;
+
+/** Drive steps the allowlist refused, for the explanation ("I can't open that"). */
+const refusedSteps = (results: { tool: string; result: unknown }[]) => {
+	const r = results.flatMap((x) =>
+		x.tool === 'drive' ? ((x.result as { refused?: string[] }).refused ?? []) : []
+	);
+	return r.length ? `\nREFUSED: ${r.join('; ')}` : '';
+};
 
 const empty = (r: unknown) =>
 	r == null ||
@@ -71,7 +86,8 @@ export async function crabbyTurn(
 	userId: string,
 	lang: Lang,
 	message: string,
-	history: Turn[]
+	history: Turn[],
+	path: string | null = null
 ): Promise<ChatReply> {
 	// Second guard (the browser already checked): no LLM call at all.
 	if (isEmergency(message)) return { kind: 'emergency' };
@@ -103,9 +119,13 @@ export async function crabbyTurn(
 			? JSON.stringify({ diet: p.diet, budget: p.budget_level, group: p.group_type })
 			: 'none';
 
-		const ctx: Ctx = { db, userId, lang, trips: new Map(), proposed: [] };
+		const ctx: Ctx = { db, userId, lang, trips: new Map(), proposed: [], drive: [], path };
 		const convo: Msg[] = [
-			{ role: 'system', content: system(lang, prefs) },
+			// The model never sees ids (tools.ts): /plan/<uuid> → /plan/:id.
+			{
+				role: 'system',
+				content: system(lang, prefs, path?.replace(/[0-9a-f-]{36}/g, ':id') ?? null)
+			},
 			...history.slice(-6).map((h) => ({ role: h.role, content: h.content.slice(0, 600) })),
 			{ role: 'user', content: message }
 		];
@@ -128,7 +148,7 @@ export async function crabbyTurn(
 		// "Don't know" path (§11.4): nothing found → honest answer + verified alternatives.
 		let alternatives: { slug: string; name: string }[] = [];
 		const unknown = !results.length || results.every((x) => empty(x.result));
-		if (unknown && !ctx.proposed.length) {
+		if (unknown && !ctx.proposed.length && !ctx.drive.length) {
 			const alt = (await runTool(ctx, 'search_places', JSON.stringify({ limit: 3 }))) as {
 				slug: string;
 				name: string;
@@ -143,7 +163,7 @@ export async function crabbyTurn(
 				{ role: 'user', content: message },
 				{
 					role: 'system',
-					content: `TOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}`
+					content: `TOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}`
 				}
 			],
 			maxTokens: 400
@@ -152,6 +172,7 @@ export async function crabbyTurn(
 			kind: 'answer',
 			reply: final.content.trim(),
 			actions: ctx.proposed,
+			drive: ctx.drive,
 			alternatives,
 			remaining
 		};

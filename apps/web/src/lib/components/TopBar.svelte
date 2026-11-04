@@ -23,11 +23,11 @@
 	}: { title: string; back?: boolean; overlay?: boolean } = $props();
 	const home = $derived(page.url.pathname === '/');
 	const links = [
-		{ href: resolve('/'), label: m.nav_discover },
-		{ href: resolve('/map'), label: m.nav_map },
-		{ href: resolve('/plan/new'), label: m.nav_plan },
-		{ href: resolve('/itineraries'), label: m.itin_title },
-		{ href: resolve('/taste-konkan'), label: m.taste_title }
+		{ href: resolve('/'), label: m.nav_discover, drive: 'discover' },
+		{ href: resolve('/map'), label: m.nav_map, drive: 'map' },
+		{ href: resolve('/plan/new'), label: m.nav_plan, drive: 'plan_new' },
+		{ href: resolve('/itineraries'), label: m.itin_title, drive: 'itineraries' },
+		{ href: resolve('/taste-konkan'), label: m.taste_title, drive: 'taste_konkan' }
 	];
 	const icon =
 		'flex size-11 shrink-0 items-center justify-center rounded-full no-underline transition-colors duration-200';
@@ -105,6 +105,7 @@
 					<li>
 						<a
 							href={l.href}
+							data-drive="openPage:{l.drive}"
 							aria-current={on ? 'page' : undefined}
 							class={[
 								'relative flex min-h-11 items-center rounded-full px-3 type-body whitespace-nowrap no-underline transition-colors duration-200',

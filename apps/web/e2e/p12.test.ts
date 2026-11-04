@@ -1,0 +1,86 @@
+import { expect, test, type Page } from '@playwright/test';
+import { psql, signIn } from './helpers.ts';
+
+// P12 Crabby AI (docs/P12 Crabby AI.md), against the scripted mock provider (AI_PROVIDER=mock).
+test.skip(process.env.E2E_SUPABASE !== 'local', 'needs E2E_SUPABASE=local');
+test.describe.configure({ mode: 'serial', timeout: 120_000 });
+
+const run = Date.now();
+let page: Page;
+let trip = '';
+
+test.beforeAll(async ({ browser }) => {
+	page = await (await browser.newContext()).newPage();
+	await page.setViewportSize({ width: 1280, height: 800 });
+	const email = `p12-${run}@e2e.local`;
+	await signIn(page, email);
+	trip = psql(
+		`insert into trips (owner_id, title, days, start_point, status) select id, 'P12 ${run}', 2, jsonb_build_object('label','Start','lon',73.279,'lat',16.999), 'saved' from auth.users where email = '${email}' returning id`
+	);
+	psql(
+		`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind)
+		 select '${trip}', 1, 0, 'place', id, 'place' from places where slug = 'seed-fort-1'`
+	);
+});
+
+/** Ask in the docked Crabby panel (laptop) or the /crabby page. */
+async function ask(text: string) {
+	const box = page.getByLabel('Ask Crabby…').locator('visible=true');
+	if (!(await box.count()))
+		await page.getByRole('button', { name: 'Crabby', exact: true }).first().click();
+	await page.getByLabel('Ask Crabby…').locator('visible=true').fill(text);
+	await page.getByRole('button', { name: 'Send' }).locator('visible=true').click();
+}
+const lastAnswer = () => page.getByTestId('bubble-crabby').locator('visible=true').last();
+
+test('B: Crabby drives the app — filters, map, trip sections; admin refused', async () => {
+	await page.goto('/crabby');
+	await ask('show veg food please');
+	await expect(page.getByTestId('crabby-driving')).toContainText('Crabby: filtering Food');
+	await expect(page).toHaveURL(/\/food\?diet=veg$/);
+	await expect(page.getByTestId('crabby-driving')).toHaveCount(0);
+
+	await ask('open the admin page');
+	await expect(lastAnswer()).toContainText("can't open that page");
+	await page.waitForTimeout(1500);
+	await expect(page).toHaveURL(/\/food\?diet=veg$/);
+
+	await ask('show seed-beach-1 on the map');
+	await expect(page).toHaveURL(/\/map\?focus=place%2Fseed-beach-1$/);
+
+	// On a trip, Crabby switches the workspace section like the outline does.
+	await page.goto(`/plan/${trip}`);
+	await page.waitForLoadState('networkidle');
+	await page.getByRole('button', { name: 'Expenses', exact: true }).click(); // fold it
+	await expect(page.getByRole('button', { name: 'Expenses', exact: true })).toHaveAttribute(
+		'aria-expanded',
+		'false'
+	);
+	await ask('go to expenses');
+	await expect(page.getByRole('button', { name: 'Expenses', exact: true })).toHaveAttribute(
+		'aria-expanded',
+		'true'
+	);
+});
+
+test('B: Stop cancels what Crabby is doing; data changes stay previews', async () => {
+	await page.goto('/crabby');
+	await ask('open my trip');
+	await page.getByTestId('crabby-driving').getByRole('button', { name: 'Stop' }).click();
+	await page.waitForTimeout(1200);
+	await expect(page).toHaveURL(/\/crabby$/);
+
+	await ask('add seed-temple-1 to my trip');
+	const card = page.getByTestId('action-preview').locator('visible=true').last();
+	await expect(card).toContainText('P12');
+	expect(
+		psql(`select count(*) from trip_stops s join places p on p.id = s.entity_id
+		      where s.trip_id = '${trip}' and p.slug = 'seed-temple-1'`)
+	).toBe('0');
+	await card.getByRole('button', { name: 'Apply' }).click();
+	await expect(page).toHaveURL(new RegExp(`/plan/${trip}$`));
+	expect(
+		psql(`select day from trip_stops s join places p on p.id = s.entity_id
+		      where s.trip_id = '${trip}' and p.slug = 'seed-temple-1'`)
+	).toBe('1');
+});

@@ -4,6 +4,7 @@ import type { SupabaseClient } from '@supabase/supabase-js';
 import type { Database } from '#lib/db.types.ts';
 import { lonLat } from '../listings.ts';
 import { createTrip, editInput, editTrip, planInput } from '../planner/trips.ts';
+import { addToDay } from '../planner/workspace.ts';
 
 type DB = SupabaseClient<Database>;
 
@@ -50,6 +51,15 @@ export async function decide(db: DB, userId: string, id: string, apply: boolean)
 			case 'shortlist_stays':
 				href = null; // the preview already lists the stays + booking links
 				break;
+			case 'add_to_trip': {
+				// Same path as the listing pages' "Add to trip" (P11 addToDay): re-timed like any edit.
+				const tripId = String(payload.trip_id);
+				const type = payload.type as 'place' | 'stay' | 'eatery';
+				if (!(await addToDay(db, tripId, type, String(payload.entity_id), Number(payload.day))))
+					return { status: 404 as const };
+				href = `/plan/${tripId}`;
+				break;
+			}
 			case 'save_share': {
 				const tripId = String(payload.trip_id);
 				const { data: t, error } = await db

@@ -7,11 +7,19 @@ import { msg } from '#lib/msg.ts';
 import { getDish, lonLat, nearby as nearbyListings, tr, type Lang } from '../listings.ts';
 import { addDays, istToday } from '../planner/data.ts';
 import { computeTrip, describeStops, planInput } from '../planner/trips.ts';
+import { driveStep, PAGES, SECTIONS, type DriveStep } from '#lib/drive.ts';
+import { eateryFilter, placeFilter, readFilter, stayFilter } from '../filters.ts';
 import type { ToolDef } from './providers.ts';
 
 type DB = SupabaseClient<Database>;
 export type ActionType =
-	'create_plan' | 'edit_plan' | 'open_map' | 'start_nav' | 'shortlist_stays' | 'save_share';
+	| 'create_plan'
+	| 'edit_plan'
+	| 'open_map'
+	| 'start_nav'
+	| 'shortlist_stays'
+	| 'save_share'
+	| 'add_to_trip';
 export type Preview = { title: string; lines: string[]; links?: { label: string; href: string }[] };
 export type Proposed = { id: string; type: ActionType; preview: Preview };
 export type Ctx = {
@@ -21,6 +29,10 @@ export type Ctx = {
 	/** Trip refs ("T1", "T2"…) → trip ids, so the model never sees uuids. */
 	trips: Map<string, string>;
 	proposed: Proposed[];
+	/** Steps Crabby runs right away in the browser (P12 drive), checked against the allowlist in drive.ts. */
+	drive: DriveStep[];
+	/** The page the user is on, so Crabby can act in context (switchTab needs an open trip). */
+	path: string | null;
 };
 
 const CATS = [
@@ -156,18 +168,111 @@ export const TOOL_DEFS: ToolDef[] = [
 	{
 		name: 'propose_action',
 		description:
-			'Offer a one-tap action: open_map (place), start_nav (place), shortlist_stays (stay slugs), save_share (trip ref).',
+			'Offer a one-tap action the user confirms: open_map (place), start_nav (place), shortlist_stays (stay slugs), save_share (trip ref), add_to_trip (listing_type + slug, trip ref, day).',
 		parameters: obj(
 			{
-				type: str('type', { enum: ['open_map', 'start_nav', 'shortlist_stays', 'save_share'] }),
+				type: str('type', {
+					enum: ['open_map', 'start_nav', 'shortlist_stays', 'save_share', 'add_to_trip']
+				}),
 				place: str('Place slug'),
 				stays: { type: 'array', items: str('Stay slug') },
-				trip: str('Trip ref')
+				trip: str('Trip ref'),
+				listing_type: str('add_to_trip: what to add', { enum: ['place', 'stay', 'eatery'] }),
+				slug: str('add_to_trip: listing slug'),
+				day: int('add_to_trip: day number (1…)')
 			},
 			['type']
 		)
+	},
+	{
+		name: 'drive',
+		description:
+			"Do it for the user right away in the app (no confirm): open a page, open a listing, set list filters, open the map on a listing or with alerts, open one of their trips (ref from list_my_trips), or switch the open trip's section. Use when the user asks to show, open, go to or filter something. Only these pages — never admin, staff or owner pages.",
+		parameters: obj(
+			{
+				steps: {
+					type: 'array',
+					maxItems: 4,
+					items: obj(
+						{
+							action: str('What to do', {
+								enum: ['openPage', 'openListing', 'setFilters', 'openMap', 'openTrip', 'switchTab']
+							}),
+							page: str('openPage / setFilters page', { enum: Object.keys(PAGES) }),
+							type: str('openListing: listing type', {
+								enum: ['place', 'stay', 'eatery', 'dish']
+							}),
+							slug: str('openListing / openMap: listing slug'),
+							filters: {
+								type: 'object',
+								description:
+									'setFilters: discover {category, hidden_gem:"1"}; stays {vibe, style, amenity, max_price}; food {diet: veg|non_veg|jain, authenticity, max_price}'
+							},
+							focus_type: str('openMap: listing type to focus', {
+								enum: ['place', 'stay', 'eatery']
+							}),
+							alerts: { type: 'boolean', description: 'openMap: show road and monsoon alerts' },
+							trip: str('openTrip: trip ref, e.g. T1'),
+							section: str('switchTab: trip workspace section', { enum: [...SECTIONS] }),
+							day: int('switchTab: itinerary day')
+						},
+						['action']
+					)
+				}
+			},
+			['steps']
+		)
 	}
 ];
+
+const FILTERS = { discover: placeFilter, stays: stayFilter, food: eateryFilter } as const;
+/** The model's step → a checked DriveStep, or why it is refused (allowlist, unknown trip, bad filters). */
+function checkStep(ctx: Ctx, raw: Record<string, unknown>): DriveStep | string {
+	const str = (k: string) => (typeof raw[k] === 'string' ? (raw[k] as string) : undefined);
+	let step: unknown = { action: raw.action };
+	switch (raw.action) {
+		case 'openPage':
+			step = { action: 'openPage', page: str('page') };
+			break;
+		case 'openListing':
+			step = { action: 'openListing', type: str('type'), slug: str('slug') };
+			break;
+		case 'setFilters': {
+			const page = str('page') as keyof typeof FILTERS;
+			const params = new URLSearchParams(
+				Object.entries((raw.filters ?? {}) as Record<string, unknown>).map(([k, v]) => [
+					k,
+					String(v)
+				])
+			);
+			if (!(page in FILTERS) || !readFilter(FILTERS[page], params, true))
+				return 'filters not allowed';
+			step = { action: 'setFilters', page, filters: Object.fromEntries(params) };
+			break;
+		}
+		case 'openMap':
+			step = {
+				action: 'openMap',
+				...(str('slug')
+					? { focus: { type: str('focus_type') ?? 'place', slug: str('slug') } }
+					: {}),
+				...(raw.alerts === true ? { alerts: true } : {})
+			};
+			break;
+		case 'openTrip': {
+			const id = ctx.trips.get(str('trip') ?? '');
+			if (!id) return 'unknown trip ref — call list_my_trips first';
+			step = { action: 'openTrip', trip: id };
+			break;
+		}
+		case 'switchTab':
+			if (!ctx.path?.startsWith('/plan/') || ctx.path === '/plan/new') return 'no trip is open';
+			step = { action: 'switchTab', section: str('section'), ...(raw.day ? { day: raw.day } : {}) };
+			break;
+	}
+	const r = driveStep.safeParse(step);
+	return r.success ? r.data : 'not allowed';
+}
 
 const n = (rows: { lang: string; name?: string | null }[] | null | undefined, lang: Lang) =>
 	tr(rows ?? [], lang);
@@ -192,6 +297,27 @@ async function placeBySlug(db: DB, slug: string) {
 		.eq('status', 'published')
 		.maybeSingle();
 	return data;
+}
+
+const TR = {
+	place: ['places', 'place_translations'],
+	stay: ['stays', 'stay_translations'],
+	eatery: ['eateries', 'eatery_translations']
+} as const;
+/** A published place / stay / eatery by slug with its names. */
+async function listingBySlug(db: DB, kind: keyof typeof TR, slug: string) {
+	const [table, tr] = TR[kind];
+	const { data } = await db
+		.from(table)
+		.select(`id, slug, names:${tr}(lang, name)`)
+		.eq('slug', slug)
+		.eq('status', 'published')
+		.maybeSingle();
+	return data as {
+		id: string;
+		slug: string;
+		names: { lang: string; name: string | null }[];
+	} | null;
 }
 
 async function propose(ctx: Ctx, type: ActionType, preview: Preview, payload: unknown) {
@@ -480,10 +606,19 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			};
 		}
 		case 'list_my_trips': {
+			// Own trips and the ones the user joined (P11 tripmates).
+			const { data: joined } = await db
+				.from('trip_members')
+				.select('trip_id')
+				.eq('user_id', ctx.userId);
 			const { data } = await db
 				.from('trips')
 				.select('id, title, days, start_date')
-				.eq('owner_id', ctx.userId)
+				.or(
+					[`owner_id.eq.${ctx.userId}`, ...(joined ?? []).map((j) => `id.eq.${j.trip_id}`)].join(
+						','
+					)
+				)
 				.order('created_at', { ascending: false })
 				.limit(10);
 			return (data ?? []).map((t, k) => {
@@ -690,7 +825,45 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 				const { data: t } = await db.from('trips').select('title').eq('id', id).maybeSingle();
 				return propose(ctx, type, { title: t?.title ?? '', lines: [] }, { trip_id: id });
 			}
+			if (type === 'add_to_trip') {
+				const id = ctx.trips.get(s('trip') ?? '');
+				if (!id) return { error: 'unknown trip ref — call list_my_trips first' };
+				const kind = s('listing_type') ?? 'place';
+				if (kind !== 'place' && kind !== 'stay' && kind !== 'eatery')
+					return { error: 'bad listing type' };
+				const l = await listingBySlug(db, kind, s('slug') ?? '');
+				const { data: t } = await db.from('trips').select('title, days').eq('id', id).maybeSingle();
+				if (!l || !t) return { error: 'listing or trip not found' };
+				const day = Math.min(Math.max(i('day') ?? 1, 1), t.days);
+				const name = n(l.names, lang) ?? l.slug;
+				return propose(
+					ctx,
+					type,
+					{ title: t.title, lines: [`+ ${name} · ${msg('plan_day_n', { n: day }, lang)}`] },
+					{ trip_id: id, type: kind, entity_id: l.id, day }
+				);
+			}
 			return { error: 'unknown action type' };
+		}
+		case 'drive': {
+			const steps = Array.isArray(a.steps)
+				? (a.steps as Record<string, unknown>[]).slice(0, 4)
+				: [];
+			const doing: string[] = [];
+			const refused: string[] = [];
+			for (const raw of steps) {
+				const c = checkStep(ctx, raw ?? {});
+				if (typeof c === 'string') refused.push(`${String(raw?.action)}: ${c}`);
+				else {
+					ctx.drive.push(c);
+					doing.push(c.action);
+				}
+			}
+			return {
+				doing,
+				...(refused.length ? { refused } : {}),
+				note: 'These run in the app right after your reply; say in one short line what you are doing.'
+			};
 		}
 	}
 	return { error: `unknown tool ${name}` };
