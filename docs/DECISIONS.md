@@ -330,6 +330,15 @@ Source: `docs/reports/01-gaps-fixes-improvements.md` (Report 1), `02-ui-redesign
 
 - Privacy policy (rest of it) + legal review of the AI section (P8-4)
 
+## Crabby AI (phase-12)
+Source: `docs/P12 Crabby AI.md` (from the user's product plan §4 + §10, 3 Nov 2026). Steps A–N, tag `phase-12`.
+| Ref | Decision |
+|---|---|
+| P12-0 | Post-MVP phase `P12` (user, 2026-11-04): all of product plan §10.1–10.12 + §4 "Ask, don't assume" in **one phase**. Plan changes approved: no R2 — journal media on the phone, shared photos only to Supabase Storage (per-user cap); group chat is a section of the P11 trip workspace, the no-login vote link is retired and votes become poll cards; **group chat messages are stored** (1:1 Crabby chats still are not, BACKEND §11.4); team-question dedupe by Postgres text similarity, photo matching by Gemini description → DB text match (no runtime embeddings); reels via YouTube oEmbed / pasted caption / screenshot only; one action registry built from the 6 existing action types. |
+| P12-1 | Proactive Crabby in group chat **on**, with limits: rules + Groq 8B decide; ≥ 10 min cooldown; ≤ 10 unprompted replies per group per day; tagged replies always allowed (count against the tagger's daily cap). |
+| P12-2 | Group chat retention: messages deleted 30 days after the trip's last day. |
+| P12-3 | Ask our team: verifiers and admins answer; Crabby promises "usually within a day". Persona HI/MR humour: Claude drafts, team native speaker approves (NEEDS_REVIEW). |
+
 ## Found issues
 - ~~OSRM pipeline: corrected duration floored at the segment sum, not the route duration (turn penalties), so corrected < raw failed the pipeline once more points existed~~ — fixed in P9 (it blocked the turn-cue run): penalties kept, floor = route duration; test added.
 - Supabase grants EXECUTE to PUBLIC by default, so `revoke … from anon, authenticated` alone does not block a function. Fixed for `refresh_patterns` in P9; earlier revokes (`create_qr_code`, `qr_verify_visit`, `ai_take_message`, `get_route_for_review`) are still guarded inside the functions (admin/auth checks) — revisit in P10 hardening.
