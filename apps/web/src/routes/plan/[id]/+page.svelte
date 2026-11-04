@@ -313,13 +313,29 @@
 		const id = data.trip.id;
 		const db = browserClient();
 		let t: ReturnType<typeof setTimeout> | undefined;
+		// A reload mid-drag resets the drag zones and loses the drop, so remote changes wait while a pointer is down.
+		let held = false;
+		let waiting = false;
+		const apply = () => {
+			if (held) return void (waiting = true);
+			flushNotes();
+			sync.refresh();
+		};
 		const changed = () => {
 			clearTimeout(t);
-			t = setTimeout(() => {
-				flushNotes();
-				sync.refresh();
-			}, 250);
+			t = setTimeout(apply, 250);
 		};
+		const down = () => (held = true);
+		const up = () => {
+			held = false;
+			if (waiting) {
+				waiting = false;
+				apply();
+			}
+		};
+		addEventListener('pointerdown', down);
+		addEventListener('pointerup', up);
+		addEventListener('pointercancel', up);
 		// Filtered and unfiltered bindings go on separate channels: mixed on one, Realtime refuses the join.
 		const ch = db.channel(`trip:${id}`);
 		const del = db.channel(`trip:${id}:deletes`);
@@ -343,6 +359,9 @@
 		});
 		return () => {
 			removeEventListener('online', online);
+			removeEventListener('pointerdown', down);
+			removeEventListener('pointerup', up);
+			removeEventListener('pointercancel', up);
 			clearTimeout(t);
 			void db.removeChannel(ch);
 			void db.removeChannel(del);

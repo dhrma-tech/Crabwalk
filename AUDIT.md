@@ -68,6 +68,23 @@ Fixed in step G on the way: map overlay layers built lazily + `fadeDuration: 0` 
 tiny CSS files inlined (T-55, `/place` mobile 80 → 91 at that time), `/stays` and `/food` render each listing
 once instead of twice (T-56).
 
+## Lighthouse — phase-11 (plan workspace, step G)
+
+Same setup (`vite build --mode audit` + `wrangler pages dev`, local Supabase + local tiles, Lighthouse 13.5 simulated),
+signed in (session cookie kept: `disableStorageReset`) on a filled `/plan/:id`: 2 days / 3 stops, a list with a place and a
+checklist item, 3 tripmates, 2 spends. Median of 3 runs, three sessions (benchmark ~2700–3100).
+
+| Page | Mobile | Desktop |
+|---|---|---|
+| `/plan/:id` session 1 (before the heading fix) | 80 / 99 / 100 / 66 | 99 / 99 / 100 / 66 |
+| `/plan/:id` session 2 | 68 / 100 / 100 / 66 | 81 / 100 / 100 / 66 |
+| `/plan/:id` session 3 | 67 / 100 / 100 / 66 | 78 / 100 / 100 / 66 |
+
+FCP/LCP stay fast (mobile 0.8–2.0 s, desktop 0.2–0.3 s); the score is **TBT** (mobile 1.5–7.5 s), MapLibre compiling its
+shaders in SwiftShader, as on `/map`. One page view makes one data load and one routes fetch (checked: no Realtime reload
+loop). SEO 66 is `is-crawlable`: private trips are `noindex` on purpose. Accessibility 99 → 100 after fixing `heading-order`
+(DECISIONS P11-8).
+
 ## Findings
 
 ### Critical

@@ -1,7 +1,8 @@
+import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 import { psql, signIn } from './helpers.ts';
 
-// P11 step B: plan workspace shell — laptop outline · sections · map; phone map + sheet with an outline chip row.
+// P11 plan workspace (steps B–G). Step B: shell — laptop outline · sections · map; phone map + sheet with an outline chip row.
 test.skip(process.env.E2E_SUPABASE !== 'local', 'needs E2E_SUPABASE=local');
 test.describe.configure({ mode: 'serial', timeout: 120_000 });
 
@@ -304,6 +305,51 @@ test('undo / redo and the offline queue', async () => {
 	await expect(status).toHaveText('Saved');
 	await expect(item(`Offline ${run}`)).toBeVisible();
 	expect(psql(`select count(*) from trip_list_items where body = 'Offline ${run}'`)).toBe('1');
+});
+
+// Step G: WCAG 2.2 AA on the filled workspace (lists, spends, balances, invites), light + dark, EN + MR, laptop + phone.
+test('a11y: workspace and share sheet pass axe', async () => {
+	const problems: string[] = [];
+	const audit = async (where: string) => {
+		const r = await new AxeBuilder({ page })
+			.withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+			.exclude('.maplibregl-canvas')
+			.analyze();
+		problems.push(
+			...r.violations.map(
+				(v) =>
+					`${where}: ${v.id} (${v.impact}): ${v.nodes
+						.map((n) => n.target.join(' '))
+						.slice(0, 3)
+						.join(' | ')}`
+			)
+		);
+	};
+	for (const [w, h] of [
+		[1280, 800],
+		[390, 844]
+	] as const)
+		for (const scheme of ['light', 'dark'] as const)
+			for (const locale of ['en', 'mr'] as const) {
+				await page.setViewportSize({ width: w, height: h });
+				await page.emulateMedia({ colorScheme: scheme });
+				await page
+					.context()
+					.addCookies([{ name: 'PARAGLIDE_LOCALE', value: locale, url: 'http://localhost:4173' }]);
+				await page.goto(`/plan/${trip}`);
+				await page.waitForLoadState('networkidle');
+				const where = `${w} ${scheme} ${locale}`;
+				await audit(where);
+				await page.locator('main header [aria-haspopup="dialog"]').click(); // Share, in any language
+				await expect(page.getByTestId('invites')).toBeVisible();
+				await audit(`${where} share sheet`);
+				await page.keyboard.press('Escape');
+			}
+	await page
+		.context()
+		.addCookies([{ name: 'PARAGLIDE_LOCALE', value: 'en', url: 'http://localhost:4173' }]);
+	await page.emulateMedia({ colorScheme: 'light' });
+	expect(problems, problems.join('\n')).toEqual([]);
 });
 
 test('390 px: map on top, sections in a sheet, outline chips', async () => {

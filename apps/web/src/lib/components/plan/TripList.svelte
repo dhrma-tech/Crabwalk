@@ -319,7 +319,10 @@
 
 	{#if editable && recommended.length}
 		<div class="flex flex-col gap-1 print:hidden" data-testid="recommended">
-			<h4 class="px-2 type-label text-text-2">{m.plan_recommended()}</h4>
+			<!-- One level under the list title: an h3, or the section h2 when the title is an input. -->
+			<svelte:element this={list.id ? 'h3' : 'h4'} class="px-2 type-label text-text-2"
+				>{m.plan_recommended()}</svelte:element
+			>
 			<ul class="scroll-row -mx-3 flex gap-2 overflow-x-auto px-3 pb-1">
 				{#each recommended as r (r.slug)}
 					<li
