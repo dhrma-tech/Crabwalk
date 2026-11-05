@@ -312,6 +312,7 @@
 	"review_published": "Published",
 	"review_check_first": "Check first",
 	"review_needs_pin": "Add a map pin before publishing.",
+	"review_needs_en_text": "Add the English story before publishing.",
 	"event_draft": "Draft",
 	"event_publish": "Publish",
 	"review_notes": "Field notes",

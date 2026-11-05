@@ -112,8 +112,10 @@ export const actions: Actions = {
 			await saveDrafts(event.locals.supabase, type, id, await event.request.formData());
 			await publish(event.locals.supabase, type, id);
 		} catch (e) {
-			// 23514: the *_pin_to_publish check — a desk row without a location can't go live.
-			return fail(400, { error: (e as { code?: string }).code === '23514' ? 'pin' : 'publish' });
+			// 23514: a desk row without a location (*_pin_to_publish) or without an English story can't go live.
+			const { code, message } = e as { code?: string; message?: string };
+			const why = code !== '23514' ? 'publish' : message?.includes('English') ? 'entext' : 'pin';
+			return fail(400, { error: why });
 		}
 		return { published: true };
 	},

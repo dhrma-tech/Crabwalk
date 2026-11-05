@@ -63,6 +63,10 @@ test('desk entry: no GPS, point from the map or typed, sources required; page sa
 		)
 		.toBe('desk https://example.org/desk-a,https://example.org/desk-b');
 	const slug = psql(`select p.slug ${where}`);
+	// A desk place goes live only with an English story (desk import guards): the reviewer's step, done here.
+	psql(
+		`update place_translations set short_story = 'E2E desk story.' where lang = 'en' and place_id = (select id from places where slug = '${slug}')`
+	);
 	psql(`update places set status = 'published' where slug = '${slug}'`);
 	const anon = await browser.newPage();
 	await anon.goto(`/place/${slug}`);

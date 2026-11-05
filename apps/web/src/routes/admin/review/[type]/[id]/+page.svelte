@@ -179,6 +179,9 @@
 			{#if form?.saved}<p class="type-small" role="status">{m.review_saved()}</p>{/if}
 			{#if form?.published}<p class="type-small" role="status">{m.review_published()}</p>{/if}
 			{#if form?.error === 'pin'}<p class="type-small" role="alert">{m.review_needs_pin()}</p>
+			{:else if form?.error === 'entext'}<p class="type-small" role="alert">
+					{m.review_needs_en_text()}
+				</p>
 			{:else if form?.error}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
 			<div class="flex flex-wrap gap-3">
 				<Button type="submit" variant="secondary">{m.review_save()}</Button>
