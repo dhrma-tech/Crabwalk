@@ -31,5 +31,10 @@ export const variables = defineEnvVars({
 	// P10 rate limits: HMAC secret for client keys (IPs are never stored).
 	RATE_LIMIT_SALT: { schema: optional },
 	// Dev-only auth bypass (lib/devAuth.ts). Ignored in production builds and off localhost.
-	DEV_BYPASS_AUTH: { public: true, schema: optional }
+	DEV_BYPASS_AUTH: { public: true, schema: optional },
+	// Dev-only one-click sign-in on /login as real local accounts (lib/devAuth.server.ts). Same gate as above.
+	DEV_QUICK_LOGIN: { schema: optional },
+	DEV_LOGIN_ADMIN: { schema: optional },
+	DEV_LOGIN_USER: { schema: optional },
+	DEV_LOGIN_PASSWORD: { schema: optional }
 });
