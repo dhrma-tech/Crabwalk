@@ -1,0 +1,2379 @@
+# Places - Dapoli taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract, or Wikipedia where noted in coord_source.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: murud-beach
+  status: ai_draft
+  name_en: Murud Beach
+  name_mr: मुरुड बीच
+  name_hi: मुरुड बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Murud,_Ratnagiri
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Murud is a village near Karde in Dapoli taluka, best known as
+        the birthplace of Maharshi Dhondo Keshav Karve, a pioneer of women''s education.
+        There is a memorial and a statue of Maharshi Karve.
+
+
+        The old Durgadevi temple has 28 carved wooden pillars, and in summer, when
+        the lake level drops, a Ganpati idol in the lake becomes visible.'
+      history: null
+      significance: Birthplace of Maharshi D. K. Karve.
+      dos: '- Visit the Durgadevi temple and the Karve memorial'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: 'मुरुड हे दापोली तालुक्यातील कर्देजवळील एक गाव आहे. स्त्री शिक्षणाचे
+        प्रणेते महर्षी धोंडो केशव कर्वे यांचे जन्मस्थान म्हणून हे गाव विशेष ओळखले
+        जाते. येथे महर्षी कर्वे यांचे स्मारक आणि पुतळा उभारण्यात आला आहे.
+
+
+        इथल्या जुन्या दुर्गादेवी मंदिरात लाकडावर कोरीव काम केलेले 28 खांब आहेत. उन्हाळ्यात
+        तळ्यातील पाण्याची पातळी कमी झाल्यावर तिथली गणपतीची मूर्ती दिसायला लागते.'
+      history: null
+      significance: महर्षी धोंडो केशव कर्वे यांचे जन्मस्थान.
+      dos: '- दुर्गादेवी मंदिर आणि कर्वे स्मारकाला भेट द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: 'मुरुड दापोली तालुका में कर्दे के पास एक गाँव है। महिला शिक्षा
+        के अग्रणी महर्षि धोंडो केशव कर्वे की जन्मस्थली के रूप में इसे सबसे ज्यादा
+        जाना जाता है। यहाँ महर्षि कर्वे का एक स्मारक और एक मूर्ति है।
+
+
+        यहाँ के पुराने दुर्गादेवी मंदिर में लकड़ी पर नक्काशी वाले 28 खंभे हैं। गर्मियों
+        में जब झील का पानी कम हो जाता है, तब झील में एक गणपति की मूर्ति दिखाई देने
+        लगती है।'
+      history: null
+      significance: महर्षि डी. के. कर्वे की जन्मस्थली।
+      dos: '- दुर्गादेवी मंदिर और कर्वे स्मारक देखें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/2/20/Star_Fish_at_Murud_Beach_near_Dapoli_%28_Maharashtra%29.jpg
+    credit: आर्या जोशी
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Star_Fish_at_Murud_Beach_near_Dapoli_(_Maharashtra).jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Murud,_Ratnagiri
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: karde-beach
+  status: ai_draft
+  name_en: Karde Beach
+  name_mr: कर्दे बीच
+  name_hi: कर्दे बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: turtle_nesting
+    from_month: 1
+    to_month: 4
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Karde is a long, quiet beach in Dapoli taluka with a few resorts.
+        It sits next to Murud village, the birthplace of Maharshi Karve.
+      history: null
+      significance: null
+      dos: '- Combine with Murud village'
+      donts: '- Don''t litter'
+      safety_text: null
+    mr:
+      short_story: कर्दे हा दापोली तालुक्यातील एक लांब आणि शांत समुद्रकिनारा आहे,
+        जिथे काही रिसॉर्ट्स आहेत. हे महर्षी कर्वे यांचे जन्मस्थान असलेल्या मुरुड गावाच्या
+        शेजारीच आहे.
+      history: null
+      significance: null
+      dos: '- मुरुड गावासोबत यालाही भेट द्या'
+      donts: '- कचरा करू नका'
+      safety_text: null
+    hi:
+      short_story: कर्दे दापोली तालुका में एक लंबा और शांत समुद्र तट है, जहाँ कुछ
+        रिसॉर्ट्स हैं। यह महर्षि कर्वे की जन्मस्थली मुरुड गाँव के ठीक बगल में स्थित
+        है।
+      history: null
+      significance: null
+      dos: '- मुरुड गाँव की यात्रा के साथ इसे भी शामिल करें'
+      donts: '- कूड़ा न फैलाएँ'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/c/c3/Karde_beach_.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Vardhanjp
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Karde_beach_.jpg
+  _sources:
+    _all:
+    - https://en.wikivoyage.org/wiki/Dapoli
+    - https://en.wikipedia.org/wiki/Dapoli
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://roundglasssustain.com/conservation/olive-ridley-turtles-dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review; turtle season Jan-Apr
+    = hatching months (IOTN 2003-04 data); nesting Nov-Mar'
+  _collected_by: claude+gemini 2026-11-03
+- slug: ladghar-beach
+  status: ai_draft
+  name_en: Ladghar Beach (Tamastirth)
+  name_mr: लाडघर बीच (तामसतीर्थ)
+  name_hi: लाडघर बीच (तामसतीर्थ)
+  category: beach
+  taluka: Dapoli
+  lat: 17.712268
+  lng: 73.13524
+  coord_source: osm node/6095331985
+  osm_id: node/6095331985
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Ladghar beach, also called Tamas Teertha, has religious significance
+        for locals, who come to bathe in the sea here. It is known for its sunsets.
+      history: null
+      significance: null
+      dos: '- Stay for the sunset'
+      donts: null
+      safety_text: '- Swim only where locals say it is safe'
+    mr:
+      short_story: लाडघर बीचला तामसतीर्थ असेही म्हणतात. याला स्थानिक लोकांसाठी धार्मिक
+        महत्त्व आहे, जे येथे समुद्रात स्नान करण्यासाठी येतात. हा किनारा इथल्या सूर्यास्तासाठी
+        ओळखला जातो.
+      history: null
+      significance: null
+      dos: '- सूर्यास्त पाहण्यासाठी थांबा'
+      donts: null
+      safety_text: '- स्थानिकांनी जिथे सुरक्षित सांगितले आहे तिथेच समुद्रात पोहा'
+    hi:
+      short_story: लाडघर बीच को तामसतीर्थ भी कहा जाता है और स्थानीय लोगों के लिए इसका
+        धार्मिक महत्व है, जो यहाँ समुद्र में स्नान करने आते हैं। यह अपने सूर्यास्त
+        के लिए जाना जाता है।
+      history: null
+      significance: null
+      dos: '- सूर्यास्त देखने के लिए रुकें'
+      donts: null
+      safety_text: '- समुद्र में केवल वहीं तैरें जहाँ स्थानीय लोग सुरक्षित बताते हों'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/6/6b/Ladghar_beach_Konkan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Vardhanjp
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Ladghar_beach_Konkan.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Dapoli
+    - https://en.wikivoyage.org/wiki/Dapoli
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: harnai-fish-market
+  status: ai_draft
+  name_en: Harnai Fish Market
+  name_mr: हर्णे फिश मार्केट
+  name_hi: हर्णे मछली बाजार
+  category: market
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Harnai port, Dapoli taluka; the fish auction runs in the evening.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Harnai is a busy fishing port in Dapoli taluka, known for its
+        evening fish auction on the beach. Boats come in and the day''s catch is sold
+        right on the sand.
+
+
+        The beach is palm-fringed, with the island fort of Suvarnadurg offshore and
+        Kanakdurg and Gova forts on the headland.'
+      history: null
+      significance: null
+      dos: '- Come in the evening for the auction
+
+        - Combine with a boat to Suvarnadurg'
+      donts: '- Don''t get in the way of boats and auction workers'
+      safety_text: null
+    mr:
+      short_story: 'हर्णे हे दापोली तालुक्यातील एक गजबजलेले मासेमारी बंदर आहे. हे
+        किनाऱ्यावर संध्याकाळी चालणाऱ्या मासळीच्या लिलावासाठी प्रसिद्ध आहे. होड्या
+        परत आल्यावर दिवसभराची मासळी थेट वाळूवरच विकली जाते.
+
+
+        हा किनारा माडांच्या झाडांनी वेढलेला आहे. समुद्रात सुवर्णदुर्ग हा जलदुर्ग आहे,
+        तर किनाऱ्यावरील डोंगरावर कनकदुर्ग आणि गोवा हे किल्ले आहेत.'
+      history: null
+      significance: null
+      dos: '- मासळीच्या लिलावासाठी संध्याकाळी या
+
+        - बोटीने सुवर्णदुर्ग किल्ल्याला जाण्याचे नियोजन करा'
+      donts: '- बोटी आणि लिलाव करणाऱ्या कामगारांच्या मध्ये अडथळा निर्माण करू नका'
+      safety_text: null
+    hi:
+      short_story: 'हर्णे दापोली तालुका में एक व्यस्त मछली पकड़ने वाला बंदरगाह है,
+        जो समुद्र तट पर शाम को होने वाली मछली की नीलामी के लिए जाना जाता है। नावें
+        अंदर आती हैं और दिन भर की पकड़ी गई मछलियाँ सीधे रेत पर ही बेची जाती हैं।
+
+
+        यह समुद्र तट ताड़ के पेड़ों से घिरा हुआ है, और समुद्र के अंदर सुवर्णदुर्ग
+        का द्वीप किला है, जबकि किनारे पर स्थित पहाड़ी पर कनकदुर्ग और गोवा किले हैं।'
+      history: null
+      significance: null
+      dos: '- नीलामी देखने के लिए शाम को आएँ
+
+        - नाव से सुवर्णदुर्ग जाने की योजना बनाएँ'
+      donts: '- नावों और नीलामी करने वाले कर्मचारियों के रास्ते में न आएँ'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/e/e9/Harnai_Bullock_cart.jpg
+    credit: Cj.samson
+    licence: CC BY 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Harnai_Bullock_cart.jpg
+  _sources:
+    _all:
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: suvarnadurg-fort
+  status: ai_draft
+  name_en: Suvarnadurg Fort
+  name_mr: सुवर्णदुर्ग किल्ला
+  name_hi: सुवर्णदुर्ग किला
+  category: fort
+  taluka: Dapoli
+  lat: 17.816927
+  lng: 73.084463
+  coord_source: osm node/2398275923
+  osm_id: node/2398275923
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Boat from Harnai with local fishermen; no jetty, landing on a sandy
+    beach at low tide only.
+  nearest_station: Khed
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: true
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Suvarnadurg
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Suvarnadurg, the ''golden fort'', is an island fort about 1.6
+        km off Harnai, built on a rock in the Arabian Sea. It covers 8 acres and is
+        part of the UNESCO World Heritage site ''Maratha Military Landscapes of India'',
+        inscribed in 2025.
+
+
+        There is no jetty: local fishermen take you across from Harnai and you land
+        on a small sandy beach, only at low tide. Inside are rock-cut walls, bastions
+        with small rooms, two granaries, a stone magazine and a step well that still
+        holds water.'
+      history: Sources credit Shivaji with building it around 1660, with a shipbuilding
+        yard. Kanhoji Angre's fleet was based here from 1696, and the fort was handed
+        to him in 1713. A joint Peshwa-British siege in 1755 ended with its capture
+        on 12 April 1755. The British took control on 4 December 1818.
+      significance: A UNESCO-listed Maratha sea fort and an early base of Kanhoji
+        Angre's navy.
+      dos: '- Arrange the boat with fishermen at Harnai and agree the return time
+
+        - Check the tide before you go; landing is only possible at low tide
+
+        - Look for the carved tiger, eagle and elephant on the sea gate'
+      donts: '- Don''t stay on the island past the agreed return time
+
+        - Don''t attempt the crossing in rough sea'
+      safety_text: '- Access depends on low tide; plan the trip around the tide table
+
+        - There is no jetty and no drinking water on the island; carry water
+
+        - The main east entry is blocked by thorny bushes; use the narrow path'
+    mr:
+      short_story: 'सुवर्णदुर्ग, म्हणजेच ''सोन्याचा किल्ला'', हा हर्णैपासून सुमारे
+        1.6 किमी अंतरावर अरबी समुद्रातील एका खडकावर बांधलेला जलदुर्ग आहे. तो 8 एकरांवर
+        पसरलेला आहे आणि 2025 मध्ये समाविष्ट करण्यात आलेल्या ''मराठा मिलिटरी लँडस्केप्स
+        ऑफ इंडिया'' या युनेस्कोच्या (UNESCO) जागतिक वारसा स्थळाचा एक भाग आहे.
+
+
+        येथे कोणतीही जेटी नाही: हर्णैतून स्थानिक कोळी बांधव तुम्हाला बोटीने घेऊन जातात
+        आणि तुम्ही एका छोट्या वाळूच्या किनाऱ्यावर उतरता, हे फक्त ओहोटीच्या वेळीच शक्य
+        होते. आतमध्ये कातळात कोरलेल्या भिंती, छोट्या खोल्या असलेले बुरुज, दोन धान्याची
+        कोठारे, एक दगडी दारूगोळा कोठार आणि एक बारव आहे ज्यात आजही पाणी असते.'
+      history: सूत्रांनुसार शिवाजी महाराजांनी 1660 च्या सुमारास जहाजबांधणीच्या कारखान्यासह
+        हा किल्ला बांधला. कान्होजी आंग्रे यांचे आरमार 1696 पासून येथे होते आणि 1713
+        मध्ये हा किल्ला त्यांच्याकडे सोपवण्यात आला. पेशवे आणि ब्रिटिशांच्या संयुक्त
+        वेढ्यानंतर 12 एप्रिल 1755 रोजी हा किल्ला जिंकण्यात आला. 4 डिसेंबर 1818 रोजी
+        ब्रिटिशांनी त्यावर ताबा मिळवला.
+      significance: युनेस्कोच्या यादीत असलेला एक मराठा जलदुर्ग आणि कान्होजी आंग्रे
+        यांच्या आरमाराचे सुरुवातीचे एक प्रमुख ठिकाण.
+      dos: '- हर्णै येथील कोळी बांधवांसोबत बोटीची व्यवस्था करा आणि परत येण्याची वेळ
+        ठरवून घ्या
+
+        - जाण्यापूर्वी भरती-ओहोटीची वेळ तपासा; फक्त ओहोटीच्या वेळीच किनाऱ्यावर उतरता
+        येते
+
+        - महादरवाजावरील कोरलेला वाघ, गरुड आणि हत्ती नक्की पाहा'
+      donts: '- ठरलेल्या वेळेनंतर बेटावर थांबू नका
+
+        - समुद्र खवळलेला असताना प्रवास करण्याचा प्रयत्न करू नका'
+      safety_text: '- किल्ल्यावर जाणे ओहोटीवर अवलंबून असते; वेळापत्रक पाहूनच प्रवासाचे
+        नियोजन करा
+
+        - बेटावर जेटी नाही आणि पिण्याचे पाणीही नाही; सोबत पाणी ठेवा
+
+        - पूर्वेकडील मुख्य प्रवेशद्वार काटेरी झुडपांमुळे बंद झाले आहे; जाण्यासाठी
+        अरुंद पाऊलवाटेचा वापर करा'
+    hi:
+      short_story: 'सुवर्णदुर्ग, यानी ''स्वर्ण किला'', हरनाई से लगभग 1.6 किमी दूर
+        अरब सागर में एक चट्टान पर बना एक द्वीप किला है। यह 8 एकड़ में फैला है और 2025
+        में शामिल ''मराठा मिलिट्री लैंडस्केप्स ऑफ इंडिया'' नामक यूनेस्को (UNESCO)
+        विश्व धरोहर स्थल का हिस्सा है।
+
+
+        यहां कोई जेटी नहीं है: स्थानीय मछुआरे आपको हरनाई से नाव द्वारा ले जाते हैं
+        और आप एक छोटे रेतीले समुद्र तट पर उतरते हैं, जो केवल कम ज्वार (ओट) के समय
+        ही संभव है। इसके अंदर चट्टानों को काटकर बनाई गई दीवारें, छोटे कमरों वाले बुर्ज,
+        दो अन्न भंडार, एक पत्थर का बारूदखाना और एक बावड़ी है जिसमें आज भी पानी रहता
+        है।'
+      history: स्रोतों के अनुसार शिवाजी महाराज ने 1660 के आसपास एक जहाज निर्माण यार्ड
+        के साथ इसका निर्माण किया था। कान्होजी आंग्रे का बेड़ा 1696 से यहाँ स्थित था,
+        और 1713 में यह किला उन्हें सौंप दिया गया था। 1755 में पेशवा और अंग्रेजों की
+        संयुक्त घेराबंदी के बाद 12 अप्रैल 1755 को इस पर कब्ज़ा कर लिया गया। 4 दिसंबर
+        1818 को अंग्रेजों ने इस पर नियंत्रण कर लिया।
+      significance: यूनेस्को-सूचीबद्ध एक मराठा समुद्री किला और कान्होजी आंग्रे की
+        नौसेना का एक प्रारंभिक अड्डा।
+      dos: '- हरनाई में मछुआरों के साथ नाव की व्यवस्था करें और वापसी का समय तय करें
+
+        - जाने से पहले ज्वार-भाटा की जांच करें; केवल कम ज्वार (ओट) के समय ही उतरना
+        संभव है
+
+        - समुद्री द्वार पर नक्काशीदार बाघ, चील और हाथी देखें'
+      donts: '- तय समय के बाद द्वीप पर न रुकें
+
+        - समुद्र के अशांत होने पर पार करने का प्रयास न करें'
+      safety_text: '- पहुंच कम ज्वार पर निर्भर करती है; ज्वार-भाटा की तालिका के अनुसार
+        यात्रा की योजना बनाएं
+
+        - द्वीप पर कोई जेटी और पीने का पानी नहीं है; साथ में पानी ले जाएं
+
+        - मुख्य पूर्वी प्रवेश द्वार कंटीली झाड़ियों से अवरुद्ध है; संकरे रास्ते का
+        उपयोग करें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/84/Entrance_to_Suvarnadurg.JPG
+    credit: AshLin
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Entrance_to_Suvarnadurg.JPG
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Suvarnadurg
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: kanakdurg-fort
+  status: ai_draft
+  name_en: Kanakdurg Fort
+  name_mr: कनकदुर्ग किल्ला
+  name_hi: कनकदुर्ग किला
+  category: fort
+  taluka: Dapoli
+  lat: 17.809208
+  lng: 73.089172
+  coord_source: osm node/5542939937
+  osm_id: node/5542939937
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kanakdurg is a small headland fort right next to Harnai port,
+        reached by a flight of steps. It covers about a quarter of a hectare and is
+        mostly in ruins, but it still has nine water ponds, a lighthouse and two bastions.
+
+
+        It was built as a link to Suvarnadurg, the island fort just offshore, and
+        gives a good view of it.'
+      history: null
+      significance: A lookout fort that protected Suvarnadurg, next to Harnai port.
+      dos: '- Combine with Harnai beach, the evening fish auction and a boat to Suvarnadurg'
+      donts: null
+      safety_text: '- Steps and ruins are uneven'
+    mr:
+      short_story: 'कनकदुर्ग हा हर्णै बंदराच्या अगदी लागून असलेला एक छोटा भूदुर्ग
+        आहे, जिथे पायऱ्या चढून जाता येते. हा सुमारे पाव हेक्टरवर पसरलेला असून बहुतांश
+        पडझड झाली आहे, तरीही येथे पाण्याचे नऊ कुंड, एक दीपगृह (लाईट हाऊस) आणि दोन
+        बुरुज पाहायला मिळतात.
+
+
+        समुद्रात असणाऱ्या सुवर्णदुर्ग किल्ल्याला जोडणारा दुवा म्हणून तो बांधला गेला
+        होता आणि येथून सुवर्णदुर्गाचे विहंगम दृश्य दिसते.'
+      history: null
+      significance: हर्णै बंदराशेजारील एक टेहळणी किल्ला ज्याने सुवर्णदुर्गाचे संरक्षण
+        केले.
+      dos: '- हर्णै बीच, संध्याकाळचा मासळीचा लिलाव आणि सुवर्णदुर्गाची बोट सफर याचे
+        एकत्रित नियोजन करा'
+      donts: null
+      safety_text: '- पायऱ्या आणि किल्ल्याचे अवशेष ओबडधोबड आहेत'
+    hi:
+      short_story: 'कनकदुर्ग हरनाई बंदरगाह के ठीक बगल में एक छोटा मुख्यभूमि का किला
+        है, जहां सीढ़ियों से पहुंचा जा सकता है। यह लगभग एक चौथाई हेक्टेयर में फैला
+        है और ज्यादातर खंडहर हो चुका है, लेकिन इसमें अभी भी नौ पानी के कुंड, एक लाइटहाउस
+        और दो बुर्ज हैं।
+
+
+        इसे समुद्र तट के ठीक दूर स्थित द्वीप किले सुवर्णदुर्ग के लिए एक लिंक के रूप
+        में बनाया गया था, और यहां से उसका अच्छा नजारा दिखता है।'
+      history: null
+      significance: हरनाई बंदरगाह के बगल में एक निगरानी किला जो सुवर्णदुर्ग की रक्षा
+        करता था।
+      dos: '- हरनाई समुद्र तट, शाम की मछली नीलामी और सुवर्णदुर्ग के लिए नाव की सवारी
+        के साथ मिलाएं'
+      donts: null
+      safety_text: '- सीढ़ियां और खंडहर ऊबड़-खाबड़ हैं'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.talukadapoli.com/en/places/kanakdurg-harnai/
+    - https://durgbharari.in/kanakdurg/
+    - https://en.wikipedia.org/wiki/Harnai,_Maharashtra
+    - https://en.wikipedia.org/wiki/Suvarnadurg
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: fattegad-fort
+  status: ai_draft
+  name_en: Fattegad Fort
+  name_mr: फत्तेगड किल्ला
+  name_hi: फत्तेगढ़ किला
+  category: fort
+  taluka: Dapoli
+  lat: 17.812444
+  lng: 73.089596
+  coord_source: osm node/9198704336
+  osm_id: node/9198704336
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Fattegad is one of three small mainland forts at Harnai, along
+        with Kanakdurg and Gova. They are believed to have been built as lookouts
+        to protect the island fort of Suvarnadurg, and a narrow channel separates
+        them.
+      history: null
+      significance: One of the Harnai lookout forts guarding Suvarnadurg.
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: फत्तेगड हा हर्णै येथील कनकदुर्ग आणि गोवा किल्ल्यांसोबत असलेल्या
+        तीन लहान भूदुर्गांपैकी एक आहे. सुवर्णदुर्ग या जलदुर्गाचे रक्षण करण्यासाठी
+        टेहळणीचे ठिकाण म्हणून ते बांधले गेले असे मानले जाते, आणि एक अरुंद खाडी त्यांना
+        वेगळी करते.
+      history: null
+      significance: सुवर्णदुर्गाचे रक्षण करणाऱ्या हर्णै येथील टेहळणी किल्ल्यांपैकी
+        एक.
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: फत्तेगढ़, कनकदुर्ग और गोवा के साथ, हरनाई में तीन छोटे मुख्यभूमि
+        किलों में से एक है। माना जाता है कि इन्हें सुवर्णदुर्ग द्वीप किले की रक्षा
+        के लिए निगरानी चौकियों के रूप में बनाया गया था, और एक संकरा जलमार्ग इन्हें
+        अलग करता है।
+      history: null
+      significance: सुवर्णदुर्ग की रक्षा करने वाले हरनाई के निगरानी किलों में से एक।
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Fattegad
+    - https://durgbharari.in/fattegad/
+    - https://en.wikipedia.org/wiki/Suvarnadurg
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: anjarle-beach
+  status: ai_draft
+  name_en: Anjarle Beach
+  name_mr: आंजर्ले बीच
+  name_hi: आंजर्ले बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: A few km from Dapoli, across the Jog river creek.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: turtle_nesting
+    from_month: 1
+    to_month: 4
+  wikipedia_url: https://en.wikipedia.org/wiki/Anjarle
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Anjarle is a quiet beach a few km from Dapoli, across the Jog river
+        creek. The Kadyavarcha Ganpati temple stands on the hill above it.
+      history: null
+      significance: null
+      dos: '- Climb to the Kadyavarcha Ganpati temple'
+      donts: '- Don''t litter'
+      safety_text: null
+    mr:
+      short_story: आंजर्ले हा दापोलीपासून काही किलोमीटर अंतरावर, जोग नदीच्या खाडीपलीकडे
+        असलेला एक शांत समुद्रकिनारा आहे. कड्यावरचा गणपतीचे मंदिर इथल्या टेकडीवर आहे.
+      history: null
+      significance: null
+      dos: '- कड्यावरचा गणपती मंदिरापर्यंत चढून जा'
+      donts: '- कचरा करू नका'
+      safety_text: null
+    hi:
+      short_story: आंजर्ले दापोली से कुछ किमी दूर, जोग नदी की खाड़ी के पार एक शांत
+        समुद्र तट है। कड्यावरचा गणपति मंदिर इसके ऊपर पहाड़ी पर स्थित है।
+      history: null
+      significance: null
+      dos: '- कड्यावरचा गणपति मंदिर तक चढ़ें'
+      donts: '- कूड़ा न फैलाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/1e/Parked_boats_at_Anjarle_Creek.jpg
+    credit: Dey.sandip
+    licence: CC BY 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Parked_boats_at_Anjarle_Creek.jpg
+  _sources:
+    _all:
+    - https://en.wikivoyage.org/wiki/Dapoli
+    - https://en.wikipedia.org/wiki/Anjarle
+    - https://roundglasssustain.com/conservation/olive-ridley-turtles-dapoli
+    - https://iotn.org/iotn02-02-second-successive-year-of-the-marine-turtle-conservation-project-in-konkan-maharashtra/
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review; turtle season Jan-Apr
+    = hatching months (IOTN 2003-04 data); nesting Nov-Mar'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kadyavarcha-ganpati-anjarle
+  status: ai_draft
+  name_en: Kadyavarcha Ganpati, Anjarle
+  name_mr: कड्यावरचा गणपती, आंजर्ले
+  name_hi: कड्यावरचा गणपति, आंजर्ले
+  category: temple
+  taluka: Dapoli
+  lat: 17.851591
+  lng: 73.092365
+  coord_source: osm node/2398269450
+  osm_id: node/2398269450
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On a hill at Anjarle; about 250 steps up, with a lake in front.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kadyavarcha Ganpati, the ''Ganpati on the cliff'', stands on a
+        hill above Anjarle, a few km from Dapoli across the Jog river creek. About
+        250 steps lead up to the temple, with a lake in front.
+
+
+        The present temple was built in the Peshwa period after two earlier temples
+        by the sea were submerged.'
+      history: null
+      significance: Anjarle's best-known temple, above one of Dapoli's quieter beaches.
+      dos: '- Combine with Anjarle beach below'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: '- The 250 steps are steep; go slow in the heat'
+    mr:
+      short_story: 'दापोलीपासून काही किलोमीटर अंतरावर जोग नदीच्या खाडीपलीकडे असलेल्या
+        आंजर्ले येथील एका टेकडीवर ''कड्यावरचा गणपती'' वसलेला आहे. मंदिरापर्यंत जाण्यासाठी
+        सुमारे 250 पायऱ्या आहेत आणि समोर एक तलाव आहे.
+
+
+        समुद्रकिनाऱ्यावरील आधीची दोन मंदिरे पाण्याखाली गेल्यानंतर सध्याचे हे मंदिर
+        पेशवे काळात बांधले गेले.'
+      history: null
+      significance: आंजर्ले येथील सर्वात प्रसिद्ध मंदिर, दापोलीच्या एका शांत समुद्रकिनाऱ्यावरील
+        टेकडीवर वसलेले आहे.
+      dos: '- खाली असलेल्या आंजर्ले बीचलाही नक्की भेट द्या'
+      donts: '- मंदिरात पादत्राणे (चपला/बूट) घालून जाऊ नका'
+      safety_text: '- 250 पायऱ्या खड्या आहेत; उन्हात सावकाश चढा'
+    hi:
+      short_story: '''कड्यावरचा गणपति'', यानी ''चट्टान पर गणपति'', दापोली से कुछ किमी
+        दूर जोग नदी की खाड़ी के पार आंजर्ले में एक पहाड़ी पर स्थित है। मंदिर तक लगभग
+        250 सीढ़ियां जाती हैं, जिसके सामने एक झील है।
+
+
+        समुद्र के किनारे बने दो पुराने मंदिरों के जलमग्न होने के बाद वर्तमान मंदिर
+        पेशवा काल में बनाया गया था।'
+      history: null
+      significance: आंजर्ले का सबसे प्रसिद्ध मंदिर, दापोली के एक शांत समुद्र तट के
+        ऊपर स्थित है।
+      dos: '- इसे नीचे स्थित आंजर्ले बीच के साथ मिलाएं'
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: '- 250 सीढ़ियां खड़ी हैं; गर्मी में धीरे-धीरे चढ़ें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Anjarle
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: kelshi-beach
+  status: ai_draft
+  name_en: Kelshi Beach
+  name_mr: केळशी बीच
+  name_hi: केलशी बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: turtle_nesting
+    from_month: 1
+    to_month: 4
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kelshi is a village north of Anjarle, near the Raigad border, with
+        a long beach of about 2.5 km known for its sunsets. The village also has the
+        Peshwa-era Mahalaxmi temple and temples to Radha Krishna, Beleshwar and Ganesha.
+      history: null
+      significance: null
+      dos: '- Stay for the sunset
+
+        - Visit the Mahalaxmi temple in the village'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: रायगडच्या सीमेजवळ, आंजर्लेच्या उत्तरेला केळशी हे गाव आहे. इथला
+        सुमारे 2.5 किमी लांबीचा समुद्रकिनारा सूर्यास्तासाठी ओळखला जातो. या गावात पेशवेकालीन
+        महालक्ष्मी मंदिर, तसेच राधाकृष्ण, बेलेश्वर आणि गणपतीची मंदिरे आहेत.
+      history: null
+      significance: null
+      dos: '- सूर्यास्त पाहण्यासाठी थांबा
+
+        - गावातील महालक्ष्मी मंदिराला भेट द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: केलशी रायगढ़ सीमा के पास, आंजर्ले के उत्तर में एक गांव है, जहां
+        लगभग 2.5 किमी लंबा समुद्र तट है जो अपने सूर्यास्त के लिए जाना जाता है। गांव
+        में पेशवा काल का महालक्ष्मी मंदिर और राधा कृष्ण, बेलेश्वर और गणेश जी के मंदिर
+        भी हैं।
+      history: null
+      significance: null
+      dos: '- सूर्यास्त देखने के लिए रुकें
+
+        - गांव में महालक्ष्मी मंदिर के दर्शन करें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Dapoli
+    - https://en.wikivoyage.org/wiki/Dapoli
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://roundglasssustain.com/conservation/olive-ridley-turtles-dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review; turtle season Jan-Apr
+    = hatching months (IOTN 2003-04 data); nesting Nov-Mar'
+  _collected_by: claude+gemini 2026-11-03
+- slug: mahalaxmi-temple-kelshi
+  status: ai_draft
+  name_en: Mahalaxmi Temple, Kelshi
+  name_mr: महालक्ष्मी मंदिर, केळशी
+  name_hi: महालक्ष्मी मंदिर, केलशी
+  category: temple
+  taluka: Dapoli
+  lat: 17.911184
+  lng: 73.062899
+  coord_source: osm way/3001997256
+  osm_id: way/3001997256
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Mahalaxmi temple at Kelshi dates from the Peshwa era. The village,
+        north of Anjarle near the Raigad border, also has temples to Radha Krishna,
+        Beleshwar and Ganesha, and a long sunset beach.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: केळशी येथील महालक्ष्मी मंदिर पेशवेकालीन आहे. रायगड सीमेजवळ आंजर्लेच्या
+        उत्तरेला असलेल्या या गावात राधाकृष्ण, बेलेश्वर आणि गणपतीची मंदिरे देखील आहेत
+        आणि सूर्यास्तासाठी प्रसिद्ध असा एक मोठा समुद्रकिनारा आहे.
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिरात पादत्राणे (चपला/बूट) घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: केलशी का महालक्ष्मी मंदिर पेशवा काल का है। रायगढ़ सीमा के पास आंजर्ले
+        के उत्तर में स्थित इस गांव में राधा कृष्ण, बेलेश्वर और गणेश जी के मंदिर भी
+        हैं, और सूर्यास्त के लिए प्रसिद्ध एक लंबा समुद्र तट है。
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/82/Kelshi_Village_Mahalaxmi_Temple_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Amit Patekar
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Kelshi_Village_Mahalaxmi_Temple_-_panoramio.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Kelashi
+    - https://mr.wikipedia.org/wiki/%E0%A4%A6%E0%A4%BE%E0%A4%AA%E0%A5%8B%E0%A4%B2%E0%A5%80_%E0%A4%A4%E0%A4%BE%E0%A4%B2%E0%A5%81%E0%A4%95%E0%A4%BE
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: panhalekaji-caves
+  status: ai_draft
+  name_en: Panhalekaji Caves
+  name_mr: पन्हाळेकाजी लेणी
+  name_hi: पन्हालेकाजी गुफाएं
+  category: cave
+  taluka: Dapoli
+  lat: 17.645556
+  lng: 73.245
+  coord_source: wikipedia Panhalakaji_Caves
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On the bank of the Kotjai river, Dapoli taluka.
+  nearest_station: Khed
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Panhalakaji_Caves
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Panhalekaji is a group of about 29 rock-cut caves on the right
+        bank of the Kotjai stream in Dapoli taluka. Some are Buddhist and some Hindu,
+        carved over many centuries.
+
+
+        Cave 10 has an image of Maha-Chandraroshana on a stupa. Cave 14 has Nath Pantha
+        deities, and Cave 19 has a shivling with scriptures on the ceiling. Look for
+        the elephant frieze and the carvings of Mahasiddhas.'
+      history: Carving began in the 3rd century AD under the Hinayana sect. A Vajrayana
+        group added Cave 10 in the 10th-11th centuries. Shiva and Ganapatya worship
+        began here under the Silahara rulers. Inscriptions are in Brahmi and Devanagari.
+      significance: A rare site where Buddhist and later Hindu and Nath traditions
+        share one cave complex.
+      dos: '- Carry a torch for the darker caves
+
+        - Go with time to walk along the stream between caves'
+      donts: '- Don''t touch or scratch the carvings
+
+        - Don''t litter inside the caves'
+      safety_text: '- Rock surfaces can be slippery near the stream, especially in
+        the rains'
+    mr:
+      short_story: 'दापोली तालुक्यातील कोटजाई नदीच्या उजव्या तीरावर सुमारे 29 कातळात
+        कोरलेल्या गुहांचा समूह म्हणजे पन्हाळेकाजी लेणी. अनेक शतकांच्या काळात कोरलेली
+        ही लेणी काही बौद्ध तर काही हिंदू आहेत.
+
+
+        लेणी क्रमांक 10 मध्ये स्तूपावर महा-चंद्ररोषणाची मूर्ती आहे. लेणी 14 मध्ये
+        नाथ पंथाच्या देवता आहेत, आणि लेणी 19 मध्ये छतावर शिलालेख असलेले शिवलिंग आहे.
+        येथील हत्तीची शिल्पे आणि महासिद्धांच्या मूर्ती नक्की पाहा.'
+      history: हिनयान पंथाच्या काळात इसवी सनाच्या 3ऱ्या शतकात कोरकामाला सुरुवात झाली.
+        10व्या-11व्या शतकात वज्रयान गटाने लेणी क्रमांक 10 ची भर घातली. शिलाहार राजांच्या
+        काळात येथे शिव आणि गाणपत्य पूजा सुरू झाली. इथले शिलालेख ब्राह्मी आणि देवनागरी
+        लिपीत आहेत.
+      significance: हे एक दुर्मिळ ठिकाण आहे जिथे एकाच लेणी समूहात बौद्ध आणि नंतरच्या
+        काळातील हिंदू व नाथ परंपरा एकत्र पाहायला मिळतात.
+      dos: '- अंधाऱ्या लेण्यांसाठी सोबत टॉर्च ठेवा
+
+        - लेण्यांच्या मधून वाहणाऱ्या प्रवाहाच्या काठावर फिरण्यासाठी पुरेसा वेळ काढून
+        जा'
+      donts: '- शिल्पांना स्पर्श करू नका किंवा ओरखडे काढू नका
+
+        - लेण्यांच्या आत कचरा करू नका'
+      safety_text: '- विशेषतः पावसाळ्यात प्रवाहाजवळील खडकाळ भाग निसरडा होऊ शकतो'
+    hi:
+      short_story: 'पन्हालेकाजी दापोली तालुका में कोटजाई नदी के दाहिने किनारे पर लगभग
+        29 चट्टानों को काटकर बनाई गई गुफाओं का एक समूह है। कई सदियों में उकेरी गईं
+        इनमें से कुछ गुफाएं बौद्ध हैं और कुछ हिंदू हैं।
+
+
+        गुफा 10 में एक स्तूप पर महा-चंद्ररोषण की मूर्ति है। गुफा 14 में नाथ पंथ के
+        देवता हैं, और गुफा 19 में छत पर शिलालेखों के साथ एक शिवलिंग है। यहां हाथी
+        की नक्काशी और महासिद्धों की मूर्तियां जरूर देखें।'
+      history: हीनयान संप्रदाय के तहत तीसरी शताब्दी ईस्वी में नक्काशी शुरू हुई। 10वीं-11वीं
+        शताब्दी में वज्रयान समूह ने गुफा 10 जोड़ी। शिलाहार शासकों के काल में यहां
+        शिव और गाणपत्य की पूजा शुरू हुई। शिलालेख ब्राह्मी और देवनागरी में हैं।
+      significance: एक दुर्लभ स्थल जहां एक ही गुफा परिसर में बौद्ध और बाद की हिंदू
+        और नाथ परंपराएं साझा होती हैं।
+      dos: '- अंधेरी गुफाओं के लिए टॉर्च साथ रखें
+
+        - गुफाओं के बीच धारा के किनारे टहलने के लिए समय निकालकर जाएं'
+      donts: '- नक्काशी को छुएं या खरोंचें नहीं
+
+        - गुफाओं के अंदर कूड़ा न फैलाएं'
+      safety_text: '- धारा के पास चट्टानी सतह फिसलन भरी हो सकती है, खासकर बारिश में'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/a/a4/%E0%A4%AA%E0%A4%A8%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B3%E0%A5%87%E0%A4%95%E0%A4%BE%E0%A4%9C%E0%A5%80_%E0%A4%B2%E0%A5%87%E0%A4%A3%E0%A5%80.jpg
+    credit: आर्या जोशी
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%AA%E0%A4%A8%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B3%E0%A5%87%E0%A4%95%E0%A4%BE%E0%A4%9C%E0%A5%80_%E0%A4%B2%E0%A5%87%E0%A4%A3%E0%A5%80.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Panhalakaji_Caves
+    - https://mr.wikipedia.org/wiki/%E0%A4%A6%E0%A4%BE%E0%A4%AA%E0%A5%8B%E0%A4%B2%E0%A5%80_%E0%A4%A4%E0%A4%BE%E0%A4%B2%E0%A5%81%E0%A4%95%E0%A4%BE
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: keshavraj-temple-asud
+  status: ai_draft
+  name_en: Keshavraj Temple, Asud
+  name_mr: केशवराज मंदिर, आसूद
+  name_hi: केशवराज मंदिर, आसूद
+  category: temple
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: From the Dapoli-Harnai road, turn at Asud Baug and walk 15-20 minutes
+    through the forest.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Keshavraj temple at Asud sits in the hills near Dapoli. From
+        the Dapoli-Harnai road, turn at Asud Baug and walk 15 to 20 minutes through
+        the forest to reach it. The Vyaghreshwar temple is also at Asud.
+      history: null
+      significance: null
+      dos: '- Wear walking shoes for the forest path'
+      donts: null
+      safety_text: '- The forest path can be slippery in the rains'
+    mr:
+      short_story: आसूद येथील केशवराज मंदिर दापोलीच्या जवळील टेकड्यांमध्ये वसलेले
+        आहे. दापोली-हर्णै रोडवरून, आसूद बागेजवळ वळा आणि जंगलातून 15 ते 20 मिनिटे चालत
+        गेल्यावर हे मंदिर लागते. आसूद येथे व्याघ्रेश्वर मंदिर देखील आहे.
+      history: null
+      significance: null
+      dos: '- जंगलातील वाटेसाठी वॉकिंग शूज घाला'
+      donts: null
+      safety_text: '- पावसाळ्यात जंगलातील वाट निसरडी होऊ शकते'
+    hi:
+      short_story: आसूद में केशवराज मंदिर दापोली के पास पहाड़ियों में स्थित है। दापोली-हरनाई
+        रोड से, आसूद बाग से मुड़ें और जंगल के बीच से 15 से 20 मिनट पैदल चलकर यहाँ
+        पहुंचें। आसूद में व्याघ्रेश्वर मंदिर भी है।
+      history: null
+      significance: null
+      dos: '- जंगल के रास्ते के लिए चलने वाले जूते पहनें'
+      donts: null
+      safety_text: '- जंगल का रास्ता बारिश में फिसलन भरा हो सकता है'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/14/Keshavraj_temple_photos_by_RAHUL_KHARADE_%28bhandup%29_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: rahul kharade
+    licence: CC BY 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Keshavraj_temple_photos_by_RAHUL_KHARADE_(bhandup)_-_panoramio.jpg
+  _sources:
+    _all:
+    - https://talukadapoli.com/places/dapoli-keshavraj-temple/
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: chandika-devi-temple-dabhol
+  status: ai_draft
+  name_en: Chandika Devi Temple, Dabhol
+  name_mr: चंडिका देवी मंदिर, दाभोळ
+  name_hi: चंडिका देवी मंदिर, दाभोल
+  category: temple
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Chandika temple is a natural cave of black rock on a plateau
+        about 1 km off the Dapoli-Dabhol road, 3 to 4 km from Dabhol harbour. You
+        bend low to pass the silver-covered entrance and walk down a narrow, dark
+        passage to the goddess.
+
+
+        The idol is a self-formed stone figure about three feet high, covered in vermilion,
+        with four arms holding weapons. Only oil lamps light the sanctum; no electric
+        light is allowed inside.'
+      history: Tradition links the cave to the Pandavas. A Gosavi saint, Jamna Puri,
+        is said to have found the hidden cave in a dream and cleared the entrance,
+        and the Puri family has done the rituals ever since; the present priests are
+        the 32nd generation. Shivaji Maharaj is said to have visited after taking
+        Dabhol.
+      significance: A cave shrine lit only by oil lamps, run by the same family for
+        over 30 generations.
+      dos: '- Visit during Navratri for the festival
+
+        - Go slowly down the dark passage; only two people fit at a time'
+      donts: '- Don''t use a torch or phone light in the sanctum
+
+        - Don''t bring non-vegetarian offerings'
+      safety_text: The passage is low, narrow and dark. Not suited to people who are
+        uneasy in tight spaces.
+    mr:
+      short_story: 'चंडिका मंदिर हे दाभोळ बंदरापासून 3 ते 4 किमी अंतरावर आणि दापोली-दाभोळ
+        रस्त्यापासून सुमारे 1 किमी अंतरावर असलेल्या एका पठारावरील काळ्या पाषाणाची
+        नैसर्गिक गुहा आहे. चांदीने मढवलेल्या प्रवेशद्वारातून जाण्यासाठी तुम्हाला वाकून
+        जावे लागते आणि देवीच्या दर्शनासाठी एका अरुंद, अंधाऱ्या मार्गावरून चालत जावे
+        लागते.
+
+
+        इथली मूर्ती ही सुमारे तीन फूट उंचीची स्वयंभू पाषाण मूर्ती आहे, जी शेंदूर लावून
+        झाकलेली असून तिच्या चार हातात शस्त्रे आहेत. गाभाऱ्यात फक्त तेलाचे दिवे लावलेले
+        असतात; आतमध्ये विजेच्या दिव्यांना (लाईट) परवानगी नाही.'
+      history: ही गुहा पंडवांशी जोडली असल्याची दंतकथा आहे. जामना पुरी नावाच्या एका
+        गोसावी संताने स्वप्नात ही लपलेली गुहा शोधून काढली आणि तिचे प्रवेशद्वार मोकळे
+        केले असे मानले जाते, आणि तेव्हापासून पुरी कुटुंबच इथले विधी पार पाडत आहे;
+        सध्याचे पुजारी 32 व्या पिढीतील आहेत. छत्रपती शिवाजी महाराजांनी दाभोळ जिंकल्यानंतर
+        या मंदिराला भेट दिली होती असे सांगितले जाते.
+      significance: केवळ तेलाच्या दिव्यांनी उजळलेले एक गुहा मंदिर, ज्याची पूजा एकाच
+        कुटुंबाद्वारे 30 हून अधिक पिढ्यांपासून चालवली जात आहे.
+      dos: '- उत्सवासाठी नवरात्रीदरम्यान भेट द्या
+
+        - अंधाऱ्या मार्गावरून हळूहळू खाली जा; एका वेळी फक्त दोनच व्यक्ती जाऊ शकतात'
+      donts: '- गाभाऱ्यात टॉर्च किंवा फोनच्या लाईटचा वापर करू नका
+
+        - मांसाहारी नैवेद्य सोबत आणू नका'
+      safety_text: येथील मार्ग खाली (झुकलेला), अरुंद आणि अंधारा आहे. ज्या लोकांना
+        बंदिस्त किंवा अरुंद जागेची भीती वाटते (क्लॉस्ट्रोफोबिया), त्यांच्यासाठी हे
+        योग्य नाही.
+    hi:
+      short_story: 'चंडिका मंदिर दाभोल बंदर से 3 से 4 किमी और दापोली-दाभोल सड़क से
+        लगभग 1 किमी दूर एक पठार पर काले चट्टान की एक प्राकृतिक गुफा है। चांदी से ढके
+        प्रवेश द्वार से गुजरने के लिए आपको झुकना पड़ता है और देवी के पास जाने के लिए
+        एक संकीर्ण, अंधेरे मार्ग से नीचे चलना पड़ता है।
+
+
+        मूर्ति लगभग तीन फीट ऊँची एक स्वयंभू पत्थर की आकृति है, जो सिंदूर से ढकी हुई
+        है, और चार हाथों में हथियार पकड़े हुए है। गर्भगृह को केवल तेल के दीये रोशन
+        करते हैं; अंदर किसी भी बिजली के प्रकाश की अनुमति नहीं है।'
+      history: परंपरा इस गुफा को पांडवों से जोड़ती है। कहा जाता है कि एक गोसावी संत,
+        जमुना पुरी ने सपने में छिपी हुई गुफा को पाया और प्रवेश द्वार को साफ किया,
+        और पुरी परिवार तब से अनुष्ठान करता आ रहा है; वर्तमान पुजारी 32 वीं पीढ़ी के
+        हैं। कहा जाता है कि दाभोल पर कब्जा करने के बाद शिवाजी महाराज ने यहाँ दौरा
+        किया था।
+      significance: केवल तेल के दीयों से रोशन एक गुफा तीर्थ, जिसे 30 से अधिक पीढ़ियों
+        से एक ही परिवार द्वारा चलाया जा रहा है।
+      dos: '- त्योहार के लिए नवरात्रि के दौरान जाएँ
+
+        - अंधेरे रास्ते से धीरे-धीरे नीचे उतरें; एक बार में केवल दो लोग ही आ सकते
+        हैं'
+      donts: '- गर्भगृह में टॉर्च या फोन की लाइट का उपयोग न करें
+
+        - मांसाहारी प्रसाद न लाएँ'
+      safety_text: रास्ता नीचा, संकरा और अंधेरा है। तंग जगहों से घबराने वाले लोगों
+        के लिए यह उपयुक्त नहीं है।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/6/68/Swayambhu_shri_chandika_mata_mandir%2C_Dabhol_%2CGughar%2C_Maharashtra%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Vaishnavi kishor pashte
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Swayambhu_shri_chandika_mata_mandir,_Dabhol_,Gughar,_Maharashtra,_India.jpg
+  _sources:
+    _all:
+    - https://mr.wikipedia.org/wiki/%E0%A4%A6%E0%A4%BE%E0%A4%AA%E0%A5%8B%E0%A4%B2%E0%A5%80_%E0%A4%A4%E0%A4%BE%E0%A4%B2%E0%A5%81%E0%A4%95%E0%A4%BE
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.talukadapoli.com/en/places/chandika-temple-dabhol/
+  _review: 'no coordinates: needs pin; no opening hours in source; temple does not
+    accept donations per source; EN text = Claude draft from sources, needs team review;
+    MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: unhavare-hot-spring
+  status: ai_draft
+  name_en: Unhavare Hot Spring
+  name_mr: उन्हवरे गरम पाण्याचे झरे
+  name_hi: उन्हवरे गर्म पानी का झरना
+  category: village
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Approach road from Vakavli on the Dapoli-Khed road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Unhavare
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Unhavare is a small village in Dapoli taluka with natural hot
+        water springs. The road in starts at Vakavli, on the Dapoli-Khed road.
+
+
+        Locals bathe in the springs, and some believe the water helps certain skin
+        conditions. Bathing is said to leave you hungry, so bring snacks.'
+      history: null
+      significance: null
+      dos: '- Bring a change of clothes and snacks'
+      donts: '- Don''t use soap in the spring water'
+      safety_text: '- Test the water temperature before getting in'
+    mr:
+      short_story: 'दापोली तालुक्यातील उन्हवरे हे नैसर्गिक गरम पाण्याच्या झऱ्यांसाठी
+        ओळखले जाणारे एक छोटे गाव आहे. दापोली-खेड रस्त्यावरील वाकवली येथून आत जाण्यासाठी
+        रस्ता आहे.
+
+
+        स्थानिक लोक या झऱ्यांमध्ये स्नान करतात आणि काही लोकांच्या मते या पाण्यामुळे
+        त्वचेच्या काही आजारांवर फायदा होतो. आंघोळीनंतर भूक लागते असे म्हटले जाते,
+        त्यामुळे सोबत काहीतरी खाऊ घेऊन जा.'
+      history: null
+      significance: null
+      dos: '- बदलण्यासाठी कपडे आणि काहीतरी खाऊ सोबत ठेवा'
+      donts: '- झऱ्याच्या पाण्यात साबण वापरू नका'
+      safety_text: '- आत जाण्यापूर्वी पाण्याचे तापमान तपासून पाहा'
+    hi:
+      short_story: 'उन्हवरे दापोली तालुका में प्राकृतिक गर्म पानी के झरनों वाला एक
+        छोटा गांव है। यहां जाने का रास्ता दापोली-खेड़ रोड पर वाकवली से शुरू होता है।
+
+
+        स्थानीय लोग झरनों में स्नान करते हैं, और कुछ का मानना है कि पानी से त्वचा
+        की कुछ बीमारियों में मदद मिलती है। कहा जाता है कि स्नान करने के बाद भूख लगती
+        है, इसलिए कुछ नाश्ता साथ लाएं।'
+      history: null
+      significance: null
+      dos: '- बदलने के लिए कपड़े और कुछ नाश्ता साथ लाएं'
+      donts: '- झरने के पानी में साबुन का प्रयोग न करें'
+      safety_text: '- अंदर जाने से पहले पानी का तापमान जांच लें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Unhavare
+    - https://en.wikivoyage.org/wiki/Dapoli
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: sane-guruji-smarak-palgad
+  status: ai_draft
+  name_en: Sane Guruji Smarak, Palgad
+  name_mr: साने गुरुजी स्मारक, पालगड
+  name_hi: साने गुरुजी स्मारक, पालगड
+  category: museum
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Palgad, a village of about 3,000 people between Dapoli and Khed,
+        is the birthplace of Pandurang Sadashiv Sane, known as Sane Guruji. He was
+        born here on 24 December 1899.
+
+
+        His best-known book, Shyamchi Aai, a memoir of his childhood and his mother,
+        is set in Palgad. The book has been translated into almost every Indian language.'
+      history: Sane Guruji left teaching in 1930 to join the freedom movement and
+        spent about six and a half years in jail up to 1947. In 1947 his fast at Pandharpur
+        led to the Vitthal temple being opened to Dalits.
+      significance: The village where Shyamchi Aai is set, and the birthplace of one
+        of Maharashtra's best-loved writers.
+      dos: '- Read a chapter of Shyamchi Aai before you go
+
+        - Combine with the short Palgad fort climb'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: 'दापोली आणि खेड दरम्यान वसलेले सुमारे 3,000 लोकसंख्येचे पालगड हे
+        पांडुरंग सदाशिव साने, म्हणजेच साने गुरुजी यांचे जन्मस्थान आहे. त्यांचा जन्म
+        येथे 24 डिसेंबर 1899 रोजी झाला.
+
+
+        त्यांचे बालपण आणि त्यांच्या आईच्या आठवणींवर आधारित ''श्यामची आई'' हे त्यांचे
+        सर्वाधिक प्रसिद्ध पुस्तक पालगड येथेच रचले गेले आहे. या पुस्तकाचा जवळपास सर्व
+        भारतीय भाषांमध्ये अनुवाद झाला आहे.'
+      history: साने गुरुजींनी 1930 मध्ये स्वातंत्र्यलढ्यात सहभागी होण्यासाठी अध्यापन
+        सोडले आणि 1947 पर्यंत सुमारे साडेसहा वर्षे कारावासात काढले. 1947 मध्ये पंढरपूर
+        येथे त्यांनी केलेल्या उपोषणामुळे विठ्ठल मंदिर शोषितांसाठी (दलितांसाठी) खुले
+        करण्यात आले.
+      significance: '''श्यामची आई'' ज्या गावात घडले ते गाव, आणि महाराष्ट्रातील अत्यंत
+        लाडक्या लेखकाचे जन्मस्थान.'
+      dos: '- जाण्यापूर्वी ''श्यामची आई'' पुस्तकातील एखादे प्रकरण वाचा
+
+        - पालगड किल्ल्याच्या छोट्या चढाईसोबत याची जोड द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: 'दापोली और खेड़ के बीच लगभग 3,000 की आबादी वाला गाँव पालगड, पांडुरंग
+        सदाशिव साने, जिन्हें साने गुरुजी के रूप में जाना जाता है, का जन्मस्थान है।
+        उनका जन्म यहाँ 24 दिसंबर 1899 को हुआ था।
+
+
+        उनकी सबसे प्रसिद्ध पुस्तक ''श्यामची आई'', उनके बचपन और उनकी माँ का संस्मरण,
+        पालगड में ही रची गई है। इस पुस्तक का लगभग हर भारतीय भाषा में अनुवाद किया गया
+        है।'
+      history: साने गुरुजी ने 1930 में स्वतंत्रता आंदोलन में शामिल होने के लिए शिक्षण
+        छोड़ दिया और 1947 तक लगभग साढ़े छह साल जेल में बिताए। 1947 में पंढरपुर में
+        उनके उपवास के कारण विठ्ठल मंदिर दलितों के लिए खोल दिया गया।
+      significance: वह गाँव जहाँ 'श्यामची आई' की पृष्ठभूमि है, और महाराष्ट्र के सबसे
+        प्रिय लेखकों में से एक का जन्मस्थान।
+      dos: '- जाने से पहले ''श्यामची आई'' का एक अध्याय पढ़ें
+
+        - छोटे पालगड किले की चढ़ाई के साथ इसे जोड़ें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Palgad
+    - https://en.wikipedia.org/wiki/Pandurang_Sadashiv_Sane
+  _review: 'no coordinates: needs pin; sources confirm birthplace only; what the smarak
+    contains, timings and exact location need a field check; EN text = Claude draft
+    from sources, needs team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kolthare-beach
+  status: ai_draft
+  name_en: Kolthare Beach
+  name_mr: कोळथरे समुद्रकिनारा
+  name_hi: कोळथरे बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kolthare is a small fishing village on the coast about 19 km from
+        Dapoli, 8 km from Dabhol. It is known for its beach on the Arabian Sea.
+
+
+        The village has an old Shiva temple, Shri Dev Koleshwar. Locals speak Marathi
+        and the Daldi dialect of Konkani.'
+      history: null
+      significance: A fishing-village beach with an old Shiva temple.
+      dos: '- Visit Shri Dev Koleshwar temple in the village'
+      donts: '- Don''t leave litter on the beach'
+      safety_text: null
+    mr:
+      short_story: 'कोळथरे हे दापोलीपासून सुमारे 19 किमी आणि दाभोळपासून 8 किमी अंतरावर
+        किनारपट्टीवरील एक लहानसे मासेमारी करणारे गाव आहे. हे अरबी समुद्रावरील किनार्यासाठी
+        प्रसिद्ध आहे.
+
+
+        या गावात श्री देव कोलेश्वर नावाचे एक जुने शिवमंदिर आहे. येथील लोक मराठी आणि
+        कोकणीची ''दालडी'' बोलीभाषा बोलतात.'
+      history: null
+      significance: एका जुन्या शिवमंदिरासह असलेले मासेमारी करणाऱ्या गावातील समुद्रकिनारा.
+      dos: '- गावातील श्री देव कोलेश्वर मंदिराला भेट द्या'
+      donts: '- किनाऱ्यावर कचरा टाकू नका'
+      safety_text: null
+    hi:
+      short_story: 'कोलथरे दापोली से लगभग 19 किमी, दाभोल से 8 किमी दूर तट पर बसा एक
+        छोटा सा मछली पकड़ने वाला गाँव है। यह अरब सागर पर स्थित अपने समुद्र तट के लिए
+        जाना जाता है।
+
+
+        गाँव में एक पुराना शिव मंदिर, श्री देव कोलेश्वर है। स्थानीय लोग मराठी और कोंकणी
+        की दालडी बोली बोलते हैं।'
+      history: null
+      significance: एक पुराने शिव मंदिर के साथ मछली पकड़ने वाले गाँव का समुद्र तट।
+      dos: '- गाँव में श्री देव कोलेश्वर मंदिर के दर्शन करें'
+      donts: '- समुद्र तट पर कचरा न छोड़ें'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/4/42/%E0%A4%95%E0%A5%8B%E0%A4%B3%E0%A4%A5%E0%A4%B0%E0%A5%87_%E0%A4%B8%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A4%95%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: आर्या जोशी
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%95%E0%A5%8B%E0%A4%B3%E0%A4%A5%E0%A4%B0%E0%A5%87_%E0%A4%B8%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A4%95%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BE.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Dapoli
+    - https://en.wikipedia.org/wiki/Kolthare
+  _review: 'no coordinates: needs pin; Wikipedia page flagged for citations; beach
+    details need field check; EN text = Claude draft from sources, needs team review;
+    MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: palgad-fort
+  status: ai_draft
+  name_en: Palgad Fort
+  name_mr: पालगड किल्ला
+  name_hi: पालगड किला
+  category: fort
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: From Palgad village; about an hour climb.
+  nearest_station: null
+  nearest_bus_stop: Palgad
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Palgad fort sits in dense forest above Palgad village, about 21
+        km from Dapoli on the Dapoli-Khed road. It is an easy climb of about half
+        an hour from the Hanuman temple at Killemachi, then about half an hour to
+        see the top.
+
+
+        The fort is small, under an acre, with nine bastions and two gates. Much of
+        the wall still stands, and old cannons lie on a bastion and near the smaller
+        gate. From the top you can see Mahipatgad, Sumargad and Rasalgad to the east
+        and Khed town to the south.'
+      history: Local belief credits Shivaji Maharaj with building it. Little else
+        is recorded; its position suggests it was a watch post. The village grew up
+        below the fort and took its name from it.
+      significance: An easy, quiet fort walk with views over three Sahyadri forts.
+      dos: '- Start from the Killemachi Hanuman temple
+
+        - Carry water; the tank on top is dry'
+      donts: '- Don''t take the old second route; it is no longer used'
+      safety_text: null
+    mr:
+      short_story: 'पालगड किल्ला पालगड गावाच्या वर दाट जंगलात वसलेला आहे, जो दापोली-खेड
+        रस्त्यावर दापोलीपासून सुमारे 21 किमी अंतरावर आहे. किल्लेमाची येथील हनुमान
+        मंदिरापासून सुमारे अर्ध्या तासाची ही एक सोपी चढाई आहे, आणि त्यानंतर माथा पाहण्यासाठी
+        अजून अर्धा तास लागतो.
+
+
+        हा किल्ला लहान असून एक एकरापेक्षा कमी क्षेत्रात पसरलेला आहे, ज्याला नऊ बुरूज
+        आणि दोन प्रवेशदवारे आहेत. बहुतांश तटबंदी आजही उभी असून, एका बुरूजावर आणि लहान
+        दरवाज्याजवळ जुन्या तोफा पडलेल्या आहेत. शिखरावरून पूर्वेकडे महिपतिगड, सुमारगड
+        आणि रसाळगड तर दक्षिणेकडे खेड शहर स्पष्ट दिसते.'
+      history: हा किल्ला छत्रपती शिवाजी महाराजांनी बांधल्याची स्थानिकांची श्रद्धा
+        आहे. याविषयी इतर फारशी कागदोपत्री नोंद नाही; परंतु याची भौगोलिक स्थिती पाहता
+        हा एक पहारेकरी चौकी असावा असे वाटते. किल्ल्याच्या खाली वस्ती वाढली आणि त्यावरूनच
+        या गावाला पालगड हे नाव मिळाले.
+      significance: सह्याद्रीच्या तीन किल्ल्यांचे विहंगम दृश्य देणारी एक सोपी व शांत
+        किल्ला भ्रमंती.
+      dos: '- किल्लेमाची येथील हनुमान मंदिरापासून सुरुवात करा
+
+        - पिण्याचे पाणी सोबत ठेवा; वरची पाण्याची टाकी कोरडी पडली आहे'
+      donts: '- जुना दुसरा मार्ग निवडू नका; तो आता वापरला जात नाही'
+      safety_text: null
+    hi:
+      short_story: 'पालगड किला पालगड गाँव के ऊपर घने जंगल में स्थित है, जो दापोली
+        से दापोली-खेड़ रोड पर लगभग 21 किमी दूर है। किल्लेमाची के हनुमान मंदिर से लगभग
+        आधे घंटे की यह एक आसान चढ़ाई है, फिर ऊपर देखने के लिए लगभग आधा घंटा और लगता
+        है।
+
+
+        यह किला छोटा है, एक एकड़ से कम में फैला है, जिसमें नौ बुर्ज और दो द्वार हैं।
+        दीवार का अधिकांश हिस्सा अभी भी खड़ा है, और पुरानी तोपें एक बुर्ज पर और छोटे
+        द्वार के पास पड़ी हैं। ऊपर से आप पूर्व में महिपतिगड, सुमारगड और रसालगढ़ तथा
+        दक्षिण में खेड़ शहर देख सकते हैं।'
+      history: स्थानीय मान्यता इसके निर्माण का श्रेय शिवाजी महाराज को देती है। इसके
+        अलावा बहुत कम रिकॉर्डेड इतिहास है; इसकी स्थिति से पता चलता है कि यह एक चौकी
+        था। किले के नीचे गाँव बसा और इसी से इसका नाम पड़ा।
+      significance: तीन सह्याद्री किलों के दृश्यों के साथ एक आसान, शांत किले की सैर।
+      dos: '- किल्लेमाची हनुमान मंदिर से शुरुआत करें
+
+        - पानी साथ रखें; ऊपर की टंकी सूखी है'
+      donts: '- पुराने दूसरे मार्ग का उपयोग न करें; इसका अब उपयोग नहीं किया जाता है'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://fortsandtreks.blogspot.com/2018/03/palgad-fort-trek.html
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://durgbharari.in/palgad/
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+  _review: 'moved to Dapoli per district tourism list; no coordinates: needs pin;
+    height given as 1,260 ft and 1,350 ft in same source; EN text = Claude draft from
+    sources, needs team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: harnai-beach
+  status: ai_draft
+  name_en: Harnai Beach
+  name_mr: हरणे समुद्रकिनारा
+  name_hi: हर्णे बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Harnai town, about 15 km northwest of Dapoli camp, accessible
+    easily by state transport buses or auto-rickshaws via local tar roads.
+  nearest_station: Khed Railway Station (approx. 40 km)
+  nearest_bus_stop: Harnai Bus Stand
+  monsoon_status: risky
+  monsoon_reason: High sea tides and heavy rains make swimming and water activities
+    hazardous.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Harnai,_Maharashtra
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Harnai Beach is an active coastal stretch near Dapoli, known primarily
+        as a major fishing hub. It offers a factual look into the daily operations
+        of the local Koli fishing community. The beach is flanked by the historic
+        Suvarnadurg and Kanakdurg forts, situated just offshore and along the coast.
+
+        Every evening, the beach functions as an open-air fish auction market where
+        boats bring in their daily catch. Visitors can observe the trading of fresh
+        seafood directly on the sand.'
+      history: Harnai functioned as a trading port and maritime center for centuries,
+        heavily fortified by the Marathas under naval commanders like Kanhoji Angre
+        to protect the coastline.
+      significance: Known for hosting a large, daily open-air fish auction directly
+        on the beach.
+      dos: '- Visit between 4:00 PM and 6:00 PM to witness the daily fish auction.
+
+        - Bring cash and be prepared to bargain if you wish to buy fresh seafood directly
+        from the fishermen.'
+      donts: '- Avoid this beach if you are sensitive to strong fish odors.
+
+        - Do not drive your vehicle onto the beach sand, as it can get stuck or interfere
+        with the boats.'
+      safety_text: The beach gets extremely crowded during the auction, and the sand
+        may be littered with fish waste; walk carefully.
+    mr:
+      short_story: 'हर्णे बीच हा दापोली जवळील एक गजबजलेला आणि मासेमारीसाठी प्रसिद्ध
+        असलेला किनारा आहे. हा किनारा स्थानिक कोळी बांधवांच्या दैनंदिन जीवनाचे आणि
+        व्यवसायाचे दर्शन घडवतो. या किनाऱ्याच्या एका बाजूला सुवर्णदुर्ग आणि कनकदुर्ग
+        हे ऐतिहासिक किल्ले उभे आहेत.
+
+        दररोज संध्याकाळी या किनाऱ्याचे रूपांतर एका मोठ्या मासळी बाजारात होते, जिथे
+        बोटी ताज्या माशांची आवक घेऊन येतात. किनाऱ्यावर चालणारा हा ताज्या माशांचा लिलाव
+        आणि व्यापार येथे प्रत्यक्ष पाहता येतो.'
+      history: हर्णे हे अनेक शतकांपासून एक प्रमुख व्यापारी बंदर राहिले आहे. कान्होजी
+        आंग्रे यांच्यासारख्या सरखेलांच्या नेतृत्वाखाली मराठ्यांनी या किनारपट्टीचे
+        रक्षण करण्यासाठी येथे मजबूत तटबंदी उभारली होती.
+      significance: कोकण किनारपट्टीवरील एका मोठ्या खुल्या मासळी लिलावासाठी (फिश ऑक्शन)
+        प्रसिद्ध.
+      dos: '- किनाऱ्यावरील मासळीचा लिलाव पाहण्यासाठी संध्याकाळी 4 ते 6 या वेळेत भेट
+        द्या.
+
+        - कोळी बांधवांकडून थेट ताजे मासे खरेदी करायचे असल्यास सोबत रोख रक्कम ठेवा
+        आणि घासाघीस करण्याची तयारी ठेवा.'
+      donts: '- तुम्हाला माशांचा उग्र वास सहन होत नसेल, तर या किनाऱ्यावर जाणे टाळा.
+
+        - तुमची गाडी किनाऱ्यावरील वाळूत नेऊ नका, कारण ती फसू शकते किंवा बोटींना अडथळा
+        होऊ शकतो.'
+      safety_text: लिलावाच्या वेळी किनाऱ्यावर खूप गर्दी असते आणि वाळूत माशांचे अवशेष
+        असू शकतात, त्यामुळे जपून चालावे.
+    hi:
+      short_story: 'हर्णे बीच दापोली के पास स्थित एक सक्रिय तट है, जो मुख्य रूप से
+        मछली पकड़ने के एक बड़े केंद्र के रूप में जाना जाता है। यह स्थानीय कोली मछुआरा
+        समुदाय के दैनिक संचालन की एक वास्तविक झलक पेश करता है। इस तट के पास ऐतिहासिक
+        सुवर्णदुर्ग और कनकदुर्ग किले स्थित हैं।
+
+        हर शाम, यह समुद्र तट एक खुली मछली नीलामी बाजार में बदल जाता है, जहां नावें
+        अपनी दैनिक पकड़ लाती हैं। आगंतुक सीधे रेत पर ताजे समुद्री भोजन के व्यापार
+        को देख सकते हैं।'
+      history: हर्णे सदियों से एक व्यापारिक बंदरगाह और समुद्री केंद्र के रूप में कार्य
+        करता था। कान्होजी आंग्रे जैसे नौसेना कमांडरों के तहत तट की रक्षा के लिए मराठों
+        द्वारा इसे मजबूत किया गया था।
+      significance: सीधे समुद्र तट पर एक बड़ी, दैनिक खुली मछली नीलामी की मेजबानी के
+        लिए जाना जाता है।
+      dos: '- दैनिक मछली नीलामी देखने के लिए शाम 4:00 बजे से 6:00 बजे के बीच आएं।
+
+        - यदि आप सीधे मछुआरों से ताजी मछली खरीदना चाहते हैं, तो नकद साथ रखें और मोलभाव
+        करने के लिए तैयार रहें।'
+      donts: '- यदि आपको मछली की तेज गंध से परेशानी है, तो इस समुद्र तट पर जाने से
+        बचें।
+
+        - अपने वाहन को समुद्र तट की रेत पर न चलाएं, क्योंकि यह फंस सकता है या नावों
+        में बाधा उत्पन्न कर सकता है।'
+      safety_text: नीलामी के दौरान समुद्र तट पर बहुत भीड़ हो सकती है, और रेत पर मछलियों
+        का कचरा हो सकता है; सावधानी से चलें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/85/Harnai_Beach.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Altafalvi
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Harnai_Beach.JPG
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Harnai,_Maharashtra
+    - https://www.indianetzone.com/harnai_beach
+    - https://aroundpune.com/place/harnai-beach/
+    - https://www.justdial.com/Dapoli/Harnai-Beach-Fish-Market-Harnai/9999P2352-2352-200629013014-H6J4_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: gova-fort
+  status: ai_draft
+  name_en: Gova Fort
+  name_mr: गोवा किल्ला
+  name_hi: गोवालकोट किला
+  category: fort
+  taluka: Dapoli
+  lat: 17.815539
+  lng: 73.090614
+  coord_source: osm way/1850686770
+  osm_id: way/1850686770
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Situated near Harnai harbour in Dapoli taluka, reachable by local
+    road transport from Dapoli (approx. 15 km).
+  nearest_station: Khed Railway Station (approx. 40 km)
+  nearest_bus_stop: Harnai Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Slippery stone pathways and steep climbs during heavy monsoon rains.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Harnai,_Maharashtra
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/0/01/Ruins_of_the_Goa_Fort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Sharvarism
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Ruins_of_the_Goa_Fort.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Harnai,_Maharashtra
+    - https://www.indianetzone.com/harnai_beach
+    - https://www.travelladda.com/place/gowalkot-fort-6756
+    - https://www.trypdeals.com/destination/chiplun/gowalkot-fort/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; OSM match by name, check pin;
+    Gemini text described Gowalkot Fort (Chiplun), not Gova Fort (Harnai): text removed'
+  _collected_by: claude+gemini 2026-11-03
+- slug: parshuram-bhoomi
+  status: ai_draft
+  name_en: Parshuram Bhoomi
+  name_mr: परशुराम भूमी
+  name_hi: परशुराम भूमि
+  category: viewpoint
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Burondi village, about 11-15 km from Dapoli, accessible
+    by road via well-maintained local routes.
+  nearest_station: Khed Railway Station (approx. 45 km)
+  nearest_bus_stop: Burondi Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Parshuram Bhoomi is a hilltop viewpoint and monument situated
+        in Burondi village near Dapoli. The site is anchored by a 21-foot tall statue
+        of Lord Parshuram holding a battle axe and bow, standing atop a half-globe
+        with a 20-foot radius. The hollow globe functions as an echo chamber.
+
+        From this elevated location, visitors get unobstructed views of the Arabian
+        Sea and the red waters of the nearby Ladghar Beach. The quiet environment
+        makes it a common spot for relaxation and photography.'
+      history: The monument was established on June 16, 2010, by Dnyaneshwar Shivaji
+        Gajul from Solapur.
+      significance: A hilltop sanctuary featuring a towering statue of Lord Parshuram
+        and offering clear views of the Konkan coastline.
+      dos: '- Step inside the dome structure below the statue to experience its unique
+        acoustics.
+
+        - Visit during the late afternoon to capture the sunset and the red tinge
+        of the sea from above.'
+      donts: '- Do not litter or create loud noises, as the site is considered a meditation
+        spot.
+
+        - Avoid visiting during extreme midday heat, as there is limited shade on
+        the open hilltop.'
+      safety_text: The approach road is well-maintained but slightly winding; ensure
+        your vehicle's brakes are functional when navigating the hill.
+    mr:
+      short_story: 'परशुराम भूमी हे दापोली जवळील बुरोंडी गावातील एका टेकडीवरील प्रेक्षणीय
+        स्थळ आणि स्मारक आहे. या ठिकाणी 20 फूट त्रिज्येच्या एका अर्ध्या पृथ्वीगोलावर
+        भगवान परशुरामांची 21 फूट उंचीची मूर्ती उभी आहे. मूर्तीच्या हातात परशू आणि
+        धनुष्य दाखवले आहे. हा पोकळ पृथ्वीगोल आतून एक ध्यानमंदिर म्हणून वापरला जातो,
+        जिथे आवाजाचा घुमट (इको) तयार होतो.
+
+        या उंचावरील जागेवरून अरबी समुद्राचे आणि जवळच्या लाडघर किनाऱ्यावरील लालसर पाण्याचे
+        स्पष्ट दृश्य पाहता येते. येथील शांत वातावरण विश्रांती आणि छायाचित्रणासाठी
+        योग्य आहे.'
+      history: 16 जून 2010 रोजी सोलापूरच्या ज्ञानेश्वर शिवाजी गाजुळ यांनी या स्मारकाची
+        स्थापना केली.
+      significance: भगवान परशुरामांची भव्य मूर्ती आणि कोकण किनारपट्टीचे स्पष्ट दृश्य
+        देणारे टेकडीवरील एक स्मारक.
+      dos: '- मूर्तीच्या खालील घुमटाकार रचनेत प्रवेश करून तिथला अनोखा आवाज (इको) नक्की
+        अनुभवा.
+
+        - सूर्यास्त आणि वरून दिसणाऱ्या समुद्राच्या लालसर पाण्याचा आनंद घेण्यासाठी
+        संध्याकाळच्या वेळी भेट द्या.'
+      donts: '- हे एक ध्यान करण्याचे ठिकाण असल्याने येथे मोठ्याने आवाज करू नका किंवा
+        कचरा टाकू नका.
+
+        - दुपारी कडक उन्हात जाणे टाळा, कारण खुल्या टेकडीवर सावलीसाठी जागा कमी आहे.'
+      safety_text: टेकडीवरील रस्ता चांगला असला तरी वळणावळणाचा आहे, त्यामुळे गाडी चालवताना
+        वाहनाचे ब्रेक सुस्थितीत असल्याची खात्री करा.
+    hi:
+      short_story: 'परशुराम भूमि दापोली के पास बुरोंडी गांव में स्थित एक पहाड़ी दृश्य
+        बिंदु और स्मारक है। इस स्थल पर 20 फुट त्रिज्या वाले एक आधे-ग्लोब के ऊपर भगवान
+        परशुराम की 21 फुट ऊंची मूर्ति खड़ी है। मूर्ति के हाथों में युद्ध कुल्हाड़ी
+        और धनुष है। खोखला ग्लोब एक इको चेंबर के रूप में कार्य करता है।
+
+        इस ऊंचाई से, आगंतुकों को अरब सागर और पास के लाडघर समुद्र तट के लाल पानी का
+        स्पष्ट दृश्य दिखाई देता है। शांत वातावरण इसे विश्राम और फोटोग्राफी के लिए
+        एक आम स्थान बनाता है।'
+      history: इस स्मारक की स्थापना 16 जून 2010 को सोलापुर के ज्ञानेश्वर शिवाजी गाजुल
+        द्वारा की गई थी।
+      significance: भगवान परशुराम की विशाल मूर्ति और कोंकण तट के स्पष्ट दृश्यों वाला
+        एक पहाड़ी अभयारण्य।
+      dos: '- अद्वितीय ध्वनिकी (इको) का अनुभव करने के लिए मूर्ति के नीचे गुंबद संरचना
+        के अंदर जाएं।
+
+        - सूर्यास्त और ऊपर से समुद्र की लालिमा देखने के लिए देर दोपहर में आएं।'
+      donts: '- कूड़ा न फैलाएं या तेज आवाज न करें, क्योंकि इस स्थल को ध्यान का स्थान
+        माना जाता है।
+
+        - चिलचिलाती दोपहर की गर्मी के दौरान जाने से बचें, क्योंकि खुली पहाड़ी पर छाया
+        सीमित है।'
+      safety_text: पहाड़ी तक जाने वाली सड़क अच्छी स्थिति में है लेकिन घुमावदार है;
+        इसलिए सुनिश्चित करें कि आपके वाहन के ब्रेक अच्छी स्थिति में हों।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://travelkonkan.in/shree-parshuram-bhumi-burondi/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: burondi-beach
+  status: ai_draft
+  name_en: Burondi Beach
+  name_mr: बुरोंडी समुद्रकिनारा
+  name_hi: बुरोंडी बीच
+  category: beach
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Burondi coastal village, accessible by road from Dapoli
+    via local transport buses or private vehicles.
+  nearest_station: Khed Railway Station (approx. 45 km)
+  nearest_bus_stop: Burondi Bus Stop
+  monsoon_status: risky
+  monsoon_reason: Rough seas and strong monsoon currents make sea access unsafe.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Borundi
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Burondi Beach is a quiet, rural stretch of the Arabian Sea coastline
+        located in the small coastal village of Burondi, a short distance from Ladghar.
+        Backed by agricultural lands and traditional Konkani homes, the beach offers
+        an uncrowded environment away from heavy tourist traffic.
+
+        The shoreline features fine sand and gentle waves, providing a simple coastal
+        setting. Visitors often combine a walk on this quiet shore with a visit to
+        the nearby Parshuram Bhoomi hilltop and the local Ganpati temple.'
+      history: null
+      significance: A secluded and uncrowded rural beach offering a quiet environment
+        in a Konkani village setting.
+      dos: '- Take a leisurely walk along the shoreline, especially during low tide.
+
+        - Combine your visit with the nearby Parshuram Bhoomi monument and the village
+        Ganpati temple.'
+      donts: '- Do not expect commercial shacks, water sports, or extensive tourist
+        facilities on this rural beach.
+
+        - Avoid swimming deep into the sea, as the beach lacks active lifeguards.'
+      safety_text: Due to the absence of lifeguards, swimming should be restricted
+        to the shallow waters near the shore.
+    mr:
+      short_story: 'बुरोंडी बीच हा दापोली तालुक्यातील बुरोंडी गावात वसलेला अरबी समुद्राचा
+        एक शांत आणि ग्रामीण किनारा आहे. लाडघरपासून थोड्याच अंतरावर असलेल्या या किनाऱ्याच्या
+        मागे शेतजमिनी आणि पारंपारिक कोकणी घरे पाहायला मिळतात. पर्यटकांच्या गर्दीपासून
+        दूर असल्याने येथे अतिशय शांत वातावरण असते.
+
+        किनाऱ्यावर मऊ वाळू आणि संथ लाटा असल्याने येथे एक साधा किनारा पाहायला मिळतो.
+        पर्यटक अनेकदा या शांत किनाऱ्यावरील फेरफटका, जवळची परशुराम भूमी आणि गावातील
+        गणपती मंदिर यांची एकत्रित सफर करतात.'
+      history: null
+      significance: गर्दी नसलेला आणि पारंपारिक कोकणी गावाच्या पार्श्वभूमीवर असलेला
+        एक अतिशय शांत आणि एकांत किनारा.
+      dos: '- शांततेचा अनुभव घेण्यासाठी किनाऱ्यावर, विशेषतः ओहोटीच्या वेळी निवांत
+        फेरफटका मारा.
+
+        - जवळच असलेली परशुराम भूमी आणि गावातील गणपती मंदिर यांनाही नक्की भेट द्या.'
+      donts: '- हा एक ग्रामीण किनारा असल्याने येथे व्यावसायिक दुकाने, वॉटर स्पोर्ट्स
+        किंवा पर्यटकांसाठीच्या सुविधांची अपेक्षा करू नका.
+
+        - या किनाऱ्यावर जीवरक्षक (लाईफगार्ड) नसल्याने खोल समुद्रात पोहण्यासाठी जाणे
+        टाळा.'
+      safety_text: येथे जीवरक्षक उपलब्ध नसल्याने, केवळ किनाऱ्याजवळील उथळ पाण्यातच
+        जाणे सुरक्षित ठरते.
+    hi:
+      short_story: 'बुरोंडी बीच दापोली तालुका के छोटे से तटीय गांव बुरोंडी में स्थित
+        अरब सागर तट का एक शांत और ग्रामीण हिस्सा है। लाडघर से थोड़ी ही दूरी पर स्थित
+        इस समुद्र तट के पीछे कृषि भूमि और पारंपरिक कोंकणी घर हैं। पर्यटकों की भीड़
+        से दूर, यह समुद्र तट एक शांतिपूर्ण वातावरण प्रदान करता है।
+
+        तटरेखा पर मुलायम रेत और शांत लहरें हैं, जो एक साधारण तटीय वातावरण प्रदान करती
+        हैं। आगंतुक अक्सर इस शांत किनारे पर टहलने के साथ-साथ पास की परशुराम भूमि और
+        स्थानीय गणपति मंदिर के दर्शन करते हैं।'
+      history: null
+      significance: एक एकांत और भीड़-भाड़ से मुक्त ग्रामीण समुद्र तट जो पारंपरिक कोंकणी
+        गांव के परिवेश में एक शांत स्थान प्रदान करता है।
+      dos: '- शांतिपूर्ण अनुभव के लिए, विशेष रूप से कम ज्वार (लो टाइड) के दौरान, किनारे
+        पर इत्मीनान से सैर करें।
+
+        - अपनी यात्रा को पास के परशुराम भूमि स्मारक और गांव के गणपति मंदिर के दर्शन
+        के साथ जोड़ें।'
+      donts: '- इस ग्रामीण समुद्र तट पर व्यावसायिक दुकानों, पानी के खेलों या पर्यटन
+        सुविधाओं की अपेक्षा न करें।
+
+        - समुद्र में गहराई तक तैरने से बचें, क्योंकि समुद्र तट पर सक्रिय लाइफगार्ड
+        नहीं हैं।'
+      safety_text: लाइफगार्ड की अनुपस्थिति के कारण, तैराकी को किनारे के पास उथले पानी
+        तक ही सीमित रखा जाना चाहिए।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Borundi
+    - https://bluekonkan.com/destinations/burondi-village-dapoli
+    - https://en.wikipedia.org/wiki/Dapoli
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shahi-masjid-dabhol
+  status: ai_draft
+  name_en: Shahi Masjid Dabhol
+  name_mr: शाही मशीद दाभोळ
+  name_hi: शाही मस्जिद दाभोल
+  category: temple
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located at Dabhol port area in Dapoli taluka, accessible by local
+    roads from Dapoli town.
+  nearest_station: Khed Railway Station (approx. 50 km)
+  nearest_bus_stop: Dabhol Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shahi Masjid, locally known as Anda Masjid or Masaheb Masjid,
+        is a 16th-century historical mosque located near the port of Dabhol in Dapoli.
+        Constructed from dressed black trap stone, the mosque features symmetrical
+        Iranian-style architecture, a central dome, and minarets, resembling the Jama
+        Masjid of Bijapur.
+
+        Although currently in a ruined state, the structure still retains entrance
+        stairs sculpted from jet-black stone. It remains an archaeologically protected
+        heritage site, reflecting Dabhol''s past status as an international trading
+        port.'
+      history: Built between 1559 and 1563 by Kamil Khan under the orders of Ayesha
+        Bibi, the princess of Bijapur, the mosque was constructed at a cost of approximately
+        1.5 million rupees during the Adil Shahi dynasty.
+      significance: A 16th-century stone mosque exhibiting Iranian-style architecture,
+        reflecting the rich maritime history of the ancient Dabhol port.
+      dos: '- Observe the symmetrical architecture, the large central dome, and the
+        intricately sculpted black stone entrance.
+
+        - Respect the historical significance of the site, as it is an archaeologically
+        protected building.'
+      donts: '- Do not climb on the fragile, ruined parts of the mosque structure.
+
+        - Do not deface the ancient stonework or leave behind any litter.'
+      safety_text: Since the structure is old and partly in ruins, avoid standing
+        directly under unstable archways or damaged roof sections.
+    mr:
+      short_story: 'दाभोळ बंदराजवळ असलेली शाही मशीद, जिला स्थानिक भाषेत ''अंडा मशीद''
+        किंवा ''मासाहेब मशीद'' असेही म्हणतात, ही 16 व्या शतकातील एक ऐतिहासिक वास्तू
+        आहे. काळ्या पाषाणात बांधलेली ही मशीद इराणी शैलीतील वास्तुकला, मोठा घुमट आणि
+        मिनारांसाठी ओळखली जाते, जी विजापूरच्या जामा मशिदीसारखी दिसते.
+
+        सध्या ही वास्तू काहीशी उद्ध्वस्त अवस्थेत असली तरी, जेट-ब्लॅक स्टोनमधून कोरलेल्या
+        तिच्या प्रवेशद्वाराच्या पायऱ्या आजही लक्ष वेधून घेतात. पुरातत्व विभागाद्वारे
+        संरक्षित असलेली ही वास्तू दाभोळच्या एका आंतरराष्ट्रीय व्यापारी बंदर म्हणून
+        असलेल्या ऐतिहासिक महत्त्वाची साक्ष देते.'
+      history: विजापूरची राजकन्या आयेशा बीबी हिच्या आदेशानुसार 1559 ते 1563 या काळात
+        कामिल खान याने आदिलशाही राजवटीत सुमारे 15 लाख रुपये खर्च करून या मशिदीचे बांधकाम
+        पूर्ण केले.
+      significance: प्राचीन दाभोळ बंदराचा इतिहास आणि इराणी वास्तुकलेचे दर्शन घडवणारी
+        16 व्या शतकातील एक काळ्या पाषाणाची मशीद.
+      dos: '- मशिदीची वास्तुकला, मध्यभागी असलेला मोठा घुमट आणि प्रवेशद्वारावरील काळ्या
+        पाषाणातील कोरीव काम पहा.
+
+        - ही पुरातत्व विभागाची संरक्षित वास्तू असल्याने या ऐतिहासिक जागेचा आदर राखा.'
+      donts: '- मशिदीच्या कमकुवत आणि उद्ध्वस्त झालेल्या भागांवर चढण्याचा प्रयत्न करू
+        नका.
+
+        - प्राचीन दगडांच्या बांधकामाला विद्रुप करू नका किंवा परिसरात कचरा टाकू नका.'
+      safety_text: ही वास्तू जुनी आणि काहीशी उद्ध्वस्त अवस्थेत असल्याने, कमकुवत कमानी
+        किंवा छताच्या खराब झालेल्या भागाखाली उभे राहणे टाळा.
+    hi:
+      short_story: 'दाभोल बंदरगाह के पास स्थित शाही मस्जिद, जिसे स्थानीय रूप से ''अंडा
+        मस्जिद'' या ''मासाहेब मस्जिद'' के रूप में भी जाना जाता है, 16वीं शताब्दी की
+        एक ऐतिहासिक इमारत है। काले पत्थरों से बनी यह मस्जिद अपनी ईरानी शैली की वास्तुकला,
+        बड़े गुंबद और मीनारों के साथ अलग ही नजर आती है, जो बीजापुर की जामा मस्जिद
+        के समान है।
+
+        यद्यपि यह वर्तमान में खंडहर अवस्था में है, लेकिन यह संरचना अभी भी जेट-ब्लैक
+        पत्थर से उकेरी गई प्रवेश सीढ़ियों को प्रदर्शित करती है। पुरातत्व विभाग द्वारा
+        संरक्षित यह विरासत स्थल एक अंतरराष्ट्रीय व्यापारिक बंदरगाह के रूप में दाभोल
+        के अतीत को दर्शाता है।'
+      history: बीजापुर की राजकुमारी आयशा बीबी के आदेश पर 1559 से 1563 के बीच कामिल
+        खान द्वारा निर्मित, इस मस्जिद का निर्माण आदिल शाही राजवंश के दौरान लगभग 15
+        लाख रुपये की लागत से किया गया था।
+      significance: प्राचीन दाभोल बंदरगाह के इतिहास और ईरानी वास्तुकला को दर्शाने
+        वाली 16वीं शताब्दी की एक पत्थर की मस्जिद।
+      dos: '- मस्जिद की वास्तुकला, बड़े केंद्रीय गुंबद और प्रवेश द्वार पर उकेरे गए
+        काले पत्थर के काम को ध्यान से देखें।
+
+        - यह पुरातत्व विभाग की संरक्षित इमारत है, इसलिए इस ऐतिहासिक स्थल का सम्मान
+        करें।'
+      donts: '- मस्जिद के कमजोर और खंडहर हो चुके हिस्सों पर चढ़ने का प्रयास न करें।
+
+        - प्राचीन पत्थर की संरचना को खराब न करें या परिसर में कूड़ा न फैलाएं।'
+      safety_text: चूंकि इमारत पुरानी है और आंशिक रूप से खंडहर है, इसलिए अस्थिर मेहराबों
+        या क्षतिग्रस्त छत के हिस्सों के नीचे खड़े होने से बचें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/9/98/Shahi_Masjid_Dabhol.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Maqsood Khan Sarguru
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Shahi_Masjid_Dabhol.jpg
+  _sources:
+    _all:
+    - https://www.talukadapoli.com/en/places/shahi-masjid-dabhol/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kalbhairav-temple-dapoli
+  status: ai_draft
+  name_en: Kalbhairav Temple Dapoli
+  name_mr: काळभैरव मंदिर दापोली
+  name_hi: कालभैरव मंदिर, दापोली
+  category: temple
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located within Dapoli taluka (often associated with regional temple
+    complexes like Asud/Vyaghreshwar or local shrines), reachable by road from Dapoli
+    town.
+  nearest_station: Khed Railway Station (approx. 35-40 km)
+  nearest_bus_stop: Dapoli Bus Depot
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://pilgrimdata.in/temple/vyaghreshwar-temple-asood-ta-dapoli-dist-ratnagiri/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; name_hi
+    by Claude, check'
+  _collected_by: claude+gemini 2026-11-03
+- slug: dr-balasaheb-sawant-konkan-krishi-vidyapeeth-museum
+  status: ai_draft
+  name_en: Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth Museum
+  name_mr: डॉ. बाळसाहेब सावंत कोकण कृषी विद्यापीठ संग्रहालय
+  name_hi: डॉ. बालासाहेब सावंत कोंकण कृषि विद्यापीठ संग्रहालय
+  category: museum
+  taluka: Dapoli
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located within the agricultural university campus in Dapoli town,
+    easily accessible via local auto-rickshaws or roads.
+  nearest_station: Khed Railway Station (approx. 30 km)
+  nearest_bus_stop: Dapoli Bus Depot
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Dapoli
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth Museum is located
+        within the College of Forestry at the agricultural university in Dapoli. It
+        forms part of the university''s 60-hectare instructional farm dedicated to
+        the study of the Konkan region''s flora.
+
+
+        The facility features a bamboo museum, agroforestry models, and block plantations
+        of various tree species. Visitors can also see a mist chamber, a hi-tech plant
+        nursery, and the Charak Medicinal Plants Garden, which showcases local medicinal
+        herbs and sustainable agricultural practices.'
+      history: The university's forestry degree program began in 1985, leading to
+        the establishment of an independent College of Forestry in 2005.
+      significance: It functions as an educational facility demonstrating regional
+        biodiversity, forestry models, and agricultural practices.
+      dos: '- Visit during the university''s official working hours.
+
+        - Ask for permission before entering specialized research greenhouses or nurseries.'
+      donts: '- Do not pluck leaves, flowers, or saplings from the medicinal gardens.'
+      safety_text: null
+    mr:
+      short_story: 'डॉ. बाळासाहेब सावंत कोकण कृषी विद्यापीठाचे हे संग्रहालय दापोलीतील
+        कृषी विद्यापीठाच्या वनशास्त्र महाविद्यालयात (College of Forestry) आहे. कोकणातील
+        वनस्पतींच्या अभ्यासासाठी तयार केलेल्या विद्यापीठाच्या 60 हेक्टर प्रक्षेत्राचा
+        हा एक भाग आहे.
+
+
+        येथे एक विशेष बांबू संग्रहालय, कृषी-वनशास्त्र मॉडेल्स आणि विविध प्रकारच्या
+        झाडांची लागवड पाहायला मिळते. याशिवाय, अभ्यागतांना मिस्ट चेंबर, हाय-टेक रोपवाटिका
+        आणि चरक औषधी वनस्पती उद्यानही पाहता येते, जिथे स्थानिक औषधी वनस्पती आणि शाश्वत
+        शेतीचे प्रयोग ठेवले आहेत.'
+      history: विद्यापीठात 1985 मध्ये वनशास्त्राचा अभ्यासक्रम सुरू झाला आणि त्यानंतर
+        2005 मध्ये स्वतंत्र वनशास्त्र महाविद्यालयाची स्थापना करण्यात आली.
+      significance: कोकणातील जैवविविधता, वनशास्त्र आणि कृषी क्षेत्रातील नवनवीन प्रयोग
+        लोकांसमोर आणणारे हे एक महत्त्वाचे शैक्षणिक केंद्र आहे.
+      dos: '- विद्यापीठाच्या अधिकृत वेळेतच भेट द्या.
+
+        - संशोधनासाठी असलेल्या विशेष ग्रीनहाऊस किंवा रोपवाटिकांमध्ये जाण्यापूर्वी
+        परवानगी नक्की घ्या.'
+      donts: '- औषधी वनस्पतींच्या बागेतील पाने, फुले किंवा रोपे तोडू नका.'
+      safety_text: null
+    hi:
+      short_story: 'डॉ. बालासाहेब सावंत कोंकण कृषि विद्यापीठ संग्रहालय दापोली में
+        कृषि विश्वविद्यालय के वानिकी कॉलेज के भीतर स्थित है। यह कोंकण क्षेत्र की वनस्पतियों
+        के अध्ययन के लिए समर्पित विश्वविद्यालय के 60 हेक्टेयर फार्म का एक हिस्सा है।
+
+
+        इस परिसर में एक विशेष बांस संग्रहालय, एग्रोफोरेस्ट्री मॉडल और विभिन्न पेड़
+        प्रजातियों के ब्लॉक प्लांटेशन मौजूद हैं। आगंतुक यहाँ मिस्ट चैंबर, हाई-टेक
+        प्लांट नर्सरी और चरक औषधीय पौधा उद्यान भी देख सकते हैं, जो स्थानीय औषधीय जड़ी-बूटियों
+        और टिकाऊ कृषि विधियों को प्रदर्शित करता है।'
+      history: विश्वविद्यालय का वानिकी डिग्री कार्यक्रम 1985 में शुरू हुआ, जिसके बाद
+        2005 में एक स्वतंत्र वानिकी कॉलेज की स्थापना की गई।
+      significance: यह क्षेत्रीय जैव विविधता, वानिकी मॉडल और कृषि नवाचार को प्रदर्शित
+        करने वाले एक शैक्षिक केंद्र के रूप में कार्य करता है।
+      dos: '- विश्वविद्यालय के आधिकारिक कार्य समय के दौरान ही आएं।
+
+        - विशेष अनुसंधान ग्रीनहाउस या नर्सरी में प्रवेश करने से पहले अनुमति लें।'
+      donts: '- औषधीय उद्यानों से पत्ते, फूल या पौधे न तोड़ें।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Dapoli
+    - https://www.dbskkv.org/
+    - https://www.dbskkv.org/faculty/forestry
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: pranaldurg-fort
+  status: ai_draft
+  name_en: Pranaldurg Fort
+  name_mr: प्रणालदुर्ग किल्ला
+  name_hi: प्रणालदुर्ग
+  category: fort
+  taluka: Dapoli
+  lat: 17.643048
+  lng: 73.242341
+  coord_source: osm node/9196991060
+  osm_id: node/9196991060
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 90
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Situated on a hilltop near Harnai/Dapoli region, accessible by trekking
+    via local mountain trails from nearby villages.
+  nearest_station: Khed Railway Station (approx. 40 km)
+  nearest_bus_stop: Harnai Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Slippery tracks, dense vegetation, and steep slopes make hill trekking
+    hazardous during heavy monsoon rains.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Pranaldurg Fort, also known as Padmanabhdurg, is a small hill
+        fort situated on a 270-foot elevation near the Kotjai River in Dapoli taluka.
+        It is located close to the Panhalekaji caves and covers an area of about two
+        acres from south to north.
+
+
+        Visitors must hike a short 15-minute trail from the base to reach the top.
+        At the site, you can see a dry water tank, a broken staircase, and crumbling
+        two-tiered stone walls. Much of the original structure has been lost to past
+        farming activities on the hilltop, but the location offers open views of the
+        river basin and forests.'
+      history: It is believed to have been constructed around the 12th century. The
+        lack of historical records during or after Chhatrapati Shivaji Maharaj's reign
+        suggests the fort was abandoned in later periods.
+      significance: An ancient coastal hill fort that served as a regional lookout
+        point over the Kotjai River basin.
+      dos: '- Wear sturdy footwear to navigate the broken stairs and uneven paths.
+
+        - Carry enough drinking water, as the fort''s tanks are dry.'
+      donts: '- Do not expect extensive surviving fort structures.'
+      safety_text: The crumbling walls and broken stairs require careful footing during
+        the ascent.
+    mr:
+      short_story: 'प्रणालदुर्ग, ज्याला पद्मनाभदुर्ग म्हणूनही ओळखले जाते, हा दापोली
+        तालुक्यातील कोटजाई नदीजवळ 270 फूट उंचीवर वसलेला एक छोटा गिरीदुर्ग आहे. हा
+        किल्ला पन्हाळेकाजी लेण्यांजवळ असून, तो दक्षिणेकडून उत्तरेकडे सुमारे दोन एकर
+        परिसरात पसरलेला आहे.
+
+
+        गडावर जाण्यासाठी पायथ्यापासून 15 मिनिटांची छोटी पायवाट चढावी लागते. गडावर
+        गेल्यावर तुम्हाला एक कोरडं पाण्याचं टाकं, मोडकळीस आलेली पायवाट आणि दुहेरी
+        तटबंदीचे अवशेष पाहायला मिळतात. गडावरील शेतीमुळे अनेक मूळ वास्तू नष्ट झाल्या
+        आहेत, पण इथून नदीच्या खोऱ्याचा आणि आजूबाजूच्या जंगलाचा स्पष्ट देखावा दिसतो.'
+      history: हा किल्ला साधारणतः 12 व्या शतकात बांधला गेला असावा असा अंदाज आहे. छत्रपती
+        शिवाजी महाराजांच्या काळात किंवा त्यानंतर या किल्ल्याचा कोणताही ऐतिहासिक उल्लेख
+        आढळत नाही, यावरून तो नंतरच्या काळात दुर्लक्षित राहिला असावा.
+      significance: कोटजाई नदीच्या खोऱ्यावर लक्ष ठेवण्यासाठी बांधलेला हा एक प्राचीन
+        टेहळणी किल्ला आहे.
+      dos: '- तुटलेल्या पायऱ्या आणि खडबडीत वाट चढण्यासाठी मजबूत बूट घाला.
+
+        - गडावर पिण्याचे पाणी नसल्याने स्वतःजवळ पुरेसे पाणी ठेवा.'
+      donts: '- गडावर खूप मोठे वास्तू अवशेष पाहण्याची अपेक्षा ठेवू नका.'
+      safety_text: ढासळलेली तटबंदी आणि तुटलेल्या पायऱ्यांमुळे गड चढताना विशेष काळजी
+        घेणे आवश्यक आहे.
+    hi:
+      short_story: 'प्रणालदुर्ग, जिसे पद्मनाभदुर्ग के नाम से भी जाना जाता है, दापोली
+        तालुका में कोटजाई नदी के पास 270 फीट की ऊंचाई पर स्थित एक छोटा पहाड़ी किला
+        है। यह पन्हालेकाजी गुफाओं के करीब स्थित है और दक्षिण से उत्तर की ओर लगभग दो
+        एकड़ के क्षेत्र में फैला हुआ है।
+
+
+        किले तक पहुंचने के लिए तलहटी से 15 मिनट की चढ़ाई करनी पड़ती है। शीर्ष पर,
+        आप एक सूखा पानी का टैंक, टूटी हुई सीढ़ियां और ढही हुई दोहरी पत्थर की दीवारें
+        देख सकते हैं। पहाड़ी की चोटी पर पहले हुई खेती के कारण अधिकांश मूल संरचनाएं
+        नष्ट हो गई हैं, लेकिन यहाँ से नदी घाटी और जंगलों का साफ नजारा दिखता है।'
+      history: माना जाता है कि इस किले का निर्माण 12वीं शताब्दी के आसपास हुआ था। छत्रपति
+        शिवाजी महाराज के शासनकाल के दौरान या उसके बाद इसका कोई ऐतिहासिक उल्लेख नहीं
+        मिलता, जिससे पता चलता है कि बाद के समय में इसे छोड़ दिया गया था।
+      significance: कोटजाई नदी बेसिन पर नजर रखने के लिए इस्तेमाल किया जाने वाला यह
+        एक प्राचीन पहाड़ी किला है।
+      dos: '- टूटी सीढ़ियों और उबड़-खाबड़ रास्तों पर चलने के लिए मजबूत जूते पहनें।
+
+        - किले के टैंक सूखे हैं, इसलिए अपने साथ पर्याप्त पीने का पानी ले जाएं।'
+      donts: '- किले में बहुत बड़ी या सुरक्षित संरचनाएं देखने की उम्मीद न करें।'
+      safety_text: ढहती दीवारों और टूटी सीढ़ियों के कारण चढ़ाई करते समय पैरों का संतुलन
+        बनाए रखना आवश्यक है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.openstreetmap.org/node/9196991060
+    - https://durgbharari.in/padmanabhdurg/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; EN text + MR/HI by Gemini (Google
+    Search, batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03

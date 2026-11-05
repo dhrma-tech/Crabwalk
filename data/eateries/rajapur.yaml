@@ -1,0 +1,560 @@
+# Eateries - Rajapur taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: hotel-kokani-katta-rajapur
+  status: ai_draft
+  name_en: Hotel Kokani Katta
+  name_mr: हॉटेल कोकणी कट्टा
+  name_hi: होटल कोंकणी कट्टा
+  taluka: Rajapur
+  area: Rajapur
+  lat: null
+  lng: null
+  google_place_id: ChIJA501rVTVwTsRfLuHFIf0EDY
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 84463 09810
+  whatsapp: null
+  description:
+    en: Hotel Kokani Katta is a home-style family restaurant situated near Dongar
+      Phata in Rajapur. It provides a menu consisting of both vegetarian and non-vegetarian
+      meals.
+    mr: राजापूरमधील डोंगर फाट्याजवळ असलेले हॉटेल कोकणी कट्टा हे घरगुती पद्धतीचे फॅमिली
+      रेस्टॉरंट आहे. इथे शाकाहारी आणि मांसाहारी असे दोन्ही प्रकारचे जेवण मिळते.
+    hi: होटल कोकणी कट्टा राजापुर में डोंगर फाटा के पास स्थित एक घरेलू शैली का पारिवारिक
+      रेस्टोरेंट है। यहाँ शाकाहारी और मांसाहारी दोनों तरह का भोजन उपलब्ध है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJA501rVTVwTsRfLuHFIf0EDY
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hot-n-spice-restaurant-rajapur
+  status: ai_draft
+  name_en: Hot N Spice Restaurant
+  name_mr: हॉट एन स्पाइस रेस्टॉरंट
+  name_hi: हॉट एन स्पाइस रेस्टोरेंट
+  taluka: Rajapur
+  area: Rajapur
+  lat: null
+  lng: null
+  google_place_id: ChIJ8_sek3zVwTsRQOnUrPKrfKQ
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 73047 65335
+  whatsapp: null
+  description:
+    en: Situated on the Mumbai-Goa highway in Kondhe Tarf Rajapur, Hot N Spice Restaurant
+      caters to travelers with an open seating setup surrounded by greenery. The menu
+      includes vegetarian and non-vegetarian items like poha and biryani.
+    mr: मुंबई-गोवा महामार्गावर कोंढे तर्फे राजापूर येथे असलेले हॉट अँड स्पाईस रेस्टॉरंट
+      पर्यटकांसाठी सोयीचे असून येथे आजूबाजूला हिरवळ असलेली ओपन सीटिंग व्यवस्था आहे.
+      त्यांच्या मेनूमध्ये पोहे आणि बिर्याणीसारख्या शाकाहारी आणि मांसाहारी पदार्थांचा
+      समावेश आहे.
+    hi: मुंबई-गोवा राजमार्ग पर कोंढे तर्फे राजापुर में स्थित, हॉट एन स्पाइस रेस्टोरेंट
+      पर्यटकों के लिए अनुकूल है और यहाँ हरियाली के बीच खुली बैठने की व्यवस्था है।
+      इनके मेनू में पोहा और बिरयानी जैसे शाकाहारी और मांसाहारी व्यंजन शामिल हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ8_sek3zVwTsRQOnUrPKrfKQ
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: red-chilli-restaurant-rajapur
+  status: ai_draft
+  name_en: Red Chilli Restaurant
+  name_mr: रेड चिली रेस्टॉरंट
+  name_hi: रेड चिली रेस्टोरेंट
+  taluka: Rajapur
+  area: Rajapur
+  lat: null
+  lng: null
+  google_place_id: ChIJaQ37OADVwTsR1xaor9qG5i0
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '18:00'
+  closes: '23:59'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 87670 72984
+  whatsapp: null
+  description:
+    en: Red Chilli Restaurant is an established dining spot located at Talim Khana
+      in Sai Nagar, Rajapur. It offers a variety of authentic vegetarian and non-vegetarian
+      dishes.
+    mr: राजापूरच्या साई नगरमधील तालीम खाना येथे असलेले रेड चिली रेस्टॉरंट हे एक जुने
+      आणि ओळखले जाणारे भोजनालय आहे. येथे विविध प्रकारचे पारंपरिक शाकाहारी आणि मांसाहारी
+      पदार्थ मिळतात.
+    hi: रेड चिल्ली रेस्टोरेंट साई नगर, राजापुर के तालीम खाना में स्थित एक पुराना और
+      जाना-माना भोजनालय है। यहाँ विभिन्न प्रकार के प्रामाणिक शाकाहारी और मांसाहारी
+      व्यंजन मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJaQ37OADVwTsR1xaor9qG5i0
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: sunset-cafe-restaurant-jaitapur
+  status: ai_draft
+  name_en: Sunset Cafe & Restaurant
+  name_mr: सनसेट कॅफे अँड रेस्टॉरंट
+  name_hi: सनसेट कैफे एंड रेस्टोरेंट
+  taluka: Rajapur
+  area: Jaitapur
+  lat: null
+  lng: null
+  google_place_id: ChIJn328yKd96jsRJisPhn0QPuU
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98194 39898
+  whatsapp: null
+  description:
+    en: Sunset Cafe & Restaurant is a tourist-oriented establishment in Jaitapur that
+      serves a selection of vegetarian and non-vegetarian food.
+    mr: राजापूर तालुक्यातील जैतापूर येथे असलेले सनसेट कॅफे अँड रेस्टॉरंट हे पर्यटकांसाठी
+      एक उत्तम ठिकाण आहे, जिथे शाकाहारी आणि मांसाहारी जेवण दिले जाते.
+    hi: सनसेट कैफे एंड रेस्टोरेंट जैतापुर में पर्यटकों के अनुकूल एक भोजनालय है जहाँ
+      शाकाहारी और मांसाहारी दोनों तरह का भोजन मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJn328yKd96jsRJisPhn0QPuU
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: shri-mahalaxmi-khanaval-adivare
+  status: ai_draft
+  name_en: Shri Mahalaxmi Khanaval
+  name_mr: श्री महालक्ष्मी खानावळ
+  name_hi: श्री महालक्ष्मी खानावळ
+  taluka: Rajapur
+  area: Adivare
+  lat: null
+  lng: null
+  google_place_id: ChIJDRThWkB76jsRvabFhDjrXuc
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94030 62588
+  whatsapp: null
+  description:
+    en: Shri Mahalaxmi Khanaval is a home-style eatery located near the Shri Mahakali
+      Mandir in Adivare. It serves traditional vegetarian and non-vegetarian meals.
+    mr: आडिवरे येथील श्री महाकाली मंदिराजवळ असलेली श्री महालक्ष्मी खानावळ ही घरगुती
+      पद्धतीची खानावळ आहे. येथे पारंपरिक शाकाहारी आणि मांसाहारी जेवण दिले जाते.
+    hi: श्री महालक्ष्मी खानावळ आडिवरे में श्री महाकाली मंदिर के पास स्थित एक घरेलू
+      शैली का भोजनालय है। यहाँ पारंपरिक शाकाहारी और मांसाहारी भोजन परोसा जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJDRThWkB76jsRvabFhDjrXuc
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: shree-ganesh-gharguti-khanaval-raipatan
+  status: ai_draft
+  name_en: Shree Ganesh Gharguti Khanaval
+  name_mr: श्री गणेश घरगुती खानावळ
+  name_hi: श्री गणेश घरगुती खानावल
+  taluka: Rajapur
+  area: Raipatan
+  lat: null
+  lng: null
+  google_place_id: ChIJSRsYFwDNwTsRfO3ap4tpAlc
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '10:00'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 92219 49426
+  whatsapp: null
+  description:
+    en: This is a domestic eatery in Raipatan serving local Maharashtrian meals.
+    mr: हे रायपाटणमधील स्थानिक महाराष्ट्रीय जेवण देणारे घरगुती भोजनालय आहे.
+    hi: यह रायपाटन में स्थित एक घरेलू भोजनालय है जो स्थानीय महाराष्ट्रीयन भोजन परोसता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJSRsYFwDNwTsRfO3ap4tpAlc
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-annpurna-khanaval-and-chinese-canter-hativale
+  status: ai_draft
+  name_en: Hotel annpurna khanaval and chinese canter
+  name_mr: हॉटेल अन्नपूर्णा खानावळ अँड चायनीज सेंटर
+  name_hi: होटल अन्नपूर्णा खानावल एंड चाइनीज सेंटर
+  taluka: Rajapur
+  area: Hativale
+  lat: null
+  lng: null
+  google_place_id: ChIJh5z3jGArwDsRq7R1XS5S3Go
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 74991 21849
+  whatsapp: null
+  description:
+    en: An eatery located in Hativale, Rajapur offering regional Khanaval food and
+      Chinese dishes.
+    mr: राजापूरच्या हातिवले येथील या भोजनालयात स्थानिक खानावळीचे जेवण आणि चायनीज पदार्थ
+      मिळतात.
+    hi: राजापुर के हातिवले में स्थित इस भोजनालय में स्थानीय खानावल भोजन और चाइनीज
+      व्यंजन मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJh5z3jGArwDsRq7R1XS5S3Go
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: madhur-s-kitchen-kodavali
+  status: ai_draft
+  name_en: Madhur's Kitchen
+  name_mr: मधुरस् किचन
+  name_hi: मधुरस् किचन
+  taluka: Rajapur
+  area: Kodavali
+  lat: null
+  lng: null
+  google_place_id: ChIJC6MTiMzVwTsR58pOfLPsge0
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:30'
+  closes: '15:30'
+  closed_days:
+  - mon
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94031 09810
+  whatsapp: null
+  description:
+    en: A roadside restaurant on the Mumbai-Goa Highway in Kodavali serving local
+      cuisine.
+    mr: कोडावलीमध्ये मुंबई-गोवा महामार्गावरील हे एक रेस्टॉरंट आहे जिथे स्थानिक जेवण
+      मिळते.
+    hi: कोडावली में मुंबई-गोवा राजमार्ग पर स्थित यह एक रेस्तरां है जहाँ स्थानीय भोजन
+      मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJC6MTiMzVwTsR58pOfLPsge0
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: highway-kitchen-sai-nagar
+  status: ai_draft
+  name_en: Highway kitchen
+  name_mr: हायवे किचन
+  name_hi: हाईवे किचन
+  taluka: Rajapur
+  area: Sai Nagar
+  lat: null
+  lng: null
+  google_place_id: ChIJ2WAv1VPVwTsRXHKw1pt2cBA
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 86687 28168
+  whatsapp: null
+  description:
+    en: Located in Royal Plaza opposite the ST Depot in Rajapur, this kitchen serves
+      regional meals.
+    mr: राजापूरमधील एसटी डेपोसमोर रॉयल प्लाझामध्ये असलेले हे भोजनालय प्रादेशिक जेवण
+      देते.
+    hi: राजापुर में एसटी डिपो के सामने रॉयल प्लाजा में स्थित यह रसोई क्षेत्रीय भोजन
+      परोसती है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2WAv1VPVwTsRXHKw1pt2cBA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-mahakali-malvani-devghali-beach-kasheli
+  status: ai_draft
+  name_en: Hotel Mahakali Malvani Devghali Beach
+  name_mr: हॉटेल महाकाली मालवणी देवघळी बीच
+  name_hi: होटल महाकाली मालवणी देवघली बीच
+  taluka: Rajapur
+  area: Kasheli
+  lat: null
+  lng: null
+  google_place_id: ChIJXTJMAgB76jsRRjSnG0caN2s
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: 01:00
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94206 77515
+  whatsapp: null
+  description:
+    en: A restaurant situated near Devghali Beach in Kasheli that serves Malvani food.
+    mr: काशेळीमधील देवघळी किनाऱ्याजवळील हे रेस्टॉरंट मालवणी जेवण देते.
+    hi: काशेली में देवघली समुद्र तट के पास स्थित यह रेस्तरां मालवणी भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJXTJMAgB76jsRRjSnG0caN2s
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: kp-s-lunch-home-rajapur
+  status: ai_draft
+  name_en: KP's lunch home
+  name_mr: केपीज् लंच होम
+  name_hi: केपीज़ लंच होम
+  taluka: Rajapur
+  area: Rajapur
+  lat: null
+  lng: null
+  google_place_id: ChIJh82GeqDVwTsRpi-IWwJjUTw
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 06:30
+  closes: '17:30'
+  closed_days:
+  - sun
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: A lunch home near the police station in Rajapur providing daily local meals.
+    mr: राजापूरमधील पोलीस स्टेशनजवळील हे लंच होम दररोजचे स्थानिक जेवण देते.
+    hi: राजापुर में पुलिस स्टेशन के पास स्थित यह लंच होम प्रतिदिन का स्थानीय भोजन
+      देता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJh82GeqDVwTsRpi-IWwJjUTw
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

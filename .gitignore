@@ -27,3 +27,6 @@ pipelines/bin/
 
 # Personal editor settings
 .vscode/
+
+# Desk research scratch (raw AI batches, local receiver script, leftovers)
+data/_work/

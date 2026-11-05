@@ -1,0 +1,728 @@
+# Eateries - Chiplun taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: hotel-abhishek-malvani-jevan-chiplun
+  status: ai_draft
+  name_en: Hotel Abhishek Malvani Jevan
+  name_mr: हॉटेल अभिषेक मालवणी जेवण
+  name_hi: होटल अभिषेक मालवणी जेवण
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJrbdYpC8GwjsRVUXNEUZ0qgg
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Hotel Abhishek Malvani Jevan is a multicuisine restaurant in Markandi, Chiplun.
+      It serves authentic Malvani seafood thalis alongside Punjabi and Maharashtrian
+      dishes.
+    mr: हॉटेल अभिषेक मालवणी जेवण हे चिपळूणच्या मार्कंडी भागात असलेले एक मल्टीक्युझिन
+      रेस्टॉरंट आहे. इथे मालवणी पद्धतीची सीफूड थाळी तसेच पंजाबी आणि महाराष्ट्रीयन
+      पदार्थ मिळतात.
+    hi: होटल अभिषेक मालवणी जेवण चिपलूण के मार्कंडी में एक मल्टीक्यूज़ीन रेस्टोरेंट
+      है। यह अपनी प्रामाणिक मालवणी सीफूड थाली के साथ-साथ पंजाबी और महाराष्ट्रीयन व्यंजनों
+      के लिए जाना जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJrbdYpC8GwjsRVUXNEUZ0qgg
+    - https://www.justdial.com/Chiplun/Malwani-Restaurants/nct-10310580
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Abhishek' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: trupti-malvani-machhi-khanaval-chiplun
+  status: ai_draft
+  name_en: Trupti Malvani Machhi Khanaval
+  name_mr: तृप्ती मालवणी मच्छी खानावळ
+  name_hi: तृप्ती मालवणी मच्छी खानावळ
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJg4P5BLkHwjsRb9JNHr-1pyw
+  authenticity: home_style
+  price_for_two: 500
+  diet_flags:
+    veg: null
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:00'
+  closed_days:
+  - mon
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 80977 03178
+  whatsapp: null
+  description:
+    en: Located on the Guhagar Bypass Road, Trupti Malvani Machhi Khanaval is a home-style
+      eatery in Chiplun. It specializes in non-vegetarian Konkani cuisine, offering
+      dishes like fish fry and mutton thalis.
+    mr: गुहागर बायपास रोडवर स्थित असलेली तृप्ती मालवणी मच्छी खानावळ ही चिपळूणमधील
+      एक घरगुती पद्धतीची खानावळ आहे. इथे अस्सल कोकणी मांसाहारी जेवण, विशेषतः फिश फ्राय
+      आणि मटण थाळी मिळते.
+    hi: गुहागर बायपास रोड पर स्थित तृप्ती मालवणी मच्छी खानावळ चिपलूण में एक घरेलू
+      शैली का भोजनालय है। यह विशेष रूप से कोंकणी मांसाहारी भोजन, जैसे फिश फ्राई और
+      मटन थाली परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJg4P5BLkHwjsRb9JNHr-1pyw
+    - https://www.justdial.com/Chiplun/Thali-Restaurants-in-Chiplun/nct-10477830
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Trupti Malavani Macchi Khanaval' (via Gemini,
+    2026-11-03); authenticity label is Gemini judgement; description EN/MR/HI by Gemini
+    (maps); needs review
+- slug: the-konkan-curry-chiplun
+  status: ai_draft
+  name_en: The Konkan Curry
+  name_mr: द कोकण करी
+  name_hi: द कोंकण करी
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJR46fDgAHwjsRx77QASeM9Po
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: true
+    jain: null
+  opens: '10:00'
+  closes: '23:15'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 99308 52797
+  whatsapp: null
+  description:
+    en: The Konkan Curry is an air-conditioned seafood restaurant situated on the
+      Chiplun-Guhagar road. This tourist-oriented eatery serves Malvani thalis and
+      traditional non-vegetarian Konkani preparations.
+    mr: चिपळूण-गुहागर रोडवर असलेले द कोकण करी हे एक वातानुकूलित सीफूड रेस्टॉरंट आहे.
+      पर्यटकांसाठी सोयीच्या असलेल्या या ठिकाणी मालवणी थाळी आणि पारंपारिक कोकणी मांसाहारी
+      जेवण मिळते.
+    hi: द कोंकण करी चिपलूण-गुहागर रोड पर स्थित एक वातानुकूलित सीफूड रेस्टोरेंट है।
+      पर्यटकों के अनुकूल इस स्थान पर मालवणी थाली और पारंपरिक कोंकणी मांसाहारी व्यंजन
+      परोसे जाते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJR46fDgAHwjsRx77QASeM9Po
+    - https://www.justdial.com/Chiplun/SeaFood-Restaurants/nct-10424728
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'THE KONKAN CURRY' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: hotel-vanashri-garden-family-restaurant-chiplun
+  status: ai_draft
+  name_en: Hotel Vanashri Garden Family Restaurant
+  name_mr: हॉटेल वनश्री गार्डन फॅमिली रेस्टॉरंट
+  name_hi: होटल वनश्री गार्डन फैमिली रेस्टोरेंट
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJWbgnaz0GwjsRohLDg0f9TP8
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 78875 65444
+  whatsapp: null
+  description:
+    en: Hotel Vanashri Garden Family Restaurant is situated near Bahadurshaikh Naka
+      in Chiplun. This tourist-friendly establishment offers a variety of vegetarian
+      and non-vegetarian dishes in a spacious garden setting.
+    mr: हॉटेल वनश्री गार्डन फॅमिली रेस्टॉरंट चिपळूणमधील बहादूरशेख नाक्याजवळ आहे. या
+      प्रशस्त गार्डन रेस्टॉरंटमध्ये पर्यटकांसाठी शाकाहारी आणि मांसाहारी पदार्थांचे
+      विविध पर्याय उपलब्ध आहेत.
+    hi: होटल वनश्री गार्डन फैमिली रेस्टोरेंट चिपलूण में बहादुरशेख नाका के पास स्थित
+      है। इस गार्डन रेस्टोरेंट में पर्यटकों के लिए शाकाहारी और मांसाहारी व्यंजनों
+      के कई विकल्प उपलब्ध हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJWbgnaz0GwjsRohLDg0f9TP8
+    - https://www.justdial.com/Chiplun/SeaFood-Restaurants/nct-10424728
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Vanashree' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: konkani-dwaraka-chiplun
+  status: ai_draft
+  name_en: Konkani Dwaraka
+  name_mr: कोकणी द्वारका
+  name_hi: कोंकणी द्वारका
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJp3N-axcHwjsRZlHZ20xADXk
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '17:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98908 16469
+  whatsapp: null
+  description:
+    en: Konkani Dwaraka is a local eatery located in Sai Plaza on the Karad-Chiplun
+      road. The restaurant offers fried prawns, fish thalis, and authentic coastal
+      preparations.
+    mr: कराड-चिपळूण मार्गावरील साई प्लाझामध्ये असलेले कोकणी द्वारका हे चिपळूणमधील
+      एक स्थानिक रेस्टॉरंट आहे. हे ठिकाण कोळंबी फ्राय, फिश थाळी आणि कोकणी जेवणासाठी
+      ओळखले जाते.
+    hi: कराड-चिपलूण रोड पर साई प्लाजा में स्थित कोंकणी द्वारका चिपलूण का एक स्थानीय
+      रेस्टोरेंट है। यह प्रॉन फ्राई, फिश थाली और प्रामाणिक तटीय व्यंजनों के लिए जाना
+      जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJp3N-axcHwjsRZlHZ20xADXk
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: konkan-kinara-dhaba-chiplun
+  status: ai_draft
+  name_en: Konkan Kinara Dhaba
+  name_mr: कोकण किनारा ढाबा
+  name_hi: कोंकण किनारा ढाबा
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJP1o7FR8HwjsR2P5hJMztDBE
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:59'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 80101 92473
+  whatsapp: null
+  description:
+    en: Konkan Kinara Dhaba is positioned along the Mumbai-Goa highway in Kapsal,
+      Chiplun. It is a highway dhaba serving traditional Konkani seafood and chicken
+      dishes for travelers.
+    mr: मुंबई-गोवा हायवेवर कापसाळ (चिपळूण) जवळ कोकण किनारा ढाबा आहे. प्रवाशांच्या
+      सोयीसाठी असलेल्या या ढाब्यावर पारंपरिक कोकणी सीफूड आणि चिकनचे पदार्थ मिळतात.
+    hi: कोंकण किनारा ढाबा मुंबई-गोवा हाईवे पर चिपलूण के कापसाल में स्थित है। यह हाईवे
+      ढाबा यात्रियों को पारंपरिक कोंकणी सीफूड और चिकन के व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJP1o7FR8HwjsR2P5hJMztDBE
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: chiplun-konkani-khanaval-pedhe
+  status: ai_draft
+  name_en: Chiplun Konkani Khanaval
+  name_mr: चिपळूण कोकणी खानावळ
+  name_hi: चिपलूण कोंकणी खानावळ
+  taluka: Chiplun
+  area: Pedhe
+  lat: null
+  lng: null
+  google_place_id: ChIJuaslvTEJwjsRAMMJk8YVoeA
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 93268 31859
+  whatsapp: null
+  description:
+    en: Situated in Maliwadi near the Sawatsada Waterfall, Chiplun Konkani Khanaval
+      offers a home-style dining experience in Pedhe. It serves simple, freshly prepared
+      vegetarian and non-vegetarian coastal meals.
+    mr: पेढे येथील सवतसडा धबधब्याजवळ, माळीवाडीत असलेली चिपळूण कोकणी खानावळ घरगुती
+      पद्धतीचे जेवण देते. इथे ताजे शाकाहारी आणि मांसाहारी कोकणी पदार्थ मिळतात.
+    hi: पेढे में सवतसडा झरने के पास माळीवाडी में स्थित चिपलूण कोंकणी खानावळ घर जैसा
+      भोजन परोसता है। यहाँ साधारण, ताज़ा शाकाहारी और मांसाहारी तटीय भोजन मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuaslvTEJwjsRAMMJk8YVoeA
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-mejwani-sawarde
+  status: ai_draft
+  name_en: Hotel Mejwani
+  name_mr: हॉटेल मेजवानी
+  name_hi: होटल मेजवानी
+  taluka: Chiplun
+  area: Sawarde
+  lat: null
+  lng: null
+  google_place_id: ChIJJ9D9BQsBwjsRzXI78dTU8oE
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98604 72752
+  whatsapp: null
+  description:
+    en: Hotel Mejwani is located in Pimpal Mohalla, Sawarde, near the Mumbai-Goa highway.
+      It is an eatery offering both vegetarian and non-vegetarian meals along the
+      route.
+    mr: हॉटेल मेजवानी हे मुंबई-गोवा हायवेजवळ, सावर्डे येथील पिंपळ मोहल्ल्यात आहे.
+      या रेस्टॉरंटमध्ये प्रवाशांसाठी शाकाहारी आणि मांसाहारी जेवणाची सोय आहे.
+    hi: होटल मेजवानी मुंबई-गोवा हाईवे के पास, सावर्डे के पिंपल मोहल्ला में स्थित है।
+      यह एक भोजनालय है जहाँ शाकाहारी और मांसाहारी दोनों तरह का भोजन उपलब्ध है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJ9D9BQsBwjsRzXI78dTU8oE
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-mai-marathi-best-restaurant-in-chiplun-walope
+  status: ai_draft
+  name_en: Hotel Mai Marathi
+  name_mr: हॉटेल माय मराठी बेस्ट रेस्टॉरंट इन चिपळूण
+  name_hi: होटल माय मराठी बेस्ट रेस्तरां इन चिपलूण
+  taluka: Chiplun
+  area: Walope
+  lat: null
+  lng: null
+  google_place_id: ChIJmyOQfgAJwjsR4UFf6WM9HZM
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '23:30'
+  closed_days:
+  - tue
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 93706 55364
+  whatsapp: null
+  description:
+    en: It is a restaurant located on the Mumbai-Goa highway in Walope, serving local
+      meals.
+    mr: हे वालोपे येथे मुंबई-गोवा महामार्गावर स्थित एक रेस्टॉरंट आहे, जिथे स्थानिक
+      जेवण मिळते.
+    hi: यह वालोपे में मुंबई-गोवा राजमार्ग पर स्थित एक रेस्तरां है, जहाँ स्थानीय भोजन
+      मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJmyOQfgAJwjsR4UFf6WM9HZM
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJmyOQfgAJwjsR4UFf6WM9HZM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; name trimmed from Maps listing title "Hotel Mai Marathi
+    best restaurant in chiplun"'
+- slug: darkaar-authentic-restaurant-markandi
+  status: ai_draft
+  name_en: DARKAAR AUTHENTIC RESTAURANT
+  name_mr: दरकार ऑथेंटिक रेस्टॉरंट
+  name_hi: दरकार ऑथेंटिक रेस्तरां
+  taluka: Chiplun
+  area: Markandi
+  lat: null
+  lng: null
+  google_place_id: ChIJ2YjvD8kHwjsRKq0HqmP4gw8
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 84219 25650
+  whatsapp: null
+  description:
+    en: It is a restaurant in Markandi offering local food.
+    mr: हे मार्कंडी येथील एक रेस्टॉरंट आहे जिथे स्थानिक खाद्यपदार्थ मिळतात.
+    hi: यह मार्कंडी में एक रेस्तरां है जहाँ स्थानीय भोजन मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2YjvD8kHwjsRKq0HqmP4gw8
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2YjvD8kHwjsRKq0HqmP4gw8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: tulsi-dining-hall-pure-veg-chiplun-markandi
+  status: ai_draft
+  name_en: TULSI DINING HALL PURE VEG CHIPLUN
+  name_mr: तुळशी डायनिंग हॉल प्युअर व्हेज चिपळूण
+  name_hi: तुलसी डाइनिंग हॉल प्योर वेज चिपलूण
+  taluka: Chiplun
+  area: Markandi
+  lat: null
+  lng: null
+  google_place_id: ChIJfyMaNBUHwjsRHT1L_U0iUZ4
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: false
+    jain: null
+  opens: 08:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 95034 45257
+  whatsapp: null
+  description:
+    en: It is a pure vegetarian dining hall situated in Markandi.
+    mr: हे मार्कंडी येथे स्थित एक शुद्ध शाकाहारी डायनिंग हॉल आहे.
+    hi: यह मार्कंडी में स्थित एक शुद्ध शाकाहारी डाइनिंग हॉल है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfyMaNBUHwjsRHT1L_U0iUZ4
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfyMaNBUHwjsRHT1L_U0iUZ4
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: vivan-pure-veg-restaurant-chiplun
+  status: ai_draft
+  name_en: Vivan Pure Veg Restaurant Chiplun
+  name_mr: विवान प्युअर व्हेज रेस्टॉरंट चिपळूण
+  name_hi: विवान प्योर वेज रेस्तरां चिपलूण
+  taluka: Chiplun
+  area: Chiplun
+  lat: null
+  lng: null
+  google_place_id: ChIJwSN8GUsHwjsRYw-AuNWHkXQ
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: false
+    jain: null
+  opens: 09:00
+  closes: '21:30'
+  closed_days:
+  - sun
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 84850 59511
+  whatsapp: null
+  description:
+    en: It is a vegetarian restaurant located near the Civil Court in Chiplun.
+    mr: हे चिपळूणमधील सिव्हिल कोर्टाजवळ स्थित एक शाकाहारी रेस्टॉरंट आहे.
+    hi: यह चिपलूण में सिविल कोर्ट के पास स्थित एक शाकाहारी रेस्तरां है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwSN8GUsHwjsRYw-AuNWHkXQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwSN8GUsHwjsRYw-AuNWHkXQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: shiv-sagar-family-restaurant-and-lodge-sawarde
+  status: ai_draft
+  name_en: Shiv Sagar Family Restaurant and Lodge
+  name_mr: शिव सागर फॅमिली रेस्टॉरंट अँड लॉज
+  name_hi: शिव सागर फैमिली रेस्टोरेंट एंड लॉज
+  taluka: Chiplun
+  area: Sawarde
+  lat: null
+  lng: null
+  google_place_id: ChIJo8CMvnQBwjsRZp2pKgCuH3A
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 93701 31198
+  whatsapp: null
+  description:
+    en: It is a family restaurant situated on the highway in Sawarde.
+    mr: हे सावर्डे येथे महामार्गावर स्थित एक फॅमिली रेस्टॉरंट आहे.
+    hi: यह सावर्डे में राजमार्ग पर स्थित एक फैमिली रेस्तरां है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJo8CMvnQBwjsRZp2pKgCuH3A
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJo8CMvnQBwjsRZp2pKgCuH3A
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: manohar-hotel-lodge-royal-nagar
+  status: ai_draft
+  name_en: Manohar Hotel & Lodge
+  name_mr: मनोहर हॉटेल अँड लॉज
+  name_hi: मनोहर होटल एंड लॉज
+  taluka: Chiplun
+  area: Royal Nagar
+  lat: null
+  lng: null
+  google_place_id: ChIJuykAmysGwjsRvnv44fuhnrQ
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98908 90978
+  whatsapp: null
+  description:
+    en: It is an eatery located near Shivaji Chowk in Royal Nagar.
+    mr: हे रॉयल नगरमधील शिवाजी चौकाजवळ स्थित एक उपाहारगृह आहे.
+    hi: यह रॉयल नगर में शिवाजी चौक के पास स्थित एक भोजनालय है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuykAmysGwjsRvnv44fuhnrQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuykAmysGwjsRvnv44fuhnrQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

@@ -1,0 +1,300 @@
+# Stays - Rajapur taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: cherilyn-monta-resort-oni
+  status: ai_draft
+  name_en: Cherilyn Monta Resort
+  name_mr: चेरिलीन मोंटा रिसॉर्ट
+  name_hi: चेरिलीन मोंटा रिसॉर्ट
+  taluka: Rajapur
+  area: Oni
+  lat: null
+  lng: null
+  google_place_id: ChIJ86cwiGzRwTsRikCCkHjgMCI
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 4201
+  price_max: 4421
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/cherilyn_monta_resort-details-rajapur.html
+  phone: +91 77190 36036
+  whatsapp: null
+  official_url: https://www.cherilynmontaresort.com/
+  description:
+    en: Cherilyn Monta Resort is a professional and luxury property located in Oni,
+      Rajapur. It is an excellent destination for family stays.
+    mr: चेरिलिन मोंटा रिसॉर्ट हे राजापूर मधील ओणी येथे असलेले एक व्यावसायिक आणि आलिशान
+      ठिकाण आहे. हे कौटुंबिक सुट्ट्यांसाठी उत्तम पर्याय आहे.
+    hi: चेरिलिन मोंटा रिज़ॉर्ट राजापुर के ओणी में स्थित एक व्यावसायिक और लक्ज़री रिज़ॉर्ट
+      है। यह परिवार के साथ ठहरने के लिए एक बेहतरीन जगह है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/cherilyn_monta_resort-details-rajapur.html
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/cherilyn-monta-resort-hotel-in-rajapur-2211666332633941414/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ86cwiGzRwTsRikCCkHjgMCI
+    - https://www.cherilynmontaresort.com/
+    - https://www.makemytrip.com/hotels/cherilyn_monta_resort-details-rajapur.html
+    - https://www.goibibo.com/hotels/cherilyn-monta-resort-hotel-in-rajapur-2211666332633941414/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: sulochana-beach-house-ambolgad
+  status: ai_draft
+  name_en: Sulochana Beach House
+  name_mr: सुलोचना बीच हाऊस
+  name_hi: सुलोचना बीच हाउस
+  taluka: Rajapur
+  area: Ambolgad
+  lat: null
+  lng: null
+  google_place_id: ChIJuxOTLgt96jsREYC7-8YDxE8
+  service_style: homely
+  vibe_tags:
+  - beachfront
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Sulochana Beach House is a homely beachfront property in Ambolgad, Rajapur.
+      It provides family-friendly accommodations near the sea.
+    mr: सुलोचना बीच हाऊस हे राजापूर मधील आंबोळगड येथे समुद्रकिनाऱ्यावर असलेले एक घरगुती
+      ठिकाण आहे. येथे समुद्राजवळ कुटुंबासाठी अनुकूल निवासाची सोय आहे.
+    hi: सुलोचना बीच हाउस राजापुर के आंबोलगड में समुद्र तट पर स्थित एक घरेलू संपत्ति
+      है। यह समुद्र के पास परिवारों के अनुकूल आवास प्रदान करता है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/homestays-in-rajapur-pt/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuxOTLgt96jsREYC7-8YDxE8
+    - https://www.goibibo.com/hotels/homestays-in-rajapur-pt/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: shree-gangatirtha-homestay-unhale
+  status: ai_draft
+  name_en: Shree Gangatirtha Homestay
+  name_mr: श्री गंगातीर्थ होमस्टे
+  name_hi: श्री गंगातीर्थ होमस्टे
+  taluka: Rajapur
+  area: Unhale
+  lat: null
+  lng: null
+  google_place_id: ChIJ3Qhqk_3VwTsR3KA80xs8N6M
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 77219 13509
+  whatsapp: null
+  official_url: https://shree-gangatirtha-homestay.localo.site/
+  description:
+    en: Shree Gangatirtha Homestay is a homely accommodation located in Unhale, Rajapur.
+      It is well-suited for family stays.
+    mr: श्री गंगातीर्थ होमस्टे हे राजापूरच्या उन्हाळे येथे असलेले एक घरगुती निवासस्थान
+      आहे. हे कौटुंबिक वास्तव्यासाठी अतिशय योग्य आहे.
+    hi: श्री गंगातीर्थ होमस्टे राजापुर के उन्हाले में स्थित एक घरेलू आवास है। यह परिवार
+      के साथ ठहरने के लिए बहुत उपयुक्त है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/homestays-in-rajapur-pt/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ3Qhqk_3VwTsR3KA80xs8N6M
+    - https://shree-gangatirtha-homestay.localo.site/
+    - https://www.goibibo.com/hotels/homestays-in-rajapur-pt/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: pushkar-aamrvel-rajapur
+  status: ai_draft
+  name_en: Pushkar Aamrvel
+  name_mr: पुष्कर आम्रवेल
+  name_hi: पुष्कर आम्रवेल
+  taluka: Rajapur
+  area: Rajapur
+  lat: null
+  lng: null
+  google_place_id: ChIJA4kccMvXwTsRkeIST_e7e20
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99604 30359
+  whatsapp: null
+  official_url: null
+  description:
+    en: Pushkar Aamrvel is a traditional Konkani home located in Rajapur. This homely
+      stay offers a family-friendly environment.
+    mr: पुष्कर आम्रवेल हे राजापूर मध्ये स्थित एक पारंपरिक कोकणी घर आहे. हे घरगुती
+      ठिकाण कुटुंबासाठी अनुकूल वातावरण देते.
+    hi: पुष्कर आम्रवेल राजापुर में स्थित एक पारंपरिक कोंकणी घर है। यह घरेलू जगह परिवारों
+      के अनुकूल वातावरण प्रदान करती है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJA4kccMvXwTsRkeIST_e7e20
+    - https://www.justdial.com/Rajapur/Home-Stay/nct-10835911
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, directory
+    page only; confirmed on Google Maps as 'Pushkar Amravel Homestay'; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: samindar-beach-house-ambolgad
+  status: ai_draft
+  name_en: Samindar Beach House
+  name_mr: समंदर बीच हाऊस
+  name_hi: समंदर बीच हाउस
+  taluka: Rajapur
+  area: Ambolgad
+  lat: null
+  lng: null
+  google_place_id: ChIJsfYBVa596jsRUp_GuOiCOUk
+  service_style: homely
+  vibe_tags:
+  - beachfront
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 95375 36715
+  whatsapp: null
+  official_url: null
+  description:
+    en: This is a beachfront property located in Ambolgad, Rajapur.
+    mr: हे राजापूरच्या आंबोळगड येथील समुद्रकिनाऱ्याजवळील निवासाचे ठिकाण आहे.
+    hi: यह राजापुर के आंबोलगड़ में समुद्र तट के पास स्थित एक संपत्ति है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJsfYBVa596jsRUp_GuOiCOUk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: gurukunj-homestay-jaitapur
+  status: ai_draft
+  name_en: Gurukunj Homestay Jaitapur
+  name_mr: गुरुकुंज होमस्टे जैतापूर
+  name_hi: गुरुकुंज होमस्टे जैतापुर
+  taluka: Rajapur
+  area: Jaitapur
+  lat: null
+  lng: null
+  google_place_id: ChIJSS7zSwB96jsRsL3G1FPLdWU
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 96642 29930
+  whatsapp: null
+  official_url: null
+  description:
+    en: It is a homestay situated in Pirwadi, Jaitapur.
+    mr: हे जैतापूरच्या पीरवाडी येथे स्थित एक होमस्टे आहे.
+    hi: यह जैतापुर के पीरवाड़ी में स्थित एक होमस्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJSS7zSwB96jsRsL3G1FPLdWU
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: delight-homestay-jaitapur
+  status: ai_draft
+  name_en: Delight Homestay - Jaitapur
+  name_mr: डिलाईट होमस्टे - जैतापूर
+  name_hi: डिलाइट होमस्टे - जैतापुर
+  taluka: Rajapur
+  area: Jaitapur
+  lat: null
+  lng: null
+  google_place_id: ChIJiz6Ul0N_6jsRSLHGHOpIeEk
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: This homestay accommodation is located in Jaitapur, Rajapur taluka.
+    mr: हे होमस्टे निवासाचे ठिकाण राजापूर तालुक्यातील जैतापूर येथे आहे.
+    hi: यह होमस्टे आवास राजापुर तालुका के जैतापुर में स्थित है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJiz6Ul0N_6jsRSLHGHOpIeEk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

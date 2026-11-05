@@ -1,0 +1,586 @@
+# Stays - Dapoli taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: the-fern-samali-resort-dapoli-dapoli
+  status: ai_draft
+  name_en: The Fern Samali Resort Dapoli
+  name_mr: द फर्न समाली रिसॉर्ट दापोली
+  name_hi: द फर्न समाली रिसॉर्ट दापोली
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJWZsDW3HB6TsRldVrXv3kQNM
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 95270 26633
+  whatsapp: null
+  official_url: null
+  description:
+    en: The Fern Samali Resort is a luxury, family-friendly professional resort set
+      in Dapoli. It features extensive grounds and comfortable lodging for visitors
+      to the coastal region.
+    mr: द फर्न समाळी रिसॉर्ट हे दापोली येथील एक लक्झरी, कुटुंबांसाठी योग्य असलेले
+      व्यावसायिक रिसॉर्ट आहे. येथे पर्यटकांसाठी मोठा परिसर आणि आरामदायी राहण्याची
+      सोय उपलब्ध आहे.
+    hi: द फर्न समाली रिज़ॉर्ट दापोली में स्थित एक लक्ज़री और पारिवारिक व्यावसायिक
+      रिज़ॉर्ट है। यहाँ पर्यटकों के लिए बड़ा परिसर और आरामदायक रहने की व्यवस्था है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJWZsDW3HB6TsRldVrXv3kQNM
+    - https://www.holidayhome.co.in/bankot-india
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, price came
+    from a Bankot listing page, dropped; confirmed on Google Maps as 'The Fern Samali
+    Resort Dapoli, Series by Marriott'; description EN/MR/HI by Gemini (maps); needs
+    review
+- slug: seadeck-homestay-harnai
+  status: ai_draft
+  name_en: Seadeck Homestay
+  name_mr: सीडेक होमस्टे
+  name_hi: सीडेक होमस्टे
+  taluka: Dapoli
+  area: Harnai
+  lat: null
+  lng: null
+  google_place_id: ChIJYVtEq1TH6TsRzdDWI_IpkiU
+  service_style: homely
+  vibe_tags:
+  - family
+  - beachfront
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2730
+  price_max: null
+  price_source: null
+  price_url: https://www.easemytrip.com/hotels/hotels-near-karde-beach-dapoli/
+  phone: +91 97654 95777
+  whatsapp: null
+  official_url: null
+  description:
+    en: Seadeck Homestay is a beachfront family property located in Harnai, Dapoli.
+      It offers a homely atmosphere near the coast.
+    mr: सी-डेक होमस्टे हे दापोलीच्या हर्णे येथील समुद्रकिनाऱ्यावरील एक घरगुती निवासस्थान
+      आहे. हे कुटुंबांसाठी योग्य असून किनाऱ्याजवळ वसलेले आहे.
+    hi: सी-डेक होमस्टे दापोली के हर्णे में समुद्र तट पर स्थित एक पारिवारिक संपत्ति
+      है। यह तट के पास एक घरेलू माहौल प्रदान करता है।
+  ota_links:
+  - provider: easemytrip
+    url: https://www.easemytrip.com/hotels/hotels-near-karde-beach-dapoli/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYVtEq1TH6TsRzdDWI_IpkiU
+    - https://www.easemytrip.com/hotels/hotels-near-karde-beach-dapoli/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, OTA category
+    page only; confirmed on Google Maps as 'SeaDeck HomeStay'; description EN/MR/HI
+    by Gemini (fields_only); needs review
+- slug: lotus-eco-beach-resort-murud
+  status: ai_draft
+  name_en: Lotus Eco Beach Resort
+  name_mr: लोटस इको बीच रिसॉर्ट
+  name_hi: लोटस इको बीच रिसॉर्ट
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJE-ngpWkN6jsRgEttwFZoE-M
+  service_style: professional
+  vibe_tags:
+  - beachfront
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 9000
+  price_max: null
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  phone: +91 91691 66789
+  whatsapp: null
+  official_url: https://www.orchidhotel.com/lotus-eco-beach-resort-murud-dapoli-ratnagiri/
+  description:
+    en: Lotus Eco Beach Resort is a professional beachfront property located in Murud,
+      Dapoli. It provides family-oriented accommodation right next to the beach.
+    mr: लोटस इको बीच रिसॉर्ट हे दापोलीच्या मुरुड येथील समुद्रकिनाऱ्यालगतचे व्यावसायिक
+      रिसॉर्ट आहे. मुरुड बीचजवळ कुटुंबांसाठी येथे राहण्याची उत्तम सोय आहे.
+    hi: लोटस इको बीच रिज़ॉर्ट दापोली के मुरुड में समुद्र तट पर स्थित एक व्यावसायिक
+      संपत्ति है। यह मुरुड बीच के पास परिवारों के अनुकूल आवास प्रदान करता है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJE-ngpWkN6jsRgEttwFZoE-M
+    - https://www.orchidhotel.com/lotus-eco-beach-resort-murud-dapoli-ratnagiri/
+    - https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; price from
+    an OTA category page; description EN/MR/HI by Gemini (maps); needs review
+- slug: cocorico-beach-resort-murud
+  status: ai_draft
+  name_en: Cocorico Beach Resort
+  name_mr: कोकोरिको बीच रिसॉर्ट
+  name_hi: कोकोरिको बीच रिसॉर्ट
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJ4SgViDLH6TsRdWY6A_dnS7U
+  service_style: professional
+  vibe_tags:
+  - beachfront
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 4416
+  price_max: 4900
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  phone: +91 94238 93639
+  whatsapp: null
+  official_url: null
+  description:
+    en: Cocorico Beach Resort offers professional, beachfront accommodation in Murud,
+      Dapoli. It is specifically designed to accommodate families visiting the shoreline.
+    mr: कोकोरिको बीच रिसॉर्ट दापोलीच्या मुरुडमध्ये समुद्रकिनाऱ्याजवळ व्यावसायिक निवास
+      सुविधा देते. हे किनारे फिरण्यासाठी येणाऱ्या कुटुंबांसाठी बनवले आहे.
+    hi: कोकोरिको बीच रिज़ॉर्ट दापोली के मुरुड में व्यावसायिक, समुद्र तट के पास का
+      आवास प्रदान करता है। यह तट पर आने वाले परिवारों के लिए उपयुक्त है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/p-resorts-in-dapoli.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4SgViDLH6TsRdWY6A_dnS7U
+    - https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+    - https://www.makemytrip.com/hotels/p-resorts-in-dapoli.html
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; price from
+    an OTA category page; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: chira-meadows-ecoresort-wellness-spa-dapoli
+  status: ai_draft
+  name_en: Chira Meadows Ecoresort & Wellness Spa
+  name_mr: चिरा मेडोज इकोरिसॉर्ट अँड वेलनेस स्पा
+  name_hi: चिरा मेडोज इकोरिसॉर्ट एंड वेलनेस स्पा
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJfTutXcvD6TsRPVaJX4vPAI4
+  service_style: professional
+  vibe_tags:
+  - family
+  - luxury
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 5000
+  price_max: null
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  phone: +91 94230 10005
+  whatsapp: null
+  official_url: https://www.chirameadows.com/
+  description:
+    en: Chira Meadows Ecoresort & Wellness Spa is a luxury professional stay situated
+      in Dapoli. It caters to families looking for a nature-centric and comfortable
+      environment.
+    mr: चिरा मिडोज इको-रिसॉर्ट आणि वेलनेस स्पा हे दापोलीतील एक लक्झरी व्यावसायिक रिसॉर्ट
+      आहे. निसर्गाच्या सान्निध्यात राहू इच्छिणाऱ्या कुटुंबांसाठी हे एक उत्तम ठिकाण
+      आहे.
+    hi: चिरा मीडोज़ इको-रिज़ॉर्ट एंड वेलनेस स्पा दापोली में स्थित एक लक्ज़री व्यावसायिक
+      ठहरने की जगह है। यह प्रकृति-केंद्रित माहौल की तलाश करने वाले परिवारों के लिए
+      उपयुक्त है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfTutXcvD6TsRPVaJX4vPAI4
+    - https://www.chirameadows.com/
+    - https://www.goibibo.com/hotels/resorts-in-dapoli-pt/
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; price from
+    an OTA category page; description EN/MR/HI by Gemini (maps); needs review
+- slug: sagar-sahwas-homestay-ladghar
+  status: ai_draft
+  name_en: Sagar Sahwas Homestay
+  name_mr: सागर सहवास होमस्टे
+  name_hi: सागर सहवास होमस्टे
+  taluka: Dapoli
+  area: Ladghar
+  lat: null
+  lng: null
+  google_place_id: ChIJ8QyS1MjB6TsRqOHIhoKRCBw
+  service_style: homely
+  vibe_tags:
+  - beachfront
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 1300
+  price_max: 1300
+  price_source: null
+  price_url: https://www.hotelinkonkan.com/ladghar-hotels/sagar-sahwas-home-stay-ladghar
+  phone: +91 87673 09735
+  whatsapp: null
+  official_url: null
+  description:
+    en: Sagar Sahwas Homestay is a traditional Konkani home positioned on the beachfront
+      in Ladghar, Dapoli. The homely setting is ideal for families visiting the sea.
+    mr: सागर सहवास होमस्टे हे दापोलीच्या लाडघर येथील समुद्रकिनाऱ्यावरील एक पारंपारिक
+      कोकणी घर आहे. कुटुंबांसाठी हे घरगुती वातावरण अतिशय योग्य आहे.
+    hi: सागर सहवास होमस्टे दापोली के लाडघर में समुद्र तट पर स्थित एक पारंपरिक कोंकणी
+      घर है। इसका घरेलू वातावरण परिवारों के लिए आदर्श है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ8QyS1MjB6TsRqOHIhoKRCBw
+    - https://www.hotelinkonkan.com/ladghar-hotels/sagar-sahwas-home-stay-ladghar
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: swapnashilp-homestay-harnai
+  status: ai_draft
+  name_en: Swapnashilp Homestay
+  name_mr: स्वप्नशिल्प होमस्टे
+  name_hi: स्वप्नशिल्प होमस्टे
+  taluka: Dapoli
+  area: Harnai
+  lat: null
+  lng: null
+  google_place_id: ChIJjQcHBSfH6TsReW6wcob_XbU
+  service_style: homely
+  vibe_tags:
+  - family
+  - traditional_konkani_home
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 1500
+  price_max: 2000
+  price_source: null
+  price_url: https://www.hotelinkonkan.com/harnai-hotels/swapnashilp-homestay-harnai
+  phone: +91 80979 68047
+  whatsapp: null
+  official_url: null
+  description:
+    en: Swapnashilp Homestay offers a traditional Konkani, homely stay in Harnai,
+      Dapoli. It provides family-friendly accommodation in a coastal village setting.
+    mr: स्वप्नशिल्प होमस्टे हे दापोलीच्या हर्णे गावात एक पारंपारिक कोकणी आणि घरगुती
+      निवासाची सोय देते. हे कुटुंबांसाठी योग्य असे किनारी गावातील ठिकाण आहे.
+    hi: स्वप्नशिल्प होमस्टे दापोली के हर्णे में एक पारंपरिक कोंकणी और घरेलू ठहराव
+      प्रदान करता है। यह तटीय गांव के माहौल में परिवार के अनुकूल आवास देता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJjQcHBSfH6TsReW6wcob_XbU
+    - https://www.hotelinkonkan.com/harnai-hotels/swapnashilp-homestay-harnai
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: bharja-inn-kelshi
+  status: ai_draft
+  name_en: Bharja Inn
+  name_mr: भारजा इन
+  name_hi: भारजा इन
+  taluka: Dapoli
+  area: Kelshi
+  lat: null
+  lng: null
+  google_place_id: ChIJvdqf4ke26TsRWI_qz2L3ntM
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 1500
+  price_max: 4000
+  price_source: null
+  price_url: https://www.gagangiritoursandtravel.com/kelshi-beach-hotels
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Bharja Inn is a homely family accommodation located in Kelshi, Dapoli.
+    mr: भार्जा इन हे दापोलीच्या केळशी येथील एक घरगुती आणि कुटुंबांसाठी योग्य असे निवासस्थान
+      आहे.
+    hi: भार्जा इन दापोली के केलशी में स्थित एक घरेलू पारिवारिक आवास है।
+  ota_links:
+  - provider: agoda
+    url: https://www.agoda.com/bharja-inn-kelshi-h11305597/hotel/harnai-in.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJvdqf4ke26TsRWI_qz2L3ntM
+    - https://www.agoda.com/bharja-inn-kelshi-h11305597/hotel/harnai-in.html
+    - https://www.gagangiritoursandtravel.com/kelshi-beach-hotels
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: regenta-waterfront-resort-dapoli-harnai
+  status: ai_draft
+  name_en: Regenta Waterfront Resort Dapoli
+  name_mr: रेजेन्ता वॉटरफ्रंट रिसॉर्ट दापोली
+  name_hi: रेजेन्ता वॉटरफ्रंट रिसॉर्ट दापोली
+  taluka: Dapoli
+  area: Harnai
+  lat: null
+  lng: null
+  google_place_id: ChIJ01xjhZfD6TsRIDzuHatg-_Y
+  service_style: professional
+  vibe_tags:
+  - family
+  - luxury
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 97645 98645
+  whatsapp: null
+  official_url: null
+  description:
+    en: Regenta Waterfront Resort Dapoli is a professional hospitality property located
+      on Harnai Bypass Road, Dapoli, offering modern air-conditioned rooms and suites.
+    mr: रेजेन्ता वॉटरफ्रंट रिसॉर्ट दापोली हे हरणे बायपास रोड, दापोली येथे स्थित एक
+      व्यावसायिक आदिथ्य स्थान आहे, जे आधुनिक वातानुकूलित खोल्या आणि सुट्स देते.
+    hi: रेजेन्ता वॉटरफ्रंट रिसॉर्ट दापोली हरणे बायपास रोड, दापोली में स्थित एक व्यावसायिक
+      आतिथ्य संपत्ति है, जो आधुनिक वातानुकूलित कमरे और सुइट्स प्रदान करती है।
+  ota_links:
+  - provider: Booking.com
+    url: https://www.booking.com/hotel/in/regenta-waterfront-resort-dapoli.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ01xjhZfD6TsRIDzuHatg-_Y
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ01xjhZfD6TsRIDzuHatg-_Y
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: the-mango-inn-jalgaon
+  status: ai_draft
+  name_en: The Mango Inn
+  name_mr: द मॅंगो इन
+  name_hi: द मैंगो इन
+  taluka: Dapoli
+  area: Jalgaon
+  lat: null
+  lng: null
+  google_place_id: ChIJC_OOeMbD6TsRdT45OTe29xE
+  service_style: professional
+  vibe_tags:
+  - family
+  - orchard_stay
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 94224 31340
+  whatsapp: null
+  official_url: null
+  description:
+    en: The Mango Inn is a family-run hotel situated in Aryawarta Colony, Jalgaon,
+      Dapoli, featuring laid-back suites and villas with an informal cafe serving
+      local fare.
+    mr: द मॅंगो इन हे आर्यवर्त कॉलनी, जळगाव, दापोली येथे स्थित एक फॅमिली-रन् होटल
+      आहे, ज्यामध्ये सुट्स आणि व्हिला आहेत आणि स्थानिक जेवण देणारे अनौपचारिक कॅफे
+      आहे.
+    hi: द मैंगो इन आर्यवर्त कॉलोनी, जलगाँव, दापोली में स्थित एक परिवार द्वारा संचालित
+      होटल है, जिसमें आरामदायक सुइट्स और विला के साथ स्थानीय भोजन परोसने वाला एक अनौपचारिक
+      कैफे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJC_OOeMbD6TsRdT45OTe29xE
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJC_OOeMbD6TsRdT45OTe29xE
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-sadhana-executive-burondi-road
+  status: ai_draft
+  name_en: Hotel Sadhana Executive
+  name_mr: हॉटेल साधना एक्झिक्युटिव्ह
+  name_hi: होटल साधना एक्जीक्यूटिव
+  taluka: Dapoli
+  area: Burondi Road
+  lat: null
+  lng: null
+  google_place_id: ChIJYf3CLWXB6TsRwmkdc5nntec
+  service_style: professional
+  vibe_tags:
+  - family
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2500
+  price_max: 5000
+  price_source: null
+  price_url: https://www.hotelsadhanaexecutive.com/
+  phone: +91 74480 15543
+  whatsapp: null
+  official_url: https://www.hotelsadhanaexecutive.com/
+  description:
+    en: Hotel Sadhana Executive is located near Konkan Krishi Vidyapith Burondi Road,
+      Dapoli, offering standard lodging and dining services.
+    mr: हॉटेल साधना एक्झिक्युटिव्ह हे कोकण कृषी विद्यापीठ बुरुंडी रोडजवळ, दापोली येथे
+      स्थित असून राहण्याची आणि जेवणाची सोय उपलब्ध करून देते.
+    hi: होटल साधना एक्जीक्यूटिव कोंकण कृषि विद्यापीठ बुरुंडी रोड के पास, दापोली में
+      स्थित है, जो रहने और भोजन की सुविधा प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYf3CLWXB6TsRwmkdc5nntec
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYf3CLWXB6TsRwmkdc5nntec
+    - https://www.hotelsadhanaexecutive.com/
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: tekdi-homestays-dapoli-jalgaon
+  status: ai_draft
+  name_en: Tekdi Homestays @ Dapoli
+  name_mr: टेकडी होमस्टेझ @ दापोली
+  name_hi: टेकडी होमस्टेझ @ दापोली
+  taluka: Dapoli
+  area: Jalgaon
+  lat: null
+  lng: null
+  google_place_id: ChIJK2iOcsbD6TsRMAj0X_mKrFs
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99698 39952
+  whatsapp: null
+  official_url: null
+  description:
+    en: Tekdi Homestays @ Dapoli is a homestay situated at Aryawarta Complex, Jalgaon,
+      Dapoli, offering residential rooms in a natural setting.
+    mr: टेकडी होमस्टेझ @ दापोली हे आर्यवर्त कॉम्प्लेक्स, जळगाव, दापोली येथे स्थित
+      होमस्टे आहे, जे नैसर्गिक वातावरणात राहण्याची सोय देते.
+    hi: टेकडी होमस्टेझ @ दापोली आर्यवर्त कॉम्प्लेक्स, जलगाँव, दापोली में स्थित एक
+      होमस्टे है, जो प्राकृतिक परिवेश में रहने के कमरे प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJK2iOcsbD6TsRMAj0X_mKrFs
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJK2iOcsbD6TsRMAj0X_mKrFs
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: swastik-homestay-brahmanwadi
+  status: ai_draft
+  name_en: Swastik Homestay
+  name_mr: स्वास्तिक होमस्टे
+  name_hi: स्वास्तिक होमस्टे
+  taluka: Dapoli
+  area: Brahmanwadi
+  lat: null
+  lng: null
+  google_place_id: ChIJoWwLOQDD6TsR2-GbbhTvdhY
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Swastik Homestay is a residential accommodation located in Brahmanwadi, Dapoli,
+      providing a homely lodging experience.
+    mr: स्वास्तिक होमस्टे हे ब्राह्मणवाडी, दापोली येथे स्थित एक निवासस्थान आहे, जे
+      घरगुती वातावरणात राहण्याची सुविधा देते.
+    hi: स्वास्तिक होमस्टे ब्राह्मणवाड़ी, दापोली में स्थित एक आवासीय आवास है, जो घर
+      जैसा रहने का अनुभव प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJoWwLOQDD6TsR2-GbbhTvdhY
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJoWwLOQDD6TsR2-GbbhTvdhY
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

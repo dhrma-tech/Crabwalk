@@ -1,0 +1,461 @@
+# Place photo manifest (Wikimedia Commons). Licence checked via Commons API on 2026-11-03; a human must re-check each before import.
+# Files NOT downloaded. Import step: download file_url, convert to WebP <= 3 MB, upload, keep credit/licence/source_url.
+# Rejected: Ganpatipule and Jaigad lead images are Public Domain (not in allowed CC BY/BY-SA list); KolkiwadiDam.jpg has no author;
+# search hits for Mandangad fort (showed Bankot) and Marleshwar (showed a road) did not match the place.
+# Batch 2 (2026-11-03): Commons search per place, picked by title/description match. Skipped ambiguous hits: Yashwantgad (Redi fort), Mandvi (Gujarat), Kusumeshwar, Durga Devi, Bhairavgad.
+- slug: murud-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/2/20/Star_Fish_at_Murud_Beach_near_Dapoli_%28_Maharashtra%29.jpg
+  credit: आर्या जोशी
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Star_Fish_at_Murud_Beach_near_Dapoli_(_Maharashtra).jpg
+  is_hero: true
+  note: close-up of a starfish; weak hero
+- slug: harnai-fish-market
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/e/e9/Harnai_Bullock_cart.jpg
+  credit: Cj.samson
+  licence: CC BY 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Harnai_Bullock_cart.jpg
+  is_hero: true
+  note: shows a bullock cart at Harnai beach, not the auction
+- slug: suvarnadurg-fort
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/84/Entrance_to_Suvarnadurg.JPG
+  credit: AshLin
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Entrance_to_Suvarnadurg.JPG
+  is_hero: true
+  note: null
+- slug: anjarle-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/1e/Parked_boats_at_Anjarle_Creek.jpg
+  credit: Dey.sandip
+  licence: CC BY 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Parked_boats_at_Anjarle_Creek.jpg
+  is_hero: true
+  note: shows Anjarle creek, not the beach
+- slug: panhalekaji-caves
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/a/a4/%E0%A4%AA%E0%A4%A8%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B3%E0%A5%87%E0%A4%95%E0%A4%BE%E0%A4%9C%E0%A5%80_%E0%A4%B2%E0%A5%87%E0%A4%A3%E0%A5%80.jpg
+  credit: आर्या जोशी
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%AA%E0%A4%A8%E0%A5%8D%E0%A4%B9%E0%A4%BE%E0%A4%B3%E0%A5%87%E0%A4%95%E0%A4%BE%E0%A4%9C%E0%A5%80_%E0%A4%B2%E0%A5%87%E0%A4%A3%E0%A5%80.jpg
+  is_hero: true
+  note: null
+- slug: kanakaditya-sun-temple-kasheli
+  taluka: Rajapur
+  file_url: https://upload.wikimedia.org/wikipedia/commons/6/6e/Kanakadity_Mandir_-_Entrance_01.jpg
+  credit: Milindoka
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Kanakadity_Mandir_-_Entrance_01.jpg
+  is_hero: true
+  note: null
+- slug: aryadurga-temple-devihasol
+  taluka: Rajapur
+  file_url: https://upload.wikimedia.org/wikipedia/commons/7/71/Aryadurga_devi.jpg
+  credit: Varun sakpal
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Aryadurga_devi.jpg
+  is_hero: true
+  note: null
+- slug: ratnadurg-fort
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/3/3f/Ratnadurg_Entrance.jpg
+  credit: Pradeep717
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Ratnadurg_Entrance.jpg
+  is_hero: true
+  note: null
+- slug: thibaw-palace
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/9/96/Thibaw_Palace_in_Ratnagiri_02.jpg
+  credit: Aniket Konkar
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Thibaw_Palace_in_Ratnagiri_02.jpg
+  is_hero: true
+  note: null
+- slug: aare-ware-beach
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/f/f5/Aare_Ware_Beach.jpg
+  credit: Amankr3081
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Aare_Ware_Beach.jpg
+  is_hero: true
+  note: null
+- slug: jaigad-lighthouse
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/3/39/Jaigad_Lighthouse.jpg
+  credit: Nazz81
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Jaigad_Lighthouse.jpg
+  is_hero: true
+  note: null
+- slug: purnagad-fort
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/d/d8/Purnagad-pathway.jpg
+  credit: ज्ञानदा गद्रे-फडके
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Purnagad-pathway.jpg
+  is_hero: true
+  note: null
+- slug: lokmanya-tilak-birthplace
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/84/Lokmanya_Tilak_Birthplace_in_Ratnagiri_03.jpg
+  credit: Aniket Konkar
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Lokmanya_Tilak_Birthplace_in_Ratnagiri_03.jpg
+  is_hero: true
+  note: null
+- slug: bankot-fort
+  taluka: Mandangad
+  file_url: https://upload.wikimedia.org/wikipedia/commons/7/7d/Bankot_Fort.jpg
+  credit: Khalil Sawant
+  licence: CC BY-SA 2.0
+  source_url: https://commons.wikimedia.org/wiki/File:Bankot_Fort.jpg
+  is_hero: true
+  note: null
+- slug: guhagar-beach
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/8e/Guhagar_Beach.JPG
+  credit: Mahendra5806
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Guhagar_Beach.JPG
+  is_hero: true
+  note: null
+- slug: vyadeshwar-temple
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/3/37/Shri_Vyadweshwar%2C_Guhagar.jpg
+  credit: Gsmodak
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Shri_Vyadweshwar,_Guhagar.jpg
+  is_hero: true
+  note: only 320 px wide - too small for hero; find another
+- slug: velneshwar-temple
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/8a/Ratnagiri%2C_Velneshwar_-_panoramio_%28100%29.jpg
+  credit: Udaykumar PR
+  licence: CC BY 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Ratnagiri,_Velneshwar_-_panoramio_(100).jpg
+  is_hero: true
+  note: check the photo actually shows the temple
+- slug: gopalgad-fort
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Gopalgad_Outer_Wall.jpg
+  credit: Pradeep717
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Gopalgad_Outer_Wall.jpg
+  is_hero: true
+  note: null
+- slug: parshuram-temple
+  taluka: Chiplun
+  file_url: https://upload.wikimedia.org/wikipedia/commons/f/f6/Parshuram_Temple_Chiplun.jpg
+  credit: Sharadatanay
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Parshuram_Temple_Chiplun.jpg
+  is_hero: true
+  note: null
+- slug: gowalkot-fort
+  taluka: Chiplun
+  file_url: https://upload.wikimedia.org/wikipedia/commons/e/e2/Gowalkot_estuary%2C_Ratnagiri.jpg
+  credit: ऋजुता खरे
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Gowalkot_estuary,_Ratnagiri.jpg
+  is_hero: true
+  note: shows the estuary near Gowalkot; check fort is visible
+- slug: rasalgad-fort
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/6/68/Rasalgad1.jpg
+  credit: Ccmarathe
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Rasalgad1.jpg
+  is_hero: true
+  note: null
+- slug: mahipatgad-fort
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/7/70/Mahipatgad.jpg
+  credit: Ccmarathe
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Mahipatgad.jpg
+  is_hero: true
+  note: null
+- slug: sumargad-fort
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/5/58/Sumargad_Fort.jpg
+  credit: Ccmarathe
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Sumargad_Fort.jpg
+  is_hero: true
+  note: null
+- slug: khed-buddhist-caves
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/b/b5/Khed_caves.jpg
+  credit: Partner
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Khed_caves.jpg
+  is_hero: true
+  note: null
+- slug: sawatsada-waterfall
+  taluka: Chiplun
+  file_url: https://upload.wikimedia.org/wikipedia/commons/0/00/Sawatsada-falls.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Rajered
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Sawatsada-falls.jpg
+  is_hero: true
+  note: null
+- slug: shivsrushti-dervan
+  taluka: Chiplun
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/16/Shivsrushti_Dervan_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Abhay Bhosale
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Shivsrushti_Dervan_-_panoramio.jpg
+  is_hero: true
+  note: null
+- slug: kumbharli-ghat
+  taluka: Chiplun
+  file_url: https://upload.wikimedia.org/wikipedia/commons/7/76/View_from_Kumbharli_Ghat_%283131902185%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Dinesh Valke from Thane, India
+  licence: CC BY-SA 2.0
+  source_url: https://commons.wikimedia.org/wiki/File:View_from_Kumbharli_Ghat_(3131902185).jpg
+  is_hero: true
+  note: null
+- slug: karde-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/c/c3/Karde_beach_.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Vardhanjp
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Karde_beach_.jpg
+  is_hero: true
+  note: null
+- slug: ladghar-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/6/6b/Ladghar_beach_Konkan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Vardhanjp
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Ladghar_beach_Konkan.jpg
+  is_hero: true
+  note: null
+- slug: gova-fort
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/0/01/Ruins_of_the_Goa_Fort.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Sharvarism
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Ruins_of_the_Goa_Fort.jpg
+  is_hero: true
+  note: file title says Goa Fort (= Gova fort, Harnai)
+- slug: mahalaxmi-temple-kelshi
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/82/Kelshi_Village_Mahalaxmi_Temple_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Amit Patekar
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Kelshi_Village_Mahalaxmi_Temple_-_panoramio.jpg
+  is_hero: true
+  note: null
+- slug: keshavraj-temple-asud
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/14/Keshavraj_temple_photos_by_RAHUL_KHARADE_%28bhandup%29_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: rahul kharade
+  licence: CC BY 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Keshavraj_temple_photos_by_RAHUL_KHARADE_(bhandup)_-_panoramio.jpg
+  is_hero: true
+  note: null
+- slug: chandika-devi-temple-dabhol
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/6/68/Swayambhu_shri_chandika_mata_mandir%2C_Dabhol_%2CGughar%2C_Maharashtra%2C_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Vaishnavi kishor pashte
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Swayambhu_shri_chandika_mata_mandir,_Dabhol_,Gughar,_Maharashtra,_India.jpg
+  is_hero: true
+  note: null
+- slug: kolthare-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/4/42/%E0%A4%95%E0%A5%8B%E0%A4%B3%E0%A4%A5%E0%A4%B0%E0%A5%87_%E0%A4%B8%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A4%95%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BE.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: आर्या जोशी
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%95%E0%A5%8B%E0%A4%B3%E0%A4%A5%E0%A4%B0%E0%A5%87_%E0%A4%B8%E0%A4%AE%E0%A5%81%E0%A4%A6%E0%A5%8D%E0%A4%B0%E0%A4%95%E0%A4%BF%E0%A4%A8%E0%A4%BE%E0%A4%B0%E0%A4%BE.jpg
+  is_hero: true
+  note: null
+- slug: harnai-beach
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/85/Harnai_Beach.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Altafalvi
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Harnai_Beach.JPG
+  is_hero: true
+  note: null
+- slug: shahi-masjid-dabhol
+  taluka: Dapoli
+  file_url: https://upload.wikimedia.org/wikipedia/commons/9/98/Shahi_Masjid_Dabhol.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Maqsood Khan Sarguru
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Shahi_Masjid_Dabhol.jpg
+  is_hero: true
+  note: null
+- slug: velneshwar-beach
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/a/a7/Velneshwar_beach_panorama.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Ankur Panchbudhe
+  licence: CC BY-SA 2.0
+  source_url: https://commons.wikimedia.org/wiki/File:Velneshwar_beach_panorama.jpg
+  is_hero: true
+  note: null
+- slug: hedavi-beach
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/1f/Konkan_-_Hedvi_Village_-_Part_4_20151222_%2823918313471%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: urbzoo
+  licence: CC BY 2.0
+  source_url: https://commons.wikimedia.org/wiki/File:Konkan_-_Hedvi_Village_-_Part_4_20151222_(23918313471).jpg
+  is_hero: true
+  note: shows Hedavi village, check it shows the beach
+- slug: shree-valukeshwar-mandir
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/b/bf/Shri_valukeshwar_mandir.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Gsmodak
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Shri_valukeshwar_mandir.JPG
+  is_hero: true
+  note: null
+- slug: dhopave-jetty
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/5/5d/%E0%A4%A7%E0%A5%8B%E0%A4%AA%E0%A4%BE%E0%A4%B5%E0%A5%87_%E0%A4%9C%E0%A5%87%E0%A4%9F%E0%A5%8D%E0%A4%9F%E0%A5%80_%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%B0.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: आर्या जोशी
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%A7%E0%A5%8B%E0%A4%AA%E0%A4%BE%E0%A4%B5%E0%A5%87_%E0%A4%9C%E0%A5%87%E0%A4%9F%E0%A5%8D%E0%A4%9F%E0%A5%80_%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%B0.jpg
+  is_hero: true
+  note: null
+- slug: raghuveer-ghat
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/e/e5/Raghuveer_Ghat_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Abhay Bhosale
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Raghuveer_Ghat_-_panoramio.jpg
+  is_hero: true
+  note: null
+- slug: jagbudi-river
+  taluka: Khed
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/8b/Jagbudi_River_Khed.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pradeep717
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Jagbudi_River_Khed.jpg
+  is_hero: true
+  note: null
+- slug: ambadave
+  taluka: Mandangad
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/16/Smarak_at_Ambadave.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Kailash70
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Smarak_at_Ambadave.jpg
+  is_hero: true
+  note: null
+- slug: dhootpapeshwar-temple
+  taluka: Rajapur
+  file_url: https://upload.wikimedia.org/wikipedia/commons/f/f8/Dhootpapeshwar-temple-rajapur-body-04-960x640.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Amit4804
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Dhootpapeshwar-temple-rajapur-body-04-960x640.jpg
+  is_hero: true
+  note: small web-size image
+- slug: vetye-beach
+  taluka: Rajapur
+  file_url: https://upload.wikimedia.org/wikipedia/commons/c/cb/Vetye_Beach.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Abj10
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Vetye_Beach.jpeg
+  is_hero: true
+  note: null
+- slug: thiba-point
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/8/8a/Thiba_Point.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Kaustubhkc12
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Thiba_Point.jpg
+  is_hero: true
+  note: null
+- slug: ganpatipule-swayambhu-ganpati-temple
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Shree_Ganpatipule_Mandir_%2852533543261%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Dinesh Valke from Thane, India
+  licence: CC BY-SA 2.0
+  source_url: https://commons.wikimedia.org/wiki/File:Shree_Ganpatipule_Mandir_(52533543261).jpg
+  is_hero: true
+  note: null
+- slug: ganpatipule-beach
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/6/60/GANPATIPULE_BEACH_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Sanjaybhagwat
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:GANPATIPULE_BEACH_(1).jpg
+  is_hero: true
+  note: null
+- slug: prachin-konkan-museum-ganpatipule
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/1/1a/PrachinKonkan-Museum-Entrance%2C_Ganpatipule.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pradeep717
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:PrachinKonkan-Museum-Entrance,_Ganpatipule.JPG
+  is_hero: true
+  note: null
+- slug: jaigad-fort
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/a/a2/Jaigad-Fort-Ratnagiri.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pradeep717
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Jaigad-Fort-Ratnagiri.JPG
+  is_hero: true
+  note: null
+- slug: ukshi-waterfall
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/4/4c/Ukshi_waterfall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pravinvasramchavhan
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Ukshi_waterfall.jpg
+  is_hero: true
+  note: null
+- slug: bhandarpule-beach
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/d/d9/BHANDARPULE_%2860%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Sanjaybhagwat
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:BHANDARPULE_(60).jpg
+  is_hero: true
+  note: null
+- slug: marleshwar-temple
+  taluka: Sangameshwar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/4/45/Marleshwar_temple.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pranav
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Marleshwar_temple.JPG
+  is_hero: true
+  note: null
+- slug: marleshwar-waterfall
+  taluka: Sangameshwar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/9/9d/Marleshwar_Waterfall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Prabodh
+  licence: CC BY 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Marleshwar_Waterfall.jpg
+  is_hero: true
+  note: null
+- slug: sapteshwar-temple
+  taluka: Sangameshwar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/d/d6/Sapteshwar_Temple.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Maheshdhanavade10
+  licence: CC BY-SA 3.0
+  source_url: https://commons.wikimedia.org/wiki/File:Sapteshwar_Temple.JPG
+  is_hero: true
+  note: null
+- slug: bhagwati-temple-ratnadurg
+  taluka: Ratnagiri
+  file_url: https://upload.wikimedia.org/wikipedia/commons/b/bb/Bhagwati_Mandir%2C_Ratnagiri.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Pratishkhedekar
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Bhagwati_Mandir,_Ratnagiri.jpg
+  is_hero: true
+  note: null
+- slug: talkeshwar-lighthouse
+  taluka: Guhagar
+  file_url: https://upload.wikimedia.org/wikipedia/commons/f/fd/Light_house%2C_Guhagar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+  credit: Eloquent Insan
+  licence: CC BY-SA 4.0
+  source_url: https://commons.wikimedia.org/wiki/File:Light_house,_Guhagar.jpg
+  is_hero: true
+  note: title says "Light house, Guhagar"; check it is Talkeshwar

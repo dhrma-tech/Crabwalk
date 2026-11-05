@@ -1,0 +1,3087 @@
+# Places - Ratnagiri taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: ratnadurg-fort
+  status: ai_draft
+  name_en: Ratnadurg Fort
+  name_mr: रत्नदुर्ग किल्ला
+  name_hi: रत्नदुर्ग किला
+  category: fort
+  taluka: Ratnagiri
+  lat: 16.9963
+  lng: 73.270154
+  coord_source: osm way/80527836
+  osm_id: way/80527836
+  entry_fee_text: Free Entry
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: About 2 km from Ratnagiri town; a road leads to the entrance gate.
+  nearest_station: Ratnagiri Railway Station, 11 km
+  nearest_bus_stop: Ratnagiri Bus Stand, 4 km
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Ratnagiri_Fort,_Maharashtra
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ratnadurg sits on a headland about 2 km from Ratnagiri town, with
+        the sea on three sides. Most people come for the Bhagwati temple inside the
+        walls, then stay for the views from the bastions.
+
+
+        A walk around the fort takes about an hour. Look out for Rede Buruj, said
+        to be its strongest bastion, the lighthouse on one side and the cave below
+        the fort.'
+      history: The fort dates to the Bahmani period. Shivaji took it from Adil Shah
+        of Bijapur in 1670 and added towers on two high points. Kanhoji Angre strengthened
+        the citadel between 1750 and 1755, and Dhondu Bhaskar Pratinidhi made minor
+        repairs in the Peshwa years. The British took it in 1818. The Bhagwati temple
+        was renovated in 1950.
+      significance: Ratnagiri's best-known fort, and home to the Bhagwati temple that
+        draws most visitors.
+      dos: '- Combine the fort walk with a visit to the Bhagwati temple
+
+        - Keep about an hour for the full round of the walls
+
+        - Go early or late in the day for softer light and cooler air'
+      donts: '- Don''t lean over the seaward walls and bastions
+
+        - Don''t leave plastic or litter on the fort'
+      safety_text: '- The walls drop straight to the sea on three sides; keep children
+        close
+
+        - Paths are uneven; wear shoes with grip'
+    mr:
+      short_story: 'रत्नागिरी शहरापासून सुमारे 2 किमी अंतरावर असलेल्या एका भूशिरावर
+        रत्नदुर्ग किल्ला वसलेला असून याच्या तीन बाजूंनी समुद्र आहे. बहुतांश लोक किल्ल्यावरील
+        भगवती मंदिराच्या दर्शनासाठी येतात आणि त्यानंतर बुरुजांवरून दिसणाऱ्या नयनरम्य
+        दृश्यांचा आनंद घेण्यासाठी तिथे वेळ घालवतात.
+
+
+        किल्ल्यात फेरफटका मारण्यासाठी सुमारे एक तास लागतो. ''रेडे बुरुज'' हा इथला
+        सर्वात भक्कम बुरूज मानला जातो, तो नक्की पहा. एका बाजूला दीपगृह आणि किल्ल्याच्या
+        खाली असलेली गुहादेखील पाहण्यासारखी आहे.'
+      history: हा किल्ला बहामनी काळातील आहे. 1670 मध्ये शिवाजी महाराजांनी तो विजापूरच्या
+        आदिलशहाकडून जिंकून घेतला आणि दोन उंच ठिकाणांवर बुरूज बांधले. 1750 ते 1755
+        दरम्यान कान्होजी आंग्रे यांनी बालेकिल्ला मजबूत केला आणि पेशवे काळात धोंडू
+        भास्कर प्रतिनिधी यांनी काही किरकोळ डागडुजी केली. 1818 मध्ये ब्रिटिशांनी तो
+        जिंकला. 1950 मध्ये भगवती मंदिराचा जीर्णोद्धार करण्यात आला.
+      significance: रत्नागिरीतील सर्वात प्रसिद्ध किल्ला, आणि सर्वाधिक भाविकांना आकर्षित
+        करणाऱ्या भगवती मंदिराचे घर.
+      dos: '- किल्ला पाहण्यासोबतच भगवती मंदिराचेही दर्शन घ्या
+
+        - संपूर्ण किल्ल्याच्या तटबंदीवरून फिरण्यासाठी साधारण एक तासाचा वेळ राखून ठेवा
+
+        - उष्मा टाळण्यासाठी आणि छान उजेडासाठी सकाळी लवकर किंवा संध्याकाळी जा'
+      donts: '- समुद्राकडील तटबंदी आणि बुरुजांवरून खाली वाकून पाहू नका
+
+        - किल्ल्यावर प्लास्टिक किंवा कचरा टाकू नका'
+      safety_text: '- तीन बाजूंनी तटबंदी थेट समुद्रात उतरते; त्यामुळे लहान मुलांना
+        जवळच ठेवा
+
+        - वाटा चढ-उताराच्या आहेत; चांगली पकड असलेले शूज घाला'
+    hi:
+      short_story: 'रत्नागिरि शहर से लगभग 2 किमी दूर एक अंतरीप पर रत्नदुर्ग किला स्थित
+        है, जिसके तीन ओर समुद्र है। अधिकांश लोग चारदीवारी के अंदर स्थित भगवती मंदिर
+        के दर्शन के लिए आते हैं, और फिर बुर्जों से नज़ारे देखने के लिए रुकते हैं।
+
+
+        किले में घूमने में लगभग एक घंटा लगता है। ''रेडे बुर्ज'' को ज़रूर देखें, जिसे
+        इसका सबसे मज़बूत बुर्ज कहा जाता है, साथ ही एक तरफ प्रकाशस्तंभ (लाइटहाउस) और
+        किले के नीचे स्थित गुफा भी है।'
+      history: यह किला बहमनी काल का है। 1670 में शिवाजी ने इसे बीजापुर के आदिल शाह
+        से छीन लिया और दो ऊंचे स्थानों पर टावर जोड़े। कान्होजी आंग्रे ने 1750 और 1755
+        के बीच गढ़ को मज़बूत किया, और पेशवा काल में धोंडू भास्कर प्रतिनिधि ने मामूली
+        मरम्मत करवाई। 1818 में अंग्रेजों ने इस पर कब्ज़ा कर लिया। भगवती मंदिर का 1950
+        में जीर्णोद्धार किया गया था।
+      significance: रत्नागिरि का सबसे प्रसिद्ध किला, और भगवती मंदिर का घर जो सबसे
+        अधिक पर्यटकों को आकर्षित करता है।
+      dos: '- किले में घूमने के साथ-साथ भगवती मंदिर के दर्शन भी करें
+
+        - दीवारों का पूरा चक्कर लगाने के लिए लगभग एक घंटे का समय रखें
+
+        - नरम रोशनी और ठंडी हवा के लिए दिन में जल्दी या देर से जाएं'
+      donts: '- समुद्र की ओर वाली दीवारों और बुर्जों के ऊपर से न झुकें
+
+        - किले पर प्लास्टिक या कचरा न छोड़ें'
+      safety_text: '- तीन ओर से दीवारें सीधे समुद्र में गिरती हैं; बच्चों को पास रखें
+
+        - रास्ते ऊबड़-खाबड़ हैं; अच्छी ग्रिप वाले जूते पहनें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/3/3f/Ratnadurg_Entrance.jpg
+    credit: Pradeep717
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Ratnadurg_Entrance.jpg
+  _sources:
+    _all:
+    - https://www.thrillophilia.com/attractions/ratnadurg-fort-ratnagiri
+    - https://en.wikipedia.org/wiki/Ratnagiri_Fort,_Maharashtra
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: bhagwati-temple-ratnadurg
+  status: ai_draft
+  name_en: Bhagwati Temple, Ratnadurg
+  name_mr: भगवती मंदिर, रत्नदुर्ग
+  name_hi: भगवती मंदिर, रत्नदुर्ग
+  category: temple
+  taluka: Ratnagiri
+  lat: 16.996409
+  lng: 73.27035
+  coord_source: osm node/485571794
+  osm_id: node/485571794
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 120
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Navratri
+  how_to_reach: Inside Ratnadurg Fort.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Bhagwati temple stands inside Ratnadurg fort, about 2 km from
+        Ratnagiri town, and is the main reason most people visit the fort. It was
+        renovated in 1950. Navratri is the busiest time.
+      history: null
+      significance: null
+      dos: '- Walk the fort walls after darshan'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: भगवती मंदिर हे रत्नागिरी शहरापासून सुमारे 2 किमी अंतरावर असलेल्या
+        रत्नदुर्ग किल्ल्याच्या आत असून, बहुतांश लोक याच मंदिरासाठी किल्ल्यावर येतात.
+        1950 मध्ये या मंदिराचा जीर्णोद्धार करण्यात आला. नवरात्रीच्या काळात येथे मोठी
+        गर्दी असते.
+      history: null
+      significance: null
+      dos: '- दर्शनानंतर किल्ल्याच्या तटबंदीवरून फेरफटका मारा'
+      donts: '- मंदिरात चपला-बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: भगवती मंदिर रत्नागिरि शहर से लगभग 2 किमी दूर रत्नदुर्ग किले के
+        अंदर स्थित है, और अधिकांश लोगों के किले में आने का मुख्य कारण यही है। 1950
+        में इसका जीर्णोद्धार किया गया था। नवरात्रि के दौरान यहां सबसे अधिक भीड़ होती
+        है।
+      history: null
+      significance: null
+      dos: '- दर्शन के बाद किले की दीवारों पर घूमें'
+      donts: '- मंदिर में जूते-चप्पल पहनकर न जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/b/bb/Bhagwati_Mandir%2C_Ratnagiri.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pratishkhedekar
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Bhagwati_Mandir,_Ratnagiri.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Ratnagiri_Fort,_Maharashtra
+    - https://www.antilogvacations.com/activity_Detail?Id=DWRC140715033145392_1
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'wikipedia_url: generic Bhagavati article; Gemini timings 07:00-19:00 from
+    a travel agency page dropped; EN text = Claude draft from sources, needs team
+    review; MR/HI = Gemini translation, needs native review'
+- slug: thibaw-palace
+  status: ai_draft
+  name_en: Thibaw Palace
+  name_mr: थिबा राजवाडा
+  name_hi: थिबा पैलेस
+  category: museum
+  taluka: Ratnagiri
+  lat: 16.983578
+  lng: 73.311147
+  coord_source: osm way/1982780392
+  osm_id: way/1982780392
+  entry_fee_text: Entry fee applicable (amount not stated by source)
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: '10:00'
+  closes: '17:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: Ratnagiri (7 km)
+  nearest_bus_stop: Ratnagiri bus stand (1 km)
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Thibaw Palace in Ratnagiri was built by the British to hold Thibaw
+        Min, the last king of Burma (now Myanmar), under house arrest. The three-storey
+        building has sloping pagoda-style roofs and semi-circular carved wooden windows,
+        and a dance hall with a marble floor on the first floor.
+
+
+        Today it is a museum that keeps some of the king''s belongings. A Buddha idol
+        he brought from Burma stands behind the palace.'
+      history: The British exiled King Thibaw to Ratnagiri after 1885. The palace
+        was built in 1910, and the king and queen lived here until 1916.
+      significance: A rare link between Ratnagiri and the last royal family of Burma.
+      dos: '- Combine with Thiba Point next door for the sunset'
+      donts: '- Don''t touch the displayed objects'
+      safety_text: null
+    mr:
+      short_story: 'म्यानमारच्या (ब्रह्मदेश) थिबा या शेवटच्या राजाला नजरकैदेत ठेवण्यासाठी
+        ब्रिटिशांनी रत्नागिरीत थिबा राजवाडा बांधला. तीन मजली असलेल्या या वास्तूला
+        पॅगोडा शैलीतील उतरती छपरे आणि अर्धवर्तुळाकार कोरीव लाकडी खिडक्या आहेत. पहिल्या
+        मजल्यावर संगमरवरी फरशी असलेला एक डान्स हॉल आहे.
+
+
+        आज हे एक संग्रहालय असून त्यात राजाच्या काही वस्तू जतन करून ठेवल्या आहेत. राजाने
+        ब्रह्मदेशातून आणलेली एक बुद्धाची मूर्ती राजवाड्याच्या मागील बाजूस आहे.'
+      history: 1885 नंतर ब्रिटिशांनी थिबा राजाला रत्नागिरीत हद्दपार केले. 1910 मध्ये
+        हा राजवाडा बांधला गेला आणि 1916 पर्यंत राजा आणि राणी येथेच वास्तव्यास होते.
+      significance: रत्नागिरी आणि ब्रह्मदेशच्या शेवटच्या राजघराण्यातील एक दुर्मिळ
+        दुवा.
+      dos: '- सूर्यास्त पाहण्यासाठी शेजारच्या थिबा पॉईंटलाही भेट द्या'
+      donts: '- प्रदर्शनातील वस्तूंना स्पर्श करू नका'
+      safety_text: null
+    hi:
+      short_story: 'रत्नागिरि में थिबा पैलेस का निर्माण अंग्रेजों द्वारा बर्मा (अब
+        म्यांमार) के अंतिम राजा थिबा मिन को नज़रबंद रखने के लिए किया गया था। तीन मंजिला
+        इस इमारत में पैगोडा शैली की ढलान वाली छतें और अर्ध-गोलाकार नक्काशीदार लकड़ी
+        की खिड़कियां हैं, तथा पहली मंजिल पर संगमरमर के फर्श वाला एक डांस हॉल है।
+
+
+        आज यह एक संग्रहालय है जिसमें राजा का कुछ सामान रखा गया है। बर्मा से उनके द्वारा
+        लाई गई एक बुद्ध प्रतिमा पैलेस के पीछे स्थित है।'
+      history: 1885 के बाद अंग्रेजों ने राजा थिबा को रत्नागिरि निर्वासित कर दिया था।
+        यह पैलेस 1910 में बनाया गया था, और राजा तथा रानी 1916 तक यहां रहे।
+      significance: रत्नागिरि और बर्मा के अंतिम शाही परिवार के बीच एक दुर्लभ कड़ी।
+      dos: '- सूर्यास्त देखने के लिए बगल में स्थित थिबा पॉइंट के साथ इसे घूमने की
+        योजना बनाएं'
+      donts: '- प्रदर्शित वस्तुओं को न छुएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/9/96/Thibaw_Palace_in_Ratnagiri_02.jpg
+    credit: Aniket Konkar
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Thibaw_Palace_in_Ratnagiri_02.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourist-place/thibaw-palace/
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.meandmysuitcase.com/2018/12/ratnagiri-24-hours-in-port-city.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: fee source is a 2018 blog; EN text = Claude draft from sources, needs team
+    review; MR/HI = Gemini translation, needs native review
+- slug: thiba-point
+  status: ai_draft
+  name_en: Thiba Point
+  name_mr: थिबा पॉईंट
+  name_hi: थिबा पॉइंट
+  category: viewpoint
+  taluka: Ratnagiri
+  lat: 16.984756
+  lng: 73.305861
+  coord_source: osm node/6310942786
+  osm_id: node/6310942786
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Next to Thibaw Palace, Ratnagiri.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Thiba Point is the viewpoint next to Thibaw Palace in Ratnagiri.
+        It looks out over Someshwar creek, the Bhatye bridge and the Arabian Sea,
+        and is known for its sunsets.
+      history: null
+      significance: null
+      dos: '- Come before sunset'
+      donts: null
+      safety_text: '- Stay behind the railings at the edge'
+    mr:
+      short_story: थिबा पॉईंट हा रत्नागिरीतील थिबा पॅलेसच्या शेजारील व्ह्यू पॉईंट
+        आहे. इथून सोमेश्वर खाडी, भाट्ये पूल आणि अरबी समुद्राचे विहंगम दृश्य दिसते.
+        हा पॉईंट इथल्या सूर्यास्तासाठी ओळखला जातो.
+      history: null
+      significance: null
+      dos: '- सूर्यास्तापूर्वी भेट द्या'
+      donts: null
+      safety_text: '- कडेला असलेल्या रेलिंगच्या आतच उभे राहा'
+    hi:
+      short_story: थिबा पॉइंट, रत्नागिरी में थिबा पैलेस के पास एक व्यू पॉइंट है। यहाँ
+        से सोमेश्वर खाड़ी, भाट्ये ब्रिज और अरब सागर का नज़ारा दिखता है, और यह अपने
+        सूर्यास्त के लिए जाना जाता है।
+      history: null
+      significance: null
+      dos: '- सूर्यास्त से पहले आएँ'
+      donts: null
+      safety_text: '- किनारे पर बनी रेलिंग के पीछे ही रहें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/8a/Thiba_Point.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Kaustubhkc12
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Thiba_Point.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourist-place/thibaw-palace/
+    - https://www.theindia.co.in/places/thiba-point
+    - https://www.trawell.in/maharashtra/ratnagiri/thiba-palace-thibaw-palace
+  _collected_by: claude+gemini 2026-11-03
+  _review: fee/timings/Monday closure look like Thibaw Palace data, not the open viewpoint;
+    verify; EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: mandvi-beach
+  status: ai_draft
+  name_en: Mandvi Beach
+  name_mr: मांडवी बीच
+  name_hi: मांडवी बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.990713
+  lng: 73.282269
+  coord_source: osm way/2035183396
+  osm_id: way/2035183396
+  entry_fee_text: No entry fee
+  entry_fee_inr: 0
+  visit_minutes: 120
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Mandvi is Ratnagiri city's own beach, with dark sand, close to
+        the town centre. It is a popular evening spot for locals.
+      history: null
+      significance: null
+      dos: '- Come in the evening'
+      donts: '- Don''t leave litter'
+      safety_text: null
+    mr:
+      short_story: मांडवी हा काळ्या वाळूचा रत्नागिरी शहराचा स्वतःचा समुद्रकिनारा आहे
+        आणि तो शहराच्या मध्यवर्ती भागाच्या अगदी जवळ आहे. संध्याकाळच्या वेळी स्थानिक
+        लोकांसाठी हे एक लोकप्रिय ठिकाण आहे.
+      history: null
+      significance: null
+      dos: '- संध्याकाळी भेट द्या'
+      donts: '- कचरा करू नका'
+      safety_text: null
+    hi:
+      short_story: मांडवी रत्नागिरी शहर का अपना समुद्र तट है, जहाँ काली रेत है और
+        यह शहर के केंद्र के बहुत करीब है। यह शाम के समय स्थानीय लोगों के लिए एक लोकप्रिय
+        जगह है।
+      history: null
+      significance: null
+      dos: '- शाम के समय आएँ'
+      donts: '- कूड़ा न फैलाएँ'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikivoyage.org/wiki/Ratnagiri
+    - https://plantrip.io/itinerary/266798
+  _collected_by: claude+gemini 2026-11-03
+  _review: weak source; evening-spot claim is Claude wording; only black sand is sourced;
+    EN text = Claude draft from sources, needs team review; MR/HI = Gemini translation,
+    needs native review
+- slug: bhatye-beach
+  status: ai_draft
+  name_en: Bhatye Beach
+  name_mr: भाट्ये बीच
+  name_hi: भाट्ये बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.974375
+  lng: 73.293838
+  coord_source: osm way/106895926
+  osm_id: way/106895926
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 120
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Bhatye beach lies just south of Ratnagiri, near Bhatyachi Khadi,
+        where the river meets the sea. Casuarina trees line the shore, and the regional
+        coconut and spices research centre is nearby.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t litter'
+      safety_text: '- Check with locals before swimming near the creek mouth'
+    mr:
+      short_story: भाट्ये बीच रत्नागिरीच्या अगदी दक्षिणेस भाट्याची खाडीजवळ आहे, जिथे
+        नदी समुद्राला मिळते. किनाऱ्यावर सुरूच्या झाडांची रांग आहे आणि जवळच नारळ आणि
+        मसाल्याचे प्रादेशिक संशोधन केंद्र आहे.
+      history: null
+      significance: null
+      dos: null
+      donts: '- कचरा करू नका'
+      safety_text: '- खाडीच्या मुखाजवळ पोहण्यापूर्वी स्थानिकांना नक्की विचारा'
+    hi:
+      short_story: भाट्ये बीच रत्नागिरी के ठीक दक्षिण में भाट्याची खाड़ी के पास स्थित
+        है, जहाँ नदी समुद्र से मिलती है। किनारे पर कैसुरीना (सुरू) के पेड़ लगे हैं,
+        और पास ही क्षेत्रीय नारियल और मसाला अनुसंधान केंद्र है।
+      history: null
+      significance: null
+      dos: null
+      donts: '- कूड़ा न फैलाएँ'
+      safety_text: '- खाड़ी के मुहाने के पास तैरने से पहले स्थानीय लोगों से जानकारी
+        लें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikivoyage.org/wiki/Ratnagiri
+    - https://lbb.in/all/ratnagiri-places-to-see/
+  _collected_by: claude+gemini 2026-11-03
+  _review: opens/closes 06:00-19:00 for an open beach (trawell) dropped; EN text =
+    Claude draft from sources, needs team review; MR/HI = Gemini translation, needs
+    native review
+- slug: ganpatipule-swayambhu-ganpati-temple
+  status: ai_draft
+  name_en: Ganpatipule Swayambhu Ganpati Temple
+  name_mr: स्वयंभू गणपती मंदिर, गणपतीपुळे
+  name_hi: स्वयंभू गणपति मंदिर, गणपतिपुले
+  category: temple
+  taluka: Ratnagiri
+  lat: 17.145038
+  lng: 73.266319
+  coord_source: osm way/394726920
+  osm_id: way/394726920
+  entry_fee_text: No entry fee
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 05:30
+  closes: '20:00'
+  closed_days: []
+  best_time: September to February
+  how_to_reach: About 26 km from Ratnagiri; MSRTC buses and cabs from Ratnagiri.
+  nearest_station: Ratnagiri (30 km)
+  nearest_bus_stop: Ganpatipule bus stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Ganpatipule
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ganpatipule is a small coastal town about 26 km from Ratnagiri,
+        built around a Ganpati temple right on the beach. The idol here is swayambhu,
+        believed to have risen from the soil, and it faces west toward the sea.
+
+
+        The temple is the reason most people come to Ganpatipule. Pair the darshan
+        with the beach, Malgund village next door and the coastal road north to Jaigad.'
+      history: Local tradition holds that the swayambhu idol is about 400 years old.
+      significance: A major Ganpati pilgrimage centre on the Konkan coast; busiest
+        during Gauri-Ganpati and Maghi Ganesh Jayanti.
+      dos: '- Dress modestly for the temple
+
+        - Plan for crowds on festival days and long weekends
+
+        - Visit Malgund, about 1 km away, on the same trip'
+      donts: '- Don''t carry footwear into the temple premises
+
+        - Don''t use flash photography inside the sanctum unless allowed'
+      safety_text: null
+    mr:
+      short_story: 'गणपतीपुळे हे रत्नागिरीपासून सुमारे 26 किमी अंतरावर असलेले एक छोटे
+        किनारपट्टीवरील गाव आहे, जे थेट समुद्रकिनाऱ्यावर असलेल्या गणपती मंदिराभोवती
+        वसलेले आहे. इथली मूर्ती स्वयंभू आहे, जी जमिनीतून प्रकट झाली असे मानले जाते,
+        आणि तिचे तोंड पश्चिमेकडे समुद्राच्या दिशेने आहे.
+
+
+        गणपतीपुळ्याला येण्यामागचे मुख्य कारण म्हणजे हे मंदिर. दर्शनासोबतच तुम्ही समुद्रकिनारा,
+        शेजारील मालगुंड गाव आणि उत्तरेकडे जयगडला जाणारा सागरी मार्ग याचाही आनंद घेऊ
+        शकता.'
+      history: स्थानिक आख्यायिकेनुसार ही स्वयंभू मूर्ती सुमारे 400 वर्षे जुनी आहे.
+      significance: कोकण किनारपट्टीवरील हे गणपतीचे एक प्रमुख तीर्थक्षेत्र आहे; गौरी-गणपती
+        आणि माघी गणेश जयंतीच्या वेळी इथे सर्वात जास्त गर्दी असते.
+      dos: '- मंदिरात जाताना सभ्य पोशाख घाला
+
+        - सणांच्या दिवशी आणि सलग सुट्ट्यांमध्ये गर्दी असू शकते, त्याप्रमाणे नियोजन
+        करा
+
+        - याच प्रवासात सुमारे 1 किमी अंतरावर असलेल्या मालगुंडला भेट द्या'
+      donts: '- मंदिर परिसरात चपला किंवा बूट घालून जाऊ नका
+
+        - परवानगी नसल्यास गाभाऱ्यात फ्लॅश फोटोग्राफी करू नका'
+      safety_text: null
+    hi:
+      short_story: 'गणपतिपुले रत्नागिरी से लगभग 26 किमी दूर एक छोटा तटीय शहर है, जो
+        सीधे समुद्र तट पर स्थित गणपति मंदिर के चारों ओर बसा है। यहाँ की मूर्ति स्वयंभू
+        है, जिसके बारे में माना जाता है कि यह मिट्टी से प्रकट हुई है, और इसका मुख
+        पश्चिम में समुद्र की ओर है。
+
+
+        ज्यादातर लोग इसी मंदिर के दर्शन के लिए गणपतिपुले आते हैं। दर्शन के साथ आप
+        समुद्र तट, पास के मालगुंड गाँव और उत्तर में जयगढ़ जाने वाली तटीय सड़क का भी
+        आनंद ले सकते हैं।'
+      history: स्थानीय परंपरा के अनुसार, स्वयंभू मूर्ति लगभग 400 साल पुरानी है।
+      significance: कोंकण तट पर यह एक प्रमुख गणपति तीर्थस्थल है; गौरी-गणपति और माघी
+        गणेश जयंती के दौरान यहाँ सबसे ज्यादा भीड़ होती है।
+      dos: '- मंदिर के लिए शालीन कपड़े पहनें
+
+        - त्योहार के दिनों और लंबी छुट्टियों में भीड़ के लिए तैयार रहें
+
+        - इसी यात्रा में लगभग 1 किमी दूर मालगुंड भी जाएँ'
+      donts: '- मंदिर परिसर में जूते-चप्पल पहनकर न जाएँ
+
+        - अनुमति के बिना गर्भगृह के अंदर फ्लैश फोटोग्राफी न करें'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/9/9b/Shree_Ganpatipule_Mandir_%2852533543261%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Dinesh Valke from Thane, India
+    licence: CC BY-SA 2.0
+    source_url: https://commons.wikimedia.org/wiki/File:Shree_Ganpatipule_Mandir_(52533543261).jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourist-place/ganapati-pule-temple/
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://plantrip.io/itinerary/1042659
+    - https://en.wikipedia.org/wiki/Ganpatipule
+  _collected_by: claude+gemini 2026-11-03
+  _review: timings from itinerary site; verify with temple trust; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review
+- slug: ganpatipule-beach
+  status: ai_draft
+  name_en: Ganpatipule Beach
+  name_mr: गणपतीपुळे बीच
+  name_hi: गणपतिपुले बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 17.146931
+  lng: 73.265304
+  coord_source: osm way/1106327232
+  osm_id: way/1106327232
+  entry_fee_text: No entry fee
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 26 km from Ratnagiri; MSRTC buses and cabs from Ratnagiri.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Ganpatipule
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The beach at Ganpatipule runs right below the town''s famous Ganpati
+        temple, so most visitors combine the two. It is the busiest beach in Ratnagiri
+        taluka, with an MTDC resort and many hotels close by.
+
+
+        Come for a sunset walk after darshan. Malgund, the birthplace of poet Keshavsut,
+        is about 1 km away, and Jaigad fort is about 20 km north.'
+      history: null
+      significance: Ratnagiri taluka's most visited beach, next to the Ganpatipule
+        temple.
+      dos: '- Pair a beach walk with the temple visit
+
+        - Check with lifeguards or locals before going into the water'
+      donts: '- Don''t leave plastic or food waste on the sand'
+      safety_text: '- Swim only where local lifeguards or signs say it is safe'
+    mr:
+      short_story: 'गणपतीपुळ्याचा समुद्रकिनारा गावातील प्रसिद्ध गणपती मंदिराच्या अगदी
+        खाली आहे, त्यामुळे बहुतांश पर्यटक या दोन्ही ठिकाणांना एकत्र भेट देतात. रत्नागिरी
+        तालुक्यातील हा सर्वात जास्त गर्दीचा समुद्रकिनारा असून इथे MTDC रिसॉर्ट आणि
+        जवळपास अनेक हॉटेल्स आहेत.
+
+
+        दर्शनानंतर सूर्यास्ताच्या वेळी फेरफटका मारण्यासाठी इथे नक्की या. कवी केशवसुत
+        यांचे जन्मस्थान मालगुंड येथून सुमारे 1 किमी अंतरावर आहे आणि जयगड किल्ला उत्तरेस
+        सुमारे 20 किमी अंतरावर आहे.'
+      history: null
+      significance: गणपतीपुळे मंदिराजवळ असलेला हा रत्नागिरी तालुक्यातील सर्वात जास्त
+        भेट दिला जाणारा समुद्रकिनारा आहे.
+      dos: '- मंदिर दर्शनासोबतच समुद्रकिनाऱ्यावर फेरफटका मारा
+
+        - पाण्यात जाण्यापूर्वी जीवरक्षक (लाईफगार्ड्स) किंवा स्थानिकांना नक्की विचारा'
+      donts: '- वाळूवर प्लास्टिक किंवा अन्नाचा कचरा टाकू नका'
+      safety_text: '- स्थानिक जीवरक्षक असतील किंवा पोहणे सुरक्षित असल्याचे फलक लावले
+        असतील तिथेच पोहा'
+    hi:
+      short_story: 'गणपतिपुले का समुद्र तट शहर के प्रसिद्ध गणपति मंदिर के ठीक नीचे
+        स्थित है, इसलिए अधिकांश पर्यटक इन दोनों जगहों पर एक साथ जाते हैं। यह रत्नागिरी
+        तालुका का सबसे व्यस्त समुद्र तट है, जहाँ एक MTDC रिज़ॉर्ट और पास में कई होटल
+        हैं。
+
+
+        दर्शन के बाद सूर्यास्त के समय टहलने के लिए यहाँ आएँ। कवि केशवसुत की जन्मस्थली
+        मालगुंड यहाँ से लगभग 1 किमी दूर है, और जयगढ़ किला उत्तर में लगभग 20 किमी दूर
+        है।'
+      history: null
+      significance: गणपतिपुले मंदिर के पास स्थित यह रत्नागिरी तालुका का सबसे अधिक
+        देखा जाने वाला समुद्र तट है।
+      dos: '- मंदिर के दर्शन के साथ समुद्र तट की सैर करें
+
+        - पानी में जाने से पहले लाइफगार्ड या स्थानीय लोगों से जानकारी लें'
+      donts: '- रेत पर प्लास्टिक या खाने का कचरा न छोड़ें'
+      safety_text: '- केवल वहीं तैरें जहाँ स्थानीय लाइफगार्ड हों या सुरक्षित होने
+        के बोर्ड लगे हों'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/6/60/GANPATIPULE_BEACH_%281%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Sanjaybhagwat
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:GANPATIPULE_BEACH_(1).jpg
+  _sources:
+    _all:
+    - https://plantrip.io/itinerary/1032072
+    - https://en.wikipedia.org/wiki/Ganpatipule
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: prachin-konkan-museum-ganpatipule
+  status: ai_draft
+  name_en: Prachin Konkan Museum, Ganpatipule
+  name_mr: प्राचीन कोकण संग्रहालय, गणपतीपुळे
+  name_hi: प्राचीन कोंकण संग्रहालय, गणपतिपुले
+  category: museum
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Rs 40 adults, Rs 40 children
+  entry_fee_inr: 40
+  visit_minutes: null
+  opens: 08:30
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Prachin Konkan is an open-air, life-size museum at Ganpatipule
+        that recreates Konkan life about 500 years ago: social, economic, cultural
+        and religious. Highlights include a shell exhibition, handicrafts and food
+        displays.'
+      history: null
+      significance: null
+      dos: '- Combine with the Ganpatipule temple and beach'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: प्राचीन कोकण हे गणपतीपुळे येथील खुल्या जागेत उभारलेले, खऱ्या आकाराचे
+        संग्रहालय आहे, जे सुमारे 500 वर्षांपूर्वीच्या कोकणातील सामाजिक, आर्थिक, सांस्कृतिक
+        आणि धार्मिक जीवनाचे दर्शन घडवते. येथील प्रमुख आकर्षणांमध्ये शंख-शिंपल्यांचे
+        प्रदर्शन, हस्तकला आणि पारंपरिक खाद्यपदार्थ यांचा समावेश आहे.
+      history: null
+      significance: null
+      dos: '- गणपतीपुळे मंदिर आणि समुद्रकिनाऱ्यासोबत या संग्रहालयाला भेट द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: प्राचीन कोंकण गणपतिपुले में एक ओपन-एयर, लाइफ-साइज़ संग्रहालय है,
+        जो लगभग 500 साल पहले के कोंकण के सामाजिक, आर्थिक, सांस्कृतिक और धार्मिक जीवन
+        को दर्शाता है। यहाँ के मुख्य आकर्षणों में सीपियों की प्रदर्शनी, हस्तशिल्प
+        और पारंपरिक भोजन शामिल हैं।
+      history: null
+      significance: null
+      dos: '- गणपतिपुले मंदिर और समुद्र तट के साथ इस संग्रहालय को भी देखें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/1a/PrachinKonkan-Museum-Entrance%2C_Ganpatipule.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pradeep717
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:PrachinKonkan-Museum-Entrance,_Ganpatipule.JPG
+  _sources:
+    _all:
+    - https://www.prachinkonkan.com/
+    - https://www.trypdeals.com/destination/ganpatipule/things-to-do-in-ganpatipule/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no coordinates: needs pin; fee from museum website (Rs 40), replaces Gemini
+    value Rs 50; EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review'
+- slug: kavi-keshavsut-smarak-malgund
+  status: ai_draft
+  name_en: Kavi Keshavsut Smarak, Malgund
+  name_mr: कवी केशवसुत स्मारक, मालगुंड
+  name_hi: कवि केशवसुत स्मारक, मालगुंड
+  category: museum
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: 09:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: At Malgund village, about 1 km from Ganpatipule.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Malgund, about 2 km from Ganpatipule, is the birthplace of the
+        Marathi poet Keshavsut. A memorial has been built here in his honour, with
+        a museum on modern Marathi poets.
+      history: null
+      significance: Memorial to Keshavsut, a pioneer of modern Marathi poetry.
+      dos: '- Visit together with Ganpatipule temple and beach'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: गणपतीपुळ्यापासून सुमारे 2 किमी अंतरावर असलेले मालगुंड हे मराठी
+        कवी केशवसुत यांचे जन्मस्थान आहे. त्यांच्या सन्मानार्थ इथे एक स्मारक उभारण्यात
+        आले असून त्यामध्ये आधुनिक मराठी कवींची माहिती देणारे एक संग्रहालय आहे.
+      history: null
+      significance: आधुनिक मराठी कवितेचे प्रणेते केशवसुत यांचे स्मारक.
+      dos: '- गणपतीपुळे मंदिर आणि समुद्रकिनाऱ्यासोबत इथे भेट द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: गणपतिपुले से लगभग 2 किमी दूर स्थित मालगुंड, मराठी कवि केशवसुत का
+        जन्मस्थान है। उनके सम्मान में यहाँ एक स्मारक बनाया गया है, जिसमें आधुनिक मराठी
+        कवियों पर एक संग्रहालय भी है।
+      history: null
+      significance: आधुनिक मराठी कविता के प्रणेता केशवसुत का स्मारक।
+      dos: '- गणपतिपुले मंदिर और समुद्र तट के साथ यहाँ भी जाएँ'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourist-place/ganapati-pule-temple/
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Ganpatipule
+    - https://eindiatourism.in/kavi-keshavsut-smarak-ganpatipule/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+- slug: aare-ware-beach
+  status: ai_draft
+  name_en: Aare Ware Beach
+  name_mr: आरे वारे समुद्रकिनारा
+  name_hi: आरे वारे बीच (समुद्र तट)
+  category: beach
+  taluka: Ratnagiri
+  lat: 17.057474
+  lng: 73.288036
+  coord_source: osm way/805402626
+  osm_id: way/805402626
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: On the Ratnagiri-Ganpatipule coastal road via Bhandarpule.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Aare Ware is a pair of beaches about 22 km from Ratnagiri, on
+        the coast road to Ganpatipule, split by a small bay. The road runs right along
+        the sea, with wide views on the way.
+
+
+        The sand is clean and turtles are sometimes seen. An over-the-sea zipline
+        opened here in February 2024 and runs from 9:30 am to 6:30 pm.'
+      history: null
+      significance: Twin quiet beaches on the Ratnagiri-Ganpatipule coast road.
+      dos: '- Visit between October and March
+
+        - Stop for sunset on the drive'
+      donts: '- Don''t swim'
+      safety_text: Currents here look calm but are strong and unpredictable. Stay
+        out of the water.
+    mr:
+      short_story: 'आरे वारे हा रत्नागिरीपासून सुमारे 22 किमी अंतरावर, गणपतीपुळे कडील
+        किनारपट्टीच्या रस्त्यावर, एका छोट्या उपसागराने विभागलेला दोन समुद्रकिनाऱ्यांचा
+        जोड आहे. रस्ता अगदी समुद्राच्या बाजूने जातो, ज्यावरून वाटेत विस्तीर्ण दृश्ये
+        दिसतात.
+
+
+        वाळू स्वच्छ आहे आणि कधीकधी कासव दिसतात. येथे फेब्रुवारी 2024 मध्ये समुद्रावरील
+        झिपलाईन सुरू झाली जी सकाळी 9:30 ते संध्याकाळी 6:30 पर्यंत चालते.'
+      history: null
+      significance: रत्नागिरी-गणपतीपुळे किनारपट्टीच्या रस्त्यावरील जुळ्या शांत समुद्रकिनाऱ्या.
+      dos: '- ऑक्टोबर ते मार्च दरम्यान भेट द्या
+
+        - ड्राईव्ह करताना सूर्यास्तासाठी थांबा'
+      donts: '- पोहू नका'
+      safety_text: येथील प्रवाह शांत दिसतात पण ते मजबूत आणि अनिश्चित असतात. पाण्यात
+        जाऊ नका.
+    hi:
+      short_story: 'आरे वारे रत्नागिरी से लगभग 22 किमी दूर, गणपतिपुले जाने वाले तटीय
+        मार्ग पर, एक छोटी खाड़ी द्वारा विभाजित दो समुद्र तटों (बीचेस) की एक जोड़ी
+        है। सड़क सीधे समुद्र के साथ-साथ चलती है, रास्ते में जिसके चौड़े नज़ारे मिलते
+        हैं।
+
+
+        रेत साफ है और कभी-कभी कछुए भी दिखाई देते हैं। यहाँ फरवरी 2024 में समुद्र के
+        ऊपर एक ज़िपलाइन शुरू हुई थी जो सुबह 9:30 से शाम 6:30 बजे तक चलती है।'
+      history: null
+      significance: रत्नागिरी-गणपतिपुले तटीय सड़क पर जुड़वां शांत समुद्र तट।
+      dos: '- अक्टूबर से मार्च के बीच जाएँ
+
+        - ड्राइव के दौरान सूर्यास्त देखने के लिए रुकें'
+      donts: '- न तैरें'
+      safety_text: यहाँ की धाराएँ शांत दिखती हैं लेकिन मजबूत और अप्रत्याशित होती हैं।
+        पानी से दूर रहें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/f/f5/Aare_Ware_Beach.jpg
+    credit: Amankr3081
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Aare_Ware_Beach.jpg
+  _sources:
+    _all:
+    - https://myholidayhappiness.com/place/maharashtra/ganpatipule/aare-ware-beach
+    - https://www.outlooktraveller.com/amp/story/destinations/india/offbeat-adventures-and-tranquil-shores-exploring-aare-ware-and-nearby-attractions
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: aare-ware-viewpoint
+  status: ai_draft
+  name_en: Aare Ware Viewpoint
+  name_mr: आरे वारे व्ह्यू पॉईंट
+  name_hi: आरे वारे व्यू प्वाइंट
+  category: viewpoint
+  taluka: Ratnagiri
+  lat: 17.080025
+  lng: 73.283894
+  coord_source: osm node/6205411414
+  osm_id: node/6205411414
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On the coastal road above Aare Ware beach.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The coast road from Ratnagiri to Ganpatipule runs along the sea
+        above the twin Aare Ware beaches, with wide views of both bays and the open
+        sea.
+
+
+        Most people stop on the drive, about 22 km from Ratnagiri.'
+      history: null
+      significance: The classic view over the twin Aare Ware bays.
+      dos: '- Stop around sunset'
+      donts: '- Don''t park on the bend; pull fully off the road'
+      safety_text: null
+    mr:
+      short_story: 'रत्नागिरीहून गणपतीपुळेकडे जाणारा किनारपट्टीचा रस्ता जुळ्या आरे
+        वारे किनाऱ्यांच्या वर समुद्राच्या बाजूने जातो, ज्यावरून दोन्ही खाड्यांचे आणि
+        खुल्या समुद्राचे विस्तीर्ण दृश्य दिसते.
+
+
+        बहुतेक लोक रत्नागिरीपासून सुमारे 22 किमी अंतरावर असलेल्या प्रवासात येथे थांबतात.'
+      history: null
+      significance: जुळ्या आरे वारे खाड्यांवरील क्लासिक दृश्य.
+      dos: '- सूर्यास्ताच्या आसपास थांबा'
+      donts: '- वळणावर गाडी उभी करू नका; रस्त्यापासून पूर्णपणे बाजूला घ्या'
+      safety_text: null
+    hi:
+      short_story: 'रत्नागिरी से गणपतिपुले जाने वाली तटीय सड़क जुड़वां आरे वारे समुद्र
+        तटों के ऊपर समुद्र के साथ चलती है, जहाँ से दोनों खाड़ियों और खुले समुद्र के
+        विस्तृत नज़ारे दिखाई देते हैं।
+
+
+        ज्यादातर लोग रत्नागिरी से लगभग 22 किमी की ड्राइव के दौरान यहाँ रुकते हैं।'
+      history: null
+      significance: जुड़वां आरे वारे खाड़ियों का क्लासिक नज़ारा।
+      dos: '- सूर्यास्त के आसपास रुकें'
+      donts: '- मोड़ पर गाड़ी खड़ी न करें; सड़क से पूरी तरह साइड में ले लें'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://myholidayhappiness.com/place/maharashtra/ganpatipule/aare-ware-beach
+    - https://www.outlooktraveller.com/amp/story/destinations/india/offbeat-adventures-and-tranquil-shores-exploring-aare-ware-and-nearby-attractions
+  _collected_by: claude+gemini 2026-11-03
+  _review: viewpoint exact spot not named in source; field check; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review
+- slug: jaigad-fort
+  status: ai_draft
+  name_en: Jaigad Fort
+  name_mr: जयगड किल्ला
+  name_hi: जयगढ़ किला
+  category: fort
+  taluka: Ratnagiri
+  lat: 17.301144
+  lng: 73.221328
+  coord_source: osm way/394777042
+  osm_id: way/394777042
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At the tip of the Jaigad peninsula, about 14 km from Ganpatipule.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Jaigad_Fort
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Jaigad fort stands on a cliff at the tip of a peninsula, where
+        the Shastri river meets the Arabian Sea, about 14 km from Ganpatipule. The
+        13-acre fort still has most of its outer wall and ramparts, with a deep moat
+        on the land side.
+
+
+        Inside you will find the remains of Kanhoji Angre''s palace, a Ganpati temple
+        and old wells. The views take in the bay, the open sea and the nearby port.'
+      history: The fort is believed to have been built by the Bijapur kings in the
+        16th century. The Naiks of Sangameshwar held it and beat back combined Bijapur
+        and Portuguese forces in 1583 and 1585. In 1713 Balaji Vishwanath Peshwa ceded
+        it to Kanhoji Angre, who strengthened it. The British took it without a fight
+        in June 1818.
+      significance: One of the best-preserved coastal forts near Ganpatipule, linked
+        to the Maratha navy of Kanhoji Angre.
+      dos: '- Combine with Ganpatipule and the coastal road
+
+        - Walk the ramparts for views of the Shastri river mouth'
+      donts: '- Don''t climb on loose sections of the wall'
+      safety_text: '- The fort sits on a cliff; stay back from unfenced edges
+
+        - Take care near the moat'
+    mr:
+      short_story: 'जयगड किल्ला एका द्वीपकल्पाच्या टोकावर, कड्यावर वसलेला आहे, जिथे
+        शास्त्री नदी अरबी समुद्राला मिळते. हे ठिकाण गणपतीपुळ्यापासून सुमारे 14 किमी
+        अंतरावर आहे. या 13 एकरात पसरलेल्या किल्ल्याची बाहेरील तटबंदी आणि बुरुज आजही
+        सुस्थितीत असून, जमिनीच्या बाजूला एक खोल खंदक आहे.
+
+
+        किल्ल्याच्या आत तुम्हाला कान्होजी आंग्रे यांच्या वाड्याचे अवशेष, एक गणपती
+        मंदिर आणि जुन्या विहिरी पाहायला मिळतील. इथून खाडी, अथांग समुद्र आणि जवळच्या
+        बंदराचे सुंदर दृश्य दिसते.'
+      history: असे मानले जाते की हा किल्ला 16 व्या शतकात विजापूरच्या राजांनी बांधला
+        होता. संगमेश्वरच्या नाईकांनी हा किल्ला जिंकून 1583 आणि 1585 मध्ये विजापूर
+        आणि पोर्तुगीजांच्या संयुक्त फौजांना परतवून लावले होते. 1713 मध्ये बाळाजी विश्वनाथ
+        पेशव्यांनी तो कान्होजी आंग्रे यांच्याकडे सोपवला, ज्यांनी या किल्ल्याची तटबंदी
+        अधिक मजबूत केली. ब्रिटिशांनी जून 1818 मध्ये लढाई न करताच हा किल्ला ताब्यात
+        घेतला.
+      significance: कान्होजी आंग्रेंच्या मराठा आरमाराशी संबंधित असलेला, गणपतीपुळ्याजवळील
+        एक अतिशय चांगल्या स्थितीत जतन केलेला सागरी किल्ला.
+      dos: '- गणपतीपुळे आणि सागरी मार्गासोबत यालाही भेट द्या
+
+        - शास्त्री नदीच्या मुखाचे दृश्य पाहण्यासाठी तटबंदीवरून चाला'
+      donts: '- तटबंदीच्या कमकुवत किंवा ढासळलेल्या भागावर चढू नका'
+      safety_text: '- हा किल्ला एका कड्यावर आहे; कुंपण नसलेल्या कडांपासून लांब राहा
+
+        - खंदकाजवळ काळजी घ्या'
+    hi:
+      short_story: 'जयगढ़ किला एक प्रायद्वीप के सिरे पर एक चट्टान पर स्थित है, जहाँ
+        शास्त्री नदी अरब सागर से मिलती है। यह जगह गणपतिपुले से लगभग 14 किमी दूर है।
+        13 एकड़ में फैले इस किले की बाहरी दीवार और बुर्ज अभी भी मौजूद हैं, और ज़मीन
+        की तरफ एक गहरी खाई है。
+
+
+        किले के अंदर आपको कान्होजी आंग्रे के महल के अवशेष, एक गणपति मंदिर और पुराने
+        कुएं देखने को मिलेंगे। यहाँ से खाड़ी, खुले समुद्र और पास के बंदरगाह का सुंदर
+        नज़ारा दिखता है।'
+      history: माना जाता है कि इस किले का निर्माण 16वीं शताब्दी में बीजापुर के राजाओं
+        ने करवाया था। संगमेश्वर के नाइकों ने इस पर कब्ज़ा किया और 1583 और 1585 में
+        बीजापुर और पुर्तगालियों की संयुक्त सेना को पीछे धकेल दिया। 1713 में बालाजी
+        विश्वनाथ पेशवा ने इसे कान्होजी आंग्रे को सौंप दिया, जिन्होंने इसे और मज़बूत
+        किया। अंग्रेजों ने जून 1818 में बिना किसी लड़ाई के इसे अपने अधिकार में ले
+        लिया।
+      significance: गणपतिपुले के पास सबसे अच्छी तरह से संरक्षित तटीय किलों में से
+        एक, जो कान्होजी आंग्रे की मराठा नौसेना से जुड़ा है।
+      dos: '- गणपतिपुले और तटीय सड़क के साथ यहाँ भी जाएँ
+
+        - शास्त्री नदी के मुहाने का नज़ारा देखने के लिए प्राचीर पर चलें'
+      donts: '- दीवार के कमज़ोर या टूटे हुए हिस्सों पर न चढ़ें'
+      safety_text: '- किला एक चट्टान पर स्थित है; बिना बाड़ वाले किनारों से दूर रहें
+
+        - खाई के पास सावधानी बरतें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/a/a2/Jaigad-Fort-Ratnagiri.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pradeep717
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Jaigad-Fort-Ratnagiri.JPG
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Jaigad_Fort
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: jaigad-lighthouse
+  status: ai_draft
+  name_en: Jaigad Lighthouse
+  name_mr: जयगड दीपगृह
+  name_hi: जयगढ़ लाइटहाउस (दीपगृह)
+  category: viewpoint
+  taluka: Ratnagiri
+  lat: 17.2990794
+  lng: 73.1904894
+  coord_source: osm nominatim way/426257286
+  osm_id: way/426257286
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On a hill at the western edge of Jaigad fort.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Jaigad lighthouse stands on a cliff near Jaigad fort, where the
+        Shastri river enters the sea, about 19 km from Ganpatipule. From the top balcony
+        you get a wide view of the sea and the green coast.
+
+
+        Visitors report that the climb to the top is allowed only in the late afternoon,
+        around 4 to 5 pm. A visit takes one to two hours with the fort.'
+      history: null
+      significance: A cliff-top lighthouse with wide views of the sea.
+      dos: '- Pair it with Jaigad fort
+
+        - Reach before 4 pm for the climb'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: 'जयगड दीपगृह हे जयगड किल्याजवळील एका कड्यावर उभे आहे, जिथे शास्त्री
+        नदी समुद्राला मिळते, हे गणपतीपुळेपासून सुमारे 19 किमी अंतरावर आहे. वरच्या
+        बाल्कनीतून तुम्हाला समुद्र आणि हिरव्या किनारपट्टीचे विस्तीर्ण दृश्य मिळते.
+
+
+        पर्यटकांच्या म्हणण्यानुसार, वर जाण्याची परवानगी केवळ संध्याकाळी उशिरा, साधारण
+        4 ते 5 च्या दरम्यान असते. किल्ल्यासह भेट देण्यासाठी एक ते दोन तास लागतात.'
+      history: null
+      significance: समुद्राचे विस्तीर्ण दृश्य असलेले कड्यावरील दीपगृह.
+      dos: '- जयगड किल्यासोबत याला जोडा
+
+        - चढण्यासाठी दुपारी 4 वाजेपूर्वी पोहोचा'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: 'जयगढ़ लाइटहाउस जयगढ़ किले के पास एक चट्टान पर खड़ा है, जहाँ शास्त्री
+        नदी समुद्र में मिलती है, जो गणपतिपुले से लगभग 19 किमी दूर है। ऊपर की बालकनी
+        से आपको समुद्र और हरे-भरे तट का विस्तृत नज़ारा मिलता है।
+
+
+        पर्यटकों का कहना है कि ऊपर जाने की अनुमति केवल देर दोपहर में, लगभग 4 से 5
+        बजे के बीच ही दी जाती है। किले के साथ इस यात्रा में एक से दो घंटे का समय लगता
+        है।'
+      history: null
+      significance: समुद्र के विस्तृत नज़ारों वाला चट्टान पर स्थित लाइटहाउस।
+      dos: '- इसे जयगढ़ किले के साथ देखें
+
+        - चढ़ने के लिए दोपहर 4 बजे से पहले पहुँचें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/3/39/Jaigad_Lighthouse.jpg
+    credit: Nazz81
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Jaigad_Lighthouse.jpg
+  _sources:
+    _all:
+    - https://www.avathi.com/activity/visit-jaigad-lighthouse/4591
+    - https://travelsetu.com/guide/jaigad-lighthouse-tourism
+    - https://www.outlooktraveller.com/amp/story/destinations/india/offbeat-adventures-and-tranquil-shores-exploring-aare-ware-and-nearby-attractions
+    - https://en.wikipedia.org/wiki/Jaigad_Fort
+  _collected_by: claude+gemini 2026-11-03
+  _review: build year conflicts (1832 vs 1932); climb hours from visitor reviews only;
+    EN text = Claude draft from sources, needs team review; MR/HI = Gemini translation,
+    needs native review; pin from osm, check on map
+- slug: purnagad-fort
+  status: ai_draft
+  name_en: Purnagad Fort
+  name_mr: पूर्णगड किल्ला
+  name_hi: पूर्णगढ़ किला
+  category: fort
+  taluka: Ratnagiri
+  lat: 16.80809
+  lng: 73.314981
+  coord_source: osm way/1317165458
+  osm_id: way/1317165458
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 25 km from Ratnagiri, on a hill by the Muchkundi river mouth.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Purnagad
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Purnagad is a small sea fort on a hill beside the Muchkundi river,
+        about 25 km from Ratnagiri. Built of black basalt in a rectangle, it is compact
+        but has a lot to see.
+
+
+        A Maruti idol guards the entrance gate, which is carved with the sun, moon
+        and Ganapati. Steps lead to a flag point with wide views of the sea and Purnagad
+        beach.'
+      history: Some sources credit Shivaji with building it, others Kanhoji Angre.
+        It was one of Angre's bases, used to defend against and raid the British and
+        to trade with other Europeans. It earned less revenue in the Peshwa period.
+      significance: A small but historically important base of Kanhoji Angre's navy.
+      dos: '- Climb to the flag point for the view of Purnagad beach
+
+        - Look for the carvings on the entrance gate'
+      donts: '- Don''t disturb the ruins inside the fort'
+      safety_text: '- Steps and ruins are uneven; watch your footing'
+    mr:
+      short_story: 'पूर्णगड हा रत्नागिरीपासून सुमारे 25 किमी अंतरावर मुचकुंडी नदीच्या
+        काठावरील एका टेकडीवर वसलेला छोटा सागरी किल्ला आहे. काळ्या बेसॉल्ट दगडात आयताकृती
+        आकाराचा बांधलेला हा किल्ला छोटा असला तरी इथे पाहण्यासारखे बरेच काही आहे.
+
+
+        प्रवेशद्वारावर एक मारुतीची मूर्ती असून दरवाजावर सूर्य, चंद्र आणि गणपती कोरलेले
+        आहेत. इथून काही पायऱ्या एका ध्वजस्तंभाकडे जातात, जिथून समुद्र आणि पूर्णगड
+        बीचचा विस्तृत देखावा पाहायला मिळतो.'
+      history: काही नोंदींनुसार हा किल्ला शिवाजी महाराजांनी बांधला होता, तर काहींच्या
+        मते तो कान्होजी आंग्रे यांनी बांधला. हे आंग्रेंच्या तळांपैकी एक होते, ज्याचा
+        वापर ब्रिटिशांवर हल्ले करण्यासाठी, त्यांच्यापासून संरक्षण करण्यासाठी आणि इतर
+        युरोपियनांशी व्यापार करण्यासाठी केला जात असे. पेशवे काळात येथून महसूल कमी
+        मिळत असे.
+      significance: कान्होजी आंग्रे यांच्या आरमाराचा एक छोटा पण ऐतिहासिक दृष्ट्या
+        महत्त्वाचा तळ.
+      dos: '- पूर्णगड बीचचे दृश्य पाहण्यासाठी ध्वजस्तंभापर्यंत जा
+
+        - प्रवेशद्वारावरील कोरीव काम आवर्जून पाहा'
+      donts: '- किल्ल्यातील अवशेषांचे नुकसान करू नका'
+      safety_text: '- पायऱ्या आणि अवशेष ओबडधोबड आहेत; चालताना लक्ष ठेवा'
+    hi:
+      short_story: 'पूर्णगढ़ रत्नागिरी से लगभग 25 किमी दूर मुचकुंडी नदी के किनारे
+        एक पहाड़ी पर स्थित एक छोटा समुद्री किला है। काले बेसाल्ट पत्थर से आयताकार
+        आकार में बना यह किला भले ही छोटा है, लेकिन यहाँ देखने के लिए बहुत कुछ है。
+
+
+        प्रवेश द्वार पर एक मारुति की मूर्ति है, और दरवाज़े पर सूर्य, चंद्रमा और गणपति
+        उकेरे गए हैं। यहाँ से कुछ सीढ़ियाँ एक ध्वज स्तंभ तक जाती हैं, जहाँ से समुद्र
+        और पूर्णगढ़ बीच का विस्तृत नज़ारा दिखाई देता है।'
+      history: कुछ स्रोतों के अनुसार इस किले का निर्माण शिवाजी ने करवाया था, जबकि
+        कुछ इसे कान्होजी आंग्रे द्वारा बनवाया गया मानते हैं। यह आंग्रे के ठिकानों
+        में से एक था, जिसका उपयोग अंग्रेजों से बचाव और उन पर हमला करने, और अन्य यूरोपीय
+        लोगों के साथ व्यापार करने के लिए किया जाता था। पेशवा काल में यहाँ से राजस्व
+        कम मिलता था।
+      significance: कान्होजी आंग्रे की नौसेना का एक छोटा लेकिन ऐतिहासिक रूप से महत्वपूर्ण
+        ठिकाना।
+      dos: '- पूर्णगढ़ बीच का नज़ारा देखने के लिए ध्वज स्तंभ तक जाएँ
+
+        - प्रवेश द्वार पर नक्काशी ज़रूर देखें'
+      donts: '- किले के अंदर खंडहरों को नुकसान न पहुँचाएँ'
+      safety_text: '- सीढ़ियाँ और खंडहर ऊबड़-खाबड़ हैं; चलते समय सावधानी बरतें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/d/d8/Purnagad-pathway.jpg
+    credit: ज्ञानदा गद्रे-फडके
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Purnagad-pathway.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Purnagad
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: pawas-swami-swarupanand-ashram
+  status: ai_draft
+  name_en: Pawas Swami Swarupanand Ashram
+  name_mr: स्वामी स्वरूपानंद आश्रम, पावस
+  name_hi: स्वामी स्वरूपानंद आश्रम, पावस
+  category: temple
+  taluka: Ratnagiri
+  lat: 16.866379
+  lng: 73.328792
+  coord_source: osm node/12581402822
+  osm_id: node/12581402822
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Pawas, about 20 km from Ratnagiri by road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Pawas, about 15 km from Ratnagiri, is known for the ashram of Swami
+        Swarupanand. Devotees come to the samadhi and the quiet ashram grounds.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Keep silence inside the ashram'
+      safety_text: null
+    mr:
+      short_story: रत्नागिरीपासून सुमारे 15 किमी अंतरावर असलेले पावस हे स्वामी स्वरूपानंदांच्या
+        आश्रमासाठी ओळखले जाते. भाविक येथील समाधीच्या दर्शनासाठी आणि आश्रमातील शांत
+        वातावरणाचा अनुभव घेण्यासाठी येतात.
+      history: null
+      significance: null
+      dos: null
+      donts: '- आश्रमात शांतता राखा'
+      safety_text: null
+    hi:
+      short_story: रत्नागिरी से लगभग 15 किमी दूर स्थित पावस, स्वामी स्वरूपानंद के
+        आश्रम के लिए जाना जाता है। भक्त यहाँ समाधि के दर्शन और आश्रम के शांत वातावरण
+        का अनुभव करने आते हैं।
+      history: null
+      significance: null
+      dos: null
+      donts: '- आश्रम के अंदर शांति बनाए रखें'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://jagahpedia.com/place/pawas/
+    - https://en.wikipedia.org/wiki/Ganpatipule
+  _collected_by: claude+gemini 2026-11-03
+  _review: visit_minutes 180 from Gemini reduced to 60; EN text = Claude draft from
+    sources, needs team review; MR/HI = Gemini translation, needs native review
+- slug: ukshi-waterfall
+  status: ai_draft
+  name_en: Ukshi Waterfall
+  name_mr: उक्षी धबधबा
+  name_hi: उक्षी जलप्रपात
+  category: waterfall
+  taluka: Ratnagiri
+  lat: 17.112338
+  lng: 73.428492
+  coord_source: osm node/8609565218
+  osm_id: node/8609565218
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Monsoon
+  how_to_reach: Near Ukshi village, on the Nivali-Jakadevi road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 9
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Ranpat-Ukshi waterfall sits on the border of Ranpat and Ukshi
+        villages, a short walk from Ranpat, which is off the Mumbai-Goa highway. It
+        is best in the monsoon and can even be seen from Konkan Railway trains.
+
+
+        There are few amenities, so carry your own food and water.'
+      history: null
+      significance: null
+      dos: '- Carry food and water
+
+        - Go in the monsoon'
+      donts: null
+      safety_text: '- The area is slippery in the rains'
+    mr:
+      short_story: 'रानपाट-उक्षी धबधबा रानपाट आणि उक्षी गावांच्या सीमेवर आहे. मुंबई-गोवा
+        महामार्गावरून रानपाटला जाऊन तिथून थोड्याच अंतरावर चालत इथे पोहोचता येतं. पावसाळ्यात
+        हा धबधबा सर्वात सुंदर दिसतो आणि कोकण रेल्वेच्या ट्रेनमधूनही तो पाहता येतो.
+
+
+        इथे सोयी-सुविधा फारशा नसल्यामुळे स्वतःचे अन्न आणि पाणी सोबत ठेवा.'
+      history: null
+      significance: null
+      dos: '- अन्न आणि पाणी सोबत ठेवा
+
+        - पावसाळ्यात भेट द्या'
+      donts: null
+      safety_text: '- पावसात इथला परिसर निसरडा होतो'
+    hi:
+      short_story: 'रानपाट-उक्षी जलप्रपात रानपाट और उक्षी गांवों की सीमा पर स्थित
+        है। मुंबई-गोवा राजमार्ग पर स्थित रानपाट से यहाँ थोड़ी दूर चलकर पहुँचा जा सकता
+        है। मानसून में यह जलप्रपात सबसे सुंदर दिखता है और इसे कोंकण रेलवे की ट्रेनों
+        से भी देखा जा सकता है।
+
+
+        यहाँ सुविधाएँ बहुत कम हैं, इसलिए अपना खाना और पानी साथ ले जाएँ।'
+      history: null
+      significance: null
+      dos: '- अपना खाना और पानी साथ ले जाएँ
+
+        - मानसून में जाएँ'
+      donts: null
+      safety_text: '- बारिश में यह इलाका फिसलन भरा हो जाता है'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/4/4c/Ukshi_waterfall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pravinvasramchavhan
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Ukshi_waterfall.jpg
+  _sources:
+    _all:
+    - https://travelkonkan.in/ranpatcha-ukshi-waterfall/
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: ganeshgule-temple-and-beach
+  status: ai_draft
+  name_en: Ganeshgule Temple and Beach
+  name_mr: गणेशगुळे मंदिर आणि समुद्रकिनारा
+  name_hi: गणेशगुळे मंदिर और समुद्र तट
+  category: beach
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 23 km south of Ratnagiri by road.
+  nearest_station: Ratnagiri
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ganeshgule is a small, quiet beach south of Ratnagiri, set between
+        two hills, with a Ganesh temple and an old well in the village. The sand is
+        white and the water is clear.
+
+
+        The last stretch of road is a narrow village lane that fits one car at a time.
+        Mobile signal is weak.'
+      history: null
+      significance: A secluded village beach with a Ganesh temple.
+      dos: '- Carry food and water; facilities are limited
+
+        - Stay for sunset'
+      donts: '- Don''t go out of your depth'
+      safety_text: The beach slopes steeply and waves can be big. Stay in shallow
+        water.
+    mr:
+      short_story: 'गणेशगुळे हा रत्नागिरीच्या दक्षिणेकडील एक छोटा, शांत समुद्रकिनारा
+        आहे, जो दोन डोंगरांच्या মাঝে वसलेला आहे, जिथे गावात एक गणेश मंदिर आणि जुनी
+        विहीर आहे. वाळू पांढरी आणि पाणी स्वच्छ आहे.
+
+
+        रस्त्याचा शेवटचा टप्पा ही एक संकीर्ण गावाची गल्ली आहे ज्यामध्ये एका वेळी एकच
+        कार बसू शकते. मोबाईल सिग्नल कमकुवत आहे.'
+      history: null
+      significance: गणेश मंदिरासह एक निर्जन गावठाण समुद्रकिनारा.
+      dos: '- अन्न आणि पाणी सोबत ठेवा; सुविधा मर्यादित आहेत
+
+        - सूर्यास्तासाठी थांबा'
+      donts: '- आपल्या खोलीच्या बाहेर (जास्त खोल पाण्यात) जाऊ नका'
+      safety_text: समुद्रकिनारा तीव्रतेने उतार असलेला आहे आणि लाटा मोठ्या असू शकतात.
+        उथळ पाण्यात राहा.
+    hi:
+      short_story: 'गणेशगुळे रत्नागिरी के दक्षिण में एक छोटा, शांत समुद्र तट है, जो
+        दो पहाड़ियों के बीच स्थित है, जिसमें गाँव में एक गणेश मंदिर और एक पुराना कुआँ
+        है। रेत सफेद और पानी साफ है।
+
+
+        सड़क का आखिरी हिस्सा एक संकीर्ण गाँव की गली है जिसमें एक बार में एक ही कार
+        आ सकती है। मोबाइल सिग्नल कमजोर है।'
+      history: null
+      significance: गणेश मंदिर के साथ एक एकांत गाँव का समुद्र तट।
+      dos: '- खाना और पानी साथ रखें; सुविधाएँ सीमित हैं
+
+        - सूर्यास्त के लिए रुकें'
+      donts: '- अपनी क्षमता से आगे (गहरे पानी में) न जाएँ'
+      safety_text: समुद्र तट तेजी से ढलान वाला है और लहरें बड़ी हो सकती हैं। उथले
+        पानी में ही रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.tripuntold.com/india/maharashtra/ratnagiri/ganeshgule/
+    - https://wanderlog.com/place/details/556643/ganeshgule-beach
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no coordinates: needs pin; single aggregator source; temple legend not
+    found; EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review'
+- slug: lokmanya-tilak-birthplace
+  status: ai_draft
+  name_en: Lokmanya Tilak Birthplace
+  name_mr: लोकमान्य टिळक जन्मस्थान
+  name_hi: लोकमान्य तिलक जन्मस्थान
+  category: museum
+  taluka: Ratnagiri
+  lat: 16.9963421
+  lng: 73.2908112
+  coord_source: osm nominatim node/485571799
+  osm_id: node/485571799
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In Tilak Alley, Ratnagiri city.
+  nearest_station: Ratnagiri (9 km)
+  nearest_bus_stop: Ratnagiri bus stand (1 km)
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Lokmanya Bal Gangadhar Tilak, a leader of India''s freedom movement,
+        was born in this house in Tilak Alley, Ratnagiri, and lived here until he
+        was about 10. The government has preserved it as a national monument.
+
+
+        Inside you can see his old photographs, press clippings and items he used.'
+      history: Tilak was born here, in a rented house in Tilak Alley, on 23 July 1856
+        and lived here until 1866. He went on to become a journalist, teacher, social
+        reformer, lawyer and a leading figure of the Indian independence movement.
+        He died on 1 August 1920.
+      significance: Birthplace of Lokmanya Tilak; a national monument.
+      dos: '- Combine with Thibaw Palace and Patit Pavan Mandir in the same city walk'
+      donts: '- Don''t touch the displayed items'
+      safety_text: null
+    mr:
+      short_story: 'भारताच्या स्वातंत्र्यलढ्यातील एक प्रमुख नेते, लोकमान्य बाळ गंगाधर
+        टिळक यांचा जन्म रत्नागिरीतील टिळक आळीतल्या याच घरात झाला. ते सुमारे 10 वर्षांचे
+        होईपर्यंत इथेच राहिले. सरकारने हे घर आता एक राष्ट्रीय स्मारक म्हणून जतन केले
+        आहे.
+
+
+        आतमध्ये तुम्हाला त्यांचे जुने फोटो, वर्तमानपत्रांची कात्रणे आणि त्यांनी वापरलेल्या
+        वस्तू पाहता येतील.'
+      history: 23 जुलै 1856 रोजी टिळक आळीतील एका भाड्याच्या घरात टिळकांचा जन्म झाला
+        आणि 1866 पर्यंत ते इथे राहिले. पुढे ते एक पत्रकार, शिक्षक, समाजसुधारक, वकील
+        आणि भारतीय स्वातंत्र्यलढ्याचे प्रमुख नेते बनले. 1 ऑगस्ट 1920 रोजी त्यांचे
+        निधन झाले.
+      significance: लोकमान्य टिळकांचे जन्मस्थान; एक राष्ट्रीय स्मारक.
+      dos: '- एकाच फेरफटक्यामध्ये यासोबतच थिबा पॅलेस आणि पतितपावन मंदिरालाही भेट द्या'
+      donts: '- प्रदर्शनातील वस्तूंना हात लावू नका'
+      safety_text: null
+    hi:
+      short_story: 'भारत के स्वतंत्रता आंदोलन के एक प्रमुख नेता, लोकमान्य बाल गंगाधर
+        तिलक का जन्म रत्नागिरी की तिलक आली में इसी घर में हुआ था और वे लगभग 10 साल
+        की उम्र तक यहीं रहे। सरकार ने इसे एक राष्ट्रीय स्मारक के रूप में संरक्षित
+        किया है।
+
+
+        अंदर आप उनकी पुरानी तस्वीरें, प्रेस क्लिपिंग और उनके द्वारा इस्तेमाल की गई
+        चीजें देख सकते हैं।'
+      history: तिलक का जन्म 23 जुलाई 1856 को तिलक आली में एक किराए के घर में हुआ था
+        और वे 1866 तक यहीं रहे। आगे चलकर वे एक पत्रकार, शिक्षक, समाज सुधारक, वकील
+        और भारतीय स्वतंत्रता आंदोलन के एक प्रमुख व्यक्ति बने। 1 अगस्त 1920 को उनका
+        निधन हो गया।
+      significance: लोकमान्य तिलक का जन्मस्थान; एक राष्ट्रीय स्मारक।
+      dos: '- एक ही वॉक में इसके साथ थिबा पैलेस और पतित पावन मंदिर भी घूमें'
+      donts: '- प्रदर्शित वस्तुओं को न छुएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/84/Lokmanya_Tilak_Birthplace_in_Ratnagiri_03.jpg
+    credit: Aniket Konkar
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Lokmanya_Tilak_Birthplace_in_Ratnagiri_03.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourist-place/birthplace-of-lokmanya-tilak/
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _collected_by: claude 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review; pin from osm, check on map
+- slug: patit-pavan-mandir
+  status: ai_draft
+  name_en: Patit Pavan Mandir
+  name_mr: पतितपावन मंदिर
+  name_hi: पतित पावन मंदिर
+  category: temple
+  taluka: Ratnagiri
+  lat: 16.997436
+  lng: 73.294096
+  coord_source: wikidata Q7145053
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In Ratnagiri city.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Patit Pavan Mandir in Ratnagiri was built in 1929 by Swatantryaveer
+        Savarkar with the help of local people. It was the first temple in India open
+        to both upper-caste and so-called untouchable worshippers, and it stands as
+        a symbol of social reform and equality.
+      history: Built in 1929 by V. D. Savarkar, who lived in Ratnagiri at the time,
+        with local support.
+      significance: India's first temple open to all castes.
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: रत्नागिरीतील पतितपावन मंदिर 1929 मध्ये स्वातंत्र्यवीर सावरकरांनी
+        स्थानिक लोकांच्या मदतीने बांधले. हे भारतातील पहिलं असं मंदिर होतं जे उच्चवर्णीय
+        आणि तथाकथित अस्पृश्य अशा दोन्ही भक्तांसाठी खुले होतं, आणि हे मंदिर समाजसुधारणा
+        आणि समतेचं प्रतीक म्हणून उभं आहे.
+      history: रत्नागिरीत वास्तव्यास असताना व्ही. डी. सावरकर यांनी 1929 मध्ये स्थानिकांच्या
+        मदतीने हे मंदिर बांधले.
+      significance: सर्व जातींसाठी खुले असलेले भारतातील पहिले मंदिर.
+      dos: null
+      donts: '- मंदिरात पादत्राणे (चप्पल/बूट) घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: रत्नागिरी में पतित पावन मंदिर का निर्माण 1929 में स्वातंत्र्यवीर
+        सावरकर ने स्थानीय लोगों की मदद से किया था। यह भारत का पहला मंदिर था जो सवर्ण
+        और तथाकथित अछूत दोनों तरह के श्रद्धालुओं के लिए खुला था, और यह सामाजिक सुधार
+        और समानता के प्रतीक के रूप में खड़ा है।
+      history: उस समय रत्नागिरी में रहने वाले वी. डी. सावरकर द्वारा 1929 में स्थानीय
+        समर्थन से निर्मित।
+      significance: सभी जातियों के लिए खुला भारत का पहला मंदिर।
+      dos: null
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikivoyage.org/wiki/Ratnagiri
+  _collected_by: claude 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review; pin from wikidata, check on map
+- slug: mirkarwada-fish-harbour
+  status: ai_draft
+  name_en: Mirkarwada Fish Harbour
+  name_mr: मिरकरवाडा मत्स्य बंदर
+  name_hi: मिरकरवाडा फिश हार्बर
+  category: market
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Early morning
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Mirkarwada Fish Harbour is a major coastal trading port and fish
+        market located in Pethkilla, Ratnagiri. Visitors see numerous fishing boats
+        docked at the jetty, wholesale fish auctions, and a diverse variety of marine
+        catch including pomfrets, prawns, squids, and Indian mackerels.
+      history: null
+      significance: It functions as a primary commercial fish trading hub on the Ratnagiri
+        coastline.
+      dos: '- Visit early in the morning to observe the active wholesale fish trade.
+
+        - Wear sturdy footwear suitable for wet jetty surfaces.'
+      donts: '- Do not block active pathways or fish loading areas.
+
+        - Avoid littering plastic waste around the harbor docks.'
+      safety_text: Exercise caution around slippery surfaces and moving vehicles near
+        the active fishing jetty.
+    mr:
+      short_story: मिरकरवाडा फिश हार्बर हे रत्‍नागिरीमधील पेठकिल्ला येथे स्थित एक
+        प्रमुख किनारी व्यापारी बंदर आणि मासेमारी बाजार आहे. येथे जेट्टीवर नांगरलेल्या
+        अनेक मासेमारी नावा, घाऊक माशांचे लिलाव आणि पापलेट, कोळंबी, स्कुईड आणि बांगडा
+        यांसारख्या विविध सागरी माशांची आवक पाहायला मिळते.
+      history: null
+      significance: हे रत्‍नागिरी किनारपट्टीवरील एक मुख्य व्यावसायिक मासेमारी व्यापार
+        केंद्र म्हणून काम करते.
+      dos: '- सक्रिय घाऊक मासेमारी व्यवहाराचा अनुभव घेण्यासाठी सकाळी लवकर भेट द्या.
+
+        - ओल्या जेट्टीच्या पृष्ठभागासाठी योग्य मजबूत पादत्राणे घाला.'
+      donts: '- सक्रिय रस्ते किंवा मासे भरण्याच्या जागा अडवू नका.
+
+        - बंदर धक्क्याभोवती प्लॅस्टिक कचरा टाकू नका.'
+      safety_text: सक्रिय मासेमारी जेट्टीजवळ घसरड्या पृष्ठभागावर आणि हालचाल करणाऱ्या
+        वाहनांपासून सावधगिरी बाळगा.
+    hi:
+      short_story: मिरकरवाडा फिश हार्बर रत्नागिरी के पेठकिल्ला में स्थित एक प्रमुख
+        तटीय व्यापार बंदरगाह और मछली बाजार है। यहाँ जेट्टी पर खड़ी कई मछली पकड़ने
+        वाली नावें, थोक मछली नीलाम और पम्फ्रेट, झींगा, स्क्विड तथा इंडियन मैकेरल जैसी
+        विभिन्न प्रकार की समुद्री मछलियाँ देखने को मिलती हैं।
+      history: null
+      significance: यह रत्नागिरी तट पर एक मुख्य व्यावसायिक मछली व्यापार केंद्र के
+        रूप में कार्य करता है।
+      dos: '- सक्रिय थोक मछली व्यापार को देखने के लिए सुबह जल्दी आएँ।
+
+        - गीले जेट्टी सतहों के अनुकूल मजबूत जूते पहनें।'
+      donts: '- सक्रिय रास्तों या मछली लोड करने वाले क्षेत्रों को अवरुद्ध न करें।
+
+        - बंदरगाह की गोदी के आसपास प्लास्टिक कचरा न फैलाएँ।'
+      safety_text: सक्रिय मछली पकड़ने वाली जेट्टी के पास फिसलन भरी सतहों और चलते वाहनों
+        से सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://kokanplaces.com/mirkarwada-beach/
+    - https://ratnagiri.gov.in/en/gallery/honble-district-collectors-visit-to-mirkarwada-jetty/
+    - https://www.justdial.com/Ratnagiri/Mirkarwada-Jetty-Fish-Market-Pethkilla/9999P2352-2352-190911010644-W4H3_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: kusumeshwar-temple
+  status: ai_draft
+  name_en: Kusumeshwar Temple
+  name_mr: कुसुमेश्वर मंदिर
+  name_hi: कुसुमेश्वर मंदिर
+  category: temple
+  taluka: Ratnagiri
+  lat: 17.095753
+  lng: 73.314404
+  coord_source: osm node/6205457751
+  osm_id: node/6205457751
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kusumeshwar Temple is a traditional Hindu temple situated in the
+        village of Kotawade within Ratnagiri taluka. Visitors to the temple complex
+        observe its sanctum structure and surrounding rural settlement features.
+      history: null
+      significance: It serves as a localized sacred shrine and community focal point
+        in Kotawade village.
+      dos: '- Dress modestly when entering the temple premises.
+
+        - Maintain silence and respect local customs.'
+      donts: '- Do not take photographs inside the inner sanctum if prohibited.
+
+        - Avoid disturbing ongoing religious rituals.'
+      safety_text: null
+    mr:
+      short_story: कुसुमेश्वर मंदिर हे रत्‍नागिरी तालुक्यातील कोटवडे गावात स्थित एक
+        पारंपरिक हिंदू मंदिर आहे. मंदिराच्या परिसरात आल्यावर येथील गर्भगृह रचना आणि
+        सभोवतालची ग्रामीण वस्ती पाहता येते.
+      history: null
+      significance: हे कोटवडे गावातील एक स्थानिक पवित्र तीर्थस्थान आणि वाडीचे केंद्र
+        म्हणून कार्य करते.
+      dos: '- मंदिर परिसरात प्रवेश करताना साधे वेश परिधान करा.
+
+        - शांतता राखा आणि स्थानिक चालीरीतींचा आदर करा.'
+      donts: '- मनाई असल्यास गाभाऱ्याच्या आत फोटोग्राफी करू नका.
+
+        - सुरू असलेल्या धार्मिक विधींमध्ये अडथळा आणू नका.'
+      safety_text: null
+    hi:
+      short_story: कुसुमेश्वर मंदिर रत्नागिरी तालुका के कोटवाड़े गाँव में स्थित एक
+        पारंपरिक हिंदू मंदिर है। मंदिर परिसर में आने वाले आगंतुकों को इसकी गर्भगृह
+        संरचना और आसपास की ग्रामीण बस्ती देखने को मिलती है।
+      history: null
+      significance: यह कोटवाड़े गाँव में एक स्थानीय पवित्र तीर्थस्थल और सामुदायिक
+        केंद्र के रूप में कार्य करता है।
+      dos: '- मंदिर परिसर में प्रवेश करते समय सादे वस्त्र पहनें।
+
+        - शांति बनाए रखें और स्थानीय रीति-रिवाजों का सम्मान करें।'
+      donts: '- यदि मना हो तो गर्भगृह के भीतर फोटोग्राफी न करें।
+
+        - चल रहे धार्मिक अनुष्ठानों में बाधा न डालें।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.openstreetmap.org/node/6205457751
+    - https://www.chitpavan.in/gotra
+    - https://mapcarta.com/N9385880920
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; Gemini could not confirm; identity from
+    OpenStreetMap only; no usable source URL; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: ranpar-beach
+  status: ai_draft
+  name_en: Ranpar Beach
+  name_mr: रानपार समुद्रकिनारा
+  name_hi: रानपार बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.894581
+  lng: 73.299429
+  coord_source: osm way/805386092
+  osm_id: way/805386092
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Pawas in Ratnagiri taluka, accessible via local roads
+    from Ratnagiri town, approximately 20 km away.
+  nearest_station: Ratnagiri Railway Station (23 km)
+  nearest_bus_stop: Pawas Bus Station
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Ranpar Beach is a coastal shore located in the Ganeshgule area
+        of Ratnagiri. Visitors to the beach see open sandy stretches and coastal views
+        along the Arabian Sea.
+      history: null
+      significance: It provides a local coastal destination for visitors exploring
+        the Ratnagiri shoreline.
+      dos: '- Check local tide timings before entering the water.
+
+        - Keep the beach clean and dispose of waste properly.'
+      donts: '- Do not swim far from the shore during high tides.
+
+        - Avoid littering plastic on the sand.'
+      safety_text: Exercise caution during monsoon periods or rough sea conditions
+        due to strong coastal currents.
+    mr:
+      short_story: रानपार बीच हा रत्‍नागिरीमधील गणेशगुळे परिसरात असलेला एक समुद्रकिनारा
+        आहे. समुद्रकिनाऱ्यावर येणाऱ्या पर्यटकांना मोकळे वालुकामय किनारे आणि अरबी समुद्राचे
+        किनारपट्टीवरील दृश्य पाहायला मिळते.
+      history: null
+      significance: रत्‍नागिरी किनारपट्टी शोधणाऱ्या लोकांसाठी हे एक स्थानिक किनारी
+        गंतव्यस्थान आहे.
+      dos: '- पाण्यात उतरण्यापूर्वी स्थानिक भरती-ओहोटीच्या वेळा तपासा.
+
+        - बीच स्वच्छ ठेवा आणि कचऱ्याची योग्य विल्हेवाट लावा.'
+      donts: '- भरतीच्या वेळी किनाऱ्यापासून दूर समुद्रात पोहण्यास जाऊ नका.
+
+        - वाळूवर प्लॅस्टिक टाकू नका.'
+      safety_text: किनारी जोरदार प्रवाहामुळे मान्सूनच्या काळात किंवा समुद्राची स्थिती
+        खवळलेली असताना काळजी घ्या.
+    hi:
+      short_story: रानपार बीच रत्नागिरी के गणेशगुले क्षेत्र में स्थित एक समुद्री तट
+        है। समुद्र तट पर आने वाले आगंतुक खुले रेतीले विस्तार और अरब सागर के तटवर्ती
+        दृश्य देखते हैं।
+      history: null
+      significance: यह रत्नागिरी तटरेखा की खोज करने वाले आगंतुकों के लिए एक स्थानीय
+        तटीय गंतव्य प्रदान करता है।
+      dos: '- पानी में उतरने से पहले स्थानीय ज्वार-भाटे के समय की जाँच करें।
+
+        - बीच को साफ रखें और कचरे का उचित निपटान करें।'
+      donts: '- उच्च ज्वार के दौरान तट से दूर न तैरें।
+
+        - रेत पर प्लास्टिक न फैलाएँ।'
+      safety_text: मजबूत तटीय धाराओं के कारण मानसून के मौसम में या समुद्र की खुरदरी
+        स्थिति के दौरान सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mapcarta.com/W402693046
+    - https://sandee.com/india/maharashtra/ganeshgule/ranpar-beach
+    - https://www.justdial.com/Ratnagiri/Ranpar-Beach-Ganeshgule/9999P2352-2352-250906132545-X7E6_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: ukshi-petroglyphs
+  status: ai_draft
+  name_en: Ukshi Petroglyphs
+  name_mr: उक्षी कातळशिल्पे
+  name_hi: उक्षी पेट्रोग्लिफ्स
+  category: cave
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Ukshi village in Ratnagiri taluka, accessible via local
+    roads from Ratnagiri town or via Ukshi railway station area.
+  nearest_station: Ukshi Railway Station
+  nearest_bus_stop: Ukshi Grampanchayat Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Konkan_geoglyphs
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ukshi Petroglyphs is a protected prehistoric site located in Ukshi
+        village within Ratnagiri taluka. Visitors can observe massive rock art engravings
+        etched into the laterite plateaus, featuring an enclosure around a large animal
+        figure.
+
+
+        The site showcases ancient stone carving techniques and motif scales from
+        early human settlement periods. It forms part of the region''s prominent cluster
+        of prehistoric rock engravings.'
+      history: Most estimates place the Ratnagiri petroglyphs in the Mesolithic period,
+        dating back approximately 8,000 to 10,000 years.
+      significance: A significant prehistoric rock art site featuring ancient geoglyphs
+        on laterite plateaus.
+      dos: '- Wear comfortable walking shoes for uneven terrain
+
+        - Respect the protected archaeological site boundaries'
+      donts: '- Do not touch or climb on the carved rock surfaces
+
+        - Do not litter on the plateau'
+      safety_text: Watch your step on uneven laterite rock surfaces and stay hydrated
+        under direct sun exposure.
+    mr:
+      short_story: 'उक्षी पेट्रोग्लिफ्स हे रत्नागिरी तालुक्यातील उक्षी गावातील एक
+        संरक्षित प्रागैतिहासिक ठिकाण आहे. येथे पर्यटकांना जांभ्या পাথराच्या पठारावर
+        कोरलेली विशाल प्राचीन दगडी शिल्पे आणि प्राण्यांची चित्रे पाहायला मिळतात.
+
+
+        हे ठिकाण प्राचीन काळातील शिल्पकला तंत्र आणि कोरीवकामाचे नमुने दर्शवते. हे
+        परिसरातील प्रमुख प्रागैतिहासिक शिलाकोरीव कामांच्या समूहाचा एक भाग आहे.'
+      history: बहुतेक अंदाजांनुसार रत्नागिरीतील पेट्रोग्लिफ्स हे मेसोलिथिक काळातील
+        असून ते सुमारे 8,000 ते 10,000 वर्षे जुने आहेत.
+      significance: जांभ्या पठारावर प्राचीन भू-संकेत असलेली एक महत्त्वाची प्रागैतिहासिक
+        शिलाशिल्प साईट.
+      dos: '- चालण्याच्या खडबडीत वाटेसाठी आरामदायक पायताण घारा
+
+        - संरक्षित पुरातत्व क्षेत्राच्या मर्यादांचे पालन करा'
+      donts: '- कोरीव कामाच्या पृष्ठभागाला स्पर्श करू नका किंवा त्यावर चढू नका
+
+        - पठारावर कचरा टाकू नका'
+      safety_text: अमर्यादित जांभ्या खडबडीत पृष्ठभागावर चालताना काळजी घ्या आणि उन्हापासून
+        संरक्षणासाठी पाणी सोबत ठेवा.
+    hi:
+      short_story: 'उक्षी पेट्रोग्लिफ्स रत्नागिरी तालुका के उक्षी गाँव में स्थित एक
+        संरक्षित प्रागैतिहासिक स्थल है। यहाँ आगंतुकों को लैटेराइट पठारों पर उकेरी
+        गई विशाल प्राचीन रॉक आर्ट और एक बड़े पशु आरेख के आसपास की नक्काशी देखने को
+        मिलती है।
+
+
+        यह स्थल प्राचीन पाषाण नक्काशी तकनीक और शुरुआती मानव बस्तियों के रूपांकनों
+        को प्रदर्शित करता है। यह क्षेत्र के प्रमुख प्रागैतिहासिक शैल उत्कीर्णन समूहों
+        का हिस्सा है।'
+      history: अधिकांश अनुमानों के अनुसार रत्नागिरी के पेट्रोग्लिफ्स मेसोलिथिक काल
+        के हैं, जो लगभग 8,000 से 10,000 वर्ष पुराने हैं।
+      significance: लैटेराइट पठारों पर प्राचीन भू-नक्काशी वाला एक महत्वपूर्ण प्रागैतिहासिक
+        रॉक आर्ट स्थल।
+      dos: '- असमान रास्तों के लिए आरामदायक पैदल जूते पहनें
+
+        - संरक्षित पुरातात्विक स्थल की सीमाओं का सम्मान करें'
+      donts: '- नक्काशीदार सतहों को न छुएं और न ही उन पर चढ़ें
+
+        - पठार पर कचरा न फैलाएं'
+      safety_text: असमान लैटेराइट सतहों पर सावधानी से चलें और सीधी धूप में पर्याप्त
+        पानी साथ रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Konkan_geoglyphs
+    - https://gpukshi.com/ratnagiri-administrative-structure/
+    - https://www.megalithic.co.uk/article.php?sid=64382
+    - https://konkantravelclub.com/trips/ratnagiri-petroglyphs-sangameshwar-tour/
+    - https://www.reddit.com/r/AncientIndia/comments/1p9ms2v/12000_years_old_large_elephant_engraving_ukshi/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: mervi-beach
+  status: ai_draft
+  name_en: Mervi Beach
+  name_mr: मेर्वी समुद्रकिनारा
+  name_hi: मेर्वी बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.838507
+  lng: 73.29402
+  coord_source: osm way/2376528036
+  osm_id: way/2376528036
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Purnagad in Ratnagiri taluka, accessible by road transport
+    from Ratnagiri town.
+  nearest_station: Ratnagiri Railway Station (49 km)
+  nearest_bus_stop: Ratnagiri State Transport Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mervi Beach is a coastal stretch located in Ratnagiri taluka.
+        Visitors can experience the open shoreline along the Arabian Sea near local
+        village areas.
+
+
+        The beach provides a view of the regional coastal environment and connects
+        travelers to nearby historical fortifications like Purnagad Fort.'
+      history: null
+      significance: A quiet coastal beach location situated in the Ratnagiri region.
+      dos: '- Check local tide timings before walking along the shore
+
+        - Wear sun protection'
+      donts: '- Do not swim in unmonitored rough sea waters
+
+        - Do not leave plastic waste on the sand'
+      safety_text: Exercise caution near deep waters as lifeguards may not be stationed
+        on remote beaches.
+    mr:
+      short_story: 'मेर्वी बीच हा रत्नागिरी तालुक्यातील एक किनारा आहे. येथे पर्यटकांना
+        अरबी समुद्राच्या किनाऱ्यावरील शांत परिसर अनुभवता येतो.
+
+
+        हा बीच प्रादेशिक किनारपट्टीचे वातावरण दर्शवतो आणि प्रवाशांना पूर्णागड किल्ल्यासारख्या
+        जवळील ठिकाणांशी जोडतो.'
+      history: null
+      significance: रत्नागिरी परिसरातील एक शांत किनारपट्टीचा बीच.
+      dos: '- किनाऱ्यावर चालण्यापूर्वी स्थानिक भरती-ओहोटीच्या वेळा तपासा
+
+        - उन्हापासून संरक्षणासाठी साधने वापर  करा'
+      donts: '- देखरेख नसलेल्या खवळलेल्या समुद्राच्या पाण्यात पोहू नका
+
+        - वाळूवर प्लॅस्टिकचा कचरा टाकू नका'
+      safety_text: दूरवरच्या समुद्रकिनाऱ्यांवर रक्षक (लाइफगार्ड) उपलब्ध नसतात, त्यामुळे
+        खोल पाण्यात जाणे टाळा.
+    hi:
+      short_story: 'मेर्वी बीच रत्नागिरी तालुका में स्थित एक तटवर्ती क्षेत्र है। आगंतुकों
+        को यहाँ स्थानीय ग्रामीण इलाकों के पास अरब सागर के किनारे का तट देखने को मिलता
+        है।
+
+
+        यह बीच क्षेत्रीय तटीय पर्यावरण को प्रदर्शित करता है और यात्रियों को पूर्णागढ़
+        किले जैसे नजदीki ऐतिहासिक स्थलों से जोड़ता है।'
+      history: null
+      significance: रत्नागिरी क्षेत्र में स्थित एक शांत तटीय समुद्र तट।
+      dos: '- तट पर टहलने से पहले स्थानीय ज्वार-भाटे के समय की जाँच करें
+
+        - धूप से बचाव के उपाय करें'
+      donts: '- अनियंत्रित गहरे समुद्र के पानी में तैरने न उतरें
+
+        - रेत पर प्लास्टिक का कचरा न छोड़ें'
+      safety_text: दूरदराज के समुद्र तटों पर लाइफगार्ड नहीं होते हैं, अतः गहरे पानी
+        में सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Mervi-Beach/9999P2352-2352-251007191505-D8I9_BZDET
+    - https://explorekonkan.wordpress.com/travel/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: kurli-beach
+  status: ai_draft
+  name_en: Kurli Beach
+  name_mr: कुर्ली समुद्रकिनारा
+  name_hi: कुरली बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.956689
+  lng: 73.292001
+  coord_source: osm way/2379502244
+  osm_id: way/2379502244
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kurli Beach is a coastal beach located in Ratnagiri taluka. Visitors
+        can see a quiet sandy shoreline offering views of the Arabian Sea.
+
+
+        The location provides a peaceful environment away from heavy commercial crowds,
+        characteristic of the Konkan coastline.'
+      history: null
+      significance: A tranquil local beach destination situated within Ratnagiri.
+      dos: '- Carry drinking water and basic supplies
+
+        - Respect local community spaces'
+      donts: '- Do not litter the pristine shoreline
+
+        - Avoid venturing into rough currents'
+      safety_text: Pay attention to changing tides and avoid rocky edges during high
+        wave activity.
+    mr:
+      short_story: 'कुरली बीच हा रत्नागिरी तालुक्यातील एक शांत समुद्रकिनारा आहे. येथे
+        पर्यटकांना अरबी समुद्राचे दर्शन घडवणारा निर्मनुष्य वाळूचा किनारा पाहायला मिळतो.
+
+
+        हे ठिकाण कोकण किनारपट्टीच्या वैशिष्ट्यानुसार मोठ्या व्यावसायिक गर्दीपासून
+        दूर शांत वातावरण देते.'
+      history: null
+      significance: रत्नागिरीमधील एक शांत आणि रमणीय समुद्रकिनारा.
+      dos: '- पिण्याचे पाणी आणि आवश्यक साहित्य सोबत ठेवा
+
+        - स्थानिकांच्या परिसराचा आदर करा'
+      donts: '- किनाऱ्यावर कचरा टाकू नका
+
+        - खवळलेल्या लाटांमध्ये जाणे टाळा'
+      safety_text: भरतीच्या वेळी पाण्याच्या प्रवाहांकडे लक्ष द्या आणि लाटा जास्त असताना
+        खडकाळ भागाजवळ जाणे टाळा.
+    hi:
+      short_story: 'कुरली बीच रत्नागिरी तालुका में स्थित एक शांत समुद्र तट है। आगंतुकों
+        को यहाँ अरब सागर के दृश्यों वाला एक शांत रेतीला तट देखने को मिलता है।
+
+
+        यह स्थान कोंकण तट की विशेषता के अनुरूप भारी व्यावसायिक भीड़ से दूर एक शांतिपूर्ण
+        वातावरण प्रदान करता है।'
+      history: null
+      significance: रत्नागिरी के भीतर स्थित एक शांत और सुंदर समुद्र तट गंतव्य।
+      dos: '- पीने का पानी और जरूरी सामान साथ रखें
+
+        - स्थानीय समुदायों की जगहों का सम्मान करें'
+      donts: '- तट पर गंदगी न फैलाएं
+
+        - खतरनाक धाराओं और तेज लहरों में जाने से बचें'
+      safety_text: बदलते ज्वार-भाटे पर ध्यान दें और ऊंची लहरों के दौरान चट्टानी किनारों
+        पर जाने से बचें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.openstreetmap.org/way/2379502244
+    - https://vushii.com/place.php?name=Kurli+Beach
+    - https://www.justdial.com/Ratnagiri/Kurli-Beach-Maruti-Mandir/9999P2352-2352-220319222926-Q5X4_BZDET
+    - https://explorekonkan.wordpress.com/travel/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; Gemini could not confirm; identity from
+    OpenStreetMap only; no usable source URL; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: malgund-beach
+  status: ai_draft
+  name_en: Malgund Beach
+  name_mr: मालगुंड समुद्रकिनारा
+  name_hi: मालगुंड बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 17.179202
+  lng: 73.25576
+  coord_source: osm way/397797634
+  osm_id: way/397797634
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: From Ganpatipule or Ratnagiri town via local road/bus, approximately
+    2 to 15 km away depending on the starting point.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Malgund Beach is a coastal stretch located in Ratnagiri district,
+        near Ganpatipule. The beach extends over five to six kilometres and features
+        flat terrain with clear waters.
+
+
+        Visitors can observe a quiet shoreline surrounded by local greenery and a
+        small hamlet backdrop. It functions as a less crowded alternative for coastal
+        walks.'
+      history: null
+      significance: A long, flat coastal stretch near Ganpatipule known for its quiet
+        surroundings.
+      dos: '- Maintain cleanliness and carry back your trash
+
+        - Walk along the shore during low tide'
+      donts: '- Do not swim far into open waters without local guidance
+
+        - Do not litter the shoreline'
+      safety_text: Check local tidal patterns before entering the water, as lifeguards
+        may not be stationed along the entire length.
+    mr:
+      short_story: 'मालगुंड बीच हा रत्नागिरी जिल्ह्यातील गणपतीपुळे जवळ असलेला एक किनारी
+        भाग आहे. हा बीच पाच ते सहा किलोमीटर पसरलेला असून येथील पाण्याचा परिसर सपाट
+        आणि स्वच्छ आहे.
+
+
+        येथे पर्यटकांना शांत किनारा आणि आजूबाजूला हिरवाई पाहायला मिळते. गर्दीपासून
+        दूर शांततेत फिरण्यासाठी हा किनारा ओळखला जातो.'
+      history: null
+      significance: गणपतीपुळे जवळ असलेला एक मोठा आणि शांत किनारा.
+      dos: '- परिसर स्वच्छ ठेवा आणि कचरा सोबत आणा
+
+        - ओहोटीच्या वेळी किनाऱ्यावर चालण्याचा आनंद घ्या'
+      donts: '- स्थानिक मार्गदर्शनाशिवाय खोल पाण्यात जाणे टाळा
+
+        - किनाऱ्यावर कचरा टाकूस नका'
+      safety_text: तलावात किंवा समुद्रात उतरताना स्थानिक प्रवाहांची माहिती घ्या, कारण
+        सर्वकाही ठिकाणी जीवरक्षक उपलब्ध नसतात.
+    hi:
+      short_story: 'मालगुंड बीच रत्नागिरी जिले में गणपतिकुळे के पास स्थित एक तटीय
+        क्षेत्र है। यह बीच पाँच से छह किलोमीटर तक फैला हुआ है और इसका तट सपाट तथा
+        साफ पानी वाला है.
+
+
+        यहाँ पर्यटकों को शांत तट और आसपास हरियाली देखने को मिलती है। यह भीड़भाड़ से
+        दूर शांत माहौल में टहलने के लिए जाना जाता है।'
+      history: null
+      significance: गणपतिकुळे के पास स्थित एक लंबा और शांत तटीय क्षेत्र।
+      dos: '- साफ-सफाई बनाए रखें और अपना कचरा साथ ले जाएं
+
+        - कम ज्वार के दौरान तट पर सैर करें'
+      donts: '- स्थानीय मार्गदर्शन के बिना गहरे पानी में न उतरें
+
+        - तट पर कचरा न फैलाएं'
+      safety_text: पानी में उतरने से पहले स्थानीय ज्वार-भाटे की स्थिति की जाँच करें,
+        क्योंकि हर जगह लाइफगार्ड मौजूद नहीं होते हैं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/en/tourism/
+    - https://www.trawell.in/maharashtra/ganpatipule/malgund-beach
+    - https://www.makemytrip.com/tripideas/attractions/malgund
+    - https://www.whatshot.in/pune/everything-you-need-to-know-about-malgund-c-27366
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: bhandarpule-beach
+  status: ai_draft
+  name_en: Bhandarpule Beach
+  name_mr: भांडारपुळे समुद्रकिनारा
+  name_hi: भंडारपुले बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Ganpatipule in Ratnagiri district, easily accessible
+    by road via local transport or auto from Ganpatipule.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bhandarpule Beach is situated in Ratnagiri district near Ganpatipule.
+        The two-kilometre shoreline is tucked between surrounding hills and lined
+        with suru trees.
+
+
+        Visitors see golden sand, blue-green waters, and local eateries serving regional
+        fish items. It offers a scenic environment bounded by elevated coastal terrain.'
+      history: null
+      significance: A two-kilometre scenic beach enclosed by hills and suru trees
+        near Ganpatipule.
+      dos: '- Dispose of waste properly in bins or carry it back
+
+        - Try local coastal cuisine at nearby eateries'
+      donts: '- Do not visit during heavy monsoon months due to high waves and slippery
+        routes
+
+        - Do not litter the sand and tree line'
+      safety_text: Exercise caution during monsoon months, as high waves and slippery
+        conditions make the shore unsafe.
+    mr:
+      short_story: 'भंडारपुले बीच रत्नागिरी जिल्ह्यातील गणपतीपुळेजवळ स्थित आहे. हा
+        दोन किलोमीटर लांबीचा किनारा दोन टेकड्यांच्या मध्ये असून त्याच्या कडेने सूरूची
+        झाडे आहेत.
+
+
+        येथे सोनेरी वाळू, निळसर-हिरवे पाणी आणि स्थानिक खाद्यपदार्थ मिळणारी खानावळी
+        पाहायला मिळतात. हा परिसर त्याच्या नैसर्गिक किनारपट्टीसाठी ओळखला जातो.'
+      history: null
+      significance: गणपतीपुळेजवळ टेकड्यांनी वेढलेला दोन किलोमीटरचा निसर्गरम्य किनारा.
+      dos: '- कचरा योग्य ठिकाणी टाकून परिसर स्वच्छ ठेवा
+
+        - जवळील खानावळींमध्ये स्थानिक कोकणी जेवणाचा आस्वाद घ्या'
+      donts: '- पावसाळ्यात मोठ्या लाटा आणि रस्त्यांमुळे तिथे जाणे टाळा
+
+        - वाळूवर आणि झाडांच्या परिसरात कचरा टाकू नका'
+      safety_text: पावसाळ्यात मोठ्या लाटा आणि दमट वातावरणामुळे किनाऱ्यावर जाणे टाळावे.
+    hi:
+      short_story: 'भंडारपुले बीच रत्नागिरी जिले में गणपतिकुळे के पास स्थित है। दो
+        किलोमीटर लंबा यह तट पहाड़ियों के बीच घिरा हुआ है और इसके किनारे सुरू के पेड़
+        लगे हैं.
+
+
+        यहाँ सुनहरी रेत, नीले-हरे रंग का पानी और स्थानीय मछली के पकवान परोसने वाले
+        भोजनालय दिखाई देते हैं। यह तटीय भूभाग अपनी प्राकृतिक सुंदरता के लिए जाना जाता
+        है।'
+      history: null
+      significance: गणपतिकुळे के पास पहाड़ियों और सुरू के पेड़ों से घिरा दो किलोमीटर
+        लंबा सुंदर तट।
+      dos: '- कचरे का उचित निपटान करें या अपने साथ वापस ले जाएं
+
+        - पास के भोजनालयों में स्थानीय तटीय भोजन का आनंद लें'
+      donts: '- भारी मानसून के महीनों में ऊंची लहरों और फिसलन भरे रास्तों के कारण
+        न जाएं
+
+        - रेत और पेड़ों के पास कचरा न फैलाएं'
+      safety_text: मानसून के महीनों के दौरान ऊंची लहरों और फिसलन के कारण तट पर सावधानी
+        बरतें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/d/d9/BHANDARPULE_%2860%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Sanjaybhagwat
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:BHANDARPULE_(60).jpg
+  _sources:
+    _all:
+    - https://vushii.com/place.php?name=Bhandarpule+Beach
+    - https://seawatersports.com/places/Maharashtra/bhandarpule-beach-in-maharashtra
+    - https://myholidayhappiness.com/place/maharashtra/ganpatipule/bhandarpule-beach
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: mirya-beach
+  status: ai_draft
+  name_en: Mirya Beach
+  name_mr: मिरया समुद्रकिनारा
+  name_hi: मिरया बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Kalbadevi in Ratnagiri, accessible by road from Ratnagiri
+    town.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mirya Beach is located in Ratnagiri. The coastal area is noted
+        for its local marine environment along the regional coastline.
+
+
+        Visitors can observe the open sea and local shorelines. It provides access
+        to marine observation areas and local coastal settlements.'
+      history: null
+      significance: A coastal location in Ratnagiri known for local marine life exploration.
+      dos: '- Follow instructions from local diving operators if engaging in water
+        activities
+
+        - Respect the local fishing community areas'
+      donts: '- Do not venture into unmonitored waters without professional support
+
+        - Do not damage marine ecosystems'
+      safety_text: Verify instructor credentials and equipment standards before participating
+        in diving or water activities.
+    mr:
+      short_story: 'मिरया बीच रत्नागिरी येथे स्थित आहे. हा किनारी भाग स्थानिक सागरी
+        परिसंस्थेसाठी ओळखला जातो.
+
+
+        येथे पर्यटकांना उघडा समुद्र आणि किनारपट्टीचा परिसर पाहता येतो. हा किनारा स्थानिक
+        सागरी जीवनाचा अभ्यास व पाहणी करण्यासाठी ओळखला जातो.'
+      history: null
+      significance: स्थानिक सागरी जीवनासाठी ओळखला जाणारा रत्नागिरीतील किनारी भाग.
+      dos: '- वॉटर स्पोर्ट्स किंवा डायव्हिंग करताना ऑपरेटरच्या सूचना पाळा
+
+        - स्थानिक मच्छिमार समुदायाच्या क्षेत्राचा आदर करा'
+      donts: '- व्यावसायिक मार्गदर्शनाशिवाय अनियंत्रित पाण्यात जाणे टाळा
+
+        - सागरी परिसंस्थेला हानी पोहोचवू नका'
+      safety_text: डायव्हिंग किंवा इतर जलक्रिया करताना साहित्याची आणि मार्गदर्शकांची
+        खात्री करून घ्या.
+    hi:
+      short_story: 'मिरया बीच रत्नागिरी में स्थित है। यह तटीय क्षेत्र अपने स्थानीय
+        समुद्री पर्यावरण के लिए जाना जाता है.
+
+
+        यहाँ पर्यटक खुले समुद्र और तटीय इलाकों को देख सकते हैं। यह क्षेत्र समुद्री
+        गतिविधियों और स्थानीय तट तक पहुँच प्रदान करता है।'
+      history: null
+      significance: रत्नागिरी में स्थानीय समुद्री जीवन के अन्वेषण के लिए जाना जाने
+        वाला तटीय स्थान।
+      dos: '- जल गतिविधियों में भाग लेते समय स्थानीय ऑपरेटरों के निर्देशों का पालन
+        करें
+
+        - स्थानीय मछली पकड़ने वाले समुदाय के क्षेत्रों का सम्मान करें'
+      donts: '- पेशेवर सहायता के बिना अनियंत्रित पानी में न उतरें
+
+        - समुद्री पारिस्थितिकी तंत्र को नुकसान न पहुँचाएँ'
+      safety_text: डाइविंग या जल गतिविधियों में भाग लेने से पहले प्रशिक्षक की साख
+        और उपकरणों के मानकों की जाँच करें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://lbb.in/mumbai/vengurla-rocks-3589a0/
+    - https://www.justdial.com/Ratnagiri/Mirya-Beach-Rabbani-Mohalla/9999P2352-2352-220921212323-W9I1_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: nandivade-beach
+  status: ai_draft
+  name_en: Nandivade Beach
+  name_mr: नांदिवडे समुद्रकिनारा
+  name_hi: नंदीवाडे बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 17.286314
+  lng: 73.202908
+  coord_source: osm way/394719956
+  osm_id: way/394719956
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Tambad Wadi region in Ratnagiri district, reachable by
+    road via local buses or private taxis from Ratnagiri.
+  nearest_station: Sangameshwar / Ratnagiri Railway Station (approx. 35 km)
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Nandivade Beach is located near the Tambad Wadi and Jaigad region
+        in Ratnagiri taluka. The beach is surrounded by hills and thick natural vegetation,
+        offering views of the coastline.
+
+
+        Visitors can observe the surrounding green landscape and local coastal terrain.
+        The ancient Lakshmi Keshav Temple is situated near this coastal area.'
+      history: null
+      significance: A coastal location in Ratnagiri taluka featuring adjacent hills
+        and proximity to the Lakshmi Keshav Temple.
+      dos: '- Wear comfortable walking shoes for the terrain
+
+        - Carry drinking water and snacks'
+      donts: '- Do not litter on the beach sand
+
+        - Avoid swimming during high tides'
+      safety_text: Exercise caution near deep waters as lifeguard services may not
+        be stationed permanently.
+    mr:
+      short_story: 'नंदीवाडे बीच रत्‍नागिरी तालुक्यातील तांबड वाडी आणि जयगड परिसराजवळ
+        स्थित आहे. हा समुद्रकिनारा आजूबाजूचे डोंगर आणि दाट नैसर्गिक वनस्पतींनी वेढलेला
+        आहे.
+
+
+        येथे किनारपट्टीचा परिसर आणि निसर्ग पाहता येतो. या किनार्‍याजवळ प्राचीन लक्ष्मी
+        केशव मंदिर आहे.'
+      history: null
+      significance: डोंगरांनी वेढलेला आणि लक्ष्मी केशव मंदिराच्या सानिध्यात असलेला
+        रत्‍नागिरी तालुक्यातील एक किनारी परिसर.
+      dos: '- फिरण्यासाठी आरामदायक पादत्राणे घालावीत
+
+        - पिण्याचे पाणी व खाऊ सोबत ठेवावा'
+      donts: '- किनाऱ्यावर कचरा टाकू नये
+
+        - भरतीच्या वेळी समुद्रात जाणे टाळावे'
+      safety_text: किनארपट्टीवर कायमस्वरूपी जीवरक्षक उपलब्ध नसल्याने पाण्यात उतरताना
+        काळजी घ्यावी.
+    hi:
+      short_story: 'नंदीवाडे बीच रत्नागिरी तालुका के तांबड वाड़ी और जयगढ़ क्षेत्र
+        के पास स्थित है। यह समुद्र तट पहाड़ियों और घनी प्राकृतिक वनस्पतियों से घिरा
+        हुआ है।
+
+
+        यहाँ आने वाले पर्यटक तटीय परिदृश्य को देख सकते हैं। इस तट के पास प्राचीन लक्ष्मी
+        केशव मंदिर स्थित है।'
+      history: null
+      significance: रत्नागिरी तालुका में पहाड़ियों से घिरा और लक्ष्मी केशव मंदिर के
+        निकट स्थित एक तटीय स्थल।
+      dos: '- चलने के लिए आरामदायक जूते पहनें
+
+        - पीने का पानी और स्नैक्स साथ रखें'
+      donts: '- तट पर कचरा न फैलाएं
+
+        - उच्च ज्वार के दौरान समुद्र में जाने से बचें'
+      safety_text: यहाँ लाइफगार्ड हमेशा मौजूद नहीं रहते हैं, इसलिए गहरे पानी में सावधानी
+        बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.indianetzone.com/nandivade_beach
+    - https://www.justdial.com/Ratnagiri/Nandivade-Beach-Jaigad/9999P2352-2352-220320235730-G1T4_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: wayangani-beach
+  status: ai_draft
+  name_en: Wayangani Beach
+  name_mr: वायंगणी समुद्रकिनारा
+  name_hi: वायांगानी बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.934183
+  lng: 73.287421
+  coord_source: osm way/488856430
+  osm_id: way/488856430
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Oct-Mar
+  how_to_reach: Located in Wayangani village within the Konkan region of Ratnagiri,
+    accessible by road transport.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Wayangani Beach is situated in the Maruti Mandir area of Ratnagiri
+        taluka. The beach features a stretch of sand accompanied by rock formations
+        along the coastline.
+
+
+        Visitors to the area can view the open sea and adjacent coastal greenery.
+        The location is accessible via local roadways from Ratnagiri.'
+      history: null
+      significance: A recognized coastal spot in Ratnagiri taluka known for its rockspread
+        and shoreline.
+      dos: '- Hire a private vehicle or taxi for convenient travel
+
+        - Check local weather conditions before visiting'
+      donts: '- Do not walk barefoot on sharp rocky patches
+
+        - Avoid venturing far into rough waters'
+      safety_text: Watch out for slippery rocks along the shoreline and uneven terrain.
+    mr:
+      short_story: 'वायांगानी बीच रत्‍नागिरी तालुक्यातील मारुती मंदिर परिसरात स्थित
+        आहे. या समुद्रकिनाऱ्यावर वाळूचा पट्टा आणि किनारपट्टीवर खडकाळ भाग पाहायला मिळतो.
+
+
+        येथे येणारे पर्यटक उघडा समुद्र आणि आजूबाजूची किनारपट्टीची हिरवळ पाहू शकतात.
+        रत्‍नागिरी येथून रस्त्याने येथे पोहोचता येते.'
+      history: null
+      significance: खडकाळ पसरलेल्या भागासाठी आणि किनारपट्टीसाठी ओळखले जाणारे रत्‍नागिरी
+        तालुक्यातील एक ठिकाण.
+      dos: '- प्रवासासाठी खाजगी वाहन किंवा टॅक्सी करावी
+
+        - भेट देण्यापूर्वी हवामानाची स्थिती तपासावी'
+      donts: '- तीक्ष्ण खडकांवर अनवाणी चालणे टाळावे
+
+        - खवळलेल्या पाण्यात लांबवर जाणे टाळावे'
+      safety_text: किनाऱ्यावरील संलग्‍न खडकांवर चालताना घसरण्याबाबत काळजी घ्यावी.
+    hi:
+      short_story: 'वायांगानी बीच रत्नागिरी तालुका के मारुति मंदिर क्षेत्र में स्थित
+        है। इस समुद्र तट पर रेत का विस्तार और तटीय इलाकों में चट्टानी संरचनाएँ मौजूद
+        हैं।
+
+
+        यहाँ आने वाले लोग खुले समुद्र और आसपास की तटीय हरियाली को देख सकते हैं। रत्नागिरी
+        से सड़क मार्ग द्वारा यहाँ पहुँचा जा सकता है।'
+      history: null
+      significance: रत्नागिरी तालुका में अपनी चट्टानी बनावट और तट के लिए जाना जाने
+        वाला एक स्थान।
+      dos: '- यात्रा के लिए निजी वाहन या टैक्सी का उपयोग करें
+
+        - जाने से पहले स्थानीय मौसम की स्थिति की जाँच करें'
+      donts: '- नुकीली चट्टानों पर नंगे पैर न चलें
+
+        - अशांत पानी में दूर जाने से बचें'
+      safety_text: तट के पास फिसलन भरी चट्टानों और असमान भूभाग से सावधान रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.explurger.com/pd/92odewsk6wm3qhhn6
+    - https://www.justdial.com/Ratnagiri/Wayangani-Beach-Maruti-Mandir/9999P2352-2352-250305230829-N8Q1_BZDET
+    - https://us.trip.com/travel-guide/attraction/ratnagiri/wayangani-beach-rockspread-142948977/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: gavkhandi-beach
+  status: ai_draft
+  name_en: Gavkhandi Beach
+  name_mr: गावखडी समुद्रकिनारा
+  name_hi: गावखडी बीच
+  category: beach
+  taluka: Ratnagiri
+  lat: 16.800125
+  lng: 73.316249
+  coord_source: osm way/1244306762
+  osm_id: way/1244306762
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 40
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Oct-Mar
+  how_to_reach: Located in Ratnagiri taluka, accessible by road directly up to the
+    beach destination with roadside parking.
+  nearest_station: null
+  nearest_bus_stop: Ratnagiri Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Gavkhandi Beach (also known as Gavkhadi Beach) is located in Ratnagiri
+        taluka near Pavas. The beach features a shoreline backed by a well-maintained
+        pine forest and green hills.
+
+
+        Visitors walking through the trees encounter the expanse of the Arabian Sea.
+        A turtle conservation project has been noted at this beach location.'
+      history: null
+      significance: An offbeat coastal location in Ratnagiri taluka featuring a pine
+        forest and a turtle conservation initiative.
+      dos: '- Maintain proper disposal of waste to preserve cleanliness
+
+        - Explore the surrounding village and tree cover responsibly'
+      donts: '- Do not disturb turtle nesting areas if present
+
+        - Avoid loud music or disturbing local wildlife'
+      safety_text: Be mindful of changing tide timings while walking along the shore.
+    mr:
+      short_story: 'गावखडी बीच (गावखाडी बीच म्हणूनही ओळखला जातो) पावसजवळ रत्‍नागिरी
+        तालुक्यात स्थित आहे. या किनाऱ्याच्या मागे सुरूबन (पाइन वन) आणि हिरवेगार डोंगर
+        आहेत.
+
+
+        झाडीतून वाट काढत किनाऱ्यावर आल्यावर अरबी समुद्राचा विस्तृत विस्तार दिसतो.
+        या समुद्रकिनारी कासव संरक्षण प्रकल्प राबवला जातो.'
+      history: null
+      significance: सुरूबन आणि कासव संरक्षण प्रकल्पासाठी ओळखले जाणारे रत्‍नागिरी तालुक्यातील
+        एक किनारपट्टीचे ठिकाण.
+      dos: '- स्वच्छता राखण्यासाठी कचरा योग्य ठिकाणी टाकावा
+
+        - परिसराची व झाडीची काळजीपूर्वक सफर करावी'
+      donts: '- कासवांच्या अधिवाशाला किंवा घरट्यांना त्रास देऊ नये
+
+        - किनारपट्टीवर मोठा आवाज करणे टाळावे'
+      safety_text: किनाऱ्यावर फिरताना भरती-ओहोटीच्या वेळेची नोंद ठेवावी.
+    hi:
+      short_story: 'गावखडी बीच (जिसे गावखाडी बीच भी कहा जाता है) रत्नागिरी तालुका
+        में पावस के पास स्थित है। इस समुद्र तट के पास एक सुरूर वन (पाइन वन) और हरी-भरी
+        पहाड़ियाँ हैं।
+
+
+        पेड़ों के बीच से गुजरते हुए अरब सागर का विस्तार दिखाई देता है। इस समुद्र तट
+        पर कछुआ संरक्षण परियोजना भी संचालित की जाती है।'
+      history: null
+      significance: रत्नागिरी तालुका में पाइन वन और कछुआ संरक्षण पहल वाला एक तटीय
+        स्थल।
+      dos: '- स्वच्छता बनाए रखने के लिए कचरा सही जगह पर डालें
+
+        - आसपास के पेड़ों और प्रकृति का जिम्मेदारी से आनंद लें'
+      donts: '- कछुओं के घोंसले या संरक्षण क्षेत्रों को परेशान न करें
+
+        - तेज आवाज करने या वन्यजीवों को डिस्टर्ब करने से बचें'
+      safety_text: तट पर टहलते समय ज्वार-भाटे के समय का ध्यान रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mushafiri.com/destinations/gavkhadi-beach/
+    - https://travelkonkan.in/gavkhadi-beach/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; OSM match by name, check pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: marine-aquarium-and-museum
+  status: ai_draft
+  name_en: Marine Aquarium and Museum
+  name_mr: मरीन अक्वेरियम आणि म्युझियम
+  name_hi: मरीन एक्वेरियम और म्यूजियम
+  category: museum
+  taluka: Ratnagiri
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: INR 5 for adults
+  entry_fee_inr: 5
+  visit_minutes: null
+  opens: '10:00'
+  closes: '17:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: Located at a distance of 2.5 km from Ratnagiri Bus Stand on Mirya
+    Bandar Road / Bhagwati Mandir Road next to Mandavi Beach.
+  nearest_station: null
+  nearest_bus_stop: Ratnagiri Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Marine Aquarium and Museum is situated at Sadanand Wadi near
+        Mandavi Beach in Ratnagiri town. Maintained by the Marine Biological Research
+        Station, it houses preserved marine specimens, fish varieties, and educational
+        exhibits related to local aquatic life.
+
+
+        Visitors can observe various tanks containing regional fish species and display
+        units featuring marine artifacts. The facility serves as an educational center
+        for students and tourists exploring the coastal ecosystem of the Konkan region.'
+      history: The facility was established in 1985 by the Marine Biological Research
+        Station of Ratnagiri under the Department of Fisheries.
+      significance: Educational research facility displaying regional marine specimens
+        and aquatic life of the Konkan coast.
+      dos: '- Check opening hours and ticket availability prior to visiting.
+
+        - Maintain silence inside the indoor exhibition halls.
+
+        - Follow instructions given by facility staff regarding displays.'
+      donts: '- Do not touch the preserved specimens or glass tanks.
+
+        - Do not use flash photography where prohibited.'
+      safety_text: Exercise normal caution while walking around wet floors near exhibition
+        tanks.
+    mr:
+      short_story: 'मरीन एक्वेरियम आणि म्युझियम हे रत्‍नागिरी शहरातील मांडवी बीचजवळ
+        सदानंद वाडी येथे स्थित आहे. मत्स्यव्यवसाय विभागांतर्गत कार्यरत असलेल्या मरीन
+        बायोलॉजिकल रिसर्च स्टेशनतर्फे चालवल्या जाणाऱ्या या केंद्रात जतन केलेले सागरी
+        नमुने, विविध मासे आणि स्थानिक जलचरांशी संबंधित शैक्षणिक वस्तू प्रदर्शनासाठी
+        ठेवल्या आहेत.
+
+
+        येथे विविध माशांचे टँक आणि सागरी वस्तूंची प्रदर्शने पाहायला मिळतात. कोकण किनारपट्टीच्या
+        जलचरांचा अभ्यास करण्यासाठी येणाऱ्या विद्यार्थी आणि पर्यटकांसाठी हे एक महत्त्वाचे
+        शैक्षणिक केंद्र आहे.'
+      history: या केंद्राची स्थापना 1985 मध्ये रत्‍नागिरीच्या मरीन बायोलॉजिकल रिसर्च
+        स्टेशनतर्फे मत्स्यव्यवसाय विभागांतर्गत करण्यात आली.
+      significance: कोकण किनारपट्टीच्या प्रादेशिक सागरी नमुन्यांचे आणि जलचरांचे प्रदर्शन
+        करणारे शैक्षणिक संशोधन केंद्र.
+      dos: '- भेट देण्यापूर्वी वेळा आणि तिकिटांची माहिती तपासा.
+
+        - अंतर्गत प्रदर्शन कक्षात शांतता पाळा.
+
+        - कर्मचाऱ्यांच्या सूचनांचे पालन करा.'
+      donts: '- जतन केलेले नमुने किंवा काचेचे टँक यांना हात लावू नका.
+
+        - जिथे प्रतिबंध आहे तिथे फ्लॅश फोटोग्राफी करू नका.'
+      safety_text: प्रदर्शनातील टँकजवळ ओल्या जमिनीवर चालताना काळजी घ्या.
+    hi:
+      short_story: 'मरीन एक्वेरियम और म्यूजियम रत्नागिरी शहर में मांडवी बीच के पास
+        सदानंद वाड़ी में स्थित है। मरीन बायोलॉजिकल रिसर्च स्टेशन द्वारा संचालित इस
+        केंद्र में स्थानीय जलीय जीवन से संबंधित संरक्षित समुद्री नमूने, मछलियाँ और
+        शैक्षिक प्रदर्शन रखे गए हैं।
+
+
+        यहाँ क्षेत्रीय प्रजातियों की मछलियों वाले टैंक और समुद्री अवशेष देखने को मिलते
+        हैं। यह स्थान कोंकण तट के जलीय पारिस्थितिकी तंत्र का अध्ययन करने वाले छात्रों
+        और पर्यटकों के लिए एक शैक्षिक केंद्र है।'
+      history: इस केंद्र की स्थापना 1985 में मत्स्य विभाग के अंतर्गत रत्नागिरी के
+        मरीन बायोलॉजिकल रिसर्च स्टेशन द्वारा की गई थी।
+      significance: कोंकण तट के क्षेत्रीय समुद्री नमूनों और जलीय जीवों को प्रदर्शित
+        करने वाला शैक्षणिक अनुसंधान केंद्र।
+      dos: '- यात्रा करने से पहले समय और टिकट की जानकारी अवश्य जाँच लें।
+
+        - इनडोर प्रदर्शन हॉल के भीतर शांति बनाए रखें।
+
+        - कर्मचारियों के निर्देशों का पालन करें।'
+      donts: '- संरक्षित नमूनों या काँच के टैंकों को हाथ न लगाएँ।
+
+        - प्रतिबंधित क्षेत्रों में फ्लैश फोटोग्राफी न करें।'
+      safety_text: प्रदर्शनी टैंकों के पास गीले फर्श पर चलते समय सामान्य सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://vushii.com/place.php?name=Ratnagiri+Marine+Fish+Museum
+    - https://www.trawell.in/maharashtra/ratnagiri/marine-aquarium-museum
+    - https://vushii.com/place.php?name=Marine+Biological+Research+Station
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: gateway-of-ratnagiri
+  status: ai_draft
+  name_en: Gateway of Ratnagiri
+  name_mr: गेटवे ऑफ रत्नागिरी
+  name_hi: गेटवे ऑफ़ रत्नागिरी
+  category: backwater
+  taluka: Ratnagiri
+  lat: 16.989449
+  lng: 73.285119
+  coord_source: osm node/11057501808
+  osm_id: node/11057501808
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located at the Ratnagiri Jetty on Mandavi Beach, easily reachable
+    by road from Ratnagiri town center.
+  nearest_station: null
+  nearest_bus_stop: Ratnagiri Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Gateway of Ratnagiri is a structure featuring a sloped roof
+        located at the Ratnagiri jetty area near Mandavi Beach. It overlooks the coastal
+        waters and serves as a prominent landmark point along the town''s shore.
+
+
+        Visitors walk along this seaside area to view the expanse of the Arabian Sea,
+        the adjacent port zone, and the shoreline breezes. The spot connects local
+        pedestrian movement near the waterfront jetty.'
+      history: According to local tradition, this coastal defensive and architectural
+        structure at the jetty was associated with the work of Pratinidhi Dhondu Bhaskar.
+      significance: Coastal landmark structure at the Mandavi jetty area overlooking
+        the Arabian Sea.
+      dos: '- Visit during morning or late afternoon for comfortable weather.
+
+        - Watch your step near the unpaved edges of the jetty area.'
+      donts: '- Do not climb onto structural railings or unsafe walls.
+
+        - Do not litter plastic waste near the waterfront.'
+      safety_text: Keep a safe distance from slippery rock surfaces and unguarded
+        waterfront edges during high tides.
+    mr:
+      short_story: 'गेटवे ऑफ रत्‍नागिरी हे रत्‍नागिरीतील मांडवी बीचजवळील जेटी परिसरात
+        असलेली उतरत्या छापराची एक वास्तू आहे. ही वास्तू किनारपट्टीच्या पाण्याकडे तोंड
+        करून उभी असून शहराच्या काठावरील एक प्रमुख खूण मानली जाते.
+
+
+        येथे येणारे पर्यटक अरबी समुद्र, लगतचा बंदर परिसर आणि समुद्रावरून वाहणाऱ्या
+        वाऱ्याचा आनंद घेण्यासाठी किनाऱ्यावर फेरफटका मारतात. हा परिसर वॉटरफ्रंट जेटीजवळ
+        लोकांच्या आवागमनाशी जोडलेला आहे.'
+      history: स्थानिक लोकविश्वासानुसार, जेटीवरील या किनारपट्टीवरील संरक्षणात्मक आणि
+        वास्तुकलेच्या रचनेचा संबंध प्रतिमेशी म्हणजेच प्रतिनिधी धोंडू भास्कर यांच्या
+        कार्याशी जोडला जातो.
+      significance: मांडवी जेटी परिसरातील अरबी समुद्राकडे पाहणारी किनारपट्टीची महत्त्वाची
+        खूण.
+      dos: '- हवामानानुसार सकाळी किंवा दुपारी उशिरा भेट द्या.
+
+        - जेटी परिसरातील कडांवर चालताना काळजी घ्या.'
+      donts: '- वास्तूच्या रेलिंगवर किंवा असुरक्षित भिंतींवर चढू नका.
+
+        - किनारपट्टीजवळ प्लॅस्टिक कचरा टाकू नका.'
+      safety_text: भरतीच्या वेळी निसरड्या खडकांवर आणि संरक्षक भिंत नसलेल्या कडेवर
+        जाताना योग्य अंतर ठेवा.
+    hi:
+      short_story: 'गेटवे ऑफ़ रत्नागिरी मांडवी बीच के पास रत्नागिरी जेटी क्षेत्र में
+        स्थित एक ढलानदार छत वाली संरचना है। यह तटीय जल की ओर मुख किए हुए है और शहर
+        के तट पर एक प्रमुख स्थलचिह्न के रूप में कार्य करती है।
+
+
+        पर्यटक अरब सागर के विस्तार, निकटवर्ती बंदरगाह क्षेत्र और तटीय हवा का आनंद
+        लेने के लिए इस समुद्री क्षेत्र में टहलते हैं। यह स्थान जलमार्ग जेटी के पास
+        तटीय गतिविधियों को जोड़ता है।'
+      history: स्थानीय परंपरा के अनुसार, जेटी पर इस तटीय संरचना का निर्माण कार्य प्रतिनिधि
+        धोंडू भास्कर से जुड़ा माना जाता है।
+      significance: मांडवी जेटी क्षेत्र में अरब सागर की ओर देखने वाली तटीय संरचना।
+      dos: '- सुहाना मौसम पाने के लिए सुबह या देर दोपहर में जाएँ।
+
+        - जेटी क्षेत्र के किनारों पर सावधानी से चलें।'
+      donts: '- संरचना की रेलिंग या असुरक्षित दीवारों पर न चढ़ें।
+
+        - तट के पास प्लास्टिक का कचरा न फैलाएँ।'
+      safety_text: उच्च ज्वार के दौरान फिसलन भरी चट्टानों और बिना सुरक्षा वाले तटीय
+        किनारों से उचित दूरी बनाए रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.indiaairport.com/tourism/ratnagiri/gateway_of_ratnagiri.htm
+    - https://www.trawell.in/maharashtra/ratnagiri/places-to-visit
+    - https://www.indiaunveiled.in/destination/gateway-ratnagiri
+    - https://www.holidify.com/places/ratnagiri/gateway-of-ratnagiri-sightseeing-3410.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'

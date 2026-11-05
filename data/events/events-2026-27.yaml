@@ -1,0 +1,675 @@
+# Events, next 12 months (Nov 2026 - Oct 2027). status ai_draft.
+# Festival dates: Drik Panchang (New Delhi location; Maharashtra may differ by a day for some tithis).
+# Jatras: every taluka covered (Lanja and Ratnagiri thinnest). Lunar-date jatras derived from Drik/Dekho Panchang - confirm locally.
+- status: ai_draft
+  name:
+    en: Diwali
+    mr: दिवाळी
+    hi: दिवाली
+  type: festival
+  from_date: '2026-11-08'
+  to_date: '2026-11-11'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2026
+- status: ai_draft
+  name:
+    en: Kartiki Ekadashi
+    mr: कार्तिकी एकादशी
+    hi: कार्तिकी एकादशी
+  type: festival
+  from_date: '2026-11-20'
+  to_date: '2026-11-20'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2026
+- status: ai_draft
+  name:
+    en: Tripuri Purnima, Uttareshwar Temple, Dahagaon
+    mr: त्रिपुरी पौर्णिमा, उत्तरेश्वर मंदिर, दहागाव
+    hi: त्रिपुरी पूर्णिमा, उत्तरेश्वर मंदिर, डहागांव
+  type: jatra
+  from_date: '2026-11-24'
+  to_date: '2026-11-24'
+  taluka: Mandangad
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://dekhopanchang.com/en/festivals/kartik-purnima
+- status: ai_draft
+  name:
+    en: Tripurari Purnima palkhi, Amnayeshwar Temple, Burambad
+    mr: त्रिपुरारी पौर्णिमा पालखी, आम्नायेश्वर मंदिर, बुरंबाड
+    hi: त्रिपुरारी पूर्णिमा पालखी, आम्नायेश्वर मंदिर, बुरंबाड
+  type: jatra
+  from_date: '2026-11-24'
+  to_date: '2026-11-24'
+  taluka: Sangameshwar
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://pilgrimdata.in/temple/amnayeshwar-temple-burambad-ta-sangameshwar-dist-ratnagiri/
+    - https://dekhopanchang.com/en/festivals/kartik-purnima
+- status: ai_draft
+  name:
+    en: Datta Jayanti
+    mr: दत्त जयंती
+    hi: दत्त जयंती
+  type: festival
+  from_date: '2026-12-23'
+  to_date: '2026-12-23'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2026
+- status: ai_draft
+  name:
+    en: Makar Sankranti
+    mr: मकर संक्रांत
+    hi: मकर संक्रांति
+  type: festival
+  from_date: '2027-01-14'
+  to_date: '2027-01-14'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Marleshwar Yatra (Girija-Marleshwar wedding)
+    mr: मार्लेश्वर यात्रा
+    hi: मार्लेश्वर यात्रा
+  type: jatra
+  from_date: '2027-01-14'
+  to_date: '2027-01-15'
+  taluka: Sangameshwar
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://utsav.gov.in/view-event/marleshwar-yatra-sangameshawar
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: utsav.gov.in says held on Makar Sankranti over two days; confirm 2027 dates
+    with temple trust
+- status: ai_draft
+  name:
+    en: Maghi Ganesh Jayanti
+    mr: माघी गणेश जयंती
+    hi: माघी गणेश जयंती
+  type: festival
+  from_date: '2027-02-10'
+  to_date: '2027-02-10'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/hindu-gods/ganesha/ganesha-jayanti/ganesha-jayanti-date-time.html?year=2027
+  _review: expect crowds at Ganpatipule; local utsav length unverified
+- status: ai_draft
+  name:
+    en: Ganpatipule Maghi Ganesh Jayanti utsav
+    mr: गणपतीपुळे माघी गणेश जयंती उत्सव
+    hi: गणपतीपुले माघी गणेश जयंती उत्सव
+  type: jatra
+  from_date: '2027-02-10'
+  to_date: '2027-02-10'
+  taluka: Ratnagiri
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/hindu-gods/ganesha/ganesha-jayanti/ganesha-jayanti-date-time.html?year=2027
+    - https://en.wikipedia.org/wiki/Ganpatipule
+  _review: Wikipedia lists Magh Chaturthi as a Ganpatipule festival; local utsav may
+    run several days
+- status: ai_draft
+  name:
+    en: Hedavi Maghi Chaturthi fair
+    mr: हेदवी माघी चतुर्थी यात्रा
+    hi: हेदवी माघी चतुर्थी यात्रा
+  type: jatra
+  from_date: '2027-02-10'
+  to_date: '2027-02-10'
+  taluka: Guhagar
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.drikpanchang.com/hindu-gods/ganesha/ganesha-jayanti/ganesha-jayanti-date-time.html?year=2027
+  _review: 'district site: large fair at Hedavi on Maghi Chaturthi; length unverified'
+- status: ai_draft
+  name:
+    en: Maghi Ganesh Jayanti, Kadyavarcha Ganpati, Anjarle
+    mr: माघी गणेश जयंती, कड्यावरचा गणपती, आंजर्ले
+    hi: माघी गणेश जयंती, कड्यावरचा गणपति, आंजर्ले
+  type: jatra
+  from_date: '2027-02-10'
+  to_date: '2027-02-10'
+  taluka: Dapoli
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.bhaktibharat.com/amp/en/mandir/kadyawaril-ganapati-temple
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: 'source: draws thousands of devotees'
+- status: ai_draft
+  name:
+    en: Rath Saptami utsav, Kanakaditya Temple, Kasheli
+    mr: रथ सप्तमी उत्सव, कनकादित्य मंदिर, कशेळी
+    hi: रथ सप्तमी उत्सव, कनकादित्य मंदिर, कशेळी
+  type: jatra
+  from_date: '2027-02-13'
+  to_date: '2027-02-17'
+  taluka: Rajapur
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.ganpatipule.co.in/Eng/OtherVisitingPlaces7
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Magh Shuddha 7 to 11; dates derived from Maghi Ganesh Jayanti (Shuddha
+    4) 2027-02-10 - confirm
+- status: ai_draft
+  name:
+    en: Urus of Syed Chand Bukhari Ali Faqir, Lanja
+    mr: उरुस सय्यद चांद बुखारी अली फकीर, लांजा
+    hi: उर्स सैयद चांद बुखारी अली फकीर, लांजा
+  type: jatra
+  from_date: '2027-02-20'
+  to_date: '2027-02-20'
+  taluka: Lanja
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Lanja
+    - https://vedpanchang.com/festivals/magh-purnima-2027
+  _review: held at Magh full moon; booths stay about a month
+- status: ai_draft
+  name:
+    en: Velas Turtle Festival (Kasav Mahotsav)
+    mr: वेळास कासव महोत्सव
+    hi: वेळास कछुआ महोत्सव
+  type: season
+  from_date: '2027-03-01'
+  to_date: '2027-03-31'
+  taluka: Mandangad
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://seaturtlesofindia.org/?p=480
+  _review: 'source: month-long, usually March; exact 2027 dates announced by Velas
+    villagers yearly'
+- status: ai_draft
+  name:
+    en: Mahashivratri yatra, Dhootpapeshwar Temple, Rajapur
+    mr: महाशिवरात्र यात्रा, धूतपापेश्वर मंदिर, राजापूर
+    hi: महाशिवरात्रि यात्रा, धूतपापेश्वर मंदिर, राजापुर
+  type: jatra
+  from_date: '2027-03-01'
+  to_date: '2027-03-08'
+  taluka: Rajapur
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.ganpatipule.co.in/Eng/OtherVisitingPlaces7
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Magh Vadya 10 to Falgun Shuddh 1; Gregorian dates derived by Claude from
+    Mahashivratri 2027-03-05 - confirm
+- status: ai_draft
+  name:
+    en: Maha Shivaratri
+    mr: महाशिवरात्री
+    hi: महाशिवरात्रि
+  type: festival
+  from_date: '2027-03-05'
+  to_date: '2027-03-05'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: big crowds at Shiva temples (Marleshwar, Velneshwar, Dhootpapeshwar, Karneshwar)
+    - per-temple jatras need sources
+- status: ai_draft
+  name:
+    en: Velneshwar Mahashivratri fair
+    mr: वेळणेश्वर महाशिवरात्री यात्रा
+    hi: वेलनेश्वर महाशिवरात्रि यात्रा
+  type: jatra
+  from_date: '2027-03-05'
+  to_date: '2027-03-05'
+  taluka: Guhagar
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Ganpatipule
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Wikipedia (Ganpatipule article) says Velneshwar is busy during the Maha
+    Shivaratri fair
+- status: ai_draft
+  name:
+    en: Mahashivratri, Kshetrapal Temple, Aasavale
+    mr: महाशिवरात्र, क्षेत्रपाल मंदिर, आसावले
+    hi: महाशिवरात्रि, क्षेत्रपाल मंदिर, आसावले
+  type: jatra
+  from_date: '2027-03-05'
+  to_date: '2027-03-05'
+  taluka: Mandangad
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Mahashivratri, Amnayeshwar Temple, Burambad
+    mr: महाशिवरात्र, आम्नायेश्वर मंदिर, बुरंबाड
+    hi: महाशिवरात्रि, आम्नायेश्वर मंदिर, बुरंबाड
+  type: jatra
+  from_date: '2027-03-05'
+  to_date: '2027-03-05'
+  taluka: Sangameshwar
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://pilgrimdata.in/temple/amnayeshwar-temple-burambad-ta-sangameshwar-dist-ratnagiri/
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: 'source: celebrated for seven days; span to confirm'
+- status: ai_draft
+  name:
+    en: Shimga (Holi)
+    mr: शिमगा
+    hi: शिमगा (होली)
+  type: festival
+  from_date: '2027-03-21'
+  to_date: '2027-03-22'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Konkan Shimgotsav runs longer than Holi in many villages; dates are Holika
+    Dahan + Holi only
+- status: ai_draft
+  name:
+    en: Shimga Mahotsav, Khemnath Temple, Borghar
+    mr: शिमगा महोत्सव, खेमनाथ मंदिर, बोरघर
+    hi: शिमगा महोत्सव, खेमनाथ मंदिर, बोरघर
+  type: jatra
+  from_date: '2027-03-21'
+  to_date: '2027-03-22'
+  taluka: Mandangad
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: dates = Shimga (Holi) 2027; local Shimga runs several days - confirm
+- status: ai_draft
+  name:
+    en: Shimga, Kalkai Devi Temple, Bharane
+    mr: शिमगा, काळकाई देवी मंदिर, भरणे
+    hi: शिमगा, काळकाई देवी मंदिर, भरणे
+  type: jatra
+  from_date: '2027-03-21'
+  to_date: '2027-03-22'
+  taluka: Khed
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://pilgrimdata.in/temple/kalkai-devi-temple-bharane-ta-khed-dist-ratnagiri/
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Shimga has nine days of kirtan and palanquin visits to sister goddesses
+    in Khed; exact span to confirm
+- status: ai_draft
+  name:
+    en: Gudi Padwa
+    mr: गुढीपाडवा
+    hi: गुड़ी पड़वा
+  type: festival
+  from_date: '2027-04-07'
+  to_date: '2027-04-07'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Ram Navami utsav, Lakshmi Narayan Temple, Khed
+    mr: राम नवमी उत्सव, लक्ष्मी नारायण मंदिर, खेड
+    hi: राम नवमी उत्सव, लक्ष्मी नारायण मंदिर, खेड
+  type: jatra
+  from_date: '2027-04-07'
+  to_date: '2027-04-16'
+  taluka: Khed
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: 10 days from Gudi Padwa per Wikipedia; end date derived
+- status: ai_draft
+  name:
+    en: Ram Navami
+    mr: राम नवमी
+    hi: राम नवमी
+  type: festival
+  from_date: '2027-04-14'
+  to_date: '2027-04-14'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Ram Navami, Parshuram Temple
+    mr: राम नवमी, परशुराम मंदिर
+    hi: राम नवमी, परशुराम मंदिर
+  type: jatra
+  from_date: '2027-04-14'
+  to_date: '2027-04-14'
+  taluka: Chiplun
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://temple.yatradham.org/temple/parshuram-mandir
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Hanuman Jayanti
+    mr: हनुमान जयंती
+    hi: हनुमान जयंती
+  type: festival
+  from_date: '2027-04-20'
+  to_date: '2027-04-20'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Parshuram Jayanti (Akshaya Tritiya)
+    mr: परशुराम जयंती
+    hi: परशुराम जयंती
+  type: jatra
+  from_date: '2027-05-08'
+  to_date: '2027-05-08'
+  taluka: Chiplun
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: date sourced; crowd at Parshuram temple Chiplun is an assumption - verify
+- status: ai_draft
+  name:
+    en: Kalkai Devi temple anniversary, Bharane
+    mr: काळकाई देवी मंदिर वर्धापन दिन, भरणे
+    hi: काळकाई देवी मंदिर वार्षिकोत्सव, भरणे
+  type: jatra
+  from_date: '2027-05-12'
+  to_date: '2027-05-12'
+  taluka: Khed
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://pilgrimdata.in/temple/kalkai-devi-temple-bharane-ta-khed-dist-ratnagiri/
+  _review: fixed date 12 May per source
+- status: ai_draft
+  name:
+    en: Ashadhi Ekadashi
+    mr: आषाढी एकादशी
+    hi: आषाढ़ी एकादशी
+  type: festival
+  from_date: '2027-07-13'
+  to_date: '2027-07-13'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Narali Purnima
+    mr: नारळी पौर्णिमा
+    hi: नारली पूर्णिमा
+  type: festival
+  from_date: '2027-08-16'
+  to_date: '2027-08-16'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: Drik lists Raksha Bandhan same day; marks fishing season reopening on the
+    coast
+- status: ai_draft
+  name:
+    en: Gokulashtami (Dahi Handi)
+    mr: गोकुळाष्टमी
+    hi: गोकुलाष्टमी
+  type: festival
+  from_date: '2027-08-24'
+  to_date: '2027-08-25'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Ganeshotsav
+    mr: गणेशोत्सव
+    hi: गणेशोत्सव
+  type: festival
+  from_date: '2027-09-03'
+  to_date: '2027-09-14'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: Heavy traffic on Mumbai-Goa highway and Konkan Railway around the start
+      and end
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: closures note is general knowledge, not sourced
+- status: ai_draft
+  name:
+    en: Ganeshotsav, Kadyavarcha Ganpati, Anjarle
+    mr: गणेशोत्सव, कड्यावरचा गणपती, आंजर्ले
+    hi: गणेशोत्सव, कड्यावरचा गणपति, आंजर्ले
+  type: jatra
+  from_date: '2027-09-03'
+  to_date: '2027-09-14'
+  taluka: Dapoli
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.bhaktibharat.com/amp/en/mandir/kadyawaril-ganapati-temple
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Navratri
+    mr: नवरात्र
+    hi: नवरात्रि
+  type: festival
+  from_date: '2027-09-30'
+  to_date: '2027-10-08'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Navratri, Chandika Devi Temple, Dabhol
+    mr: नवरात्र, चंडिका देवी मंदिर, दाभोळ
+    hi: नवरात्र, चंडिका देवी मंदिर, दाभोळ
+  type: jatra
+  from_date: '2027-09-30'
+  to_date: '2027-10-08'
+  taluka: Dapoli
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.talukadapoli.com/en/places/chandika-temple-dabhol/
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: 'source: visitor numbers rise during Navratri'
+- status: ai_draft
+  name:
+    en: Navratri, Kalkai Devi Temple, Bharane
+    mr: नवरात्र, काळकाई देवी मंदिर, भरणे
+    hi: नवरात्र, काळकाई देवी मंदिर, भरणे
+  type: jatra
+  from_date: '2027-09-30'
+  to_date: '2027-10-08'
+  taluka: Khed
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://pilgrimdata.in/temple/kalkai-devi-temple-bharane-ta-khed-dist-ratnagiri/
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: police salute to palanquin per source
+- status: ai_draft
+  name:
+    en: Navratri, Mahakali Temple, Adivare
+    mr: नवरात्र, महाकाली मंदिर, आडिवरे
+    hi: नवरात्र, महाकाली मंदिर, आडिवरे
+  type: jatra
+  from_date: '2027-09-30'
+  to_date: '2027-10-08'
+  taluka: Rajapur
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.ganpatipule.co.in/Eng/OtherVisitingPlaces7
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Aryadurga Navratri fair, Devihasol
+    mr: आर्यादुर्गा नवरात्र यात्रा, देवीहसोळ
+    hi: आर्यादुर्गा नवरात्रि यात्रा, देवीहसोल
+  type: jatra
+  from_date: '2027-10-07'
+  to_date: '2027-10-07'
+  taluka: Rajapur
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://en.wikipedia.org/wiki/Aryadurga_devi,_Devihasol
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: fair is on the 8th day of Navratri; date derived by Claude from Navratri
+    start 2027-09-30 - confirm Ashtami date
+- status: ai_draft
+  name:
+    en: Dussehra
+    mr: दसरा
+    hi: दशहरा
+  type: festival
+  from_date: '2027-10-09'
+  to_date: '2027-10-09'
+  taluka: null
+  impact:
+    crowd: null
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+- status: ai_draft
+  name:
+    en: Diwali
+    mr: दिवाळी
+    hi: दिवाली
+  type: festival
+  from_date: '2027-10-28'
+  to_date: '2027-10-31'
+  taluka: null
+  impact:
+    crowd: busy
+    closures: null
+  _sources:
+    from_date:
+    - https://www.drikpanchang.com/calendars/hindu/hinducalendar.html?year=2027
+  _review: to_date assumes 4-day Diwali; only Lakshmi Puja date sourced

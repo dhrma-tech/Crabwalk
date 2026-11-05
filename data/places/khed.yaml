@@ -1,0 +1,1377 @@
+# Places - Khed taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract, or Wikipedia where noted in coord_source.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: rasalgad-fort
+  status: ai_draft
+  name_en: Rasalgad Fort
+  name_mr: रसाळगड
+  name_hi: रसालगढ़ किला
+  category: fort
+  taluka: Khed
+  lat: 17.764528
+  lng: 73.512074
+  coord_source: osm node/9197007202
+  osm_id: node/9197007202
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Winter
+  how_to_reach: From Rasalwadi village at the foothills, about 15 km east of Khed.
+  nearest_station: null
+  nearest_bus_stop: Nimni
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Rasalgad
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Rasalgad is a hill fort about 15 km east of Khed, at around 500
+        m. It sits on a small triangular plateau of about five acres, with two gates
+        still in good shape.
+
+
+        Inside are two rock-cut cisterns, a storeroom, a Veer Maruti idol and the
+        Zolai devi temple with a deepmal. The fort is the start of the ridge trek
+        to Sumargad and Mahipatgad.'
+      history: The More clan of Javli held it before Shivaji took it. The British
+        took it from the Peshwas in 1818. It has been a protected monument of the
+        Maharashtra archaeology department since 2003. Two more cannons were recovered
+        in 2022.
+      significance: A well-kept small hill fort and the start of the Rasalgad-Sumargad-Mahipatgad
+        ridge trek.
+      dos: '- Start from Rasalwadi, about 10 minutes by road from the foothills
+
+        - Go on a weekday to avoid weekend crowds'
+      donts: '- Don''t leave litter at the temple or cisterns'
+      safety_text: '- Carry water and start early on hot days'
+    mr:
+      short_story: 'रसाळगड हा खेडच्या पूर्वेस सुमारे 15 किमी अंतरावर आणि 500 मीटर
+        उंचीवर असलेला एक डोंगरी किल्ला आहे. हा किल्ला सुमारे पाच एकरांच्या एका लहान
+        त्रिकोणी पठारावर वसलेला असून, त्याचे दोन दरवाजे अजूनही सुस्थितीत आहेत.
+
+
+        किल्ल्याच्या आत दोन कातळात कोरलेली पाण्याची टाकी, एक कोठार, वीर मारुतीची मूर्ती
+        आणि दीपमाळ असलेले झोलाई देवीचे मंदिर आहे. सुमारगड आणि महिपतगडकडे जाणाऱ्या
+        पदभ्रमण (ट्रेक) मार्गाची सुरुवात याच किल्ल्यापासून होते.'
+      history: शिवाजी महाराजांनी हा किल्ला जिंकण्यापूर्वी तो जावळीच्या मोऱ्यांच्या
+        ताब्यात होता. 1818 मध्ये ब्रिटिशांनी तो पेशव्यांकडून घेतला. 2003 पासून हे
+        महाराष्ट्र पुरातत्त्व विभागाचे संरक्षित स्मारक आहे. 2022 मध्ये येथे आणखी दोन
+        तोफा सापडल्या.
+      significance: उत्तम स्थितीत असलेला एक लहान डोंगरी किल्ला आणि रसाळगड-सुमारगड-महिपतगड
+        पदभ्रमण (ट्रेक) मार्गाची सुरुवात.
+      dos: '- पायथ्यापासून रस्त्याने सुमारे 10 मिनिटांच्या अंतरावर असलेल्या रसाळवाडीतून
+        सुरुवात करा
+
+        - वीकेंडची गर्दी टाळण्यासाठी आठवड्याच्या इतर दिवशी (सोमवार ते शुक्रवार) जा'
+      donts: '- मंदिर किंवा पाण्याच्या टाक्यांजवळ कचरा करू नका'
+      safety_text: '- सोबत पाणी ठेवा आणि उन्हाळ्याच्या दिवसांत लवकर ट्रेक सुरू करा'
+    hi:
+      short_story: 'रसालगढ़ खेड़ के पूर्व में लगभग 15 किमी दूर और 500 मीटर की ऊंचाई
+        पर स्थित एक पहाड़ी किला है। यह लगभग पांच एकड़ के एक छोटे त्रिकोणीय पठार पर
+        स्थित है, जिसके दो द्वार अभी भी अच्छी स्थिति में हैं。
+
+
+        किले के अंदर चट्टानों को काटकर बनाए गए दो पानी के कुंड, एक स्टोररूम, एक वीर
+        मारुति की मूर्ति और दीपमाल के साथ झोलाई देवी का मंदिर है। यह किला सुमारगढ़
+        और महिपतगढ़ तक जाने वाले ट्रेक की शुरुआत है।'
+      history: शिवाजी के इसे जीतने से पहले यह जावली के मोरे वंश के पास था। 1818 में
+        अंग्रेजों ने इसे पेशवाओं से छीन लिया। 2003 से यह महाराष्ट्र पुरातत्व विभाग
+        का एक संरक्षित स्मारक है। 2022 में यहां से दो और तोपें बरामद की गईं।
+      significance: एक अच्छी तरह से रखा गया छोटा पहाड़ी किला और रसालगढ़-सुमारगढ़-महिपतगढ़
+        ट्रेक की शुरुआत।
+      dos: '- तलहटी से सड़क मार्ग द्वारा लगभग 10 मिनट की दूरी पर स्थित रसालवाड़ी से
+        शुरुआत करें
+
+        - वीकेंड की भीड़ से बचने के लिए सप्ताह के अन्य दिनों (सोमवार से शुक्रवार)
+        में जाएं'
+      donts: '- मंदिर या पानी के कुंडों के पास कचरा न छोड़ें'
+      safety_text: '- साथ में पानी रखें और गर्म दिनों में जल्दी शुरुआत करें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/6/68/Rasalgad1.jpg
+    credit: Ccmarathe
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Rasalgad1.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Rasalgad
+    - https://trekkingnation.blogspot.com/2018/04/rasalgad-fort-maharashtra.html
+  _review: open 24h/free from a 2018 blog - dropped; EN text = Claude draft from sources,
+    needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: mahipatgad-fort
+  status: ai_draft
+  name_en: Mahipatgad Fort
+  name_mr: महिपतगड
+  name_hi: महिपतगढ़ किला
+  category: fort
+  taluka: Khed
+  lat: 17.844135
+  lng: 73.50214
+  coord_source: osm node/8119013423
+  osm_id: node/8119013423
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 180
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: December to January
+  how_to_reach: Trek from Wadi Beldar, reached by a jeepable dirt road from Wadi Jaitapur.
+  nearest_station: null
+  nearest_bus_stop: Wadi Beldar
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Mahipatgad
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mahipatgad is one of the largest forts in Maharashtra, a 120-acre
+        tableland at about 3,490 ft, 23.6 km east of Khed. It has six gateways and
+        six battlements, with the remains of Maruti and Ganapati temples, old horse
+        stables and two large wells.
+
+
+        A road reaches Wadi Beldar village; from there it is a steep climb of about
+        an hour and a half. The Pareshwar temple is the only shelter on top.'
+      history: The fort is credited to Adilshah of Bijapur in the 15th century. Shivaji
+        captured it in 1661; it later went to the Peshwas and then to the British
+        in 1818.
+      significance: A huge forested plateau fort, the northern end of the Rasalgad-Sumargad-Mahipatgad
+        ridge.
+      dos: '- Go between December and January, the best season
+
+        - Start the climb early from Wadi Beldar'
+      donts: '- Don''t drink well water without treating it'
+      safety_text: '- Leopards, wild pigs and hyenas live in the forest; stay in groups
+
+        - Watch for snakes on the trail'
+    mr:
+      short_story: 'खेडच्या पूर्वेस 23.6 किमी अंतरावर आणि 3,490 फूट उंचीवर 120 एकरांच्या
+        पठारावर पसरलेला महिपतगड हा महाराष्ट्रातील सर्वांत मोठ्या किल्ल्यांपैकी एक
+        आहे. याला सहा दरवाजे आणि सहा तटबंदी आहेत, तसेच येथे मारुती आणि गणपती मंदिरांचे
+        अवशेष, जुन्या घोड्यांच्या पागा आणि दोन मोठ्या विहिरी आहेत.
+
+
+        वाडी बेलदार गावापर्यंत रस्ता जातो; तेथून सुमारे दीड तासाची खडी चढण आहे. किल्ल्यावर
+        आसरा घेण्यासाठी पारेश्वर मंदिर हे एकमेव ठिकाण आहे.'
+      history: 15 व्या शतकातील विजापूरच्या आदिलशहाने हा किल्ला बांधला असे मानले जाते.
+        1661 मध्ये शिवाजी महाराजांनी तो जिंकला; नंतर तो पेशव्यांकडे आणि 1818 मध्ये
+        ब्रिटिशांकडे गेला.
+      significance: घनदाट जंगलाने वेढलेला एक विस्तीर्ण पठारी किल्ला आणि रसाळगड-सुमारगड-महिपतगड
+        पदभ्रमण मार्गाचे उत्तरेकडील टोक.
+      dos: '- डिसेंबर आणि जानेवारी दरम्यान जा, हा येथील सर्वोत्तम हंगाम आहे
+
+        - वाडी बेलदार येथून लवकर चढायला सुरुवात करा'
+      donts: '- विहिरीचे पाणी शुद्ध केल्याशिवाय पिऊ नका'
+      safety_text: '- जंगलात बिबट्या, रानडुक्कर आणि तरस राहतात; समूहाने एकत्र राहा
+
+        - वाटेत सापांपासून सावध राहा'
+    hi:
+      short_story: 'महिपतगढ़ महाराष्ट्र के सबसे बड़े किलों में से एक है, जो खेड़ के
+        पूर्व में 23.6 किमी दूर लगभग 3,490 फीट की ऊंचाई पर 120 एकड़ के पठार पर फैला
+        है। इसमें छह द्वार और छह प्राचीर हैं, साथ ही मारुति और गणपति मंदिरों के अवशेष,
+        पुराने घोड़ों के अस्तबल और दो बड़े कुएं हैं。
+
+
+        वाड़ी बेलदार गांव तक एक सड़क जाती है; वहां से लगभग डेढ़ घंटे की खड़ी चढ़ाई
+        है। शीर्ष पर आश्रय के लिए पारेश्वर मंदिर एकमात्र जगह है।'
+      history: 15वीं शताब्दी में इस किले का निर्माण बीजापुर के आदिलशाह ने करवाया था।
+        1661 में शिवाजी ने इस पर कब्ज़ा कर लिया; बाद में यह पेशवाओं के पास और फिर
+        1818 में अंग्रेजों के पास चला गया।
+      significance: घने जंगल वाला एक विशाल पठारी किला, जो रसालगढ़-सुमारगढ़-महिपतगढ़
+        रिज (पहाड़ी धार) का उत्तरी छोर है।
+      dos: '- दिसंबर और जनवरी के बीच जाएं, यह सबसे अच्छा मौसम है
+
+        - वाड़ी बेलदार से जल्दी चढ़ाई शुरू करें'
+      donts: '- बिना साफ़ किए कुएं का पानी न पिएं'
+      safety_text: '- जंगल में तेंदुए, जंगली सूअर और लकड़बग्घे रहते हैं; समूहों में
+        एक साथ रहें
+
+        - रास्ते में सांपों से सावधान रहें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/7/70/Mahipatgad.jpg
+    credit: Ccmarathe
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Mahipatgad.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mahipatgad
+    - https://durgbharari.in/mahipatgad/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: sumargad-fort
+  status: ai_draft
+  name_en: Sumargad Fort
+  name_mr: सुमारगड
+  name_hi: सुमारगढ़ किला
+  category: fort
+  taluka: Khed
+  lat: 17.808545
+  lng: 73.511978
+  coord_source: osm node/8119013424
+  osm_id: node/8119013424
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Winter
+  how_to_reach: About 19 km east of Khed; usually a forest trek from Mahipatgad or
+    Rasalgad.
+  nearest_station: null
+  nearest_bus_stop: Dahivali
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Suamargad
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Sumargad is a small, little-visited fort about 19 km east of Khed,
+        at 883 m. The fortification covers only one or two acres, with steep cliffs
+        on all sides, many rock-cut cisterns and a cave with a shivling.
+
+
+        There are two routes, from Mahipatgad or from Rasalgad, both through remote
+        forest with no villages nearby.'
+      history: Very little of its history is known.
+      significance: null
+      dos: '- Go with someone who knows the ridge route'
+      donts: null
+      safety_text: '- Cliffs drop on all sides
+
+        - The forest is remote; carry water and start early'
+    mr:
+      short_story: 'सुमारगड हा खेडच्या पूर्वेस सुमारे 19 किमी अंतरावर आणि 883 मीटर
+        उंचीवर असलेला एक लहान आणि कमी गर्दीचा किल्ला आहे. तटबंदी केवळ एक ते दोन एकरांवर
+        पसरलेली आहे, ज्याला चारही बाजूंनी तीव्र उतार असलेले कडे आहेत. इथे कातळात कोरलेली
+        पाण्याची अनेक टाकी आणि शिवलिंग असलेली एक गुहा आहे.
+
+
+        येथे जाण्यासाठी महिपतगड किंवा रसाळगडावरून असे दोन मार्ग आहेत. हे दोन्ही मार्ग
+        निर्मनुष्य जंगलातून जातात आणि आसपास कोणतेही गाव नाही.'
+      history: या किल्ल्याच्या इतिहासाबद्दल फारच थोडी माहिती उपलब्ध आहे.
+      significance: null
+      dos: '- पदभ्रमण मार्गाची (ट्रेकची) माहिती असलेल्या व्यक्तीसोबतच जा'
+      donts: null
+      safety_text: '- चारही बाजूंना तीव्र उतार असलेले कडे आहेत
+
+        - जंगल निर्मनुष्य आहे; सोबत पाणी ठेवा आणि लवकर ट्रेक सुरू करा'
+    hi:
+      short_story: 'सुमारगढ़ खेड़ के पूर्व में लगभग 19 किमी दूर और 883 मीटर की ऊंचाई
+        पर स्थित एक छोटा और कम देखा जाने वाला किला है। किलेबंदी केवल एक या दो एकड़
+        में फैली है, जिसके चारों ओर खड़ी चट्टानें, कई पानी के कुंड और शिवलिंग वाली
+        एक गुफा है。
+
+
+        यहां जाने के दो रास्ते हैं, महिपतगढ़ या रसालगढ़ से, दोनों ही सुदूर जंगल से
+        होकर गुज़रते हैं और आस-पास कोई गांव नहीं है।'
+      history: इसके इतिहास के बारे में बहुत कम जानकारी है।
+      significance: null
+      dos: '- उस व्यक्ति के साथ जाएं जिसे इस ट्रेक मार्ग की जानकारी हो'
+      donts: null
+      safety_text: '- चारों तरफ खड़ी चट्टानें हैं
+
+        - जंगल सुदूर और निर्जन है; साथ में पानी रखें और जल्दी शुरुआत करें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/5/58/Sumargad_Fort.jpg
+    credit: Ccmarathe
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Sumargad_Fort.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Suamargad
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: khed-buddhist-caves
+  status: ai_draft
+  name_en: Khed Buddhist Caves
+  name_mr: खेड बौद्ध लेणी
+  name_hi: खेड़ बौद्ध गुफाएं
+  category: cave
+  taluka: Khed
+  lat: 17.721667
+  lng: 73.398333
+  coord_source: wikipedia Khed_Caves
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In Khed town.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Khed_Caves
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Khed caves are a small group of ancient Buddhist caves inside
+        Khed town. The main cave is a large vihara with three cells for monks and
+        a stupa at the back, plus four smaller caves.
+
+
+        The caves are in a rather run-down state, but easy to reach if you are passing
+        through Khed.'
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t scratch or write on the cave walls'
+      safety_text: null
+    mr:
+      short_story: 'खेड शहरात असलेल्या खेड लेणी या प्राचीन बौद्ध लेण्यांचा एक छोटा
+        समूह आहे. मुख्य लेणी हा एक मोठा विहार असून त्यात भिक्षूंसाठी तीन खोल्या आणि
+        मागे एक स्तूप आहे, तसेच इतर चार लहान लेण्या आहेत.
+
+
+        या लेण्या सध्या थोड्या पडक्या अवस्थेत आहेत, पण जर तुम्ही खेडमधून जात असाल
+        तर येथे सहज पोहोचता येते.'
+      history: null
+      significance: null
+      dos: null
+      donts: '- लेण्यांच्या भिंतींवर ओरखडे काढू नका किंवा काहीही लिहू नका'
+      safety_text: null
+    hi:
+      short_story: 'खेड़ गुफाएं खेड़ शहर के अंदर प्राचीन बौद्ध गुफाओं का एक छोटा समूह
+        हैं। मुख्य गुफा एक बड़ा विहार है जिसमें भिक्षुओं के लिए तीन कक्ष और पीछे एक
+        स्तूप है, साथ ही चार छोटी गुफाएं भी हैं।
+
+
+        गुफाएं काफी जर्जर अवस्था में हैं, लेकिन यदि आप खेड़ से होकर गुजर रहे हैं तो
+        यहां आसानी से पहुंचा जा सकता है।'
+      history: null
+      significance: null
+      dos: null
+      donts: '- गुफा की दीवारों पर खरोंचें नहीं या कुछ भी न लिखें'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/b/b5/Khed_caves.jpg
+    credit: Partner
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Khed_caves.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Khed_Caves
+    - https://travelkonkan.in/pre-historic-buddhist-caves/
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kalkai-devi-temple-bharane
+  status: ai_draft
+  name_en: Kalkai Devi Temple, Bharane
+  name_mr: काळकाई देवी मंदिर, भरणे
+  name_hi: कालकाई देवी मंदिर, भरणे
+  category: temple
+  taluka: Khed
+  lat: 17.725593
+  lng: 73.420958
+  coord_source: osm node/10807089038
+  osm_id: node/10807089038
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Near Bharne Naka on the Mumbai-Goa highway (NH 66).
+  nearest_station: null
+  nearest_bus_stop: Bharne Naka
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Kalkai Devi temple is in Bharane, about 4 km from Khed, a
+        five-minute walk from Bharne Naka on the Mumbai-Goa highway. Cars can drive
+        up to the temple parking.
+
+
+        The goddess is believed to remove misfortune and to protect the women of Bharane
+        who have married and moved away. Shops selling puja items line the path, and
+        the temple trust runs a pilgrim lodge behind the temple.'
+      history: Legend says a Shinde family cow poured its milk daily on a stone here,
+        and during an epidemic the goddess rose from the stone and drove away 'kaal',
+        death. The temple was renovated in 2002 and a golden kalash was placed on
+        the spire in May 2010.
+      significance: One of the most visited temples in Khed taluka.
+      dos: '- Visit during Navratri or Shimga for the palanquin processions
+
+        - Use the pilgrim lodge if staying overnight'
+      donts: '- Don''t park on the highway at Bharne Naka'
+      safety_text: null
+    mr:
+      short_story: 'काळकाई देवीचे मंदिर भरणे येथे आहे, जे खेडपासून सुमारे 4 किमी अंतरावर,
+        मुंबई-गोवा महामार्गावरील भरणे नाक्यापासून पाच मिनिटांच्या चालण्याच्या अंतरावर
+        आहे. कार थेट मंदिराच्या पार्किंगपर्यंत जाऊ शकतात.
+
+
+        अशी श्रद्धा आहे की देवी संकट दूर करते आणि भरणे येथील ज्या महिलांचे लग्न होऊन
+        त्या बाहेरगावी गेल्या आहेत, त्यांचे रक्षण करते. मंदिराच्या वाटेवर पूजेच्या
+        साहित्याची दुकाने आहेत आणि मंदिर ट्रस्टतर्फे मंदिराच्या मागे भाविकांसाठी विश्रामगृह
+        चालवले जाते.'
+      history: आख्यायिकेनुसार, शिंदे कुटुंबातील एक गाय येथे रोज एका शिळेवर दूध टाकायची
+        आणि एका साथीच्या रोगाच्या काळात देवी त्या शिळेतून प्रकट झाली आणि तिने 'काळ'
+        (मृत्यू) ला पळवून लावले. मंदिराचा 2002 मध्ये जीर्णोद्धार करण्यात आला आणि मे
+        2010 मध्ये शिखरावर सोन्याचा कळस बसवण्यात आला.
+      significance: खेड तालुक्यातील सर्वात जास्त भेट दिल्या जाणाऱ्या मंदिरांपैकी एक.
+      dos: '- पालखी सोहळ्यांसाठी नवरात्र किंवा शिमग्यादरम्यान भेट द्या
+
+        - रात्री मुक्काम करायचा असल्यास भाविकांच्या विश्रामगृहाचा वापर करा'
+      donts: '- भरणे नाक्यावर महामार्गावर गाडी उभी करू नका'
+      safety_text: null
+    hi:
+      short_story: 'कालकाई देवी का मंदिर भरणे में है, जो खेड से लगभग 4 किमी दूर, मुंबई-गोवा
+        राजमार्ग पर भरणे नाका से पाँच मिनट की पैदल दूरी पर है। कारें मंदिर के पार्किंग
+        तक जा सकती हैं।
+
+
+        ऐसी मान्यता है कि देवी विपत्ति दूर करती हैं और भरणे की उन महिलाओं की रक्षा
+        करती हैं जिनका विवाह होकर वे दूर चली गई हैं। मंदिर के रास्ते पर पूजा सामग्री
+        की दुकानें हैं और मंदिर ट्रस्ट द्वारा मंदिर के पीछे तीर्थयात्री विश्रामगृह
+        चलाया जाता है।'
+      history: किंवदंती है कि शिंदे परिवार की एक गाय यहाँ रोज एक पत्थर पर अपना दूध
+        गिराती थी और एक महामारी के दौरान देवी उस पत्थर से प्रकट हुईं और उन्होंने 'काल'
+        (मृत्यु) को भगा दिया। मंदिर का जीर्णोद्धार 2002 में किया गया था और मई 2010
+        में शिखर पर सोने का कलश स्थापित किया गया था।
+      significance: खेड तालुका के सबसे अधिक देखे जाने वाले मंदिरों में से एक।
+      dos: '- पालखी जुलूस के लिए नवरात्रि या शिग्मा के दौरान जाएँ
+
+        - यदि रात में रुकना हो तो तीर्थयात्री विश्रामगृह का उपयोग करें'
+      donts: '- भरणे नाका पर राजमार्ग पर पार्किंग न करें'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://pilgrimdata.in/temple/kalkai-devi-temple-bharane-ta-khed-dist-ratnagiri/
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+  _review: temple anniversary 12 May per source; EN text = Claude draft from sources,
+    needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: jholai-devi-temple
+  status: ai_draft
+  name_en: Jholai Devi Temple
+  name_mr: झोलाई देवी मंदिर
+  name_hi: झोलाई देवी मंदिर
+  category: temple
+  taluka: Khed
+  lat: 17.625166
+  lng: 73.378088
+  coord_source: osm node/13577625101
+  osm_id: node/13577625101
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Kulvandi/Poyanar, Khed taluka.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Khed/Shri-Zolai-Kelmai-Temple-Kulvandi/9999P2352-2352-200930002352-W6K9_BZDET
+  _review: 'several Zolai temples in Khed; confirm which one; no text: no reliable
+    source found (2026-11-03 search); needs field visit or local source'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kashedi-ghat
+  status: ai_draft
+  name_en: Kashedi Ghat
+  name_mr: कशेडी घाट
+  name_hi: कशेड़ी घाट
+  category: viewpoint
+  taluka: Khed
+  lat: 17.903904
+  lng: 73.431005
+  coord_source: wikidata Q28169391
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On NH 66 (Mumbai-Goa), Poladpur-Khed section.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Kashedi_Ghat
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kashedi Ghat is the mountain pass on NH 66 (Mumbai-Goa highway)
+        near Poladpur, on the Mahad-Khed stretch, where the road enters Ratnagiri
+        district. Its sharp bends make it one of the harder ghats in Maharashtra.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t stop on the bends'
+      safety_text: '- Drive slowly on the sharp curves, especially in rain'
+    mr:
+      short_story: कशेडी घाट हा NH 66 (मुंबई-गोवा महामार्ग) वरील पोलादपूरजवळ, महाड-खेड
+        टप्प्यावर असलेला एक डोंगरी घाट आहे, जिथून हा रस्ता रत्नागिरी जिल्ह्यात प्रवेश
+        करतो. येथील तीव्र वळणांमुळे हा महाराष्ट्रातील सर्वात कठीण घाटांपैकी एक मानला
+        जातो.
+      history: null
+      significance: null
+      dos: null
+      donts: '- घाटातील वळणांवर वाहने थांबवू नका'
+      safety_text: '- तीव्र वळणांवर, विशेषतः पावसात, गाडी हळू चालवा'
+    hi:
+      short_story: कशेड़ी घाट NH 66 (मुंबई-गोवा राजमार्ग) पर पोलादपुर के पास, महाड-खेड़
+        खिंचाव पर एक पहाड़ी दर्रा है, जहां से सड़क रत्नागिरी जिले में प्रवेश करती
+        है। इसके तीखे मोड़ इसे महाराष्ट्र के सबसे कठिन घाटों में से एक बनाते हैं।
+      history: null
+      significance: null
+      dos: null
+      donts: '- मोड़ों पर न रुकें'
+      safety_text: '- तीखे मोड़ों पर, खासकर बारिश में, गाड़ी धीरे चलाएं'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Kashedi_Ghat
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review; pin from wikidata, check on map
+  _collected_by: claude+gemini 2026-11-03
+- slug: raghuveer-ghat
+  status: ai_draft
+  name_en: Raghuveer Ghat
+  name_mr: रघुवीर घाट
+  name_hi: रघुवीर घाट
+  category: viewpoint
+  taluka: Khed
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Raghuveer Ghat is a mountain pass located at an elevation of 1400
+        meters in the Sahyadri ranges, about 40 kilometers from Khed city. Built between
+        1990 and 2002, it connects Khed to villages like Shindi and Valvan near the
+        Koyna backwaters.
+
+
+        During the monsoon, the pass experiences dense fog and features several seasonal
+        waterfalls. Visitors come to see the steep forested valleys and the unique,
+        small red-brown crabs native to the area.'
+      history: Construction of the ghat road began in 1990 and was completed in 2002
+        to connect Khed to remote Konkan villages.
+      significance: A high-altitude mountain pass known for its dense monsoon fog
+        and steep valley views.
+      dos: '- Carry rain gear and warm clothing if visiting during the monsoon.
+
+        - Bring your own food and water, as there is only one hotel at the top.'
+      donts: '- Do not harm or pick up the small red-brown crabs found on the road.
+
+        - Do not drive without hazard lights when fog reduces visibility.'
+      safety_text: The roads become extremely slippery and dense fog severely reduces
+        visibility during heavy rainfall.
+    mr:
+      short_story: 'रघुवीर घाट हा खेड शहरापासून 40 किलोमीटर अंतरावर सह्याद्रीच्या
+        रांगेत 1400 मीटर उंचीवर असलेला एक घाट आहे. 1990 ते 2002 या काळात बांधलेला
+        हा घाट खेडला कोयना बॅकवॉटरजवळील शिंदी आणि वळवण सारख्या गावांना जोडतो.
+
+
+        पावसाळ्यात या घाटात दाट धुके आणि अनेक हंगामी धबधबे पाहायला मिळतात. इथल्या
+        तीव्र उताराच्या दऱ्या आणि खास लाल-तपकिरी रंगाचे खेकडे पाहण्यासाठी पर्यटक इथे
+        येतात.'
+      history: या घाटाच्या रस्त्याचे बांधकाम 1990 मध्ये सुरू झाले आणि खेडला दुर्गम
+        कोकणी गावांशी जोडण्यासाठी 2002 मध्ये पूर्ण झाले.
+      significance: दाट पावसाळी धुके आणि दऱ्यांच्या दृश्यांसाठी ओळखला जाणारा एक उंच
+        घाट.
+      dos: '- पावसाळ्यात भेट देत असल्यास रेनकोट आणि उबदार कपडे सोबत ठेवा.
+
+        - घाटाच्या माथ्यावर फक्त एकच हॉटेल असल्याने स्वतःचे अन्न आणि पाणी सोबत ठेवा.'
+      donts: '- रस्त्यावर आढळणाऱ्या लहान लाल-तपकिरी खेकड्यांना पकडू नका किंवा त्यांना
+        त्रास देऊ नका.
+
+        - धुक्यामुळे समोरचे दिसणे कठीण होते तेव्हा इंडिकेटर चालू केल्याशिवाय गाडी
+        चालवू नका.'
+      safety_text: पावसाळ्यात रस्ते खूप निसरडे होतात आणि दाट धुक्यामुळे समोरचे पाहणे
+        अत्यंत कठीण होते.
+    hi:
+      short_story: 'रघुवीर घाट सह्याद्री पर्वतमाला में 1400 मीटर की ऊंचाई पर स्थित
+        एक पहाड़ी दर्रा है, जो खेड शहर से लगभग 40 किलोमीटर दूर है। 1990 और 2002 के
+        बीच बना यह दर्रा खेड को कोयना बैकवाटर के पास शिंदी और वलवण जैसे गांवों से
+        जोड़ता है।
+
+
+        मानसून के दौरान इस दर्रे में घना कोहरा छा जाता है और कई मौसमी झरने दिखाई देते
+        हैं। यहाँ आने वाले लोग गहरी जंगली घाटियों और क्षेत्र के अनूठे छोटे लाल-भूरे
+        रंग के केकड़ों को देख सकते हैं।'
+      history: इस घाट की सड़क का निर्माण 1990 में शुरू हुआ था और खेड को सुदूर कोंकण
+        गांवों से जोड़ने के लिए 2002 में पूरा हुआ था।
+      significance: घने मानसूनी कोहरे और गहरी घाटियों के दृश्यों के लिए जाना जाने
+        वाला एक ऊँचा पहाड़ी दर्रा।
+      dos: '- मानसून के दौरान यात्रा करते समय रेन गियर और गर्म कपड़े साथ रखें।
+
+        - अपना खाना और पानी खुद लाएं, क्योंकि घाट के ऊपर केवल एक ही होटल है।'
+      donts: '- सड़क पर पाए जाने वाले छोटे लाल-भूरे केकड़ों को न पकड़ें और न ही उन्हें
+        कोई नुकसान पहुँचाएँ।
+
+        - कोहरे के कारण दृश्यता कम होने पर हैज़र्ड लाइट के बिना गाड़ी न चलाएँ।'
+      safety_text: भारी बारिश के दौरान सड़कें बेहद फिसलन भरी हो जाती हैं और घने कोहरे
+        के कारण दृश्यता काफी कम हो जाती है।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/e/e5/Raghuveer_Ghat_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Abhay Bhosale
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Raghuveer_Ghat_-_panoramio.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.outlooktraveller.com/destinations/india/a-perfect-guide-to-ratnagiri-in-the-monsoon-season
+    - https://www.localguidesconnect.com/t/raghuveer-ghat-the-entryway-to-the-walk-in-the-clouds/407115
+  _review: 'identity from official district list; monsoon road - check closures; no
+    text: no reliable source found (2026-11-03 search); needs field visit or local
+    source; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+  _collected_by: claude 2026-11-03
+- slug: niribaji-waterfall-khandoshi
+  status: ai_draft
+  name_en: Niribaji Waterfall, Khandoshi
+  name_mr: निरीबाजी धबधबा, खांडोशी
+  name_hi: निरीबाजी जलप्रपात, खांडोशी
+  category: waterfall
+  taluka: Khed
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: 'identity only from official district list ("Niribaji Waterfall near Khandoshi
+    Village"); needs details; no text: no reliable source found (2026-11-03 search);
+    needs field visit or local source'
+  _collected_by: claude 2026-11-03
+- slug: nageshwar-temple-and-cave
+  status: ai_draft
+  name_en: Nageshwar Temple and Cave
+  name_mr: नागेश्वर मंदिर आणि गुहा
+  name_hi: नागेश्वर मंदिर और गुफा
+  category: temple
+  taluka: Khed
+  lat: 17.678146
+  lng: 73.681254
+  coord_source: osm node/9197007201
+  osm_id: node/9197007201
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 120
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: Reachable via Choravane village through a trek route originating from
+    Chiplun or Khed taluka.
+  nearest_station: Chiplun Railway Station, 22.66 km
+  nearest_bus_stop: Choravane Bus Stop
+  monsoon_status: risky
+  monsoon_reason: Heavy rainfall and dense slippery forest trails in the Western Ghats
+    make trekking hazardous during monsoons.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Nageshwar Temple is a natural cave situated beneath a rock pinnacle
+        near Choravane village in Khed taluka. The cave can accommodate around 25
+        to 30 people and houses a Shiva Linga.
+
+
+        Water naturally drips onto the Linga from the cave ceiling throughout the
+        year. Outside the cave, there is a rock-cut cistern covered with a protective
+        mesh that retains water year-round.'
+      history: null
+      significance: A natural cave shrine housing a Shiva Linga, functioning as a
+        regular resting point for hikers in the Sahyadri mountains.
+      dos: '- Carry sufficient water and food for the hike.
+
+        - Hire a local guide from Choravane village.'
+      donts: '- Do not litter in the cave or the water cistern.'
+      safety_text: The hike from Choravane is steep and physically demanding, requiring
+        good fitness.
+    mr:
+      short_story: 'नागेश्वर मंदिर ही खेड तालुक्यातील चोरवणे गावाजवळील एका मोठ्या
+        सुळक्याच्या खाली असलेली एक नैसर्गिक गुहा आहे. या गुहेत साधारण 25-30 लोक बसू
+        शकतात आणि आत एक शिवलिंग आहे.
+
+
+        येथे गुहेच्या छतावरून वर्षभर शिवलिंगावर नैसर्गिकरित्या पाण्याचे थेंब पडत असतात.
+        गुहेबाहेर एक पाण्याची टाकी (कुंड) आहे, ज्यावर जाळी बसवली असून त्यात वर्षभर
+        पाणी असते.'
+      history: null
+      significance: सह्याद्रीच्या पर्वतरांगांमध्ये असलेले हे एक नैसर्गिक शिवमंदिर
+        असून, ट्रेकर्ससाठी हे एक महत्त्वाचे विश्रांतीचे ठिकाण आहे.
+      dos: '- ट्रेकिंग करताना सोबत पुरेसे पाणी आणि अन्न ठेवा.
+
+        - चोरवणे गावातून स्थानिक वाटाड्या सोबत घ्या.'
+      donts: '- गुहेत किंवा पाण्याच्या कुंडाजवळ कचरा टाकू नका.'
+      safety_text: चोरवणे गावातून येणारा मार्ग खूप खडा आणि दमछाक करणारा आहे, त्यामुळे
+        शारीरिक तंदुरुस्ती आवश्यक आहे.
+    hi:
+      short_story: 'नागेश्वर मंदिर खेड़ तालुका के चोरवणे गांव के पास एक पर्वत की चोटी
+        के नीचे स्थित एक प्राकृतिक गुफा है। गुफा के अंदर एक शिवलिंग है और यहाँ 25-30
+        लोग आसानी से आ सकते हैं।
+
+
+        गुफा की छत से साल भर शिवलिंग पर पानी की बूंदें गिरती रहती हैं। बाहर एक पानी
+        का कुंड है जिसे जाली से ढका गया है, और इसमें भी साल भर पानी रहता है।'
+      history: null
+      significance: यह सह्याद्री की पहाड़ियों में स्थित एक प्राकृतिक शिव मंदिर है,
+        जो ट्रेकर्स के लिए एक नियमित विश्राम स्थल है।
+      dos: '- ट्रेकिंग के लिए अपने साथ पर्याप्त पानी और भोजन ले जाएं.
+
+        - चोरवणे गांव से एक स्थानीय गाइड को साथ रखें.'
+      donts: '- गुफा या पानी के कुंड में कचरा न डालें.'
+      safety_text: चोरवणे से यहाँ तक का ट्रेक बहुत खड़ी चढ़ाई वाला और शारीरिक रूप
+        से थका देने वाला है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Nageshwar-Temple-Choravane-Khed/9999P2352-2352-191121200837-H7H2_BZDET
+    - https://durgbharari.in/nageshwar/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; EN text + MR/HI by Gemini (Google
+    Search, batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: jagbudi-river
+  status: ai_draft
+  name_en: Jagbudi River
+  name_mr: जगबुडी नदी
+  name_hi: जगबुडी नदी
+  category: backwater
+  taluka: Khed
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: null
+  how_to_reach: Flows directly past Khed town on the Mumbai-Goa National Highway NH-66
+    and is easily accessible by road.
+  nearest_station: Khed Railway Station, 2 km
+  nearest_bus_stop: Khed Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Water levels rise significantly during heavy monsoon rains, leading
+    to strong currents.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Jagbudi_River
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Jagbudi is a river flowing through Khed taluka. Originating
+        near Khopi in the Western Ghats, it travels through several settlements, including
+        Shiv, Ashti, and Karji, before merging into the Vashishti River near Bahirwali.
+
+
+        The river serves as a water source for local agriculture and supports wetland
+        habitats. Its waters are known to be inhabited by mugger crocodiles.'
+      history: null
+      significance: A major tributary to the Vashishti River and a natural habitat
+        for the mugger crocodile in the Konkan region.
+      dos: '- Maintain a safe distance from the riverbanks.'
+      donts: '- Do not enter the water for swimming or domestic chores.'
+      safety_text: The river contains mugger crocodiles, which sometimes enter flooded
+        human settlements during the monsoon, making the banks dangerous.
+    mr:
+      short_story: 'जगबुडी ही खेड तालुक्यातून वाहणारी एक नदी आहे. तिचा उगम पश्चिम
+        घाटातील खोपी गावाजवळ होतो आणि ती शिव, करजी अशा गावांमधून वाहत जाऊन वाशिष्ठी
+        नदीला मिळते.
+
+
+        ही नदी स्थानिक शेतीसाठी पाण्याचा स्रोत असून तिच्या पात्रात मगरींचा (Mugger
+        crocodile) अधिवास आहे.'
+      history: null
+      significance: ही वाशिष्ठी नदीची एक प्रमुख उपनदी असून ती मगरींचा नैसर्गिक अधिवास
+        म्हणून ओळखली जाते.
+      dos: '- नदीच्या काठावर जाताना नेहमी सुरक्षित अंतर ठेवा.'
+      donts: '- नदीच्या पाण्यात पोहण्यासाठी किंवा कपडे धुण्यासाठी उतरू नका.'
+      safety_text: नदीत मगरी आहेत आणि पावसाळ्यात पुराचे पाणी आल्यावर त्या वस्तीतही
+        शिरू शकतात, त्यामुळे काठावर जाणे धोकादायक ठरू शकते.
+    hi:
+      short_story: 'जगबुडी खेड़ तालुका से होकर बहने वाली एक नदी है। इसका उद्गम पश्चिमी
+        घाट में खोपी के पास होता है, और यह शिव, करजी जैसे गांवों से होते हुए बहिरवली
+        के पास वाशिष्ठी नदी में मिल जाती है।
+
+
+        यह नदी स्थानीय कृषि के लिए जल स्रोत का काम करती है और इसके पानी में मगरमच्छ
+        (Mugger crocodile) पाए जाते हैं।'
+      history: null
+      significance: यह वाशिष्ठी नदी की एक प्रमुख सहायक नदी है और मगरमच्छों का एक प्राकृतिक
+        आवास है।
+      dos: '- नदी के किनारों से सुरक्षित दूरी बनाए रखें।'
+      donts: '- पानी में तैरने या कपड़े धोने के लिए प्रवेश न करें।'
+      safety_text: नदी में मगरमच्छ होते हैं जो मानसून के दौरान बाढ़ आने पर बस्तियों
+        में भी आ सकते हैं, जिससे किनारे पर जाना खतरनाक हो सकता है।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/8b/Jagbudi_River_Khed.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pradeep717
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Jagbudi_River_Khed.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Jagbudi_River
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+    - https://marathi.ndtv.com/cities/dangerous-crocodile-spotted-inside-the-jagbudi-river-in-khed-ratnagiri-people-afraid-of-this-situation-even-after-flood-11758331
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: chakdev
+  status: ai_draft
+  name_en: Chakdev
+  name_mr: चकदेव
+  name_hi: चकदेव
+  category: village
+  taluka: Khed
+  lat: 17.724601
+  lng: 73.56743
+  coord_source: osm node/8119029736
+  osm_id: node/8119029736
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Accessible by road from Khed via hill paths and connecting tracks
+    near Khopi.
+  nearest_station: Satara Railway Station, 51 km
+  nearest_bus_stop: Birmini Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Chakdev is a peak and village in Khed taluka. The location features
+        a steep trekking route with a permanent iron ladder, commonly referred to
+        as the Chakdeo Shidi, which connects to the nearby village of Valvan.
+
+
+        At the top, the village contains a temple dedicated to Kedar, the local deity.
+        The surrounding area consists of dense forests and rocky terrain.'
+      history: Villagers from Chakdev, Shindi, and Valvan previously maintained the
+        steep approach using bamboo and wooden bars before a permanent iron structure
+        was installed.
+      significance: Known for its steep iron ladder approach and the local Kedar Temple.
+      dos: '- Wear high-grip hiking shoes to navigate the metal stairs.'
+      donts: '- Do not attempt the climb during heavy rain.'
+      safety_text: The iron ladder is vertical and steep, requiring careful climbing.
+    mr:
+      short_story: 'चकदेव हे खेड तालुक्यातील एक शिखर आणि गाव आहे. येथे जाण्यासाठी
+        अतिशय उभी लोखंडी शिडी आहे, जिला ''चकदेव शिडी'' म्हणतात. या मार्गाने वळवण गावातही
+        जाता येते.
+
+
+        या गावात ग्रामदैवत केदारेश्वराचे मंदिर आहे. आजूबाजूला घनदाट जंगल आणि खडकाळ
+        प्रदेश आहे.'
+      history: पूर्वी इथले गावकरी बांबू आणि लाकडाच्या साहाय्याने ही शिडी तयार करून
+        वापरत असत, आता तिथे कायमस्वरूपी लोखंडी शिडी बसवण्यात आली आहे.
+      significance: हे ठिकाण त्याच्या उभ्या लोखंडी शिडीसाठी आणि स्थानिक केदार मंदिरासाठी
+        ओळखले जाते.
+      dos: '- लोखंडी शिडीवर चढण्यासाठी चांगल्या ग्रिपचे शूज वापरा.'
+      donts: '- पावसाळ्यात शिडीवरून जाणे टाळा.'
+      safety_text: येथील शिडी पूर्णपणे उभी असल्यामुळे चढताना आणि उतरताना विशेष काळजी
+        घेणे आवश्यक आहे.
+    hi:
+      short_story: 'चकदेव खेड़ तालुका में स्थित एक चोटी और गाँव है। यहाँ तक पहुँचने
+        के लिए एक खड़ी लोहे की सीढ़ी है, जिसे ''चकदेव शिड़ी'' कहा जाता है, जो पास
+        के वलवण गाँव को भी जोड़ती है।
+
+
+        गाँव के शीर्ष पर स्थानीय देवता केदार का मंदिर स्थित है। इसके चारों ओर घने
+        जंगल और चट्टानी इलाका है।'
+      history: पहले ग्रामीण यहाँ पहुँचने के लिए बाँस और लकड़ी से सीढ़ी बनाते थे, लेकिन
+        बाद में यहाँ एक स्थायी लोहे की सीढ़ी लगा दी गई।
+      significance: यह स्थान अपने खड़ी लोहे की सीढ़ी वाले रास्ते और केदार मंदिर के
+        लिए जाना जाता है।
+      dos: '- धातु की सीढ़ियों पर चढ़ने के लिए अच्छी ग्रिप वाले ट्रेकिंग जूते पहनें।'
+      donts: '- भारी बारिश के दौरान यहाँ चढ़ाई न करें।'
+      safety_text: यहाँ की सीढ़ी पूरी तरह से खड़ी है, इसलिए चढ़ाई करते समय बहुत सावधानी
+        बरतने की आवश्यकता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.openstreetmap.org/node/8119029736
+    - https://en.wikipedia.org/wiki/Suamargad
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; monsoon_status is a category default,
+    not sourced; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: hazrat-jalal-shah-baba-dargah
+  status: ai_draft
+  name_en: Hazrat Jalal Shah Baba Dargah
+  name_mr: हजरत जलाल शाह बाबा दर्गा
+  name_hi: हज़रत जलाल शाह बाबा दरगाह
+  category: temple
+  taluka: Khed
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in the suburb of Khed along the NH-66 highway, near Khed Railway
+    Station on the edge of Veral village.
+  nearest_station: Khed Railway Station, 1 km
+  nearest_bus_stop: Khed Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Hazrat Jalal Shah Baba Dargah is an Islamic shrine located
+        on the edge of Veral village in the Khed suburb. It sits along the NH 66 highway,
+        close to the Khed Railway Station. The complex features a modest courtyard,
+        a multi-purpose space, and a designated ablution area for devotees.
+
+
+        It serves as a central religious site for the local community. The shrine
+        draws visitors from surrounding regions for regular prayers and major community
+        gatherings.'
+      history: null
+      significance: A prominent shrine in Khed known for hosting a significant annual
+        Urs festival.
+      dos: '- Visit between the 15th and 20th of the Islamic month of Sha''ban to
+        observe the annual Urs.
+
+        - Use the ablution area provided before entering the shrine.'
+      donts: '- Do not block the highway traffic when parking near the entrance.'
+      safety_text: The shrine is adjacent to the busy NH 66; exercise caution when
+        crossing the road or parking.
+    mr:
+      short_story: 'हजरत जलाल शाह बाबा दर्गा हे खेड उपनगरातील वेरल गावाच्या वेशीवर
+        असलेले एक इस्लामिक प्रार्थनास्थळ आहे. हे राष्ट्रीय महामार्ग 66 वर खेड रेल्वे
+        स्थानकाजवळ आहे. या दर्ग्याच्या आवारात एक छोटेखानी प्रांगण, एक बहुउद्देशीय
+        जागा आणि भाविकांसाठी वजू (हातपाय धुण्याची) करण्याची जागा आहे.
+
+
+        हे स्थानिक लोकांसाठी एक महत्त्वाचे धार्मिक स्थळ आहे. नियमित प्रार्थना आणि
+        मोठ्या सणांसाठी आजूबाजूच्या भागातून अनेक भाविक या ठिकाणी भेट देतात.'
+      history: null
+      significance: खेडमधील एक महत्त्वाचा दर्गा, जो त्याच्या वार्षिक उरुसासाठी ओळखला
+        जातो.
+      dos: '- वार्षिक उरूस पाहण्यासाठी इस्लामिक महिना शाबानच्या 15 ते 20 तारखेच्या
+        दरम्यान भेट द्या.
+
+        - दर्ग्यात प्रवेश करण्यापूर्वी उपलब्ध असलेल्या वजूच्या जागेचा वापर करा.'
+      donts: '- प्रवेशद्वाराजवळ वाहने उभी करून महामार्गावरील वाहतुकीस अडथळा करू नका.'
+      safety_text: हा दर्गा वर्दळीच्या NH 66 महामार्गालगत आहे; रस्ता ओलांडताना किंवा
+        गाडी उभी करताना काळजी घ्या.
+    hi:
+      short_story: 'हज़रत जलाल शाह बाबा दरगाह खेड़ उपनगर में वेरल गांव के किनारे स्थित
+        एक इस्लामी धार्मिक स्थल है। यह खेड़ रेलवे स्टेशन के पास, NH 66 राजमार्ग पर
+        स्थित है। दरगाह परिसर में एक साधारण प्रांगण, एक बहुउद्देशीय क्षेत्र और श्रद्धालुओं
+        के लिए वज़ू (हाथ-पैर धोने) की जगह है।
+
+
+        यह स्थानीय समुदाय के लिए एक प्रमुख धार्मिक स्थल है। नियमित प्रार्थनाओं और
+        बड़े आयोजनों के लिए आस-पास के क्षेत्रों से लोग यहां आते हैं।'
+      history: null
+      significance: खेड़ में एक प्रमुख दरगाह, जो अपने महत्वपूर्ण वार्षिक उर्स मेले
+        के लिए जानी जाती है।
+      dos: '- वार्षिक उर्स देखने के लिए इस्लामी महीने शाबान की 15 से 20 तारीख के बीच
+        यहां आएं।
+
+        - दरगाह में प्रवेश करने से पहले वज़ू के लिए निर्धारित जगह का उपयोग करें।'
+      donts: '- प्रवेश द्वार के पास वाहन पार्क करके राजमार्ग के यातायात को बाधित न
+        करें।'
+      safety_text: यह दरगाह व्यस्त NH 66 राजमार्ग के पास है; सड़क पार करते समय या
+        पार्किंग करते समय सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: ramgad-fort
+  status: ai_draft
+  name_en: Ramgad Fort
+  name_mr: रामगड किल्ला
+  name_hi: रामगढ़ किला
+  category: fort
+  taluka: Khed
+  lat: 17.814137
+  lng: 73.347598
+  coord_source: osm node/10807047137
+  osm_id: node/10807047137
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 90
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: Accessible by road via Khed to Ramgad village.
+  nearest_station: Diwankhavati Railway Station, 9 km
+  nearest_bus_stop: Khed Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Slippery rock-cut paths and heavy fog during monsoons make climbing
+    risky.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ramgad is a hill fort located in the Western Ghats, approximately
+        25 kilometers northwest of Khed town. It is situated in the same mountainous
+        region as the nearby Palgad fort. The site has recently been recognized by
+        trekkers exploring the Khed taluka.
+
+
+        Visitors to the fort area find the natural rugged terrain of the Sahyadri
+        range and remnants of old defensive structures. It offers a glimpse into the
+        region''s historical networks.'
+      history: The fort was utilized during the era of Chhatrapati Shivaji Maharaj
+        as part of the regional defense network.
+      significance: A recently re-explored hill fort in the Sahyadri range, located
+        near Palgad.
+      dos: '- Carry sufficient water and food, as there are no shops or facilities
+        on the hill.
+
+        - Hire a local guide from nearby villages to navigate the unmarked trekking
+        trails.'
+      donts: '- Do not leave plastic or food wrappers on the fort premises.'
+      safety_text: The trekking paths are uneven and not well-marked; wear shoes with
+        good grip and avoid trekking after dark.
+    mr:
+      short_story: 'रामगड हा पश्चिम घाटात, खेड शहराच्या वायव्येस अंदाजे 25 किलोमीटर
+        अंतरावर असलेला एक गिरीदुर्ग आहे. हा किल्ला जवळच असलेल्या पालगड किल्ल्याच्या
+        डोंगराळ भागात वसलेला आहे. खेड तालुक्यातील ट्रेकर्सनी अलीकडेच या स्थळाची नव्याने
+        ओळख करून दिली आहे.
+
+
+        येथे भेट देणाऱ्यांना सह्याद्रीच्या रांगांमधील नैसर्गिक खडकाळ भूप्रदेश आणि
+        जुन्या संरक्षणात्मक बांधकामांचे अवशेष पाहायला मिळतात. यातून परिसराच्या ऐतिहासिक
+        संरचनेची झलक पाहायला मिळते.'
+      history: छत्रपती शिवाजी महाराजांच्या काळात या किल्ल्याचा वापर प्रादेशिक संरक्षण
+        व्यवस्थेचा एक भाग म्हणून केला जात असे.
+      significance: पालगडजवळ सह्याद्रीच्या रांगांमध्ये असलेला आणि अलीकडेच नव्याने
+        प्रकाशात आलेला एक गिरीदुर्ग.
+      dos: '- गडावर दुकाने किंवा इतर सोयी नसल्याने स्वतःसोबत पुरेसे पाणी आणि खाद्यपदार्थ
+        ठेवा.
+
+        - गडावर जाणाऱ्या वाटा नक्की माहीत नसल्यास जवळच्या गावातील स्थानिक वाटाड्या
+        सोबत घ्या.'
+      donts: '- गडाच्या परिसरात प्लास्टिक किंवा कचरा टाकू नका.'
+      safety_text: ट्रेकिंगच्या वाटा खडबडीत आणि अस्पष्ट आहेत; चांगल्या पकडीचे बूट
+        घाला आणि अंधार पडल्यानंतर ट्रेकिंग करणे टाळा.
+    hi:
+      short_story: 'रामगढ़ एक पहाड़ी किला है जो पश्चिमी घाट में खेड़ शहर से लगभग 25
+        किलोमीटर उत्तर-पश्चिम में स्थित है। यह पास के पालगढ़ किले के समान पहाड़ी क्षेत्र
+        में स्थित है। हाल ही में खेड़ तालुका में ट्रेकर्स द्वारा इस स्थान को फिर से
+        खोजा गया है।
+
+
+        किले के क्षेत्र में आने वाले लोगों को सह्याद्री पर्वतमाला का प्राकृतिक ऊबड़-खाबड़
+        इलाका और पुरानी रक्षात्मक संरचनाओं के अवशेष देखने को मिलते हैं। यह क्षेत्र
+        के ऐतिहासिक नेटवर्क की एक झलक प्रस्तुत करता है।'
+      history: इस किले का उपयोग छत्रपति शिवाजी महाराज के युग में क्षेत्रीय रक्षा नेटवर्क
+        के हिस्से के रूप में किया जाता था।
+      significance: पालगढ़ के पास सह्याद्री पर्वतमाला में स्थित एक हाल ही में खोजा
+        गया पहाड़ी किला।
+      dos: '- अपने साथ पर्याप्त पानी और भोजन ले जाएं, क्योंकि पहाड़ी पर कोई दुकानें
+        या सुविधाएं नहीं हैं।
+
+        - रास्तों की पहचान न होने पर ट्रेकिंग के लिए आस-पास के गांवों से एक स्थानीय
+        गाइड लें।'
+      donts: '- किले के परिसर में प्लास्टिक या खाने के रैपर न छोड़ें।'
+      safety_text: ट्रेकिंग के रास्ते ऊबड़-खाबड़ और बिना निशान वाले हैं; अच्छी ग्रिप
+        वाले जूते पहनें और अंधेरे के बाद ट्रेकिंग से बचें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+    - https://gazetteers.maharashtra.gov.in/cultural.maharashtra.gov.in/english/gazetteer/RATNAGIRI/places_Ramgad.html
+    - https://mapcarta.com/N10807047137
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; EN text + MR/HI by Gemini (Google
+    Search, batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: mahimandangad-fort
+  status: ai_draft
+  name_en: Mahimandangad Fort
+  name_mr: महिमंडणगड किल्ला
+  name_hi: महिमंडनगढ़ किला
+  category: fort
+  taluka: Khed
+  lat: 17.71107
+  lng: 73.610351
+  coord_source: osm node/8119004101
+  osm_id: node/8119004101
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 150
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: Accessible from Khed Bus Stand via road to Metshindi/Araw village,
+    followed by a jungle trail.
+  nearest_station: Khed Railway Station, 15 km
+  nearest_bus_stop: Khed Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Dense forest trails, steep rock-cut steps, and heavy downpours present
+    safety hazards during the monsoon season.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mahimandangad is a hill fort located in the Sahyadri mountains,
+        approximately 33 kilometers northeast of Khed, standing at an elevation of
+        3070 feet. The primary trekking trail begins near Araw village and passes
+        through a dense karvi forest.
+
+
+        At the pass between two hilltops, visitors can observe rock-cut water tanks,
+        rock-carved steps, and the remains of fortification walls and a bastion where
+        the main gate once stood.'
+      history: Rock-cut tanks indicate the fort existed before the Maratha era. Due
+        to its size and location, it functioned primarily as a watch post during later
+        periods.
+      significance: An ancient watch post in the Sahyadris featuring rock-cut tanks
+        and forest trails.
+      dos: '- Use a private vehicle or take the evening government bus from Khed to
+        reach Araw village.
+
+        - Pay attention to the animal census cameras installed by the forest department
+        along the jungle path.'
+      donts: '- Do not damage or tamper with the forest department''s census cameras.'
+      safety_text: The ghat road to the base is unpaved and uneven; it is traversed
+        using a four-wheel-drive or jeep-like vehicle.
+    mr:
+      short_story: 'महिमंडणगड हा सह्याद्रीच्या पर्वतरांगांमध्ये खेडच्या ईशान्येस सुमारे
+        33 किलोमीटर अंतरावर आणि 3070 फूट उंचीवर असलेला एक गिरीदुर्ग आहे. या किल्ल्याचा
+        ट्रेक आरव गावाजवळून सुरू होतो आणि कारवीच्या दाट जंगलातून जातो.
+
+
+        दोन टेकड्यांच्या मधील खिंडीत पर्यटकांना कातळात खोदलेली पाण्याची टाकी, खडकात
+        कोरलेल्या पायऱ्या आणि जिथे एकेकाळी मुख्य दरवाजा होता त्या तटबंदीचे आणि बुरुजाचे
+        अवशेष पाहायला मिळतात.'
+      history: कातळात कोरलेली पाण्याची टाकी दर्शवतात की हा किल्ला शिवकाळापूर्वी अस्तित्वात
+        होता. त्याचा आकार आणि मोक्याचे ठिकाण पाहता, नंतरच्या काळात त्याचा वापर प्रामुख्याने
+        टेहळणीसाठी केला जात असे.
+      significance: कातळात खोदलेली टाकी आणि जंगलातील वाटा असलेला सह्याद्रीतील एक प्राचीन
+        टेहळणीचा किल्ला.
+      dos: '- आरव गावी पोहोचण्यासाठी खाजगी वाहन किंवा खेडहून संध्याकाळी सुटणारी एसटी
+        बस वापरा.
+
+        - जंगलातील वाटेवर वनविभागाने बसवलेल्या प्राण्यांच्या गणनेच्या कॅमेऱ्यांकडे
+        लक्ष असू द्या.'
+      donts: '- वनविभागाच्या कॅमेऱ्यांचे कोणतेही नुकसान करू नका किंवा त्यांच्याशी
+        छेडछाड करू नका.'
+      safety_text: पायथ्यापर्यंत जाणारा घाटाचा रस्ता कच्चा आणि खडबडीत आहे; तिथे जाण्यासाठी
+        जीपसारखे वाहन वापरणे योग्य ठरते.
+    hi:
+      short_story: 'महिमंडनगढ़ एक पहाड़ी किला है जो सह्याद्री पर्वतों में खेड़ से
+        लगभग 33 किलोमीटर उत्तर-पूर्व में 3070 फीट की ऊंचाई पर स्थित है। मुख्य ट्रेकिंग
+        रास्ता आरव गांव के पास से शुरू होता है और घने कारवी जंगल से होकर गुजरता है।
+
+
+        दो पहाड़ियों के बीच के दर्रे पर, आगंतुक चट्टानों को काटकर बनाए गए पानी के
+        टैंक, चट्टानों में उकेरी गई सीढ़ियां, और किलेबंदी की दीवारों व एक बुर्ज के
+        अवशेष देख सकते हैं जहां कभी मुख्य द्वार हुआ करता था।'
+      history: चट्टानों में कटे पानी के टैंक बताते हैं कि यह किला मराठा युग से पहले
+        मौजूद था। अपने आकार और स्थान के कारण, बाद के समय में इसने मुख्य रूप से एक
+        निगरानी चौकी के रूप में काम किया।
+      significance: सह्याद्री में एक प्राचीन निगरानी चौकी जिसमें चट्टान काटकर बनाए
+        गए टैंक और जंगली रास्ते हैं।
+      dos: '- आरव गांव पहुंचने के लिए निजी वाहन का उपयोग करें या खेड़ से शाम की सरकारी
+        बस लें।
+
+        - जंगल के रास्ते में वन विभाग द्वारा लगाए गए पशु गणना कैमरों का ध्यान रखें।'
+      donts: '- वन विभाग के कैमरों को नुकसान न पहुंचाएं या उनके साथ छेड़छाड़ न करें।'
+      safety_text: आधार तक जाने वाली घाट सड़क कच्ची और ऊबड़-खाबड़ है; जीप जैसे वाहन
+        का उपयोग करके वहां जाना सबसे अच्छा है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/mahimandangad/
+    - https://en.wikipedia.org/wiki/Khed,_Ratnagiri
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; OSM match by name, check pin;
+    EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check
+    facts against sources'
+  _collected_by: claude+gemini 2026-11-03

@@ -1,0 +1,751 @@
+# Eateries - Ratnagiri taluka (target 10). status ai_draft. Phones = public business listing numbers, unverified.
+- slug: hotel-amantran-ratnagiri
+  status: ai_draft
+  name_en: Hotel Amantran
+  name_mr: हॉटेल आमंत्रण
+  name_hi: होटल आमंत्रण
+  taluka: Ratnagiri
+  area: Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJ_2p4GxYN6jsRGQAHygZcqEo
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 74149 42724
+  whatsapp: null
+  description:
+    en: Hotel Amantran is a well-known local restaurant situated at Juna Mal Naka
+      in Sanmitra Nagar, Ratnagiri. It specializes in authentic Konkani-style seafood,
+      serving traditional vegetarian and non-vegetarian plates like the Surmai and
+      prawns khekda combination thalis.
+    mr: रत्नागिरीतील सन्मित्र नगरमध्ये जुना माल नाका येथे असलेले हॉटेल आमंत्रण हे
+      एक प्रसिद्ध स्थानिक रेस्टॉरंट आहे. हे हॉटेल अस्सल कोकणी पद्धतीच्या सीफूडसाठी
+      ओळखले जात असून, इथे सुरमई आणि कोळंबी-खेकडा कॉम्बो थाळीसारखे पारंपरिक शाकाहारी
+      आणि मांसाहारी पदार्थ मिळतात.
+    hi: होटल आमंत्रण रत्नागिरी के सन्मित्र नगर में जूना माल नाका पर स्थित एक प्रसिद्ध
+      स्थानीय रेस्टोरेंट है। यह प्रामाणिक कोंकणी शैली के समुद्री भोजन में माहिर है,
+      जहाँ सुरमई और झींगा-केकड़ा संयोजन थाली जैसे पारंपरिक शाकाहारी और मांसाहारी व्यंजन
+      परोसे जाते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ_2p4GxYN6jsRGQAHygZcqEo
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: mehendales-swad-dining-malgund
+  status: ai_draft
+  name_en: Mehendale's Swad Dining
+  name_mr: मेहेंदळेज स्वाद डायनिंग
+  name_hi: मेहंदळेस स्वाद डाइनिंग
+  taluka: Ratnagiri
+  area: Malgund
+  lat: null
+  lng: null
+  google_place_id: ChIJE3vHQLEa6jsRS002yylXmVc
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94224 32776
+  whatsapp: null
+  description:
+    en: Located on Arrey Warrey Road in Malgund, Mehendale's Swad Dining is an established
+      family-run eatery offering vegetarian and non-vegetarian options. The restaurant
+      is particularly known for its traditional Maharashtrian vegetarian thalis, aamras,
+      and ukadiche modak.
+    mr: मालगुंडमधील आरे-वारे रोडवर असलेले मेहेंदळे स्वाद डायनिंग हे कुटुंबाने चालवलेले
+      एक जुने भोजनालय आहे, जिथे शाकाहारी आणि मांसाहारी पर्याय उपलब्ध आहेत. हे रेस्टॉरंट
+      खास करून त्यांच्या पारंपरिक महाराष्ट्रीयन शाकाहारी थाळी, आमरस आणि उकडीच्या मोदकांसाठी
+      ओळखले जाते.
+    hi: मालगुंड में आरे-वारे रोड पर स्थित, मेहेंदले स्वाद डाइनिंग एक पुराना पारिवारिक
+      भोजनालय है जो शाकाहारी और मांसाहारी दोनों विकल्प प्रदान करता है। यह रेस्टोरेंट
+      विशेष रूप से अपनी पारंपरिक महाराष्ट्रीयन शाकाहारी थाली, आमरस और उकडीचे मोदक
+      के लिए जाना जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJE3vHQLEa6jsRS002yylXmVc
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-sameer-ganpatipule
+  status: ai_draft
+  name_en: Hotel Sameer
+  name_mr: हॉटेल समीर
+  name_hi: होटल समीर
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJU6e3KQcQ6jsR_rOXtjV7nlM
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '13:00'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Located in Ganpatipule near the coastal area, Hotel Sameer is a seafood restaurant
+      serving vegetarian and non-vegetarian dishes. It operates as a local dining
+      spot offering regional meals.
+    mr: गणपतीपुळे येथे समुद्रकिनाऱ्याजवळ स्थित, हॉटेल समीर हे शाकाहारी आणि मांसाहारी
+      पदार्थ देणारे सीफूड रेस्टॉरंट आहे. हे स्थानिक लोकांमध्ये लोकप्रिय असलेले जेवणाचे
+      ठिकाण आहे.
+    hi: गणपतिपुले में तटीय क्षेत्र के पास स्थित, होटल समीर एक सीफूड रेस्तरां है जो
+      शाकाहारी और मांसाहारी दोनों व्यंजन परोसता है। यह क्षेत्रीय भोजन परोसने वाला
+      एक स्थानीय खानपान स्थल है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJU6e3KQcQ6jsR_rOXtjV7nlM
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-vihar-deluxe-ratnagiri
+  status: ai_draft
+  name_en: Hotel Vihar Deluxe
+  name_mr: हॉटेल विहार डिलक्स
+  name_hi: होटल विहार डीलक्स
+  taluka: Ratnagiri
+  area: Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJAzd_HhYN6jsRrRnF9BuCoL0
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 87932 84355
+  whatsapp: null
+  description:
+    en: Situated in Ratnagiri near the main road and transport depot, Hotel Vihar
+      Deluxe features an in-house restaurant and bar. It provides accommodation and
+      dining options serving vegetarian and non-vegetarian food.
+    mr: रत्नागिरीमध्ये मुख्य रस्ता आणि एसटी बस स्थानकाजवळ स्थित, हॉटेल विहार डिझाइनर
+      हे इन-हाउस रेस्टॉरंट आणि बारसह सुसज्ज आहे. येथे शाकाहारी आणि मांसाहारी जेवणासह
+      राहण्याची सोय उपलब्ध आहे.
+    hi: रत्नागिरी में मुख्य सड़क और बस डिपोट के पास स्थित, होटल विहार डीलक्स एक इन-हाउस
+      रेस्तरां और बार की सुविधा देता है। यह शाकाहारी और मांसाहारी भोजन के साथ आवास
+      और भोजन विकल्प प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJAzd_HhYN6jsRrRnF9BuCoL0
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: arati-dining-ratnagiri
+  status: ai_draft
+  name_en: Arati Dining
+  name_mr: आरती डायनिंग
+  name_hi: आरती डाइनिंग
+  taluka: Ratnagiri
+  area: Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJQQyl4GgN6jsRhe62j5zAXbI
+  authenticity: home_style
+  price_for_two: 500
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 2352 234848
+  whatsapp: null
+  description:
+    en: Located in Ratnagiri near Athwada Bazar, Arati Dining is an eatery offering
+      vegetarian and non-vegetarian meals. It serves a variety of regional dishes
+      in a casual setting.
+    mr: रत्नागिरीत आठावडा बाजारजवळ स्थित, आरती डायनिंग हे शाकाहारी आणि मांसाहारी जेवण
+      देणारे उपाहारगृह आहे. येथे विविध प्रादेशिक खाद्यपदार्थ मिळतात.
+    hi: रत्नागिरी में आथवाडा बाजार के पास स्थित, आरती डाइनिंग एक भोजनालय है जो शाकाहारी
+      और मांसाहारी भोजन परोसता है। यह एक साधारण माहौल में विभिन्न प्रकार के क्षेत्रीय
+      व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJQQyl4GgN6jsRhe62j5zAXbI
+    - https://www.justdial.com/Ratnagiri/Konkani-Restaurants-in-Pawas/nct-10563700
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: kokani-khanawal-kajirbhati
+  status: ai_draft
+  name_en: Kokani Khanawal
+  name_mr: कोकणी खानावळ
+  name_hi: कोंकणी खानावळ
+  taluka: Ratnagiri
+  area: Kajirbhati
+  lat: null
+  lng: null
+  google_place_id: ChIJi4pyfSQP6jsRLqRSzynoXoM
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '18:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 87668 23398
+  whatsapp: null
+  description:
+    en: Situated in Kajirbhati within the Ratnagiri district, Kokani Khanawal is a
+      local eatery serving traditional vegetarian and non-vegetarian food. It offers
+      home-style meals characteristic of the region.
+    mr: रत्नागिरी जिल्ह्यातील काजीरभाटी येथे स्थित, कोकणी खानावळ हे पारंपारिक शाकाहारी
+      आणि मांसाहारी जेवण देणारे स्थानिक उपाहारगृह आहे. येथे घरगुती पद्धतीचे जेवण मिळते.
+    hi: रत्नागिरी जिले के काजीरभाटी में स्थित, कोकणी खानावळ पारंपरिक शाकाहारी और मांसाहारी
+      भोजन परोसने वाला एक स्थानीय भोजनालय है। यह इस क्षेत्र के विशिष्ट घर-शैली के
+      भोजन प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJi4pyfSQP6jsRLqRSzynoXoM
+    - https://www.justdial.com/Ratnagiri/Konkani-Restaurants-in-Pawas/nct-10563700
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: bhau-joshi-bhojnalay-ganpatipule
+  status: ai_draft
+  name_en: Bhau Joshi Bhojnalay
+  name_mr: भाऊ जोशी भोजनालय
+  name_hi: भाऊ जोशी भोजनालय
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJ74U2fQcQ6jsRKb206xdpUXs
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: false
+    jain: null
+  opens: '11:30'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 87669 47019
+  whatsapp: null
+  description:
+    en: Located in Ganpatipule, Bhau Joshi Bhojnalay is a vegetarian eatery situated
+      close to the local temple and beach area. It specializes in serving traditional
+      Maharashtrian vegetarian meals.
+    mr: गणपतीपुळे येथे मंदिराच्या आणि समुद्रकिनाऱ्याच्या परिसरात स्थित, भाऊ जोशी भोजनालय
+      हे एक शाकाहारी उपाहारगृह आहे. येथे अस्सल महाराष्ट्रीयन शाकाहारी जेवण मिळते.
+    hi: गणपतिपुले में स्थित, भाऊ जोशी भोजनालय मंदिर और समुद्र तट क्षेत्र के करीब स्थित
+      एक शाकाहारी भोजनालय है। यह पारंपरिक महाराष्ट्रीयन शाकाहारी भोजन परोसने के लिए
+      जाना जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ74U2fQcQ6jsRKb206xdpUXs
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-kokani-angan-khedoshi
+  status: ai_draft
+  name_en: Hotel Kokani Angan
+  name_mr: हॉटेल कोकणी अंगण
+  name_hi: होटल कोंकणी अंगण
+  taluka: Ratnagiri
+  area: Khedoshi
+  lat: null
+  lng: null
+  google_place_id: ChIJozv79p4M6jsR73PYEPOViVw
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 70456 50161
+  whatsapp: null
+  description:
+    en: Situated in Khedoshi, Hotel Kokani Angan is a dining establishment offering
+      both vegetarian and non-vegetarian dishes. It caters to travelers passing through
+      the area with regional culinary options.
+    mr: खेडोशी येथे स्थित, हॉटेल कोकणी अंगण हे शाकाहारी आणि मांसाहारी दोन्ही प्रकारचे
+      जेवण देणारे उपाहारगृह आहे. प्रवाशांसाठी येथे प्रादेशिक पद्धतीचे खाद्यपदार्थ
+      उपलब्ध आहेत.
+    hi: खेड़ोशी में स्थित, होटल कोकणी आंगन एक ऐसा भोजनालय है जो शाकाहारी और मांसाहारी
+      दोनों व्यंजन परोसता है। यह इस मार्ग से गुजरने वाले यात्रियों को क्षेत्रीय भोजन
+      विकल्प प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJozv79p4M6jsR73PYEPOViVw
+    - https://www.justdial.com/Ratnagiri/Konkani-Restaurants-in-Pawas/nct-10563700
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: drive-inn-carnival-ratnagiri
+  status: ai_draft
+  name_en: Drive Inn Carnival
+  name_mr: ड्राईव्ह इन कार्निव्हल
+  name_hi: ड्राइव इन कार्निवल
+  taluka: Ratnagiri
+  area: Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJi3EfZiIN6jsRDijTxyvxc6s
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 73501 17333
+  whatsapp: null
+  description:
+    en: Located on the main road in Ratnagiri, Drive Inn Carnival is a multi-facility
+      property featuring a restaurant and bar options. It serves vegetarian and non-vegetarian
+      food items to visitors.
+    mr: रत्नागिरीतील मुख्य रस्त्यावर स्थित, ड्राइव्ह इन कार्निव्हल हे रेस्टॉरंट आणि
+      बार सुविधा असलेले ठिकाण आहे. येथे येणाऱ्या पाहुण्यांसाठी शाकाहारी आणि मांसाहारी
+      अन्न उपलब्ध असते.
+    hi: रत्नागिरी में मुख्य सड़क पर स्थित, ड्राइव इन कार्निवल एक बहु-सुविधा परिसर
+      है जिसमें रेस्तरां और बार शामिल हैं। यह आगंतुकों को शाकाहारी और मांसाहारी भोजन
+      परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJi3EfZiIN6jsRDijTxyvxc6s
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: coral-restaurant-bar-ganpatipule
+  status: ai_draft
+  name_en: Coral Restaurant & Bar
+  name_mr: कोरल रेस्टॉरंट अँड बार
+  name_hi: कोरल रेस्टोरेंट एंड बार
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJPaQK2eQR6jsRRzzrl0WVmzk
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 77218 60909
+  whatsapp: null
+  description:
+    en: Situated on Aare Ware Road in Ganpatipule near the coastal stretch, Coral
+      Restaurant & Bar offers multi-cuisine dining options including vegetarian and
+      non-vegetarian dishes.
+    mr: गणपतीपुळे येथे आरे-वारे रस्त्या लगत समुद्रकिनाऱ्याजवळ स्थित, कोरल रेस्टॉरंट
+      अँड बार येथे शाकाहारी आणि मांसाहारी पदार्थांसह विविध खाद्यप्रकार मिळतात.
+    hi: गणपतिपुले में आरे वारे रोड पर समुद्र तट के पास स्थित, कोरल रेस्तरां एंड बार
+      शाकाहारी और मांसाहारी व्यंजनों सहित विभिन्न प्रकार के भोजन विकल्प प्रदान करता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJPaQK2eQR6jsRRzzrl0WVmzk
+  _collected_by: gemini-maps 2026-11-03
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; menu+dish links dropped (looked templated); pin via place_id;
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: kokanatli-mejvani-basani
+  status: ai_draft
+  name_en: Kokanatli Mejvani
+  name_mr: कोकणातली मेजवानी
+  name_hi: कोकणातली मेजवानी
+  taluka: Ratnagiri
+  area: Basani
+  lat: null
+  lng: null
+  google_place_id: ChIJxdETOAsN6jsRUTLDXh-02os
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '21:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94233 64990
+  whatsapp: null
+  description:
+    en: Kokanatli Mejvani is an authentic seafood destination located in Basani, Ratnagiri,
+      serving traditional local non-vegetarian and vegetarian dishes.
+    mr: कोकणातली मेजवानी हे रत्नागिरीमधील बासानी येथे असलेले एक अस्सल सीफूड रेस्टॉरंट
+      आहे, जे पारंपरिक शाकाहारी व मांसाहारी जेवण देते.
+    hi: कोकणातली मेजवानी रत्नागिरी के बासानी में स्थित एक प्रामाणिक सीफूड गंतव्य स्थान
+      है, जो पारंपरिक शाकाहारी और मांसाहारी व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJxdETOAsN6jsRUTLDXh-02os
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: rawas-authentic-konkani-resto-maruti-mandir
+  status: ai_draft
+  name_en: Rawas- Authentic Konkani Resto
+  name_mr: रावास- ऑथेंटिक कोकणी रेस्ट्रो
+  name_hi: रावास- ऑथेंटिक कोकणी रेस्ट्रो
+  taluka: Ratnagiri
+  area: Maruti Mandir
+  lat: null
+  lng: null
+  google_place_id: ChIJI5HY3j4N6jsRWtS3doTuEYw
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 99306 48582
+  whatsapp: null
+  description:
+    en: Rawas- Authentic Konkani Resto is located near Maruti Mandir in Ratnagiri,
+      offering traditional Konkani recipes and regional seafood items.
+    mr: रावास- ऑथेंटिक कोकणी रेस्ट्रो रत्नागिरीमधील मारुती मंदिरजवळ असून तिथे पारंपरिक
+      कोकणी पद्धतीचे जेवण व सीफूड मिळते.
+    hi: रावास- ऑथेंटिक कोकणी रेस्ट्रो रत्नागिरी में मारुती मंदिर के पास स्थित है,
+      जो पारंपरिक कोंकणी व्यंजन और क्षेत्रीय सीफूड परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJI5HY3j4N6jsRWtS3doTuEYw
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: trupti-khanaval-sanmitra-nagar
+  status: ai_draft
+  name_en: Trupti khanaval
+  name_mr: तृप्ती खानावळ
+  name_hi: तृप्ती खानावळ
+  taluka: Ratnagiri
+  area: Sanmitra Nagar
+  lat: null
+  lng: null
+  google_place_id: ChIJ7xLlNwAN6jsRXdjeJVDDhRE
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Trupti khanaval is situated in Sanmitra Nagar, Ratnagiri, serving home-style
+      local Maharashtrian meals and fish thalis.
+    mr: तृप्ती खानावळ रत्नागिरीमधील सन्मित्र नगर येथे आहे, जिथे घरगुती पद्धतीचे महाराष्ट्रीयन
+      जेवण व फिश थाळी मिळते.
+    hi: तृप्ती खानावळ रत्नागिरी के सन्मित्र नगर में स्थित है, जो घर के जैसी स्थानीय
+      महाराष्ट्रीयन थाली और भोजन परोसती है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ7xLlNwAN6jsRXdjeJVDDhRE
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: kokani-kitchen-best-restaurant-in-ratnagiri-hathkhamba
+  status: ai_draft
+  name_en: Kokani Kitchen
+  name_mr: कोकणी किचन
+  name_hi: कोकणी किचन
+  taluka: Ratnagiri
+  area: Hathkhamba
+  lat: null
+  lng: null
+  google_place_id: ChIJi8a7ergL6jsRZVML7NPdMkg
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94220 52059
+  whatsapp: null
+  description:
+    en: Kokani Kitchen is located near Hathkhamba in Ratnagiri, serving multi-cuisine
+      meals with regional Konkani specialties.
+    mr: कोकणी किचन रत्नागिरीमधील हातकम्बा येथे आहे, जे विविध खाद्यप्रकारांसोबत प्रादेशिक
+      कोकणी पदार्थ देते.
+    hi: कोकणी किचन रत्नागिरी में हाथखंबा के पास स्थित है, जो क्षेत्रीय कोंकणी व्यंजनों
+      के साथ विभिन्न प्रकार के भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJi8a7ergL6jsRZVML7NPdMkg
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; name trimmed from Maps listing title "KOKANI KITCHEN -
+    Best Restaurant In Ratnagiri"'

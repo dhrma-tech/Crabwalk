@@ -1,0 +1,1759 @@
+# Places - Rajapur taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: dhootpapeshwar-temple
+  status: ai_draft
+  name_en: Dhootpapeshwar Temple
+  name_mr: धूतपापेश्वर मंदिर
+  name_hi: धूतपापेश्वर मंदिर
+  category: temple
+  taluka: Rajapur
+  lat: 16.648884
+  lng: 73.498198
+  coord_source: osm way/1983211020
+  osm_id: way/1983211020
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Dhopeshwar village, about 1.5 km from Rajapur town.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Dhootpapeshwar is an ancient temple at Dhopeshwar village, about
+        1.5 km from Rajapur town. It is part of a cluster of sights around Rajapur,
+        with the Unhale hot spring and the Rajapur Ganga nearby.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: राजापूर शहरापासून सुमारे 1.5 किमी अंतरावर धोपेश्वर गावात असलेले
+        धूतपापेश्वर हे एक अतिशय प्राचीन मंदिर आहे. राजापूरच्या आसपास पाहण्यासारख्या
+        अनेक ठिकाणांचा हा एक भाग आहे, ज्याजवळ उन्हाळे गरम पाण्याचे झरे आणि राजापूरची
+        गंगा देखील आहे.
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिरात पादत्राणे (चपला/बूट) घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: धूतपापेश्वर, राजापुर शहर से लगभग 1.5 किमी दूर धोपेश्वर गांव में
+        स्थित एक प्राचीन मंदिर है। यह राजापुर के आसपास के दर्शनीय स्थलों का एक हिस्सा
+        है, जिसके पास उन्हाले गर्म पानी का झरना और राजापुर की गंगा है।
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/f/f8/Dhootpapeshwar-temple-rajapur-body-04-960x640.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Amit4804
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Dhootpapeshwar-temple-rajapur-body-04-960x640.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://kokan.rangmarathi.com/listing/dhutpapeshwar-mandir-dhopeshwar-temple-b962d
+    - https://en.wikipedia.org/wiki/Rajapur,_Maharashtra
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: unhale-hot-spring
+  status: ai_draft
+  name_en: Unhale Hot Spring (Rajapurchi Ganga)
+  name_mr: उन्हाळे गरम पाण्याचे झरे
+  name_hi: उन्हाले गर्म पानी का झरना
+  category: village
+  taluka: Rajapur
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Unhale village, 3 km from Rajapur; ST buses run.
+  nearest_station: null
+  nearest_bus_stop: Rajapur
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Unhale, near Rajapur, has a natural hot water spring. Close by
+        is the Rajapur Ganga, a holy water source that is said to appear about once
+        every three years, and the old Dhootpapeshwar temple.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t use soap in the spring water'
+      safety_text: '- Test the water temperature before getting in'
+    mr:
+      short_story: राजापूर जवळील उन्हाळे येथे एक नैसर्गिक गरम पाण्याचा झरा आहे. याच्याच
+        जवळ 'राजापूरची गंगा' हे पवित्र तीर्थस्थान आहे (जिथे साधारण दर तीन वर्षांनी
+        एकदा गंगेचे आगमन होते असे मानले जाते), आणि जुने धूतपापेश्वर मंदिर आहे.
+      history: null
+      significance: null
+      dos: null
+      donts: '- झऱ्याच्या पाण्यात साबण वापरू नका'
+      safety_text: '- पाण्यात उतरण्यापूर्वी पाण्याचे तापमान तपासून पहा'
+    hi:
+      short_story: राजापुर के पास उन्हाले में एक प्राकृतिक गर्म पानी का झरना है। इसके
+        ठीक पास राजापुर की गंगा है, जो एक पवित्र जल स्रोत है और जिसके बारे में कहा
+        जाता है कि यह लगभग हर तीन साल में एक बार प्रकट होती है, साथ ही यहां पुराना
+        धूतपापेश्वर मंदिर भी है।
+      history: null
+      significance: null
+      dos: null
+      donts: '- झरने के पानी में साबुन का प्रयोग न करें'
+      safety_text: '- अंदर जाने से पहले पानी के तापमान की जांच कर लें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://travelkonkan.in/rajapur-ganga/
+    - https://en.wikipedia.org/wiki/Rajapur,_Maharashtra
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'Rajapurchi Ganga (seasonal spring) and Unhale hot springs are two different
+    sites; confirm which this row is; no coordinates: needs pin; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'
+- slug: ambolgad-fort
+  status: ai_draft
+  name_en: Ambolgad Fort
+  name_mr: आंबोळगड किल्ला
+  name_hi: अंबोलगढ़ किला
+  category: fort
+  taluka: Rajapur
+  lat: 16.643068
+  lng: 73.330959
+  coord_source: osm node/9196972614
+  osm_id: node/9196972614
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 36 km from Rajapur via Nate, or 60 km from Ratnagiri via Adivare
+    and Nate.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ambolgad is a small square coastal fort in Ambolgad village, Rajapur
+        taluka, about 36 km from Rajapur via Nate. It has five bastions, a partly
+        dug moat and, inside, a big banyan tree with a broken cannon, ruined buildings
+        and a dry well.
+
+
+        The ramparts have collapsed into mounds and the entrance is hard to spot.
+        A walk round takes about half an hour. A beach and Gagangiri Maharaj''s monastery
+        are close by.'
+      history: Probably built in the 16th century to guard Musakaji port and shipping
+        in Jaitapur creek. Linked to Kanhoji Angre by 1690, it was captured by Colonel
+        Imlack in 1818.
+      significance: null
+      dos: '- Combine with Madban beach and Yashwantgad'
+      donts: null
+      safety_text: '- The entrance is hidden between two bastions; ask locals'
+    mr:
+      short_story: 'आंबोळगड हा राजापूर तालुक्यातील आंबोळगड गावात असलेला एक छोटा चौरसाकृती
+        सागरी किल्ला आहे. नाटे मार्गे राजापूरवरून तो सुमारे 36 किमी अंतरावर आहे. याला
+        पाच बुरूज आणि अंशतः खोदलेला खंदक आहे. आतमध्ये एक मोठे वडाचे झाड, एक तुटलेली
+        तोफ, पडक्या इमारती आणि एक कोरडी विहीर आहे.
+
+
+        किल्ल्याची तटबंदी कोसळून तिचे ढिगारे झाले आहेत आणि प्रवेशद्वार शोधणे कठीण
+        जाते. संपूर्ण किल्ला फिरण्यासाठी सुमारे अर्धा तास लागतो. जवळच एक समुद्रकिनारा
+        आणि गगनगिरी महाराजांचा मठ आहे.'
+      history: मुसाकाजी बंदर आणि जैतापूर खाडीतील जहाजांचे रक्षण करण्यासाठी हा किल्ला
+        बहुधा 16 व्या शतकात बांधला गेला असावा. 1690 च्या सुमारास त्याचा संबंध कान्होजी
+        आंग्रे यांच्याशी होता आणि 1818 मध्ये कर्नल इमलॅकने तो जिंकून घेतला.
+      significance: null
+      dos: '- माडबन समुद्रकिनारा आणि यशवंतगड सोबत याला भेट द्या'
+      donts: null
+      safety_text: '- प्रवेशद्वार दोन बुरुजांच्या मध्ये लपलेले आहे; स्थानिकांना विचारा'
+    hi:
+      short_story: 'अंबोलगढ़, राजापुर तालुका के अंबोलगढ़ गांव में स्थित एक छोटा चौकोर
+        तटीय किला है। नाटे के रास्ते यह राजापुर से लगभग 36 किमी दूर है। इसमें पांच
+        बुर्ज और आंशिक रूप से खुदी हुई एक खाई है, तथा अंदर एक बड़ा बरगद का पेड़, एक
+        टूटी हुई तोप, खंडहर हो चुकी इमारतें और एक सूखा कुआं है।
+
+
+        प्राचीर ढहकर टीलों में बदल गई है और प्रवेश द्वार आसानी से दिखाई नहीं देता।
+        पूरा किला घूमने में लगभग आधा घंटा लगता है। पास ही एक समुद्र तट और गगनगिरी
+        महाराज का मठ है।'
+      history: मुसाकाजी बंदरगाह और जैतापुर खाड़ी में जहाजों की सुरक्षा के लिए संभवतः
+        16वीं शताब्दी में इसे बनाया गया था। 1690 तक इसका संबंध कान्होजी आंग्रे से
+        था और 1818 में कर्नल इमलैक ने इस पर कब्ज़ा कर लिया।
+      significance: null
+      dos: '- माडबन समुद्र तट और यशवंतगढ़ के साथ इसे घूमने की योजना बनाएं'
+      donts: null
+      safety_text: '- प्रवेश द्वार दो बुर्जों के बीच छिपा हुआ है; स्थानीय लोगों से
+        पूछें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/ambolgad/
+    - https://fortsandtreks.blogspot.com/2016/06/ambolgad-fort-padavane-beach-near.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: yashwantgad-fort
+  status: ai_draft
+  name_en: Yashwantgad Fort
+  name_mr: यशवंतगड किल्ला
+  name_hi: यशवंतगढ़ किला
+  category: fort
+  taluka: Rajapur
+  lat: 16.630896
+  lng: 73.356844
+  coord_source: osm way/2039257928
+  osm_id: way/2039257928
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On Rajapur creek, sea on one side.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Yashwantgad is a coastal fort just west of Nate village, about
+        30 km from Rajapur, on the north side of Jaitapur creek. Water surrounds it
+        on the west and south.
+
+
+        The fort covers about 7 acres with 21 bastions built of laterite. A 15-foot
+        trench guards the land side, and a deep rectangular well sits under the flag
+        bastion. Seeing the whole fort takes about three hours.'
+      history: It was probably built by the Bijapur rulers in the 16th century to
+        guard Jaitapur and Rajapur. Shivaji Maharaj strengthened it after taking Rajapur,
+        and a naval dockyard was started at Jaitapur below it after 1674. It passed
+        to Kanhoji Angre by 1690 and stayed with the Marathas until the British took
+        it in 1818.
+      significance: A 7-acre sea fort with 21 bastions watching over Jaitapur creek.
+      dos: '- Look for the sign ''Shri Ghera Yashwantgad Fort'' on the Nate-Ambolgad
+        road
+
+        - Start with the citadel, then the outer fort, then the sea walls'
+      donts: '- Don''t push through the thorny scrub near the seaward wall'
+      safety_text: Some stairs and wall ends are broken or overgrown. Wear full-length
+        clothes and watch your footing.
+    mr:
+      short_story: 'यशवंतगड हा जयगड खाडीच्या उत्तर बाजूस, राजापूरपासून सुमारे 30 किमी
+        अंतरावर, नाटे गावाच्या अगदी पश्चिमेला असलेला एक सागरी किल्ला आहे. पश्चिम आणि
+        दक्षिण बाजूस पाድ्याने याला वेढले आहे.
+
+
+        किल्ला जांभ्या दगडाने बांधलेल्या 21 बुरुजांसह सुमारे 7 एकर परिसरात पसरलेला
+        आहे. जमिनीच्या बाजूने 15 फूट रुंद खंदक संरक्षण करतो आणि झेंडा बुरुजाखाली एक
+        खोल आयताकृती विहीर आहे. संपूर्ण किल्ला पाहायला सुमारे तीन तास लागतात.'
+      history: जयगड आणि राजापूरचे रक्षण करण्यासाठी 16 व्या शतकात कदाचित विजापूरच्या
+        राज्यकर्त्यांनी हा बांधला असावा. राजापूर घेतल्यानंतर छत्रपती शिवाजी महाराजांनी
+        तो बळकट केला आणि 1674 नंतर त्याच्या खाली जयपूर येथे नौदल गोदी सुरू झाली. 1690
+        पर्यंत तो कान्होजी आंग्रे यांच्याकडे गेला आणि 1818 मध्ये ब्रिटीशांनी तो ताब्यात
+        घेईपर्यंत मराठ्यांकडेच राहिला.
+      significance: जयगड खाडीवर नजर ठेवणारा 21 बुरुजांचा 7 एकरांचा सागरी किल्ला.
+      dos: '- नाटे-आंबोलगड रस्त्यावर ''श्री घेरा यशवंतगड किल्ला'' असा फलक शोधा
+
+        - आधी बालेकिल्ला, नंतर बाह्य किल्ला आणि नंतर समुद्राकडील भिंती पहा'
+      donts: '- समुद्राकडील भिंतीजवळील काटेरी झुडपांमधून जबरदस्तीने वाट काढू नका'
+      safety_text: काही पायऱ्या आणि भिंतींचे टोक तुटलेले किंवा झाकोळलेले आहेत. पूर्ण
+        लांबीचे कपडे घाला आणि चालताना लक्ष ठेवा.
+    hi:
+      short_story: 'यशवंतगढ़ नाटे गाँव से ठीक पश्चिम में, राजापूर से लगभग 30 किमी
+        दूर, जयगढ़ क्रीक के उत्तर की ओर एक तटीय किला है। पश्चिम और दक्षिण में पानी
+        इसे घेरे हुए है।
+
+
+        यह किला लेटराइट से बने 21 बुर्जों के साथ लगभग 7 एकड़ में फैला हुआ है। भूमि
+        की ओर से 15 फीट चौड़ी खाई रक्षा करती है, और झंडा बुर्ज के नीचे एक गहरा आयताकार
+        कुआँ स्थित है। पूरे किले को देखने में लगभग तीन घंटे लगते हैं।'
+      history: यह शायद 16वीं शताब्दी में बीजापुर के शासकों द्वारा जयगढ़ और राजापुर
+        की रक्षा के लिए बनाया गया था। राजापुर लेने के बाद शिवाजी महाराज ने इसे मजबूत
+        किया, और 1674 के बाद इसके नीचे जयगढ़ में एक नौसेना गोदी शुरू की गई। यह 1690
+        तक कान्होजी आंग्रे के पास चला गया और 1818 में अंग्रेजों द्वारा कब्जा किए जाने
+        तक मराठों के पास ही रहा।
+      significance: जयगढ़ क्रीक पर नजर रखने वाला 21 बुर्जों वाला 7 एकड़ का समुद्री
+        किला।
+      dos: '- नाटे-अंबोलगढ़ रोड पर ''श्री घेरा यशवंतगढ़ फोर्ट'' का बोर्ड देखें
+
+        - पहले गढ़ से शुरुआत करें, फिर बाहरी किले से, और फिर समुद्री दीवारों से'
+      donts: '- समुद्र की दीवार के पास कांटेदार झाड़ियों के बीच जबरदस्ती न घुसें'
+      safety_text: कुछ सीढ़ियाँ और दीवार के सिरे टूटे हुए या झाड़ियों से ढके हुए हैं।
+        पूरे शरीर को ढंकने वाले कपड़े पहनें और संभल कर चलें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Yeshwantgad
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://durgbharari.in/yashwantgad/
+  _collected_by: claude+gemini 2026-11-03
+  _review: Wikipedia Yeshwantgad may be the Redi (Sindhudurg) fort; confirm Nate/Rajapur
+    Yashwantgad; not the Redi (Sindhudurg) Yashwantgad; Wikipedia link was the Redi
+    fort and is removed; EN text = Claude draft from sources, needs team review; MR/HI
+    = Gemini translation, needs native review
+- slug: madban-beach
+  status: ai_draft
+  name_en: Madban Beach
+  name_mr: माडबन समुद्रकिनारा
+  name_hi: माडबन समुद्र तट
+  category: beach
+  taluka: Rajapur
+  lat: 16.578347
+  lng: 73.343215
+  coord_source: osm way/751569402
+  osm_id: way/751569402
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Madban beach at Bakale is about 1.8 km of white sand lined with
+        coconut palms and mango groves. It is known for sunsets and birdwatching,
+        with local eateries serving coastal food nearby. Ambolgad fort is about 7
+        km away.
+      history: null
+      significance: null
+      dos: '- Stay for the sunset
+
+        - Combine with Ambolgad fort'
+      donts: '- Don''t leave litter on the beach'
+      safety_text: '- Check local conditions before any water sport or swim'
+    mr:
+      short_story: बाकळे येथील माडबन समुद्रकिनारा सुमारे 1.8 किमी लांबीचा पांढऱ्या
+        वाळूचा किनारा आहे, ज्याच्या बाजूला नारळी-पोफळीच्या आणि आंब्याच्या बागा आहेत.
+        सूर्यास्त आणि पक्षी निरीक्षणासाठी हा प्रसिद्ध असून, जवळच स्थानिक खाद्यपदार्थांच्या
+        टपऱ्यांवर कोकणी जेवण मिळते. आंबोळगड किल्ला येथून सुमारे 7 किमी अंतरावर आहे.
+      history: null
+      significance: null
+      dos: '- सूर्यास्त पाहण्यासाठी नक्की थांबा
+
+        - आंबोळगड किल्ल्यासोबत याला भेट द्या'
+      donts: '- समुद्रकिनाऱ्यावर कचरा टाकू नका'
+      safety_text: '- पाण्यात खेळण्यापूर्वी किंवा पोहण्यापूर्वी तिथल्या परिस्थितीचा
+        अंदाज घ्या'
+    hi:
+      short_story: बाकले स्थित माडबन समुद्र तट लगभग 1.8 किमी लंबी सफेद रेत वाला किनारा
+        है, जिसके किनारे नारियल और आम के बाग हैं। यह अपने सूर्यास्त और पक्षी दर्शन
+        के लिए जाना जाता है, और पास के भोजनालयों में तटीय भोजन मिलता है। अंबोलगढ़
+        किला यहां से लगभग 7 किमी दूर है।
+      history: null
+      significance: null
+      dos: '- सूर्यास्त देखने के लिए रुकें
+
+        - अंबोलगढ़ किले के साथ इसे घूमने की योजना बनाएं'
+      donts: '- समुद्र तट पर कचरा न छोड़ें'
+      safety_text: '- किसी भी वाटर स्पोर्ट या तैरने से पहले स्थानीय परिस्थितियों की
+        जांच करें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://travelkonkan.in/madban-beach/
+  _collected_by: claude+gemini 2026-11-03
+  _review: Gemini access text (Bakale, 38 km from Rajapur) inconsistent; dropped;
+    travelkonkan also lists water sports (snorkelling, parasailing etc.) - not included
+    until verified; EN text = Claude draft from sources, needs team review; MR/HI
+    = Gemini translation, needs native review
+- slug: jaitapur-lighthouse
+  status: ai_draft
+  name_en: Jaitapur Lighthouse
+  name_mr: जैतापूर दीपगृह
+  name_hi: जैतापुर दीपगृह
+  category: viewpoint
+  taluka: Rajapur
+  lat: 16.605968
+  lng: 73.321279
+  coord_source: osm way/3133804830
+  osm_id: way/3133804830
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Jaitapur, near the port.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Jaitapur Lighthouse is located in Rajapur taluka of Ratnagiri
+        district. Situated near coastal areas, it overlooks the Arabian Sea and functions
+        as a navigational aid for vessels.
+
+
+        Visitors to the area can observe the coastal structure and surrounding sea
+        views. Access routes connect through local roadways within the region.'
+      history: A lighthouse was established at Jaitapur after the British ship HMS
+        Outram sank near the nearby fort on January 1, 1817.
+      significance: A coastal navigational landmark linked to maritime history in
+        Rajapur taluka.
+      dos: '- Check local weather and visiting permissions before planning a trip
+
+        - Wear sturdy footwear for walking around the coastal terrain'
+      donts: '- Do not litter around the lighthouse premises'
+      safety_text: Exercise caution near steep edges along the coastal cliff areas.
+    mr:
+      short_story: 'जैतापूर लाईटहाउस हा रत्नागिरी जिल्ह्यातील राजापूर तालुक्यात स्थित
+        आहे. किनारपट्टीच्या भागात असलेला हा परिसर अरबी समुद्राकडे तोंड करून उभा आहे
+        आणि जलमार्गावरील जहाजांना मार्गदर्शन करण्याचे काम करतो.
+
+
+        येथे येणारे प्रवासी किनारपट्टीची रचना आणि आजूबाजूचा सागरकिनारा पाहू शकतात.
+        या भागापर्यंत पोहोचण्यासाठी स्थानिक रस्ते उपलब्ध आहेत.'
+      history: 1 जानेवारी 1817 रोजी नजीकच्या किल्ल्याजवळ एचएमएस आउटरम ही ब्रिटिश नौका
+        बुडाल्यानंतर जैतापूर येथे लाईटहाउस उभारण्यात आला.
+      significance: राजापूर तालुक्यातील ऐतिहासिक संदर्भ असलेला किनारपट्टीवरील मार्गदर्शक
+        स्तूप.
+      dos: '- भेट देण्यापूर्वी स्थानिक हवामान आणि प्रवेश परवानग्या तपासा
+
+        - किनारपट्टीच्या भागातून चालताना मजबूत पादत्राणे घाला'
+      donts: '- लाईटहाउस परिसरात कचरा टाकू नका'
+      safety_text: किनारपट्टीवरील तीव्र कड्यांच्या जवळ काळजी घ्या.
+    hi:
+      short_story: 'जैतापुर लाइटहाउस रत्नागिरी जिले के राजापूर तालुका में स्थित है।
+        तटीय क्षेत्र में स्थित यह संरचना अरब सागर की ओर है और जहाजों के लिए नेविगेशन
+        सहायता के रूप में कार्य करती है।
+
+
+        यहाँ आने वाले आगंतुकों को तटीय बनावट और आसपास के समुद्र के दृश्य देखने को
+        मिलते हैं। क्षेत्र के भीतर स्थानीय सड़कों के माध्यम से पहुँचा जा सकता है।'
+      history: 1 जनवरी 1817 को पास के किले के पास ब्रिटिश जहाज एचएमएस आउटरम के डूबने
+        के बाद जैतापुर में एक लाइटहाउस स्थापित किया गया था।
+      significance: राजापूर तालुका में समुद्री इतिहास से जुड़ा एक तटीय नेविगेशन स्थल।
+      dos: '- यात्रा की योजना बनाने से पहले स्थानीय मौसम और अनुमति की जाँच करें
+
+        - तटीय इलाके में घूमने के लिए मजबूत जूते पहनें'
+      donts: '- लाइटहाउस परिसर के आस-पास कचरा न फैलाएं'
+      safety_text: तटीय चट्टानी किनारों के पास सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.wikidata.org/wiki/Q141681093
+    - https://en.wikipedia.org/wiki/Yeshwantgad
+    - https://indianewengland.com/rti-prevents-sale-historic-maharashtra-sea-fort/
+    - https://www.treksandtrails.org/tours/mango-festival-ratnagiri
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'OSM name is Rajapur Bay Lighthouse (Wikidata Q141681093); visiting rules
+    unknown; no text: no reliable source found (2026-11-03 search); needs field visit
+    or local source; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: devghali-beach
+  status: ai_draft
+  name_en: Devghali Beach
+  name_mr: देवघळी समुद्रकिनारा
+  name_hi: देवघली समुद्र तट
+  category: beach
+  taluka: Rajapur
+  lat: 16.726568
+  lng: 73.310075
+  coord_source: osm way/2376238804
+  osm_id: way/2376238804
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Monsoon and winter
+  how_to_reach: Near Kasheli village, Rajapur taluka.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: true
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Devghali beach near Kasheli holds Devachi Kholi, the sea cave where,
+        by legend, Kanaka found the Sun idol now in the Kanakaditya temple. The cave
+        can only be reached when the water recedes, and going with a villager as guide
+        is recommended.
+      history: null
+      significance: null
+      dos: '- Go with a local guide for the cave
+
+        - Combine with the Kanakaditya temple'
+      donts: '- Don''t go into the cave when the tide is coming in'
+      safety_text: '- The cave is reachable only at low tide; check timings with villagers'
+    mr:
+      short_story: कशेळी जवळील देवघळी समुद्रकिनाऱ्यावर 'देवाची खोली' नावाची एक समुद्री
+        गुहा आहे. आख्यायिकेनुसार, याच गुहेत कनका नावाच्या महिलेला सूर्याची मूर्ती
+        सापडली, जी आता कनकादित्य मंदिरात आहे. ओहोटीच्या वेळीच या गुहेपर्यंत पोहोचता
+        येते आणि सोबत मार्गदर्शक म्हणून एखाद्या गावकऱ्याला नेण्याचा सल्ला दिला जातो.
+      history: null
+      significance: null
+      dos: '- गुहेत जाण्यासाठी एखाद्या स्थानिक मार्गदर्शकाला सोबत घ्या
+
+        - कनकादित्य मंदिरासोबत याला भेट द्या'
+      donts: '- भरती येत असताना गुहेत जाऊ नका'
+      safety_text: '- ही गुहा फक्त ओहोटीच्या वेळीच गाठता येते; गावकऱ्यांकडून वेळा
+        नक्की विचारून घ्या'
+    hi:
+      short_story: कशेली के पास देवघली समुद्र तट पर 'देवाची खोली' नामक एक समुद्री
+        गुफा है। किंवदंती के अनुसार, इसी गुफा में कनका को सूर्य की मूर्ति मिली थी
+        जो अब कनकादित्य मंदिर में है। गुफा तक केवल पानी उतरने (भाटा) पर ही पहुंचा
+        जा सकता है, और मार्गदर्शक के रूप में किसी ग्रामीण को साथ ले जाने की सलाह दी
+        जाती है।
+      history: null
+      significance: null
+      dos: '- गुफा में जाने के लिए एक स्थानीय गाइड साथ लें
+
+        - कनकादित्य मंदिर के साथ इसे घूमने की योजना बनाएं'
+      donts: '- जब ज्वार (टाइड) आ रहा हो तो गुफा में न जाएं'
+      safety_text: '- गुफा तक केवल कम ज्वार (लो टाइड) के समय ही पहुंचा जा सकता है;
+        ग्रामीणों से समय की जांच करें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.outlooktraveller.com/explore/culture/a-guide-to-the-sun-temple-in-konkan
+    - https://www.indiantravelplanner.com/2023/08/devghali-beach-ratnagiri-maharashtra.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'tide flag: cave access at low tide per Outlook Traveller; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'
+- slug: kanakaditya-sun-temple-kasheli
+  status: ai_draft
+  name_en: Kanakaditya Sun Temple, Kasheli
+  name_mr: कनकादित्य मंदिर, कशेळी
+  name_hi: कनकादित्य सूर्य मंदिर, कशेली
+  category: temple
+  taluka: Rajapur
+  lat: 16.728664
+  lng: 73.319147
+  coord_source: osm way/1982948356
+  osm_id: way/1982948356
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: At Kasheli village, about 30 km by road from Ratnagiri and 25 km from
+    Pawas.
+  nearest_station: Ratnagiri (30 km)
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Kanakaditya temple at Kasheli is one of the few Sun temples
+        on the Konkan coast. Built of red laterite with a sloping roof like a Konkani
+        house, it has a black stone idol of the Sun god with large eyes and a silver
+        crown, and a big wooden-pillared sabha mandap in front.
+
+
+        The main festival is Mitra Saptami, usually in February, when the deity is
+        taken through the village on a chariot.'
+      history: Locals say the temple is over 800 years old. Legend says a boatman
+        sailing from Veraval in Gujarat left a Sun idol in a cave near Kasheli when
+        the wind dropped. A woman named Kanaka, a Sun worshipper, learned of it in
+        a dream and built the temple, which took her name.
+      significance: A rare Sun temple of the Konkan, with a living village festival.
+      dos: '- Go early or late afternoon to avoid the heat
+
+        - Combine with Devghali beach and the Mahakali temple at Adivare, about 3
+        km away'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: 'कशेळी येथील कनकादित्य मंदिर हे कोकण किनारपट्टीवरील मोजक्या सूर्य
+        मंदिरांपैकी एक आहे. कोकणी घरासारखे उतरते छप्पर आणि लाल जांभ्या दगडात बांधलेल्या
+        या मंदिरात, मोठे डोळे आणि चांदीचा मुकुट असलेली सूर्यदेवाची काळ्या पाषाणाची
+        मूर्ती आहे. मूर्तीच्या समोर एक मोठा लाकडी खांबांचा सभामंडप आहे.
+
+
+        येथील मुख्य उत्सव ''मित्र सप्तमी'' हा असून तो साधारणपणे फेब्रुवारीमध्ये असतो,
+        जेव्हा देवाची गावातून रथातून मिरवणूक काढली जाते.'
+      history: स्थानिकांच्या मते हे मंदिर 800 वर्षांहून जुने आहे. आख्यायिकेनुसार,
+        गुजरातमधील वेरावळहून निघालेल्या एका खलाशाने वारा थांबल्यावर कशेळीजवळील एका
+        गुहेत सूर्याची मूर्ती ठेवली. सूर्योपासक असलेल्या कनका नावाच्या एका महिलेला
+        स्वप्नात याबद्दल समजले आणि तिने हे मंदिर बांधले, ज्याला तिचे नाव दिले गेले.
+      significance: कोकणातील एक दुर्मिळ सूर्य मंदिर, जिथे गावरहाटीचा उत्सव आजही तितक्याच
+        उत्साहात साजरा होतो.
+      dos: '- उष्मा टाळण्यासाठी सकाळी लवकर किंवा दुपारनंतर जा
+
+        - देवघळी समुद्रकिनारा आणि सुमारे 3 किमी अंतरावर असलेल्या आडिवरे येथील महाकाली
+        मंदिरासोबत याला भेट द्या'
+      donts: '- मंदिरात चपला-बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: 'कशेली का कनकादित्य मंदिर कोंकण तट के गिने-चुने सूर्य मंदिरों में
+        से एक है। कोंकणी घर की तरह ढलान वाली छत और लाल लेटराइट पत्थर से बने इस मंदिर
+        में बड़े नेत्रों और चांदी के मुकुट वाली सूर्य देव की काले पत्थर की मूर्ति
+        है। इसके सामने लकड़ी के खंभों वाला एक बड़ा सभा मंडप है。
+
+
+        मुख्य त्योहार मित्र सप्तमी है, जो आमतौर पर फरवरी में होता है, जब देवता को
+        रथ पर बिठाकर पूरे गांव में घुमाया जाता है।'
+      history: स्थानीय लोगों का कहना है कि यह मंदिर 800 साल से अधिक पुराना है। किंवदंती
+        है कि गुजरात के वेरावल से आ रहे एक नाविक ने हवा रुकने पर कशेली के पास एक गुफा
+        में सूर्य की मूर्ति छोड़ दी थी। सूर्य की उपासक कनका नामक एक महिला को सपने
+        में इसके बारे में पता चला और उसने मंदिर बनवाया, जिसका नाम उसी के नाम पर रखा
+        गया।
+      significance: कोंकण का एक दुर्लभ सूर्य मंदिर, जहां गांव का त्योहार आज भी जीवंत
+        है।
+      dos: '- गर्मी से बचने के लिए सुबह जल्दी या दोपहर बाद जाएं
+
+        - देवघली समुद्र तट और लगभग 3 किमी दूर आडिवरे के महाकाली मंदिर के साथ इसे घूमने
+        की योजना बनाएं'
+      donts: '- मंदिर में जूते-चप्पल पहनकर न जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/6/6e/Kanakadity_Mandir_-_Entrance_01.jpg
+    credit: Milindoka
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Kanakadity_Mandir_-_Entrance_01.jpg
+  _sources:
+    _all:
+    - https://www.outlooktraveller.com/explore/culture/a-guide-to-the-sun-temple-in-konkan
+    - https://www.travelladda.com/place/sri-kanakaditya-temple-6786
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: savatkada-waterfall
+  status: ai_draft
+  name_en: Savatkada Waterfall
+  name_mr: सवतकडा धबधबा
+  name_hi: सवतकड़ा जलप्रपात
+  category: waterfall
+  taluka: Rajapur
+  lat: 16.762968
+  lng: 73.552718
+  coord_source: osm node/9164297138
+  osm_id: node/9164297138
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Monsoon
+  how_to_reach: In the forest north of Rajapur; short walk on a dirt path.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 9
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Savatkada, also called Chuna Kolvan, is a tall semi-circular waterfall
+        in the forest north of Rajapur, dropping about 125 feet. You reach it by a
+        walk along a soil path. It is best in the monsoon.
+      history: null
+      significance: null
+      dos: '- Go in the monsoon
+
+        - Wear shoes with grip'
+      donts: '- Don''t enter the pool during heavy rain'
+      safety_text: '- Surfaces are slippery and the flow is high in the monsoon
+
+        - Follow local authority guidelines'
+    mr:
+      short_story: चुना कोळवण म्हणूनही ओळखला जाणारा सवतकडा हा राजापूरच्या उत्तरेकडील
+        जंगलात असलेला एक उंच अर्धवर्तुळाकार धबधबा आहे, जो सुमारे 125 फुटांवरून खाली
+        कोसळतो. एका मातीच्या पायवाटेवरून चालत इथे पोहोचता येते. पावसाळ्याच्या दिवसात
+        याचे सौंदर्य अधिक खुलून दिसते.
+      history: null
+      significance: null
+      dos: '- पावसाळ्यात भेट द्या
+
+        - चांगली ग्रिप (पकड) असलेले शूज घाला'
+      donts: '- मुसळधार पावसात पाण्याच्या डोहात उतरू नका'
+      safety_text: '- पावसाळ्यात इथला परिसर निसरडा असतो आणि पाण्याचा प्रवाहही वेगवान
+        असतो
+
+        - स्थानिक प्रशासनाच्या सूचनांचे पालन करा'
+    hi:
+      short_story: चुना कोलवन के नाम से भी जाना जाने वाला सवतकड़ा, राजापुर के उत्तर
+        में जंगल में स्थित एक ऊंचा अर्ध-गोलाकार जलप्रपात है, जो लगभग 125 फीट की ऊंचाई
+        से गिरता है। आप मिट्टी के रास्ते पर चलकर यहां तक पहुंच सकते हैं। मानसून में
+        यह सबसे अच्छा दिखता है।
+      history: null
+      significance: null
+      dos: '- मानसून में जाएं
+
+        - अच्छी ग्रिप वाले जूते पहनें'
+      donts: '- भारी बारिश के दौरान पानी के कुंड में न जाएं'
+      safety_text: '- मानसून में सतहें फिसलन भरी होती हैं और बहाव तेज होता है
+
+        - स्थानीय प्राधिकरण के दिशानिर्देशों का पालन करें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://travelkonkan.in/savatkada-chuna-kolvan-waterfall/
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: rundhe-tali-petroglyphs
+  status: ai_draft
+  name_en: Rundhe Tali Petroglyphs
+  name_mr: रुंढे तळी कातळशिल्प
+  name_hi: रुंधे ताली पेट्रोग्लिफ्स (शैलचित्र)
+  category: village
+  taluka: Rajapur
+  lat: 16.736748
+  lng: 73.373237
+  coord_source: osm node/12730413928
+  osm_id: node/12730413928
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On a laterite plateau near Rundhe, Rajapur taluka.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Rundhe Tali is one of the sites of the Konkan petroglyphs, prehistoric
+        carvings cut into the flat laterite plateaus of the Konkan. The carvings show
+        animals such as elephants, tigers, rhinos, stingrays and turtles, and simple
+        human figures.
+
+
+        About 70 such sites with over 1,500 carvings are recorded, many of them in
+        Rajapur taluka, such as Barsu and Devache Gothane. The carvings are thought
+        to be around 12,000 years old.'
+      history: The art is dated from the Mesolithic to the early historic period.
+        The lack of domestic animals suggests it was made by hunter-gatherers. The
+        Konkan geoglyphs are on India's tentative list for UNESCO World Heritage status.
+      significance: Part of the Konkan rock art group on India's UNESCO tentative
+        list.
+      dos: '- Go with a local guide; the carvings are hard to spot
+
+        - Visit in the dry months when the plateau is clear'
+      donts: '- Don''t walk on, scratch or chalk the carvings'
+      safety_text: null
+    mr:
+      short_story: 'रुंढे तळी हे कोकण पेट्रोग्लिफ्सच्या (कातळशिल्प) ठिकाणांपैकी एक
+        आहे, जे कोकणातील सपाट जांभ्या पठारावर कोरलेली प्रागैतिहासिक शिल्पे आहेत. या
+        शिल्पांमध्ये हत्ती, वाघ, गंडे, शिंगाडे (स्टींग्रे) आणि कासव यांसारखे प्राणी
+        आणि साध्या मानवी आकृत्या दर्शवल्या आहेत.
+
+
+        अशी सुमारे 70 ठिकाणे आणि 1500 हून अधिक शिल्पे नोंदवली गेली आहेत, ज्यापैकी
+        बरीच राजापूर तालुक्यात जसे की बारसू आणि देवाचे गोठणे येथे आहेत. ही शिल्पे
+        सुमारे 12,000 वर्षे जुनी असल्याचे मानले जाते.'
+      history: या कलेचा काळ मेसोलिथिकपासून (मध्य पाषाण युग) ते सुरुवातीच्या ऐतिहासिक
+        काळापर्यंत मानला जातो. पाळीव प्राण्यांचा अभाव दर्शवतो की हे शिकारी-संग्राहकांनी
+        बनवले होते. कोकणातील जिओग्लिफ्स हे भारताच्या युनेस्को जागतिक वारसा स्थळांच्या
+        संभाव्य यादीत आहेत.
+      significance: भारताच्या युनेस्कोच्या संभाव्य यादीतील कोकण रॉक आर्ट ग्रुपचा एक
+        भाग.
+      dos: '- स्थानिक मार्गदर्शकासोबत जा; शिल्पे शोधणे कठीण आहे
+
+        - कोरड्या महिन्यांत भेट द्या जेव्हा पठार स्वच्छ असते'
+      donts: '- शिल्पांवर चालु नका, त्यांना खाजव नका किंवा त्यावर खडू लावू नका'
+      safety_text: null
+    hi:
+      short_story: 'रुंधे ताली कोकण पेट्रोग्लिफ्स (शैलचित्र) स्थलों में से एक है,
+        जो कोकण के सपाट लेटराइट पठारों पर उकेरी गई प्रागैतिहासिक नक्काशी है। इन नक्काशी
+        में हाथियों, बाघों, गैंडों, स्टिंग्रे और कछुओं जैसे जानवरों और सरल मानव आकृतियों
+        को दिखाया गया है। दर्जनों ऐसी कलाकृतियाँ हैं।
+
+
+        लगभग 70 ऐसे स्थल दर्ज किए गए हैं जिनमें 1,500 से अधिक नक्काशी शामिल हैं, जिनमें
+        से कई राजापुर तालुका में हैं, जैसे बारसू और देवाचे गोठणे। माना जाता है कि
+        ये नक्काशी लगभग 12,000 साल पुरानी हैं।'
+      history: इस कला का काल मध्य पाषाण युग से लेकर शुरुआती ऐतिहासिक काल तक का है।
+        पालतू जानवरों की अनुपस्थिति से पता चलता है कि यह शिकारी-संग्राहकों द्वारा
+        बनाई गई थी। कोकण जियोटैग्ड जियोग्लिफ्स भारत की यूनेस्को विश्व धरोहर स्थल की
+        अस्थायी सूची में हैं.
+      significance: भारत की यूनेस्को की अस्थायी सूची में शामिल कोकण रॉक आर्ट समूह
+        का हिस्सा।
+      dos: '- किसी स्थानीय गाइड के साथ जाएँ; नक्काशी को ढूँढना मुश्किल है
+
+        - शुष्क महीनों में जाएँ जब पठार साफ होता है'
+      donts: '- नक्काशी पर चलें नहीं, उस पर खरोंचें नहीं और न ही उस पर चाक लगाएँ'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.megalithic.co.uk/article.php?sid=64381
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Konkan_geoglyphs
+    - https://whc.unesco.org/en/tentativelists/6605/
+  _collected_by: claude+gemini 2026-11-03
+  _review: Konkan petroglyphs are on the UNESCO tentative list; add that source; district
+    site lists "Rock Carvings in Rajapur Taluka"; Rundhe Tali-specific details (what's
+    carved here, access) need field check; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review
+- slug: aryadurga-temple-devihasol
+  status: ai_draft
+  name_en: Aryadurga Temple, Devihasol
+  name_mr: आर्यादुर्गा मंदिर, देवीहसोळ
+  name_hi: आर्यादुर्गा मंदिर, देवीहसोल
+  category: temple
+  taluka: Rajapur
+  lat: 16.728661
+  lng: 73.318889
+  coord_source: osm way/1982948352
+  osm_id: way/1982948352
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Navratri (fair on the eighth day)
+  how_to_reach: At Devihasol village, 18 km from Rajapur and 52 km from Ratnagiri.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Aryadurga_devi,_Devihasol
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Aryadurga temple stands in Devihasol village, about 18 km
+        from Rajapur and 52 km from Ratnagiri. The goddess is the kuldevi of many
+        Karhade Brahmin families.
+
+
+        Inside the shrine are footprints said to be the goddess''s own. An annual
+        fair is held in October, on the eighth day of Navratri.'
+      history: Legend says a devotee, Palsule Desai, used to visit the goddess at
+        Ankola in Karnataka every year. When he could no longer travel, she agreed
+        to follow him home if he did not look back. At the Devihasol border he turned
+        at the sound of her anklets; she vanished, leaving the footprints where the
+        temple now stands.
+      significance: Kuldevi of many Karhade Brahmin families.
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: 'आर्यादुर्गा मंदिर राजापूरपासून सुमारे 18 किमी आणि रत्नागिरीपासून
+        52 किमी अंतरावर असलेल्या देवीहसोळ गावात आहे. ही देवी अनेक कऱ्हाडे ब्राह्मण
+        कुटुंबांची कुलदेवता आहे.
+
+
+        गाभाऱ्यात देवीच्याच मानल्या जाणाऱ्या पाऊलखुणा आहेत. ऑक्टोबरमध्ये नवरात्रीच्या
+        आठव्या दिवशी इथे वार्षिक जत्रा भरते.'
+      history: आख्यायिकेनुसार पळसुले देसाई नावाचे एक भक्त दरवर्षी कर्नाटकातील अंकोला
+        येथे देवीच्या दर्शनासाठी जात असत. जेव्हा त्यांना प्रवास करणे शक्य झाले नाही,
+        तेव्हा देवीने त्यांच्या मागे त्यांच्या घरी येण्यास सहमती दर्शवली, पण अट घातली
+        की त्यांनी मागे वळून पाहता कामा नये. देवीहसोळच्या वेशीवर पैंजणांचा आवाज आल्याने
+        ते मागे वळले; तेव्हा देवी अदृश्य झाली, आणि तिथेच तिच्या पाऊलखुणा राहिल्या
+        जिथे आज हे मंदिर उभे आहे.
+      significance: अनेक कऱ्हाडे ब्राह्मण कुटुंबांची कुलदेवता.
+      dos: null
+      donts: '- मंदिरात चपला-बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: 'आर्यादुर्गा मंदिर राजापुर से लगभग 18 किमी और रत्नागिरि से 52 किमी
+        दूर देवीहसोल गांव में स्थित है। यह देवी कई कऱ्हाड़े ब्राह्मण परिवारों की कुलदेवी
+        हैं।
+
+
+        मंदिर के गर्भगृह में पदचिह्न हैं जिन्हें स्वयं देवी का माना जाता है। अक्टूबर
+        में, नवरात्रि के आठवें दिन यहां एक वार्षिक मेला लगता है।'
+      history: किंवदंती है कि पल्सुले देसाई नामक एक भक्त हर साल कर्नाटक के अंकोला
+        में देवी के दर्शन करने जाते थे। जब वे यात्रा करने में असमर्थ हो गए, तो देवी
+        ने उनके पीछे उनके घर आने की सहमति दी, लेकिन शर्त यह थी कि वे पीछे मुड़कर न
+        देखें। देवीहसोल की सीमा पर, उनकी पायलों की आवाज सुनकर वे पीछे मुड़े; देवी
+        वहीं अदृश्य हो गईं, और अपने पदचिह्न छोड़ गईं जहां अब यह मंदिर खड़ा है।
+      significance: कई कऱ्हाड़े ब्राह्मण परिवारों की कुलदेवी।
+      dos: null
+      donts: '- मंदिर में जूते-चप्पल पहनकर न जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/7/71/Aryadurga_devi.jpg
+    credit: Varun sakpal
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Aryadurga_devi.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Aryadurga_devi,_Devihasol
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: mahakali-temple-adivare
+  status: ai_draft
+  name_en: Mahakali Temple, Adivare
+  name_mr: महाकाली मंदिर, आडिवरे
+  name_hi: महाकाली मंदिर, आडिवरे
+  category: temple
+  taluka: Rajapur
+  lat: 16.718272
+  lng: 73.349268
+  coord_source: osm way/1983214718
+  osm_id: way/1983214718
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 30 km from Rajapur by road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Adivare, about 30 km from Rajapur, has an ancient temple of goddess
+        Mahakali. The village was a busy marketplace under the Shilahara kings.
+      history: Adivare flourished as a market town under the Shilahara dynasty.
+      significance: null
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: राजापूरपासून सुमारे 30 किमी अंतरावर असलेल्या आडिवरे गावात महाकाली
+        देवीचे एक प्राचीन मंदिर आहे. शिलाहार राजांच्या काळात हे गाव एक गजबजलेली बाजारपेठ
+        होते.
+      history: शिलाहार राजघराण्याच्या काळात आडिवरे हे एक भरभराटीचे व्यापारी शहर होते.
+      significance: null
+      dos: null
+      donts: '- मंदिरात चपला-बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: राजापुर से लगभग 30 किमी दूर आडिवरे में देवी महाकाली का एक प्राचीन
+        मंदिर है। शिलाहार राजाओं के अधीन यह गांव एक व्यस्त बाजार हुआ करता था।
+      history: शिलाहार राजवंश के काल में आडिवरे एक समृद्ध बाजार शहर के रूप में फला-फूला।
+      significance: null
+      dos: null
+      donts: '- मंदिर में जूते-चप्पल पहनकर न जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _collected_by: claude 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: kasheli-sunset-point
+  status: ai_draft
+  name_en: Kasheli Sunset Point
+  name_mr: कशेळी सनसेट पॉईंट
+  name_hi: कशेळी सनसेट पॉइंट
+  category: viewpoint
+  taluka: Rajapur
+  lat: 16.7267725
+  lng: 73.3098038
+  coord_source: osm nominatim node/9141421955
+  osm_id: node/9141421955
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: Ratnagiri Railway Station (59 km)
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Slippery edges and low visibility in heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kasheli Sunset Point is situated in Rajapur taluka of Ratnagiri
+        district, near the coastal village of Kasheli. The viewpoint features a constructed
+        area with stairs and railings overlooking the landscape and the sea.
+
+
+        Visitors can observe open horizon views during the evening hours. The location
+        is accessible by road via local transport from Ratnagiri and Rajapur.'
+      history: null
+      significance: A designated coastal viewpoint for observing sunsets in Rajapur
+        taluka.
+      dos: '- Carry drinking water as commercial eateries are limited at the site
+
+        - Download offline maps prior to travel due to variable mobile network connectivity'
+      donts: '- Do not litter the viewing area or leave plastic waste behind'
+      safety_text: Remain behind safety railings at the observation platform.
+    mr:
+      short_story: 'कशेळी सनसेट पॉईंट हा रत्नागिरी जिल्ह्यातील राजापूर तालुक्यात कशेळी
+        या किनारपट्टीवरील गावाजवळ स्थित आहे. या दृष्टिक्षेप केंद्रावर पायऱ्या आणि
+        रेलिंगयुक्त बांधलेली मोकळी जागा आहे, जिथून परिसर आणि समुद्र दिसतो.
+
+
+        संध्याकाळच्या वेळी येथे उघड्या क्षितिजाचे दृश्य दिसते. रत्नागिरी आणि राजापूरवरून
+        स्थानिक वाहतुकीद्वारे रस्त्याने येथे पोहोचता येते.'
+      history: null
+      significance: राजापूर तालुक्यातील सूर्यास्त पाहण्यासाठीचे एक अधिकृत किनारपट्टीवरील
+        दर्शन केंद्र.
+      dos: '- परिसरात खाण्यापिण्याच्या दुकानांची कमतरता असल्याने पिण्याचे पाणी सोबत
+        ठेवा
+
+        - मोबाईल नेटवर्कच्या मर्यादित उपलब्धतेमुळे प्रवासापूर्वी ऑफलाईन नकाशे डाऊनलोड
+        करा'
+      donts: '- प्रेक्षणीय परिसरात कचरा टाकू नका किंवा प्लॅस्टिकचा कचरा मागे सोडू
+        नका'
+      safety_text: निरीक्षण मंचावरील सुरक्षा रेलिंगच्या मागे राहा.
+    hi:
+      short_story: 'कशेळी सनसेट पॉइंट रत्नागिरी जिले के राजापूर तालुका में कशेळी तटीय
+        गाँव के पास स्थित है। इस दृष्टिकोण बिंदु पर सीढ़ियों और रेलिंग के साथ एक निर्मित
+        क्षेत्र है जहाँ से भूदृश्य और समुद्र दिखाई देता है।
+
+
+        आगंतुक शाम के समय खुले क्षितिज के दृश्यों का अवलोकन कर सकते हैं। यह स्थान
+        राजापूर और रत्नागिरी से सड़क मार्ग द्वारा पहुँचा जा सकता है।'
+      history: null
+      significance: राजापूर तालुका में सूर्यास्त देखने के लिए एक निर्दिष्ट तटीय दृष्टिकोण
+        बिंदु।
+      dos: '- साइट पर खान-पान के विकल्प सीमित होने के कारण पीने का पानी साथ रखें
+
+        - मोबाइल नेटवर्क कनेक्टिविटी की अनिश्चितता के कारण यात्रा से पहले ऑफ़लाइन
+        मैप डाउनलोड करें'
+      donts: '- देखने वाले क्षेत्र में कचरा न फैलाएं और प्लास्टिक अपशिष्ट न छोड़ें'
+      safety_text: अवलोकन मंच पर सुरक्षा रेलिंग के पीछे रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Sunset-Point-Kasheli-Kasheli/9999P2352-2352-220310224115-W7Q5_BZDET
+    - https://travelkonkan.in/kasheli-devghali-beach/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; monsoon_status is a category default,
+    not sourced; pin from osm, check on map; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources; text reads like Dingni
+    Sunset Point text (stairs and railings); verify; story restored 2026-11-04 for
+    import, CHECK: generic text; road access claim unsourced'
+- slug: vetye-beach
+  status: ai_draft
+  name_en: Vetye Beach
+  name_mr: वेत्ये समुद्रकिनारा
+  name_hi: वेत्ये बीच
+  category: beach
+  taluka: Rajapur
+  lat: 16.688462
+  lng: 73.328865
+  coord_source: osm way/1242750494
+  osm_id: way/1242750494
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: Oct - May
+  how_to_reach: Located in Rajapur tehsil, accessible by road from Ratnagiri or Rajapur
+    via local transport or taxi.
+  nearest_station: Ratnagiri Railway Station
+  nearest_bus_stop: Vetye Bus Stop
+  monsoon_status: risky
+  monsoon_reason: High tides and rough sea conditions during monsoon make swimming
+    dangerous.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Vetye Beach is located in Adivare within Rajapur taluka of Ratnagiri
+        district. It is an offbeat coastal location featuring a sandy shore bounded
+        by natural surroundings.
+
+
+        Visitors to the beach can see open coastal expanses with minimal commercial
+        development. Road routes connect the area to nearby towns in the district.'
+      history: null
+      significance: A quiet, lesser-known coastal beach destination in Rajapur taluka.
+      dos: '- Carry essential supplies such as water as there are no food stalls directly
+        on the beach
+
+        - Follow local travel directions carefully as signboards can be limited'
+      donts: '- Do not venture deep into rough sea waters'
+      safety_text: Be mindful of sea currents and avoid swimming far from the shore.
+    mr:
+      short_story: 'वेत्ये बीच रत्नागिरी जिल्ह्यातील राजापूर तालुक्यातील आडिवरे येथे
+        स्थित आहे. हा एक कमी गर्दीचा किनारपट्टीवरील भाग असून येथे नैसर्गिक परिसराने
+        वेढलेला वाळूचा किनारा आहे.
+
+
+        समुद्रकिनाऱ्यावर व्यावसायिक बांधकामाचा अभाव असून मोकळा किनारपट्टीचा विस्तार
+        पाहता येतो. रस्त्यांच्या माध्यमातून हा परिसर जवळील शहरांशी जोडलेला आहे.'
+      history: null
+      significance: राजापूर तालुक्यातील एक शांत आणि कमी পরিচিত किनारपट्टीवरील बीच
+        ठिकाण.
+      dos: '- बीचवर थेट खाण्याची दुकाने नसल्यामुळे पाण्याचे ढेग आणि आवश्यक वस्तू सोबत
+        ठेवा
+
+        - मार्गदर्शक फलक मर्यादित असल्याने स्थानिक मार्गांची माहिती काळजीपूर्वक घ्या'
+      donts: '- खवळलेल्या समुद्राच्या पाण्यात फार दूर जाऊ नका'
+      safety_text: समुद्राच्या प्रवाहांची काळजी घ्या आणि किनाऱ्यापासून लांब पोहणे
+        टाळा.
+    hi:
+      short_story: 'वेत्ये बीच रत्नागिरी जिले के राजापूर तालुका में आडिवरे क्षेत्र
+        में स्थित है। यह प्राकृतिक परिवेश से घिरा एक शांत और कम प्रसिद्ध तटीय स्थान
+        है जहाँ रेतीला तट मौजूद है।
+
+
+        आगंतुक न्यूनतम व्यावसायिक विकास के साथ खुले तटीय विस्तार को देख सकते हैं।
+        सड़क मार्ग इस क्षेत्र को जिले के नजदीकी कस्बों से जोड़ते हैं।'
+      history: null
+      significance: राजापूर तालुका में एक शांत और कम ज्ञात तटीय बीच गंतव्य।
+      dos: '- बीच पर सीधे खाने के स्टॉल न होने के कारण पानी जैसी आवश्यक सामग्री साथ
+        रखें
+
+        - स्थानीय दिशा-निर्देशों का ध्यान रखें क्योंकि साइनबोर्ड सीमित हो सकते हैं'
+      donts: '- अशांत समुद्री जल में दूर तक न उतरें'
+      safety_text: समुद्र की धाराओं के प्रति सचेत रहें और तट से दूर तैरने से बचें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/c/cb/Vetye_Beach.jpeg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Abj10
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Vetye_Beach.jpeg
+  _sources:
+    _all:
+    - https://travelkonkan.in/vetye-beach/
+    - https://www.justdial.com/Ratnagiri/Vetye-Beach-Adivare/9999P2352-2352-220315212634-Y8V9_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; OSM match by name, check pin; EN text
+    + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts
+    against sources'
+- slug: ambolgad-beach
+  status: ai_draft
+  name_en: Ambolgad Beach
+  name_mr: आंबोलगड समुद्रकिनारा
+  name_hi: अंबोलगढ़ बीच
+  category: beach
+  taluka: Rajapur
+  lat: 16.643068
+  lng: 73.330959
+  coord_source: osm node/9196972614
+  osm_id: node/9196972614
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 90
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: Sep - May
+  how_to_reach: Located in Ambolgad village near Nate in Rajapur Taluka, reachable
+    by road via Ratnagiri (55 km) or Rajapur (36 km).
+  nearest_station: Saundal Railway Station
+  nearest_bus_stop: Ambolgad ST Stand
+  monsoon_status: risky
+  monsoon_reason: Heavy monsoon rains and rough sea currents make it unsafe for beach
+    activities.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Ambolgad Beach is located in Rajapur taluka of Ratnagiri district,
+        featuring soft sand and coastal views. Visitors can observe the nearby Ambolgad
+        Fort ruins, which sit near the shore.
+
+
+        The coastal area includes remnants of old fortifications, a dry well, and
+        a banyan tree. The location connects via regional roads from Ratnagiri and
+        Rajapur through Nate village.'
+      history: Evidence indicates the fort belonged to Kanhoji Angre in 1690 and was
+        captured by British Colonel Imlock in 1818. The residential portion was vacated
+        by 1862.
+      significance: A coastal site featuring a historic fort ruin and open sea views
+        in Rajapur taluka.
+      dos: '- Carry drinking water and food supplies
+
+        - Wear comfortable footwear for walking around fort ruins'
+      donts: '- Do not litter on the beach or fort premises
+
+        - Avoid venturing onto slippery rocks near the sea edge'
+      safety_text: Exercise caution near ruined fort walls and steep drops. Swimming
+        requires care due to lack of lifeguards.
+    mr:
+      short_story: 'अंबोलगढ़ बीच हा रत्नागिरी जिल्ह्यातील राजापूर तालुक्यात असून येथे
+        पांढरेशुभ्र वाळूचा किनारा आणि किनारपट्टीचा परिसर आहे. पर्यटकांना समुद्राजवळ
+        असलेल्या अंबोलगढ़ किल्ल्याचे अवशेष पाहता येतात.
+
+
+        किल्ल्याच्या परिसरात जुन्या तटबंदीचे अवशेष, कोरडी विहीर आणि वडाचे झाड आहे.
+        हा परिसर रत्नागिरी आणि राजापूरवरून नाटे मार्गाने जोडलेला आहे.'
+      history: हा किल्ला 1690 मध्ये कान्होजी आंग्रे यांच्याकडे असल्याचा पुरावा मिळतो
+        आणि 1812 मध्ये ब्रिटिश कर्नल इमलोकने तो जिंकला. 1862 पर्यंत येथील वस्ती पूर्णपणे
+        हलवण्यात आली.
+      significance: राजापूर तालुक्यातील ऐतिहासिक किल्ल्याचे अवशेष आणि समुद्रकिनारा
+        असलेला परिसर.
+      dos: '- पिण्याचे पाणी आणि खाण्याचे साहित्य सोबत ठेवा
+
+        - किल्ल्याच्या अवशेषांवर चालण्यासाठी योग्य पादत्राणे घाला'
+      donts: '- बीचवर किंवा किल्ल्याच्या परिसरात कचरा टाकू नका
+
+        - समुद्राच्या कडेकडील फिसरट खडकांवर जाणे टाळा'
+      safety_text: किल्ल्याच्या पडक्या भिंती आणि कड्यांजवळ काळजी घ्या. जीवरक्षक नसल्यामुळे
+        समुद्रात पोहताना सावध राहा.
+    hi:
+      short_story: 'अंबोलगढ़ बीच रत्नागिरी जिले के राजापुर तालुक में स्थित है, जहाँ
+        नरम रेत और तटीय क्षेत्र मौजूद है। यहाँ आने वाले पर्यटक तट के पास स्थित अंबोलगढ़
+        किले के अवशेष देख सकते हैं।
+
+
+        किले के परिसर में पुरानी किलेबंदी के अवशेष, एक सूखी कुवॅ और बरगद का पेड़ है।
+        यह स्थान राजापुर और रत्नागिरी से नाटे गाँव के रास्ते से जुड़ा हुआ है।'
+      history: साक्षियों के अनुसार यह किला 1690 में कान्होजी आंग्रे के पास था और 1818
+        में ब्रिटिश कर्नल इमलोक ने इसे अपने कब्जे में ले लिया। 1862 तक इस किले से
+        मानवीय बस्ती को पूरी तरह हटा दिया गया था।
+      significance: राजापुर तालुक में एक ऐतिहासिक किले के अवशेष और तटीय समुद्र तट
+        का स्थल।
+      dos: '- पीने का पानी और खाने का सामान साथ रखें
+
+        - किले के अवशेषों पर घूमने के लिए आरामदायक जूते पहनें'
+      donts: '- बीच या किले के परिसर में कचरा न फैलाएं
+
+        - समुद्र के किनारे फिसलन भरी चट्टानों पर जाने से बचें'
+      safety_text: किले की टूटी दीवारों और ढलानों के पास सावधानी बरतें। लाइफगार्ड
+        न होने के कारण पानी में उतरते समय सतर्क रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://aroundpune.com/place/ambolgad-beach/
+    - https://durgbharari.in/ambolgad/
+    - https://villageinfo.in/maharashtra/ratnagiri/rajapur/nate/
+    - https://weekendspots.wordpress.com/2013/11/30/ambolgad-beach-ratnagiri-district/
+    - https://travelkonkan.in/ambolgad-fort/
+    - https://www.konkankatta.in/2017/12/ambolgad-fort.html
+    - https://timesofindia.indiatimes.com/city/kolhapur/head-to-this-fort-whose-beauty-lies-in-its-ruins/articleshow/73208454.cms
+    - https://fortsandtreks.blogspot.com/2016/06/ambolgad-fort-padavane-beach-near.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: jaitapur-jetty
+  status: ai_draft
+  name_en: Jaitapur Jetty
+  name_mr: जैतापूर जेटी
+  name_hi: जैतापुर जेटी
+  category: backwater
+  taluka: Rajapur
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: Oct - May
+  how_to_reach: Located in Jaitapur port town on the Arabian Sea coast in Rajapur
+    tehsil, accessible by road via local buses and cars.
+  nearest_station: Ratnagiri Railway Station
+  nearest_bus_stop: Jaitapur Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Rough backwaters and turbulent sea conditions make boat operations
+    risky during monsoon.
+  is_tide_dependent: true
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Jaitapur
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Jaitapur Jetty is situated along the backwater and Arabian Sea
+        coast in Rajapur tehsil of Ratnagiri district. It functions as a coastal point
+        in the region.
+
+
+        The surrounding area features a coastal landscape along the southwestern part
+        of Maharashtra. Access is available via local roadways connecting through
+        Rajapur.'
+      history: Jaitapur served as an important port in ancient and early medieval
+        times along the western coastline.
+      significance: An historical coastal port location in Rajapur tehsil.
+      dos: '- Check local transport schedules before traveling
+
+        - Respect local fishing operations and property'
+      donts: '- Do not block active boat docking zones
+
+        - Avoid entering restricted infrastructure areas'
+      safety_text: Stay clear of slippery jetty edges and unsecured docking zones
+        near the water.
+    mr:
+      short_story: 'जैतापुर जेटी ही रत्नागिरी जिल्ह्यातील राजापूर तालुक्यातील खाडी
+        आणि अरबी समुद्र किनारपट्टीवर आहे. हा परिसर किनारपट्टीवरील एक महत्त्वाचा भाग
+        आहे.
+
+
+        येथे महाराष्ट्रच्या दक्षिण-पश्चिम भागातील किनारपट्टीचा भूभाग पाहायला मिळतो.
+        राजापूरमार्गे येथील रस्त्यांनी पोहोचता येते.'
+      history: जैतापुर हे प्राचीन आणि पूर्व-मध्ययुगीन काळात किनारपट्टीवरील एक महत्त्वाचे
+        बंदर होते.
+      significance: राजापूर तालुक्यातील ऐतिहासिक किनारपट्टीचे बंदर ठिकाण.
+      dos: '- प्रवास करण्यापूर्वी स्थानिक वाहतुकीच्या वेळा तपासा
+
+        - स्थानिक मासेमारी व्यवसायाचा आणि मालमत्तेचा मान ठेवा'
+      donts: '- बोटी थाम्बवण्याच्या आणि उतरवण्याच्या जागा अडवू नका
+
+        - निर्बंधात्मक पायाभूत सुविधा क्षेत्रात जाणे टाळा'
+      safety_text: जेटीच्या कडांवर आणि पाण्याजवळील असुरक्षित भागांपासून दूर राहा.
+    hi:
+      short_story: 'जैतापुर जेटी रत्नागिरी जिले के राजापुर तालुक में खाड़ी और अरब
+        सागर के तट पर स्थित है। यह क्षेत्र तटीय भूभाग के अंतर्गत आता है।
+
+
+        यहाँ महाराष्ट्र के दक्षिण-पश्चिम हिस्से का तटीय परिदृश्य दिखाई देता है। यहाँ
+        राजापुर के रास्ते सड़क मार्ग से पहुँचा जा सकता है।'
+      history: जैतापुर प्राचीन और प्रारंभिक मध्यकाल में पश्चिमी तट पर एक महत्वपूर्ण
+        बंदरगाह था।
+      significance: राजापुर तालुक में एक ऐतिहासिक तटीय बंदरगाह स्थल।
+      dos: '- यात्रा करने से पहले स्थानीय परिवहन समय सारणी जांच लें
+
+        - स्थानीय मछली पकड़ने के कार्यों और संपत्ति का सम्मान करें'
+      donts: '- नाव खड़ा करने वाले सक्रिय क्षेत्रों को अवरुद्ध न करें
+
+        - प्रतिबंधित बुनियादी ढांचा क्षेत्रों में प्रवेश करने से बचें'
+      safety_text: पानी के पास जेटी के फिसलन भरे किनारों और असुरक्षित क्षेत्रों से
+        दूर रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Jaitapur
+    - https://en.wikipedia.org/wiki/Jaitapur_Nuclear_Power_Project
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: nate-port-village
+  status: ai_draft
+  name_en: Nate Port & Village
+  name_mr: नाटे पोर्ट आणि गाव
+  name_hi: नाटे पोर्ट गाँव
+  category: village
+  taluka: Rajapur
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: Oct - May
+  how_to_reach: Located about 30 km from Rajapur, accessible via all-weather district
+    roads and regular public bus services.
+  nearest_station: Saundal Railway Station
+  nearest_bus_stop: Nate Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Nate is a large village located in Rajapur taluka of Ratnagiri
+        district. A district road passes through the settlement, connecting it to
+        nearby coastal areas.
+
+
+        The village features local residential clusters, public amenities like an
+        Anganwadi centre, and traditional houses. It lies close to Ambolgad and regional
+        coastal routes.'
+      history: According to the 2011 Census, Nate had a population of 2,592 people
+        across 537 households.
+      significance: A populated coastal village administrative unit in Rajapur taluka.
+      dos: '- Use designated district roads for navigation
+
+        - Observe local community customs respectfully'
+      donts: '- Do not disturb local residential privacy
+
+        - Avoid blocking narrow village pathways with vehicles'
+      safety_text: Drive slowly on narrow village roads shared with pedestrians and
+        local traffic.
+    mr:
+      short_story: 'नाटे हे रत्नागिरी जिल्ह्यातील राजापूर तालुक्यातील एक मोठे गाव
+        आहे. या गावातून एक जिल्हा रस्ता जातो जो जवळच्या किनारपट्टीच्या भागांना जोडतो.
+
+
+        या गावात स्थानिक वस्ती, अंगणवाडी केंद्रासारख्या सार्वजनिक सुविधा आणि पारंपरिक
+        घरे आहेत. हे गावं अंबोलगढ़ आणि किनारपट्टीच्या मार्गाजवळ आहे.'
+      history: 2011 च्या जनगणनेनुसार, नाटे गावाची लोकसंख्या 537 कुटुंबांमध्ये 2,592
+        इतकी होती.
+      significance: राजापूर तालुक्यातील एक लोकवस्ती असलेले किनारपट्टीवरील गाव.
+      dos: '- मार्गक्रमण करण्यासाठी निर्धारित जिल्हा रस्त्यांचा वापर करा
+
+        - स्थानिकांच्या रूढी-परंपरांचा आदर ठेवा'
+      donts: '- स्थानिकांच्या खाजगी आयुष्यात अडथळा आणू नका
+
+        - गावातील रस्ते वाहनांनी अडवू नका'
+      safety_text: पदचारी आणि स्थानिक वाहतूक असलेल्या गावातील अरुंद रस्त्यांवर वाहने
+        काळजीपूर्वक चालवा.
+    hi:
+      short_story: 'नाटे रत्नागिरी जिले के राजापुर तालुक में स्थित एक बड़ा गाँव है।
+        इस बस्ती से एक जिला सड़क गुजरती है जो इसे पास के तटीय क्षेत्रों से जोड़ती
+        है।
+
+
+        गाँव में स्थानीय रिहायशी इलाके, आंगनवाड़ी केंद्र जैसी सार्वजनिक सुविधाएं और
+        पारंपरिक घर हैं। यह अंबोलगढ़ और तटीय मार्गों के करीब स्थित है।'
+      history: 2011 की जनगणना के अनुसार, नाटे गाँव की कुल जनसंख्या 537 परिवारों में
+        2,592 थी।
+      significance: राजापुर तालुक में एक बसा हुआ तटीय ग्रामीण प्रशासनिक क्षेत्र।
+      dos: '- आने-जाने के लिए निर्धारित जिला सड़कों का उपयोग करें
+
+        - स्थानीय सामुदायिक रीति-रिवाजों का सम्मान करें'
+      donts: '- स्थानीय लोगों की गोपनीयता में बाधा न डालें
+
+        - वाहनों से गाँव के संकरे रास्तों को अवरुद्ध करने से बचें'
+      safety_text: पैदल चलने वालों और स्थानीय यातायात वाले संकरे ग्रामीण मार्गों पर
+        वाहन धीरे चलाएं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://villageinfo.in/maharashtra/ratnagiri/rajapur/nate/
+    - https://www.census2011.co.in/data/village/566026-nate-maharashtra.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: dhootpapeshwar-waterfall
+  status: ai_draft
+  name_en: Dhootpapeshwar Waterfall
+  name_mr: धूतपापेश्वर धबधबा
+  name_hi: धूतपापेश्वर वॉटरफॉल
+  category: waterfall
+  taluka: Rajapur
+  lat: 16.648884
+  lng: 73.498198
+  coord_source: osm way/1983211020
+  osm_id: way/1983211020
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 06:00
+  closes: '19:00'
+  closed_days: []
+  best_time: Jul - Oct
+  how_to_reach: Located near Rajapur town in Tithavali, accessible via narrow local
+    roads by car or auto-rickshaw.
+  nearest_station: Rajapur Road Railway Station
+  nearest_bus_stop: Rajapur Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Dhootpapeshwar Waterfall is located near the ancient Shiva temple
+        in Dhopeshwar village, approximately 3 to 4 kilometres from the Rajapur bus
+        station in Ratnagiri district. The waterfall is formed as the flow of the
+        Mrudani River cascades down from large rocky terrain amidst dense green forest
+        surroundings.
+
+
+        The site features a flowing stream and natural pool formations next to the
+        stone-crafted temple structure. Visitors observe the river water plunging
+        over the rocky cliffs into the valley below.'
+      history: The site is centered around the historic Dhootpapeshwar Shiva temple,
+        which features traditional sabhamandap and garbha griha architectural elements
+        surrounded by dense foliage.
+      significance: A prominent religious and natural site featuring a historic Shiva
+        temple and a seasonal waterfall along the Mrudani River.
+      dos: '- Wear comfortable footwear for walking on stone steps and paths
+
+        - Respect the local temple customs and quiet environment'
+      donts: '- Do not enter deep pools or attempt swimming near the waterfall currents
+
+        - Do not litter around the temple premises or riverbanks'
+      safety_text: Exercise caution near slippery rocks and deep water pools during
+        the monsoon season.
+    mr:
+      short_story: 'धूतपापेश्वर धबधबा रत्नागिरी जिल्ह्यातील राजापूर बस स्थानकापासून
+        सुमारे 3 ते 4 किलोमीटर अंतरावर असलेल्या धोपेश्वर गावातील प्राचीन शिवमंदिराजवळ
+        स्थित आहे. दाट हिरव्यागार जंगलाच्या परिसरात मृदा नदीचा प्रवाह मोठ्या कातळावरून
+        खाली कोसळल्यामुळे या धबधब्याची निर्मिती होते.
+
+
+        या ठिकाणी मंदिराशेजारी पाण्याचा प्रवाहित प्रवाह आणि नैसर्गिक डोह पाहायला मिळतात.
+        कातळावरून खाली पडणारे नदीचे पाणी आणि आजूबाजूचा परिसर येथे पाहता येतो.'
+      history: येथे ऐतिहासिक धूतपापेश्वर शिवमंदिर आहे, ज्यामध्ये पारंपरिक सभामंडप
+        आणि गर्भगृह अशी वास्तुरचना असून परिसर गर्द झाडीने व्यापलेला आहे.
+      significance: मृदा नदीच्या पात्रातील ऐतिहासिक शिवमंदिर आणि नैसर्गिक धबधबे असलेले
+        एक प्रमुख धार्मिक व नैसर्गिक ठिकाण.
+      dos: '- पायऱ्यांवर चालताना आरामदायी पादत्राणे वापर C
+
+        - स्थानिक मंदिराच्या परंपरा व शांततेचा आदर करा'
+      donts: '- धबधब्याखालील खोल डोहात उतरू नका किंवा पोहण्याचा प्रयत्न करू नका
+
+        - मंदिर परिसर व नदीकाठच्या भागात कचरा टाकू नका'
+      safety_text: पावसाळ्यात निसरड्या खडक व खोल पाण्याचा धोका लक्षात घेऊन सावधगिरी
+        बाळगा.
+    hi:
+      short_story: 'धूतपापेश्वर वॉटरफॉल रत्नागिरी जिले के राजापूर बस स्टैंड से लगभग
+        3 से 4 किलोमीटर दूर धोपेश्वर गाँव में स्थित प्राचीन शिव मंदिर के पास है। घने
+        हरे-भरे जंगलों के बीच मृदनी नदी का प्रवाह बड़ी चट्टानों से नीचे गिरने पर इस
+        झरने का निर्माण होता है।
+
+
+        यहाँ मंदिर के पास नदी का बहता प्रवाह और प्राकृतिक कुंड बने हुए हैं। पर्यटक
+        चट्टानों से नीचे गिरते पानी और प्राकृतिक परिवेश को देख सकते हैं।'
+      history: यह स्थल ऐतिहासिक धूतपापेश्वर शिव मंदिर के इर्द-गिर्द स्थित है, जिसकी
+        वास्तुकला में पारंपरिक सभामंडप और गर्भगृह शामिल हैं और जो घने पेड़ों से घिरा
+        है.
+      significance: मृदनी नदी के तट पर एक ऐतिहासिक शिव मंदिर और प्राकृतिक झरने से
+        जुड़ा एक प्रमुख धार्मिक व प्राकृतिक स्थल।
+      dos: '- सीढ़ियों और रास्तों पर चलने के लिए आरामदायक जूते पहनें
+
+        - स्थानीय मंदिर के नियमों और शांति का सम्मान करें'
+      donts: '- झरने के पास गहरे पानी के कुंडों में न उतरें
+
+        - मंदिर परिसर और नदी के किनारों पर कचरा न फैलाएं'
+      safety_text: मानसून के मौसम में फिसलन भरी चट्टानों और गहरे पानी के पास सावधानी
+        बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://wanderlog.com/place/details/6760/dhutpapeshwar--dhopeshwar-temple
+    - https://maharashtratourismofficial.quora.com/Dhootpapeshwar-is-a-famous-Shiva-temple-in-Dhopeshwar-village-of-Rajapur-taluka-of-Ratnagiri-district-the-waterfall-and
+    - https://www.esakal.com/ampstories/web-story/dhootpapeshwar-temple-rajapur-ratnagiri-konkan-waterfall-history-and-tourism-best-place-psk96
+    - https://kalyangeetha.wordpress.com/tag/dhootpapeshwar-temple-and-waterfalls/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: zanzavat-beach
+  status: ai_draft
+  name_en: Zanzavat Beach
+  name_mr: झंजवत् समुद्रकिनारा
+  name_hi: झांजावत बीच
+  category: beach
+  taluka: Rajapur
+  lat: 16.572979
+  lng: 73.345103
+  coord_source: osm way/1245335358
+  osm_id: way/1245335358
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough sea and strong currents in the monsoon; do not swim.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Zanzavat Beach is located in the Rajapur taluka region of Ratnagiri
+        district, positioned along the coastal belt of Konkan. The shoreline offers
+        open views of the Arabian Sea alongside surrounding coastal vegetation and
+        rural terrain.
+
+
+        The beach area provides a quiet coastal environment featuring natural sand
+        stretches and tidal interfaces characteristic of the southern Ratnagiri coastline.'
+      history: null
+      significance: A coastal shoreline located in the Rajapur taluka of Ratnagiri
+        district.
+      dos: '- Check local tide timings before walking along the shore
+
+        - Carry drinking water and essentials as commercial amenities may be limited'
+      donts: '- Do not venture into rough sea waters or swim during high tides
+
+        - Do not leave plastic waste or garbage on the sand'
+      safety_text: Currents can be unpredictable; avoid deep water entry and swimming
+        without lifeguard supervision.
+    mr:
+      short_story: 'झांजावत बीच रत्नागिरी जिल्ह्यातील राजापूर तालुका परिसरात कोकण
+        किनारपट्टीवर स्थित आहे. हा किनारा अरबी समुद्राचे विस्तीर्ण दृश्य तसेच किनारपट्टीवरील
+        वनस्पती व ग्रामीण भूभाग दर्शवतो.
+
+
+        समुद्रकिनाऱ्याचा हा परिसर शांत असून येथे वाळूचा विस्तार आणि किनारपट्टीचे भूगोलीय
+        स्वरूप अनुभवायला मिळते.'
+      history: null
+      significance: रत्नागिरी जिल्ह्याच्या राजापूर तालुक्यातील किनारपट्टीवरील एक समुद्रकिनारा.
+      dos: '- किनाऱ्यावर चालण्यापूर्वी स्थानिक भरती-ओहोटीच्या वेळा तपासा
+
+        - खाण्यापिण्याच्या वस्तू स्वतःसोबत ठेवा क्योंकि येथे व्यावसायिक सुविधा मर्यादित
+        असू शकतात'
+      donts: '- खवळलेल्या समुद्रात किंवा भरतीच्या वेळी पाण्यात उतरू नका
+
+        - वाळूवर प्लॅस्टिक किंवा कचरा टाकू नका'
+      safety_text: समुद्राच्या पाण्याचा प्रवाह अनिश्चित असू शकतो; खोल पाण्यात जाणे
+        टाळा.
+    hi:
+      short_story: 'झांजावत बीच रत्नागिरी जिले के राजापूर तालुका क्षेत्र में कोंकण
+        तट के पास स्थित है। यह तट अरब सागर के खुले दृश्यों के साथ-साथ तटीय हरियाली
+        और ग्रामीण परिवेश प्रस्तुत करता है।
+
+
+        यह समुद्र तट एक शांत तटीय क्षेत्र है जहाँ रेत का विस्तार और तटीय भू-आकृतियाँ
+        देखने को मिलती हैं।'
+      history: null
+      significance: रत्नागिरी जिले के राजापूर तालुका में स्थित एक तटीय समुद्र तट।
+      dos: '- तट पर टहलने से पहले स्थानीय ज्वार-भाटे के समय की जाँच करें
+
+        - पीने का पानी और आवश्यक सामान साथ रखें क्योंकि यहाँ व्यावसायिक सुविधाएँ सीमित
+        हो सकती हैं'
+      donts: '- तेज लहरों वाले समुद्र में न उतरें और न ही तैराकी करें
+
+        - रेत पर प्लास्टिक या कचरा न छोड़ें'
+      safety_text: समुद्र की लहरें अनिश्चित हो सकती हैं; गहरे पानी में जाने से बचें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.openstreetmap.org/way/1245335358
+    - https://www.makemytrip.com/hotels/samindar_beach_house-details-rajapur.html
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no usable source URL; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'

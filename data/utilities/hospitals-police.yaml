@@ -1,0 +1,395 @@
+# Emergency data — hospitals + police. status ai_draft. Taluka of police stations inferred from station town.
+# Phones only from official district site. Location: osm_id from repo utilities.geojson; null = needs pin.
+# emergency_24h (Q13) unknown for all — verify by call.
+- osm_id: way/991390198
+  type: hospital
+  taluka: Ratnagiri
+  name: District (Civil) Hospital, Ratnagiri
+  phone: +91 2352 222363
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+- osm_id: node/7226642320
+  type: hospital
+  taluka: Ratnagiri
+  name: Government Hospital, Pawas
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwYbSjEBx6jsRDGrez7FPnkk
+  _review: phone missing; call to verify; Maps place_id via Gemini
+  google_place_id: ChIJwYbSjEBx6jsRDGrez7FPnkk
+- osm_id: node/7226642305
+  type: hospital
+  taluka: Sangameshwar
+  name: Rural Hospital, Devrukh
+  phone: +91 2354 242040
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+- osm_id: node/7226575921
+  type: hospital
+  taluka: Sangameshwar
+  name: Rural Hospital, Sangameshwar
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJifhO7bD8wTsRFRTuaVV5-tQ
+  _review: phone missing; Maps place_id via Gemini; Maps listing suggests 24h (weak, call to confirm)
+  google_place_id: ChIJifhO7bD8wTsRFRTuaVV5-tQ
+  emergency_24h_maps_hint: true
+- osm_id: node/7226642265
+  type: hospital
+  taluka: Lanja
+  name: Rural Hospital, Lanja
+  phone: +91 2351 230101
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+- osm_id: node/7226627694
+  type: hospital
+  taluka: Mandangad
+  name: Rural Hospital, Mandangad
+  phone: +91 2350 225224
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+- osm_id: node/7226627658
+  type: hospital
+  taluka: Mandangad
+  name: Government Hospital, Devhare
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ0QQ5oubL6TsRi7-tUGAb1b0
+  _review: phone missing; Maps place_id via Gemini; Maps listing suggests 24h (weak, call to confirm)
+  google_place_id: ChIJ0QQ5oubL6TsRi7-tUGAb1b0
+  emergency_24h_maps_hint: true
+- osm_id: null
+  type: hospital
+  taluka: Chiplun
+  name: Sub District Government Hospital, Chiplun
+  phone: +91 2355 252628
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+  _review: no OSM pin found; needs location
+- osm_id: node/2398246021
+  type: hospital
+  taluka: Chiplun
+  name: B.K.L. Walawalkar Hospital, Dervan
+  phone: +91 92093 39465
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJtRc8JJ0BwjsRT49lUDXn7HY
+    phone:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJtRc8JJ0BwjsRT49lUDXn7HY
+  _review: private medical college hospital; phone from Maps listing via Gemini
+  google_place_id: ChIJtRc8JJ0BwjsRT49lUDXn7HY
+  emergency_24h_maps_hint: true
+- osm_id: null
+  type: hospital
+  taluka: Khed
+  name: Sub District Government Hospital, Khed
+  phone: +91 2356 263039
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/hospitals/
+  _review: no OSM pin found; needs location
+- osm_id: node/7226576068
+  type: hospital
+  taluka: Khed
+  name: Rural Hospital, Nawanagar
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuXwLoOHe6TsR0ao1lQba31k
+  _review: phone missing; confirm it is a real hospital; Maps place_id via Gemini; Maps calls it Sub District Hospital, Kalambani
+  google_place_id: ChIJuXwLoOHe6TsR0ao1lQba31k
+- osm_id: node/7226575984
+  type: hospital
+  taluka: Dapoli
+  name: Sub District Hospital, Dapoli
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJDdLD7t3D6TsRFxU0Xo2eJp4
+  _review: phone missing; Maps place_id via Gemini; Maps listing suggests 24h (weak, call to confirm)
+  google_place_id: ChIJDdLD7t3D6TsRFxU0Xo2eJp4
+  emergency_24h_maps_hint: true
+- osm_id: node/7226575966
+  type: hospital
+  taluka: Dapoli
+  name: Government Hospital, Fanasu
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuTnqxc3n6TsR1UNSD5ywCnY
+  _review: phone missing; Maps place_id via Gemini
+  google_place_id: ChIJuTnqxc3n6TsR1UNSD5ywCnY
+- osm_id: node/7226575963
+  type: hospital
+  taluka: Guhagar
+  name: Rural Hospital, Guhagar
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJpz1kNe3x6TsRsaKVQ-nCAPg
+  _review: only a mobile number found on a third-party site; not used; Maps place_id via Gemini
+  google_place_id: ChIJpz1kNe3x6TsRsaKVQ-nCAPg
+- osm_id: node/7226575945
+  type: hospital
+  taluka: Guhagar
+  name: Rural Hospital, Talavali
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4aZcsWXv6TsR-6HTv7MZnJs
+  _review: phone missing; Maps place_id via Gemini
+  google_place_id: ChIJ4aZcsWXv6TsR-6HTv7MZnJs
+- osm_id: node/7226642288
+  type: hospital
+  taluka: Rajapur
+  name: Rural Hospital, Rajapur
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ-4g8ZvzUwTsRG402T8ccYsE
+  _review: phone missing; Maps place_id via Gemini
+  google_place_id: ChIJ-4g8ZvzUwTsRG402T8ccYsE
+- osm_id: node/7226642359
+  type: hospital
+  taluka: Rajapur
+  name: Government Hospital, Oni
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources: {}
+  _review: phone missing
+- osm_id: node/7226642279
+  type: hospital
+  taluka: Ratnagiri
+  name: Rural Hospital, Pali
+  phone: null
+  emergency_24h: null
+  is_real_hospital: true
+  status: ai_draft
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ5y1-9HTgwTsRZr__Jv64ef0
+  _review: phone missing; Maps place_id via Gemini; Maps listing suggests 24h (weak, call to confirm)
+  google_place_id: ChIJ5y1-9HTgwTsRZr__Jv64ef0
+  emergency_24h_maps_hint: true
+- osm_id: null
+  type: police
+  taluka: Chiplun
+  name: Alore-Shirgav Police Station
+  phone: +91 2355 230033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Mandangad
+  name: Bankot Police Station
+  phone: +91 2350 220300
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Chiplun
+  name: Chiplun Police Station
+  phone: +91 2355 252333
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Dapoli
+  name: Dabhol Police Station
+  phone: +91 2358 248722
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Dapoli
+  name: Dapoli Police Station
+  phone: +91 2358 282033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Sangameshwar
+  name: Devrukh Police Station
+  phone: +91 2354 260033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Guhagar
+  name: Guhagar Police Station
+  phone: +91 2339 240233
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+  _review: site lists STD 02339; verify
+- osm_id: node/9778561709
+  type: police
+  taluka: Ratnagiri
+  name: Jaigad Police Station
+  phone: +91 2357 242233
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Khed
+  name: Khed Police Station
+  phone: +91 2356 263333
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+- osm_id: null
+  type: police
+  taluka: Lanja
+  name: Lanja Police Station
+  phone: +91 2352 230033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/
+  _review: site lists STD 02352; Lanja code is usually 02351 - call to verify
+- osm_id: null
+  type: police
+  taluka: Mandangad
+  name: Mandangad Police Station
+  phone: +91 2350 225233
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Rajapur
+  name: Nate Police Station
+  phone: +91 2353 225533
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Ratnagiri
+  name: Purnagad Police Station
+  phone: +91 2352 237333
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Rajapur
+  name: Rajapur Police Station
+  phone: +91 2353 222033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Ratnagiri
+  name: Ratnagiri City Police Station
+  phone: +91 2352 222333
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Ratnagiri
+  name: Ratnagiri Rural Police Station
+  phone: +91 2352 230133
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Sangameshwar
+  name: Sangameshwar Police Station
+  phone: +91 2352 272033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/
+- osm_id: null
+  type: police
+  taluka: Chiplun
+  name: Savarde Police Station
+  phone: +91 2355 264033
+  status: ai_draft
+  _sources:
+    phone:
+    - https://ratnagiri.gov.in/en/public-utility-category/police-stations/page/2/

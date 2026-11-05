@@ -1,0 +1,533 @@
+# Stays - Guhagar taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: shantadurga-beachside-homestay-asgoli
+  status: ai_draft
+  name_en: Shantadurga Beachside Homestay
+  name_mr: शांतादुर्गा बीचसाईड होमस्टे
+  name_hi: शांतादुर्गा बीचसाइड होमस्टे
+  taluka: Guhagar
+  area: Asgoli
+  lat: null
+  lng: null
+  google_place_id: ChIJ8WioS53x6TsRFgTbFmVLquk
+  service_style: homely
+  vibe_tags:
+  - family
+  - beachfront
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: true
+  price_min: 3932
+  price_max: 3932
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  phone: +91 92729 56368
+  whatsapp: null
+  official_url: https://www.shantadurgabeachside.com/
+  description:
+    en: Shantadurga Beachside Homestay is a family-oriented beachfront property in
+      Asgoli, Guhagar. This homely stay includes homemade meals for its guests.
+    mr: शांतादुर्गा बीचसाईड होमस्टे हे गुहागरच्या असगोली येथील समुद्रकिनाऱ्याजवळील
+      घरगुती ठिकाण आहे. कुटुंबांसाठी योग्य असलेल्या या निवासात पाहुण्यांसाठी घरगुती
+      जेवणाची सोय उपलब्ध आहे.
+    hi: शांतादुर्गा बीचसाइड होमस्टे गुहागर के असगोली में एक पारिवारिक समुद्र तट वाली
+      संपत्ति है। इस घरेलू होमस्टे में मेहमानों के लिए घर का बना भोजन शामिल है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  - provider: ixigo
+    url: https://www.ixigo.com/hotels/shantadurga-beachside-homestay-in-guhagar-1449611-d
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ8WioS53x6TsRFgTbFmVLquk
+    - https://www.shantadurgabeachside.com/
+    - https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+    - https://www.ixigo.com/hotels/shantadurga-beachside-homestay-in-guhagar-1449611-d
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: verandah-solitude-by-the-sea-velneshwar
+  status: ai_draft
+  name_en: Verandah Solitude By The Sea
+  name_mr: वरंडा सॉलिट्यूड बाय द सी
+  name_hi: वरंडा सॉलिट्यूड बाय द सी
+  taluka: Guhagar
+  area: Velneshwar
+  lat: null
+  lng: null
+  google_place_id: ChIJU0lztgn36TsR4caPM-O-IT8
+  service_style: homely
+  vibe_tags:
+  - beachfront
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: true
+  price_min: 4500
+  price_max: 4500
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  phone: +91 98810 75150
+  whatsapp: null
+  official_url: null
+  description:
+    en: Verandah Solitude By The Sea is a homely beachfront property in Velneshwar,
+      Guhagar. It accommodates couples and provides homemade food during the stay.
+    mr: व्हरंडा सॉलिट्यूड बाय द सी हे गुहागरच्या वेळणेश्वर येथील समुद्रकिनाऱ्यालगतचे
+      घरगुती ठिकाण आहे. हे जोडप्यांसाठी योग्य असून येथे घरगुती जेवण दिले जाते.
+    hi: वरंडा सॉलिट्यूड बाय द सी गुहागर के वेलनेश्वर में समुद्र तट के पास एक घरेलू
+      संपत्ति है। यह जोड़ों के अनुकूल है और रहने के दौरान घर का बना भोजन प्रदान करता
+      है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJU0lztgn36TsR4caPM-O-IT8
+    - https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: mango-village-resort-guhagar
+  status: ai_draft
+  name_en: Mango Village Resort
+  name_mr: मँगो व्हिलेज रिसॉर्ट
+  name_hi: मैंगो विलेज रिसॉर्ट
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJq6qq6pTx6TsR8X9P5DrYDn0
+  service_style: professional
+  vibe_tags:
+  - family
+  - beachfront
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 6566
+  price_max: 6566
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/mango-village-resort-guhagar-hotel-in-guhagar-2809128079913392010/
+  phone: +91 91684 79668
+  whatsapp: null
+  official_url: https://www.mangovillageresort.com/
+  description:
+    en: Mango Village Resort is a professional beachfront accommodation in Guhagar.
+      It is designed as a family-friendly stay near the coastline.
+    mr: मँगो व्हिलेज रिसॉर्ट हे गुहागर येथील समुद्रकिनाऱ्याजवळील एक व्यावसायिक रिसॉर्ट
+      आहे. हे कुटुंबांसाठी योग्य असे किनारी निवासस्थान आहे.
+    hi: मैंगो विलेज रिज़ॉर्ट गुहागर में समुद्र तट के पास एक व्यावसायिक आवास है। इसे
+      तटरेखा के करीब एक पारिवारिक ठहरने की जगह के रूप में डिज़ाइन किया गया है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/mango-village-resort-guhagar-hotel-in-guhagar-2809128079913392010/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJq6qq6pTx6TsR8X9P5DrYDn0
+    - https://www.mangovillageresort.com/
+    - https://www.goibibo.com/hotels/mango-village-resort-guhagar-hotel-in-guhagar-2809128079913392010/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: the-happy-cabins-homestay-asgoli
+  status: ai_draft
+  name_en: The Happy Cabins Homestay
+  name_mr: द हॅपी केबिन्स होमस्टे
+  name_hi: द हैप्पी केबिन्स होमस्टे
+  taluka: Guhagar
+  area: Asgoli
+  lat: null
+  lng: null
+  google_place_id: ChIJr3TPrV_x6TsRbJ6Dq1gF0VI
+  service_style: homely
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 4063
+  price_max: 4063
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  phone: +91 94043 01282
+  whatsapp: null
+  official_url: https://www.thehappycabins.com/
+  description:
+    en: The Happy Cabins Homestay is a homely lodging in Asgoli, Guhagar. It caters
+      to both families and couples visiting the region.
+    mr: द हॅपी केबिन्स होमस्टे हे गुहागरच्या असगोली येथील एक घरगुती निवासस्थान आहे.
+      हे या भागात येणाऱ्या कुटुंबांसाठी आणि जोडप्यांसाठी योग्य आहे.
+    hi: द हैप्पी केबिन्स होमस्टे गुहागर के असगोली में एक घरेलू आवास है। यह इस क्षेत्र
+      में आने वाले परिवारों और जोड़ों दोनों के लिए उपयुक्त है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJr3TPrV_x6TsRbJ6Dq1gF0VI
+    - https://www.thehappycabins.com/
+    - https://www.makemytrip.com/hotels/p-homestays-in-guhagar.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: shantai-by-the-lake-kondwadi
+  status: ai_draft
+  name_en: Shantai By the Lake
+  name_mr: शांतई बाय द लेक
+  name_hi: शांतई बाय द लेक
+  taluka: Guhagar
+  area: Kondwadi
+  lat: null
+  lng: null
+  google_place_id: ChIJL3ls3bXx6TsR-XaJvhZv1Ys
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99201 29136
+  whatsapp: null
+  official_url: https://shantairesorts.com/
+  description:
+    en: Shantai By the Lake is a professional resort set in Kondwadi, Guhagar. It
+      provides family-oriented accommodation situated near the water.
+    mr: शांताई बाय द लेक हे गुहागरच्या कोंडवाडी येथील एक व्यावसायिक रिसॉर्ट आहे. हे
+      तलावाजवळ कुटुंबांसाठी योग्य निवासाची सोय देते.
+    hi: शांताई बाय द लेक गुहागर के कोंडवाड़ी में स्थित एक व्यावसायिक रिज़ॉर्ट है।
+      यह पानी के पास परिवारों के अनुकूल आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJL3ls3bXx6TsR-XaJvhZv1Ys
+    - https://shantairesorts.com/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (maps); needs review
+- slug: suruchi-corner-hedavi
+  status: ai_draft
+  name_en: Suruchi Corner
+  name_mr: सुरुची कॉर्नर
+  name_hi: सुरुची कॉर्नर
+  taluka: Guhagar
+  area: Hedavi
+  lat: null
+  lng: null
+  google_place_id: ChIJTYeI3k726TsRyL41f3tMTfM
+  service_style: homely
+  vibe_tags: []
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 82756 55987
+  whatsapp: null
+  official_url: null
+  description:
+    en: Suruchi Corner is a homely stay located in Hedavi, Guhagar.
+    mr: सुरुची कॉर्नर हे गुहागरच्या हेदवी येथील एक घरगुती निवासस्थान आहे.
+    hi: सुरुचि कॉर्नर गुहागर के हेदवी में स्थित एक घरेलू होमस्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJTYeI3k726TsRyL41f3tMTfM
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; Maps only; beachfront tag
+    dropped; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: mtdc-resort-velneshwar
+  status: ai_draft
+  name_en: MTDC Resort Velneshwar
+  name_mr: एमटीडीसी रिसॉर्ट वेळनेश्वर
+  name_hi: एमटीडीसी रिसॉर्ट वेळणेश्वर
+  taluka: Guhagar
+  area: Velneshwar
+  lat: null
+  lng: null
+  google_place_id: ChIJhw9pOwD36TsRs6xwjCZXDDA
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 2359 243282
+  whatsapp: '9404617126'
+  official_url: null
+  description:
+    en: MTDC Resort Velneshwar is a professional, state-run accommodation in Velneshwar,
+      Guhagar. It provides a reliable stay option for families visiting the area.
+    mr: एमटीडीसी रिसॉर्ट वेळणेश्वर हे गुहागरच्या वेळणेश्वर येथील एक व्यावसायिक, सरकारी
+      निवासस्थान आहे. कुटुंबांसाठी राहण्याचा हा एक सुरक्षित आणि चांगला पर्याय आहे.
+    hi: एमटीडीसी रिज़ॉर्ट वेलनेश्वर गुहागर के वेलनेश्वर में एक व्यावसायिक, राज्य-संचालित
+      आवास है। यह क्षेत्र में आने वाले परिवारों के लिए एक विश्वसनीय ठहरने का विकल्प
+      प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJhw9pOwD36TsRs6xwjCZXDDA
+    - https://ratnagiri.gov.in/about-district/tourism/
+    phone:
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _collected_by: claude 2026-11-03
+  _review: state-run MTDC resort; phones from district tourism page (mobile listed
+    as official contact, stored in whatsapp field - verify it is WhatsApp-enabled
+    or move); family tag is Claude judgement; confirmed on Google Maps as 'MTDC VELNESHWAR';
+    description EN/MR/HI by Gemini (maps); needs review
+- slug: nakshatra-holiday-homes-varchapat-guhagar
+  status: ai_draft
+  name_en: Nakshatra Holiday Homes
+  name_mr: नक्षत्र हॉलिडे होम्स
+  name_hi: नक्षत्र हॉलिडे होम्स
+  taluka: Guhagar
+  area: Varchapat, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJCSMjQPfx6TsRoIuteFwnaHQ
+  service_style: homely
+  vibe_tags:
+  - family
+  - traditional_konkani_home
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 94036 46277
+  whatsapp: null
+  official_url: null
+  description:
+    en: This is a holiday home accommodation in Varchapat, Guhagar offering family-friendly
+      stays. It operates daily with checking times and provides simple rooms.
+    mr: हे वरचा पाट, गुहागर येथील एक हॉलिडे होम आहे जे कुटुंबासाठी अनुकूल निवास प्रदान
+      करते. हे दररोज उघडे असते आणि साध्या खोल्या देते.
+    hi: यह वरचा पाट, गुहागर में एक हॉलिडे होम है जो परिवारों के लिए अनुकूल रहने की
+      सुविधा प्रदान करता है। यह प्रतिदिन खुला रहता है और साधारण कमरे प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCSMjQPfx6TsRoIuteFwnaHQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCSMjQPfx6TsRoIuteFwnaHQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: the-woods-homestay-asgoli-guhagar
+  status: ai_draft
+  name_en: THE WOODS HOMESTAY
+  name_mr: द वूड्स होमस्टे
+  name_hi: द वुड्स होमस्टे
+  taluka: Guhagar
+  area: Asgoli, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJYRoBG53x6TsR7ViYuKFfRsQ
+  service_style: homely
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 93563 10184
+  whatsapp: null
+  official_url: null
+  description:
+    en: Located near Valukeshwar temple in Asgoli, this homestay provides guest accommodations
+      in Guhagar. It is open 24 hours a day for check-in.
+    mr: असगोली येथील वाळुकेश्वर मंदिराजवळ असलेला हा होमस्टे गुहागरमध्ये अतिथी निवास
+      प्रदान करतो. चेक-इनसाठी हे दिवसाचे 24 तास उघडे असते.
+    hi: असगोली में वालुकेश्वर मंदिर के पास स्थित यह होमस्टे गुहागर में अतिथि आवास
+      प्रदान करता है। चेक-इन के लिए यह दिन के 24 घंटे खुला रहता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYRoBG53x6TsR7ViYuKFfRsQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYRoBG53x6TsR7ViYuKFfRsQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: sea-shell-home-stay-guhagar
+  status: ai_draft
+  name_en: Sea Shell Home Stay Guhagar
+  name_mr: सी शेल होम स्टे गुहागर
+  name_hi: सी शेल होम स्टे गुहागर
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJY-_Rq3Hx6TsReDro4_aKO9M
+  service_style: homely
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 83085 00888
+  whatsapp: null
+  official_url: https://seashellhomestay.com/
+  description:
+    en: Sea Shell Home Stay is situated near Parchure Park Complex on Dr Babasaheb
+      Ambedkar Road in Guhagar. It provides homestay accommodation for visitors.
+    mr: सी शेल होम स्टे गुहागरमध्ये डॉ. बाबासाहेब आंबेडकर रोडवरील परचुरे पार्क कॉम्प्लेक्स
+      जवळ आहे. हे पर्यटकांसाठी होमस्टे निवास देते.
+    hi: सी शेल होम स्टे गुहागर में डॉ. बाबासाहेब अंबेडकर रोड पर परचुरे पार्क कॉम्प्लेक्स
+      के पास स्थित है। यह पर्यटकों के लिए होमस्टे आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY-_Rq3Hx6TsReDro4_aKO9M
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY-_Rq3Hx6TsReDro4_aKO9M
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: nisarg-resort-shivaji-chowk-guhagar
+  status: ai_draft
+  name_en: Nisarg Resort
+  name_mr: निसर्ग रिसॉर्ट
+  name_hi: निसर्ग रिसॉर्ट
+  taluka: Guhagar
+  area: Shivaji Chowk, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJD_6t--zx6TsR4lxIkFnhWsU
+  service_style: professional
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 80072 79644
+  whatsapp: null
+  official_url: null
+  description:
+    en: Nisarg Resort is an all-inclusive hotel offering basic rooms and open-air
+      dining. It features some air-conditioned rooms and is located near Shivaji Chowk
+      in Guhagar.
+    mr: निसर्ग रिसॉर्ट हे एक सर्वसमावेशक हॉटेल आहे जे मूलभूत खोल्या आणि खुल्या हवेत
+      जेवणाची सुविधा देते. यात काही वातानुकूलित खोल्या आहेत आणि ते गुहागरमधील शिवाजी
+      चौकाजवळ आहे.
+    hi: निसर्ग रिसॉर्ट एक सर्व-समावेशी होटल है जो बुनियादी कमरे और खुली हवा में भोजन
+      की सुविधा प्रदान करता है। इसमें कुछ वातानुकूलित कमरे हैं और यह गुहागर में शिवाजी
+      चौक के पास स्थित है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJD_6t--zx6TsR4lxIkFnhWsU
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJD_6t--zx6TsR4lxIkFnhWsU
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: seawinds-hotel-guhagar-varcha-pat-guhagar
+  status: ai_draft
+  name_en: Seawinds Hotel Guhagar
+  name_mr: सीविंड्स हॉटेल गुहागर
+  name_hi: सीविंड्स होटल गुहागर
+  taluka: Guhagar
+  area: Varcha Pat, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJY2-xVvHx6TsRxPKwdI-RkRM
+  service_style: professional
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99209 94229
+  whatsapp: null
+  official_url: https://seawinds.in/
+  description:
+    en: Seawinds Hotel is a lodging property located in Varcha Pat, Guhagar. It offers
+      rooms for travelers looking to stay in the taluka.
+    mr: सीविंड्स हॉटेल ही वरचा पाट, गुहागर येथे स्थित एक निवास मालमत्ता आहे. हे तालुक्यात
+      राहू इच्छिणाऱ्या प्रवाशांसाठी खोल्या देते.
+    hi: सीविंड्स होटल वरचा पाट, गुहागर में स्थित एक आवास संपत्ति है। यह तालुका में
+      रहने के इच्छुक यात्रियों के लिए कमरे प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY2-xVvHx6TsRxPKwdI-RkRM
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY2-xVvHx6TsRxPKwdI-RkRM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

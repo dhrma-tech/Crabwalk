@@ -1,0 +1,634 @@
+# Eateries - Guhagar taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: jog-aaji-mess-guhagar
+  status: ai_draft
+  name_en: Jog Aaji Mess
+  name_mr: जोग आजी मेस
+  name_hi: जोग आजी मेस
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJGyHyGBvx6TsRaSnXv2-i66U
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: null
+    jain: null
+  opens: 08:00
+  closes: '21:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 91581 58316
+  whatsapp: null
+  description:
+    en: Jog Aaji Mess is a home-cooked food establishment in Varcha Pat, Guhagar.
+      It serves pure vegetarian Maharashtrian meals and specialties like ukdiche modak.
+    mr: गुहागरच्या वरचा पाट येथे असलेली जोग आजी मेस ही घरगुती शाकाहारी जेवणासाठी ओळखली
+      जाते. इथे महाराष्ट्रीयन जेवण आणि उकडीचे मोदक यांसारखे पारंपरिक पदार्थ मिळतात.
+    hi: गुहागर के वरचा पाट में स्थित जोग आजी मेस घर के बने शाकाहारी भोजन के लिए जानी
+      जाती है। यह महाराष्ट्रीयन भोजन और उकडीचे मोदक जैसी पारंपरिक डिश परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJGyHyGBvx6TsRaSnXv2-i66U
+    - https://restaurant-guru.in/Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Jog Aaji Mess' (via Gemini, 2026-11-03); authenticity
+    label is Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: arpit-gharguti-khanaval-guhagar
+  status: ai_draft
+  name_en: Arpit Gharguti Khanaval
+  name_mr: अर्पित घरगुती खानावळ
+  name_hi: अर्पित घरगुती खानावळ
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJ0SM1Qa7x6TsR-_w5E_MGQSE
+  authenticity: home_style
+  price_for_two: 400
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 78754 05373
+  whatsapp: null
+  description:
+    en: Arpit Gharguti Khanaval is a home-style dining space located in Guhagar. It
+      provides freshly prepared vegetarian and non-vegetarian coastal dishes, including
+      seafood curries and thalis.
+    mr: गुहागरमधील अर्पित घरगुती खानावळ हे ताजे आणि घरगुती जेवण देणारे एक ठिकाण आहे.
+      इथे सीफूड आणि थाळीसह विविध शाकाहारी आणि मांसाहारी कोकणी पदार्थ मिळतात.
+    hi: गुहागर में स्थित अर्पित घरगुती खानावळ ताज़ा और घर जैसा भोजन परोसता है। यहाँ
+      सीफूड और थाली सहित विभिन्न शाकाहारी और मांसाहारी कोंकणी व्यंजन मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ0SM1Qa7x6TsR-_w5E_MGQSE
+    - https://restaurant-guru.in/Arpit-Homely-Food-Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Arpit Gharguti Khanaval' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: meeras-kitchen-pure-veg-guhagar
+  status: ai_draft
+  name_en: Meera's Kitchen Pure Veg
+  name_mr: मीरास किचन प्युअर व्हेज
+  name_hi: मीरास किचन प्योर वेज
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJ54t2QVPx6TsRW5vRq3PmiQU
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: null
+    jain: null
+  opens: 08:30
+  closes: '21:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 75174 77009
+  whatsapp: null
+  description:
+    en: Meera's Kitchen Pure Veg is a vegetarian restaurant located in Varcha Pat,
+      Guhagar, near Nakshatra Home Stay. It serves a variety of home-style vegetarian
+      dishes and regional Maharashtrian fare.
+    mr: गुहागरच्या वरचा पाट येथे, नक्षत्र होम स्टे जवळ असलेले मीरास किचन प्युअर व्हेज
+      हे एक शाकाहारी रेस्टॉरंट आहे. इथे घरगुती पद्धतीचे विविध शाकाहारी आणि महाराष्ट्रीयन
+      पदार्थ मिळतात.
+    hi: गुहागर के वरचा पाट में, नक्षत्र होम स्टे के पास स्थित मीरास किचन प्योर वेज
+      एक शाकाहारी रेस्टोरेंट है। यह घरेलू शैली के विभिन्न शाकाहारी और महाराष्ट्रीयन
+      व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ54t2QVPx6TsRW5vRq3PmiQU
+    - https://restaurant-guru.in/Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Meera's Kitchen Pure Veg' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: hotel-suruchi-pure-veg-guhagar
+  status: ai_draft
+  name_en: Hotel Suruchi Pure Veg
+  name_mr: हॉटेल सुरुची प्युअर व्हेज
+  name_hi: होटल सुरुची प्योर वेज
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJVybQyozx6TsRuVFOJ0aHico
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: null
+    jain: null
+  opens: 08:30
+  closes: '21:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 80873 74955
+  whatsapp: null
+  description:
+    en: Hotel Suruchi Pure Veg is situated in the main bazaar area of Guhagar, close
+      to the Vyadeshwar Temple. It caters to tourists with vegetarian Konkani delicacies
+      like thalipeeth and modak.
+    mr: हॉटेल सुरुची प्युअर व्हेज हे गुहागरच्या मुख्य बाजारपेठेत व्याडेश्वर मंदिराजवळ
+      आहे. इथे पर्यटकांसाठी थालीपीठ आणि मोदकांसारखे कोकणी शाकाहारी पदार्थ उपलब्ध असतात.
+    hi: होटल सुरुची प्योर वेज गुहागर के मुख्य बाजार क्षेत्र में व्याडेश्वर मंदिर के
+      पास स्थित है। यह पर्यटकों के लिए थालीपीठ और मोदक जैसे कोंकणी शाकाहारी व्यंजन
+      परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVybQyozx6TsRuVFOJ0aHico
+    - https://restaurant-guru.in/Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Suruchi Pure Veg' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: hotel-annapurna-guhagar
+  status: ai_draft
+  name_en: Hotel Annapurna
+  name_mr: हॉटेल अन्नपूर्णा
+  name_hi: होटल अन्नपूर्णा
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJ96ZDt43x6TsRpkW16sOQlaM
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 75172 22088
+  whatsapp: null
+  description:
+    en: Hotel Annapurna is an air-conditioned lodging and dining establishment located
+      in Khalchapat, Guhagar. Aimed at tourists, it offers both vegetarian and non-vegetarian
+      meals including fresh seafood thalis.
+    mr: गुहागरच्या खालचा पाट येथे असलेले हॉटेल अन्नपूर्णा हे एक वातानुकूलित लॉज आणि
+      रेस्टॉरंट आहे. पर्यटकांसाठी इथे सीफूडच्या थाळीसह शाकाहारी आणि मांसाहारी जेवणाची
+      सोय आहे.
+    hi: गुहागर के खालचा पाट में स्थित होटल अन्नपूर्णा एक वातानुकूलित लॉज और डाइनिंग
+      प्रतिष्ठान है। पर्यटकों के लिए यहाँ सीफूड थाली सहित शाकाहारी और मांसाहारी भोजन
+      परोसा जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ96ZDt43x6TsRpkW16sOQlaM
+    - https://restaurant-guru.in/Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Annapurna' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: hotel-kinara-guhagar
+  status: ai_draft
+  name_en: Hotel Kinara
+  name_mr: हॉटेल किनारा
+  name_hi: होटल किनारा
+  taluka: Guhagar
+  area: Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJuQMn54zx6TsRZsrsDBjCe8Y
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '21:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 99875 13657
+  whatsapp: null
+  description:
+    en: Located near the Panchayat Samiti in Khalchapat, Hotel Kinara is a seafood
+      restaurant in Guhagar. It offers a range of tourist-oriented non-vegetarian
+      coastal dishes.
+    mr: खालचा पाट येथील पंचायत समितीजवळ असलेले हॉटेल किनारा हे गुहागरमधील एक सीफूड
+      रेस्टॉरंट आहे. पर्यटकांसाठी असलेल्या या रेस्टॉरंटमध्ये मांसाहारी कोकणी जेवण
+      मिळते.
+    hi: खालचा पाट में पंचायत समिति के पास स्थित होटल किनारा गुहागर का एक सीफूड रेस्टोरेंट
+      है। यह पर्यटकों के लिए कोंकणी मांसाहारी व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJuQMn54zx6TsRZsrsDBjCe8Y
+    - https://restaurant-guru.in/Guhagar
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Kinara' (via Gemini, 2026-11-03); authenticity
+    label is Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: kokan-swad-veldur-road-guhagar
+  status: ai_draft
+  name_en: KOKAN SWAD
+  name_mr: कोकण स्वाद
+  name_hi: कोंकण स्वाद
+  taluka: Guhagar
+  area: Veldur road, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJweBXZnLx6TsRVpGYqrHXjBA
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '21:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94233 73795
+  whatsapp: null
+  description:
+    en: Kokan Swad is an eatery situated on Veldur Road in Guhagar that serves local
+      food. It is open for both morning and evening meals.
+    mr: कोकण स्वाद हे गुहागरमधील वेळदूर रोडवर असलेले एक भोजनालय आहे जे स्थानिक अन्न
+      देते. हे सकाळ आणि संध्याकाळ दोन्ही जेवणासाठी उघडे असते.
+    hi: कोंकण स्वाद गुहागर में वेलदूर रोड पर स्थित एक भोजनालय है जो स्थानीय भोजन परोसता
+      है। यह सुबह और शाम दोनों के भोजन के लिए खुला रहता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJweBXZnLx6TsRVpGYqrHXjBA
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJweBXZnLx6TsRVpGYqrHXjBA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: the-lagoon-restaurant-bar-mh-sh4-guhagar
+  status: ai_draft
+  name_en: The Lagoon Restaurant & Bar
+  name_mr: द लगून रेस्टॉरंट अँड बार
+  name_hi: द लैगून रेस्टोरेंट एंड बार
+  taluka: Guhagar
+  area: MH SH4, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJyyh40_Lx6TsRKJGKfBKKfXk
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '10:00'
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 86259 40910
+  whatsapp: null
+  description:
+    en: This restaurant and bar is located on MH SH4 in Guhagar. It operates daily
+      from 10:00 AM to 10:30 PM.
+    mr: हे रेस्टॉरंट आणि बार गुहागरमध्ये MH SH4 वर आहे. हे दररोज सकाळी 10:00 ते रात्री
+      10:30 पर्यंत उघडे असते.
+    hi: यह रेस्टोरेंट और बार गुहागर में MH SH4 पर स्थित है। यह प्रतिदिन सुबह 10:00
+      बजे से रात 10:30 बजे तक खुला रहता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJyyh40_Lx6TsRKJGKfBKKfXk
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJyyh40_Lx6TsRKJGKfBKKfXk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: mahalakshmi-khanaval-mh-sh4-guhagar
+  status: ai_draft
+  name_en: Mahalakshmi Khanaval
+  name_mr: महालक्ष्मी खानावळ
+  name_hi: महालक्ष्मी खानावळ
+  taluka: Guhagar
+  area: MH SH4, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJPaHlDfDx6TsRMwEU1Q87jjM
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '15:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98907 17799
+  whatsapp: null
+  description:
+    en: Mahalakshmi Khanaval operates on MH SH4 in Guhagar and serves afternoon meals.
+      It specializes in local traditional food.
+    mr: महालक्ष्मी खानावळ गुहागरमधील MH SH4 वर चालते आणि दुपारचे जेवण देते. हे स्थानिक
+      पारंपारिक अन्नासाठी ओळखले जाते.
+    hi: महालक्ष्मी खानावळ गुहागर में MH SH4 पर संचालित होती है और दोपहर का भोजन परोसती
+      है। यह स्थानीय पारंपरिक भोजन में माहिर है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJPaHlDfDx6TsRMwEU1Q87jjM
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJPaHlDfDx6TsRMwEU1Q87jjM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: cafe-delight-near-shraddha-hotel-guhagar
+  status: ai_draft
+  name_en: Cafe Delight
+  name_mr: कॅफे डिलाईट
+  name_hi: कैफे डिलाइट
+  taluka: Guhagar
+  area: Near Shraddha Hotel, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJY7C74Qfx6TsREzOD4oKZ7hk
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:30
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 78876 86963
+  whatsapp: null
+  description:
+    en: Cafe Delight is an eatery located opposite the fish market in Guhagar. It
+      serves food daily from 9:30 AM to 10:00 PM.
+    mr: कॅफे डिलाईट हे गुहागरमधील मासळी बाजारासमोर असलेले एक भोजनालय आहे. हे दररोज
+      सकाळी 9:30 ते रात्री 10:00 पर्यंत अन्न देते.
+    hi: कैफे डिलाइट गुहागर में मछली बाजार के सामने स्थित एक भोजनालय है। यह प्रतिदिन
+      सुबह 9:30 बजे से रात 10:00 बजे तक भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY7C74Qfx6TsREzOD4oKZ7hk
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJY7C74Qfx6TsREzOD4oKZ7hk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: amrai-restaurant-kirtan-wadi-guhagar
+  status: ai_draft
+  name_en: Amrai Restaurant
+  name_mr: आमराई रेस्टॉरंट
+  name_hi: आमराई रेस्टोरेंट
+  taluka: Guhagar
+  area: Kirtan Wadi, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJfw0VK5Xx6TsRxHcD-Wh8MCA
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 06:30
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Amrai Restaurant is part of the Mango Village Resort in Kirtan Wadi, Guhagar.
+      It operates from early morning until late at night.
+    mr: आमराई रेस्टॉरंट हे गुहागरच्या कीर्तन वाडीतील मँगो व्हिलेज रिसॉर्टचा एक भाग
+      आहे. हे पहाटेपासून उशिरापर्यंत चालते.
+    hi: आमराई रेस्टोरेंट गुहागर के कीर्तन वाड़ी में मैंगो विलेज रिसॉर्ट का हिस्सा
+      है। यह सुबह जल्दी से लेकर देर रात तक संचालित होता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfw0VK5Xx6TsRxHcD-Wh8MCA
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfw0VK5Xx6TsRxHcD-Wh8MCA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: bhosale-s-home-kitchen-shivaji-nagar-varchapat-guhagar
+  status: ai_draft
+  name_en: Bhosale’s Home Kitchen
+  name_mr: भोसले होम किचन
+  name_hi: भोसले होम किचन
+  taluka: Guhagar
+  area: Shivaji Nagar, Varchapat, Guhagar
+  lat: null
+  lng: null
+  google_place_id: ChIJe-fPFtTx6TsRlFrPGALyB7w
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 95451 15646
+  whatsapp: null
+  description:
+    en: Bhosale’s Home Kitchen is located in Shivaji Nagar, Guhagar. It operates daily
+      and offers food from morning to night.
+    mr: भोसले होम किचन गुहागरच्या शिवाजी नगरमध्ये आहे. हे दररोज चालते आणि सकाळपासून
+      रात्रीपर्यंत अन्न देते.
+    hi: भोसले होम किचन गुहागर के शिवाजी नगर में स्थित है। यह प्रतिदिन संचालित होता
+      है और सुबह से रात तक भोजन प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJe-fPFtTx6TsRlFrPGALyB7w
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJe-fPFtTx6TsRlFrPGALyB7w
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

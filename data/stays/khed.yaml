@@ -1,0 +1,305 @@
+# Stays - Khed taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: sai-resort-khed-khed
+  status: ai_draft
+  name_en: Sai Resort Khed
+  name_mr: साई रिसॉर्ट खेड
+  name_hi: साई रिसॉर्ट खेड
+  taluka: Khed
+  area: Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJG1xltvTf6TsRMtvQQIkHCgI
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 6000
+  price_max: null
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/hotels-in-khed-ct/
+  phone: +91 95290 80502
+  whatsapp: null
+  official_url: null
+  description:
+    en: Sai Resort Khed is a professional family resort situated in Khed.
+    mr: साई रिसॉर्ट खेड हे खेडमध्ये स्थित एक व्यावसायिक आणि कौटुंबिक रिसॉर्ट आहे.
+    hi: साई रिज़ॉर्ट खेड़, खेड़ में स्थित एक व्यावसायिक पारिवारिक रिज़ॉर्ट है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/hotels-in-khed-ct/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJG1xltvTf6TsRMtvQQIkHCgI
+    - https://www.goibibo.com/hotels/hotels-in-khed-ct/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, OTA category
+    page; luxury tag dropped; confirmed on Google Maps as 'Sai Resort Khed'; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: vaibhavs-farm-of-joy-chinchavali
+  status: ai_draft
+  name_en: Vaibhav's Farm of Joy
+  name_mr: वैभव्स फार्म ऑफ जॉय
+  name_hi: वैभव्स फार्म ऑफ जॉय
+  taluka: Khed
+  area: Chinchavali
+  lat: null
+  lng: null
+  google_place_id: ChIJwzkSx1zZ6TsRG3jJu2OmWI8
+  service_style: homely
+  vibe_tags:
+  - orchard_stay
+  - family
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: true
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 98604 73626
+  whatsapp: null
+  official_url: null
+  description:
+    en: Vaibhav's Farm of Joy is a homely orchard stay in Chinchavali, Khed. Welcoming
+      to families, it serves homemade vegetarian, non-vegetarian, and Malvani food.
+    mr: वैभव्स फार्म ऑफ जॉय हे खेडच्या चिंचावली येथील एक घरगुती बागेतील निवासस्थान
+      आहे. कुटुंबांसाठी योग्य असलेल्या या ठिकाणी घरगुती शाकाहारी, मांसाहारी आणि मालवणी
+      जेवण मिळते.
+    hi: वैभव्स फार्म ऑफ जॉय खेड़ के चिंचावली में बगीचे के बीच स्थित एक घरेलू होमस्टे
+      है। परिवारों के अनुकूल इस जगह पर घर का बना शाकाहारी, मांसाहारी और मालवणी भोजन
+      परोसा जाता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwzkSx1zZ6TsRG3jJu2OmWI8
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; official
+    site http only; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: desais-mango-retreat-udhale
+  status: ai_draft
+  name_en: Desai's Mango Retreat
+  name_mr: देसाईज मँगो रिट्रीट
+  name_hi: देसाईज मैंगो रिट्रीट
+  taluka: Khed
+  area: Udhale Kh.
+  lat: null
+  lng: null
+  google_place_id: ChIJPx_0DQDf6TsROQYVrNbmbX8
+  service_style: homely
+  vibe_tags:
+  - orchard_stay
+  - family
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: true
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 82639 48903
+  whatsapp: null
+  official_url: null
+  description:
+    en: Desai's Mango Retreat is a family-oriented orchard stay in Udhale Kh., Khed.
+      Guests can enjoy a homely atmosphere along with homemade vegetarian, non-vegetarian,
+      and Malvani meals.
+    mr: देसाईज मँगो रिट्रीट हे खेडच्या उधळे खुर्द येथील बागेत वसलेले एक कौटुंबिक ठिकाण
+      आहे. येथे येणारे पाहुणे घरगुती वातावरणासह घरगुती शाकाहारी, मांसाहारी आणि मालवणी
+      जेवणाचा आनंद घेऊ शकतात.
+    hi: देसाईज़ मैंगो रिट्रीट खेड़ के उधले खुर्द में बगीचे के बीच एक पारिवारिक होमस्टे
+      है। मेहमान यहाँ घरेलू माहौल के साथ-साथ घर के बने शाकाहारी, मांसाहारी और मालवणी
+      भोजन का आनंद ले सकते हैं।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJPx_0DQDf6TsROQYVrNbmbX8
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: bisu-hotel-resorts-bharne
+  status: ai_draft
+  name_en: Bisu Hotel & Resorts
+  name_mr: बिसू हॉटेल अँड रिसॉर्ट्स
+  name_hi: बिसू होटल एंड रिजॉर्ट्स
+  taluka: Khed
+  area: Bharne Naka
+  lat: null
+  lng: null
+  google_place_id: ChIJJ8kF2hXe6TsRVV7X2GSkuYw
+  service_style: professional
+  vibe_tags:
+  - family
+  - business
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 77188 99894
+  whatsapp: null
+  official_url: null
+  description:
+    en: Bisu Hotel & Resorts is a professional lodging in Bharne Naka, Khed, suitable
+      for families and business travelers. The property offers both vegetarian and
+      non-vegetarian food.
+    mr: बिसू हॉटेल अँड रिसॉर्ट्स हे खेडच्या भरणे नाका येथील एक व्यावसायिक हॉटेल आहे,
+      जे कुटुंब आणि व्यावसायिक प्रवाशांसाठी योग्य आहे. येथे शाकाहारी आणि मांसाहारी
+      दोन्ही प्रकारचे जेवण उपलब्ध आहे.
+    hi: बिसु होटल एंड रिसॉर्ट्स खेड़ के भरने नाका में एक व्यावसायिक आवास है, जो परिवारों
+      और व्यावसायिक यात्रियों के लिए उपयुक्त है। यह संपत्ति शाकाहारी और मांसाहारी
+      दोनों तरह का भोजन प्रदान करती है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJ8kF2hXe6TsRVV7X2GSkuYw
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: hotel-saaj-in-home-stay-restaurant-lote-mal-khed
+  status: ai_draft
+  name_en: HOTEL SAAJ IN, HOME STAY & RESTAURANT
+  name_mr: हॉटेल साज इन, होम स्टे अँड रेस्टॉरंट
+  name_hi: होटल साज इन, होम स्टे एंड रेस्तरां
+  taluka: Khed
+  area: Lote-Mal, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJVcXwS30JwjsRPBxMxkglDLA
+  service_style: homely
+  vibe_tags:
+  - family
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 91728 01713
+  whatsapp: null
+  official_url: null
+  description:
+    en: Located in Lote, this property functions as both a homestay and a restaurant.
+      It offers around-the-clock accommodation and dining services.
+    mr: लोटे येथे असलेली ही मालमत्ता होमस्टे आणि रेस्टॉरंट दोन्ही म्हणून कार्य करते.
+      हे चोवीस तास निवास आणि जेवणाच्या सेवा देते.
+    hi: लोटे में स्थित यह संपत्ति होमस्टे और रेस्तरां दोनों के रूप में कार्य करती
+      है। यह चौबीसों घंटे आवास और भोजन सेवाएं प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVcXwS30JwjsRPBxMxkglDLA
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVcXwS30JwjsRPBxMxkglDLA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: khedekar-hotel-lote-khed
+  status: ai_draft
+  name_en: Khedekar Hotel
+  name_mr: खेडेकर हॉटेल
+  name_hi: खेडेकर होटल
+  taluka: Khed
+  area: Lote, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJlz28rX4JwjsRqNc-hcAyd8c
+  service_style: professional
+  vibe_tags:
+  - business
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 72761 32573
+  whatsapp: null
+  official_url: null
+  description:
+    en: Khedekar Hotel is a lodging property situated in Patwardhan Lote. It provides
+      basic accommodation for travelers passing through the area.
+    mr: खेडेकर हॉटेल ही पटवर्धन लोटे येथे स्थित एक निवास मालमत्ता आहे. या भागातून
+      जाणाऱ्या प्रवाशांसाठी ते प्राथमिक निवासाची सोय पुरवते.
+    hi: खेडेकर होटल पटवर्धन लोटे में स्थित एक आवास संपत्ति है। यह क्षेत्र से गुजरने
+      वाले यात्रियों के लिए बुनियादी आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJlz28rX4JwjsRqNc-hcAyd8c
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJlz28rX4JwjsRqNc-hcAyd8c
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-ganpati-krupa-mahad-naka-veral-khed
+  status: ai_draft
+  name_en: Hotel Ganpati krupa
+  name_mr: हॉटेल गणपती कृपा
+  name_hi: होटल गणपति कृपा
+  taluka: Khed
+  area: Mahad Naka, Veral, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJA8vyXQDf6TsR66Ht0VbYKwQ
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: This is a 24-hour hotel located along the Mumbai-Goa Highway in Veral. It
+      offers straightforward lodging and boarding facilities.
+    mr: हे वेरलमध्ये मुंबई-गोवा महामार्गावर असलेले 24 तास सुरू असणारे हॉटेल आहे. येथे
+      साध्या निवासाची आणि भोजनाची सोय उपलब्ध आहे.
+    hi: यह वेरल में मुंबई-गोवा राजमार्ग पर स्थित एक 24 घंटे खुला रहने वाला होटल है।
+      यह सरल आवास और भोजन की सुविधा प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJA8vyXQDf6TsR66Ht0VbYKwQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJA8vyXQDf6TsR66Ht0VbYKwQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

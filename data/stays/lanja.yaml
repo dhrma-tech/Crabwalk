@@ -1,0 +1,168 @@
+# Stays - Lanja taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: brahmagiri-villas-kurne
+  status: ai_draft
+  name_en: Brahmagiri Villas
+  name_mr: ब्रह्मगिरी व्हिलाज
+  name_hi: ब्रह्मगिरी विलाज
+  taluka: Lanja
+  area: Kurne
+  lat: null
+  lng: null
+  google_place_id: ChIJn1puvP3ewTsRFeK25JTbMVA
+  service_style: professional
+  vibe_tags:
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2580
+  price_max: 3900
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/budget-hotels-in-lanja.html
+  phone: +91 81261 00863
+  whatsapp: null
+  official_url: null
+  description:
+    en: Brahmagiri Villas is a professional stay located in Kurne, Lanja. It offers
+      couple-friendly accommodations.
+    mr: ब्रह्मगिरी व्हिला हे लांजा येथील कुर्णे मध्ये असलेले एक व्यावसायिक निवासस्थान
+      आहे. येथे जोडप्यांसाठी अनुकूल निवासाची सोय आहे.
+    hi: ब्रह्मगिरी विला लांजा के कुर्णे में स्थित एक व्यावसायिक ठहरने की जगह है। यह
+      जोड़ों के लिए अनुकूल आवास प्रदान करता है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/budget-hotels-in-lanja.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJn1puvP3ewTsRFeK25JTbMVA
+    - https://www.makemytrip.com/hotels/budget-hotels-in-lanja.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; official site is http only;
+    description EN/MR/HI by Gemini (fields_only); needs review
+- slug: parvati-niwas-kelambe
+  status: ai_draft
+  name_en: Parvati Niwas
+  name_mr: पार्वती निवास
+  name_hi: पार्वती निवास
+  taluka: Lanja
+  area: Kelambe
+  lat: null
+  lng: null
+  google_place_id: ChIJYXDWIwDbwTsRf0MsH9hyXnc
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Parvati Niwas is a homely accommodation situated in Kelambe, Lanja. It provides
+      family-friendly lodging.
+    mr: पार्वती निवास हे लांजा येथील केळंबे मध्ये स्थित एक घरगुती निवासाचे ठिकाण आहे.
+      येथे कुटुंबासाठी अनुकूल निवासाची सोय उपलब्ध आहे.
+    hi: पार्वती निवास लांजा के केळंबे में स्थित एक घरेलू आवास है। यहाँ परिवारों के
+      लिए अनुकूल ठहरने की सुविधा है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJYXDWIwDbwTsRf0MsH9hyXnc
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; Maps only; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: green-nest-resort-kelambe
+  status: ai_draft
+  name_en: Green Nest Resort
+  name_mr: ग्रीन नेस्ट रिसॉर्ट
+  name_hi: ग्रीन नेस्ट रिसॉर्ट
+  taluka: Lanja
+  area: Kelambe
+  lat: null
+  lng: null
+  google_place_id: ChIJLfRsgMbbwTsRsnNYNBUox8M
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 80071 75173
+  whatsapp: null
+  official_url: https://greennestresort.in/
+  description:
+    en: Green Nest Resort is a professional property located in Kelambe, Lanja. The
+      resort is well-suited for family stays.
+    mr: ग्रीन नेस्ट रिसॉर्ट हे लांजा येथील केळंबे मध्ये असलेले एक व्यावसायिक ठिकाण
+      आहे. हे रिसॉर्ट कौटुंबिक वास्तव्यासाठी योग्य आहे.
+    hi: ग्रीन नेस्ट रिज़ॉर्ट लांजा के केळंबे में स्थित एक व्यावसायिक संपत्ति है। यह
+      रिज़ॉर्ट परिवार के साथ ठहरने के लिए उपयुक्त है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJLfRsgMbbwTsRsnNYNBUox8M
+    - https://greennestresort.in/
+    - https://www.justdial.com/Ratnagiri/Hotels-in-Marleshwar/nct-10255012
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: hotel-jangam-eastea-loging-lanja
+  status: ai_draft
+  name_en: Hotel jangam eastea loging
+  name_mr: हॉटेल जंगम इस्टीया लॉजिंग
+  name_hi: होटल जंगम इस्टीया लॉजिंग
+  taluka: Lanja
+  area: Lanja
+  lat: null
+  lng: null
+  google_place_id: ChIJDZ8VGLDZwTsRWPXPLJtUvc0
+  service_style: professional
+  vibe_tags:
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 77093 24551
+  whatsapp: null
+  official_url: null
+  description:
+    en: This is a lodging facility located on the Mumbai - Goa Highway in Lanja.
+    mr: ही लांजा मधील मुंबई-गोवा महामार्गावर स्थित एक लॉजिंग सुविधा आहे.
+    hi: यह लांजा में मुंबई-गोवा राजमार्ग पर स्थित एक लॉजिंग सुविधा है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJDZ8VGLDZwTsRWPXPLJtUvc0
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJDZ8VGLDZwTsRWPXPLJtUvc0
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

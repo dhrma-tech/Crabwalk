@@ -1,0 +1,337 @@
+# Stays - Sangameshwar taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: onest-luxury-homestay-devrukh
+  status: ai_draft
+  name_en: O'Nest Luxury Homestay
+  name_mr: ओनेस्ट लक्झरी होमस्टे
+  name_hi: ओनेस्ट लग्जरी होमस्टे
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJmWXGrGfmwTsRUyeqEL4ZyOA
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 83789 87789
+  whatsapp: null
+  official_url: https://www.onesthomestay.com/
+  description:
+    en: O'Nest Luxury Homestay is a homely accommodation located in Devrukh, Sangameshwar.
+      It offers a comfortable and family-friendly environment.
+    mr: ओ'नेस्ट लक्झरी होमस्टे हे संगमेश्वर मधील देवरूख येथे असलेले एक घरगुती निवासाचे
+      ठिकाण आहे. येथे आरामदायक आणि कुटुंबासाठी अनुकूल वातावरण मिळते.
+    hi: ओ'नेस्ट लक्ज़री होमस्टे संगमेश्वर के देवरुख में स्थित एक घरेलू आवास है। यह
+      एक आरामदायक और परिवारों के अनुकूल वातावरण प्रदान करता है।
+  ota_links:
+  - provider: makemytrip
+    url: https://ae.makemytrip.global/hotels-international/en-ae/india/devrukh-hotels/address-of-o_nest_luxury_homestay_rooms_wi_fi-details.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJmWXGrGfmwTsRUyeqEL4ZyOA
+    - https://www.onesthomestay.com/
+    - https://ae.makemytrip.global/hotels-international/en-ae/india/devrukh-hotels/address-of-o_nest_luxury_homestay_rooms_wi_fi-details.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: dio-regaalo-theme-resort-niwali
+  status: ai_draft
+  name_en: Dio Regaalo Theme Resort
+  name_mr: डिओ रेगॅलो थीम रिसॉर्ट
+  name_hi: डियो रेगैलो थीम रिसॉर्ट
+  taluka: Sangameshwar
+  area: Niwali
+  lat: null
+  lng: null
+  google_place_id: ChIJ2Sx3tEcL6jsRdeQtneDwOnk
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 4290
+  price_max: 4505
+  price_source: null
+  price_url: https://in.hotels.com/ho3153191680/dio-regaalo-theme-resort-ratnagiri-india/
+  phone: +91 79725 55073
+  whatsapp: null
+  official_url: https://www.dioregaaloresort.com/
+  description:
+    en: Dio Regaalo Theme Resort is a professional property set in Niwali, Sangameshwar.
+      The resort provides family-friendly lodging.
+    mr: डिओ रेगालो थीम रिसॉर्ट हे संगमेश्वरच्या निवळी येथे स्थित एक व्यावसायिक ठिकाण
+      आहे. या रिसॉर्टमध्ये कुटुंबासाठी अनुकूल निवासाची व्यवस्था आहे.
+    hi: डियो रेगालो थीम रिज़ॉर्ट संगमेश्वर के निवली में स्थित एक व्यावसायिक संपत्ति
+      है। रिज़ॉर्ट परिवारों के लिए अनुकूल आवास प्रदान करता है।
+  ota_links:
+  - provider: hotels_com
+    url: https://in.hotels.com/ho3153191680/dio-regaalo-theme-resort-ratnagiri-india/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2Sx3tEcL6jsRdeQtneDwOnk
+    - https://www.dioregaaloresort.com/
+    - https://in.hotels.com/ho3153191680/dio-regaalo-theme-resort-ratnagiri-india/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; Niwali/Nivali is likely
+    in Ratnagiri taluka, not Sangameshwar; check taluka by pin; description EN/MR/HI
+    by Gemini (fields_only); needs review
+- slug: hotel-sangameshwari-katta-golavali
+  status: ai_draft
+  name_en: Hotel Sangameshwari Katta
+  name_mr: हॉटेल संगमेश्वरी कट्टा
+  name_hi: होटल संगमेश्वरी कट्टा
+  taluka: Sangameshwar
+  area: Golavali
+  lat: null
+  lng: null
+  google_place_id: ChIJFaRtxa_9wTsR1MJ2eTfYcMc
+  service_style: professional
+  vibe_tags:
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Hotel Sangameshwari Katta is a professional hotel located in Golavali, Sangameshwar.
+      It caters primarily to business travelers.
+    mr: हॉटेल संगमेश्वरी कट्टा हे संगमेश्वरच्या गोळवली येथे असलेले एक व्यावसायिक हॉटेल
+      आहे. हे प्रामुख्याने व्यावसायिक प्रवाशांच्या गरजा पूर्ण करते.
+    hi: होटल संगमेश्वरी कट्टा संगमेश्वर के गोलवली में स्थित एक व्यावसायिक होटल है।
+      यह मुख्य रूप से व्यापारिक यात्रियों के लिए उपयुक्त है।
+  ota_links:
+  - provider: agoda
+    url: https://www.agoda.com/en-in/hotel-sangmeshwari-katta/hotel/devrukh-in.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJFaRtxa_9wTsR1MJ2eTfYcMc
+    - https://www.agoda.com/en-in/hotel-sangmeshwari-katta/hotel/devrukh-in.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: hotel-draupadi-inn-devrukh
+  status: ai_draft
+  name_en: Hotel Draupadi Inn
+  name_mr: हॉटेल द्रौपदी इन
+  name_hi: होटल द्रौपदी इन
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJVVVVVWnmwTsRaxzXJmBIYCg
+  service_style: professional
+  vibe_tags:
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 94043 35609
+  whatsapp: null
+  official_url: null
+  description:
+    en: Hotel Draupadi Inn is a professional accommodation located in Devrukh, Sangameshwar.
+      The hotel is well-suited for business guests.
+    mr: हॉटेल द्रौपदी इन हे संगमेश्वर मधील देवरूख येथे स्थित एक व्यावसायिक निवासस्थान
+      आहे. हे हॉटेल व्यावसायिक पाहुण्यांसाठी अत्यंत योग्य आहे.
+    hi: होटल द्रौपदी इन संगमेश्वर के देवरुख में स्थित एक व्यावसायिक आवास है। यह होटल
+      व्यापारिक मेहमानों के लिए बहुत उपयुक्त है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVVVVVWnmwTsRaxzXJmBIYCg
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; price came from a Lanja
+    category page, dropped; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: gargi-homestay-dhamani
+  status: ai_draft
+  name_en: Gargi Homestay
+  name_mr: गार्गी होमस्टे
+  name_hi: गार्गी होमस्टे
+  taluka: Sangameshwar
+  area: Dhamani
+  lat: null
+  lng: null
+  google_place_id: ChIJFcH3UQD9wTsRZC5EDaexaNk
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99750 97475
+  whatsapp: null
+  official_url: null
+  description:
+    en: Located on Jogle Wadi Road in Dhamani, this homestay offers a quiet residential
+      setting.
+    mr: धामणी येथील जोगळे वाडी रोडवर स्थित, हा होमस्टे एक शांत निवासी परिसर प्रदान
+      करतो.
+    hi: धामणी में जोगले वाडी रोड पर स्थित, यह होमस्टे एक शांत आवासीय परिवेश प्रदान
+      करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJFcH3UQD9wTsRZC5EDaexaNk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: snehal-residency-homestay-devrukh
+  status: ai_draft
+  name_en: Snehal Residency HOMESTAY
+  name_mr: स्नेहल रेसिडेन्सी होमस्टे
+  name_hi: स्नेहल रेसिडेंसी होमस्टे
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJVzdoRuDnwTsRC1FlAF4oKSY
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 98678 16861
+  whatsapp: null
+  official_url: https://snehal-residency-devrukh.web.app/
+  description:
+    en: This homestay in Devrukh provides 24-hour accommodation options near the Sangameshwar-Pangari
+      Road.
+    mr: देवरूखमधील हा होमस्टे संगमेश्वर-पांगरी रोडजवळ 24 तास निवास व्यवस्था प्रदान
+      करतो.
+    hi: देवरुख में यह होमस्टे संगमेश्वर-पांगरी रोड के पास 24 घंटे आवास विकल्प प्रदान
+      करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVzdoRuDnwTsRC1FlAF4oKSY
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: sunshine-stay-devrukh
+  status: ai_draft
+  name_en: Sunshine stay
+  name_mr: सनशाईन स्टे
+  name_hi: सनशाइन स्टे
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJGw2ZMlXnwTsRm0NZqDh4-2g
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 73871 48867
+  whatsapp: null
+  official_url: null
+  description:
+    en: A lodging option located near the State Bank in Devrukh town.
+    mr: देवरूख शहरातील स्टेट बँकेजवळ स्थित एक निवास पर्याय.
+    hi: देवरुख शहर में स्टेट बैंक के पास स्थित एक आवास विकल्प।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJGw2ZMlXnwTsRm0NZqDh4-2g
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: shraddha-hotel-lodge-dhamani
+  status: ai_draft
+  name_en: Shraddha Hotel & Lodge
+  name_mr: श्रद्धा हॉटेल अँड लॉज
+  name_hi: श्रद्धा होटल एंड लॉज
+  taluka: Sangameshwar
+  area: Dhamani
+  lat: null
+  lng: null
+  google_place_id: ChIJzVHyv2L8wTsR18Kh6RrwDro
+  service_style: professional
+  vibe_tags:
+  - family
+  - backpacker
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 96374 98676
+  whatsapp: null
+  official_url: null
+  description:
+    en: A local hotel and lodge operating in Dhamani from early morning until midnight.
+    mr: धामणी येथील हे स्थानिक हॉटेल आणि लॉज पहाटेपासून मध्यरात्रीपर्यंत चालू असते.
+    hi: धामणी में यह स्थानीय होटल और लॉज सुबह से आधी रात तक संचालित होता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJzVHyv2L8wTsR18Kh6RrwDro
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

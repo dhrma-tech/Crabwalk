@@ -1,0 +1,992 @@
+# Places - Lanja taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: machal-plateau
+  status: ai_draft
+  name_en: Machal Plateau
+  name_mr: माचाळ पठार
+  name_hi: माचाल पठार
+  category: viewpoint
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Machal is a plateau village and emerging hill station in the Sahyadri
+        ranges of Lanja taluka. Located at an altitude of about 3000 feet, it offers
+        a cool climate year-round. It is often compared to Mahabaleshwar for its weather.
+
+
+        The plateau features dense vegetation, tall trees, and medicinal plants. It
+        serves as the origin point of the Muchkundi river. Currently being developed
+        as an eco-tourism center, it provides a quiet natural retreat.'
+      history: Historically a remote plateau, it contains a narrow-mouthed cave on
+        its western side locally associated with the meditation spot of the sage Muchkund.
+        The government is recently developing it into a recognized eco-tourism zone.
+      significance: A high-altitude Konkan hill station known for its cool climate
+        and the origin of the Muchkundi river.
+      dos: '- Start a trek from Kochari village if you enjoy nature walks.
+
+        - Carry your own food and water.'
+      donts: '- Do not expect large hotels or commercial facilities on the plateau.'
+      safety_text: Travel with a local guide as the forest is dense, especially during
+        monsoon treks.
+    mr:
+      short_story: 'लांजा तालुक्यातील सह्याद्रीच्या रांगांमध्ये वसलेले माचाळ हे एक
+        पठार आणि नव्याने विकसित होणारे हिल स्टेशन आहे. समुद्रसपाटीपासून सुमारे 3000
+        फूट उंचीवर असलेल्या या पठारावर वर्षभर थंड हवामान असते. इथल्या हवामानामुळे
+        याची तुलना अनेकदा महाबळेश्वरशी केली जाते.
+
+
+        या पठारावर दाट वनराई, उंच झाडे आणि औषधी वनस्पती आढळतात. मुचकुंडी नदीचा उगम
+        याच ठिकाणी होतो. सध्या हे ठिकाण इको-टुरिझम केंद्र म्हणून विकसित केले जात आहे.'
+      history: ऐतिहासिकदृष्ट्या हे एक दुर्गम पठार होते. याच्या पश्चिमेकडील भागात एका
+        अरुंद तोंडाची गुहा आहे, जिथे मुचकुंद ऋषींनी तपश्चर्या केली असे मानले जाते.
+        सरकार आता याला इको-टुरिझम झोन म्हणून विकसित करत आहे.
+      significance: मुचकुंडी नदीचे उगमस्थान आणि थंड हवेसाठी ओळखले जाणारे कोकणातील
+        उंचावरील पठार.
+      dos: '- ट्रेकिंगची आवड असल्यास कोचेरी गावातून पायी प्रवास सुरू करा.
+
+        - स्वतःचे जेवण आणि पिण्याचे पाणी सोबत ठेवा.'
+      donts: '- पठारावर मोठी हॉटेल्स किंवा व्यावसायिक सुविधा मिळण्याची अपेक्षा करू
+        नका.'
+      safety_text: 'येथील जंगल दाट असल्याने, विशेषत: पावसाळ्यातील ट्रेकमध्ये स्थानिक
+        मार्गदर्शकाला सोबत ठेवा.'
+    hi:
+      short_story: 'लांजा तालुका में सह्याद्री पर्वतमाला के बीच स्थित, माचाल एक पठारी
+        गांव और उभरता हुआ हिल स्टेशन है। लगभग 3000 फीट की ऊंचाई पर स्थित होने के कारण
+        यहाँ साल भर ठंडी जलवायु रहती है। इसके मौसम के कारण इसकी तुलना अक्सर महाबलेश्वर
+        से की जाती है।
+
+
+        इस पठार पर घनी वनस्पति, ऊंचे पेड़ और औषधीय पौधे पाए जाते हैं। यह मुचकुंदी
+        नदी का उद्गम स्थल भी है। वर्तमान में इसे एक इको-टूरिज्म केंद्र के रूप में
+        विकसित किया जा रहा है।'
+      history: ऐतिहासिक रूप से यह एक दुर्गम पठार रहा है। इसके पश्चिमी भाग में एक गुफा
+        है, जिसे स्थानीय मान्यताओं के अनुसार मुचकुंद ऋषि की तपोभूमि माना जाता है।
+        सरकार अब इसे इको-टूरिज्म ज़ोन के रूप में विकसित कर रही है।
+      significance: मुचकुंदी नदी का उद्गम स्थल और अपनी ठंडी जलवायु के लिए प्रसिद्ध
+        कोंकण का एक उच्च ऊंचाई वाला हिल स्टेशन।
+      dos: '- यदि आपको ट्रेकिंग पसंद है, तो कोचेरी गांव से अपनी यात्रा शुरू करें।
+
+        - अपना भोजन और पीने का पानी साथ रखें।'
+      donts: '- पठार पर बड़े होटल या व्यावसायिक सुविधाओं की अपेक्षा न करें।'
+      safety_text: यहाँ का जंगल घना है, इसलिए विशेष रूप से मानसून के दौरान एक स्थानीय
+        गाइड के साथ ही यात्रा करें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Tourist-Attraction-in-Lanja/nct-10596038
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://villageinfo.in/maharashtra/ratnagiri/lanja/machal/
+  _review: 'only Justdial listing; needs better source; no coordinates: needs pin;
+    no text: no reliable source found (2026-11-03 search); needs field visit or local
+    source; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: khorninko-waterfall
+  status: ai_draft
+  name_en: Khorninko Waterfall
+  name_mr: खोरनिन्को धबधबा
+  name_hi: खोरनिन्को झरना
+  category: waterfall
+  taluka: Lanja
+  lat: 16.868445
+  lng: 73.729337
+  coord_source: osm node/9141399475
+  osm_id: node/9141399475
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 40
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: September to February
+  how_to_reach: By road to Khorninko village, then a short walk.
+  nearest_station: null
+  nearest_bus_stop: Lanja
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 10
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Khorninko is an irrigation dam near Lanja whose reservoir has
+        become a local picnic spot. After the rains, small waterfalls and streams
+        run around it, and a short walk from Khorninko village leads to the waterfall
+        and backwaters.
+
+
+        The road in passes mango and cashew orchards and paddy fields. A quick visit
+        takes about 40 minutes.'
+      history: null
+      significance: A quiet dam and waterfall spot in the Lanja countryside.
+      dos: '- Carry your own food, water and a waste bag
+
+        - Go from September to February when the reservoir is full'
+      donts: '- Don''t swim in the reservoir'
+      safety_text: No shops or help on site. Nearest medical help is in Lanja.
+    mr:
+      short_story: 'खोरनिन्को हे लांजा जवळील एक सिंचन धरण आहे, ज्याचा जलाशय एक स्थानिक
+        पिकनिक स्पॉट बनला आहे. पावसानंतर, त्याच्या आसपास लहान धबधबे आणि ओढे वाहतात,
+        आणि खोरनिन्को गावातून थोडी चालत गेल्यास धबधबा आणि बॅकवॉटरपर्यंत पोहोचता येते.
+
+
+        आतील रस्ता आंबा आणि काजूच्या बागा आणि धान्याच्या शेतांमधून जातो. एक द्रुत
+        भेट सुमारे 40 मिनिटे घेते.'
+      history: null
+      significance: लांजाच्या ग्रामीण भागातील एक शांत धरण आणि धबधब्याचे ठिकाण.
+      dos: '- तुमचे स्वतःचे अन्न, पाणी आणि कचऱ्याची पिशवी सोबत ठेवा
+
+        - सप्टेंबर ते फेब्रुवारी दरम्यान जा जेव्हा जलाशय भरलेला असतो'
+      donts: '- जलाशयात पोहू नका'
+      safety_text: ठिकाणी कोणतीही दुकाने किंवा मदत उपलब्ध नाही. जवळची वैद्यकीय मदत
+        लांजा येथे आहे.
+    hi:
+      short_story: 'खोरनिन्को लांजा के पास एक सिंचाई बांध है जिसका जलाशय एक स्थानीय
+        पिकनिक स्थल बन गया है। बारिश के बाद, इसके आस-पास छोटे झरने और धाराएँ बहती
+        हैं, और खोरनिन्को गाँव से थोड़ी दूर पैदल चलने पर झरना और बैकवाटर तक पहुँचा
+        जा सकता है।
+
+
+        अंदर का रास्ता आम और काजू के बागों और धान के खेतों से होकर गुजरता है। एक त्वरित
+        यात्रा में लगभग 40 मिनट लगते हैं।'
+      history: null
+      significance: लांजा के ग्रामीण इलाकों में एक शांत बांध और झरने का स्थान।
+      dos: '- अपना भोजन, पानी और कचरे का बैग अपने साथ रखें
+
+        - सितंबर से फरवरी के बीच जाएँ जब जलाशय भरा हो'
+      donts: '- जलाशय में न तैरें'
+      safety_text: साइट पर कोई दुकान या मदद नहीं है। निकटतम चिकित्सा सहायता लांजा
+        में है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mushafiri.com/destinations/khorninko-dam/
+  _review: season months set by Claude; verify; single source; EN text = Claude draft
+    from sources, needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: satavali-fort
+  status: ai_draft
+  name_en: Satavali Fort
+  name_mr: साटवली किल्ला
+  name_hi: साटवली किला
+  category: fort
+  taluka: Lanja
+  lat: 16.758508
+  lng: 73.4564
+  coord_source: osm node/9196972613
+  osm_id: node/9196972613
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 18 km from Lanja; a road near Satavali school reaches the fort.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Satavali is a small watch fort on the bank of the Muchkundi river,
+        about 18 km from Lanja. Built of laterite stacked without mortar, it has five
+        bastions, a dry well, cannon loopholes and a deep moat on two sides, though
+        it is now largely overgrown.
+
+
+        The village''s wooden Vitthal-Rakhumai temple, with a cannon in its courtyard,
+        is worth a stop after the fort.'
+      history: Satavali was a secondary river port and the fort watched the river
+        trade. It changed hands from Sardar Doroji in Shivaji's time to Kanhoji Angre
+        (1713), the Peshwas (1755) and the British (1818).
+      significance: null
+      dos: '- Visit the Vitthal-Rakhumai temple in the village'
+      donts: null
+      safety_text: '- The fort is overgrown; wear long trousers and shoes'
+    mr:
+      short_story: 'साटवली हा लांजापासून सुमारे 18 किमी अंतरावर मुचकुंडी नदीच्या तीरावर
+        असलेला एक छोटा टेहळणी किल्ला आहे. कोणत्याही चुन्याचा वापर न करता केवळ जांभा
+        दगड एकावर एक रचून बांधलेल्या या किल्ल्याला पाच बुरूज, एक कोरडी विहीर, तोफांसाठी
+        झरोके आणि दोन बाजूंनी खोल खंदक आहे, जरी आता तिथे मोठ्या प्रमाणावर झाडी वाढली
+        असली तरी.
+
+
+        किल्ला पाहिल्यानंतर गावातल्या लाकडी विठ्ठल-रखुमाई मंदिराला नक्की भेट द्या,
+        ज्याच्या अंगणात एक तोफ ठेवली आहे.'
+      history: साटवली हे नदीवरील दुय्यम बंदर होते आणि हा किल्ला नदीवरील व्यापारावर
+        लक्ष ठेवून असे. शिवाजी महाराजांच्या काळात सरदार दोरोजी, त्यानंतर कान्होजी
+        आंग्रे (1713), पेशवे (1755) आणि शेवटी ब्रिटिशांच्या (1818) ताब्यात हा किल्ला
+        गेला.
+      significance: null
+      dos: '- गावातल्या विठ्ठल-रखुमाई मंदिराला नक्की भेट द्या'
+      donts: null
+      safety_text: '- किल्ल्यावर खूप झाडी वाढली आहे; लांब पँट आणि बूट घाला'
+    hi:
+      short_story: 'साटवली लांजा से लगभग 18 किमी दूर मुचकुंडी नदी के तट पर एक छोटा
+        निगरानी किला है। बिना गारे के केवल लेटराइट (जांभा) पत्थरों को एक के ऊपर एक
+        रखकर बनाए गए इस किले में पांच बुर्ज, एक सूखा कुआं, तोपों के लिए झरोखे और दो
+        तरफ एक गहरी खाई है, हालांकि अब यहां काफी झाड़ियां उग आई हैं।
+
+
+        किले के बाद गांव के लकड़ी के विट्ठल-रखुमाई मंदिर में जाना एक अच्छा विकल्प
+        है, जिसके प्रांगण में एक तोप रखी है।'
+      history: साटवली एक द्वितीयक नदी बंदर था और किला नदी के व्यापार पर नजर रखता था।
+        यह शिवाजी के समय में सरदार दोरोजी से लेकर कान्होजी आंग्रे (1713), पेशवाओं
+        (1755) और फिर अंग्रेजों (1818) के हाथों में गया।
+      significance: null
+      dos: '- गांव में विट्ठल-रखुमाई मंदिर के दर्शन करें'
+      donts: null
+      safety_text: '- किले में बहुत झाड़ियां उग आई हैं; पूरी पैंट और जूते पहनें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/satavali/
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: vitthal-rukmini-temple-lanja
+  status: ai_draft
+  name_en: Vitthal Rukmini Temple, Lanja
+  name_mr: विठ्ठल रुक्मिणी मंदिर, लांजा
+  name_hi: विट्ठल रुक्मिणी मंदिर, लांजा
+  category: temple
+  taluka: Lanja
+  lat: 16.864991
+  lng: 73.552529
+  coord_source: osm way/1981790850
+  osm_id: way/1981790850
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Vitthal-Rakhumai temple at Satavali village, about 18 km from
+        Lanja, is a wooden temple with a cannon in its courtyard. It pairs well with
+        a visit to Satavali fort.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: लांजापासून सुमारे 18 किमी अंतरावर असलेल्या साटवली गावातील विठ्ठल-रखुमाई
+        मंदिर हे एक लाकडी मंदिर असून त्याच्या अंगणात एक तोफ आहे. साटवली किल्ल्याला
+        भेट दिल्यावर या मंदिराचे दर्शन घेणे हा एक उत्तम योग जुळून येतो.
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिरात पादत्राणे (चपला/बूट) घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: लांजा से लगभग 18 किमी दूर साटवली गांव में विट्ठल-रखुमाई मंदिर एक
+        लकड़ी का मंदिर है जिसके प्रांगण में एक तोप है। साटवली किले की यात्रा के साथ
+        इसके दर्शन करना एक बेहतरीन विकल्प है।
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/satavali/
+  _review: Gemini says it is at Satavali; OSM row is in Lanja; weak - candidate to
+    drop; source places the temple in Satavali village; OSM coordinates may be a different
+    Vitthal temple in Lanja town - verify pin; EN text = Claude draft from sources,
+    needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: rani-laxmibai-memorial-kot
+  status: ai_draft
+  name_en: Rani Laxmibai Memorial, Kot
+  name_mr: राणी लक्ष्मीबाई स्मारक, कोट
+  name_hi: रानी लक्ष्मीबाई स्मारक, कोट
+  category: museum
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Located in Mouje Kot village in Lanja taluka, this memorial is
+        dedicated to Rani Laxmibai of Jhansi. Kot is the ancestral village of the
+        Newalkar family. Rani Laxmibai’s husband, Maharaja Gangadhar Rao Newalkar,
+        belonged to this lineage.
+
+
+        The site serves as a historical marker commemorating the roots of the Jhansi
+        royal family in the Ratnagiri district. It stands as a modest tribute to the
+        historical connection between the Konkan region and the Maratha empire''s
+        northern expansion.'
+      history: The Newalkars of Jhansi originally hailed from Kot village in Ratnagiri
+        before migrating northward during the Peshwa era. The memorial was established
+        to honor the Queen's marital ties to this specific village.
+      significance: It marks the ancestral village of the Newalkar royal family of
+        Jhansi.
+      dos: '- Combine your trip with a visit to Koldhe, the maternal village of Rani
+        Laxmibai, located nearby.
+
+        - Speak to the village elders to learn about the region''s historical ties.'
+      donts: '- Do not expect a large, modern museum; it is a modest village memorial.'
+      safety_text: null
+    mr:
+      short_story: 'लांजा तालुक्यातील मौजे कोट गावात असलेले हे स्मारक झाशीची राणी
+        लक्ष्मीबाई यांना समर्पित आहे. कोट हे नेवाळकर घराण्याचे मूळ गाव आहे. राणी लक्ष्मीबाईंचे
+        पती, महाराज गंगाधरराव नेवाळकर याच घराण्यातील होते.
+
+
+        हे स्मारक झाशीच्या राजघराण्याची रत्नागिरी जिल्ह्याशी असलेली नाळ दर्शवते. कोकण
+        आणि मराठा साम्राज्याच्या उत्तरेकडील विस्तारातील ऐतिहासिक संबंधांची आठवण म्हणून
+        हे स्मारक ओळखले जाते.'
+      history: पेशवे काळात उत्तरेकडे स्थलांतर करण्यापूर्वी झाशीचे नेवाळकर मुळचे रत्नागिरीतील
+        याच कोट गावचे होते. राणी लक्ष्मीबाईंचे या गावाशी असलेले सासरचे नाते जपण्यासाठी
+        हे स्मारक उभारण्यात आले आहे.
+      significance: झाशीच्या नेवाळकर राजघराण्याचे मूळ गाव दर्शवणारे स्मारक.
+      dos: '- या भेटीसोबतच राणी लक्ष्मीबाईंचे माहेर असलेल्या जवळच्या कोलधे गावाला
+        नक्की भेट द्या.
+
+        - गावाचा ऐतिहासिक वारसा जाणून घेण्यासाठी स्थानिक ग्रामस्थांशी संवाद साधा.'
+      donts: '- येथे मोठ्या आधुनिक संग्रहालयाची अपेक्षा करू नका; हे गावातील एक साधे
+        स्मारक आहे.'
+      safety_text: null
+    hi:
+      short_story: 'लांजा तालुका के मौजे कोट गांव में स्थित यह स्मारक झाँसी की रानी
+        लक्ष्मीबाई को समर्पित है। कोट नेवालकर परिवार का पैतृक गांव है। रानी लक्ष्मीबाई
+        के पति, महाराजा गंगाधर राव नेवालकर इसी वंश के थे।
+
+
+        यह स्थान रत्नागिरी जिले में झाँसी शाही परिवार की जड़ों को दर्शाता है। यह स्मारक
+        कोंकण क्षेत्र और मराठा साम्राज्य के उत्तरी विस्तार के बीच ऐतिहासिक संबंध को
+        श्रद्धांजलि देता है।'
+      history: पेशवा काल के दौरान उत्तर की ओर पलायन करने से पहले, झाँसी के नेवालकर
+        मूल रूप से रत्नागिरी के इसी कोट गांव के थे। महारानी के इस गांव से वैवाहिक
+        संबंधों का सम्मान करने के लिए यह स्मारक स्थापित किया गया था।
+      significance: यह झाँसी के नेवालकर शाही परिवार के पैतृक गांव को चिह्नित करता
+        है।
+      dos: '- इस यात्रा के साथ रानी लक्ष्मीबाई के मायके, पास के कोलधे गांव के दर्शन
+        भी करें।
+
+        - इस क्षेत्र के ऐतिहासिक संबंधों के बारे में जानने के लिए गांव के बुजुर्गों
+        से बात करें।'
+      donts: '- किसी बड़े आधुनिक संग्रहालय की उम्मीद न करें; यह गांव का एक साधारण
+        स्मारक है।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://ratnagiri.gov.in/en/tourism/
+    - https://pilgrimdata.in/temple/mallikarjuna-temple-koldhe-ta-lanja-dist-ratnagiri/
+  _review: 'identity only from official district list ("Rani Laxmibai Memorial at
+    Mouje Kot"); needs details; no text: no reliable source found (2026-11-03 search);
+    needs field visit or local source; EN text + MR/HI by Gemini (Google Search, batch
+    T-2), not Claude-drafted: check facts against sources; Newalkar family link from
+    Gemini; verify; story restored 2026-11-04 for import, CHECK: Kot as Newalkar ancestral
+    village unverified (may be Newale)'
+  _collected_by: claude 2026-11-03
+- slug: mallikarjun-temple-koldhe
+  status: ai_draft
+  name_en: Mallikarjun Temple, Koldhe
+  name_mr: मल्लिकार्जुन मंदिर, कोळधे
+  name_hi: मल्लिकार्जुन मंदिर, कोलधे
+  category: temple
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Oct to Mar
+  how_to_reach: Accessible by road from Lanja town, located about 10 km away via local
+    village roads.
+  nearest_station: Ratnagiri Railway Station, 35 km
+  nearest_bus_stop: Lanja Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Situated in Koldhe village, this ancient Shiva temple is built
+        in the Hemadpanti architectural style. The entire structure is made of red
+        laterite stone joined meticulously without cement. The courtyard features
+        four deepmalas.
+
+
+        The sanctum houses a Shiva lingam carved from a single solid black stone.
+        Koldhe is also known as the ancestral village of Moropant Tambe, the father
+        of Rani Laxmibai. The temple complex includes a sabhamandap with a carved
+        wooden entrance and a modern Kalkai temple behind it.'
+      history: Koldhe is the native village of the Tambe family, ancestors of Rani
+        Laxmibai. According to legend, the temple was built by a Brahmin from the
+        Tambe family after a cowherd discovered a Shiva lingam where a cow was shedding
+        milk.
+      significance: An ancient, cementless Hemadpanti stone temple linked to the maternal
+        ancestors of Rani Laxmibai.
+      dos: '- Visit during the Mahashivratri festival to see traditional palanquin
+        processions.
+
+        - Notice the precision of the laterite stone joints built without cement.'
+      donts: '- Do not plan to stay overnight, as there are no accommodation facilities
+        at the temple.'
+      safety_text: null
+    mr:
+      short_story: 'कोलधे गावात स्थित हे प्राचीन शिवमंदिर हेमाडपंती स्थापत्यशैलीत
+        बांधले आहे. मंदिराचे संपूर्ण बांधकाम जांभ्या दगडात सिमेंटचा वापर न करता केलेले
+        आहे. मंदिराच्या प्रांगणात चार दीपमाळा आहेत.
+
+
+        गर्भगृहातील शिवपिंडी अखंड काळ्या पाषाणाची आहे. कोलधे हे राणी लक्ष्मीबाईंचे
+        वडील मोरोपंत तांबे यांचे मूळ गाव आहे. या मंदिर परिसरात लाकडी कोरीव काम असलेला
+        सभामंडप असून, मागच्या बाजूला आधुनिक कालकाई मंदिर आहे.'
+      history: कोलधे हे राणी लक्ष्मीबाईंचे पूर्वज असलेल्या तांबे घराण्याचे मूळ गाव
+        आहे. आख्यायिकेनुसार, एका गाईने दगडावर पान्हा सोडल्यानंतर तिथे शिवपिंडी सापडली,
+        त्यानंतर तांबे कुटुंबातील एका ब्राह्मणाने हे मंदिर बांधले.
+      significance: राणी लक्ष्मीबाईंच्या माहेरच्या पूर्वजांशी संबंधित असलेले हे सिमेंटविना
+        बांधलेले हेमाडपंती शिवमंदिर आहे.
+      dos: '- महाशिवरात्रीच्या उत्सवात येथील पारंपरिक पालखी सोहळा पाहण्यासाठी आवर्जून
+        भेट द्या.
+
+        - सिमेंटविना जांभ्या दगडांची केलेली अचूक जुळणी नक्की पहा.'
+      donts: '- मंदिर परिसरात राहण्याची व्यवस्था नसल्याने मुक्कामाचे नियोजन करू नका.'
+      safety_text: null
+    hi:
+      short_story: 'कोलधे गांव में स्थित यह प्राचीन शिव मंदिर हेमाडपंती वास्तुकला
+        शैली में बनाया गया है। पूरी संरचना लाल जांभा पत्थर से बनी है, जिसे बिना सीमेंट
+        के जोड़ा गया है। मंदिर के प्रांगण में चार दीपमालाएं हैं।
+
+
+        गर्भगृह में एक ही ठोस काले पत्थर से उकेरा गया शिवलिंग स्थापित है। कोलधे रानी
+        लक्ष्मीबाई के पिता मोरोपंत तांबे का पैतृक गांव भी है। मंदिर परिसर में नक्काशीदार
+        लकड़ी के प्रवेश द्वार वाला एक सभामंडप और पीछे एक आधुनिक कालकाई मंदिर है।'
+      history: कोलधे तांबे परिवार (रानी लक्ष्मीबाई के पूर्वज) का मूल गांव है। किंवदंती
+        के अनुसार, एक गाय द्वारा एक पत्थर पर दूध गिराए जाने के बाद वहाँ शिवलिंग मिला
+        था, जिसके बाद तांबे परिवार के एक ब्राह्मण ने यह मंदिर बनवाया था।
+      significance: रानी लक्ष्मीबाई के मायके के पूर्वजों से जुड़ा, बिना सीमेंट के
+        बना यह एक प्राचीन हेमाडपंती शिव मंदिर है।
+      dos: '- पारंपरिक पालखी जुलूस देखने के लिए महाशिवरात्रि उत्सव के दौरान यहाँ आएं।
+
+        - बिना सीमेंट के जांभा पत्थरों को जोड़ने की सटीक कारीगरी को अवश्य देखें।'
+      donts: '- रात रुकने की योजना न बनाएं, क्योंकि मंदिर में ठहरने की कोई सुविधा
+        नहीं है।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mushafiri.com/taluka/lanja/
+    - https://pilgrimdata.in/temple/mallikarjuna-temple-koldhe-ta-lanja-dist-ratnagiri/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shree-navaladevi-mandir-isavali
+  status: ai_draft
+  name_en: Shree Navaladevi Mandir Isavali
+  name_mr: श्री नवलाईदेवी मंदिर इसावली
+  name_hi: श्री नवलाईदेवी मंदिर इसवली
+  category: temple
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Isavali village, accessible by road transport from Lanja.
+  nearest_station: Sangmeshwar Railway Station, 44 km
+  nearest_bus_stop: State Transport Bus Stand Lanja
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shree Navaladevi Mandir is a Hindu shrine located in Isavali village
+        within the Lanja taluka of Ratnagiri district. The temple is dedicated to
+        the local deity Navaladevi and serves as an active place of worship for the
+        surrounding rural community.
+
+
+        The temple complex is situated amidst the landscape of the Konkan region.
+        It remains open to visitors and devotees daily until 9:00 PM, offering a quiet
+        environment for prayer and traditional religious observances.'
+      history: null
+      significance: A local Hindu temple serving the village of Isavali in the Konkan
+        region.
+      dos: '- Remove your footwear before entering the main temple shrine.
+
+        - Dress modestly as it is a place of worship.'
+      donts: '- Do not litter in the temple premises.'
+      safety_text: Rural roads leading to Isavali may be narrow; drive carefully.
+    mr:
+      short_story: 'श्री नवलाईदेवी मंदिर हे रत्नागिरी जिल्ह्यातील लांजा तालुक्यातील
+        इसवली गावात असलेले एक हिंदू मंदिर आहे. हे मंदिर स्थानिक देवता नवलाईदेवीला
+        समर्पित असून आजूबाजूच्या ग्रामीण भागातील लोकांसाठी हे एक महत्त्वाचे प्रार्थनास्थळ
+        आहे.
+
+
+        हे मंदिर कोकणातील निसर्गरम्य परिसरात वसलेले आहे. हे मंदिर भाविकांसाठी दररोज
+        रात्री 9 वाजेपर्यंत खुले असते, जेथे प्रार्थनेसाठी आणि पारंपारिक धार्मिक विधींसाठी
+        शांत वातावरण मिळते.'
+      history: null
+      significance: कोकण परिसरातील इसवली गावाला सेवा देणारे एक स्थानिक हिंदू मंदिर.
+      dos: '- मंदिराच्या मुख्य गाभाऱ्यात प्रवेश करण्यापूर्वी पादत्राणे बाहेर काढा.
+
+        - हे एक प्रार्थनास्थळ असल्याने साधे आणि योग्य कपडे परिधान करा.'
+      donts: '- मंदिर परिसरात कचरा टाकू नका.'
+      safety_text: इसवलीकडे जाणारे ग्रामीण रस्ते अरुंद असू शकतात; त्यामुळे वाहने सावकाश
+        चालवा.
+    hi:
+      short_story: 'श्री नवलाईदेवी मंदिर रत्नागिरी जिले के लांजा तालुका में इसवली
+        गांव में स्थित एक हिंदू मंदिर है। यह मंदिर स्थानीय देवता नवलाईदेवी को समर्पित
+        है और आसपास के ग्रामीण समुदाय के लिए एक सक्रिय पूजा स्थल के रूप में कार्य
+        करता है।
+
+
+        यह मंदिर कोंकण क्षेत्र के ग्रामीण परिदृश्य के बीच स्थित है। यह आगंतुकों और
+        भक्तों के लिए प्रतिदिन रात 9:00 बजे तक खुला रहता है, जो प्रार्थना और पारंपरिक
+        धार्मिक अनुष्ठानों के लिए एक शांत वातावरण प्रदान करता है।'
+      history: null
+      significance: कोंकण क्षेत्र में इसवली गांव का एक स्थानीय हिंदू मंदिर।
+      dos: '- मुख्य मंदिर में प्रवेश करने से पहले अपने जूते-चप्पल उतार दें।
+
+        - पूजा स्थल होने के कारण शालीन कपड़े पहनें।'
+      donts: '- मंदिर परिसर में कूड़ा न फैलाएं।'
+      safety_text: इसवली जाने वाली ग्रामीण सड़कें संकरी हो सकती हैं; इसलिए सावधानी
+        से वाहन चलाएं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Shree-Navaladevi-Mandir-Isavali-Isavali/9999P2352-2352-180101231248-V5Q8_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: veravali-sunset-point
+  status: ai_draft
+  name_en: Veravali Sunset Point
+  name_mr: वेरावली सनसेट पॉईंट
+  name_hi: वेरवली सनसेट पॉइंट
+  category: viewpoint
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Veravali Budruk, accessible via local motorable roads from
+    Lanja.
+  nearest_station: Sangmeshwar Railway Station, 39 km
+  nearest_bus_stop: State Transport Bus Stand Lanja
+  monsoon_status: risky
+  monsoon_reason: Slippery edges and low visibility in heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Veravali Sunset Point is an elevated viewing area located in the
+        Dolas section of Veravali Budruk village, in the Lanja taluka of Ratnagiri
+        district. It serves as a local tourist attraction dedicated to evening sightseeing.
+
+
+        From this vantage point, visitors can observe the sunset over the surrounding
+        Konkan landscape. The site overlooks the rural terrain, providing an unobstructed
+        view of the western horizon.'
+      history: null
+      significance: A local viewpoint offering unobstructed sunset views over the
+        rural terrain of Veravali Budruk.
+      dos: '- Arrive before late afternoon to get a clear view of the sunset.
+
+        - Carry drinking water as local shops may be limited.'
+      donts: '- Do not stay past dark as the area lacks street lighting.'
+      safety_text: The viewing area may lack extensive guardrails; stand back from
+        the edges.
+    mr:
+      short_story: 'वेरवली सनसेट पॉईंट हे रत्नागिरी जिल्ह्यातील लांजा तालुक्यातील
+        वेरवली बुद्रुक गावातील डोळस भागात असलेले एक उंच ठिकाण आहे. हे संध्याकाळच्या
+        निसर्गदर्शनासाठी ओळखले जाणारे एक स्थानिक पर्यटन स्थळ आहे.
+
+
+        या ठिकाणाहून पर्यटकांना आजूबाजूच्या कोकण निसर्गावरील सूर्यास्त पाहता येतो.
+        इथून ग्रामीण भागातील विस्तीर्ण प्रदेश दिसतो, ज्यामुळे पश्चिमेकडील क्षितिजाचे
+        स्पष्ट दर्शन घडते.'
+      history: null
+      significance: वेरवली बुद्रुकच्या ग्रामीण भागावर सूर्यास्ताचे स्पष्ट दर्शन घडवणारे
+        एक स्थानिक ठिकाण.
+      dos: '- सूर्यास्ताचे स्पष्ट दृश्य पाहण्यासाठी दुपारनंतर लवकर पोहोचा.
+
+        - जवळ पिण्याचे पाणी ठेवा कारण तिथे दुकाने कमी असू शकतात.'
+      donts: '- अंधार पडल्यानंतर तेथे थांबू नका कारण या भागात रस्त्यावरील दिवे नाहीत.'
+      safety_text: पाहण्याच्या ठिकाणी पुरेसे कठडे नसतील; त्यामुळे कड्यापासून सुरक्षित
+        अंतरावर उभे राहा.
+    hi:
+      short_story: 'वेरवली सनसेट पॉइंट रत्नागिरी जिले के लांजा तालुका में वेरवली बुद्रुक
+        गांव के डोलस क्षेत्र में स्थित एक ऊंचाई वाला देखने का स्थान है। यह शाम के
+        दर्शनीय स्थलों की यात्रा के लिए समर्पित एक स्थानीय पर्यटक आकर्षण है।
+
+
+        इस स्थान से आगंतुक आसपास के कोंकण परिदृश्य पर सूर्यास्त देख सकते हैं। यह स्थल
+        ग्रामीण इलाके की ओर स्थित है, जो पश्चिमी क्षितिज का स्पष्ट दृश्य प्रदान करता
+        है।'
+      history: null
+      significance: वेरवली बुद्रुक के ग्रामीण इलाके में सूर्यास्त का स्पष्ट दृश्य
+        प्रस्तुत करने वाला एक स्थानीय दृष्टिकोण।
+      dos: '- सूर्यास्त का स्पष्ट दृश्य पाने के लिए देर दोपहर से पहले पहुंचें।
+
+        - पीने का पानी साथ रखें क्योंकि स्थानीय दुकानें सीमित हो सकती हैं।'
+      donts: '- अंधेरा होने के बाद वहां न रुकें क्योंकि इस क्षेत्र में स्ट्रीट लाइट
+        की सुविधा नहीं है।'
+      safety_text: देखने वाले क्षेत्र में रेलिंग की कमी हो सकती है; इसलिए किनारों
+        से दूर खड़े रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Veravali-Sunset-Point-Veravali-Budruk/9999P2352-2352-260226090744-V1I6_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: berdewadi-waterfall
+  status: ai_draft
+  name_en: Berdewadi Waterfall
+  name_mr: बेरडेवाडी धबधबा
+  name_hi: बर्डेवाडी जलप्रपात
+  category: waterfall
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Korle village via Berdewadi Lake Road, accessible by road
+    from Lanja.
+  nearest_station: Sangmeshwar Railway Station, 38 km
+  nearest_bus_stop: State Transport Bus Stand Lanja
+  monsoon_status: risky
+  monsoon_reason: Strong flow and slippery rocks after heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Berdewadi Waterfall is a natural cascade located in Korle village
+        within the Lanja taluka of Ratnagiri district. It is situated along the Berdewadi
+        Lake Road and serves as a local tourist attraction in the Konkan region.
+
+
+        Visitors can view the flowing water and the surrounding rocky landscape. The
+        site is accessible by road, providing a spot for nature observation away from
+        urban centers.'
+      history: null
+      significance: A natural waterfall serving as a local outdoor attraction in Korle
+        village.
+      dos: '- Visit during or immediately after the monsoon season for visible water
+        flow.
+
+        - Wear sturdy footwear with good grip for walking on uneven terrain.'
+      donts: '- Do not enter the water if the current is strong.
+
+        - Do not leave plastic waste near the waterfall area.'
+      safety_text: Rocks near the waterfall can be slippery; watch your step to prevent
+        falls.
+    mr:
+      short_story: 'बर्डेवाडी धबधबा हा रत्नागिरी जिल्ह्यातील लांजा तालुक्यातील कोर्ले
+        गावात असलेला एक नैसर्गिक धबधबा आहे. हा धबधबा बर्डेवाडी तलाव रस्त्यावर असून,
+        तो कोकण परिसरातील एक स्थानिक पर्यटन स्थळ म्हणून ओळखला जातो.
+
+
+        पर्यटक येथे वाहणारे पाणी आणि आजूबाजूचा खडकाळ परिसर पाहू शकतात. या ठिकाणी रस्त्याने
+        पोहोचता येते, ज्यामुळे शहरी गजबजाटापासून दूर निसर्ग निरीक्षणासाठी हे एक उत्तम
+        ठिकाण आहे.'
+      history: null
+      significance: कोर्ले गावातील एक नैसर्गिक धबधबा जो स्थानिक पर्यटन स्थळ म्हणून
+        ओळखला जातो.
+      dos: '- पाण्याचा प्रवाह पाहण्यासाठी पावसाळ्यात किंवा पावसाळ्यानंतर लगेच भेट
+        द्या.
+
+        - खडकाळ आणि ओबडधोबड रस्त्यावरून चालण्यासाठी चांगली पकड असलेले बूट घाला.'
+      donts: '- पाण्याचा प्रवाह वेगवान असल्यास पाण्यात उतरू नका.
+
+        - धबधब्याच्या परिसरात प्लास्टिकचा कचरा टाकू नका.'
+      safety_text: धबधब्याजवळील खडक निसरडे असू शकतात; पडणे टाळण्यासाठी चालताना काळजी
+        घ्या.
+    hi:
+      short_story: 'बर्डेवाडी जलप्रपात रत्नागिरी जिले के लांजा तालुका में कोर्ले गांव
+        में स्थित एक प्राकृतिक जलप्रपात है। यह बर्डेवाडी लेक रोड पर स्थित है और कोंकण
+        क्षेत्र में एक स्थानीय पर्यटक आकर्षण के रूप में कार्य करता है।
+
+
+        आगंतुक बहते पानी और आसपास के चट्टानी परिदृश्य को देख सकते हैं। यह स्थल सड़क
+        मार्ग से सुलभ है, जो शहरी केंद्रों से दूर प्रकृति अवलोकन के लिए एक स्थान प्रदान
+        करता है।'
+      history: null
+      significance: कोर्ले गांव में एक प्राकृतिक जलप्रपात जो स्थानीय आउटडोर आकर्षण
+        के रूप में कार्य करता है।
+      dos: '- पानी के प्रवाह को देखने के लिए मानसून के मौसम के दौरान या तुरंत बाद
+        आएं।
+
+        - उबड़-खाबड़ रास्तों पर चलने के लिए अच्छी ग्रिप वाले मजबूत जूते पहनें।'
+      donts: '- यदि पानी का बहाव तेज हो तो पानी में प्रवेश न करें।
+
+        - जलप्रपात क्षेत्र के पास प्लास्टिक कचरा न छोड़ें।'
+      safety_text: झरने के पास की चट्टानें फिसलन भरी हो सकती हैं; गिरने से बचने के
+        लिए ध्यान से चलें。
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Berdewadi-Waterfall-Korle/9999P2352-2352-251118150706-S6H7_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: hardkhale-dam
+  status: ai_draft
+  name_en: Hardkhale Dam
+  name_mr: हार्डखाळे धरण
+  name_hi: हरडखाले बांध
+  category: backwater
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Hardkhale village, reachable by local roads from Lanja.
+  nearest_station: Sangmeshwar Railway Station, 39 km
+  nearest_bus_stop: State Transport Bus Stand Lanja
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Hardkhale-Dam-Hardkhale-Hardakhale/9999P2352-2352-240118195401-I1M1_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; name_hi by Claude, check'
+  _collected_by: claude+gemini 2026-11-03
+- slug: beni-kheravase-lake
+  status: ai_draft
+  name_en: Beni Kheravase Lake
+  name_mr: बेणी खेरवासे तलाव
+  name_hi: बेणी खेरवसे झील
+  category: backwater
+  taluka: Lanja
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Kheravse, Asage, accessible by road from Lanja.
+  nearest_station: Sangmeshwar Railway Station, 35 km
+  nearest_bus_stop: State Transport Bus Stand Lanja
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Beni-Kheravase-Lake/9999P2352-2352-260301143159-E8T7_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; name_hi by Claude, check'
+  _collected_by: claude+gemini 2026-11-03

@@ -1,0 +1,408 @@
+# Eateries - Lanja taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: hotel-malvani-katta-lanja
+  status: ai_draft
+  name_en: Hotel Malvani Katta
+  name_mr: हॉटेल मालवणी कट्टा
+  name_hi: होटल मालवणी कट्टा
+  taluka: Lanja
+  area: Lanja
+  lat: null
+  lng: null
+  google_place_id: ChIJ4fI-GivZwTsRv457gU9qsDc
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '23:05'
+  closed_days:
+  - mon
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 77098 96936
+  whatsapp: null
+  description:
+    en: Hotel Malvani Katta is a home-style eatery in Lanja serving vegetarian and
+      non-vegetarian food. The menu features Malvani dishes like chicken sagoti, mutton
+      suka, and pomfret masala.
+    mr: हॉटेल मालवणी कट्टा हे लांजामधील घरगुती पद्धतीचे भोजनालय असून येथे शाकाहारी
+      आणि मांसाहारी जेवण मिळते. त्यांच्या मेनूमध्ये चिकन सागोती, मटण सुक्का आणि पापलेट
+      मसाला यांसारख्या मालवणी पदार्थांचा समावेश आहे.
+    hi: होटल मालवणी कट्टा लांजा में एक घरेलू शैली का भोजनालय है, जहाँ शाकाहारी और
+      मांसाहारी भोजन परोसा जाता है। इनके मेनू में चिकन सगोती, मटन सुक्का और पॉमफ्रेट
+      मसाला जैसे मालवणी व्यंजन शामिल हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4fI-GivZwTsRv457gU9qsDc
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: tambe-aahar-gruh-lanja
+  status: ai_draft
+  name_en: Tambe Aahar Gruh
+  name_mr: तांबे आहार गृह
+  name_hi: तांबे आहार गृह
+  taluka: Lanja
+  area: Lanja
+  lat: null
+  lng: null
+  google_place_id: ChIJ4ybjO6jZwTsRM9n9HAaCNtA
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Tambe Aahar Gruh is a long-standing local establishment in Lanja that serves
+      both vegetarian and non-vegetarian meals.
+    mr: तांबे आहार गृह हे लांजामधील एक जुने आणि स्थानिक पातळीवर ओळखले जाणारे भोजनालय
+      आहे, जिथे शाकाहारी आणि मांसाहारी असे दोन्ही प्रकारचे जेवण मिळते.
+    hi: तांबे आहार गृह लांजा का एक पुराना और प्रसिद्ध स्थानीय भोजनालय है, जहाँ शाकाहारी
+      और मांसाहारी दोनों तरह का भोजन मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4ybjO6jZwTsRM9n9HAaCNtA
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: hotel-kokan-kinara-family-restaurant-gavane
+  status: ai_draft
+  name_en: Hotel Kokan Kinara Family Restaurant
+  name_mr: हॉटेल कोकण किनारा फॅमिली रेस्टॉरंट
+  name_hi: होटल कोंकण किनारा फैमिली रेस्टोरेंट
+  taluka: Lanja
+  area: Gavane
+  lat: null
+  lng: null
+  google_place_id: ChIJdfX9gBrZwTsRXTX8nr_1EHs
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:30'
+  closes: '23:55'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98602 29088
+  whatsapp: null
+  description:
+    en: Located near the Guest House on the Mumbai-Goa Highway in Gavane, Hotel Kokan
+      Kinara Family Restaurant caters to travelers. It serves vegetarian and non-vegetarian
+      food, including biryani and traditional thalis.
+    mr: मुंबई-गोवा महामार्गावरील गवणे येथे गेस्ट हाऊसजवळ असलेले हॉटेल कोकण किनारा
+      फॅमिली रेस्टॉरंट हे पर्यटकांसाठी सोयीचे आहे. येथे बिर्याणी आणि पारंपरिक थाळीसोबतच
+      शाकाहारी व मांसाहारी जेवण दिले जाते.
+    hi: मुंबई-गोवा राजमार्ग पर गवणे में गेस्ट हाउस के पास स्थित, होटल कोकण किनारा
+      फैमिली रेस्टोरेंट पर्यटकों के लिए अनुकूल है। यहाँ बिरयानी और पारंपरिक थाली सहित
+      शाकाहारी और मांसाहारी भोजन परोसा जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJdfX9gBrZwTsRXTX8nr_1EHs
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: abhiruchi-family-restaurant-gavane
+  status: ai_draft
+  name_en: ABHIRUCHI FAMILY RESTAURANT
+  name_mr: अभिरुची फॅमिली रेस्टॉरंट
+  name_hi: अभिरुचि फैमिली रेस्टोरेंट
+  taluka: Lanja
+  area: Gavane
+  lat: null
+  lng: null
+  google_place_id: ChIJWffUf0jZwTsRX-QX1MSMsOs
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: 01:00
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 85528 52585
+  whatsapp: null
+  description:
+    en: A family restaurant situated in Gavane offering local and multi-cuisine dishes.
+    mr: गवणे येथे स्थित हे फॅमिली रेस्टॉरंट स्थानिक आणि विविध प्रकारचे खाद्यपदार्थ
+      देते.
+    hi: गवणे में स्थित यह फैमिली रेस्टोरेंट स्थानीय और विविध प्रकार के व्यंजन परोसता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJWffUf0jZwTsRX-QX1MSMsOs
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJWffUf0jZwTsRX-QX1MSMsOs
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: kotre-restaurant-lanja
+  status: ai_draft
+  name_en: Kotre Restaurant
+  name_mr: कोत्रे रेस्टॉरंट
+  name_hi: कोत्रे रेस्टोरेंट
+  taluka: Lanja
+  area: Lanja
+  lat: null
+  lng: null
+  google_place_id: ChIJ7f0mGHrZwTsRC2Av6cfiDkc
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 2351 230026
+  whatsapp: null
+  description:
+    en: An Indian restaurant located on the Mumbai - Goa Highway in Lanja serving
+      vegetarian and non-vegetarian meals.
+    mr: लांजा येथील मुंबई-गोवा महामार्गावर असलेले हे भारतीय रेस्टॉरंट शाकाहारी आणि
+      मांसाहारी जेवण देते.
+    hi: लांजा में मुंबई-गोवा राजमार्ग पर स्थित यह भारतीय रेस्टोरेंट शाकाहारी और मांसाहारी
+      भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ7f0mGHrZwTsRC2Av6cfiDkc
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ7f0mGHrZwTsRC2Av6cfiDkc
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: vijayavilas-bhojanalaya-lanja
+  status: ai_draft
+  name_en: VijayaVilas Bhojanalaya
+  name_mr: विजयाविलास भोजनालय
+  name_hi: विजयाविलास भोजनालय
+  taluka: Lanja
+  area: Lanja
+  lat: null
+  lng: null
+  google_place_id: ChIJeQX4Y3fZwTsRn2OxJnArI_U
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:30
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94209 10854
+  whatsapp: null
+  description:
+    en: A traditional eatery on the Mumbai - Goa Highway in Lanja.
+    mr: लांजा येथील मुंबई-गोवा महामार्गावर हे एक पारंपरिक भोजनालय आहे.
+    hi: लांजा में मुंबई-गोवा राजमार्ग पर यह एक पारंपरिक भोजनालय है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJeQX4Y3fZwTsRn2OxJnArI_U
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJeQX4Y3fZwTsRn2OxJnArI_U
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: sai-samarth-dhabha-kuve
+  status: ai_draft
+  name_en: sai samarth dhabha
+  name_mr: साई समर्थ धाबा
+  name_hi: साई समर्थ ढाबा
+  taluka: Lanja
+  area: Kuve
+  lat: null
+  lng: null
+  google_place_id: ChIJpXYiMlPZwTsRYmeCInW_xU8
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: A roadside dhaba located in Kuve along MH SH 268.
+    mr: कुवे येथे राज्य महामार्ग 268 वर स्थित हा एक रस्त्यावरील धाबा आहे.
+    hi: कुवे में राज्य राजमार्ग 268 पर स्थित यह एक सड़क किनारे का ढाबा है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJpXYiMlPZwTsRYmeCInW_xU8
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJpXYiMlPZwTsRYmeCInW_xU8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-abhiruchi-ori
+  status: ai_draft
+  name_en: Hotel Abhiruchi
+  name_mr: हॉटेल अभिरुची
+  name_hi: होटल अभिरुचि
+  taluka: Lanja
+  area: Ori
+  lat: null
+  lng: null
+  google_place_id: ChIJCzSfR2IP6jsRMNW-W3sAH1k
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94206 17455
+  whatsapp: null
+  description:
+    en: A restaurant situated in Ori on MSH4.
+    mr: ओरी येथे राज्य महामार्ग 4 वर हे रेस्टॉरंट स्थित आहे.
+    hi: ओरी में राज्य राजमार्ग 4 पर यह रेस्टोरेंट स्थित है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCzSfR2IP6jsRMNW-W3sAH1k
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJCzSfR2IP6jsRMNW-W3sAH1k
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

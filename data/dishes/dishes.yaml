@@ -1,0 +1,749 @@
+# Dishes — batches D-A, D-B. status ai_draft. MR/HI = AI draft, needs native review.
+# Collected 2026-11-03 by Claude (web research). Photos: none yet (Commons search pending).
+- slug: solkadhi
+  status: ai_draft
+  name:
+    en: Solkadhi
+    mr: सोलकढी
+    hi: सोलकढ़ी
+  what_it_is:
+    en: A pink, tangy drink of kokum and coconut milk, served chilled or with rice.
+    mr: कोकम आणि नारळाच्या दुधापासून बनवलेले गुलाबी, आंबट-गोड पेय; थंड किंवा भातासोबत
+      घेतात.
+    hi: कोकम और नारियल के दूध से बना गुलाबी, खट्टा पेय; ठंडा या चावल के साथ परोसा
+      जाता है।
+  story:
+    en: Solkadhi is the drink that closes almost every Konkan meal. Kokum gives it
+      the colour and sourness, coconut milk softens it. Locals drink it after spicy
+      fish or chicken curries because it is said to help digestion.
+    mr: सोलकढी हे कोकणातील प्रत्येक जेवणाचा समारोप करणारे पेय आहे. कोकममुळे त्याला
+      रंग व आंबटपणा मिळतो, तर नारळाचे दूध तो मऊ करतो. मसाल्याचे मासे किंवा चिकनच्या
+      आमटी, रश्या नंतर लोक ती पितात कारण त्यामुळे पचन सुधारते असे मानले जाते.
+    hi: सोलकढ़ी वह पेय है जो लगभग हर कोंकण भोजन का अंत करता है। कोकम इसे रंग और खटास
+      देता है, और नारियल का दूध इसे नरम बनाता है। मसालेदार मछली या चिकन करी के बाद
+      स्थानीय लोग इसे पीते हैं क्योंकि माना जाता है कि इससे पाचन में मदद मिलती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+    story:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+- slug: kombdi_vade
+  status: ai_draft
+  name:
+    en: Kombdi Vade
+    mr: कोंबडी वडे
+    hi: कोंबड़ी वड़े
+  what_it_is:
+    en: Spicy coconut-based chicken curry served with puffed, deep-fried rice-flour
+      puris (vade).
+    mr: नारळाच्या मसाल्यातील तिखट कोंबडीचा रस्सा आणि तांदळाच्या पिठाचे तळलेले वडे.
+    hi: नारियल मसाले वाली तीखी चिकन करी, साथ में चावल के आटे के तले हुए वड़े।
+  story:
+    en: A Malvani classic that has become the signature non-veg meal of the whole
+      Konkan coast. The vade are torn and dipped into the hot curry, and the plate
+      usually comes with onion, lemon and a glass of solkadhi.
+    mr: मालवणी खाद्यसंस्कृतीतील एक अस्सल पदार्थ जो संपूर्ण कोकण किनारपट्टीचे मुख्य
+      मांसाहारी जेवण बनला आहे. वडे मोडून गरम रस्यात बुडवले जातात आणि ताटात सहसा कांदा,
+      लिंबू व एक ग्लास सोलकढी असते.
+    hi: एक मालवणी क्लासिक जो पूरे कोंकण तट का सिग्नेचर नॉन-वेज भोजन बन गया है। vade
+      को तोड़ा जाता है और गर्म करी में डुबोया जाता है, और थाली के साथ आमतौर पर प्याज,
+      नींबू और एक गिलास सोलकढ़ी मिलती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+    story:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+- slug: bangda_fry
+  status: ai_draft
+  name:
+    en: Bangda Fry
+    mr: बांगडा फ्राय
+    hi: बांगड़ा फ्राई
+  what_it_is:
+    en: Whole mackerel, head removed, coated in masala and pan- or shallow-fried.
+    mr: डोके काढलेला संपूर्ण बांगडा मसाला लावून तळलेला.
+    hi: सिर हटाकर मसाला लगाई पूरी बांगड़ा मछली, तली हुई।
+  story:
+    en: Mackerel is the everyday fish of the Konkan coast, cheap and caught close
+      to shore. A bangda fry with rice and solkadhi is the most common fish lunch
+      in coastal homes and khanavals.
+    mr: बांंगडा हा कोकण किनारपट्टीचा रोजचा मासा आहे, जो स्वस्त मिळतो आणि किनाऱ्याजवळच
+      पकडला जातो. भात आणि सोलकढीसोबत बांंगडा फ्राय हे किनारपट्टीवरील घरांमध्ये आणि
+      खानावळींमध्ये सर्वाधिक खाल्ले जाणारे माशाचे जेवण आहे.
+    hi: मैकेरल (बांगडा) कोंकण तट की रोज की मछली है, जो सस्ती है और तट के पास पकड़ी
+      जाती है। चावल और सोलकढ़ी के साथ बांगडा फ्राई तटीय घरों और खानवालो में सबसे आम
+      मछली का दोपहर का भोजन है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story:
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+- slug: surmai_thali
+  status: ai_draft
+  name:
+    en: Surmai Thali
+    mr: सुरमई थाळी
+    hi: सुरमई थाली
+  what_it_is:
+    en: A fish meal built around kingfish (surmai), usually rava- or tawa-fried, with
+      curry, rice, bhakri and solkadhi.
+    mr: सुरमई माशाची थाळी; रवा/तवा फ्राय सुरमई, कालवण, भात, भाकरी आणि सोलकढी.
+    hi: सुरमई (किंगफ़िश) की थाली; रवा/तवा फ्राई मछली, करी, चावल, भाकरी और सोलकढ़ी।
+  story:
+    en: Surmai is the premium catch of Konkan restaurants. The thali puts a fried
+      slice next to a coconut fish curry, so one plate shows both sides of how the
+      coast cooks fish.
+    mr: सुरमई हा कोकणातील रेस्टॉरंटमधील एक खास आणि premium मासा आहे. या थाळीत तळलेला
+      तुकडा नारळाच्या माशाच्या आमटीच्या शेजारी ठेवून दिला जातो, जेणेकरून एकाच ताटात
+      किनारी भागात मासे कसे बनवले जातात याचे दोन्ही प्रकार पाहायला मिळतात.
+    hi: सुरमई कोंकण रेस्तरां की प्रीमियम कैच है। थाली में एक तली हुई स्लाइस को नारियल
+      वाली फिश करी के बगल में रखा जाता है, ताकि एक ही थाली में तट पर मछली पकाने के
+      दोनों तरीके दिख सकें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://kalimirchbysmita.com/surmai-fry-tawa-fish-fry/
+    - https://www.rakshaskitchen.com/kingfish-fry
+    story:
+    - https://kalimirchbysmita.com/surmai-fry-tawa-fish-fry/
+  _review: thali composition varies by eatery; verify on field visits
+- slug: modak
+  status: ai_draft
+  name:
+    en: Ukadiche Modak
+    mr: उकडीचे मोदक
+    hi: उकड़ीचे मोदक
+  what_it_is:
+    en: Steamed rice-flour dumplings filled with grated coconut, jaggery and cardamom.
+    mr: तांदळाच्या उकडीत ओल्या नारळ-गुळाचे सारण भरून वाफवलेले मोदक.
+    hi: चावल के आटे के भाप में पके मोदक, जिनमें नारियल-गुड़ और इलायची भरी होती है।
+  story:
+    en: Modak is the sweet most tied to Ganeshotsav, the biggest festival in Konkan
+      homes. Families make them by hand for the festival days, pleating each one before
+      steaming.
+    mr: मोदक हा कोकणातील घराघरांमध्ये साजरा होणाऱ्या गणोशोत्सवासोबत जोडलेला सर्वात
+      महत्त्वाचा गोड पदार्थ आहे. उत्सवाच्या दिवसांत कुटुंबे हाताने मोदक बनवतात, वाफवण्यापूर्वी
+      प्रत्येक मोदकावर सुबक कळ्या (चुरण्या) पाडतात.
+    hi: मोदक वह मिठाई है जो कोंकण के घरों के सबसे बड़े त्योहार गणेशोत्सव से सबसे अधिक
+      जुड़ी है। त्योहार के दिनों में परिवार हाथ से मोदक बनाते हैं, भाप में पकाने से
+      पहले हर एक में सुंदर तह बनाते हैं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+    - https://www.vegrecipesofindia.com/modak-recipe-ukadiche-modak-recipe
+    story:
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+- slug: ghavane
+  status: ai_draft
+  name:
+    en: Ghavane
+    mr: घावणे
+    hi: घावणे
+  what_it_is:
+    en: A thin, lacy crepe made only from rice flour and water, eaten with coconut-jaggery
+      or with curry.
+    mr: फक्त तांदळाचे पीठ आणि पाण्यापासून केलेले पातळ जाळीदार घावणे; नारळ-गुळ किंवा
+      रश्शासोबत.
+    hi: सिर्फ़ चावल के आटे और पानी से बना पतला जालीदार चीला; नारियल-गुड़ या करी के
+      साथ।
+  story:
+    en: Ghavane is a Konkan breakfast staple across Ratnagiri and Sindhudurg. It is
+      simple to make and is eaten sweet with coconut and jaggery or savoury with chicken
+      or fish curry.
+    mr: घावणे हा रत्नागिरी आणि सिंधुदुर्गमधील कोकणातील नाश्त्याचा एक मुख्य पदार्थ
+      आहे. बनवायला अत्यंत सोपा असलेला हा पदार्थ नारळ आणि गुळासोबत गोड किंवा चिकन अथवा
+      माशाच्या रश्यासोबत तिकट खाल्ला जातो.
+    hi: घवाने रत्नागिरी और सिंधुदुर्ग में कोंकण का नाश्ते का एक मुख्य पकवान है। इसे
+      बनाना आसान है और इसे नारियल और गुड़ के साथ मीठा या चिकन या मछली करी के साथ नमकीन
+      खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story:
+    - https://www.thehosteller.com/blogs/konkan-culinary-tour-must-try-dishes
+- slug: aamras
+  status: ai_draft
+  name:
+    en: Aamras
+    mr: आमरस
+    hi: आमरस
+  what_it_is:
+    en: Sweet pulp of ripe mangoes, often Alphonso, eaten with puri or chapati in
+      mango season.
+    mr: पिकलेल्या (बहुधा हापूस) आंब्याचा गोड रस, आंब्याच्या हंगामात पुरी किंवा पोळीसोबत.
+    hi: पके (अक्सर हापुस) आम का मीठा रस, आम के मौसम में पूरी या रोटी के साथ।
+  story:
+    en: Ratnagiri is home ground for the Alphonso (hapus), which received a GI tag
+      in 2018. In the summer mango months, aamras with puri becomes the default festive
+      meal in Konkan homes.
+    mr: रत्नागिरी हे २०१४ मध्ये जीआय (GI) मानांकन मिळालेल्या हापूस आब्याची जन्मभूमी
+      आहे. उन्हाळ्यातील आंब्याच्या दिवसांत पुरऱ्यांसोबत आमरस हे कोकणातील घरांमध्ये
+      ठरलेले सणाचे जेवण असते.
+    hi: रत्नागिरी अल्फांसो (हापुस) का घर है, जिसे 2018 में GI टैग मिला था। गर्मियों
+      के आम के महीनों में, पूरी के साथ आमरस कोंकण के घरों में डिफ़ॉल्ट फेस्टिव मील
+      बन जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://www.vegrecipesofindia.com/aamras-recipe
+    story:
+    - https://www.theweek.in/news/biz-tech/2018/10/05/Alphonso-the-king-of-mangoes-gets-GI-tag.html
+    - https://www.vegrecipesofindia.com/aamras-recipe
+- slug: kokum_sherbet
+  status: ai_draft
+  name:
+    en: Kokum Sherbet
+    mr: कोकम सरबत
+    hi: कोकम शरबत
+  what_it_is:
+    en: A deep-red sweet-sour cooler made from kokum (Garcinia indica) syrup and water.
+    mr: कोकमच्या (रातांबा) सरबतापासून बनवलेले लाल आंबट-गोड थंड पेय.
+    hi: कोकम (गार्सिनिया इंडिका) के शरबत से बना गहरा लाल खट्टा-मीठा ठंडा पेय।
+  story:
+    en: Kokum trees grow across the Konkan, and the dried fruit goes into curries
+      and drinks. The sherbet is the summer drink of the coast, sold at stalls near
+      beaches and temples.
+    mr: कोकणात सर्वत्र कोकमची झाडे उगवतात, आणि याचे वाळलेले फळ आमट्यांमध्ये व पेयांमध्ये
+      वापरले जाते. हे सरबत किनाऱ्यावरील उन्हाळ्याचे पेय आहे, जे समुद्रकिनाऱ्यांजवळ
+      आणि मंदिरांजवळच्या स्टॉलवर विकले जाते.
+    hi: कोंकण भर में कोकम के पेड़ उगते हैं, और सूखा फल करी और पेय पदार्थों में जाता
+      है। शरबत तट का गर्मियों का पेय है, जो समुद्र तटों और मंदिरों के पास की स्टालों
+      पर बिकता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is:
+    - https://www.outlooktraveller.com/experiences/food-and-drink/5-regional-summer-drinks-to-beat-the-scorching-heat
+    - https://www.sanjeevkapoor.com/Articles/Kokum.html
+    story:
+    - https://www.sanjeevkapoor.com/Articles/Kokum.html
+  _review: stalls-near-beaches claim is not sourced; verify or trim
+- slug: kolambi_fry
+  status: ai_draft
+  name:
+    en: Kolambi Fry
+    mr: कोळंबी फ्राय
+    hi: कोळंबी फ्राय
+  what_it_is:
+    en: Prawns rubbed with spices, coated in rice flour and semolina, then shallow-fried.
+    mr: मसाले लावलेली कोळंबी तांदळाचे पीठ आणि रव्यात घोळवून शॅलो फ्राय केलेली असते.
+    hi: मसाले लगी कोळंबी, चावल के आटे और सूजी में लपेटकर शेलो-फ्राय की जाती है।
+  story:
+    en: Kolambi is the Marathi word for prawns. Konkan seafood cooking is built mostly
+      on sea fish, prawns and crab, and this rice-flour and semolina coat is a common
+      way to fry them.
+    mr: कोळंबी हा कोळंबीचा मराठी शब्द आहे. कोकणातील सीफूड प्रामुख्याने समुद्रातील
+      मासे, कोळंबी आणि खेकड्यांवर आधारित असते, आणि तांदूळ व रव्याचे कोटिंग करून तळणे
+      ही त्यांची एक सामान्य पद्धत आहे.
+    hi: कोळंबी कोळंबी का मराठी शब्द है। कोंकण सीफूड कुकिंग मुख्य रूप से समुद्री मछली,
+      कोळंबी और केकड़े पर आधारित होती है, और चावल के आटे और सूजी की कोटिंग करके तलना
+      इसे बनाने का एक आम तरीका है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id001
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id001
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: paplet_saar
+  status: ai_draft
+  name:
+    en: Paplet Saar
+    mr: पापलेट सार
+    hi: पापलेट सार
+  what_it_is:
+    en: Pomfret cooked in a thin Malvani coconut and spice curry.
+    mr: हलक्या मालवणी नारळ आणि मसाल्याच्या रस्यामध्ये शिजवलेले पापलेट.
+    hi: पापलेट को पतली मालवणीय नारियल और मसाले की करी में पकाया जाता है।
+  story:
+    en: Paplet is pomfret. In a saar the fish is simmered in a light curry of Malvani
+      masala and coconut, and eaten with rice.
+    mr: पापलेट म्हणजे पापलेट. सार मध्ये मासा मालवणी मसाला आणि नारळाच्या हलक्या रस्यामध्ये
+      शिजवला जातो आणि भातासोबत खाल्ला जातो.
+    hi: पापलेट यानी पापलेट (पॉम्फ्रेट)। 'सार' में मछली को मालवणी मसाले और नारियल की
+      हल्की करी में उबाला जाता है और चावल के साथ खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id002
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id002
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: bombil_fry
+  status: ai_draft
+  name:
+    en: Bombil Fry
+    mr: बोंबील फ्राय
+    hi: बोंबील फ्राय
+  what_it_is:
+    en: Bombay duck fish, flattened, coated and fried crisp.
+    mr: चपटे केलेले, कोटिंग केलेले आणि कुरकुरीत तलेले बोंबील मासे.
+    hi: बॉम्बे डक मछली, जिसे चपटा करके, कोटिंग कर कुरकुरा तला जाता है।
+  story:
+    en: Bombil, also called Bombay duck, is a soft fish eaten fresh and dried. Fried
+      bombil is a popular dish in the north Konkan, from Mumbai to Raigad.
+    mr: बोंबील, ज्याला बॉम्बे डक असेही म्हणतात, हा एक मऊ मासा आहे जो ताजा आणि सुकवलेला
+      खाल्ला जातो. तळलेला बोंबील हा उत्तर कोकणात, मुंबईपासून रायगडपर्यंत एक लोकप्रिय
+      पदार्थ आहे.
+    hi: बोंबील, जिसे बॉम्बे डक भी कहा जाता है, एक मुलायम मछली है जिसे ताज़ा और सुखाकर
+      खाया जाता है। तला हुआ बोंबील उत्तर कोंकण में, मुंबई से रायगड तक एक लोकप्रिय
+      व्यंजन है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id003
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id003
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: mori_masala
+  status: ai_draft
+  name:
+    en: Mori Masala
+    mr: मोरी मसाला
+    hi: मोरी मसाला
+  what_it_is:
+    en: Small shark cooked in a thick, spicy Konkan masala.
+    mr: घट्ट, तिखट कोकणी मसाल्यामध्ये शिजवलेला छोटा शार्क.
+    hi: छोटी शार्क जिसे गाढ़े, मसालेदार कोंकणी मसाले में पकाया जाता है।
+  story:
+    en: Mori is the local name for small shark. Mori masala, a shark curry, is popular
+      along the Konkan coast.
+    mr: मोरी हे छोट्या शार्कचे स्थानिक नाव आहे. मोरी मसाला, हा एक शार्कचा रस्सा असून
+      कोकण किनारपट्टीवर लोकप्रिय आहे.
+    hi: मोरी छोटी शार्क का स्थानीय नाम है। मोरी मसाला, एक शार्क करी, कोंकण तट पर लोकप्रिय
+      है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id004
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id004
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: malvani_mutton
+  status: ai_draft
+  name:
+    en: Malvani Mutton
+    mr: मालवणी मटण
+    hi: मालवणी मटण
+  what_it_is:
+    en: Mutton curry in Malvani masala with roasted coconut.
+    mr: भाजलेल्या नारळासह मालवणी मसाल्यातील मटणाचा रस्सा.
+    hi: भुने हुए नारियल के साथ मालवणी मसाले में बनी मटन करी।
+  story:
+    en: Malvani mutton is cooked much like chicken Malvani but with slightly different
+      spices. It is eaten across the Konkan with vade, bhakri or rice.
+    mr: मालवणी मटण हे मालवणी चिकनसारखेच परंतु थोड्या वेगळ्या मसाल्यांनी बनवले जाते.
+      हे कोकणात वडे, भाकरी किंवा भातासोबत खाल्ले जाते.
+    hi: मालवणी मटन काफी हद तक चिकन मालवणी की तरह ही पकाया जाता है लेकिन थोड़े अलग
+      मसालों के साथ। इसे कोंकण भर में वडे, भाकरी या चावल के साथ खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id005
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id005
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: phanasachi_bhaji
+  status: ai_draft
+  name:
+    en: Phanasachi Bhaji
+    mr: फणसाची भाजी
+    hi: फणसाची भाजी
+  what_it_is:
+    en: Raw jackfruit cooked dry with chillies and grated coconut.
+    mr: हिरव्या मिरच्या आणि किसलेल्या नारळासोबत सुकी शिजवलेली कच्च्या फणसाची भाजी.
+    hi: कच्चा कटहल जिसे मिर्च और कद्दूकस किए हुए नारियल के साथ सूखा पकाया जाता है।
+  story:
+    en: Before it ripens, jackfruit is cooked as a vegetable in the Konkan, spiced
+      with chillies and finished with grated coconut.
+    mr: पिकण्यापूर्वी फणस कोकणात भाजी म्हणून शिजवला जातो, ज्यामध्ये मिरच्यांचा मसाला
+      घालून शेवटी किसलेला नारळ घातला जातो.
+    hi: पकने से पहले, कटहल को कोंकण में सब्जी के रूप में पकाया जाता है, जिसमें मिर्च
+      का मसाला डाला जाता है और अंत में कद्दूकस किया हुआ नारियल मिलाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id006
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id006
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: kajuchi_usal
+  status: ai_draft
+  name:
+    en: Kajuchi Usal
+    mr: काजूची उसळ
+    hi: काजू की उसल
+  what_it_is:
+    en: A spicy curry of fresh cashew nuts.
+    mr: ताज्या काजूची तिखट उसळ.
+    hi: ताजे काजू की एक मसालेदार करी।
+  story:
+    en: Kajuchi usal is a spicy curry made from cashew nuts. Ratnagiri district grows
+      cashew, and the curry is part of the Malvani-Konkan kitchen.
+    mr: काजूची उसळ ही ताज्या काजूपासून बनवलेली तिखट उसळ आहे. सिंधुदुर्ग व रत्नागिरी
+      जिल्ह्यात काजूचे पीक घेतले जाते, आणि ही उसळ मालवणी-कोकणी स्वयंपाकघराचा एक भाग
+      आहे.
+    hi: काजू की उसल ताजे काजू से बनी एक मसालेदार करी है। रत्नागिरी जिले में काजू की
+      पैदावार होती है, और यह उसल मालवणी-कोंकणी रसोई का हिस्सा है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id007
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id007
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: kalya_vatanyacha_samara
+  status: ai_draft
+  name:
+    en: Kalya Vatanyacha Sambara
+    mr: काळ्या वाटाण्याचे सांबारे
+    hi: काले मटर का सांबारा
+  what_it_is:
+    en: Black pea curry with coconut and Malvani masala.
+    mr: नारळ आणि मालवणी मसाल्यासोबत काळ्या वाटाण्याची उसळ/रस्सा.
+    hi: नारियल और मालवणी मसाले के साथ काले चने/मटर की करी।
+  story:
+    en: Dried black peas are soaked and cooked in a coconut-based Malvani masala.
+      It is a common vegetarian main, eaten with vade or rice.
+    mr: सुके काळे वाटाणे भिजवून नारळाच्या बेस असलेल्या मालवणी मसाल्यात शिजवले जातात.
+      हा एक मुख्य शाकाहारी प्रकार आहे, जो वडे किंवा भातासोबत खाल्ला जातो.
+    hi: सूखे काले मटर को भिगोकर नारियल आधारित मालवणी मसाले में पकाया जाता है। यह एक
+      आम शाकाहारी मुख्य व्यंजन है, जिसे वड़े या चावल के साथ खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id008
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id008
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: tandalachi_bhakri
+  status: ai_draft
+  name:
+    en: Tandalachi Bhakri
+    mr: तांदळाची भाकरी
+    hi: चावल की भाकरी
+  what_it_is:
+    en: A soft flatbread made from rice flour.
+    mr: तांदळाच्या पिठापासून बनवलेली मऊ भाकरी.
+    hi: चावल के आटे से बनी एक मुलायम चपाती (फ्लैटब्रेड)।
+  story:
+    en: Rice is the staple grain of the Konkan, so the everyday bhakri here is made
+      of rice flour instead of jowar or bajra.
+    mr: तांदूळ हे कोकणाचे मुख्य धान्य आहे, त्यामुळे येथील रोजची भाकरी ज्वारी किंवा
+      बाजरीऐवजी तांदळाच्या पिठापासून बनवली जाते.
+    hi: चावल कोंकण का मुख्य अनाज है, इसलिए यहाँ की रोज़मर्रा की भाकरी ज्वारी या बाजरे
+      की जगह चावल के आटे से बनाई जाती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id009
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id009
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: nachni_bhakri
+  status: ai_draft
+  name:
+    en: Nachni Bhakri
+    mr: नाचणीची भाकरी
+    hi: नाचणी की भाकरी
+  what_it_is:
+    en: A flatbread made from finger millet (ragi) flour.
+    mr: नाचणीच्या (रागी) पिठापासून बनवलेली भाकरी.
+    hi: रागी (फिंगर मिलर) के आटे से बनी फ्लैटब्रेड।
+  story:
+    en: Along with rice, nachni (finger millet) is named as a staple of the Konkan
+      coast. It is made into bhakri and eaten with curries and vegetables.
+    mr: तांदळासोबतच नाचणी हे कोकण किनारपट्टीचे मुख्य धान्य मानले जाते. याची भाकरी
+      बनवून रस्साभाज्या व भाज्यांसोबत खाल्ली जाते.
+    hi: चावल के साथ-साथ, नाचणी (रागी) को कोंकण तट का मुख्य अनाज बताया गया है। इसकी
+      भाकरी बनाई जाती है और करी तथा सब्जियों के साथ खाई जाती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id010
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id010
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: ambolya
+  status: ai_draft
+  name:
+    en: Ambolya
+    mr: आंबोळ्या
+    hi: आंबोल्या
+  what_it_is:
+    en: Soft pancakes of fermented rice and urad dal batter.
+    mr: आंबवलेल्या तांदूळ आणि उडीद डाळीच्या पिठाचे मऊ धिरडे/पापड.
+    hi: खमीर उठे हुए चावल और उड़द दाल के घोल से बने मुलायम पैनकेक।
+  story:
+    en: Ambolya are made from a fermented rice and urad dal batter. They are eaten
+      with coconut chutney, usal or sweetened coconut milk.
+    mr: आंबोळ्या या आंबवलेल्या तांदूळ आणि उडीद डाळीच्या पिठापासून बनवल्या जातात. त्या
+      नारळाची चटणी, उसळ किंवा गोड केलेल्या नारळाच्या पानाव्यतिरिक्त रस्यासोबत खाल्ल्या
+      जातात.
+    hi: आंबोल्या खमीर उठाए गए चावल और उड़द दाल के घोल से बनाई जाती हैं। इन्हें नारियल
+      की चटनी, उसल या मीठे नारियल के दूध के साथ खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id011
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id011
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: shirvale
+  status: ai_draft
+  name:
+    en: Shirvale
+    mr: शिर्वळे
+    hi: शिर्वळे
+  what_it_is:
+    en: Rice-flour noodles served with sweetened coconut milk.
+    mr: गोड केलेल्या नारळाच्या पानाव्यतिरिक्त/दुधासोबत दिलेले तांदळाच्या पिठाचे शेव.
+    hi: मीठे नारियल के दूध के साथ परोसे जाने वाले चावल के आटे के नूडल्स।
+  story:
+    en: Shirvale are rice-flour noodles, steamed and served with sweetened coconut
+      milk.
+    mr: शिर्वळे हे तांदळाच्या पिठाचे शेव (नूडल्स) आहेत, जे वाफवून गोड केलेल्या नारळाच्या
+      दुधासोबत दिले जातात.
+    hi: शिर्वळे चावल के आटे के नूडल्स होते हैं, जिन्हें भाप में पकाया जाता है और मीठे
+      नारियल के दूध के साथ परोसा जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id012
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id012
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: dhondas
+  status: ai_draft
+  name:
+    en: Dhondas
+    mr: धोंडस
+    hi: धोंडस
+  what_it_is:
+    en: A baked cake of ripe cucumber, rice flour, coconut and jaggery.
+    mr: पिकलेला काकडी, तांदळाचे पीठ, नारळ आणि गुळ घालून बेक केलेला केक.
+    hi: पकी हुई ककड़ी, चावल का आटा, नारियल और गुड़ से बना बेक किया हुआ केक।
+  story:
+    en: Dhondas uses the large ripe cucumbers of the Konkan. Grated cucumber, coarse
+      rice flour, coconut and jaggery are mixed and baked into a dense, sweet cake.
+    mr: धोंडसमध्ये कोकणातील मोठ्या पिकलेल्या काकड्यांचा वापर केला जातो. किसलेली काकडी,
+      जाडसर तांदळाचे पीठ, नारळ आणि गूळ एकत्र करून एका दाट, गोड केकसारखे बेक केले जाते.
+    hi: धोंडस में कोंकण की बड़ी पकी हुई ककड़ियों का उपयोग किया जाता है। कद्दूकस की
+      हुई ककड़ी, मोटा चावल का आटा, नारियल और गुड़ को मिलाकर एक सघन, मीठे केक के रूप
+      में बेक किया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id013
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id013
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: khaproli
+  status: ai_draft
+  name:
+    en: Khaproli
+    mr: खाप्रोली
+    hi: खाप्रोली
+  what_it_is:
+    en: A fluffy rice pancake soaked in sweet yellow coconut milk.
+    mr: गोड पिवळ्या नारळाच्या दुधात भिजवलेले मऊ तांदळाचे धिरडे.
+    hi: मीठे पीले नारियल के दूध में भीगा हुआ एक फूला हुआ चावल का पैनकेक।
+  story:
+    en: Khaproli is a soft, thick pancake dipped in coconut milk sweetened and coloured
+      yellow. It is a sweet of the southern Konkan.
+    mr: खाप्रोली हे मऊ, जाड धिरडे असून ते गोड आणि पिवळा रंग दिलेल्या नारळाच्या दुधात
+      बुडवले जाते. हा दक्षिण कोकणाचा एक गोड पदार्थ आहे.
+    hi: खाप्रोली एक नरम, मोटा पैनकेक है जिसे मीठे और पीले रंग के नारियल के दूध में
+      डुबोया जाता है। यह दक्षिण कोंकण की एक मिठाई है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id014
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id014
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: ras_poli
+  status: ai_draft
+  name:
+    en: Ras Poli
+    mr: रस पोळी
+    hi: रस पोळी
+  what_it_is:
+    en: A sweet fried pancake served with sweetened coconut milk.
+    mr: गोड नारळाच्या दुधात भिजवून खाल्लेले गोड तलेले धिरडे.
+    hi: मीठे नारियल के दूध में भिगोकर परोसा जाने वाला मीठा तला हुआ पैनकेक।
+  story:
+    en: Ras poli is fried and then eaten soaked in sweetened coconut milk.
+    mr: रस पोळी ही तळून घेतली जाते आणि नंतर गोड नारळाच्या दुधात भिजवून खाल्ली जाते.
+    hi: रस पोळी को तलकर मीठे नारियल के दूध में डुबोकर खाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id015
+    - https://en.wikipedia.org/wiki/Malvani_cuisine
+    story: *id015
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: aluchi_vadi
+  status: ai_draft
+  name:
+    en: Aluchi Vadi
+    mr: अळूची वडी
+    hi: अळू की वड़ी
+  what_it_is:
+    en: Colocasia leaves rolled with spiced gram flour, steamed and fried.
+    mr: मसालेदार बेसन लावलेली अळूची पाने एकत्र रोल करून, वाफवून आणि तळून घेतलेली वडी.
+    hi: अरबी (कचालू) के पत्तों पर मसालेदार बेसन लगाकर, रोल कर, भाप में पकाकर और तलकर
+      बनाई गई वड़ी।
+  story:
+    en: Colocasia (alu) leaves are spread with a spiced gram-flour paste, rolled,
+      steamed and cut into slices, then pan-fried. It is a common snack and side across
+      Maharashtra.
+    mr: अळूची पाने मसालेदार बेसन पिठाची पेस्ट लावून रोल केली जातात, वाफवली जातात आणि
+      तुकड्यांमध्ये कापून नंतर तव्यावर फ्राय केली जातात. हा संपूर्ण महाराष्ट्रात एक
+      सामान्य नाष्टा आणि साइड डिश आहे.
+    hi: अरबी के पत्तों पर मसालेदार बेसन का पेस्ट लगाकर रोल किया जाता है, भाप में पकाया
+      जाता है और टुकड़ों में काटकर फिर तवे पर तला जाता है। यह पूरे महाराष्ट्र में
+      एक आम नाश्ता और साइड डिश है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id016
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id016
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district
+- slug: amba_poli
+  status: ai_draft
+  name:
+    en: Amba Poli
+    mr: आंबा पोळी
+    hi: आंबा पोली
+  what_it_is:
+    en: Thin sheets of sun-dried mango pulp.
+    mr: उन्हात वाळवलेल्या आंबाच्या रसाचे पातळ थर.
+    hi: धूप में सुखाई गई आम के गूदे की पतली परतें।
+  story:
+    en: Despite the name, amba poli is not a bread. Reduced mango pulp is spread thin
+      and dried in the sun into sheets.
+    mr: नावाच्या विरुद्ध, आंबा पोळी ही कोणतीही पोळी (ब्रेड) नाही. आटवलेला आंब्याचा
+      रस पातळ पसरवून उन्हात पातळ शीटसारखा वाळवला जातो.
+    hi: नाम के बावजूद, आंबा पोली कोई रोटी नहीं है। गाढ़े किए गए आम के गूदे को पतला
+      फैलाकर धूप में शीट की तरह सुखाया जाता है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    what_it_is: &id017
+    - https://en.wikipedia.org/wiki/Maharashtrian_cuisine
+    story: *id017
+  _review: Malvani/Konkan dish per source; confirm it is commonly served in Ratnagiri
+    district

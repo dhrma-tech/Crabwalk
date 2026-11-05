@@ -1,0 +1,1379 @@
+# Places - Chiplun taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: parshuram-temple
+  status: ai_draft
+  name_en: Parshuram Temple
+  name_mr: परशुराम मंदिर
+  name_hi: परशुराम मंदिर
+  category: temple
+  taluka: Chiplun
+  lat: 17.55566
+  lng: 73.50489
+  coord_source: osm way/1272428528
+  osm_id: way/1272428528
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 06:00
+  closes: '20:00'
+  closed_days: []
+  best_time: November to February
+  how_to_reach: About 11 km from Chiplun toward Mumbai, off NH 66.
+  nearest_station: Chiplun (7 km)
+  nearest_bus_stop: Chiplun MSRTC bus stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Parshuram_Temple,_Chiplun
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Parshuram temple sits on a hill at Parshuram village, about
+        11 km from Chiplun toward Mumbai, right off the Mumbai-Goa highway. It is
+        dedicated to Parashurama, the sixth avatar of Vishnu, who in local belief
+        created the Konkan coast.
+
+
+        The complex has three temples, a tall stone deepmal for oil lamps and a pilgrim
+        lodge. Locals say Parashurama leaves for the Himalayas at sunrise and returns
+        here at sunset.'
+      history: The temple was built at the initiative of Swami Paramhans Brahmendra,
+        with financial help from Siddi Rasul Yakut Khan in 1700. In 1726 the Siddis
+        demolished it over a dispute about an elephant, and it was later rebuilt.
+        It is run by the Shree Dev Bhargavram Devasthan Trust.
+      significance: The main shrine to Parashurama in the Konkan, the figure credited
+        with creating the coast.
+      dos: '- Visit on Akshaya Tritiya, Ram Navami or Mahashivratri for the festivals
+
+        - Stop at Sawatsada waterfall nearby in the monsoon'
+      donts: '- Don''t carry footwear into the shrines'
+      safety_text: null
+    mr:
+      short_story: 'परशुराम मंदिर मुंबई-गोवा महामार्गावरून चिपळूणहून मुंबईच्या दिशेने
+        सुमारे 11 किमी अंतरावर परशुराम गावात एका टेकडीवर आहे. हे मंदिर विष्णूचा सहावा
+        अवतार असलेल्या परशुरामाला समर्पित आहे. स्थानिक मान्यतेनुसार त्यांनीच कोकण
+        किनारपट्टीची निर्मिती केली.
+
+
+        या मंदिर संकुलात तीन मंदिरे, दिव्यांसाठी एक उंच दगडी दीपमाळ आणि भाविकांसाठी
+        धर्मशाळा आहे. स्थानिकांच्या म्हणण्यानुसार, परशुराम सूर्योदयावेळी हिमालयात
+        जातात आणि सूर्यास्ताच्या वेळी येथे परत येतात.'
+      history: हे मंदिर स्वामी परमहंस ब्रह्मेंद्र यांच्या पुढाकाराने आणि सिद्दी रसूल
+        याकूत खान यांच्या आर्थिक मदतीने 1700 मध्ये बांधले गेले. एका हत्तीवरून झालेल्या
+        वादातून 1726 मध्ये सिद्दींनी ते पाडले, आणि नंतर त्याची पुन्हा बांधणी करण्यात
+        आली. श्री देव भार्गवराम देवस्थान ट्रस्ट याचा कारभार पाहतो.
+      significance: किनारपट्टी निर्माण करण्याचे श्रेय असलेल्या परशुरामाचे कोकणातील
+        मुख्य मंदिर.
+      dos: '- उत्सवांसाठी अक्षय्य तृतीया, राम नवमी किंवा महाशिवरात्रीला भेट द्या
+
+        - पावसाळ्यात जवळच असलेल्या सवतसडा धबधब्याला नक्की भेट द्या'
+      donts: '- मंदिरात चप्पल किंवा बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: 'परशुराम मंदिर मुंबई-गोवा राजमार्ग के पास, चिपलून से मुंबई की ओर
+        लगभग 11 किमी दूर परशुराम गाँव में एक पहाड़ी पर स्थित है। यह मंदिर विष्णु के
+        छठे अवतार परशुराम को समर्पित है। स्थानीय मान्यताओं के अनुसार, उन्होंने ही
+        कोंकण तट का निर्माण किया था।
+
+
+        इस मंदिर परिसर में तीन मंदिर, दीयों के लिए एक ऊँचा पत्थर का दीपमाल और तीर्थयात्रियों
+        के ठहरने के लिए एक धर्मशाला है। स्थानीय लोगों का कहना है कि परशुराम सूर्योदय
+        के समय हिमालय जाते हैं और सूर्यास्त के समय यहाँ लौट आते हैं।'
+      history: यह मंदिर स्वामी परमहंस ब्रह्मेंद्र की पहल पर और सिद्दी रसूल याकूत खान
+        की आर्थिक मदद से 1700 में बनाया गया था। 1726 में एक हाथी को लेकर हुए विवाद
+        के कारण सिद्दियों ने इसे ध्वस्त कर दिया था, और बाद में इसे फिर से बनाया गया।
+        इसका संचालन श्री देव भार्गवराम देवस्थान ट्रस्ट करता है।
+      significance: तट का निर्माण करने का श्रेय पाने वाले परशुराम का कोंकण में मुख्य
+        मंदिर।
+      dos: '- त्योहारों के समय अक्षय तृतीया, राम नवमी या महाशिवरात्रि पर दर्शन करें
+
+        - मानसून में पास ही स्थित सवतसडा झरने पर रुकें'
+      donts: '- मंदिर के अंदर जूते-चप्पल लेकर न जाएँ'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/f/f6/Parshuram_Temple_Chiplun.jpg
+    credit: Sharadatanay
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Parshuram_Temple_Chiplun.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Parshuram_Temple,_Chiplun
+    - https://temple.yatradham.org/temple/parshuram-mandir
+  _review: Gemini said Chiplun station 15-20 km; distance dropped, verify; EN text
+    = Claude draft from sources, needs team review; MR/HI = Gemini translation, needs
+    native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: gowalkot-fort
+  status: ai_draft
+  name_en: Gowalkot Fort (Govindgad)
+  name_mr: गोवळकोट किल्ला (गोविंदगड)
+  name_hi: गोवालकोट किला (गोविंदगढ़)
+  category: fort
+  taluka: Chiplun
+  lat: 17.546607
+  lng: 73.487846
+  coord_source: osm node/9198729624
+  osm_id: node/9198729624
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On the southern bank of the Vashishti river, about 10 km from Chiplun.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Gowalkot
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Gowalkot is a ruined stone fort on the southern bank of the Vashishti
+        river, near Chiplun. The river guards three sides and a trench the fourth,
+        and the hilltop gives wide views of the river and valley.
+
+
+        About 22 old cannons lie around the fort, the longest 7.5 feet. There is a
+        dry well inside and a temple to goddess Karanjeshwari at the foot of the hill.
+        Seeing it all takes about an hour.'
+      history: Sources say Siddi Habshi of Janjira built it around 1690, while also
+        saying Shivaji won it in 1660 and renamed it Govindgad, so the dates conflict.
+        Sambhaji Maharaj later lost it to the Siddis. Ten cannons were moved here
+        from the port area in May 2017.
+      significance: A river fort near Chiplun, also known as Govindgad.
+      dos: '- Keep about an hour for the full fort
+
+        - Visit the Karanjeshwari temple at the foothills'
+      donts: '- Don''t climb on the cannons'
+      safety_text: '- The ruins are uneven and overgrown in places; wear proper shoes'
+    mr:
+      short_story: 'गोवळकोट हा चिपळूणजवळ वाशिष्ठी नदीच्या दक्षिण तीरावर असलेला एक
+        उध्वस्त दगडी किल्ला आहे. या किल्ल्याला तीन बाजूंनी नदीचा आणि चौथ्या बाजूने
+        खंदकाचा वेढा आहे. इथल्या टेकडीवरून नदी आणि दरीचा विस्तीर्ण नजारा पाहायला मिळतो.
+
+
+        किल्ल्याच्या परिसरात सुमारे 22 जुन्या तोफा पडलेल्या आहेत, त्यातील सर्वात लांब
+        तोफ 7.5 फूट आहे. किल्ल्याच्या आत एक कोरडी विहीर आहे आणि टेकडीच्या पायथ्याशी
+        करंजेश्वरी देवीचे मंदिर आहे. संपूर्ण किल्ला पाहण्यासाठी साधारण एक तास लागतो.'
+      history: काही नोंदींनुसार सिद्दी हबशीने हा किल्ला 1690 च्या सुमारास बांधला,
+        तर दुसरीकडे छत्रपती शिवाजी महाराजांनी 1660 मध्ये तो जिंकून त्याचे नाव गोविंदगड
+        ठेवल्याचा उल्लेख आहे, त्यामुळे या तारखांमध्ये तफावत आहे. नंतर छत्रपती संभाजी
+        महाराजांच्या काळात हा किल्ला सिद्दींच्या ताब्यात गेला. मे 2017 मध्ये बंदर
+        परिसरातून दहा तोफा येथे हलवण्यात आल्या.
+      significance: चिपळूणजवळील एक नदीकाठचा किल्ला, जो गोविंदगड म्हणूनही ओळखला जातो.
+      dos: '- संपूर्ण किल्ला पाहण्यासाठी सुमारे एक तासाचा वेळ हाताशी ठेवा
+
+        - पायथ्याशी असलेल्या करंजेश्वरी देवीच्या मंदिराला भेट द्या'
+      donts: '- तोफांवर चढू नका'
+      safety_text: '- इथले अवशेष ओबडधोबड आहेत आणि काही ठिकाणी झाडी वाढलेली आहे; त्यामुळे
+        योग्य बूट घाला'
+    hi:
+      short_story: 'गोवालकोट चिपलून के पास वशिष्ठी नदी के दक्षिणी तट पर स्थित एक खंडहर
+        नुमा पत्थर का किला है। नदी तीन तरफ से और एक खाई चौथी तरफ से इसकी रक्षा करती
+        है। यहाँ की पहाड़ी से नदी और घाटी का विस्तृत नजारा दिखता है।
+
+
+        किले के आसपास लगभग 22 पुरानी तोपें पड़ी हैं, जिनमें सबसे लंबी तोप 7.5 फीट
+        की है। इसके अंदर एक सूखा कुआँ है और पहाड़ी की तलहटी में देवी करंजेश्वरी का
+        मंदिर है। इस पूरे किले को देखने में लगभग एक घंटा लगता है।'
+      history: स्रोतों का कहना है कि जंजीरा के सिद्दी हबशी ने इसे 1690 के आसपास बनाया
+        था, जबकि यह भी कहा जाता है कि शिवाजी ने इसे 1660 में जीतकर इसका नाम गोविंदगढ़
+        रखा था, इसलिए तारीखों में मतभेद है। बाद में संभाजी महाराज के समय यह सिद्दियों
+        के हाथों छिन गया। मई 2017 में बंदरगाह क्षेत्र से दस तोपों को यहाँ लाया गया
+        था।
+      significance: चिपलून के पास एक नदी का किला, जिसे गोविंदगढ़ भी कहा जाता है।
+      dos: '- पूरे किले को देखने के लिए लगभग एक घंटे का समय निकालें
+
+        - तलहटी में स्थित करंजेश्वरी मंदिर के दर्शन करें'
+      donts: '- तोपों के ऊपर न चढ़ें'
+      safety_text: '- यहाँ के खंडहर ऊबड़-खाबड़ हैं और कुछ जगहों पर झाड़ियाँ उगी हुई
+        हैं; इसलिए सही जूते पहनें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/e/e2/Gowalkot_estuary%2C_Ratnagiri.jpg
+    credit: ऋजुता खरे
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Gowalkot_estuary,_Ratnagiri.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Gowalkot
+  _review: 10 km confirmed by Wikipedia; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: vashishti-river-crocodile-safari
+  status: ai_draft
+  name_en: Vashishti River Crocodile Safari
+  name_mr: वाशिष्ठी नदी मगर सफारी
+  name_hi: वाशिष्ठी नदी मगर सफारी
+  category: backwater
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: June to February
+  how_to_reach: Boat rides from Maldoli backwater centre on the Vashishti river, Chiplun
+    taluka.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mugger crocodiles live along the Vashishti river near Chiplun.
+        A local operator, Kokan Crocodile Safari, runs small boats from the Maldoli
+        backwaters so visitors can watch them on the banks.
+
+
+        The basic ride lasts about 90 minutes. Trips run at low tide, when the crocodiles
+        come out on the mud, so the timing changes from day to day. Birds are common
+        along the same stretch.'
+      history: null
+      significance: A boat ride to watch wild mugger crocodiles on the Vashishti.
+      dos: '- Book ahead and confirm the tide-based start time with the operator
+
+        - Carry binoculars and a camera with zoom'
+      donts: '- Don''t lean out of the boat or put hands in the water
+
+        - Don''t make loud noise; the crocodiles slip into the water'
+      safety_text: Mugger crocodiles are wild and dangerous. Stay seated in the boat
+        and follow the boatman's instructions. Do not walk near the river banks.
+    mr:
+      short_story: 'चिपळूणजवळ वाशिष्ठी नदीच्या काठावर मगर्स जातीचे सुसर (मगर) राहतात.
+        येथील एक स्थानिक ऑपरेटर ''कोकण क्रोकोडाईल सफारी'' मालदोलच्या खाडीतून छोट्या
+        बोटी चालवतो, जेणेकरून पर्यटकांना नदीकाठावर मगरी पाहता येतील.
+
+
+        मूलभूत सफर साधारण 90 मिनिटांची असते. ओहोटीच्या वेळी या फेऱ्या चालतात, कारण
+        तेव्हा मगरी चिखलात बाहेर येतात, त्यामुळे प्रवासाची वेळ दररोज बदलत असते. याच
+        नदीच्या पट्ट्यात पक्षीही मोठ्या प्रमाणात आढळतात.'
+      history: null
+      significance: वाशिष्ठी नदीत जंगली मगर्स मगरी पाहण्यासाठी बोट सफारी.
+      dos: '- आधीच बुकिंग करा आणि ऑपरेटरकडे ओहोटीवर आधारित सुरु असण्याची वेळ निश्चित
+        करा
+
+        - दुर्बीण (बायनाक्युलर) आणि झूम असलेला कॅमेरा सोबत ठेवा'
+      donts: '- बोटीबाहेर झुकू नका किंवा पात्रात हात घालू नका
+
+        - मोठ्याने आवाज करू नका; आवाज ऐकताच मगरी पाण्यात सरकतात'
+      safety_text: मगर्स मगरी जंगली आणि धोकादायक असतात. बोटीमध्ये आरामात बसा आणि नाखव्याच्या
+        (बोट चालवणाऱ्याच्या) सूचनांचे पालन करा. नदीकाठाजवळ चालत जाऊ नका.
+    hi:
+      short_story: 'चिपळूण के पास वाशिष्ठी नदी के किनारे मगरमच्छ रहते हैं। एक स्थानीय
+        ऑपरेटर, ''कोंकण क्रोकोडाइल सफारी'', मालदोली बैकवाटर से छोटी नावें चलाता है
+        ताकि पर्यटक उन्हें तटों पर देख सकें।
+
+
+        बुनियादी सफारी लगभग 90 मिनट की होती है। ये यात्राएं कम ज्वार (ओहोटी) के समय
+        चलती हैं, जब मगरमच्छ कीचड़ पर बाहर आते हैं, इसलिए समय दिन-प्रतिदिन बदलता रहता
+        है। इसी हिस्से में पक्षी भी आम तौर पर पाए जाते हैं।'
+      history: null
+      significance: वाशिष्ठी में जंगली मगरमच्छों को देखने के लिए एक नाव की सवारी।
+      dos: '- पहले से बुकिंग करें और ऑपरेटर के साथ ज्वार-आधारित शुरू होने के समय की
+        पुष्टि करें
+
+        - दूरबीन और ज़ूम वाला कैमरा साथ रखें'
+      donts: '- नाव से बाहर न झुकें और पानी में हाथ न डालें
+
+        - ज़्यादा आवाज़ न करें; मगरमच्छ पानी में फिसल जाते हैं'
+      safety_text: मगरमच्छ जंगली और खतरनाक होते हैं। नाव में बैठे रहें और नाविक के
+        निर्देशों का पालन करें। नदी के तटों के पास न चलें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mayuripatil952795.wixsite.com/chiplun/crococdile-safari
+    - https://curlytales.com/now-you-can-go-on-a-crocodile-safari-in-maharashtra/amp/
+    - https://en.wikipedia.org/wiki/Vashishti_River
+  _review: 'tide flag from Gemini (true) not sourced; set false. Operator/timings
+    unknown. http-only source dropped; no coordinates: needs pin; operator, start
+    point (Maldoli) and ~90 min / from Rs 250 from one 2018-era article; confirm operator
+    still runs; EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: sawatsada-waterfall
+  status: ai_draft
+  name_en: Sawatsada Waterfall
+  name_mr: सवतसडा धबधबा
+  name_hi: सवतसडा झरना
+  category: waterfall
+  taluka: Chiplun
+  lat: 17.555144
+  lng: 73.513217
+  coord_source: wikidata Q65326239
+  osm_id: null
+  entry_fee_text: No entry fee
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Off the Mumbai-Goa highway near Parshuram, about 4 km from Chiplun
+    bus station; short walk from parking.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 9
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Sawatsada is a seasonal waterfall near the Parshuram temple, about
+        4 km from Chiplun bus station and visible from the Mumbai-Goa highway. It
+        is at its best in the monsoon.
+
+
+        There is parking a short walk away, steps down to the falls and a viewing
+        shed. Entry is free.'
+      history: null
+      significance: null
+      dos: '- Visit in the monsoon
+
+        - Combine with the Parshuram temple'
+      donts: '- Don''t go close to the falls when the flow is strong'
+      safety_text: '- The water flow is strong in the rains and can be dangerous
+
+        - Steps get slippery'
+    mr:
+      short_story: 'सवतसडा हा परशुराम मंदिराजवळचा एक हंगामी धबधबा आहे. चिपळूण बस स्थानकापासून
+        सुमारे 4 किमी अंतरावर असलेला हा धबधबा मुंबई-गोवा महामार्गावरूनही दिसतो. पावसाळ्यात
+        याचे सौंदर्य खुलून दिसते.
+
+
+        इथे थोड्या अंतरावर पार्किंगची सोय आहे, धबधब्यापर्यंत जाण्यासाठी पायऱ्या आणि
+        पाहण्यासाठी एक शेड (व्ह्यूइंग पॉईंट) आहे. प्रवेश विनामूल्य आहे.'
+      history: null
+      significance: null
+      dos: '- पावसाळ्यात भेट द्या
+
+        - परशुराम मंदिराच्या भेटीसोबत याचे नियोजन करा'
+      donts: '- पाण्याचा प्रवाह जास्त असताना धबधब्याच्या जवळ जाऊ नका'
+      safety_text: '- पावसाळ्यात पाण्याचा प्रवाह खूप वेगात असतो आणि तो धोकादायक ठरू
+        शकतो
+
+        - पायऱ्या निसरड्या होतात'
+    hi:
+      short_story: 'सवतसडा परशुराम मंदिर के पास एक मौसमी झरना है, जो चिपलून बस स्टैंड
+        से लगभग 4 किमी दूर है और मुंबई-गोवा राजमार्ग से दिखाई देता है। मानसून के मौसम
+        में यह अपने सबसे बेहतरीन रूप में होता है।
+
+
+        यहाँ थोड़ी दूरी पर पार्किंग है, झरने तक जाने के लिए सीढ़ियाँ और देखने के लिए
+        एक शेड है। प्रवेश निःशुल्क है।'
+      history: null
+      significance: null
+      dos: '- मानसून में यहाँ की यात्रा करें
+
+        - परशुराम मंदिर के दर्शन के साथ इसे भी देखें'
+      donts: '- जब बहाव तेज हो तो झरने के करीब न जाएँ'
+      safety_text: '- बारिश में पानी का बहाव बहुत तेज होता है और खतरनाक हो सकता है
+
+        - सीढ़ियाँ फिसलने वाली हो जाती हैं'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/0/00/Sawatsada-falls.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Rajered
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Sawatsada-falls.jpg
+  _sources:
+    _all:
+    - https://travelkonkan.in/savatsada-waterfall/
+    - https://www.avathi.com/activity/explore-sawatsada-waterfall/292
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review; pin from wikidata, check on map
+  _collected_by: claude+gemini 2026-11-03
+- slug: kolkewadi-dam
+  status: ai_draft
+  name_en: Kolkewadi Dam
+  name_mr: कोळकेवाडी धरण
+  name_hi: कोलकेवाड़ी बांध
+  category: viewpoint
+  taluka: Chiplun
+  lat: 17.4733442
+  lng: 73.6440528
+  coord_source: osm nominatim way/821888951
+  osm_id: way/821888951
+  entry_fee_text: Free entry; parking may be charged
+  entry_fee_inr: 0
+  visit_minutes: 120
+  opens: 08:00
+  closes: '17:00'
+  closed_days: []
+  best_time: August to February
+  how_to_reach: At Kolkewadi, about 3 km from Alore village near Chiplun.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Kolkewadi_Dam
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kolkewadi dam on the Vashishti river, about 3 km from Alore near
+        Chiplun, is part of the Koyna Hydroelectric Project. It is 63.3 m high and
+        497 m long.
+      history: Opened in 1975; it serves the third stage of the Koyna project (320
+        MW), run by MSEB.
+      significance: null
+      dos: null
+      donts: null
+      safety_text: '- Public access rules are not confirmed; check locally'
+    mr:
+      short_story: चिपळूणजवळील अलोरे येथून सुमारे 3 किमी अंतरावर वाशिष्ठी नदीवर असलेले
+        कोळकेवाडी धरण हा कोयना जलविद्युत प्रकल्पाचा एक भाग आहे. याची उंची 63.3 मीटर
+        आणि लांबी 497 मीटर आहे.
+      history: 1975 मध्ये हे धरण सुरू झाले; हे कोयना प्रकल्पाच्या (320 MW) तिसऱ्या
+        टप्प्यासाठी उपयुक्त आहे आणि MSEB द्वारे चालवले जाते.
+      significance: null
+      dos: null
+      donts: null
+      safety_text: '- पर्यटकांच्या प्रवेशाचे नियम निश्चित नाहीत; त्यामुळे जाण्यापूर्वी
+        स्थानिक पातळीवर चौकशी करा'
+    hi:
+      short_story: चिपलून के पास अलोरे से लगभग 3 किमी दूर वशिष्ठी नदी पर बना कोलकेवाड़ी
+        बांध कोयना जलविद्युत परियोजना का हिस्सा है। यह 63.3 मीटर ऊँचा और 497 मीटर
+        लंबा है।
+      history: 1975 में खोला गया; यह कोयना परियोजना (320 MW) के तीसरे चरण का काम करता
+        है, जिसे MSEB द्वारा चलाया जाता है।
+      significance: null
+      dos: null
+      donts: null
+      safety_text: '- आम लोगों के प्रवेश के नियम पक्के नहीं हैं; इसलिए स्थानीय स्तर
+        पर जानकारी लें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Kolkewadi_Dam
+    - https://www.holidaylandmark.com/india/maharashtra/dams/kolkewadi-dam/
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: dam is part of Koyna project; public access rules need checking; public
+    access to the dam not confirmed by any source; EN text = Claude draft from sources,
+    needs team review; MR/HI = Gemini translation, needs native review; pin from osm,
+    check on map
+  _collected_by: claude+gemini 2026-11-03
+- slug: shivsrushti-dervan
+  status: ai_draft
+  name_en: Shivsrushti, Dervan
+  name_mr: शिवसृष्टी, डेरवण
+  name_hi: शिवसृष्टि, डेरवण
+  category: museum
+  taluka: Chiplun
+  lat: 17.394743
+  lng: 73.561092
+  coord_source: osm node/2398259508
+  osm_id: node/2398259508
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: 08:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: At Dervan village, Chiplun taluka.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Shivsrushti, also called the Walawalkar Shivaji Maharaj Museum
+        or Shiv-Samarth Mandir, is at Dervan near Chiplun. Life-size sculptures tell
+        the story of Shivaji Maharaj's life, with statues of Sant Ramdas, Sant Tukaram
+        and Sant Namdev in the temple premises. Two stone elephants stand at the entrance.
+      history: Built by the Shree Sant Sitarambuva Walawalkar Trust.
+      significance: null
+      dos: '- Dress modestly (shoulders and knees covered)'
+      donts: '- Don''t wear footwear in the temple premises'
+      safety_text: null
+    mr:
+      short_story: चिपळूणजवळील डेरवण येथे असलेली शिवसृष्टी वाळवळकर शिवाजी महाराज संग्रहालय
+        किंवा शिव-समर्थ मंदिर म्हणूनही ओळखली जाते. इथले मानवाकृती शिल्प शिवाजी महाराजांच्या
+        जीवनपटाची कथा सांगतात. मंदिर परिसरात संत रामदास, संत तुकाराम आणि संत नामदेव
+        यांचे पुतळे आहेत. प्रवेशद्वारावर दोन दगडी हत्ती उभे आहेत.
+      history: हे स्मारक श्री संत सीतारामबुवा वाळवळकर ट्रस्टने उभारले आहे.
+      significance: null
+      dos: '- सभ्य पोशाख परिधान करा (खांदे आणि गुडघे झाकलेले असावेत)'
+      donts: '- मंदिर परिसरात चप्पल-बूट घालू नका'
+      safety_text: null
+    hi:
+      short_story: चिपलून के पास डेरवण में स्थित शिवसृष्टि को वालवलकर शिवाजी महाराज
+        संग्रहालय या शिव-समर्थ मंदिर भी कहा जाता है। यहाँ की आदमकद मूर्तियाँ शिवाजी
+        महाराज के जीवन की कहानी बयां करती हैं। मंदिर परिसर में संत रामदास, संत तुकाराम
+        और संत नामदेव की मूर्तियाँ हैं। प्रवेश द्वार पर दो पत्थर के हाथी खड़े हैं।
+      history: इसका निर्माण श्री संत सीतारामबुवा वालवलकर ट्रस्ट द्वारा किया गया है।
+      significance: null
+      dos: '- शालीन कपड़े पहनें (कंधे और घुटने ढके होने चाहिए)'
+      donts: '- मंदिर परिसर में जूते-चप्पल न पहनें'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/16/Shivsrushti_Dervan_-_panoramio.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Abhay Bhosale
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Shivsrushti_Dervan_-_panoramio.jpg
+  _sources:
+    _all:
+    - https://travelkonkan.in/shivsrushti-dervan/
+    - https://en.wikipedia.org/wiki/Chiplun_taluka
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: vindhyavasini-temple-chiplun
+  status: ai_draft
+  name_en: Vindhyavasini Temple, Chiplun
+  name_mr: विंध्यवासिनी मंदिर, चिपळूण
+  name_hi: विंध्यवासिनी मंदिर, चिपलून
+  category: temple
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In the Ravatle area of Chiplun.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Vindhyavasini temple in the Ravatle area of Chiplun is dedicated
+        to the goddess in her fierce Mahishasur Mardini form. The Hoysala-style idol,
+        estimated at 800 to 1,000 years old, has eight arms holding weapons and a
+        buffalo at her feet. There is also an idol of Kartikeya on a peacock.
+      history: The temple may date to the Yadava era. During invasions, Bararav of
+        the Koli community is said to have hidden it under stones and debris. Chhatrapati
+        Sambhaji Maharaj later restored it; 1976 marked its 300th anniversary.
+      significance: null
+      dos: '- Visit during Navratri for the main festival'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: चिपळूणमधील रावळतळे भागात असलेले विंध्यवासिनी मंदिर हे देवीच्या
+        रौद्र महिषासुर मर्दिनी रूपाला समर्पित आहे. होयसळ शैलीतील ही मूर्ती सुमारे
+        800 ते 1,000 वर्षे जुनी असावी असा अंदाज आहे. या मूर्तीला आठ हात असून त्यात
+        शस्त्रे आहेत आणि देवीच्या पायाशी एक रेडा आहे. येथे मयूरावर आरूढ झालेली कार्तिकेयाचीही
+        मूर्ती आहे.
+      history: हे मंदिर कदाचित यादव काळातील असावे. परकीय आक्रमणांच्या वेळी कोळी समाजातील
+        बाराव यांनी ही मूर्ती दगड आणि ढिगाऱ्याखाली लपवून ठेवल्याची आख्यायिका आहे.
+        नंतर छत्रपती संभाजी महाराजांनी या मंदिराचा जीर्णोद्धार केला; 1976 मध्ये याला
+        300 वर्षे पूर्ण झाली.
+      significance: null
+      dos: '- मुख्य उत्सवासाठी नवरात्रीच्या काळात भेट द्या'
+      donts: '- मंदिरात चप्पल किंवा बूट घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: चिपलून के रावलतले इलाके में स्थित विंध्यवासिनी मंदिर देवी के उग्र
+        महिषासुर मर्दिनी रूप को समर्पित है। होयसला शैली की इस मूर्ति के बारे में अनुमान
+        है कि यह 800 से 1,000 साल पुरानी है। इसकी आठ भुजाओं में हथियार हैं और पैरों
+        में एक भैंसा है। यहाँ मोर पर सवार कार्तिकेय की भी एक मूर्ति है।
+      history: यह मंदिर शायद यादव काल का हो सकता है। आक्रमणों के दौरान कहा जाता है
+        कि कोली समुदाय के बारारव ने इसे पत्थरों और मलबे के नीचे छिपा दिया था। बाद
+        में छत्रपति संभाजी महाराज ने इसका जीर्णोद्धार किया; 1976 में इसकी 300वीं वर्षगांठ
+        मनाई गई।
+      significance: null
+      dos: '- मुख्य उत्सव के लिए नवरात्रि के दौरान दर्शन करें'
+      donts: '- मंदिर के अंदर जूते-चप्पल लेकर न जाएँ'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://travelkonkan.in/vindhyavasini-temple/
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kumbharli-ghat
+  status: ai_draft
+  name_en: Kumbharli Ghat
+  name_mr: कुंभार्ली घाट
+  name_hi: कुंभार्ली घाट
+  category: viewpoint
+  taluka: Chiplun
+  lat: 17.43
+  lng: 73.65
+  coord_source: wikidata Q8558207
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 18 km by road from Chiplun on the Chiplun-Karad road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kumbharli Ghat is the mountain pass on the Chiplun-Karad state
+        highway, where the road climbs the Western Ghats from Ratnagiri district into
+        Satara district. The road runs at an average height of about 625 m.
+
+
+        It is one of the few road links between the Konkan coast and the Desh plateau.
+        Koyna Dam lies near the eastern end of the pass.'
+      history: Peshwa Bajirao II is recorded to have come down the Kumbharli pass
+        between 1812 and 1815 on his way to Guhagar.
+      significance: The main road route from Chiplun up to Karad and the Koyna area.
+      dos: '- Drive it in daylight
+
+        - Combine it with a visit to Koyna Dam at the top'
+      donts: '- Don''t stop on blind curves for photos'
+      safety_text: Landslides and accidents are reported in the monsoon, including
+        a wall collapse and a fatal car crash into a gorge in 2025. Check road status
+        after heavy rain and drive slowly.
+    mr:
+      short_story: 'कुंभार्ली घाट हा चिपळूण-कराड राज्य महामार्गावरील डोंगरमार्ग आहे,
+        जिथे रस्ता रत्नागिरी जिल्ह्यातून सह्याद्री ओलांडून सातारा जिल्ह्यात प्रवेश
+        करतो. हा रस्ता सरासरी सुमारे 625 मीटर उंचीवरून धावतो.
+
+
+        कोकण किनारपट्टी आणि देश पठार यांच्यातील मोजक्या रस्ते मार्गांपैकी हा एक आहे.
+        या घाटमार्गाच्या पूर्व टोकाजवळ कोयना धरण आहे.'
+      history: पपेशवा बाजीराव दुसरे हे 1812 ते 1815 दरम्यान गुहागरला जात असताना कुंभार्ली
+        घाटातून खाली उतरल्याची नोंद आहे.
+      significance: चिपळूणवरून कराड आणि कोयना परिसराकडे जाणारा मुख्य रस्ता मार्ग.
+      dos: '- दिवसाजेव्हा उजाडलेला असतो तेव्हाच वाहन चालवा
+
+        - शिखरावर असलेल्या कोयना धरणाला भेटीची जोड द्या'
+      donts: '- फोटो काढण्यासाठी आंधळ्या वळणांवर (ब्लाईंड कव्हर्स) गाडी थांबवू नका'
+      safety_text: पावसाळ्यात दरडी कोसळणे आणि अपघात झाल्याचे वृत्त येते, ज्यामध्ये
+        2025 मधील भिंत कोसळणे आणि एका दरीत झालेल्या कार अपघाताचा समावेश आहे. मुसळधार
+        पावसानंतर रस्त्याची स्थिती तपासा आणि वाहन हळू चालवा.
+    hi:
+      short_story: 'कुंभार्ली घाट चिपळूण-कराड राज्य राजमार्ग पर स्थित पहाड़ी दर्रा
+        है, जहाँ सड़क रत्नागिरी जिले से पश्चिमी घाट पार करते हुए सातारा जिले में प्रवेश
+        करती है। यह सड़क औसतन लगभग 625 मीटर की ऊँचाई पर चलती है।
+
+
+        यह कोंकण तट और देश के पठार के बीच सड़क के कुछ मुख्य मार्गों में से एक है।
+        कोयना बांध दर्रे के पूर्वी छोर के पास स्थित है।'
+      history: पेशवा बाजीराव द्वितीय के बारे में दर्ज है कि वे 1812 और 1815 के बीच
+        गुहागर जाते समय कुंभार्ली दर्रे से नीचे उतरे थे।
+      significance: चिपळूण से कराड और कोयना क्षेत्र तक जाने का मुख्य सड़क मार्ग।
+      dos: '- दिन के उजाले में गाड़ी चलाएं
+
+        - ऊपर कोयना बांध की यात्रा के साथ इसे जोड़ें'
+      donts: '- फोटो के लिए अंधे मोड़ (ब्लाइंड कर्व्स) पर न रुकें'
+      safety_text: मानसून में भूस्खलन और दुर्घटनाओं की खबरें आती हैं, जिसमें 2025
+        में एक दीवार का गिरना और खाई में कार की घातक दुर्घटना शामिल है। भारी बारिश
+        के बाद सड़क की स्थिति की जाँच करें और धीरे गाड़ी चलाएं।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/7/76/View_from_Kumbharli_Ghat_%283131902185%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Dinesh Valke from Thane, India
+    licence: CC BY-SA 2.0
+    source_url: https://commons.wikimedia.org/wiki/File:View_from_Kumbharli_Ghat_(3131902185).jpg
+  _sources:
+    _all:
+    - https://alldistancebetween.com/in/distance-between/chiplun-kumbharli-ghat-c958ca82b9e5bc3273be93ee1faa9e4c/
+    - https://en.wikipedia.org/wiki/Kumbharli_Ghat
+    - https://en.wikipedia.org/wiki/Chiplun
+  _review: weak source; EN text = Claude draft from sources, needs team review; MR/HI
+    = Gemini translation, needs native review; pin from wikidata, check on map
+  _collected_by: claude+gemini 2026-11-03
+- slug: bhairavgad-fort
+  status: ai_draft
+  name_en: Bhairavgad Fort
+  name_mr: भैरवगड किल्ला
+  name_hi: भैरवगढ़ किला
+  category: fort
+  taluka: Chiplun
+  lat: 17.325793
+  lng: 73.675797
+  coord_source: osm node/7196562018
+  osm_id: node/7196562018
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 240
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On a Sahyadri peak; trek of 2-4 hours from the base villages.
+  nearest_station: Chiplun
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Bhairavgad_(fort)
+  _review: 'Wikipedia link was for the Satara Bhairavgad - removed; Chiplun Bhairavgad
+    needs its own source; no text: no reliable source found (2026-11-03 search); needs
+    field visit or local source; Gemini text described the Bhairavgad near Helwak/Koyna
+    (Satara side), not confirmed as this place: text removed'
+  _collected_by: claude+gemini 2026-11-03
+- slug: lokmanya-tilak-smarak-vachan-mandir-chiplun
+  status: ai_draft
+  name_en: Lokmanya Tilak Smarak Vachan Mandir, Chiplun
+  name_mr: लोकमान्य टिळक स्मारक वाचन मंदिर, चिपळूण
+  name_hi: लोकमान्य तिलक स्मारक वाचन मंदिर, चिपळूण
+  category: museum
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In Chiplun town.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Lokmanya Tilak Smarak Vachan Mandir is a public library in
+        Chiplun that is about 155 years old. In November 2018 a museum was added to
+        it.
+
+
+        The museum shows Stone Age tools, Harappan objects, Jorwe and Malwa pottery
+        from the Inamgaon dig near Pune, Maratha-era articles, old stone idols, and
+        coins from Roman times to the Maratha states.'
+      history: null
+      significance: An old town library that also holds an archaeology and coin museum.
+      dos: '- Ask the staff about the coin collection'
+      donts: '- Don''t photograph exhibits without asking'
+      safety_text: null
+    mr:
+      short_story: 'लोकमान्य टिळक स्मारक वाचन मंदिर हे चिपळूणमधील एक सार्वजनिक पुस्तकालय
+        आहे जे सुमारे 155 वर्षे जुने आहे. नोव्हेंबर 2018 मध्ये यात एका संग्रहालयाची
+        (म्युझियम) भर घालण्यात आली.
+
+
+        या संग्रहालयात पाषाणयुगीन हत्यारे, हडप्पा संस्कृतीचे अवशेष, पुण्याजवळील इनामगावच्या
+        उत्खननातील जोरवे व मालवा संस्कृतीची भांडी, मराठा काळातील वस्तू, जुने पाषाण
+        मूर्ती आणि रोमन काळापासून ते मराठा राज्यांपर्यंतची नाणी पाहायला मिळतात.'
+      history: null
+      significance: एक जुने शहर वाचनालय ज्यामध्ये पुरातत्त्वशास्त्र आणि नाण्यांचे
+        संग्रहालय देखील आहे.
+      dos: '- कर्मचाऱ्यांना नाण्यांच्या संग्रहाबद्दल अवश्य सांगा (विचारा)'
+      donts: '- विचारल्याशिवाय प्रदर्शनातील वस्तूंचे फोटो काढू नका'
+      safety_text: null
+    hi:
+      short_story: 'लोकमान्य तिलक स्मारक वाचन मंदिर चिपळूण में एक सार्वजनिक पुस्तकालय
+        है जो लगभग 155 साल पुराना है। नवंबर 2018 में इसमें एक संग्रहालय जोड़ा गया।
+
+
+        संग्रहालय पाषाण युग के औजार, हड़प्पा की वस्तुएं, पुणे के पास इनामगांव की खुदाई
+        से मिले जोरवे और मालवा के बर्तन, मराठा-युग की वस्तुएं, पुरानी पत्थर की मूर्तियां,
+        और रोमन काल से लेकर मराठा राज्यों तक के सिक्के प्रदर्शित करता है।'
+      history: null
+      significance: एक पुराना टाउन लाइब्रेरी जिसमें पुरातत्व और सिक्कों का संग्रहालय
+        भी है।
+      dos: '- कर्मचारियों से सिक्कों के संग्रह के बारे में पूछें'
+      donts: '- बिना पूछे प्रदर्शनों की तस्वीरें न लें'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://map.sahapedia.org/article/Lokmanya-Tilak%20Museum/2844
+    - https://en.wikipedia.org/wiki/Chiplun
+  _review: 'Gemini timings/fee/Wednesday closure came from a Ratnagiri Tilak museum
+    page; dropped; no coordinates: needs pin; timings and fee unknown; confirm on
+    visit; EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: visawa-point
+  status: ai_draft
+  name_en: Visawa Point
+  name_mr: विसावा पॉईंट
+  name_hi: विसावा पॉइंट
+  category: viewpoint
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: Chiplun Railway Station (7 km)
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Slippery edges and low visibility in heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Visawa Point is a roadside viewpoint located on the Mumbai-Goa
+        Highway in Parshuram Ghat, near Parshi Village in Chiplun. It serves as a
+        known rest stop for travelers passing through the Ratnagiri district.
+
+
+        From this vantage point, visitors can see the surrounding valleys and the
+        Vashishti River basin below the ghats. It is an open highway pull-off area
+        designed for short breaks.'
+      history: It historically served as a stopover for travelers navigating the Mumbai-Goa
+        route.
+      significance: A convenient highway viewpoint offering expansive sights of the
+        Parshuram Ghat and Vashishti River valley.
+      dos: '- Park your vehicle safely off the highway while enjoying the view.'
+      donts: '- Do not cross the busy highway on foot.'
+      safety_text: Traffic on the Mumbai-Goa highway can be fast-moving, so exercise
+        caution when pulling over or re-entering the road.
+    mr:
+      short_story: 'विसावा पॉईंट हा मुंबई-गोवा महामार्गावर परशुराम घाटात, चिपळूणमधील
+        पाग (पार्शी) गावाजवळ असलेला एक व्ह्यू पॉईंट आहे. रत्नागिरी जिल्ह्यातून प्रवास
+        करणाऱ्या प्रवाशांसाठी हे एक विश्रांतीचे ठिकाण आहे.
+
+
+        या ठिकाणाहून पर्यटकांना आजूबाजूच्या दऱ्या आणि घाटाखालील वाशिष्ठी नदीच्या खोऱ्याचे
+        विस्तीर्ण दृश्य पाहायला मिळते. थोडा वेळ थांबण्यासाठी महामार्गालगतच ही मोकळी
+        जागा तयार करण्यात आली आहे.'
+      history: मुंबई-गोवा मार्गावरून जाणाऱ्या प्रवाशांसाठी हे ऐतिहासिकदृष्ट्या एक
+        महत्त्वाचे विश्रांतीचे ठिकाण होते.
+      significance: परशुराम घाट आणि वाशिष्ठी नदीच्या खोऱ्याचे विस्तीर्ण दृश्य दाखवणारा
+        महामार्गावरील एक सोयीस्कर व्ह्यू पॉईंट.
+      dos: '- दृश्य पाहताना तुमचे वाहन महामार्गाच्या बाजूला सुरक्षितपणे पार्क करा.'
+      donts: '- रहदारीचा महामार्ग चालत ओलांडू नका.'
+      safety_text: मुंबई-गोवा महामार्गावर वाहनांचा वेग जास्त असतो, त्यामुळे गाडी थांबवताना
+        किंवा पुन्हा रस्त्यावर आणताना काळजी घ्या.
+    hi:
+      short_story: 'विसावा पॉइंट चिपलून में पारशी गांव के पास परशुराम घाट में मुंबई-गोवा
+        राजमार्ग पर स्थित एक व्यूप्वाइंट है। रत्नागिरी जिले से गुजरने वाले यात्रियों
+        के लिए यह आराम करने का एक जाना-माना स्थान है।
+
+
+        इस स्थान से आगंतुक आसपास की घाटियों और घाट के नीचे बहने वाली वशिष्ठी नदी की
+        घाटी के विस्तृत दृश्य देख सकते हैं। यह हाईवे के किनारे बनी एक खुली जगह है
+        जिसे छोटे ब्रेक के लिए डिज़ाइन किया गया है।'
+      history: ऐतिहासिक रूप से यह मुंबई-गोवा मार्ग से गुजरने वाले यात्रियों के लिए
+        एक ठहराव के रूप में कार्य करता था।
+      significance: एक सुविधाजनक हाईवे व्यूप्वाइंट जो परशुराम घाट और वशिष्ठी नदी घाटी
+        के विस्तृत दृश्य प्रस्तुत करता है।
+      dos: '- नज़ारों का आनंद लेते समय अपने वाहन को हाईवे से किनारे सुरक्षित रूप से
+        पार्क करें।'
+      donts: '- व्यस्त राजमार्ग को पैदल पार न करें।'
+      safety_text: मुंबई-गोवा राजमार्ग पर ट्रैफिक बहुत तेज़ हो सकता है, इसलिए वाहन
+        रोकते या वापस सड़क पर आते समय सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.google.com.np/travel/hotels/entity/CgoIi7qZwZzbi6tkEAE?g2lb=4207876%2C4208993%2C4220293%2C4223281%2C4242898%2C4245928%2C4251619%2C4253230%2C4254308%2C4256748%2C4258168%2C4250437%2C4251518%2C4253015&hl=en&gl=np&un=1&rp=MhsKEgml8-FZgqw7QBHB4nDmV1tVQBC245qvrC04AUgCwgIcIhoNAIBhRBITCOGYup7X1I0DFf6sAwAd8LYnzg&ictx=1&tcfs=EhoaGAoKMjAxOS0wNS0yMRIKMjAxOS0wNS0yMlIA&utm_campaign=sharing&utm_medium=link&utm_source=htls&ts=CAEaBAoCGgAqBAoAGgA&sa=X&ap=MAA&ei=ieqOac7NGKSv5LcPo7WqwAw&ved=2ahUKEwix3vD1jamVAxXvHRwAHR0CHBwQkP8FegUIBBCjAQ
+    - https://www.justdial.com/Chiplun/Visawa-Point-Dhamandevi/9999P2352-2352-190801073926-F2C5_BZDET/about-information
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shree-dev-someshwar-and-karanjeshwari-devi-temple
+  status: ai_draft
+  name_en: Shree Dev Someshwar and Karanjeshwari Devi Temple
+  name_mr: श्री देव सोमेश्वर आणि करंजेश्वरी देवी मंदिर
+  name_hi: श्री देव सोमेश्वर और करण्जेश्वरी देवी मंदिर
+  category: temple
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: 06:00
+  closes: '22:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Gowalkot village, about 7 km from Chiplun town via Gowalkot
+    Road.
+  nearest_station: Chiplun Railway Station (7 km)
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'This Hindu temple complex is located in Govalkot, about 7 kilometers
+        from Chiplun. It is situated at the foothills of the historic Govalkot Fort.
+
+
+        The temple is dedicated to Lord Someshwar (Shiva) and Goddess Karanjeshwari.
+        The site features traditional temple architecture and provides lodging rooms
+        on the premises for visitors participating in daily rituals.'
+      history: The deities have been worshipped since ancient times and serve as a
+        revered family shrine (Kuldevi) for specific local communities.
+      significance: A significant religious site and family shrine located at the
+        historic base of Govalkot Fort.
+      dos: '- Maintain silence and respect the spiritual atmosphere.
+
+        - Ask for permission before taking photographs inside the sanctum.'
+      donts: '- Do not block the narrow access road leading to the temple with vehicles.'
+      safety_text: The road leading to the temple is narrow, so drive carefully.
+    mr:
+      short_story: 'हे हिंदू मंदिर चिपळूणपासून सुमारे 7 किलोमीटर अंतरावर गोवळकोट येथे
+        आहे. ऐतिहासिक गोवळकोट किल्ल्याच्या पायथ्याशी हे मंदिर वसलेले आहे.
+
+
+        हे मंदिर श्री देव सोमेश्वर (शिव) आणि करण्जेश्वरी देवीला समर्पित आहे. मंदिरात
+        पारंपारिक वास्तुकला पाहायला मिळते आणि रोजच्या पूजेत सहभागी होणाऱ्या भाविकांसाठी
+        मंदिर परिसरात राहण्याची सोय उपलब्ध आहे.'
+      history: प्राचीन काळापासून या देवतांची पूजा केली जात असून, विशिष्ट स्थानिक समाजासाठी
+        हे एक आदरणीय कौटुंबिक श्रद्धास्थान (कुलदैवत) आहे.
+      significance: गोवळकोट किल्ल्याच्या ऐतिहासिक पायथ्याशी असलेले एक महत्त्वाचे धार्मिक
+        स्थळ आणि कुलदैवत.
+      dos: '- शांतता राखा आणि मंदिरातील पावित्र्य जपा.
+
+        - गाभाऱ्यात फोटो काढण्यापूर्वी परवानगी घ्या.'
+      donts: '- मंदिराकडे जाणाऱ्या अरुंद रस्त्यावर वाहने उभी करून रस्ता अडवू नका.'
+      safety_text: मंदिराकडे जाणारा रस्ता अरुंद आहे, त्यामुळे गाडी काळजीपूर्वक चालवा.
+    hi:
+      short_story: 'यह हिंदू मंदिर परिसर चिपलून से लगभग 7 किलोमीटर दूर गोवलकोट में
+        स्थित है। यह ऐतिहासिक गोवलकोट किले की तलहटी में बना है।
+
+
+        यह मंदिर भगवान सोमेश्वर (शिव) और देवी करण्जेश्वरी को समर्पित है। इस स्थल पर
+        पारंपरिक मंदिर वास्तुकला देखने को मिलती है और रोज़ाना की पूजा में भाग लेने
+        वाले आगंतुकों के लिए मंदिर परिसर में ठहरने के कमरे उपलब्ध हैं।'
+      history: प्राचीन काल से इन देवताओं की पूजा की जाती रही है और विशिष्ट स्थानीय
+        समुदायों के लिए यह एक पूजनीय पारिवारिक मंदिर (कुलदेवी) के रूप में कार्य करता
+        है।
+      significance: गोवलकोट किले के ऐतिहासिक आधार पर स्थित एक महत्वपूर्ण धार्मिक स्थल
+        और पारिवारिक मंदिर।
+      dos: '- शांति बनाए रखें और आध्यात्मिक माहौल का सम्मान करें।
+
+        - गर्भगृह के अंदर तस्वीरें लेने से पहले अनुमति मांगें।'
+      donts: '- मंदिर तक जाने वाली संकरी सड़क को वाहनों से अवरुद्ध न करें।'
+      safety_text: मंदिर की ओर जाने वाली सड़क संकरी है, इसलिए सावधानी से गाड़ी चलाएं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://wanderboat.ai/attractions/india/maharashtra/shree-dev-someshwar-shri-devi-karanjeshwari-temple/4kd1-P2wSKCaQGJGIs-2SQ
+    - https://www.konkandekho.com/experiences/shree-dev-someshwar-devi-karanjeshwari
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: gowalkot-jetty
+  status: ai_draft
+  name_en: Gowalkot Jetty
+  name_mr: गोवळकोट जेट्टी
+  name_hi: गोवलकोट जेट्टी
+  category: backwater
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Gowalkot Fort on the southern bank of the Vashisthi River,
+    approximately 10 km from Chiplun.
+  nearest_station: Chiplun Railway Station (10 km)
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Gowalkot
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Gowalkot Jetty is located on the southern bank of the Vashishti
+        River, adjacent to Govalkot Fort, approximately 10 kilometers from Chiplun.
+        It is situated at the base of the fort''s western ramparts.
+
+
+        Visitors can reach the jetty by descending through a ruined north-facing gate
+        of the fort. At the port area, there are five antique cannons partially buried
+        upside down in the ground.'
+      history: The jetty served as a vital port on the Vashishti River trade route,
+        with control of the area shifting between the Siddhis, Marathas, and the British
+        East India Company.
+      significance: A historic river port featuring buried cannons from the Maratha
+        and British eras.
+      dos: '- Explore the ruined western gate connecting the fort to the jetty.
+
+        - View the partially buried antique cannons near the port.'
+      donts: '- Do not deface the historical ruins or the cannons.'
+      safety_text: Watch your step near the ruined structures and the riverbank, as
+        the ground can be uneven.
+    mr:
+      short_story: 'गोवळकोट धक्का (जेट्टी) चिपळूणपासून सुमारे 10 किलोमीटर अंतरावर,
+        ऐतिहासिक गोवळकोट किल्ल्याला लागून वाशिष्ठी नदीच्या दक्षिण तीरावर आहे. हा धक्का
+        किल्ल्याच्या पश्चिमेकडील तटाच्या पायथ्याशी आहे.
+
+
+        किल्ल्याच्या उत्तरेकडे असलेल्या एका पडक्या दरवाज्यातून खाली उतरून पर्यटक या
+        धक्क्यापर्यंत पोहोचू शकतात. या बंदर परिसरात पाच जुन्या तोफा जमिनीवर उलट्या
+        पुरलेल्या अवस्थेत पाहायला मिळतात.'
+      history: हा धक्का वाशिष्ठी नदीवरील व्यापारी मार्गावरील एक महत्त्वाचे बंदर होते.
+        लगतच्या परिसरावर सिद्दी, मराठे आणि ब्रिटिश ईस्ट इंडिया कंपनीने वेगवेगळ्या
+        काळात राज्य केले.
+      significance: मराठा आणि ब्रिटिश काळातील पुरलेल्या तोफा असलेले एक ऐतिहासिक नदी
+        बंदर.
+      dos: '- किल्ल्याला धक्क्याशी जोडणाऱ्या पश्चिमेकडील पडक्या दरवाजाची पाहणी करा.
+
+        - बंदर परिसराजवळ अर्धवट पुरलेल्या जुन्या तोफा नक्की पहा.'
+      donts: '- ऐतिहासिक वास्तू किंवा तोफांचे विद्रूपीकरण करू नका.'
+      safety_text: पडक्या वास्तू आणि नदीकिनाऱ्याजवळ चालताना काळजी घ्या, कारण येथील
+        जमीन चढ-उताराची असू शकते.
+    hi:
+      short_story: 'गोवलकोट जेट्टी चिपलून से लगभग 10 किलोमीटर दूर ऐतिहासिक गोवलकोट
+        किले के बगल में वशिष्ठी नदी के दक्षिणी तट पर स्थित है। यह किले की पश्चिमी
+        प्राचीर के आधार पर मौजूद है।
+
+
+        आगंतुक किले के उत्तर की ओर मुख वाले एक खंडहर द्वार से नीचे उतरकर जेट्टी तक
+        पहुंच सकते हैं। बंदरगाह क्षेत्र में पांच प्राचीन तोपें ज़मीन में उल्टी गड़ी
+        हुई देखी जा सकती हैं।'
+      history: यह जेट्टी वशिष्ठी नदी के व्यापार मार्ग पर एक महत्वपूर्ण बंदरगाह के
+        रूप में कार्य करती थी, और इस क्षेत्र का नियंत्रण सिद्धियों, मराठों और ब्रिटिश
+        ईस्ट इंडिया कंपनी के बीच बदलता रहा।
+      significance: मराठा और ब्रिटिश काल की ज़मीन में गड़ी तोपों वाला एक ऐतिहासिक
+        नदी बंदरगाह।
+      dos: '- किले को जेट्टी से जोड़ने वाले पश्चिमी खंडहर द्वार को देखें।
+
+        - बंदरगाह के पास ज़मीन में आंशिक रूप से गड़ी हुई पुरानी तोपों को देखें।'
+      donts: '- ऐतिहासिक खंडहरों या तोपों को नुकसान न पहुंचाएं।'
+      safety_text: खंडहरों और नदी के किनारे चलते समय ध्यान रखें, क्योंकि ज़मीन ऊबड़-खाबड़
+        हो सकती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Gowalkot
+    - https://durgbharari.in/gowalkot/
+    - https://travelkonkan.in/govalkot-govindgadh-fort/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: pandav-caves-chiplun
+  status: ai_draft
+  name_en: Pandav Caves Chiplun
+  name_mr: पांडव लेणी, चिपळूण
+  name_hi: पांडव गुफाएं चिपलून
+  category: cave
+  taluka: Chiplun
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Mirjoli near Chiplun, accessible by local road transport
+    from Chiplun town.
+  nearest_station: null
+  nearest_bus_stop: Shivaji Nagar Bus Stop Chiplun
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Pandav Caves are a group of ancient rock-cut Buddhist caves
+        located about 2 kilometers from the Chiplun Bus Station. Despite the local
+        name referencing the Pandavas, the structures are of Buddhist origin.
+
+
+        Visitors can explore the excavated rock chambers and view the early architectural
+        influences carved into the stone. The entire surrounding area can be seen
+        in a short 15-minute visit.'
+      history: The caves are of ancient Buddhist origin, illustrating the historical
+        extent of Buddhist influence in the Ratnagiri district.
+      significance: A site of ancient rock-cut Buddhist caves highlighting early religious
+        architecture in Chiplun.
+      dos: '- Carry a flashlight to see the interior details of the rock-cut chambers.
+
+        - Respect the historical integrity of the archaeological site.'
+      donts: '- Do not carve or write on the ancient rock walls.'
+      safety_text: Be careful of uneven rock surfaces and low lighting inside the
+        caves.
+    mr:
+      short_story: 'पांडव लेणी हा प्राचीन बौद्ध लेण्यांचा एक समूह असून तो चिपळूण बस
+        स्थानकापासून सुमारे 2 किलोमीटर अंतरावर आहे. स्थानिक लोक याला पांडवांच्या नावाशी
+        जोडत असले तरी, या वास्तू मूळतः बौद्ध धर्माशी संबंधित आहेत.
+
+
+        पर्यटक या खडकात कोरलेल्या गुंफा पाहू शकतात आणि दगडावर कोरलेली सुरुवातीच्या
+        काळातील वास्तुकलेची झलक अनुभवू शकतात. संपूर्ण परिसराची पाहणी अवघ्या 15 मिनिटांत
+        करता येते.'
+      history: या लेणी प्राचीन बौद्ध काळातील असून, त्या रत्नागिरी जिल्ह्यातील बौद्ध
+        प्रभावाचा ऐतिहासिक विस्तार दर्शवतात.
+      significance: चिपळूणमधील सुरुवातीच्या धार्मिक वास्तुकलेवर प्रकाश टाकणाऱ्या प्राचीन
+        बौद्ध लेण्या.
+      dos: '- गुंफांच्या आतील बारकावे पाहण्यासाठी सोबत बॅटरी (टॉर्च) ठेवा.
+
+        - या पुरातत्त्वीय स्थळाचे ऐतिहासिक महत्त्व आणि पावित्र्य जपा.'
+      donts: '- प्राचीन खडकांवर किंवा भिंतींवर काहीही लिहू किंवा कोरू नका.'
+      safety_text: लेण्यांच्या आतील खडबडीत पृष्ठभाग आणि कमी प्रकाशामुळे चालताना काळजी
+        घ्या.
+    hi:
+      short_story: 'पांडव गुफाएं चिपलून बस स्टेशन से लगभग 2 किलोमीटर दूर स्थित प्राचीन
+        बौद्ध गुफाओं का एक समूह है। पांडवों के नाम पर आधारित स्थानीय नाम होने के बावजूद,
+        ये संरचनाएं वास्तव में बौद्ध मूल की हैं।
+
+
+        आगंतुक चट्टान काटकर बनाए गए कक्षों को देख सकते हैं और पत्थरों पर उकेरी गई
+        प्रारंभिक वास्तुकला की झलक पा सकते हैं। पूरे क्षेत्र को 15 मिनट की छोटी सी
+        यात्रा में देखा जा सकता है।'
+      history: ये गुफाएं प्राचीन बौद्ध मूल की हैं, जो रत्नागिरी जिले में बौद्ध प्रभाव
+        के ऐतिहासिक विस्तार को दर्शाती हैं।
+      significance: प्राचीन चट्टानों को काटकर बनाई गई बौद्ध गुफाओं का एक स्थल जो चिपलून
+        में प्रारंभिक धार्मिक वास्तुकला को उजागर करता है।
+      dos: '- गुफाओं के अंदर की बारीकियों को देखने के लिए साथ में फ्लैशलाइट रखें।
+
+        - पुरातात्विक स्थल की ऐतिहासिक अखंडता का सम्मान करें।'
+      donts: '- प्राचीन चट्टानों की दीवारों पर कुछ भी न लिखें या उकेरें।'
+      safety_text: गुफाओं के अंदर असमान सतहों और कम रोशनी के कारण सावधानी से चलें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://hotelatithichiplun.com/pages/pandavascave.html
+    - https://www.trawell.in/maharashtra/chiplun/pandav-caves
+    - https://indiandistricts.in/cultures/maharashtra/ratnagiri/political-history/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: jangli-jaygad-fort
+  status: ai_draft
+  name_en: Jangli Jaygad Fort
+  name_mr: जंगली जयगड किल्ला
+  name_hi: जंगली जयगढ़ किला
+  category: fort
+  taluka: Chiplun
+  lat: 17.45382
+  lng: 73.692447
+  coord_source: osm node/9197007199
+  osm_id: node/9197007199
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Paths and rock get slippery in heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Jangali_Jayagad
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Jangli Jaygad is a remote hill fort located deep within the forests
+        of the Sahyadri Tiger Reserve, perched at an elevation of 908 meters in the
+        Western Ghats. Positioned near the Kumbharli Ghat and the Koyna region, it
+        serves as a difficult trekking destination.
+
+        The route features thick jungle trails and opportunities to observe wildlife.
+        From the summit, visitors can see clear views of the Koyna reservoir and the
+        surrounding valleys.'
+      history: The fort was historically used as a strategic watchpost to guard the
+        Kumbharli Ghat trade route, providing the Maratha empire with a vantage point
+        over the Konkan and Deccan borders.
+      significance: A rugged jungle fort offering one of the most difficult treks
+        in the Sahyadri Tiger Reserve.
+      dos: '- Hire a local guide from nearby villages like Navja, as the jungle trails
+        are dense.
+
+        - Carry ample drinking water, trekking gear, and first-aid supplies.'
+      donts: '- Do not trek during the heavy monsoon season when the trails become
+        slippery and infested with leeches.
+
+        - Do not litter or disturb the wildlife in the tiger reserve.'
+      safety_text: The trek passes through a dense forest with wildlife; trekking
+        in groups with an experienced local guide is advised.
+    mr:
+      short_story: 'जंगली जयगड हा सह्याद्री व्याघ्र प्रकल्पाच्या घनदाट जंगलात वसलेला
+        एक दुर्गम डोंगरी किल्ला आहे. पश्चिम घाटात सुमारे 908 मीटर उंचीवर असलेल्या
+        या किल्ल्याचा ट्रेक कठीण मानला जातो. कुंभार्ली घाट आणि कोयना खोऱ्याच्या परिसरात
+        असलेल्या या किल्ल्यावर जाताना दाट जंगल आणि वन्यजीवांचे दर्शन घडते.
+
+        माथ्यावरून कोयना जलाशय आणि आजूबाजूच्या खोऱ्यांचे विस्तीर्ण दृश्य पाहता येते.'
+      history: ऐतिहासिक काळात कुंभार्ली घाटातील व्यापारी मार्गावर नजर ठेवण्यासाठी
+        या किल्ल्याचा वापर टेहळणीसाठी केला जात असे. मराठा साम्राज्यासाठी हे कोकण आणि
+        दख्खनच्या सीमेवरील एक महत्त्वाचे ठाणे होते.
+      significance: सह्याद्री व्याघ्र प्रकल्पातील एक अत्यंत आव्हानात्मक ट्रेक म्हणून
+        हा किल्ला ओळखला जातो.
+      dos: '- जंगलातील वाटा चकवणाऱ्या असल्याने नवजा किंवा जवळच्या गावातील स्थानिक
+        वाटाड्या सोबत घ्या.
+
+        - सोबत पुरेसे पिण्याचे पाणी, ट्रेकिंगचे साहित्य आणि प्रथमोपचार पेटी ठेवा.'
+      donts: '- अतिवृष्टीच्या काळात ट्रेकिंग करणे टाळा, कारण वाटा निसरड्या होतात आणि
+        जळवांचा त्रास होतो.
+
+        - व्याघ्र प्रकल्पातील वन्यजीवांना त्रास देऊ नका किंवा कचरा करू नका.'
+      safety_text: हा ट्रेक कठीण श्रेणीत मोडतो आणि वन्यजीव असलेल्या घनदाट जंगलातून
+        जातो; त्यामुळे अनुभवी स्थानिक मार्गदर्शकासोबत गटाने जाणे सुरक्षित ठरते.
+    hi:
+      short_story: 'जंगली जयगढ़ सह्याद्री टाइगर रिजर्व के घने जंगलों में स्थित एक
+        दुर्गम पहाड़ी किला है। पश्चिमी घाट में 908 मीटर की ऊंचाई पर स्थित यह किला
+        एक कठिन ट्रैकिंग गंतव्य है। कुंभार्ली घाट और कोयना क्षेत्र के पास स्थित इस
+        किले के रास्ते में घना जंगल और वन्यजीव देखने को मिलते हैं।
+
+        शिखर से कोयना जलाशय और आसपास की घाटियों का विस्तृत दृश्य दिखाई देता है।'
+      history: ऐतिहासिक रूप से इस किले का उपयोग कुंभार्ली घाट व्यापार मार्ग की निगरानी
+        के लिए एक रणनीतिक चौकी के रूप में किया जाता था, जो मराठा साम्राज्य को कोंकण
+        और दक्कन की सीमाओं पर नजर रखने में मदद करता था।
+      significance: सह्याद्री टाइगर रिजर्व में सबसे कठिन ट्रेक में से एक के रूप में
+        जाना जाने वाला एक जंगली किला।
+      dos: '- नवजा जैसे नजदीकी गांवों से एक स्थानीय गाइड को किराए पर लें क्योंकि जंगल
+        के रास्ते भ्रामक होते हैं।
+
+        - अपने साथ पर्याप्त पीने का पानी, ट्रैकिंग गियर और प्राथमिक चिकित्सा किट रखें।'
+      donts: '- भारी मानसून के मौसम में ट्रेक न करें क्योंकि रास्ते फिसलन भरे हो जाते
+        हैं और जोंक का खतरा रहता है।
+
+        - टाइगर रिजर्व में कचरा न फैलाएं और वन्यजीवों को परेशान न करें।'
+      safety_text: यह एक कठिन ट्रेक है जो वन्यजीवों वाले घने जंगल से होकर गुजरता है;
+        अनुभवी स्थानीय गाइड के साथ समूह में ट्रैकिंग करने की सलाह दी जाती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Jangali_Jayagad
+    - https://peakvisor.com/peak/jangli-jaygad.html
+    - https://www.sahyadritigers.org/ecotourism.php?id=7
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; Gemini could not confirm; identity from
+    OpenStreetMap only; monsoon_status is a category default, not sourced; EN text
+    + MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03

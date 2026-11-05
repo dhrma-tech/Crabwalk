@@ -1,0 +1,1810 @@
+# Places - Guhagar taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: guhagar-beach
+  status: ai_draft
+  name_en: Guhagar Beach
+  name_mr: गुहागर समुद्रकिनारा
+  name_hi: गुहागर बीच
+  category: beach
+  taluka: Guhagar
+  lat: 17.485438
+  lng: 73.186481
+  coord_source: osm node/12623574143
+  osm_id: node/12623574143
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: Nearest city and railhead is Chiplun, about 44 km by road.
+  nearest_station: Chiplun (44 km)
+  nearest_bus_stop: Guhagar bus stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Guhagar
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Guhagar is a quiet coastal town about 44 km from Chiplun, its
+        nearest railhead, known for its long, clean beach. The town''s main temples,
+        Shree Vyadeshwar and Durga Devi, are a short walk from the sand.
+
+
+        Guhagar is also known for coir items, coconuts, betel nuts and Alphonso mangoes.'
+      history: null
+      significance: null
+      dos: '- Combine with Vyadeshwar and Durga Devi temples'
+      donts: '- Don''t litter on the beach'
+      safety_text: '- Swim only where locals or lifeguards say it is safe'
+    mr:
+      short_story: 'गुहागर हे चिपळूणपासून (सर्वांत जवळचे रेल्वे स्टेशन) 44 किमी अंतरावर
+        असलेले एक शांत किनारी शहर आहे. हे शहर येथील लांब आणि स्वच्छ समुद्रकिनाऱ्यासाठी
+        ओळखले जाते. शहरातील मुख्य मंदिरे, श्री व्याडेश्वर आणि दुर्गा देवी, किनाऱ्यापासून
+        चालत जाण्याच्या अंतरावर आहेत.
+
+
+        गुहागर हे काथ्याच्या वस्तू, नारळ, सुपारी आणि हापूस आंब्यासाठीही प्रसिद्ध आहे.'
+      history: null
+      significance: null
+      dos: '- व्याडेश्वर आणि दुर्गा देवी मंदिरांनाही भेट द्या'
+      donts: '- समुद्रकिनाऱ्यावर कचरा करू नका'
+      safety_text: '- स्थानिक लोक किंवा जीवरक्षक जिथे सुरक्षित सांगतील तिथेच पोहा'
+    hi:
+      short_story: 'गुहागर चिपलून (सबसे नज़दीकी रेलवे स्टेशन) से लगभग 44 किमी दूर
+        एक शांत तटीय शहर है, जो अपने लंबे और साफ समुद्र तट के लिए जाना जाता है। शहर
+        के मुख्य मंदिर, श्री व्याडेश्वर और दुर्गा देवी, समुद्र तट से कुछ ही कदम की
+        दूरी पर हैं।
+
+
+        गुहागर कॉयर (नारियल की जटा) के सामान, नारियल, सुपारी और अल्फांसो आमों के लिए
+        भी जाना जाता है।'
+      history: null
+      significance: null
+      dos: '- व्याडेश्वर और दुर्गा देवी मंदिरों के दर्शन भी करें'
+      donts: '- समुद्र तट पर कचरा न फैलाएं'
+      safety_text: '- केवल वहीं तैरें जहां स्थानीय लोग या लाइफगार्ड सुरक्षित बताएं'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/8e/Guhagar_Beach.JPG
+    credit: Mahendra5806
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Guhagar_Beach.JPG
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Guhagar
+    - https://maharashtratourism.gov.in/districts/ratnagiri/
+  _review: open 00:00-23:59 dropped (open beach); EN text = Claude draft from sources,
+    needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: vyadeshwar-temple
+  status: ai_draft
+  name_en: Vyadeshwar Temple
+  name_mr: व्याडेश्वर मंदिर
+  name_hi: व्याडेश्वर मंदिर
+  category: temple
+  taluka: Guhagar
+  lat: 17.483611
+  lng: 73.190217
+  coord_source: osm node/2389646767
+  osm_id: node/2389646767
+  entry_fee_text: No fee
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: 06:30
+  closes: '20:00'
+  closed_days: []
+  best_time: Mahashivratri
+  how_to_reach: In Guhagar town, close to Guhagar beach.
+  nearest_station: Chiplun
+  nearest_bus_stop: Guhagar bus stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Shree_Dev_Vyadeshwar
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shree Vyadeshwar is a Shiva temple in Guhagar town, close to the
+        beach. It is the family deity of many Chitpavan families of the Konkan.
+
+
+        The temple follows the Panchayatan plan: Shiva''s shrine in the centre, with
+        shrines to Surya, Ganesha, Ambika and Vishnu-Lakshmi at the four corners,
+        and Nandi in front.'
+      history: Legend says sage Vyadi installed the lingam here after Parashurama
+        created the Konkan coast. The deity was later rediscovered and the present
+        structure built in the time of King Sakuran. Several subsidiary shrines and
+        the old east gate were replaced from May 2015.
+      significance: Kuladevata of many Chitpavan families; Guhagar's main temple.
+      dos: '- Visit with Guhagar beach, a short walk away'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: 'श्री व्याडेश्वर हे गुहागर शहरातील समुद्रकिनाऱ्याजवळ असलेले एक
+        शिवमंदिर आहे. हे कोकणातील अनेक चित्पावन कुटुंबांचे कुलदैवत आहे.
+
+
+        हे मंदिर पंचायतन शैलीचे आहे: मध्यभागी शंकराची पिंड असून, चार कोपऱ्यांत सूर्य,
+        गणेश, अंबिका आणि विष्णू-लक्ष्मी यांची मंदिरे आहेत आणि समोर नंदी आहे.'
+      history: आख्यायिकेनुसार, परशुरामाने कोकण किनारपट्टी निर्माण केल्यावर व्याडी
+        ऋषींनी येथे शिवलिंगाची स्थापना केली. पुढे या दैवताचा पुन्हा शोध लागला आणि
+        सद्यस्थितीतील मंदिर साकुरान राजाच्या काळात बांधले गेले. मे 2015 पासून अनेक
+        छोटी मंदिरे आणि जुना पूर्व दरवाजा नव्याने बांधण्यात आला.
+      significance: अनेक चित्पावन कुटुंबांचे कुलदैवत; गुहागरचे मुख्य मंदिर.
+      dos: '- जवळच असलेल्या गुहागर समुद्रकिनाऱ्यालाही भेट द्या'
+      donts: '- मंदिरात पादत्राणे घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: 'श्री व्याडेश्वर गुहागर शहर में समुद्र तट के करीब स्थित एक शिव
+        मंदिर है। यह कोंकण के कई चित्पावन परिवारों के कुलदेवता हैं।
+
+
+        यह मंदिर पंचायतन शैली में बना है: बीच में शिव का मुख्य मंदिर है, और चारों
+        कोनों पर सूर्य, गणेश, अंबिका और विष्णु-लक्ष्मी के मंदिर हैं, और सामने नंदी
+        विराजमान हैं।'
+      history: किंवदंती है कि परशुराम द्वारा कोंकण तट के निर्माण के बाद ऋषि व्याडी
+        ने यहां शिवलिंग स्थापित किया था। बाद में इस देवता की फिर से खोज हुई और वर्तमान
+        संरचना राजा साकुरान के समय में बनाई गई थी। मई 2015 से कई छोटे मंदिरों और पुराने
+        पूर्वी द्वार का पुनर्निर्माण किया गया।
+      significance: कई चित्पावन परिवारों के कुलदेवता; गुहागर का मुख्य मंदिर।
+      dos: '- कुछ ही दूरी पर स्थित गुहागर समुद्र तट भी जाएं'
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/3/37/Shri_Vyadweshwar%2C_Guhagar.jpg
+    credit: Gsmodak
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Shri_Vyadweshwar,_Guhagar.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Shree_Dev_Vyadeshwar
+    - https://guhagarnews.com/sri-vyadeshwar-temple-at-guhagar/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: hedavi-dashabhuja-ganpati-temple
+  status: ai_draft
+  name_en: Hedavi Dashabhuja Ganpati Temple
+  name_mr: हेदवी दशभुजा गणपती मंदिर
+  name_hi: हेदवी दशभुजा गणपति मंदिर
+  category: temple
+  taluka: Guhagar
+  lat: 17.354647
+  lng: 73.232696
+  coord_source: osm node/2442123537
+  osm_id: node/2442123537
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: 06:00
+  closes: '22:00'
+  closed_days: []
+  best_time: Maghi Chaturthi fair
+  how_to_reach: 18 km from Guhagar by road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Ganesh temple at Hedavi, 18 km from Guhagar, was built in
+        the Peshwa period. The idol is known as Shri Dashabhuja Laxmi Ganesh, a ten-armed
+        Ganesha.
+
+
+        A large fair is held here at Maghi Chaturthi. Bamanghal, a narrow rock cleft
+        by the sea, is close by.'
+      history: Built in the Peshwa period.
+      significance: null
+      dos: '- Combine with Bamanghal and Hedavi beach'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: 'गुहागरपासून 18 किमी अंतरावर असलेले हेदवीचे हे गणेश मंदिर पेशवे
+        काळात बांधले गेले. येथील मूर्ती श्री दशभुजा लक्ष्मी गणेश म्हणून ओळखली जाते,
+        जी दहा हातांची आहे.
+
+
+        माघी चतुर्थीला येथे मोठी जत्रा भरते. समुद्राच्या जवळच खडकांमधील एक नैसर्गिक
+        घळ, बामणघळ, अगदी जवळ आहे.'
+      history: पेशवे काळात बांधलेले.
+      significance: null
+      dos: '- बामणघळ आणि हेदवी समुद्रकिनाऱ्यालाही भेट द्या'
+      donts: '- मंदिरात पादत्राणे घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: 'गुहागर से 18 किमी दूर हेदवी का गणेश मंदिर पेशवा काल में बनाया
+        गया था। इस मूर्ति को श्री दशभुजा लक्ष्मी गणेश के नाम से जाना जाता है, जिनके
+        दस हाथ हैं।
+
+
+        माघी चतुर्थी पर यहां एक बड़ा मेला लगता है। समुद्र के पास चट्टानों के बीच एक
+        संकरी दरार, बामणघल, इसके करीब ही है।'
+      history: पेशवा काल में निर्मित।
+      significance: null
+      dos: '- बामणघल और हेदवी समुद्र तट भी जाएं'
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.templepurohit.com/hindu-temple/dashabhuja-temple-maharashtra/
+  _review: nearest_station Pune (wrong), how_to_reach generic; EN text = Claude draft
+    from sources, needs team review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: bamanghal-hedavi
+  status: ai_draft
+  name_en: Bamanghal, Hedavi
+  name_mr: बामणघळ, हेदवी
+  name_hi: बामणघळ, हेदवी
+  category: viewpoint
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: About 29 km from Guhagar by road, then a short walk from Hedavi village.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: true
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bamanghal is a narrow cleft cut into the black rock at Hedavi
+        beach by the sea. It is about 20 feet deep, 35 feet long and only 1 to 2 feet
+        wide.
+
+
+        At high tide the waves rush into the cleft and burst out as spray. It is a
+        short walk from Hedavi village.'
+      history: null
+      significance: A natural rock cleft where the sea shoots up at high tide.
+      dos: '- Check the tide table and go near high tide
+
+        - Visit between October and March'
+      donts: '- Don''t step close to the edge of the cleft'
+      safety_text: The rock is slippery and waves surge into the gap without warning.
+        Keep children well back from the edge.
+    mr:
+      short_story: 'हेदवी समुद्रकिनाऱ्यावर काळ्या पाषाणात समुद्राच्या लाटांमुळे निर्माण
+        झालेली एक संकीर्ण घळ म्हणजेच बामणघळ होय. ही साधारण 20 फूट खोल, 35 फूट लांब
+        आणि फक्त 1 ते 2 फूट रुंद आहे.
+
+
+        भरतीच्या वेळी समुद्राच्या लाटा या घळीत वेगाने शिरतात आणि पाण्याचा तुषार (फवारा)
+        होऊन बाहेर उडतात. हेदवी गावातून चालत जाऊन येथे सहज पोहोचता येते.'
+      history: null
+      significance: भरतीच्या वेळी समुद्राचे पाणी फवार्यासारखे वर उडणारी एक नैसर्गिक
+        पाषाण घळ.
+      dos: '- भरतीच्या वेळा तपासा आणि भरतीच्या वेळेच्या आसपास भेट द्या
+
+        - ऑक्टोबर ते मार्च दरम्यान भेट द्या'
+      donts: '- घळीच्या कड्याच्या (काठाच्या) अत्यंत जवळ उभे करू नका'
+      safety_text: इथला खडक निसरडा असून कुठलाही पूर्वइशारा न देता लाटा अचानक घळीत
+        उसळतात. मुलांना कड्याच्या काठापासून सुरक्षित अंतरावर दूर ठेवा.
+    hi:
+      short_story: 'बा्मणघळ हेदवी समुद्र तट पर काले पत्थरों में समुद्र द्वारा बनाई
+        गई एक संकरी दरार है। यह लगभग 20 फीट गहरी, 35 फीट लंबी और केवल 1 से 2 फीट चौड़ी
+        है।
+
+
+        उच्च ज्वार (हाई टाइड) के दौरान लहरें दरार में प्रवेश करती हैं और फव्वारे के
+        रूप में बाहर निकलती हैं। यह हेदवी गाँव से थोड़ी पैदल दूरी पर है।'
+      history: null
+      significance: एक प्राकृतिक चट्टानी दरार जहाँ उच्च ज्वार के दौरान समुद्र का पानी
+        ऊपर की ओर उठता है।
+      dos: '- ज्वार के समय की जाँच करें और उच्च ज्वार के समय के पास जाएँ
+
+        - अक्टूबर से मार्च के बीच जाएँ'
+      donts: '- दरार के किनारे के बहुत करीब न कदम रखें'
+      safety_text: चट्टान फिसलन भरी है और लहरें बिना किसी चेतावनी के अंतराल में उमड़
+        पड़ती हैं। बच्चों को किनारे से काफी दूर रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ekaanthomestays.com/tourist-baman-ghal.php
+    - https://www.outlookindia.com/traveller/ot-getaway-guides/guhagar_the_sea_of_stories/
+  _review: 'tide-dependent per a homestay site: the sea gush through the rock cleft
+    is best at high tide; verify on field; no coordinates: needs pin; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: velneshwar-beach
+  status: ai_draft
+  name_en: Velneshwar Beach
+  name_mr: वेळणेश्वर समुद्रकिनारा
+  name_hi: वेलनेश्वर समुद्र तट
+  category: beach
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to March
+  how_to_reach: About 70 km from Ratnagiri by road.
+  nearest_station: Ratnagiri (65 km)
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Travel may be restricted during heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Velneshwar
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Velneshwar, about 70 km from Ratnagiri, has a clean beach with
+        no rocks that the district calls safe, which is rare on this coast. The 1,200-year-old
+        Mahadev temple stands next to it, and MTDC runs a resort here.
+
+
+        It is quieter than Guhagar and Ganpatipule, a good stop for a long beach walk.'
+      history: null
+      significance: null
+      dos: '- Combine with the Mahadev temple'
+      donts: '- Don''t litter on the beach'
+      safety_text: '- Swim only where locals or lifeguards say it is safe'
+    mr:
+      short_story: 'रत्नागिरीपासून सुमारे 70 किमी अंतरावर असलेल्या वेळणेश्वरमध्ये
+        एक स्वच्छ आणि खडकरहित समुद्रकिनारा आहे. जिल्ह्यामध्ये हा किनारा सुरक्षित मानला
+        जातो, जे या किनारपट्टीवर दुर्मिळ आहे. किनाऱ्याला लागूनच 1,200 वर्षे जुने महादेव
+        मंदिर आहे आणि येथे एमटीडीसी (MTDC) चे रिसॉर्टही आहे.
+
+
+        हा किनारा गुहागर आणि गणपतीपुळे पेक्षा जास्त शांत आहे, त्यामुळे समुद्रावर लांबवर
+        चालण्यासाठी हे एक उत्तम ठिकाण आहे.'
+      history: null
+      significance: null
+      dos: '- महादेव मंदिरालाही भेट द्या'
+      donts: '- समुद्रकिनाऱ्यावर कचरा करू नका'
+      safety_text: '- स्थानिक लोक किंवा जीवरक्षक जिथे सुरक्षित सांगतील तिथेच पोहा'
+    hi:
+      short_story: 'रत्नागिरी से लगभग 70 किमी दूर वेलनेश्वर में एक साफ और चट्टान-मुक्त
+        समुद्र तट है, जिसे जिले में सुरक्षित माना जाता है, जो इस तट पर दुर्लभ है।
+        इसके बगल में 1,200 साल पुराना महादेव मंदिर स्थित है, और एमटीडीसी (MTDC) यहां
+        एक रिसॉर्ट भी चलाता है।
+
+
+        यह गुहागर और गणपतिपुले की तुलना में अधिक शांत है, जो समुद्र तट पर लंबी सैर
+        के लिए एक अच्छी जगह है।'
+      history: null
+      significance: null
+      dos: '- महादेव मंदिर के दर्शन भी करें'
+      donts: '- समुद्र तट पर कचरा न फैलाएं'
+      safety_text: '- केवल वहीं तैरें जहां स्थानीय लोग या लाइफगार्ड सुरक्षित बताएं'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/a/a7/Velneshwar_beach_panorama.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Ankur Panchbudhe
+    licence: CC BY-SA 2.0
+    source_url: https://commons.wikimedia.org/wiki/File:Velneshwar_beach_panorama.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Velneshwar
+    - https://maharashtratourism.gov.in/mr/beach/velneshwar/
+  _review: 'name_mr had a Gujarati character from Gemini; corrected by Claude; no
+    coordinates: needs pin; EN text = Claude draft from sources, needs team review;
+    MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: velneshwar-temple
+  status: ai_draft
+  name_en: Velneshwar Temple
+  name_mr: वेळणेश्वर मंदिर
+  name_hi: वेलनेश्वर मंदिर
+  category: temple
+  taluka: Guhagar
+  lat: 17.378566
+  lng: 73.210972
+  coord_source: osm way/2916509152
+  osm_id: way/2916509152
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: 06:00
+  closes: '20:00'
+  closed_days: []
+  best_time: October to March; Mahashivratri fair
+  how_to_reach: Next to Velneshwar beach.
+  nearest_station: Ratnagiri (65 km)
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Velneshwar
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Mahadev temple at Velneshwar is said to be about 1,200 years
+        old. It stands next to the village's clean, safe beach, about 70 km from Ratnagiri.
+        MTDC runs a resort here.
+      history: null
+      significance: null
+      dos: '- Visit with the beach next door'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: वेळणेश्वर येथील महादेव मंदिर सुमारे 1,200 वर्षे जुने असल्याचे मानले
+        जाते. हे रत्नागिरीपासून सुमारे 70 किमी अंतरावर, गावातील स्वच्छ आणि सुरक्षित
+        समुद्रकिनाऱ्याला लागूनच आहे. येथे एमटीडीसी (MTDC) चे रिसॉर्ट आहे.
+      history: null
+      significance: null
+      dos: '- शेजारच्या समुद्रकिनाऱ्यालाही भेट द्या'
+      donts: '- मंदिरात पादत्राणे घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: माना जाता है कि वेलनेश्वर का महादेव मंदिर लगभग 1,200 साल पुराना
+        है। यह रत्नागिरी से लगभग 70 किमी दूर, गांव के साफ और सुरक्षित समुद्र तट के
+        बगल में स्थित है। एमटीडीसी (MTDC) यहां एक रिसॉर्ट चलाता है।
+      history: null
+      significance: null
+      dos: '- पास ही स्थित समुद्र तट भी जाएं'
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/8/8a/Ratnagiri%2C_Velneshwar_-_panoramio_%28100%29.jpg
+    credit: Udaykumar PR
+    licence: CC BY 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Ratnagiri,_Velneshwar_-_panoramio_(100).jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Velneshwar
+    - https://maharashtratourism.gov.in/mr/beach/velneshwar/
+    - https://www.greenleaftheresort.com/blog/velneshwar-temple-in-ganpatipule-ratnagiri/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: gopalgad-fort
+  status: ai_draft
+  name_en: Gopalgad Fort
+  name_mr: गोपाळगड किल्ला
+  name_hi: गोपालगढ़ किला
+  category: fort
+  taluka: Guhagar
+  lat: 17.571506
+  lng: 73.151826
+  coord_source: osm way/2039275712
+  osm_id: way/2039275712
+  entry_fee_text: Free entry
+  entry_fee_inr: 0
+  visit_minutes: 240
+  opens: 08:00
+  closes: '18:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: 13 km from Guhagar to Anjanvel village; a road leads up to the gate,
+    about 30 minutes on foot.
+  nearest_station: Chiplun (51 km)
+  nearest_bus_stop: Guhagar bus stand (13 km)
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Anjanvel_Fort
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Gopalgad, also called Anjanvel fort, is a laterite sea fort on
+        a 300 ft hill near Anjanvel, 13 km from Guhagar. The rectangular fort covers
+        7 acres, with walls 12 ft high and 8 ft thick, 15 bastions and a dry moat
+        all round.
+
+
+        It is split into three parts, Varchakot, Parkot and Balekot, and there is
+        a mango orchard inside the walls. The old Uddalakeshwar temple is nearby,
+        and Talkeshwar lighthouse is about 2 km away.'
+      history: Tradition says King Ramaraya built it, date unknown. Adil Shah took
+        it in 1424 and Shivaji in 1660, adding a dockyard and naming it Gopalgad.
+        Khairiyat Khan held it from 1699 for 46 years, Tulaji Angre won it in 1745,
+        Ramji Mahadev Bivalkar in 1756, and Colonel Kennedy took it in 1818.
+      significance: A large coastal fort guarding the mouth of the Vashishti river.
+      dos: '- Combine with Talkeshwar lighthouse and Anjanvel beach
+
+        - Walk the walls for views over the river mouth'
+      donts: '- Don''t climb the bastion walls'
+      safety_text: '- Parts of the fort are in ruins; watch your step'
+    mr:
+      short_story: 'गुहागरपासून 13 किमी अंतरावर अंजनवेलजवळ 300 फूट उंचीच्या टेकडीवर
+        असलेला गोपाळगड हा जांभा दगडाचा जलदुर्ग आहे, ज्याला अंजनवेलचा किल्ला असेही
+        म्हणतात. 7 एकरांवर पसरलेल्या या आयताकृती किल्ल्याची तटबंदी 12 फूट उंच आणि
+        8 फूट जाड असून, त्याला 15 बुरुज आणि सभोवताली एक कोरडा खंदक आहे.
+
+
+        हा किल्ला वरचाकोट, पारकोट आणि बालेकोट अशा तीन भागांत विभागलेला असून, तटबंदीच्या
+        आत आंब्याची बाग आहे. जुने उद्दाळकेश्वर मंदिर जवळच आहे आणि टळकेश्वर दीपगृह
+        सुमारे 2 किमी अंतरावर आहे.'
+      history: परंपरेनुसार, रामराया राजाने हा किल्ला बांधला, पण त्याची तारीख अज्ञात
+        आहे. आदिलशहाने 1424 मध्ये आणि शिवाजी महाराजांनी 1660 मध्ये हा किल्ला जिंकला,
+        त्यात गोदी बांधून त्याचे गोपाळगड असे नामकरण केले. 1699 पासून 46 वर्षे तो खैरियात
+        खानाच्या ताब्यात होता. 1745 मध्ये तुळाजी आंग्रे यांनी, 1756 मध्ये रामजी महादेव
+        बिवलकर यांनी हा किल्ला जिंकला आणि 1818 मध्ये कर्नल केनेडीने तो ताब्यात घेतला.
+      significance: वाशिष्ठी नदीच्या मुखाचे रक्षण करणारा एक मोठा किनारी किल्ला.
+      dos: '- टळकेश्वर दीपगृह आणि अंजनवेल समुद्रकिनाऱ्यालाही भेट द्या
+
+        - नदीच्या मुखाचे दृश्य पाहण्यासाठी तटबंदीवरून चाला'
+      donts: '- बुरुजांच्या भिंतींवर चढू नका'
+      safety_text: '- किल्ल्याचे काही भाग ढासळलेले आहेत; जपून चाला'
+    hi:
+      short_story: 'गुहागर से 13 किमी दूर अंजनवेल के पास 300 फीट ऊंची पहाड़ी पर स्थित
+        गोपालगढ़ एक लैटेराइट समुद्री किला है, जिसे अंजनवेल किला भी कहा जाता है। 7
+        एकड़ में फैले इस आयताकार किले की दीवारें 12 फीट ऊंची और 8 फीट मोटी हैं, जिसमें
+        15 बुर्ज और चारों ओर एक सूखी खाई है।
+
+
+        इसे तीन भागों में बांटा गया है: वरचाकोट, पारकोट और बालेकोट, और दीवारों के
+        अंदर एक आम का बगीचा है। पुराना उद्दालकेश्वर मंदिर पास ही है, और टलकेश्वर लाइटहाउस
+        लगभग 2 किमी दूर है।'
+      history: परंपरा के अनुसार, इसे राजा रामराय ने बनवाया था, हालांकि तारीख अज्ञात
+        है। आदिल शाह ने 1424 में और शिवाजी ने 1660 में इसे जीता, इसमें एक डॉकयार्ड
+        जोड़ा और इसका नाम गोपालगढ़ रखा। 1699 से 46 वर्षों तक यह खैरियात खान के पास
+        रहा, 1745 में तुलाजी आंग्रे ने, 1756 में रामजी महादेव बिवलकर ने इसे जीता और
+        1818 में कर्नल कैनेडी ने इस पर कब्ज़ा कर लिया।
+      significance: वशिष्ठी नदी के मुहाने की रक्षा करने वाला एक बड़ा तटीय किला।
+      dos: '- टलकेश्वर लाइटहाउस और अंजनवेल समुद्र तट भी जाएं
+
+        - नदी के मुहाने के नज़ारे देखने के लिए दीवारों पर चलें'
+      donts: '- बुर्ज की दीवारों पर न चढ़ें'
+      safety_text: '- किले के कुछ हिस्से खंडहर में हैं; संभलकर चलें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/7/7b/Gopalgad_Outer_Wall.jpg
+    credit: Pradeep717
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Gopalgad_Outer_Wall.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Anjanvel_Fort
+    - https://www.discovermh.com/gopalgad-fort/
+    - https://www.thrillophilia.com/attractions/gopalgad-fort-ratnagiri
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: anjanvel-beach
+  status: ai_draft
+  name_en: Anjanvel Beach
+  name_mr: अंजनवेल समुद्रकिनारा
+  name_hi: अंजनवेल बीच
+  category: beach
+  taluka: Guhagar
+  lat: 17.568907
+  lng: 73.161396
+  coord_source: osm way/2974489654
+  osm_id: way/2974489654
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Anjanvel village near Guhagar.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Anjanvel is a fishing village about 10 km north of Guhagar, where
+        the Vashishti river meets the sea. Gopalgad fort stands here, half on the
+        hill and half on the shore.
+
+
+        The beach is usually done together with the fort and the Talkeshwar lighthouse.
+        An auto from Guhagar costs roughly Rs 300.'
+      history: null
+      significance: A fishing-village beach at the mouth of the Vashishti, below Gopalgad
+        fort.
+      dos: '- Combine with Gopalgad fort and Talkeshwar lighthouse'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: 'अंजनवेल हे गुहागरच्या उत्तरेस सुमारे 10 किमी अंतरावर असलेले एक
+        मासेमारी करणारे गाव आहे, जिथे वाशिष्ठी नदी समुद्राला मिळते. येथे अर्धा भाग
+        डोंगरावर आणि अर्धा भाग किनारपट्टीवर असलेला प्रसिद्ध गोपालगड किल्ला उभा आहे.
+
+
+        या समुद्रकिनाऱ्याला सहसा किल्ल्यासोबत आणि टाळकेश्वर दीपगृहाला (लाईटहाऊस) भेट
+        देऊनच पूर्ण केले जाते. गुहागरहून येणारी ऑटो रिक्षा साधारणपणे 300 रुपये भाडे
+        घेते.'
+      history: null
+      significance: गोपालगड किल्ल्याच्या खाली आणि वाशिष्ठी नदीच्या मुखाशी वसलेले मासेमारी
+        करणाऱ्या गावातील समुद्रकिनारा.
+      dos: '- गोपालगड किल्ला आणि टाळकेश्वर दीपगृहाच्या भेटीसह याचे नियोजन करा'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: 'अंजनवेल गुहागर से लगभग 10 किमी उत्तर में एक मछली पकड़ने वाला गाँव
+        है, जहाँ वाशिष्ठी नदी समुद्र से मिलती है। गोपालगड किला यहाँ स्थित है, आधा
+        पहाड़ी पर और आधा तट पर।
+
+
+        यह समुद्र तट आमतौर पर किले और ताळकेश्वर दीपगृह के साथ देखा जाता है। गुहागर
+        से एक ऑटो का किराया लगभग 300 रुपये है।'
+      history: null
+      significance: वाशिष्ठी के मुहाने पर, गोपालगड किले के नीचे एक मछली पकड़ने वाले
+        गाँव का समुद्र तट।
+      dos: '- गोपालगड किले और ताळकेश्वर दीपगृह के साथ जोड़ें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Anjanwel
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.outlookindia.com/traveller/ot-getaway-guides/guhagar_the_sea_of_stories/
+  _review: beach itself thinly sourced; auto fare from Outlook, may be outdated; EN
+    text = Claude draft from sources, needs team review; MR/HI = Gemini translation,
+    needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: talkeshwar-lighthouse
+  status: ai_draft
+  name_en: Talkeshwar Lighthouse
+  name_mr: टाळकेश्वर दीपगृह
+  name_hi: टाळकेश्वर दीपगृह
+  category: viewpoint
+  taluka: Guhagar
+  lat: 17.565765
+  lng: 73.141273
+  coord_source: osm way/3070116598
+  osm_id: way/3070116598
+  entry_fee_text: Nominal fee
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: On a hill at the southern mouth of the Vashishti river, about 2 km
+    from Anjanvel (Gopalgad) fort.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Talkeshwar (Tolkeshwar Point) lighthouse stands on a hill on the
+        south bank of the Vashishti river mouth, near Dabhol port. It is reached from
+        Chiplun through Anjanvel village, about 60 km by road.
+
+
+        The present tower was built in 1956-58 and its light was switched on in February
+        1960.'
+      history: A light was first set up here in 1880 on a cast iron column. A small
+        masonry tower followed in 1933-34, then the present tower in 1956-58. The
+        light source has been upgraded several times since, most recently in 2003.
+      significance: A working lighthouse with a recorded history going back to 1880,
+        guarding the Dabhol river mouth.
+      dos: '- Check visiting hours at the gate before planning'
+      donts: '- Don''t photograph equipment if staff ask you not to'
+      safety_text: null
+    mr:
+      short_story: 'टाळकेश्वर (तोळकेश्वर पॉईंट) दीपगृह दाभोळ बंदराच्या जवळ, वाशिष्ठी
+        नदीच्या मुखाच्या दक्षिण काठावरील एका टेकडीवर उभे आहे. चिपळूणहून अंजनवेल गावामार्गे
+        रस्त्याने येथे पोहोचता येते, जे सुमारे 60 किमी अंतरावर आहे.
+
+
+        सध्याचा हा टावर 1956-58 मध्ये बांधला गेला आणि फेब्रुवारी 1960 मध्ये त्याचा
+        दिवा (लाईट) सुरू करण्यात आला.'
+      history: येथे सर्वप्रथम 1880 मध्ये एका कास्ट आयर्नच्या खांबावर दिवा बसवण्यात
+        आला होता. त्यानंतर 1933-34 मध्ये एक लहान दगडी व सिमेंटचा टावर उभारला गेला
+        आणि नंतर 1956-58 मध्ये सद्यस्थितीतील टावर बनवण्यात आला. तेव्हापासून दिव्याचा
+        स्त्रोत अनेक वेळा आधुनिक करण्यात आला असून, सर्वात शेवटी 2003 मध्ये त्याचे
+        आधुनिकीकरण झाले.
+      significance: दाभोळ नदीच्या मुखाचे रक्षण करणारे आणि 1880 पर्यंतचा लिखित इतिहास
+        असलेले एक कार्यरत दीपगृह.
+      dos: '- नियोजन करण्यापूर्वी प्रवेशद्वारावरील भेटीच्या वेळा तपासा'
+      donts: '- कर्मचाऱ्यांनी फोटो काढण्यास मनाई केल्यास उपकरणांचे फोटो काढू नका'
+      safety_text: null
+    hi:
+      short_story: 'ताळकेश्वर (टोळकेश्वर पॉइंट) दीपगृह दाभोल बंदर के पास, वाशिष्ठी
+        नदी के मुहाने के दक्षिणी तट पर एक पहाड़ी पर खड़ा है। यह सड़क मार्ग से अंजनवेल
+        गाँव के माध्यम से चिपळूण से लगभग 60 किमी दूर है।
+
+
+        वर्तमान टावर 1956-58 में बनाया गया था और इसकी लाइट फरवरी 1960 में चालू की
+        गई थी।'
+      history: यहाँ सबसे पहले 1880 में कास्ट आयरन के खंबे पर एक लाइट लगाई गई थी। इसके
+        बाद 1933-34 में एक छोटा चिनाई टॉवर आया, फिर 1956-58 में वर्तमान टॉवर बना।
+        तब से लाइट के स्रोत को कई बार अपग्रेड किया गया है, हाल ही में 2003 में।
+      significance: दाभोल नदी के मुहाने की रक्षा करने वाला 1880 तक के लिखित इतिहास
+        वाला एक कार्यशील दीपगृह।
+      dos: '- योजना बनाने से पहले गेट पर विजिटिंग ऑवर की जाँच करें'
+      donts: '- यदि कर्मचारी मना करें तो उपकरणों की तस्वीर न लें'
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/f/fd/Light_house%2C_Guhagar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Eloquent Insan
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Light_house,_Guhagar.jpg
+  _sources:
+    _all:
+    - https://www.dgll.nic.in/DGLL-light-house-location/about-mumbai/tolkeshwar-point-lighthouse
+    - https://en.wikipedia.org/wiki/Anjanvel_Fort
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: 'lighthouse visiting hours/fee: check DGLL page; visiting hours/fee not
+    on DGLL page; EN text = Claude draft from sources, needs team review; MR/HI =
+    Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: dolphin-point-anjanvel
+  status: ai_draft
+  name_en: Dolphin Point, Anjanvel
+  name_mr: डॉल्फिन पॉईंट, अंजनवेल
+  name_hi: डॉल्फिन पॉइंट, अंजनवेल
+  category: viewpoint
+  taluka: Guhagar
+  lat: 17.567253
+  lng: 73.140938
+  coord_source: osm node/13634142631
+  osm_id: node/13634142631
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Rough seas make boat rides unsafe.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Dolphin Point is a scenic viewpoint situated in Anjanvel village,
+        Guhagar taluka, near the Talkeshwar Point Lighthouse and Talkeshwar Temple.
+        It offers expansive views of the Arabian Sea, crashing waves, and the rocky
+        coastal cliffs.
+
+
+        Visitors often use this vantage point for dolphin spotting tours. Wild dolphins
+        can sometimes be seen swimming in the calm waters, especially during the early
+        afternoon.'
+      history: null
+      significance: A popular coastal viewpoint in Maharashtra for spotting wild dolphins
+        in their natural habitat.
+      dos: '- Bring binoculars or a zoom lens for a better chance at spotting dolphins.
+
+        - Visit between October and March when the sea is calmer.'
+      donts: '- Do not visit during the monsoon season due to rough seas and high
+        winds.'
+      safety_text: The cliff edges can be steep, so maintain a safe distance from
+        the edge while observing the sea.
+    mr:
+      short_story: 'अंजनवेल (गुहागर) येथील टळकेश्वर दीपगृह आणि टळकेश्वर मंदिराजवळ
+        डॉल्फिन पॉईंट हा एक नयनरम्य निसर्ग बिंदू आहे. येथून अरबी समुद्र, लाटा आणि
+        खडकाळ किनारपट्टीचे विहंगम दृश्य दिसते.
+
+
+        हा परिसर डॉल्फिन पाहण्यासाठी प्रसिद्ध असून, दुपारच्या वेळी समुद्राच्या शांत
+        पाण्यात अनेकदा जंगली डॉल्फिन पोहताना दिसतात.'
+      history: null
+      significance: महाराष्ट्रातील नैसर्गिक अधिवासात जंगली डॉल्फिन पाहण्यासाठी प्रसिद्ध
+        असलेला किनारी पॉईंट.
+      dos: '- डॉल्फिन पाहण्यासाठी दुर्बीण किंवा झूम लेन्स कॅमेरा सोबत ठेवा.
+
+        - समुद्र शांत असतो तेव्हा ऑक्टोबर ते मार्च दरम्यान भेट द्या.'
+      donts: '- पावसाळ्यात समुद्र खवळलेला असल्याने आणि सोसाट्याचा वारा असल्याने येथे
+        जाणे टाळा.'
+      safety_text: कड्याचा भाग तीव्र उताराचा असल्याने, समुद्राचे दृश्य पाहताना कड्यापासून
+        सुरक्षित अंतर ठेवा.
+    hi:
+      short_story: 'डॉल्फिन पॉइंट गुहागर तालुका के अंजनवेल गांव में टल्केश्वर लाइटहाउस
+        और टल्केश्वर मंदिर के पास स्थित एक सुंदर व्यूप्वाइंट है। यहां से अरब सागर,
+        लहरों और चट्टानी तटीय पहाड़ियों का शानदार दृश्य दिखाई देता है।
+
+
+        यह जगह डॉल्फिन देखने के लिए लोकप्रिय है, जहां खासकर दोपहर के समय शांत पानी
+        में जंगली डॉल्फिन को तैरते हुए देखा जा सकता है।'
+      history: null
+      significance: महाराष्ट्र में प्राकृतिक आवास में जंगली डॉल्फिन देखने के लिए एक
+        प्रसिद्ध तटीय व्यूप्वाइंट।
+      dos: '- डॉल्फिन देखने के लिए अपने साथ दूरबीन या ज़ूम लेंस वाला कैमरा रखें।
+
+        - अक्टूबर से मार्च के बीच यहां आएं, जब समुद्र शांत रहता है।'
+      donts: '- मानसून के दौरान समुद्र के उग्र होने और तेज हवाओं के कारण यहां न आएं।'
+      safety_text: चट्टान के किनारे खड़ी ढलान वाले हो सकते हैं, इसलिए समुद्र देखते
+        समय किनारे से सुरक्षित दूरी बनाए रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ghumakkadi.com/attraction/dolphin-point
+    - https://mapcarta.com/N13634142631
+  _review: 'Gemini mixed this with Dapoli dolphin trips (12 km from Dapoli, Khed station);
+    identity uncertain, keep for field check; no text: no reliable source found (2026-11-03
+    search); needs field visit or local source; EN text + MR/HI by Gemini (Google
+    Search, batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: durga-devi-temple-guhagar
+  status: ai_draft
+  name_en: Durga Devi Temple, Guhagar
+  name_mr: दुर्गा देवी मंदिर, गुहागर
+  name_hi: दुर्गा देवी मंदिर, गुहागर
+  category: temple
+  taluka: Guhagar
+  lat: 17.494869
+  lng: 73.187983
+  coord_source: osm node/12672572906
+  osm_id: node/12672572906
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: 06:00
+  closes: '20:00'
+  closed_days: []
+  best_time: null
+  how_to_reach: 1.5 km from Guhagar bus stand.
+  nearest_station: null
+  nearest_bus_stop: Guhagar bus stand (1.5 km)
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The Durga Devi temple is one of the two main temples of Guhagar
+        town, about 1.5 km from the bus stand.
+      history: null
+      significance: null
+      dos: null
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: दुर्गा देवी मंदिर हे बस स्टँडपासून सुमारे 1.5 किमी अंतरावर असलेले
+        गुहागर शहरातील दोन मुख्य मंदिरांपैकी एक आहे.
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिरात पादत्राणे घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: बस स्टैंड से लगभग 1.5 किमी दूर स्थित दुर्गा देवी मंदिर, गुहागर
+        शहर के दो मुख्य मंदिरों में से एक है।
+      history: null
+      significance: null
+      dos: null
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Guhagar
+    - https://pilgrimdata.in/temple/durga-devi-temple-guhagar-ta-guhagar-dist-ratnagiri/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: asgoli-beach
+  status: ai_draft
+  name_en: Asgoli Beach
+  name_mr: असगोली समुद्रकिनारा
+  name_hi: असगोली बीच
+  category: beach
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: South of Guhagar beach.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Asgoli is the southern end of the long Guhagar beach. The sand
+        runs about 6 km from Baug in the north to Asgoli.
+      history: null
+      significance: The south end of Guhagar's 6 km beach.
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: असगोली हा लांब असलेल्या गुहागर समुद्रकिनाऱ्याचा दक्षिण भाग आहे.
+        इथली वाळू उत्तरेकडील बागपासून असगोलीपर्यंत सुमारे 6 किमी पसरलेली आहे.
+      history: null
+      significance: गुहागरच्या 6 किमी लांब समुद्रकिनाऱ्याचे दक्षिण टोक.
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: असगोली लंबे गुहागर बीच का दक्षिणी छोर है। रेत उत्तर में बाग से
+        असगोली तक लगभग 6 किमी तक फैली हुई है।
+      history: null
+      significance: गुहागर के 6 किमी लंबे समुद्र तट का दक्षिणी छोर।
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://travelkonkan.in/guhagar-beach/
+  _review: 'no coordinates: needs pin; thin source; needs field check; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: palshet-beach
+  status: ai_draft
+  name_en: Palshet Beach
+  name_mr: पालशेत समुद्रकिनारा
+  name_hi: पालशेत समुद्र तट
+  category: beach
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Palshet Beach is a quiet, natural beach located in the Guhagar
+        region of Ratnagiri district. Unlike heavily commercialized shores, it is
+        a secluded stretch characterized by mild weather and wide views of the Arabian
+        Sea.
+
+
+        Visitors can see a variety of migratory and local aquatic birds along the
+        coastline. The beach is known for its sunsets and a peaceful atmosphere suitable
+        for nature walks.'
+      history: null
+      significance: A quiet beach in Ratnagiri known for birdwatching and serene coastal
+        sunsets.
+      dos: '- Take a walk along the shore to spot local aquatic birds.
+
+        - Carry your own food and water, as there are limited commercial stalls.'
+      donts: '- Do not leave plastic or garbage on this clean beach.'
+      safety_text: The beach experiences high tides and humidity during the monsoon;
+        avoid venturing deep into the water during this season.
+    mr:
+      short_story: 'पालशेत बीच हा रत्नागिरी जिल्ह्यातील गुहागर पट्ट्यात असलेला एक
+        शांत आणि नैसर्गिक समुद्रकिनारा आहे. हा किनारा जास्त व्यावसायिक नसल्याने अतिशय
+        एकांतप्रिय आहे, जिथे सौम्य हवामान आणि अरबी समुद्राचे विलोभनीय दृश्य पाहायला
+        मिळते.
+
+
+        किनाऱ्यावर अनेक स्थलांतरित आणि स्थानिक जलचर पक्षी पाहायला मिळतात. हा किनारा
+        येथील शांत वातावरण आणि नयनरम्य सूर्यास्तासाठी ओळखला जातो.'
+      history: null
+      significance: पक्षी निरीक्षण आणि शांत सूर्यास्तासाठी ओळखला जाणारा रत्नागिरीतील
+        एक नैसर्गिक समुद्रकिनारा.
+      dos: '- स्थानिक जलचर पक्षी पाहण्यासाठी किनाऱ्यावर फेरफटका मारा.
+
+        - येथे दुकाने कमी असल्याने स्वतःचे अन्न आणि पाणी सोबत ठेवा.'
+      donts: '- या स्वच्छ किनाऱ्यावर प्लास्टिक किंवा कचरा टाकू नका.'
+      safety_text: पावसाळ्यात येथे दमट हवामान आणि समुद्राला मोठी भरती असते; या हंगामात
+        खोल पाण्यात जाणे टाळा.
+    hi:
+      short_story: 'पालशेत बीच रत्नागिरी जिले के गुहागर क्षेत्र में स्थित एक शांत
+        और प्राकृतिक समुद्र तट है। अत्यधिक व्यावसायिक तटों के विपरीत, यह एक एकांत
+        तट है जहां का मौसम सुहावना और अरब सागर का दृश्य सुंदर है।
+
+
+        पर्यटक तट के किनारे कई तरह के प्रवासी और स्थानीय जलीय पक्षियों को देख सकते
+        हैं। यह तट अपने शांत वातावरण और सूर्यास्त के दृश्यों के लिए जाना जाता है।'
+      history: null
+      significance: पक्षी दर्शन और शांत तटीय सूर्यास्त के लिए प्रसिद्ध रत्नागिरी का
+        एक एकांत समुद्र तट।
+      dos: '- स्थानीय जलीय पक्षियों को देखने के लिए तट के किनारे टहलें।
+
+        - यहां व्यावसायिक दुकानें कम हैं, इसलिए अपना भोजन और पानी साथ लाएं।'
+      donts: '- इस साफ-सुथरे तट पर प्लास्टिक या कचरा न छोड़ें।'
+      safety_text: मानसून के दौरान तट पर उच्च ज्वार और उमस रहती है; इस मौसम में पानी
+        में गहराई तक जाने से बचें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.indianetzone.com/palshet_beach
+  _review: 'nearest_station Mumbai (wrong), monsoon reason vague; no coordinates:
+    needs pin; no text: no reliable source found (2026-11-03 search); needs field
+    visit or local source; EN text + MR/HI by Gemini (Google Search, batch T-1), not
+    Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: hedavi-beach
+  status: ai_draft
+  name_en: Hedavi Beach
+  name_mr: हेदवी समुद्रकिनारा
+  name_hi: हेदवी बीच
+  category: beach
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 60
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: September to May
+  how_to_reach: From Guhagar town, travel by road via local transport or private vehicle
+    for about 20 km south to reach Hedavi village and beach.
+  nearest_station: Chiplun Railway Station, 55 km
+  nearest_bus_stop: Hedavi Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Strong tidal waves and rocky shores make entering the water dangerous
+    during the monsoon.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Hedavi Beach is a dark-sand cove situated between the white-sand
+        shores of Guhagar and Ganpatipule. The shoreline is highly rugged, dominated
+        by massive rock formations and crashing tidal waves rather than smooth sand.
+
+
+        At one end of the beach lies the Uma Maheshwari Temple. Nearby is the natural
+        rocky gorge known as Bamn Ghal, where seawater splashes up to 30 feet high
+        during high tides.'
+      history: Hedavi is a historic village known for its ancient temples dating back
+        to the Peshwa period and earlier.
+      significance: A rocky coastal cove famous for its dark sand and the dramatic
+        Bamn Ghal water gorge.
+      dos: '- Visit Bamn Ghal during high tide to see the seawater column splashing
+        through the gorge.
+
+        - Explore the historic Uma Maheshwari and Dashabhuja Ganpati temples nearby.'
+      donts: '- Do not attempt to swim or dive here under any circumstances.'
+      safety_text: The beach is very rocky and currents are dangerous, making it entirely
+        unsafe for swimming.
+    mr:
+      short_story: 'हेदवी बीच हा गुहागर आणि गणपतीपुळे यांच्या पांढऱ्या वाळूच्या किनाऱ्यांच्या
+        मध्ये असलेला काळ्या वाळूचा किनारा आहे. येथील किनारा गुळगुळीत वाळूचा नसून,
+        अत्यंत खडकाळ आहे आणि येथे समुद्राच्या मोठ्या लाटा खडकांवर आदळताना दिसतात.
+
+
+        किनाऱ्याच्या एका टोकाला उमा महेश्वरी मंदिर आहे. जवळच बामणघळ नावाची एक नैसर्गिक
+        खडकाळ घळ आहे, जिथे भरतीच्या वेळी समुद्राचे पाणी 30 फुटांपर्यंत उसळते.'
+      history: हेदवी हे पेशवेकालीन आणि त्याआधीच्या प्राचीन मंदिरांसाठी ओळखले जाणारे
+        एक ऐतिहासिक गाव आहे.
+      significance: काळी वाळू आणि बामणघळीच्या नैसर्गिक आश्चर्यासाठी प्रसिद्ध असलेला
+        एक खडकाळ समुद्रकिनारा.
+      dos: '- भरतीच्या वेळी घळीतून उसळणारे पाणी पाहण्यासाठी बामणघळीला नक्की भेट द्या.
+
+        - जवळच असलेल्या ऐतिहासिक उमा महेश्वरी आणि दशभुजा गणपती मंदिराला भेट द्या.'
+      donts: '- कोणत्याही परिस्थितीत येथे पोहण्याचा किंवा पाण्यात उड्या मारण्याचा
+        प्रयत्न करू नका.'
+      safety_text: हा किनारा अतिशय खडकाळ असून येथील पाण्याचे प्रवाह धोकादायक आहेत,
+        त्यामुळे येथे पोहणे पूर्णपणे असुरक्षित आहे.
+    hi:
+      short_story: 'हेदवी बीच गुहागर और गणपतिपुले के सफेद रेत वाले तटों के बीच स्थित
+        एक काले रेत वाली खाड़ी है। यह तट रेतीला कम और पथरीला ज्यादा है, जहां बड़ी-बड़ी
+        चट्टानें हैं और समुद्र की तेज लहरें उनसे टकराती हैं।
+
+
+        तट के एक छोर पर उमा माहेश्वरी मंदिर स्थित है। पास ही बामन घल नामक एक प्राकृतिक
+        चट्टानी दरार है, जहां उच्च ज्वार के दौरान समुद्र का पानी 30 फीट तक ऊपर उछलता
+        है।'
+      history: हेदवी एक ऐतिहासिक गांव है जो पेशवा काल और उससे भी पुराने समय के प्राचीन
+        मंदिरों के लिए जाना जाता है।
+      significance: अपनी काली रेत और बामन घल के पानी के फव्वारे के लिए प्रसिद्ध एक
+        चट्टानी तटीय खाड़ी।
+      dos: '- दरार से पानी को ऊपर उछलते देखने के लिए उच्च ज्वार के समय बामन घल की
+        यात्रा करें।
+
+        - पास ही स्थित ऐतिहासिक उमा माहेश्वरी और दशभुजा गणपति मंदिरों के दर्शन करें।'
+      donts: '- किसी भी परिस्थिति में यहां तैरने या गोता लगाने का प्रयास न करें।'
+      safety_text: यह तट बहुत पथरीला है और यहां पानी का बहाव खतरनाक है, इसलिए यह तैरने
+        के लिए बिल्कुल भी सुरक्षित नहीं है।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/1f/Konkan_-_Hedvi_Village_-_Part_4_20151222_%2823918313471%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: urbzoo
+    licence: CC BY 2.0
+    source_url: https://commons.wikimedia.org/wiki/File:Konkan_-_Hedvi_Village_-_Part_4_20151222_(23918313471).jpg
+  _sources:
+    _all:
+    - https://www.hedavi.in/2023/02/hedavi-perfect-getaway.html
+    - https://www.wadachirebandi.com/blog/hedvi-beach-destination.html
+    - https://travelkonkan.in/hedvi-beach/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-1), not Claude-drafted: check facts against
+    sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: vijaygad-fort
+  status: ai_draft
+  name_en: Vijaygad Fort
+  name_mr: विजयगड किल्ला
+  name_hi: विजयगढ़ किला
+  category: fort
+  taluka: Guhagar
+  lat: 17.30347
+  lng: 73.240704
+  coord_source: osm node/9196972612
+  osm_id: node/9196972612
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: October to March
+  how_to_reach: From Chiplun or Guhagar, take a motorable road leading to Tavasal
+    village near the fort entrance.
+  nearest_station: Chiplun Railway Station, 60 km
+  nearest_bus_stop: Tavasal Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Vijaygad_Fort
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Vijaygad Fort is a small, ruined fortress covering about two acres
+        on the northern bank of the Shastri River creek, near Tavsal village. Surrounded
+        by a ditch on three sides, the site now consists mostly of degraded stone
+        ramparts.
+
+
+        Visitors can walk around the remains of the main east-facing entrance gate.
+        The structural base of former guard rooms, heavily overgrown by vegetation,
+        is also visible.'
+      history: Peshwa Nanasaheb captured the fort from Tulaji Angre in 1756, and it
+        later fell to the British in 1818 before being abandoned.
+      significance: A historic coastal outpost built to monitor the Shastri River
+        creek alongside its sister fort, Jaigad.
+      dos: '- Combine your trip with a visit to the nearby Jaigad Fort across the
+        creek.
+
+        - Wear sturdy shoes, as the path and ruins are covered in dense vegetation.'
+      donts: '- Do not expect well-preserved structures, as the fort is in a state
+        of severe ruin.'
+      safety_text: The terrain is uneven, unmaintained, and overgrown, so watch your
+        step for loose stones and wild animals.
+    mr:
+      short_story: 'विजयगड किल्ला हा गुहागर तालुक्यातील तवसाळ गावाजवळ, शास्त्री नदीच्या
+        खाडीच्या उत्तरेकडील तीरावर असलेला सुमारे दोन एकरांवर पसरलेला एक छोटासा आणि
+        पडझड झालेला किल्ला आहे. तीन बाजूंनी खंदकाने वेढलेल्या या किल्ल्यावर आता प्रामुख्याने
+        फक्त पडक्या तटबंदी उरल्या आहेत.
+
+
+        येथे येणारे पर्यटक पूर्वेकडील मुख्य प्रवेशद्वाराचे अवशेष पाहू शकतात. जुन्या
+        पहारेकऱ्यांच्या खोल्यांच्या पायाचा भागही येथे दिसतो, ज्यावर आता मोठ्या प्रमाणावर
+        झाडी वाढली आहे.'
+      history: पेशवे नानासाहेब यांनी 1756 मध्ये तुळाजी आंग्रे यांच्याकडून हा किल्ला
+        जिंकला होता, त्यानंतर 1818 मध्ये तो ब्रिटिशांच्या ताब्यात गेला आणि नंतर ओस
+        पडला.
+      significance: शास्त्री नदीच्या खाडीवर लक्ष ठेवण्यासाठी जयगडच्या जोडीने बांधलेली
+        एक ऐतिहासिक किनारी चौकी.
+      dos: '- खाडीच्या पलीकडे असलेल्या जयगड किल्ल्याच्या भेटीसोबत या किल्ल्याला भेट
+        देण्याचे नियोजन करा.
+
+        - किल्ल्याचा मार्ग आणि अवशेष झाडाझुडपांनी वेढलेले असल्याने चालण्यासाठी मजबूत
+        बूट घाला.'
+      donts: '- किल्ला मोठ्या प्रमाणावर कोसळलेला असल्याने येथे सुस्थितीतील वास्तू
+        पाहण्याची अपेक्षा करू नका.'
+      safety_text: येथील रस्ता खडबडीत, देखभाल न केलेला आणि झुडपांनी वाढलेला आहे, त्यामुळे
+        चालताना निसरडे दगड आणि वन्यजीवांपासून सावध राहा.
+    hi:
+      short_story: 'विजयगढ़ किला गुहागर तालुका के तवसाल गांव के पास, शास्त्री नदी
+        की खाड़ी के उत्तरी तट पर लगभग दो एकड़ में फैला एक छोटा और खंडहर हो चुका किला
+        है। तीन तरफ से खाई से घिरे इस स्थान पर अब मुख्य रूप से टूटी हुई पत्थर की प्राचीरें
+        ही बची हैं।
+
+
+        पर्यटक पूर्व की ओर मुख वाले मुख्य प्रवेश द्वार के अवशेषों के आसपास घूम सकते
+        हैं। पुराने गार्ड कमरों का आधार भी यहां दिखाई देता है, जिस पर काफी झाड़ियां
+        उग आई हैं।'
+      history: पेशवा नानासाहेब ने 1756 में तुलाजी आंग्रे से इस किले पर कब्जा कर लिया
+        था, और बाद में 1818 में यह अंग्रेजों के अधीन हो गया और अंततः इसे छोड़ दिया
+        गया।
+      significance: अपने सहयोगी जयगढ़ किले के साथ शास्त्री नदी की खाड़ी की निगरानी
+        के लिए बनाई गई एक ऐतिहासिक तटीय चौकी।
+      dos: '- खाड़ी के उस पार स्थित जयगढ़ किले की यात्रा के साथ यहां आने की योजना
+        बनाएं।
+
+        - रास्ता और खंडहर घनी वनस्पतियों से ढके होने के कारण मजबूत जूते पहनकर आएं।'
+      donts: '- किले के खंडहर अवस्था में होने के कारण यहां अच्छी तरह से संरक्षित संरचनाओं
+        की उम्मीद न करें।'
+      safety_text: यहां का इलाका ऊबड़-खाबड़, बिना रखरखाव वाला और झाड़ियों से भरा है,
+        इसलिए चलते समय ढीले पत्थरों और जंगली जानवरों से सावधान रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Vijaygad_Fort
+    - https://durgbharari.in/vijaygad/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shree-ufrata-ganpati-mandir
+  status: ai_draft
+  name_en: Shree Ufrata Ganpati Mandir
+  name_mr: श्री उफराटा गणपती मंदिर
+  name_hi: श्री उफराटा गणपति मंदिर
+  category: temple
+  taluka: Guhagar
+  lat: 17.486947
+  lng: 73.188884
+  coord_source: osm node/12672572905
+  osm_id: node/12672572905
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: 06:00
+  closes: '20:00'
+  closed_days: []
+  best_time: October to May
+  how_to_reach: Accessible by road from Guhagar town located within Guhagar taluka
+    in Ratnagiri district.
+  nearest_station: Chiplun Railway Station, 45 km
+  nearest_bus_stop: Uparata Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shree Ufrata Ganpati Mandir is a Hindu temple located near the
+        beach in Guhagar. The temple is dedicated to Lord Ganesha and is distinct
+        for its pure white marble idol.
+
+
+        Unlike typical Ganesha idols that face east, this four-armed idol holds a
+        battleaxe and trident and uniquely faces west toward the Arabian Sea. It features
+        a right-curving trunk.'
+      history: null
+      significance: A notable local temple housing a unique west-facing, white marble
+        Ganesha idol.
+      dos: '- Visit the nearby Guhagar Beach, located just a short walk away.
+
+        - Observe the unique Valampuri trunk of the idol curving to the right.'
+      donts: '- Do not photograph the inner sanctum if temple guidelines prohibit
+        it.'
+      safety_text: null
+    mr:
+      short_story: 'श्री उफराटा गणपती मंदिर हे गुहागर येथील समुद्रकिनाऱ्याजवळ असलेले
+        एक हिंदू मंदिर आहे. हे मंदिर भगवान गणेशाला समर्पित असून, येथील पांढऱ्या शुभ्र
+        संगमरवरी मूर्तीसाठी ते ओळखले जाते.
+
+
+        साधारणपणे पूर्वेकडे मुख असलेल्या गणपतीच्या मूर्तींपेक्षा वेगळी, या चतुर्भुज
+        मूर्तीच्या हातात परशू आणि त्रिशूळ असून तिचे मुख पश्चिमेला अरबी समुद्राकडे
+        आहे. मूर्तीची सोंड उजवीकडे वळलेली आहे.'
+      history: null
+      significance: पश्चिमाभिमुख पांढऱ्या संगमरवरी गणेश मूर्तीसाठी प्रसिद्ध असलेल
+        एक स्थानिक मंदिर.
+      dos: '- जवळच असलेल्या गुहागर समुद्रकिनाऱ्याला नक्की भेट द्या.
+
+        - मूर्तीच्या उजवीकडे वळलेल्या वैशिष्ट्यपूर्ण सोंडेचे दर्शन घ्या.'
+      donts: '- मंदिराच्या नियमांत बसत नसल्यास गाभाऱ्यातील मूर्तीचे फोटो काढू नका.'
+      safety_text: null
+    hi:
+      short_story: 'श्री उफराटा गणपति मंदिर गुहागर में समुद्र तट के पास स्थित एक हिंदू
+        मंदिर है। यह मंदिर भगवान गणेश को समर्पित है और अपनी शुद्ध सफेद संगमरमर की
+        मूर्ति के लिए जाना जाता है।
+
+
+        आमतौर पर पूर्व की ओर मुख वाली गणेश मूर्तियों के विपरीत, चार भुजाओं वाली इस
+        मूर्ति के हाथों में फरसा और त्रिशूल है और इसका मुख पश्चिम में अरब सागर की
+        ओर है। मूर्ति की सूंड दाहिनी ओर मुड़ी हुई है।'
+      history: null
+      significance: पश्चिम की ओर मुख वाली एक अनूठी सफेद संगमरमर की गणेश मूर्ति के
+        लिए प्रसिद्ध एक स्थानीय मंदिर।
+      dos: '- कुछ ही दूरी पर स्थित गुहागर समुद्र तट पर जाएं।
+
+        - मूर्ति की दाहिनी ओर मुड़ी हुई अनूठी सूंड के दर्शन करें।'
+      donts: '- यदि मंदिर के नियमों में मनाही हो तो गर्भगृह के अंदर तस्वीर न लें।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.nisargramyakonkan.com/2018/03/ufrata-ganpati-temple-guhagar-ratnagiri-maharashtra.html
+    - https://www.nisargramyakonkan.com/2018/03/ufrata-ganpati-temples-guhagar-ratnagiri-maharashtra.html
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; EN text + MR/HI by Gemini (Google Search,
+    batch T-1), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shree-valukeshwar-mandir
+  status: ai_draft
+  name_en: Shree Valukeshwar Mandir
+  name_mr: श्री वाळुकेश्वर मंदिर
+  name_hi: श्री वालुकेश्वर मंदिर
+  category: temple
+  taluka: Guhagar
+  lat: 17.462189
+  lng: 73.192781
+  coord_source: osm way/2736682630
+  osm_id: way/2736682630
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: 06:00
+  closes: '20:00'
+  closed_days: []
+  best_time: October to May
+  how_to_reach: Located in Asgoli village near Guhagar, easily reachable by local
+    auto or road transport within 3 km from Guhagar.
+  nearest_station: Chiplun Railway Station, 42 km
+  nearest_bus_stop: Asgoli Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Located at the southern end of Guhagar in Asgoli, this ancient
+        temple is dedicated to Lord Shiva. It is situated close to the sea, surrounded
+        by coconut groves. Visitors can see the main Shiva shrine and an inscribed
+        pillar bearing the name of Lokmanya Tilak.
+
+
+        A unique natural feature nearby is the presence of a freshwater stream right
+        next to the salty sea water.'
+      history: The temple is believed to date back to the Puranic era and is considered
+        a very old Devasthan in the region.
+      significance: An ancient seaside Shiva temple featuring a historic pillar linked
+        to Lokmanya Tilak.
+      dos: '- Enjoy the peaceful coastal views around the temple complex.
+
+        - Notice the contrast of fresh and salty water near the premises.'
+      donts: '- Do not litter the temple surroundings.'
+      safety_text: Be cautious when walking near the coastal edge, especially during
+        high tide.
+    mr:
+      short_story: 'हे प्राचीन मंदिर गुहागरच्या दक्षिण टोकाला असगोली येथे आहे. हे
+        मंदिर भगवान शिवाला समर्पित असून ते समुद्राच्या अगदी जवळ आहे. आजूबाजूला नारळ
+        आणि पोफळीच्या बागा आहेत. येथे मुख्य शिवलिंग आणि लोकमान्य टिळकांच्या नावाचा
+        उल्लेख असलेला एक ऐतिहासिक खांब पाहता येतो.
+
+
+        इथला निसर्ग अतिशय शांत असून खाऱ्या समुद्राच्या अगदी जवळ गोड्या पाण्याचा झरा
+        असणे हे इथले एक नैसर्गिक वैशिष्ट्य आहे.'
+      history: हे मंदिर पौराणिक काळातील असल्याचे मानले जाते आणि परिसरातील एक अत्यंत
+        जुने देवस्थान म्हणून ओळखले जाते.
+      significance: एक प्राचीन समुद्रकिनारी असलेले शिवमंदिर, जिथे लोकमान्य टिळकांच्या
+        संदर्भातील एक ऐतिहासिक खांब आहे.
+      dos: '- मंदिर परिसरातील शांत समुद्रकिनाऱ्याच्या दृश्यांचा आनंद घ्या.
+
+        - आवाराजवळ गोडे आणि खारे पाणी एकत्र असण्याचा नैसर्गिक अनुभव घ्या.'
+      donts: '- या शांत मंदिर परिसरात कचरा टाकू नका.'
+      safety_text: भरतीच्या वेळी समुद्राजवळ चालताना काळजी घ्या.
+    hi:
+      short_story: 'यह प्राचीन मंदिर गुहागर के दक्षिणी छोर पर असगोली में स्थित है।
+        यह मंदिर भगवान शिव को समर्पित है और समुद्र के बहुत करीब स्थित है। इसके चारो
+        ओर नारियल के बाग और हरियाली है। दर्शनार्थी यहाँ मुख्य शिवलिंग और लोकमान्य
+        तिलक के नाम वाला एक ऐतिहासिक खंभा देख सकते हैं।
+
+
+        खारे समुद्र के ठीक बगल में मीठे पानी की उपस्थिति यहाँ की एक अनूठी प्राकृतिक
+        विशेषता है।'
+      history: माना जाता है कि यह मंदिर पौराणिक काल का है और इस क्षेत्र के सबसे पुराने
+        देवस्थानों में से एक है।
+      significance: एक प्राचीन समुद्र तटीय शिव मंदिर, जहाँ लोकमान्य तिलक से जुड़ा एक
+        ऐतिहासिक खंभा मौजूद है।
+      dos: '- मंदिर परिसर के आसपास शांत तटीय दृश्यों का आनंद लें।
+
+        - परिसर के पास मीठे और खारे पानी के अनूठे संगम को देखें।'
+      donts: '- मंदिर के शांत परिवेश में कूड़ा न फैलाएं।'
+      safety_text: उच्च ज्वार के दौरान तटीय किनारे के पास चलते समय सावधान रहें।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/b/bf/Shri_valukeshwar_mandir.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Gsmodak
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Shri_valukeshwar_mandir.JPG
+  _sources:
+    _all:
+    - https://www.bda.ai/teerth/shri-valukeshwar-mandir-asgoli-guhagar-maharashtra
+    - https://guhagarbeach.com/guhagar-temples.html
+    - https://www.ixigo.com/hotels/shantadurga-beachside-homestay-in-guhagar-1449611-d
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; OSM match by name, check pin; EN text
+    + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: palshet-caves-and-musrundi-cave
+  status: ai_draft
+  name_en: Palshet Caves and Musrundi Cave
+  name_mr: पालशेत व सुसरोंडी गुहा
+  name_hi: पालशेत गुफाएं और मुसरुंडी गुफा
+  category: cave
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 120
+  opens: 07:00
+  closes: '18:00'
+  closed_days: []
+  best_time: October to May
+  how_to_reach: From Chiplun, take an ST bus to Shringartali or Modka Agar, then travel
+    by local transport or rickshaw to Palshet village and trek to Susrondi.
+  nearest_station: Chiplun Railway Station, 45 km
+  nearest_bus_stop: Palshet Bus Stop
+  monsoon_status: risky
+  monsoon_reason: Heavy water flows and slippery terrain make visiting the cave and
+    waterfall dangerous during the monsoon.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Located in Palshet, these natural sites offer unique geographical
+        formations. The Palshet cave spans about 3 kilometers, beginning at the beach
+        and leading up to a nearby hilltop. The Musrundi cave (also known as Waghbil
+        cave) features a man-made undersea wall recently discovered by archaeologists.
+
+
+        There is also a natural gorge in the black rock measuring 35 feet long and
+        20 feet deep, where seawater gushes in forcefully during high tide.'
+      history: null
+      significance: A 3-kilometer coastal cave system and an archaeological site featuring
+        an ancient undersea wall.
+      dos: '- Visit the gorge during high tide to watch the seawater splash through
+        the rocks.
+
+        - Carry a flashlight if you plan to explore the cave entrances.'
+      donts: '- Do not attempt scuba diving near the undersea wall unless you are
+        an experienced diver.'
+      safety_text: Watch your step on the wet and slippery basalt rocks, and stay
+        clear of the gorge edge during high tides.
+    mr:
+      short_story: 'पालशेतमध्ये असलेल्या या नैसर्गिक गुहा त्यांच्या भौगोलिक रचनेसाठी
+        ओळखल्या जातात. पालशेतची गुहा सुमारे 3 किलोमीटर लांब असून ती समुद्रकिनाऱ्यावरून
+        सुरू होऊन जवळच्या डोंगरावर संपते. मुसरुंडी गुहेत (वाघबीळ गुहा) पुरातत्वशास्त्रज्ञांना
+        अलीकडेच समुद्राखालील एक प्राचीन मानवनिर्मित भिंत सापडली आहे.
+
+
+        येथे काळ्या खडकात 35 फूट लांब आणि 20 फूट खोल अशी एक नैसर्गिक घळ आहे, जिथे
+        समुद्राचे पाणी वेगाने आत शिरते.'
+      history: null
+      significance: 3 किलोमीटर लांबीची किनारी गुहा आणि समुद्राखालील प्राचीन भिंत असलेली
+        एक पुरातत्वीय जागा.
+      dos: '- भरतीच्या वेळी खडकांमधून वेगाने उडणारे समुद्राचे पाणी पाहण्यासाठी या
+        घळीला भेट द्या.
+
+        - गुहेच्या प्रवेशद्वाराजवळ फिरायचे असल्यास सोबत बॅटरी (टॉर्च) ठेवा.'
+      donts: '- तुम्ही अनुभवी स्कूबा डायव्हर नसल्यास समुद्राखालील भिंतीजवळ डायव्हिंगचा
+        प्रयत्न करू नका.'
+      safety_text: निसरड्या काळ्या खडकांवर चालताना जपा आणि भरतीच्या वेळी घळीच्या कडेपासून
+        दूर राहा.
+    hi:
+      short_story: 'पालशेत में स्थित ये गुफाएं अपनी अनूठी भौगोलिक संरचनाओं के लिए
+        जानी जाती हैं। पालशेत गुफा लगभग 3 किलोमीटर लंबी है, जो समुद्र तट से शुरू होकर
+        पास की पहाड़ी की चोटी तक जाती है। मुसरुंडी गुफा (वाघबिल गुफा) में पुरातत्वविदों
+        ने हाल ही में समुद्र के नीचे एक प्राचीन मानव निर्मित दीवार की खोज की है।
+
+
+        यहाँ काले चट्टान में 35 फुट लंबी और 20 फुट गहरी एक प्राकृतिक खाई भी है, जहाँ
+        समुद्र का पानी तेजी से अंदर आता है।'
+      history: null
+      significance: 3 किलोमीटर लंबी तटीय गुफा प्रणाली और समुद्र के नीचे एक प्राचीन
+        दीवार वाला एक पुरातात्विक स्थल।
+      dos: '- उच्च ज्वार के दौरान चट्टानों से टकराते समुद्री पानी को देखने के लिए
+        इस खाई की यात्रा करें।
+
+        - यदि आप गुफा के प्रवेश द्वारों का पता लगाना चाहते हैं तो अपने साथ एक टॉर्च
+        रखें।'
+      donts: '- यदि आप एक अनुभवी स्कूबा गोताखोर नहीं हैं, तो समुद्र के नीचे की दीवार
+        के पास गोता लगाने का प्रयास न करें।'
+      safety_text: गीली और फिसलन भरी बेसाल्ट चट्टानों पर संभलकर चलें, और उच्च ज्वार
+        के दौरान खाई के किनारे से दूर रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://samantfort.blogspot.com/2023/01/acheulian-cave-at-sursondi-palshet.html
+    - https://guhagar.com/siteinfo.html
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources; cave length (3 km) from Gemini; verify; story restored 2026-11-04 for
+    import, CHECK: "cave spans about 3 km" and "undersea wall discovered by archaeologists"
+    are unverified'
+  _collected_by: claude+gemini 2026-11-03
+- slug: veldur-creek
+  status: ai_draft
+  name_en: Veldur Creek
+  name_mr: वेलदूर खाडी
+  name_hi: वेलदुर क्रीक
+  category: backwater
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 45
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: October to May
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Veldur Creek is situated about 12.5 kilometers from Guhagar on
+        the southern side of the Dabhol water channel. The area does not have a traditional
+        sandy beach but offers a scenic coastal environment.
+
+
+        Visitors can watch ferries crossing the channel between Dhopave and Dabhol,
+        or spot dolphins cruising in the water. A large gas and power plant is also
+        visible near Veldur.'
+      history: null
+      significance: A coastal inlet known for ferry crossings and dolphin spotting.
+      dos: '- Take a boat ride to spot dolphins in the creek.
+
+        - Enjoy a lazy evening watching the ferries cross the water channel.'
+      donts: '- Do not expect a sandy beach, as the shoreline here is rocky and industrial.'
+      safety_text: null
+    mr:
+      short_story: 'वेळदूरची खाडी गुहागरपासून सुमारे 12.5 किलोमीटर अंतरावर दाभोळ खाडीच्या
+        दक्षिण बाजूला आहे. या भागात वाळूचा पारंपरिक समुद्रकिनारा नसून एक सुंदर किनारी
+        भाग पाहायला मिळतो.
+
+
+        इथून धोपावे आणि दाभोळ दरम्यान चालणाऱ्या फेरी बोटींची ये-जा पाहता येते. तसेच
+        खाडीच्या पाण्यात डॉल्फिनचे दर्शनही होऊ शकते. वेळदूरजवळ रत्नागिरी गॅस अँड पॉवर
+        प्लांट (एनरॉन) देखील दिसतो.'
+      history: null
+      significance: फेरी बोटींचा प्रवास, निवांत संध्याकाळ आणि डॉल्फिन पाहण्यासाठी
+        प्रसिद्ध असलेला एक किनारी भाग.
+      dos: '- खाडीत डॉल्फिन पाहण्यासाठी बोट राइडचा आनंद घ्या.
+
+        - जलमार्गावरून जाणाऱ्या फेरी बोटी पाहत निवांत संध्याकाळ घालवा.'
+      donts: '- येथे वाळूच्या किनाऱ्याची अपेक्षा करू नका, कारण इथला किनारा खडकाळ आणि
+        औद्योगिक स्वरूपाचा आहे.'
+      safety_text: null
+    hi:
+      short_story: 'वेलदुर क्रीक गुहागर से लगभग 12.5 किलोमीटर दूर दाभोल जलमार्ग के
+        दक्षिणी किनारे पर स्थित है। इस क्षेत्र में पारंपरिक रेतीला समुद्र तट नहीं
+        है, लेकिन यह एक सुंदर तटीय वातावरण प्रदान करता है।
+
+
+        आगंतुक धोपावे और दाभोल के बीच चैनल पार करने वाली घाट नौकाओं (फेरी) को देख
+        सकते हैं, या पानी में डॉल्फिन को तैरते हुए देख सकते हैं। वेलदुर के पास रत्नागिरी
+        गैस और बिजली संयंत्र भी दिखाई देता है।'
+      history: null
+      significance: एक तटीय क्षेत्र जो फेरी क्रॉसिंग और डॉल्फिन देखने के लिए जाना
+        जाता है।
+      dos: '- क्रीक में डॉल्फिन देखने के लिए नाव की सवारी करें।
+
+        - जलमार्ग पार करने वाली घाट नौकाओं को देखते हुए एक शांत शाम बिताएं।'
+      donts: '- यहाँ रेतीले समुद्र तट की अपेक्षा न करें, क्योंकि यहाँ का किनारा पथरीला
+        और औद्योगिक है।'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://guhagar.com/siteinfo.html
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: dhopave-jetty
+  status: ai_draft
+  name_en: Dhopave Jetty
+  name_mr: धोपावे जेटी
+  name_hi: धोपावे जेटी
+  category: backwater
+  taluka: Guhagar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: 30
+  opens: 06:00
+  closes: '18:00'
+  closed_days: []
+  best_time: October to May
+  how_to_reach: From Guhagar, travel by road approximately 12.5 to 16 km via local
+    transport or car to Dhopave Jetty.
+  nearest_station: Chiplun Railway Station, 40 km
+  nearest_bus_stop: Dhopave Bus Stop
+  monsoon_status: closed
+  monsoon_reason: Ferry services across the water channel are suspended during the
+    monsoon season.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Located about 16 kilometers from Guhagar, Dhopave Jetty sits on
+        the southern bank of the Dabhol creek. It serves as a major transit point
+        for the local ferry service connecting Dhopave to Dabhol on the northern side.
+
+
+        Visitors can load their vehicles onto the ferry to cross the water channel.
+        It is a quiet spot to observe the backwaters and catch glimpses of dolphins.'
+      history: null
+      significance: A vital ferry transit point across the Dabhol creek offering vehicle
+        transport and backwater views.
+      dos: '- Use the daytime ferry service to transport your vehicle across the creek
+        to Dabhol.
+
+        - Look out for dolphins swimming along the water channel.'
+      donts: '- Do not plan to use the ferry during the monsoon season when services
+        are closed.
+
+        - Do not visit expecting a beach, as the jetty area is purely for transit
+        and water views.'
+      safety_text: Ensure your vehicle brakes and gears are properly engaged while
+        loaded on the ferry.
+    mr:
+      short_story: 'गुहागरपासून सुमारे 16 किलोमीटर अंतरावर असलेली धोपावे जेटी दाभोळ
+        खाडीच्या दक्षिण तीरावर आहे. धोपावे ते उत्तरेकडील दाभोळला जोडणाऱ्या स्थानिक
+        फेरी सेवेसाठी हे एक महत्त्वाचे केंद्र आहे.
+
+
+        इथून प्रवासी आपली वाहने फेरी बोटीत चढवून खाडी पार करू शकतात. हे खाडीचे शांत
+        दृश्य पाहण्यासाठी, जाणाऱ्या-येणाऱ्या बोटींची हालचाल पाहण्यासाठी आणि डॉल्फिनची
+        झलक पाहण्यासाठी एक उत्तम ठिकाण आहे.'
+      history: null
+      significance: दाभोळ खाडी पार करण्यासाठी वाहन वाहतूक आणि खाडीचे सुंदर दृश्य देणारे
+        एक महत्त्वाचे फेरी केंद्र.
+      dos: '- तुमचे वाहन दाभोळला नेण्यासाठी दिवसा चालणाऱ्या फेरी सेवेचा वापर करा.
+
+        - जलमार्गात पोहणारे डॉल्फिन पाहण्यासाठी नजर ठेवा.'
+      donts: '- पावसाळ्यात फेरी सेवा बंद असल्याने या काळात जाण्याचे टाळा.
+
+        - येथे समुद्रकिनाऱ्याची अपेक्षा करू नका, कारण हा परिसर केवळ वाहतूक आणि पाणी
+        पाहण्यासाठी आहे.'
+      safety_text: तुमची गाडी फेरी बोटीवर उभी करताना गाडीचे गिअर आणि ब्रेक योग्य प्रकारे
+        लागलेले आहेत याची खात्री करा.
+    hi:
+      short_story: 'गुहागर से लगभग 16 किलोमीटर दूर स्थित, धोपावे जेटी दाभोल क्रीक
+        के दक्षिणी तट पर है। यह धोपावे को उत्तरी तरफ दाभोल से जोड़ने वाली स्थानीय
+        फेरी (नाव) सेवा के लिए एक प्रमुख पारगमन बिंदु के रूप में कार्य करता है।
+
+
+        आगंतुक जलमार्ग पार करने के लिए अपने वाहनों को फेरी पर लाद सकते हैं। यह बैकवाटर
+        को देखने और क्रीक में डॉल्फिन की झलक पाने के लिए एक शांत जगह है।'
+      history: null
+      significance: दाभोल क्रीक के पार एक महत्वपूर्ण फेरी पारगमन बिंदु जो वाहन परिवहन
+        और बैकवाटर के दृश्य प्रस्तुत करता है।
+      dos: '- अपने वाहन को क्रीक के पार दाभोल ले जाने के लिए दिन के समय फेरी सेवा
+        का उपयोग करें।
+
+        - जलमार्ग के साथ तैरने वाले डॉल्फिन पर नज़र रखें।'
+      donts: '- मानसून के मौसम के दौरान फेरी का उपयोग करने की योजना न बनाएं जब सेवाएं
+        बंद रहती हैं।
+
+        - समुद्र तट की उम्मीद के साथ यहां न आएं, क्योंकि जेटी क्षेत्र पूरी तरह से
+        पारगमन और पानी के दृश्यों के लिए है।'
+      safety_text: फेरी पर लोड होने के दौरान सुनिश्चित करें कि आपके वाहन के ब्रेक
+        और गियर ठीक से लगे हुए हैं।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/5/5d/%E0%A4%A7%E0%A5%8B%E0%A4%AA%E0%A4%BE%E0%A4%B5%E0%A5%87_%E0%A4%9C%E0%A5%87%E0%A4%9F%E0%A5%8D%E0%A4%9F%E0%A5%80_%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%B0.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: आर्या जोशी
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:%E0%A4%A7%E0%A5%8B%E0%A4%AA%E0%A4%BE%E0%A4%B5%E0%A5%87_%E0%A4%9C%E0%A5%87%E0%A4%9F%E0%A5%8D%E0%A4%9F%E0%A5%80_%E0%A4%AA%E0%A4%B0%E0%A4%BF%E0%A4%B8%E0%A4%B0.jpg
+  _sources:
+    _all:
+    - https://alldistancebetween.com/in/distance-between/guhagar-dhopave-jetty-6b1d7b8c147e9dcab353eec4f54d284d/
+    - https://guhagar.com/siteinfo.html
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+  _collected_by: claude+gemini 2026-11-03

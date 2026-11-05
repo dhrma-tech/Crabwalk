@@ -1,0 +1,1360 @@
+# Places - Mandangad taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: velas-beach
+  status: ai_draft
+  name_en: Velas Beach (Turtle Nesting)
+  name_mr: वेळास समुद्रकिनारा
+  name_hi: वेलास समुद्र तट
+  category: beach
+  taluka: Mandangad
+  lat: 17.956532
+  lng: 73.031363
+  coord_source: osm node/4739733622
+  osm_id: node/4739733622
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: February to April (turtle festival)
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: turtle_nesting
+    from_month: 1
+    to_month: 4
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Velas is a coastal village in Mandangad taluka where Olive Ridley
+        sea turtles come ashore to nest. The conservation group Sahyadri Nisarg Mitra
+        found the nesting site, and the villagers formed the Kasav Mitra Mandal to
+        protect it.
+
+
+        In the season, volunteers walk the beach every morning, fence each nest and,
+        after 45 to 60 days, release the hatchlings in the evening. Visitors watch
+        from behind the fence. Most village houses run simple homestays with meals
+        included.'
+      history: null
+      significance: One of Maharashtra's best-known Olive Ridley nesting beaches,
+        protected by the villagers themselves.
+      dos: '- Book a village homestay early for festival weekends
+
+        - Watch hatchling releases from behind the fence
+
+        - Follow the volunteers'' instructions'
+      donts: '- Don''t cross the fence or touch the hatchlings
+
+        - Don''t use flash or torches near the nests
+
+        - Don''t walk on fenced nest areas'
+      safety_text: '- Weekends in the festival season are very crowded'
+    mr:
+      short_story: 'वेळास हे मंडणगड तालुक्यातील एक किनारी गाव आहे, जिथे ऑलिव्ह रिडले
+        (Olive Ridley) जातीची समुद्री कासवे अंडी घालण्यासाठी किनाऱ्यावर येतात. ''सह्याद्री
+        निसर्ग मित्र'' या संस्थेने येथील कासवांची अंडी घालण्याची जागा शोधून काढली
+        आणि त्यानंतर ग्रामस्थांनी त्यांच्या संरक्षणासाठी ''कासव मित्र मंडळ'' स्थापन
+        केले.
+
+
+        कासवांच्या हंगामात, स्वयंसेवक दररोज सकाळी किनाऱ्यावर गस्त घालतात, प्रत्येक
+        घरट्याभोवती कुंपण घालतात आणि 45 ते 60 दिवसांनंतर संध्याकाळी पिल्लांना समुद्रात
+        सोडतात. पर्यटक कुंपणाच्या बाहेरून हा सोहळा पाहू शकतात. गावातील बहुतांश घरांमध्ये
+        जेवणासहित साध्या होमस्टेची सोय उपलब्ध आहे.'
+      history: null
+      significance: स्वतः ग्रामस्थांनी संरक्षित केलेला हा महाराष्ट्रातील सर्वात प्रसिद्ध
+        ऑलिव्ह रिडले कासवांच्या किनाऱ्यांपैकी एक आहे.
+      dos: '- कासव महोत्सवाच्या वीकेंडसाठी गावातील होमस्टेचे बुकिंग लवकर करा
+
+        - कासवांच्या पिल्लांना समुद्रात सोडण्याचा सोहळा कुंपणाच्या बाहेरूनच पहा
+
+        - स्वयंसेवकांच्या सूचनांचे पालन करा'
+      donts: '- कुंपण ओलांडू नका किंवा कासवांच्या पिल्लांना स्पर्श करू नका
+
+        - कासवांच्या घरट्यांजवळ फ्लॅश किंवा टॉर्च वापरू नका
+
+        - कुंपण घातलेल्या घरट्यांच्या भागात चालू नका'
+      safety_text: '- महोत्सवाच्या हंगामात शनिवार-रविवारी येथे खूप गर्दी असते'
+    hi:
+      short_story: 'वेलास मंडणगढ़ तालुका का एक तटीय गांव है जहां ओलिव रिडले (Olive
+        Ridley) समुद्री कछुए अंडे देने के लिए तट पर आते हैं। संरक्षण समूह ''सह्याद्री
+        निसर्ग मित्र'' ने इस घोंसले के स्थान की खोज की, और ग्रामीणों ने इसकी रक्षा
+        के लिए ''कासव मित्र मंडल'' का गठन किया।
+
+
+        कछुओं के मौसम में, स्वयंसेवक हर सुबह समुद्र तट पर गश्त करते हैं, प्रत्येक
+        घोंसले पर बाड़ लगाते हैं और 45 से 60 दिनों के बाद, शाम को बच्चों को समुद्र
+        में छोड़ देते हैं। पर्यटक बाड़ के पीछे से इसे देखते हैं। गांव के अधिकांश घरों
+        में भोजन के साथ साधारण होमस्टे की सुविधा उपलब्ध है।'
+      history: null
+      significance: यह महाराष्ट्र के सबसे प्रसिद्ध ओलिव रिडले कछुओं के समुद्र तटों
+        में से एक है, जिसे स्वयं ग्रामीणों द्वारा संरक्षित किया गया है।
+      dos: '- कछुआ महोत्सव के सप्ताहांत के लिए गांव में होमस्टे जल्दी बुक करें
+
+        - कछुए के बच्चों को समुद्र में छोड़े जाते हुए बाड़ के पीछे से ही देखें
+
+        - स्वयंसेवकों के निर्देशों का पालन करें'
+      donts: '- बाड़ पार न करें या कछुए के बच्चों को न छुएं
+
+        - घोंसलों के पास फ्लैश या टॉर्च का प्रयोग न करें
+
+        - बाड़ वाले घोंसले के क्षेत्रों में न चलें'
+      safety_text: '- महोत्सव के मौसम में सप्ताहांत में यहां बहुत भीड़ होती है'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://lemonicks.com/asia/india/olive-ridley-sea-turtles-velas-maharashtra/
+    - https://en.wikipedia.org/wiki/Velas,_Maharashtra
+    - https://seaturtlesofindia.org/?p=480
+    - https://www.theweek.in/magazine/theweek/leisure/2025/05/10/how-villagers-near-a-konkan-beach-went-from-eating-olive-ridley-turtle-eggs-to-protecting-and-building-an-economy-around-them.amp.html
+    - https://iotn.org/iotn02-02-second-successive-year-of-the-marine-turtle-conservation-project-in-konkan-maharashtra/
+  _collected_by: claude+gemini 2026-11-03
+  _review: nesting Jan-Apr, festival Feb-Apr per lemonicks; seaturtlesofindia says
+    festival usually March - confirm 2027 dates with Kasav Mitra Mandal; EN text =
+    Claude draft from sources, needs team review; MR/HI = Gemini translation, needs
+    native review
+- slug: bankot-fort
+  status: ai_draft
+  name_en: Bankot Fort (Himmatgad)
+  name_mr: बाणकोट किल्ला (हिंमतगड)
+  name_hi: बाणकोट किला (हिम्मतगढ़)
+  category: fort
+  taluka: Mandangad
+  lat: 17.978218
+  lng: 73.040202
+  coord_source: osm node/3900342792
+  osm_id: node/3900342792
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 47 km from Dapoli by road, or by the Bagmandala-Bankot ferry
+    from Harihareshwar; a road reaches the fort.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Bankot_fort
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bankot fort, also called Himmatgad or Fort Victoria, stands on
+        a 300 ft hill above the mouth of the Savitri river, about 47 km from Dapoli.
+        It is built of laterite with a moat cut into the rock.
+
+
+        The main gate faces Bankot creek. Look for the Nagarkhana and a bastion with
+        a secret entrance. From Harihareshwar you can cross by the Bagmandala-Bankot
+        ferry; a road now reaches the fort.'
+      history: The earliest known mention is in Ptolemy's records from the 1st century
+        AD, as Mandagora, and Hieun Tsang is said to have sailed from Bankot in 640
+        AD. The Portuguese took it from Adil Shah in 1548. Kanhoji Angre won it in
+        1700 and named it Himmatgad. It surrendered to a British fleet in 1755, was
+        renamed Fort Victoria, and was later handed to the Peshwas.
+      significance: One of the oldest recorded ports on this coast, guarding the Savitri
+        river mouth.
+      dos: '- Combine with Velas beach and the Bagmandala ferry
+
+        - Allow about half an hour from the village to the gate'
+      donts: '- Don''t enter areas under renovation'
+      safety_text: '- Renovation work is ongoing; follow signs on site'
+    mr:
+      short_story: 'बाणकोट किल्ला, ज्याला हिंमतगड किंवा फोर्ट व्हिक्टोरिया असेही म्हणतात,
+        दापोलीपासून सुमारे 47 किमी अंतरावर सावित्री नदीच्या मुखावर 300 फूट उंचीच्या
+        टेकडीवर उभा आहे. हा जांभ्या दगडाने बांधलेला असून त्यात खडकात कोरलेला एक खंदक
+        आहे.
+
+
+        किल्ल्याचा मुख्य दरवाजा बाणकोट खाडीच्या दिशेने आहे. येथील नगारखाना आणि गुप्त
+        मार्ग असलेला बुरूज आवर्जून पहा. हरिहरेश्वरहून तुम्ही बागमंडला-बाणकोट फेरीने
+        (बोट) खाडी पार करू शकता; आता किल्ल्यापर्यंत थेट रस्ताही झाला आहे.'
+      history: या बंदराचा सर्वात जुना उल्लेख पहिल्या शतकातील टॉलेमीच्या नोंदींमध्ये
+        'मंडागोरा' असा आढळतो, आणि असे मानले जाते की 640 इसवी सनामध्ये ह्युएन त्संग
+        याने बाणकोट येथूनच समुद्रमार्गे प्रवास केला होता. 1548 मध्ये पोर्तुगीजांनी
+        हा किल्ला आदिलशहाकडून जिंकून घेतला. त्यानंतर 1700 मध्ये कान्होजी आंग्रे यांनी
+        तो जिंकला आणि त्याचे नाव 'हिंमतगड' ठेवले. 1755 मध्ये हा किल्ला ब्रिटिशांच्या
+        नौदलाला शरण गेला, त्याचे नाव बदलून 'फोर्ट व्हिक्टोरिया' ठेवले गेले आणि नंतर
+        तो पेशव्यांच्या स्वाधीन करण्यात आला.
+      significance: या किनाऱ्यावरील सर्वात जुन्या नोंद असलेल्या बंदरांपैकी एक, जे
+        सावित्री नदीच्या मुखाचे रक्षण करते.
+      dos: '- वेळास समुद्रकिनारा आणि बागमंडला फेरीसोबत या किल्ल्याला भेट देण्याचे
+        नियोजन करा
+
+        - गावातून किल्ल्याच्या मुख्य दरवाजापर्यंत जाण्यासाठी साधारण अर्ध्या तासाचा
+        वेळ ठेवा'
+      donts: '- नूतनीकरणाचे काम चालू असलेल्या भागात जाऊ नका'
+      safety_text: '- किल्ल्यावर नूतनीकरणाचे काम चालू आहे; तिथे लावलेल्या सूचना फलकांचे
+        पालन करा'
+    hi:
+      short_story: 'बाणकोट किला, जिसे हिम्मतगढ़ या फोर्ट विक्टोरिया भी कहा जाता है,
+        दापोली से लगभग 47 किमी दूर सावित्री नदी के मुहाने पर 300 फीट ऊंची पहाड़ी पर
+        स्थित है। यह लेटराइट (जांभा) पत्थर से बना है और इसमें चट्टान को काटकर बनाई
+        गई एक खाई है।
+
+
+        मुख्य द्वार बाणकोट खाड़ी की ओर है। यहां नगारखाना और गुप्त प्रवेश द्वार वाला
+        एक बुर्ज जरूर देखें। हरिहरेश्वर से आप बागमंडला-बाणकोट फेरी द्वारा नदी पार
+        कर सकते हैं; अब किले तक एक सड़क भी पहुंचती है।'
+      history: इसका सबसे पहला ज्ञात उल्लेख पहली शताब्दी ईस्वी के टॉलेमी के अभिलेखों
+        में मंदागोरा के रूप में मिलता है, और कहा जाता है कि ह्वेनसांग ने 640 ईस्वी
+        में बाणकोट से समुद्री यात्रा की थी। पुर्तगालियों ने इसे 1548 में आदिल शाह
+        से छीन लिया था। कान्होजी आंग्रे ने इसे 1700 में जीता और इसका नाम हिम्मतगढ़
+        रखा। 1755 में इसने एक ब्रिटिश बेड़े के सामने आत्मसमर्पण कर दिया, इसका नाम
+        बदलकर फोर्ट विक्टोरिया कर दिया गया, और बाद में इसे पेशवाओं को सौंप दिया गया।
+      significance: इस तट पर सबसे पुराने दर्ज बंदरगाहों में से एक, जो सावित्री नदी
+        के मुहाने की रक्षा करता है।
+      dos: '- वेलास समुद्र तट और बागमंडला फेरी के साथ यहां की यात्रा का संयोजन करें
+
+        - गांव से गेट तक जाने के लिए लगभग आधा घंटा का समय रखें'
+      donts: '- जीर्णोद्धार वाले क्षेत्रों में प्रवेश न करें'
+      safety_text: '- जीर्णोद्धार का काम चल रहा है; साइट पर संकेतों का पालन करें'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/7/7d/Bankot_Fort.jpg
+    credit: Khalil Sawant
+    licence: CC BY-SA 2.0
+    source_url: https://commons.wikimedia.org/wiki/File:Bankot_Fort.jpg
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Bankot_fort
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: bankot-beach
+  status: ai_draft
+  name_en: Bankot Beach
+  name_mr: बाणकोट समुद्रकिनारा
+  name_hi: बाणकोट समुद्र तट
+  category: beach
+  taluka: Mandangad
+  lat: 17.932075
+  lng: 73.054318
+  coord_source: osm node/12167705036
+  osm_id: node/12167705036
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bankot Beach is located in the coastal village of Bankot in Mandangad
+        taluka, Ratnagiri district, near where the Savitri River meets the Arabian
+        Sea. It is a quiet shoreline surrounded by casuarina trees.
+
+
+        Visitors can walk along the sand, watch the estuary, and see the historic
+        Bankot Fort located on a nearby hill. The beach is known for its calm environment
+        and is often visited by people exploring the fort.'
+      history: Bankot became part of the Bombay Presidency in 1756. The nearby Bankot
+        Fort served as the first residency of the British East India Company in the
+        Southern Konkan region.
+      significance: It is a quiet coastal spot at the Savitri River estuary, located
+        just below a historic fort.
+      dos: '- Carry your own food and water, as commercial facilities are limited.
+
+        - Visit during the morning or late afternoon to avoid the midday heat.'
+      donts: '- Do not leave trash or plastic on the beach.
+
+        - Do not swim deep into the water, as tidal currents near the estuary can
+        be strong.'
+      safety_text: Be cautious near the water, as there are no lifeguards on duty
+        and the estuary currents can be unpredictable.
+    mr:
+      short_story: 'बाणकोट बीच हा रत्नागिरी जिल्ह्यातील मंडणगड तालुक्यातील बाणकोट
+        या किनारपट्टीवरील गावात आहे. हा समुद्रकिनारा सावित्री नदी आणि अरबी समुद्राच्या
+        संगमाजवळ असून, येथे सुरूच्या झाडांची गर्दी पाहायला मिळते.
+
+
+        येथे येणारे पर्यटक वाळूतून फेरफटका मारू शकतात, खाडीचे पाणी पाहू शकतात आणि
+        जवळच्या टेकडीवर असलेला ऐतिहासिक बाणकोट किल्ला पाहू शकतात. हा किनारा शांततेसाठी
+        ओळखला जातो आणि किल्ला पाहायला येणारे लोक अनेकदा येथेही भेट देतात.'
+      history: 1756 मध्ये बाणकोट बॉम्बे प्रेसिडेन्सीचा भाग बनला. जवळच असलेला बाणकोट
+        किल्ला हे दक्षिण कोकण प्रदेशातील ब्रिटिश ईस्ट इंडिया कंपनीचे पहिले निवासस्थान
+        होते.
+      significance: सावित्री नदीच्या खाडीजवळ ऐतिहासिक किल्ल्याच्या पायथ्याशी असलेले
+        हे एक शांत ठिकाण आहे.
+      dos: '- इथे दुकाने किंवा हॉटेल्स जास्त नसल्याने, स्वतःचे अन्न आणि पाणी सोबत
+        ठेवा.
+
+        - दुपारचे ऊन टाळण्यासाठी सकाळी किंवा संध्याकाळी भेट द्या.'
+      donts: '- किनाऱ्यावर कचरा किंवा प्लास्टिक फेकू नका.
+
+        - खाडीजवळ पाण्याचा प्रवाह वेगवान असू शकतो, त्यामुळे खोल पाण्यात पोहायला जाऊ
+        नका.'
+      safety_text: येथे जीवरक्षक नसल्यामुळे आणि खाडीतील पाण्याचा प्रवाह बदलत असल्याने,
+        पाण्याजवळ जाताना काळजी घ्या.
+    hi:
+      short_story: 'बाणकोट बीच महाराष्ट्र के रत्नागिरी जिले के मंडणगढ़ तालुका के बाणकोट
+        गाँव में स्थित है। यह समुद्र तट सावित्री नदी और अरब सागर के संगम के पास है,
+        और कैसुरिना (सुरू) के पेड़ों से घिरा हुआ है।
+
+
+        यहाँ आने वाले पर्यटक रेत पर टहल सकते हैं, मुहाने को देख सकते हैं और पास की
+        पहाड़ी पर स्थित ऐतिहासिक बाणकोट किला देख सकते हैं। यह तट अपनी शांति के लिए
+        जाना जाता है और किले के दर्शन करने वाले लोग अक्सर यहाँ आते हैं।'
+      history: 1756 में बाणकोट बॉम्बे प्रेसीडेंसी का हिस्सा बन गया था। पास स्थित बाणकोट
+        किला दक्षिणी कोंकण क्षेत्र में ब्रिटिश ईस्ट इंडिया कंपनी की पहली रेजीडेंसी
+        था।
+      significance: यह सावित्री नदी के मुहाने पर ऐतिहासिक किले के ठीक नीचे स्थित एक
+        शांत तटीय स्थान है।
+      dos: '- अपने साथ खाने-पीने की चीज़ें और पानी ले जाएँ, क्योंकि यहाँ व्यावसायिक
+        सुविधाएँ सीमित हैं।
+
+        - दोपहर की धूप से बचने के लिए सुबह या देर दोपहर में यहाँ जाएँ।'
+      donts: '- समुद्र तट पर कचरा या प्लास्टिक न छोड़ें।
+
+        - मुहाने के पास पानी का बहाव तेज़ हो सकता है, इसलिए गहरे पानी में तैरने न
+        जाएँ।'
+      safety_text: पानी के पास सतर्क रहें, क्योंकि यहाँ कोई लाइफगार्ड नहीं है और मुहाने
+        की धाराएँ अप्रत्याशित हो सकती हैं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://www.indianetzone.com/bankot_beach
+    - https://www.treksandtrails.org/tours/velas-turtle-festival-2026-from-mumbai
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no text: no reliable source found (2026-11-03 search); needs field visit
+    or local source; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: mandangad-fort
+  status: ai_draft
+  name_en: Mandangad Fort
+  name_mr: मंडणगड किल्ला
+  name_hi: मंडणगढ़ किला
+  category: fort
+  taluka: Mandangad
+  lat: 17.981665
+  lng: 73.243003
+  coord_source: osm node/9198729625
+  osm_id: node/9198729625
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: About 2 km from Mandangad town.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Mandangad_Fort
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mandangad fort, also called Chitradurga, is about 2 km from Mandangad
+        town. It is made of three separate parts: Mandangad proper in the south, Parkot
+        in the middle and Jamba in the north.
+
+
+        Inside are a cannon said to be about 400 years old, a Ganapati temple and
+        the Thorla Talav tank.'
+      history: It is said to have been built by King Bhoj. Shivaji captured it from
+        Adil Shah, and Colonel Kennedy took all three parts in 1818.
+      significance: null
+      dos: '- Walk all three sections: Mandangad, Parkot and Jamba'
+      donts: '- Don''t disturb the old cannon'
+      safety_text: '- Check paths locally before going in the monsoon'
+    mr:
+      short_story: 'मंडणगड किल्ला, ज्याला ''चित्रदुर्ग'' असेही म्हणतात, मंडणगड शहरापासून
+        सुमारे 2 किमी अंतरावर आहे. हा किल्ला तीन वेगवेगळ्या भागांचा बनलेला आहे: दक्षिणेला
+        मुख्य मंडणगड, मध्यभागी परकोट आणि उत्तरेला जांभा.
+
+
+        किल्ल्याच्या आत सुमारे 400 वर्षे जुनी मानली जाणारी एक तोफ, एक गणपतीचे मंदिर
+        आणि ''थोरला तलाव'' आहे.'
+      history: हा किल्ला शिलाहार राजा भोज याने बांधला असे म्हटले जाते. शिवाजी महाराजांनी
+        तो आदिलशहाकडून जिंकला, आणि पुढे 1818 मध्ये कर्नल केनेडी याने त्याचे तीनही
+        भाग ताब्यात घेतले.
+      significance: null
+      dos: '- मंडणगड, परकोट आणि जांभा या तिन्ही भागांमध्ये फिरून पहा'
+      donts: '- जुन्या तोफेची छेडछाड करू नका'
+      safety_text: '- पावसाळ्यात जाण्यापूर्वी तिथल्या वाटांची स्थानिक लोकांकडून खात्री
+        करून घ्या'
+    hi:
+      short_story: 'मंडणगढ़ किला, जिसे चित्रदुर्ग भी कहा जाता है, मंडणगढ़ शहर से लगभग
+        2 किमी दूर है। यह तीन अलग-अलग हिस्सों से बना है: दक्षिण में मुख्य मंडणगढ़,
+        मध्य में परकोट और उत्तर में जांभा।
+
+
+        किले के अंदर लगभग 400 साल पुरानी मानी जाने वाली एक तोप, एक गणपति मंदिर और
+        थोरला तलाव है।'
+      history: कहा जाता है कि इसे राजा भोज ने बनवाया था। शिवाजी ने इसे आदिल शाह से
+        छीन लिया था, और 1818 में कर्नल कैनेडी ने इसके तीनों हिस्सों पर कब्जा कर लिया।
+      significance: null
+      dos: '- तीनों खंडों में घूमें: मंडणगढ़, परकोट और जांभा'
+      donts: '- पुरानी तोप के साथ छेड़छाड़ न करें'
+      safety_text: '- मानसून में जाने से पहले स्थानीय लोगों से रास्तों की जानकारी
+        ले लें'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad_Fort
+  _collected_by: claude+gemini 2026-11-03
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+- slug: ambadave
+  status: ai_draft
+  name_en: Ambadave (Dr. Ambedkar Ancestral Village)
+  name_mr: आंबडवे
+  name_hi: आंबडवे
+  category: village
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: 13 km from Mandangad by road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Ambadave
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Ambadave, 13 km from Mandangad, is the ancestral village of Dr.
+        Babasaheb Ambedkar, the architect of the Indian Constitution. His original
+        family house has been turned into a memorial, and a national monument is being
+        developed here.
+      history: null
+      significance: Ancestral village of Dr. B. R. Ambedkar.
+      dos: '- Visit the memorial in the family house'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: मंडणगडपासून 13 किमी अंतरावर असलेले आंबडवे हे भारतीय राज्यघटनेचे
+        शिल्पकार डॉ. बाबासाहेब आंबेडकर यांचे मूळ गाव आहे. त्यांच्या जुन्या घराचे आता
+        स्मारकात रूपांतर करण्यात आले असून, येथे एक राष्ट्रीय स्मारकही उभारले जात आहे.
+      history: null
+      significance: डॉ. बाबासाहेब आंबेडकर यांचे मूळ गाव.
+      dos: '- त्यांच्या मूळ घरातील स्मारकाला नक्की भेट द्या'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: मंडणगढ़ से 13 किमी दूर स्थित आंबडवे, भारतीय संविधान के निर्माता
+        डॉ. बाबासाहेब अंबेडकर का पैतृक गांव है। उनके मूल घर को एक स्मारक में बदल दिया
+        गया है, और यहां एक राष्ट्रीय स्मारक भी विकसित किया जा रहा है。
+      history: null
+      significance: डॉ. बी. आर. अंबेडकर का पैतृक गांव।
+      dos: '- पैतृक घर में स्थित स्मारक के दर्शन करें'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/1/16/Smarak_at_Ambadave.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Kailash70
+    licence: CC BY-SA 4.0
+    source_url: https://commons.wikimedia.org/wiki/File:Smarak_at_Ambadave.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Ambadave
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+- slug: bankot-creek
+  status: ai_draft
+  name_en: Bankot Creek
+  name_mr: बाणकोट खाडी
+  name_hi: बाणकोट क्रीक
+  category: backwater
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bankot creek is where the Savitri river meets the sea at the northern
+        tip of Ratnagiri district. Bankot village sits on its south bank, about 47
+        km from Dapoli, with the fort above it.
+
+
+        A ferry crosses the river between Bagmandla on the Harihareshwar side and
+        Bankot, which makes this the usual way in from Raigad.'
+      history: The fort above the creek guarded the Savitri trade route. It changed
+        hands from Bijapur to the Portuguese in 1548, to Kanhoji Angre around 1700,
+        and to the British in 1755, who called it Fort Victoria.
+      significance: The river mouth that marks the northern edge of Ratnagiri district,
+        with a ferry link to Harihareshwar.
+      dos: '- Take the Bagmandla-Bankot ferry
+
+        - Walk up to Bankot fort, about 30 minutes'
+      donts: null
+      safety_text: null
+    mr:
+      short_story: 'बाणकोट खाडी म्हणजे ती जागा जिथे सावित्री नदी रत्नागिरी जिल्ह्याच्या
+        उत्तर टोकाला समुद्राला मिळते. बाणकोट गाव त्याच्या दक्षिण काठावर, दापोलीपासून
+        सुमारे 47 किमी अंतरावर, त्याच्या वरच्या किल्यासह वसलेले आहे.
+
+
+        हरिहरेश्वर बाजूकडील बागमांडला आणि बाणकोट दरम्यान नदीत एक फेरी चालते, ज्यामुळे
+        रायगडहून येण्याचा हा नेहमीचा मार्ग बनतो.'
+      history: खाडीवरील किल्याने सावित्रीच्या व्यापारी मार्गाचे रक्षण केले. 1548 मध्ये
+        तो विजापूरकडून पोर्तुगीजांकडे, 1700 च्या सुमारास कान्होजी आंग्रे यांच्याकडे
+        आणि 1755 मध्ये ब्रिटीशांकडे गेला, ज्यांनी त्याला 'फोर्ट व्हिक्टोरिया' म्हटले.
+      significance: रत्नागिरी जिल्ह्याची उत्तर सीमा चिन्हांकित करणारी नदीची खाडी,
+        हरिहरेश्वरशी फेरी लिंकसह.
+      dos: '- बागमांडला-बाणकोट फेरी घ्या
+
+        - बाणकोट किल्यापर्यंत चालत जा, सुमारे 30 मिनिटे'
+      donts: null
+      safety_text: null
+    hi:
+      short_story: 'बाणकोट क्रीक वह जगह है जहाँ सावित्री नदी रत्नागिरी जिले के उत्तरी
+        छोर पर समुद्र से मिलती है। बाणकोट गाँव इसके दक्षिणी तट पर, दापोली से लगभग
+        47 किमी दूर, इसके ऊपर स्थित किले के साथ बसा हुआ है।
+
+
+        हरिहरेश्वर की ओर के बागमंडला और बाणकोट के बीच नदी पार करने के लिए एक फेरी
+        चलती है, जिससे यह रायगढ़ से आने का सामान्य मार्ग बन जाता है।'
+      history: क्रीक के ऊपर के किले ने सावित्री व्यापार मार्ग की रक्षा की। यह 1548
+        में बीजापुर से पुर्तगालियों के पास, 1700 के आसपास कान्होजी आंग्रे के पास और
+        1755 में अंग्रेजों के पास चला गया, जिन्होंने इसे 'फोर्ट विक्टोरिया' कहा था।
+      significance: रत्नागिरी जिले की उत्तरी सीमा को चिह्नित करने वाला नदी का मुहाना,
+        हरिहरेश्वर के लिए फेरी लिंक के साथ।
+      dos: '- बागमंडला-बाणकोट फेरी लें
+
+        - बाणकोट किले तक पैदल चल कर जाएँ, लगभग 30 मिनट'
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Bankot_fort
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'no coordinates: needs pin; ferry timings unknown; EN text = Claude draft
+    from sources, needs team review; MR/HI = Gemini translation, needs native review'
+- slug: devacha-dongar
+  status: ai_draft
+  name_en: Devacha Dongar
+  name_mr: देवाचा डोंगर
+  name_hi: देवाचा डोंगर
+  category: viewpoint
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Devacha Dongar is a hill located in Bholavali village in Mandangad
+        taluka, near the border of the Ratnagiri and Raigad districts. The area sits
+        at an elevation of approximately 150 meters.
+
+
+        At the site, visitors will find the Mallikarjun Temple. The hill provides
+        open vantage points over the surrounding rural terrain, agricultural lands,
+        and the nearby Bholavali Dam.'
+      history: null
+      significance: It serves as a local viewpoint and a religious site housing the
+        Mallikarjun Temple.
+      dos: '- Dress modestly when entering the Mallikarjun Temple.
+
+        - Bring your own drinking water, as shops may not be available on the hill.'
+      donts: '- Do not leave garbage on the hill or around the temple.'
+      safety_text: The rural pathways leading up the hill can be uneven, so wearing
+        sturdy shoes is recommended.
+    mr:
+      short_story: 'देवाचा डोंगर ही रत्नागिरी आणि रायगड जिल्ह्यांच्या सीमेवर, मंडणगड
+        तालुक्यातील भोलावली गावात असलेली एक टेकडी आहे. या परिसराची समुद्रसपाटीपासूनची
+        उंची साधारणतः 150 मीटर आहे.
+
+
+        या ठिकाणी पर्यटकांना मल्लिकार्जुन मंदिर पाहायला मिळते. या टेकडीवरून आजूबाजूचा
+        ग्रामीण परिसर, शेती आणि जवळचे भोलावली धरण यांचे विहंगम दृश्य दिसते.'
+      history: null
+      significance: हे एक स्थानिक प्रेक्षणीय स्थळ असून, येथील मल्लिकार्जुन मंदिरामुळे
+        याला धार्मिक महत्त्व आहे.
+      dos: '- मल्लिकार्जुन मंदिरात जाताना सभ्य पोशाख परिधान करा.
+
+        - टेकडीवर दुकाने नसल्यामुळे स्वतःचे पिण्याचे पाणी सोबत ठेवा.'
+      donts: '- टेकडीवर किंवा मंदिर परिसरात कचरा करू नका.'
+      safety_text: टेकडीवर जाणाऱ्या ग्रामीण वाटा चढ-उताराच्या असू शकतात, त्यामुळे
+        चालण्यासाठी योग्य बूट वापरा.
+    hi:
+      short_story: 'देवाचा डोंगर रत्नागिरी और रायगढ़ जिलों की सीमा के पास, मंडणगढ़
+        तालुका के भोलावली गाँव में स्थित एक पहाड़ी है। यह क्षेत्र लगभग 150 मीटर की
+        ऊँचाई पर स्थित है।
+
+
+        इस स्थान पर आगंतुकों को मल्लिकार्जुन मंदिर देखने को मिलता है। इस पहाड़ी से
+        आसपास के ग्रामीण इलाकों, कृषि भूमि और पास के भोलावली बांध का खुला दृश्य दिखाई
+        देता है।'
+      history: null
+      significance: यह एक स्थानीय व्यूपॉइंट है और मल्लिकार्जुन मंदिर के कारण एक धार्मिक
+        स्थल भी है।
+      dos: '- मल्लिकार्जुन मंदिर में प्रवेश करते समय शालीन कपड़े पहनें।
+
+        - पीने का पानी अपने साथ लाएं, क्योंकि पहाड़ी पर दुकानें उपलब्ध नहीं हो सकती
+        हैं।'
+      donts: '- पहाड़ी पर या मंदिर परिसर के आसपास कचरा न फैलाएं।'
+      safety_text: पहाड़ी तक जाने वाले ग्रामीण रास्ते ऊबड़-खाबड़ हो सकते हैं, इसलिए
+        मजबूत और आरामदायक जूते पहनने की सलाह दी जाती है।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://en.wikipedia.org/wiki/Bholavali
+    - https://605184296e4db.site123.me/villages/bholavali-devacha-dongar
+  _collected_by: claude 2026-11-03
+  _review: 'identity only from official district list; category viewpoint is a guess
+    - verify; no text: no reliable source found (2026-11-03 search); needs field visit
+    or local source; EN text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted:
+    check facts against sources'
+- slug: tulshi-waterfall
+  status: ai_draft
+  name_en: Tulshi Waterfall
+  name_mr: तुळशी धबधबा
+  name_hi: तुलशी वॉटरफॉल
+  category: waterfall
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Strong flow and slippery rocks after heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Tulshi Waterfall is a natural water cascade situated near Ambavane
+        Kh in Tulshi village, Mandangad taluka. It is located roughly 3 kilometers
+        from Mandangad Fort.
+
+
+        The waterfall flows over rocky terrain and is surrounded by dense green vegetation.
+        The water flow is most prominent during and immediately after the monsoon
+        season.'
+      history: null
+      significance: It is a seasonal natural waterfall surrounded by thick vegetation
+        in the Mandangad region.
+      dos: '- Wear footwear with good grip to navigate the wet rocks.
+
+        - Visit during the monsoon months for the highest water levels.'
+      donts: '- Do not venture into deep pools if you do not know the water depth.
+
+        - Do not litter the natural surroundings.'
+      safety_text: The rocks near the waterfall become slippery when wet, so visitors
+        should walk carefully to avoid falls.
+    mr:
+      short_story: 'तुळशी धबधबा हा मंडणगड तालुक्यातील तुळशी गावात, आंबवणे खुर्द जवळ
+        असलेला एक नैसर्गिक धबधबा आहे. हे ठिकाण मंडणगड किल्ल्यापासून सुमारे 3 किलोमीटर
+        अंतरावर आहे.
+
+
+        हा धबधबा खडकाळ भागावरून वाहतो आणि त्याच्या आजूबाजूला दाट हिरवीगार झाडी आहे.
+        पावसाळ्यात आणि त्यानंतर लगेचच या धबधब्याला भरपूर पाणी असते.'
+      history: null
+      significance: मंडणगड परिसरात दाट झाडीने वेढलेला हा एक हंगामी नैसर्गिक धबधबा
+        आहे.
+      dos: '- ओल्या खडकांवरून चालताना घसरू नये म्हणून चांगली पकड असणारे बूट वापरा.
+
+        - धबधब्याला जास्त पाणी असताना पाहण्यासाठी पावसाळ्याच्या महिन्यात भेट द्या.'
+      donts: '- पाण्याचा अंदाज नसल्यास खोल डोहात उतरू नका.
+
+        - या नैसर्गिक परिसरात कचरा टाकू नका.'
+      safety_text: धबधब्याजवळील खडक ओले असताना निसरडे होतात, त्यामुळे पडण्यापासून
+        वाचण्यासाठी काळजीपूर्वक चाला.
+    hi:
+      short_story: 'तुलशी वॉटरफॉल (जलप्रपात) मंडणगढ़ तालुका के तुलशी गाँव में आंबवणे
+        खुर्द के पास स्थित एक प्राकृतिक जलप्रपात है। यह मंडणगढ़ किले से लगभग 3 किलोमीटर
+        की दूरी पर स्थित है।
+
+
+        यह झरना पथरीले इलाके से बहता है और घनी हरी वनस्पतियों से घिरा हुआ है। मानसून
+        के मौसम के दौरान और ठीक बाद में यहाँ पानी का बहाव सबसे अधिक होता है।'
+      history: null
+      significance: यह मंडणगढ़ क्षेत्र में घनी वनस्पतियों से घिरा एक मौसमी प्राकृतिक
+        जलप्रपात है।
+      dos: '- गीली चट्टानों पर चलने के लिए अच्छी ग्रिप वाले जूते पहनें।
+
+        - उच्चतम जल स्तर देखने के लिए मानसून के महीनों में यहाँ जाएँ।'
+      donts: '- अगर आपको गहराई का पता न हो, तो पानी के गहरे कुंडों में न जाएँ।
+
+        - प्राकृतिक परिवेश में कचरा न फैलाएं।'
+      safety_text: जलप्रपात के पास की चट्टानें गीली होने पर फिसलन भरी हो जाती हैं,
+        इसलिए गिरने से बचने के लिए आगंतुकों को सावधानी से चलना चाहिए।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://www.justdial.com/Ratnagiri/Tulshi-Waterfall-Ambavane-Kh-Tulshi/9999P2352-2352-171128195934-Q9I5_BZDET
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+- slug: shri-uttareshwar-temple
+  status: ai_draft
+  name_en: Shri Uttareshwar Temple
+  name_mr: श्री उत्तरेश्वर मंदिर
+  name_hi: श्री उत्तरेश्वर मंदिर
+  category: temple
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 30
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Dahagaon village on the Mandangad to Dapoli road, easily
+    accessible by road from Mandangad.
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shri Uttareshwar Temple is situated in the village of Dahagaon
+        in Mandangad taluka, on the route leading from Mandangad to Dapoli. The temple
+        is dedicated to Lord Shiva and serves as a place of religious and cultural
+        gathering for the local community in the Konkan region.
+
+
+        Visitors to the temple can observe traditional rural temple architecture set
+        within the village surroundings. It functions as a local center for worship
+        and community interaction.'
+      history: The temple is dedicated to Lord Shiva and is considered quite old by
+        the local community in the Konkan region.
+      significance: A local center of worship dedicated to Lord Shiva in Dahagaon
+        village.
+      dos: '- Maintain silence and respect local customs within the temple premises
+
+        - Dress modestly when visiting the shrine
+
+        - Check local transport options in advance as it is located on the Mandangad-Dapoli
+        route'
+      donts: '- Do not litter around the temple area
+
+        - Do not take photographs inside the sanctum if prohibited'
+      safety_text: Exercise caution while walking along the main road edges due to
+        vehicular traffic on the Mandangad-Dapoli route.
+    mr:
+      short_story: 'श्री उत्तरेश्वर मंदिर मंडणगड तालुक्यातील दहागाव येथे, मंडणगड ते
+        दापोली जाणाऱ्या मार्गावर स्थित आहे. हे मंदिर भगवान शिवाला समर्पित असून कोकण
+        भागातील स्थानिक समुदायासाठी धार्मिक आणि सांस्कृतिक केंद्र आहे.
+
+
+        येथे येणारे प्रवासी गावालगतच्या परिसरात असलेली पारंपरिक ग्रामीण मंदिराची रचना
+        पाहू शकतात. हे ठिकाण स्थानिक नागरिकांसाठी उपासनेचे आणि एकत्र येण्याचे केंद्र
+        आहे.'
+      history: हे मंदिर भगवान शिवाला समर्पित असून कोकण भागातील स्थानिकांच्या मते ते
+        जुने धार्मिक महत्त्व बाळगून आहे.
+      significance: दहागाव येथील भगवान शिव समर्पित स्थानिक उपासना केंद्र.
+      dos: '- मंदिर परिसरात शांतता राखा आणि स्थानिक प्रथांचा मान ठेवा
+
+        - मंदिरात जाताना साधे आणि शिष्टाचाराचे कपडे घाला
+
+        - मंडणगड-दापोली मार्गावर असल्याने प्रवासाच्या साधनांची पूर्वतयारी करा'
+      donts: '- मंदिर परिसरात कचरा टाकू नका
+
+        - गाभाऱ्यात बंदी असताना फोटो काढू नका'
+      safety_text: मंडणगड-दापोली मार्गावर वाहनांची वर्दळ असल्याने चालताना काळजी घ्या.
+    hi:
+      short_story: 'श्री उत्तरेश्वर मंदिर मंडणगड तालुका के दहागांव में, मंडणगड से
+        दापोली जाने वाले मार्ग पर स्थित है। यह मंदिर भगवान शिव को समर्पित है और कोंकण
+        क्षेत्र के स्थानीय समुदाय के लिए धार्मिक तथा सांस्कृतिक महत्व रखता है।
+
+
+        यहाँ आने वाले आगंतुक ग्रामीण परिवेश में स्थित पारंपरिक मंदिर वास्तुकला को
+        देख सकते हैं। यह स्थान स्थानीय लोगों के लिए पूजा-पाठ और मेल-जोल का केंद्र
+        है।'
+      history: यह मंदिर भगवान शिव को समर्पित है और कोंकण क्षेत्र में स्थानीय समुदाय
+        के अनुसार काफी पुराना माना जाता है।
+      significance: दहागांव में भगवान शिव को समर्पित एक स्थानीय पूजा स्थल।
+      dos: '- मंदिर परिसर में शांति बनाए रखें और स्थानीय परंपराओं का सम्मान करें
+
+        - मंदिर जाते समय संभ्रांत वस्त्र पहनें
+
+        - मंडणगड-दापोली मार्ग पर स्थित होने के कारण यातायात के साधनों की पहले से योजना
+        बनाएं'
+      donts: '- मंदिर क्षेत्र के आसपास कचरा न फैलाएं
+
+        - यदि मना हो तो गर्भगृह के अंदर तस्वीरें न लें'
+      safety_text: मंडणगड-दापोली मार्ग पर वाहनों की आवाजाही को देखते हुए सड़क पर चलते
+        समय सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://steller.co/p/shree-uttareshwar-mandir-3NfU4EaWAF34rf2m66uXme
+    - https://www.tanderlust.com/mahadev-homestay-mandangad-maharashtra/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: khemnath-temple
+  status: ai_draft
+  name_en: Khemnath Temple
+  name_mr: खेमनाथ मंदिर
+  name_hi: खेमनाथ मंदिर
+  category: temple
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 30
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Borghar village, accessible by local roads from Mandangad
+    taluka headquarters.
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Khemnath Temple is located near Shedwai village via the road branching
+        off from Dahagaon on the Mandangad-Dapoli route in Mandangad taluka. Set amidst
+        nature, the shrine features a simple tiled roof structure housing a black
+        granite standing idol identified as Lakshmi Keshava.
+
+
+        The temple preserves a 900-year-old sculptural heritage dating back to the
+        Shilahara era. Visitors can observe ancient stone art alongside a nearby Lord
+        Hanuman shrine and experience the local Shimga festival celebrations.'
+      history: The temple preserves a 900-year-old Vishnu idol belonging to the Shilahara
+        era, discovered in the region. According to popular local lore, the deity
+        Khemnath, viewed as an avatar of Mahadev, was found by a farmer while working
+        in his fields.
+      significance: An ancient site preserving a 900-year-old Shilahara-era Vishnu
+        idol.
+      dos: '- Observe the ancient Shilahara-era sculptures with care
+
+        - Participate respectfully during the annual Shimga festival if visiting in
+        season
+
+        - Wear appropriate attire suitable for a rural temple visit'
+      donts: '- Do not touch or apply substances to the ancient stone idol
+
+        - Do not litter in the natural surroundings around the temple'
+      safety_text: Watch your step on unpaved village paths leading off the main road
+        toward the temple area.
+    mr:
+      short_story: 'खेमनाथ मंदिर मंडणगड तालुक्यातील मंडणगड-दापोली मार्गावरील दहागाव
+        जवळून शेडवई गावाकडे जाणाऱ्या रस्त्यावर निसर्गाच्या सानिध्यात आहे. साध्या कौलारू
+        रचनेच्या या मंदिरात काळ्या ग्रेनाईट दगडात कोरलेली लक्ष्मीकेशव स्वरूपातील विष्णूची
+        स्थानक मूर्ती आहे.
+
+
+        हे मंदिर शिलाहार कालीन 900 वर्षांचा प्राचीन शिल्पवारसा जपते. येथे येणाऱ्यांना
+        प्राचीन शिल्पकला, जवळच असलेले हनुमान मंदिर आणि शिमगोत्सवाचे स्वरूप अनुभवता
+        येते.'
+      history: या मंदिरात शिलाहार काळातील 900 वर्षां जुनी विष्णूची मूर्ती आहे. लोककथेनुसार,
+        महादेवाचा अवतार मानले गेलेले खेमनाथ शेतात काम करताना एका शेतकऱ्याला सापडले
+        होते, त्यानंतर या मंदिराची स्थापना झाली.
+      significance: शिलाहार काळातील 900 वर्षां जुनी विष्णू मूर्ती आणि प्राचीन शिल्पवारसा
+        जपणारे ठिकाण.
+      dos: '- प्राचीन शिलाहार काळातील शिल्पांचे जतन करत काळजीपूर्वक निरीक्षण करा
+
+        - शिमगोत्सवाच्या काळात भेट दिल्यास स्थानिक रितीरिवाजांचा मान ठेवा
+
+        - ग्रामीण भागातील मंदिराला भेट देताना साधे कपडे घाला'
+      donts: '- प्राचीन दगडी मूर्तीला स्पर्श करू नका किंवा त्यावर काहीही लावू नका
+
+        - मंदिराच्या नैसर्गिक परिसरात कचरा टाकू नका'
+      safety_text: मुख्य रस्त्यावरून मंदिराजकडे जाणाऱ्या कच्च्या वाटांवर चालताना नीट
+        लक्ष ठेवा.
+    hi:
+      short_story: 'खेमनाथ मंदिर मंडणगड तालुका में मंडणगड-दापोली मार्ग पर दहागांव
+        के पास शेडवई गांव की ओर जाने वाले रास्ते पर प्रकृति की गोद में स्थित है। साधारण
+        कौलारू संरचना वाले इस मंदिर में काले ग्रेनाइट पत्थर में गढ़ी हुई लक्ष्मीकेशव
+        स्वरूप की भगवान विष्णु की सुंदर स्थानक मूर्ति है।
+
+
+        यह मंदिर शिलाहार काल की नौ सौ वर्ष पुरानी प्राचीन मूर्तिकला विरासत को संजोए
+        हुए है। यहाँ आगंतुक प्राचीन पाषाण कला, पास ही स्थित हनुमान मंदिर और स्थानीय
+        शिमगा उत्सव को देख सकते हैं।'
+      history: इस मंदिर में शिलाहार काल की नौ सौ वर्ष पुरानी विष्णु मूर्ति है। जनश्रुति
+        के अनुसार, महादेव के अवतार माने जाने वाले खेमनाथ एक किसान को खेती करते समय
+        मिले थे, जिसके बाद इस मंदिर की स्थापना हुई.
+      significance: शिलाहार काल की नौ सौ साल पुरानी विष्णु मूर्ति और प्राचीन शिल्प
+        कला का संरक्षित स्थल।
+      dos: '- प्राचीन शिलाहार कालीन मूर्तियों को सावधानी से देखें
+
+        - शिमगा उत्सव के दौरान आने पर स्थानीय परंपराओं का सम्मान करें
+
+        - ग्रामीण मंदिर यात्रा के अनुसार उपयुक्त वस्त्र पहनें'
+      donts: '- प्राचीन पाषाण मूर्ति को छुएं नहीं या उस पर कुछ लेप न लगाएं
+
+        - मंदिर के प्राकृतिक परिसर में कचरा न फैलाएं'
+      safety_text: मुख्य सड़क से मंदिर की ओर जाने वाले ग्रामीण रास्तों पर चलते समय
+        सतर्क रहें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://www.esakal.com/kokan/mandangad-shri-kesharnath-temple-900-year-idols-reveals-rare-shilahara-era-heritage-and-ancient-stone-art-sdj87
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: saint-dawood-khan-mazar
+  status: ai_draft
+  name_en: Saint Dawood Khan Mazar
+  name_mr: सन्त दावुड खान मजार
+  name_hi: संत दाऊद खान मजार
+  category: temple
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located atop Mandangad Fort, accessible by road or a short trek from
+    Mandangad town.
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Saint Dawood Khan Mazar is located inside Mandangad Fort, situated
+        in Mandangad taluka of Ratnagiri district. The fort sits on a hill approximately
+        1,200 feet above sea level and overlooks the surrounding terrain near the
+        town.
+
+
+        Within the fort complex, visitors can observe the mazar (tomb) of Saint Dawood
+        Khan along with several other Muslim graves. The site also features historical
+        fort remains, a Ganesha temple, and perennial water tanks such as Thorla Talao.'
+      history: Mandangad Fort, which houses the mazar, was built to safeguard the
+        trade route through the Savitri River and underwent restoration during the
+        Adilshahi rule of Bijapur before coming under the control of Chhatrapati Shivaji
+        Maharaj in 1661, later passing through the hands of the Angres, Siddis, and
+        the British in 1818.
+      significance: A historical mazar located inside the hill fort of Mandangad.
+      dos: '- Maintain proper decorum and respect at the mazar and fort site
+
+        - Carry drinking water as amenities on the fort hill are limited
+
+        - Wear comfortable footwear suitable for walking on uneven fort terrain'
+      donts: '- Do not deface or damage any historical structures or graves
+
+        - Do not wander near unguarded steep edges of the hill fort'
+      safety_text: Exercise caution near the deep valley edges on the western side
+        of the hill fort.
+    mr:
+      short_story: 'संत दाऊद खान यांची मजार रत्नागिरी जिल्ह्यातील मंडणगड तालुक्यात
+        असलेल्या मंडणगड किल्ल्याच्या आवारात आहे. हा किल्ला शहराच्या पाठीमागे एका टेकडीवर
+        समुद्रासपाटीपासून साधारण 1,200 फूट उंचावर स्थित आहे.
+
+
+        किल्ल्याच्या परिसरामध्ये संत दाऊद खान यांची मजार तसेच इतर अनेक मुस्लिम कब्र
+        पाहता येतात. याशिवाय किल्ल्यावर पाण्याचे टाके (थोरला तलाव), गणपती मंदिर आणि
+        जुन्या वास्तूंचे अवशेष पाहण्यास मिळतात.'
+      history: सावित्री नदीच्या व्यापारी मार्गाच्या रक्षणासाठी बांधलेल्या या किल्ल्यावर
+        आदिलशाही राजवटीत दुरुस्ती झाली. पुढे 1661 मध्ये हा किल्ला छत्रपती शिवाजी महाराजांच्या
+        ताब्यात आला आणि नंतर आंग्रे, सिद्दी व 1815-1818 दरम्यान ब्रिटिशांच्या हाती
+        गेला.
+      significance: मंडणगड किल्ल्याच्या आवारात असलेली ऐतिहासिक संत दाऊद खान मजार.
+      dos: '- मजार आणि किल्ला परिसरात योग्य आदर व शांतता राखा
+
+        - गडचढाई करताना पिण्याचे पाणी सोबत ठेवा
+
+        - किल्ल्याच्या खडबडीत वाटांवर चालण्यासाठी आरामदायक पादत्राणे वापरू नका असे
+        नाही तर वापरा'
+      donts: '- ऐतिहासिक वास्तू किंवा कबरांचे नुकसान करू नका
+
+        - किल्ल्याच्या धोकादायक आणि सुरक्षित नसलेल्या कड्यांच्या टोकांवर जाऊ नका'
+      safety_text: किल्ल्याच्या पश्चिम बाजूला खोल दरी असल्याने कड्याच्या कडेने चालताना
+        सावधगिरी बाळगा.
+    hi:
+      short_story: 'संत दाऊद खान मजार रत्नागिरी जिले के मंडणगड तालुका में स्थित मंडणगड
+        किले के भीतर है। यह किला शहर के पीछे एक पहाड़ी पर समुद्र तल से लगभग 1,200
+        फीट की ऊंचाई पर स्थित है।
+
+
+        किले के परिसर के अंदर आगंतुक संत दाऊद खान की मजार और कई अन्य मुस्लिम कब्रों
+        को देख सकते हैं। इसके अलावा किले में प्राचीन अवशेष, एक गणेश मंदिर और थोरला
+        तालाब जैसे जलकुंड भी मौजूद हैं.'
+      history: सावित्री नदी के व्यापार मार्ग की सुरक्षा के लिए बने इस किले का आदिलशाही
+        काल में जीर्णोद्धार हुआ, जो 1661 में छत्रपती शिवाजी महाराज के नियंत्रण में
+        आया और बाद में आंग्रे, सिद्दी तथा 1818 में अंग्रेजों के अधीन हो गया।
+      significance: मंडणगड पहाड़ी किले के अंदर स्थित एक ऐतिहासिक मजार।
+      dos: '- मजार और किले के परिसर में गरिमा और मर्यादा बनाए रखें
+
+        - किले पर चढ़ाई के दौरान पीने का पानी साथ रखें
+
+        - किले के असमान रास्तों पर चलने के लिए उपयुक्त जूते पहनें'
+      donts: '- किसी भी ऐतिहासिक संरचना या कब्र को नुकसान न पहुँचाएं
+
+        - किले की असुरक्षित और गहरी ढलानों के बहुत करीब न जाएं'
+      safety_text: किले के पश्चिमी हिस्से में गहरी घाटी है, इसलिए किनारों पर चलते
+        समय विशेष सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://durgbharari.in/mandangad/
+    - https://www.mtdc.co.in/forts/mandangad-fort/
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: palavani-waterfall
+  status: ai_draft
+  name_en: Palavani Waterfall
+  name_mr: पाळवणी धबधबा
+  name_hi: पालावणी जलप्रपात
+  category: waterfall
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 60
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Unhavare/Palavni village, reachable by road from Mandangad
+    town via local transport.
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 10
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Palavani Waterfall is a natural water feature located near the
+        village of Palavani in Mandangad taluka, Ratnagiri district. The site is situated
+        near the village of Unhavare in a quiet and natural setting.
+
+
+        Visitors can observe the flowing water surrounded by local vegetation and
+        hilly terrain. It functions as a seasonal nature spot connected via local
+        transport routes.'
+      history: null
+      significance: A local seasonal waterfall located near Palavani village and Unhavare
+        in Mandangad taluka.
+      dos: '- Wear sturdy footwear for walking on uneven terrain.
+
+        - Carry drinking water and supplies as commercial facilities are limited.
+
+        - Check local weather conditions before visiting during the monsoon.'
+      donts: '- Do not venture into deep or fast-flowing water streams.
+
+        - Do not litter the natural surroundings.'
+      safety_text: Exercise caution on slippery rocks near the water stream, especially
+        during the monsoon season.
+    mr:
+      short_story: 'पालावणी धबधबा हे रत्नागिरी जिल्ह्यातील मंडणगड तालुक्यातील पाळावणी
+        गावाजवळ असलेले एक नैसर्गिक जलस्रोत आहे. हे ठिकाण उनवरे गावाच्या जवळ शांत आणि
+        नैसर्गिक परिसरात स्थित आहे.
+
+
+        येथे पर्यटकांना स्थानिक वनस्पती आणि डोंगराळ प्रदेशाच्या सानिध्यात पाण्याचा
+        प्रवाह पाहायला मिळतो. हे स्थानिक वाहतूक मार्गांनी जोडलेले एक हंगामी निसर्ग
+        ठिकाण आहे.'
+      history: null
+      significance: मंडणगड तालुक्यातील पाळावणी गाव आणि उनवरे जवळ असलेले एक स्थानिक
+        हंगामी धबधबा.
+      dos: '- खडबडीत जमिनीवर चालण्यासाठी मजबूत पादत्राणे घाला.
+
+        - व्यावसायिक सुविधा मर्यादित असल्याने पिण्याचे पाणी आणि इतर साहित्य सोबत ठेवा.
+
+        - पावसाळ्यात भेट देण्यापूर्वी स्थानिक हवामानाची स्थिती तपासा.'
+      donts: '- खोल किंवा वेगाने वाहणाऱ्या पाण्याच्या प्रवाहात जाऊ नका.
+
+        - नैसर्गिक परिसरात कचरा टाकू नका.'
+      safety_text: विशेषतः पावसाळ्यात पाण्याच्या जवळील घसरड्या खडकांवर चालताना काळजी
+        घ्या.
+    hi:
+      short_story: 'पालावणी जलप्रपात रत्नागिरी जिले के मंडणगड तालुका में पाळावणी गाँव
+        के पास स्थित एक प्राकृतिक जल स्रोत है। यह स्थल उनवरेगाँव के पास एक शांत और
+        प्राकृतिक परिवेश में स्थित है।
+
+
+        यहाँ आगंतुक स्थानीय वनस्पतियों और पहाड़ी इलाके से घिरे पानी के प्रवाह को देख
+        सकते हैं। यह स्थानीय परिवहन मार्गों से जुड़ा एक मौसमी प्राकृतिक स्थल है।'
+      history: null
+      significance: मंडणगड तालुका में पाळावणी गाँव और उनवरे के पास स्थित एक स्थानीय
+        मौसमी जलप्रपात।
+      dos: '- ऊबड़-खाबड़ जमीन पर चलने के लिए मजबूत जूते पहनें।
+
+        - व्यावसायिक सुविधाएँ सीमित होने पर पीने का पानी और आवश्यक सामान साथ रखें।
+
+        - मानसून के दौरान यात्रा करने से पहले स्थानीय मौसम की स्थिति की जाँच करें।'
+      donts: '- गहरे या तेजी से बहने वाले पानी के धाराओं में न उतरें।
+
+        - प्राकृतिक परिवेश में कचरा न फैलाएं।'
+      safety_text: पानी के पास फिसलन भरी चट्टानों पर सावधानी बरतें, विशेषकर मानसून
+        के मौसम के दौरान।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://en.bharatpedia.org/wiki/Mandangad
+    - https://geolysis.com/p/in/mh/ratnagiri/mandangad/palawani
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'
+- slug: vinhe-dam
+  status: ai_draft
+  name_en: Vinhe Dam
+  name_mr: विन्हे धरण
+  name_hi: विन्हे बांध
+  category: backwater
+  taluka: Mandangad
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 45
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Vinhe near Soveli village, accessible by road from Mandangad
+    town.
+  nearest_station: Karanjadi + 27 km
+  nearest_bus_stop: Mandangad Bus Stand
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Vinhe Dam is a water storage structure situated in Vinhe village
+        within Mandangad taluka of Ratnagiri district. The area features a backwater
+        reservoir surrounded by local vegetation and rural terrain.
+
+
+        Visitors to the site can observe the open water body and surrounding catchment
+        area. It is accessible via local roads passing through the Soveli and Mandangad
+        region.'
+      history: null
+      significance: A local water reservoir and dam structure located in Vinhe village
+        of Mandangad taluka.
+      dos: '- Use established local routes to reach the dam site.
+
+        - Respect local property and agricultural boundaries near the reservoir.'
+      donts: '- Do not enter the deep water or reservoir basin.
+
+        - Do not engage in unauthorized activities around the dam structure.'
+      safety_text: Maintain a safe distance from the water edge and spillway areas
+        as safety barriers may be absent.
+    mr:
+      short_story: 'विन्हे धरण हे रत्नागिरी जिल्ह्यातील मंडणगड तालुक्यातील विन्हे
+        गावामध्ये स्थित एक जलसंचय प्रकल्प आहे. या परिसरात स्थानिक वनस्पती आणि ग्रामीण
+        भूभागाने वेढलेला बॅकवॉटर जलाशय आहे.
+
+
+        येथील पर्यटक खुले पाणी आणि सभोवतालचा पाणलोट क्षेत्र पाहू शकतात. हे सोवेली
+        आणि मंडणगड भागातून जाणारे स्थानिक रस्त्यांनी पोहोचण्यायोग्य आहे.'
+      history: null
+      significance: मंडणगड तालुक्यातील विन्हे गावातील एक स्थानिक जलशाय आणि धरण संरचना.
+      dos: '- धरण स्थळापर्यंत पोहोचण्यासाठी ठरवलेले स्थानिक मार्ग वापर.
+
+        - जलाशयाजवळील स्थानिक मालमत्ता आणि शेतीच्या सीमांचा आदर करा.'
+      donts: '- खोल पाण्यात किंवा जलाशयाच्या पात्रात प्रवेश करू नका.
+
+        - धरण संरचनेत अनधिकृत कृती करू नका.'
+      safety_text: सुरक्षा भिंती नसल्यामुळे पाण्याच्या काठापासून आणि सांडव्याच्या
+        भागापासून सुरक्षित अंतर ठेवा.
+    hi:
+      short_story: 'विन्हे बांध रत्नागिरी जिले के मंडणगड तालुका में विन्हे गाँव में
+        स्थित एक जल संचय संरचना है। इस क्षेत्र में स्थानीय वनस्पतियों और ग्रामीण भूभाग
+        से घिरा हुआ एक बैकवाटर जलाशय है।
+
+
+        यहाँ आने वाले आगंतुक खुले जलाशय और आसपास के जलग्रहण क्षेत्र को देख सकते हैं।
+        यह सोवेली और मंडणगड क्षेत्र से गुजरने वाले स्थानीय सड़कों के माध्यम से सुगम
+        है।'
+      history: null
+      significance: मंडणगड तालुका के विन्हे गाँव में स्थित एक स्थानीय जल जलाशय और
+        बांध संरचना।
+      dos: '- बांध स्थल तक पहुँचने के लिए निर्धारित स्थानीय मार्गों का उपयोग करें।
+
+        - जलाशय के पास स्थानीय संपत्ति और कृषि सीमाओं का सम्मान करें।'
+      donts: '- गहरे पानी या जलाशय बेसिन में प्रवेश न करें।
+
+        - बांध संरचना के आसपास अनधिकृत गतिविधियाँ न करें।'
+      safety_text: पानी के किनारे और स्पिलवे क्षेत्रों से सुरक्षित दूरी बनाए रखें
+        क्योंकि सुरक्षा बैरियर अनुपस्थित हो सकते हैं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Mandangad
+    - https://www.justdial.com/Ratnagiri/Tourist-Attraction-in-Mandangad/nct-10596038
+    - https://www.justdial.com/Ratnagiri/Vinhe-Dam-Soveli/9999P2352-2352-230904104552-D6U6_BZDET
+    - https://villageinfo.in/maharashtra/ratnagiri/mandangad/vinhe/
+    - https://villageinfo.org/village/564790
+  _collected_by: claude+gemini 2026-11-03
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; EN text +
+    MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts against
+    sources'

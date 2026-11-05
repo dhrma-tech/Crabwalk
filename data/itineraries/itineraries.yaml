@@ -1,0 +1,272 @@
+# Ready-made itinerary drafts (spec 2.10). status ai_draft. Built only from listings in this data set.
+# Spec: real itineraries are created in the app planner and promoted; these are starting plans for the team.
+- status: ai_draft
+  title: Ratnagiri in 2 days
+  slug: ratnagiri-2-days
+  days: 2
+  pace: balanced
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: ratnadurg-fort
+    - kind: place
+      slug: bhagwati-temple-ratnadurg
+    - kind: meal
+      slug: hotel-amantran-ratnagiri
+    - kind: place
+      slug: thibaw-palace
+    - kind: place
+      slug: lokmanya-tilak-birthplace
+    - kind: place
+      slug: thiba-point
+    - kind: place
+      slug: mandvi-beach
+    - kind: stay
+      slug: hotel-sea-fans-mandvi
+  - day: 2
+    stops:
+    - kind: place
+      slug: aare-ware-viewpoint
+    - kind: place
+      slug: aare-ware-beach
+    - kind: place
+      slug: ganpatipule-swayambhu-ganpati-temple
+    - kind: meal
+      slug: bhau-joshi-bhojnalay-ganpatipule
+    - kind: place
+      slug: prachin-konkan-museum-ganpatipule
+    - kind: place
+      slug: jaigad-fort
+    - kind: place
+      slug: jaigad-lighthouse
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Temples of Konkan
+  slug: temples-of-konkan
+  days: 3
+  pace: balanced
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: parshuram-temple
+    - kind: place
+      slug: vindhyavasini-temple-chiplun
+    - kind: meal
+      slug: hotel-abhishek-malvani-jevan-chiplun
+    - kind: place
+      slug: vyadeshwar-temple
+    - kind: place
+      slug: durga-devi-temple-guhagar
+    - kind: stay
+      slug: mango-village-resort-guhagar
+  - day: 2
+    stops:
+    - kind: place
+      slug: hedavi-dashabhuja-ganpati-temple
+    - kind: place
+      slug: velneshwar-temple
+    - kind: place
+      slug: ganpatipule-swayambhu-ganpati-temple
+    - kind: meal
+      slug: mehendales-swad-dining-malgund
+    - kind: place
+      slug: pawas-swami-swarupanand-ashram
+    - kind: stay
+      slug: mtdc-resort-ganpatipule
+  - day: 3
+    stops:
+    - kind: place
+      slug: dhootpapeshwar-temple
+    - kind: place
+      slug: kanakaditya-sun-temple-kasheli
+    - kind: meal
+      slug: shri-mahalaxmi-khanaval-adivare
+    - kind: place
+      slug: mahakali-temple-adivare
+    - kind: place
+      slug: aryadurga-temple-devihasol
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Hidden beaches
+  slug: hidden-beaches
+  days: 3
+  pace: relaxed
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: kolthare-beach
+    - kind: place
+      slug: kelshi-beach
+    - kind: meal
+      slug: mauli-dining-ladghar
+    - kind: place
+      slug: ladghar-beach
+    - kind: stay
+      slug: sagar-sahwas-homestay-ladghar
+  - day: 2
+    stops:
+    - kind: place
+      slug: asgoli-beach
+    - kind: place
+      slug: bamanghal-hedavi
+    - kind: meal
+      slug: jog-aaji-mess-guhagar
+    - kind: place
+      slug: velneshwar-beach
+    - kind: stay
+      slug: the-happy-cabins-homestay-asgoli
+  - day: 3
+    stops:
+    - kind: place
+      slug: ganeshgule-temple-and-beach
+    - kind: place
+      slug: madban-beach
+    - kind: meal
+      slug: sunset-cafe-restaurant-jaitapur
+    - kind: place
+      slug: devghali-beach
+    - kind: stay
+      slug: sulochana-beach-house-ambolgad
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Forts trail
+  slug: forts-trail
+  days: 3
+  pace: packed
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: suvarnadurg-fort
+    - kind: place
+      slug: kanakdurg-fort
+    - kind: place
+      slug: fattegad-fort
+    - kind: meal
+      slug: tropical-wave-agastya-seaview-resort-harnai
+    - kind: place
+      slug: gopalgad-fort
+    - kind: stay
+      slug: mtdc-resort-velneshwar
+  - day: 2
+    stops:
+    - kind: place
+      slug: jaigad-fort
+    - kind: place
+      slug: ratnadurg-fort
+    - kind: meal
+      slug: arati-dining-ratnagiri
+    - kind: place
+      slug: purnagad-fort
+    - kind: stay
+      slug: hotel-sea-fans-mandvi
+  - day: 3
+    stops:
+    - kind: place
+      slug: yashwantgad-fort
+    - kind: meal
+      slug: hotel-kokani-katta-rajapur
+    - kind: place
+      slug: ambolgad-fort
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Dapoli family weekend
+  slug: dapoli-family-weekend
+  days: 2
+  pace: relaxed
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: murud-beach
+    - kind: meal
+      slug: ocean-breeze-beach-restaurant-murud
+    - kind: place
+      slug: karde-beach
+    - kind: place
+      slug: ladghar-beach
+    - kind: stay
+      slug: lotus-eco-beach-resort-murud
+  - day: 2
+    stops:
+    - kind: place
+      slug: harnai-fish-market
+    - kind: place
+      slug: suvarnadurg-fort
+    - kind: meal
+      slug: fishermens-spice-restaurant-dapoli
+    - kind: place
+      slug: kadyavarcha-ganpati-anjarle
+    - kind: place
+      slug: anjarle-beach
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Velas turtle weekend
+  slug: velas-turtle-weekend
+  days: 2
+  pace: relaxed
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: velas-beach
+    - kind: meal
+      slug: hotel-akash-mandangad
+    - kind: place
+      slug: bankot-fort
+    - kind: place
+      slug: bankot-creek
+    - kind: stay
+      slug: turtle-nest-home-stay-velas
+  - day: 2
+    stops:
+    - kind: place
+      slug: velas-beach
+    - kind: place
+      slug: kelshi-beach
+    - kind: place
+      slug: mahalaxmi-temple-kelshi
+    - kind: meal
+      slug: jagdish-lunch-home-dapoli
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15
+- status: ai_draft
+  title: Monsoon waterfalls
+  slug: monsoon-waterfalls
+  days: 2
+  pace: balanced
+  stops:
+  - day: 1
+    stops:
+    - kind: place
+      slug: sawatsada-waterfall
+    - kind: place
+      slug: parshuram-temple
+    - kind: meal
+      slug: trupti-malvani-machhi-khanaval-chiplun
+    - kind: place
+      slug: marleshwar-temple
+    - kind: place
+      slug: marleshwar-waterfall
+    - kind: stay
+      slug: onest-luxury-homestay-devrukh
+  - day: 2
+    stops:
+    - kind: place
+      slug: ukshi-waterfall
+    - kind: meal
+      slug: kokani-khanawal-kajirbhati
+    - kind: place
+      slug: khorninko-waterfall
+    - kind: place
+      slug: savatkada-waterfall
+  _review: draft order only; travel times, opening hours and tides not checked - plan
+    in app (/plan) and promote per DECISIONS P7-15

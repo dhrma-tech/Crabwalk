@@ -1,0 +1,202 @@
+# Eateries - Mandangad taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: hotel-akash-mandangad
+  status: ai_draft
+  name_en: Hotel Akash
+  name_mr: हॉटेल आकाश
+  name_hi: होटल आकाश
+  taluka: Mandangad
+  area: Mandangad
+  lat: null
+  lng: null
+  google_place_id: ChIJOVy5cfjN6TsRp2xj7Z61t80
+  authenticity: local_legend
+  price_for_two: 500
+  diet_flags:
+    veg: null
+    non_veg: null
+    jain: null
+  opens: 09:00
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 96372 33358
+  whatsapp: null
+  description:
+    en: Hotel Akash is a well-known local establishment located in the town of Mandangad.
+    mr: हॉटेल आकाश हे मंडणगड शहरातील एक जुने आणि ओळखीचे ठिकाण आहे.
+    hi: होटल आकाश मंडणगड शहर का एक पुराना और स्थानीय स्तर पर जाना-माना भोजनालय है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJOVy5cfjN6TsRp2xj7Z61t80
+    - https://www.justdial.com/Ratnagiri/Konkani-Restaurants-in-Mandangad/nct-10563700
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Akash' (via Gemini, 2026-11-03); authenticity
+    label is Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs
+    review
+- slug: hot-fresh-restaurant-mandangad
+  status: ai_draft
+  name_en: Hot & Fresh Restaurant
+  name_mr: हॉट अँड फ्रेश रेस्टॉरंट
+  name_hi: हॉट एंड फ्रेश रेस्टोरेंट
+  taluka: Mandangad
+  area: Mandangad
+  lat: null
+  lng: null
+  google_place_id: ChIJJbBxDKbN6TsRO8FbqH5VQhs
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 97684 65949
+  whatsapp: null
+  description:
+    en: Hot & Fresh Restaurant is a tourist-friendly eatery situated near the CNG
+      pump in Mandangad. The restaurant offers a variety of vegetarian and non-vegetarian
+      dishes.
+    mr: मंडणगडमधील सीएनजी पंपाजवळ असलेले हॉटेल हॉट अँड फ्रेश हे पर्यटकांसाठी एक सोयीस्कर
+      भोजनालय आहे. या रेस्टॉरंटमध्ये विविध शाकाहारी आणि मांसाहारी पदार्थ मिळतात.
+    hi: हॉट एंड फ्रेश रेस्टोरेंट मंडणगड में सीएनजी पंप के पास स्थित पर्यटकों के अनुकूल
+      भोजनालय है। यह रेस्टोरेंट विभिन्न प्रकार के शाकाहारी और मांसाहारी व्यंजन पेश
+      करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJbBxDKbN6TsRO8FbqH5VQhs
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: steps-in-restaurant-mandangad
+  status: ai_draft
+  name_en: Steps In Restaurant
+  name_mr: स्टेप्स इन रेस्टॉरंट
+  name_hi: स्टेप्स इन रेस्टोरेंट
+  taluka: Mandangad
+  area: Mandangad
+  lat: null
+  lng: null
+  google_place_id: ChIJdzyYDL7N6TsRcT2Cp6yXC6Q
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Steps In Restaurant is an established local dining spot in Mandangad that
+      prepares vegetarian and non-vegetarian meals.
+    mr: स्टेप्स इन रेस्टॉरंट हे मंडणगडमधील एक जुने आणि स्थानिक पातळीवर ओळखले जाणारे
+      भोजनालय आहे, जिथे शाकाहारी आणि मांसाहारी जेवण दिले जाते.
+    hi: स्टेप्स इन रेस्टोरेंट मंडणगड का एक पुराना स्थानीय डाइनिंग स्पॉट है जो शाकाहारी
+      और मांसाहारी भोजन तैयार करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJdzyYDL7N6TsRcT2Cp6yXC6Q
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: swagat-restaurant-and-bar-mandangad
+  status: ai_draft
+  name_en: Swagat Restaurant And Bar
+  name_mr: स्वागत रेस्टॉरंट अँड बार
+  name_hi: स्वागत रेस्टोरेंट एंड बार
+  taluka: Mandangad
+  area: Mandangad
+  lat: null
+  lng: null
+  google_place_id: ChIJvTnR2evN6TsR5qqsHoeknNI
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Swagat Restaurant And Bar is a longstanding local venue in Mandangad, offering
+      both vegetarian and non-vegetarian options along with bar services.
+    mr: स्वागत रेस्टॉरंट अँड बार हे मंडणगडमधील एक जुने स्थानिक ठिकाण आहे, जिथे बारच्या
+      सुविधेसोबतच शाकाहारी आणि मांसाहारी खाद्यपदार्थ उपलब्ध आहेत.
+    hi: स्वागत रेस्टोरेंट एंड बार मंडणगड में एक पुराना स्थानीय भोजनालय है, जहाँ बार
+      सेवाओं के साथ शाकाहारी और मांसाहारी दोनों विकल्प उपलब्ध हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJvTnR2evN6TsR5qqsHoeknNI
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review

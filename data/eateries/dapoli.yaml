@@ -1,0 +1,679 @@
+# Eateries - Dapoli taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: ocean-breeze-beach-restaurant-murud
+  status: ai_draft
+  name_en: Ocean Breeze Beach Restaurant
+  name_mr: ओशन ब्रीझ बीच रेस्टॉरंट
+  name_hi: ओशन ब्रीझ बीच रेस्टोरेंट
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJH6RpVCnH6TsRYzUll4neyDg
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: null
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94043 28158
+  whatsapp: null
+  description:
+    en: Ocean Breeze Beach Restaurant is a tourist-oriented dining spot located near
+      the Shri Ram Temple in Murud, Dapoli. Situated close to the beach, it serves
+      a diverse menu including Malvani seafood, Punjabi, and Chinese dishes.
+    mr: ओशन ब्रीझ बीच रेस्टॉरंट हे मुरुड (दापोली) मधील श्रीराम मंदिराजवळ असलेले पर्यटकांसाठीचे
+      एक रेस्टॉरंट आहे. समुद्रकिनाऱ्याजवळ असलेल्या या ठिकाणी मालवणी सीफूडसह पंजाबी
+      आणि चायनीज पदार्थ मिळतात.
+    hi: ओशन ब्रीज़ बीच रेस्टोरेंट मुरुड, दापोली में श्री राम मंदिर के पास पर्यटकों
+      के लिए एक डाइनिंग स्पॉट है। समुद्र तट के करीब स्थित इस रेस्टोरेंट में मालवणी
+      सीफूड के साथ पंजाबी और चाइनीज़ व्यंजन मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJH6RpVCnH6TsRYzUll4neyDg
+    - https://www.justdial.com/Dapoli/Malwani-Restaurants-in-Dapoli-Camp/nct-10310580
+    - https://www.justdial.com/Dapoli/Malwani-Thali-Restaurants-in-Dapoli-Camp/nct-10975060
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'OCEAN BREEZE BEACH RESORT' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; Maps listing is a beach resort - restaurant
+    inside; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-kokan-katta-garden-restaurant-dapoli
+  status: ai_draft
+  name_en: Hotel Kokan Katta Garden Restaurant
+  name_mr: हॉटेल कोकण कट्टा गार्डन रेस्टॉरंट
+  name_hi: होटल कोंकण कट्टा गार्डन रेस्टोरेंट
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJhwoMlV3H6TsRq8RNpPQWOqY
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: null
+    jain: null
+  opens: 09:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Hotel Kokan Katta Garden Restaurant is located on the Mumbai-Goa Highway at
+      Bharane. It features a spacious garden setting and serves Malvani dishes, seafood,
+      and Punjabi fare.
+    mr: हॉटेल कोकण कट्टा गार्डन रेस्टॉरंट भरणे येथे मुंबई-गोवा हायवेवर आहे. या प्रशस्त
+      गार्डन रेस्टॉरंटमध्ये मालवणी जेवण, सीफूड आणि पंजाबी पदार्थ मिळतात.
+    hi: होटल कोंकण कट्टा गार्डन रेस्टोरेंट भरणे में मुंबई-गोवा हाईवे पर स्थित है।
+      इस गार्डन रेस्टोरेंट में मालवणी भोजन, सीफूड और पंजाबी व्यंजन परोसे जाते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJhwoMlV3H6TsRq8RNpPQWOqY
+    - https://www.justdial.com/Dapoli/Malwani-Restaurants-in-Dapoli-Camp/nct-10310580
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'KOKAN KATTA' (via Gemini, 2026-11-03); authenticity
+    label is Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: konkan-curry-restaurant-dapoli
+  status: ai_draft
+  name_en: Konkan Curry Restaurant
+  name_mr: कोकण करी रेस्टॉरंट
+  name_hi: कोंकण करी रेस्टोरेंट
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJ_6LgPvHD6TsRnOA81peAv8I
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: null
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 97672 96144
+  whatsapp: null
+  description:
+    en: Konkan Curry Restaurant is situated on the Dapoli-Harnai Road in Gimhavane.
+      It is a local establishment offering coastal cuisine and seafood preparations.
+    mr: कोकण करी रेस्टॉरंट गिम्हवणे येथील दापोली-हर्णे रोडवर आहे. हे एक स्थानिक रेस्टॉरंट
+      असून इथे कोकणी जेवण आणि सीफूड मिळते.
+    hi: कोंकण करी रेस्टोरेंट गिम्हवणे में दापोली-हर्णे रोड पर स्थित है। यह एक स्थानीय
+      भोजनालय है जहाँ तटीय भोजन और सीफूड मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ_6LgPvHD6TsRnOA81peAv8I
+    - https://www.justdial.com/Ratnagiri/Konkani-Restaurants-in-Mandangad/nct-10563700
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Konkan Curry' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: fishermens-spice-restaurant-dapoli
+  status: ai_draft
+  name_en: Fishermen's Spice Restaurant
+  name_mr: फिशरमन्स स्पाइस रेस्टॉरंट
+  name_hi: फिशरमन्स स्पाइस रेस्टोरेंट
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJ5YhjQVrB6TsRbh-LwCPPa0o
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 77096 58605
+  whatsapp: null
+  description:
+    en: Fishermen's Spice Restaurant is a multi-cuisine eatery located in Gimhavane
+      on the Dapoli-Harnai Road. Geared towards tourists, it offers a mix of Indian,
+      Chinese, and Konkani seafood dishes.
+    mr: फिशरमेन्स स्पाईस रेस्टॉरंट हे गिम्हवणे (दापोली-हर्णे रोड) येथे असलेले एक मल्टीक्युझिन
+      रेस्टॉरंट आहे. पर्यटकांसाठी असलेल्या या रेस्टॉरंटमध्ये इंडियन, चायनीज आणि कोकणी
+      सीफूडचे पर्याय आहेत.
+    hi: फिशरमैन्स स्पाइस रेस्टोरेंट गिम्हवणे में दापोली-हर्णे रोड पर स्थित एक मल्टीक्यूज़ीन
+      भोजनालय है। पर्यटकों के अनुकूल इस स्थान पर इंडियन, चाइनीज़ और कोंकणी सीफूड के
+      विकल्प उपलब्ध हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ5YhjQVrB6TsRbh-LwCPPa0o
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: jagdish-lunch-home-dapoli
+  status: ai_draft
+  name_en: Jagdish Lunch Home
+  name_mr: जगदीश लंच होम
+  name_hi: जगदीश लंच होम
+  taluka: Dapoli
+  area: Dapoli
+  lat: null
+  lng: null
+  google_place_id: ChIJ8TixTufD6TsR4alDUhlO1Zo
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: 03:30
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 77450 87102
+  whatsapp: null
+  description:
+    en: Jagdish Lunch Home is a traditional Maharashtrian eatery situated in Dapoli
+      Camp. It specializes in authentic coastal seafood and thalis.
+    mr: दापोली कॅम्पमध्ये असलेले जगदीश लंच होम हे एक पारंपरिक महाराष्ट्रीयन रेस्टॉरंट
+      आहे. अस्सल कोकणी सीफूड आणि रुचकर थाळीसाठी हे ठिकाण ओळखले जाते.
+    hi: दापोली कैंप में स्थित जगदीश लंच होम एक पारंपरिक महाराष्ट्रीयन भोजनालय है।
+      यह अपने प्रामाणिक कोंकणी सीफूड और थाली के लिए जाना जाता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ8TixTufD6TsR4alDUhlO1Zo
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; closing time 03:30 looks wrong; verify; description EN/MR/HI
+    by Gemini (maps); needs review
+- slug: tropical-wave-agastya-seaview-resort-harnai
+  status: ai_draft
+  name_en: Tropical Wave (Agastya Seaview Resort)
+  name_mr: ट्रॉपिकल वेव्ह (अगस्त्य सीव्ह्यू रिसॉर्ट)
+  name_hi: ट्रॉपिकल वेव (अगस्त्य सीव्यू रिसॉर्ट)
+  taluka: Dapoli
+  area: Harnai
+  lat: null
+  lng: null
+  google_place_id: ChIJZ_h410TH6TsRx-1Sli0s5m0
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: null
+    jain: null
+  opens: 07:30
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 73785 65869
+  whatsapp: null
+  description:
+    en: Tropical Wave is a pure vegetarian retreat located within the Agastya Seaview
+      Resort in Harnai. Designed for tourists, it offers plant-based meals in a scenic
+      resort environment.
+    mr: ट्रोपिकल वेव्ह हे हर्णे येथील अगस्त्य सीव्ह्यू रिसॉर्टमधील एक पूर्णपणे शाकाहारी
+      रेस्टॉरंट आहे. निसर्गरम्य वातावरणात असलेल्या या रिसॉर्टमध्ये पर्यटकांसाठी शाकाहारी
+      जेवणाची सोय आहे.
+    hi: ट्रॉपिकल वेव हर्णे के अगस्त्य सीव्यू रिज़ॉर्ट में स्थित एक शुद्ध शाकाहारी
+      रेस्टोरेंट है। यह पर्यटकों के लिए एक सुंदर रिज़ॉर्ट वातावरण में शाकाहारी भोजन
+      परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJZ_h410TH6TsRx-1Sli0s5m0
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: umbar-family-restaurant-murud
+  status: ai_draft
+  name_en: Umbar Family Restaurant
+  name_mr: उंबर फॅमिली रेस्टॉरंट
+  name_hi: उंबर फैमिली रेस्टोरेंट
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJteREByHB6TsRlFY5-hP1OO0
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '10:00'
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 76662 60758
+  whatsapp: null
+  description:
+    en: Umbar Family Restaurant is a home-style dining option located near the Durga
+      Mata Mandir on Murud Beach Road. It offers a variety of vegetarian and non-vegetarian
+      dishes, including biryani and seafood.
+    mr: मुरुड बीच रोडवरील दुर्गा माता मंदिराजवळ असलेले उंबर फॅमिली रेस्टॉरंट हे एक
+      घरगुती पद्धतीचे भोजनालय आहे. इथे शाकाहारी आणि मांसाहारी पदार्थांसह बिर्याणी
+      आणि सीफूडचे पर्याय मिळतात.
+    hi: मुरुड बीच रोड पर दुर्गा माता मंदिर के पास स्थित उंबर फैमिली रेस्टोरेंट एक
+      घरेलू शैली का भोजनालय है। यहाँ शाकाहारी और मांसाहारी व्यंजनों के साथ-साथ बिरयानी
+      और सीफूड भी मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJteREByHB6TsRlFY5-hP1OO0
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: mauli-dining-ladghar
+  status: ai_draft
+  name_en: Mauli Dining
+  name_mr: माउली डायनिंग
+  name_hi: माउली डाइनिंग
+  taluka: Dapoli
+  area: Ladghar
+  lat: null
+  lng: null
+  google_place_id: ChIJ1cxREITD6TsRbxExF69rpyI
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 97637 31166
+  whatsapp: null
+  description:
+    en: Mauli Dining is a home-style eatery situated near the Shri Datta Mandir in
+      Ladghar. It offers vegetarian and non-vegetarian Konkani meals in a simple setting.
+    mr: लाडघरमधील श्री दत्त मंदिराजवळ असलेले माऊली डायनिंग हे एक घरगुती पद्धतीचे रेस्टॉरंट
+      आहे. साध्या वातावरणात इथे शाकाहारी आणि मांसाहारी कोकणी जेवण मिळते.
+    hi: लाडघर में श्री दत्त मंदिर के पास स्थित माउली डाइनिंग एक घरेलू शैली का भोजनालय
+      है। यहाँ साधारण माहौल में शाकाहारी और मांसाहारी कोंकणी भोजन मिलता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ1cxREITD6TsRbxExF69rpyI
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: shreyas-pure-veg-hotel-mahendale-ashram
+  status: ai_draft
+  name_en: Shreyas Pure Veg Hotel
+  name_mr: श्रेयस प्युअर व्हेज हॉटेल
+  name_hi: श्रेयस प्योर वेज होटल
+  taluka: Dapoli
+  area: Mahendale Ashram
+  lat: null
+  lng: null
+  google_place_id: ChIJp8m_39_D6TsR44Z_ti4r0hQ
+  authenticity: local_legend
+  price_for_two: 500
+  diet_flags:
+    veg: true
+    non_veg: false
+    jain: null
+  opens: '11:30'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 90356 86590
+  whatsapp: null
+  description:
+    en: Shreyas Pure Veg Hotel is located near Mahendale Ashram in Dapoli, serving
+      vegetarian meals and local dishes.
+    mr: श्रेयस प्युअर व्हेज हॉटेल हे दापोलीमधील महेंद्रले आश्रमाजवळ स्थित असून शाकाहारी
+      जेवण आणि स्थानिक पदार्थ देते.
+    hi: श्रेयस प्योर वेज होटल दापोली में महेंदाले आश्रम के पास स्थित है, जो शाकाहारी
+      भोजन और स्थानीय व्यंजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJp8m_39_D6TsR44Z_ti4r0hQ
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJp8m_39_D6TsR44Z_ti4r0hQ
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-astha-dapoli-city
+  status: ai_draft
+  name_en: HOTEL ASTHA
+  name_mr: हॉटेल आर्था
+  name_hi: होटल आस्थ
+  taluka: Dapoli
+  area: Dapoli City
+  lat: null
+  lng: null
+  google_place_id: ChIJd2gJ7F_B6TsRtNpd1epbMN4
+  authenticity: tourist_oriented
+  price_for_two: 400
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '21:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 99239 15219
+  whatsapp: null
+  description:
+    en: HOTEL ASTHA is situated at Shop 01 Rangar Gali Family Mala, Dapoli, serving
+      meals and snacks.
+    mr: हॉटेल आर्था हे दुकान 01 रंगार गळी फॅमिली माला, दापोली येथे स्थित आहे, जे जेवण
+      आणि अल्पोपहार देते.
+    hi: होटल आस्थ दुकान 01 रंगार गली फैमिली माला, दापोली में स्थित है, जो भोजन और
+      नाश्ता परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJd2gJ7F_B6TsRtNpd1epbMN4
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJd2gJ7F_B6TsRtNpd1epbMN4
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: anish-niwas-murud
+  status: ai_draft
+  name_en: Anish Niwas
+  name_mr: अनीश निवास
+  name_hi: अनीश निवास
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJF713xgLH6TsRavPI4VGBfOY
+  authenticity: home_style
+  price_for_two: 600
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94058 83517
+  whatsapp: null
+  description:
+    en: Anish Niwas is located in Murud Bhandharwada, Dapoli, offering home-style
+      Konkani food.
+    mr: अनीश निवास हे मुरुड भांडारवाडा, दापोली येथे स्थित असून घरगुती पद्धतीचे कोकणी
+      जेवण देते.
+    hi: अनीश निवास मुरुड भंडारवाड़ा, दापोली में स्थित है, जो घर जैसा कोंकणी भोजन परोसता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJF713xgLH6TsRavPI4VGBfOY
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJF713xgLH6TsRavPI4VGBfOY
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: wadi-restaurant-murud
+  status: ai_draft
+  name_en: WADI Restaurant
+  name_mr: वाडी रेस्टॉरंट
+  name_hi: वाडी रेस्तरां
+  taluka: Dapoli
+  area: Murud
+  lat: null
+  lng: null
+  google_place_id: ChIJFeF6y8jH6TsR4ZO8CdufMbc
+  authenticity: local_legend
+  price_for_two: 700
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: WADI Restaurant is situated in Murud, Dapoli, serving regional food items.
+    mr: वाडी रेस्टॉरंट हे मुरुड, दापोली येथे स्थित असून प्रादेशिक खाद्यपदार्थ देते.
+    hi: वाडी रेस्तरां मुरुड, दापोली में स्थित है, जो क्षेत्रीय खाद्य पदार्थ परोसता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJFeF6y8jH6TsR4ZO8CdufMbc
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJFeF6y8jH6TsR4ZO8CdufMbc
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-abhishek-jalgaon
+  status: ai_draft
+  name_en: Hotel Abhishek
+  name_mr: हॉटेल अभिषेक
+  name_hi: होटल अभिषेक
+  taluka: Dapoli
+  area: Jalgaon
+  lat: null
+  lng: null
+  google_place_id: ChIJVVVVVdnD6TsR_9acIGIbnss
+  authenticity: local_legend
+  price_for_two: 600
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 00:00
+  closes: 00:00
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94223 72220
+  whatsapp: null
+  description:
+    en: Hotel Abhishek is located on Mahalaxmi Road near Bhatkar Hospital, Jalgaon,
+      Dapoli, serving multi-cuisine and local dishes.
+    mr: हॉटेल अभिषेक हे महालक्ष्मी रोड, भाटकर हॉस्पिटलजवळ, जळगाव, दापोली येथे स्थित
+      असून विविध खाद्यपदार्थ व स्थानिक जेवण देते.
+    hi: होटल अभिषेक महालक्ष्मी रोड, भाटकर अस्पताल के पास, जलगाँव, दापोली में स्थित
+      है, जो विभिन्न प्रकार के व्यंजन और स्थानीय भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVVVVVdnD6TsR_9acIGIbnss
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJVVVVVdnD6TsR_9acIGIbnss
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

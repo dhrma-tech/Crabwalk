@@ -1,0 +1,570 @@
+# Eateries - Khed taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: hotel-mast-malwani-valanjawadi
+  status: ai_draft
+  name_en: Hotel Mast Malwani
+  name_mr: हॉटेल मस्त मालवणी
+  name_hi: होटल मस्त मालवणी
+  taluka: Khed
+  area: Valanjawadi
+  lat: null
+  lng: null
+  google_place_id: ChIJd1CeEVPe6TsRLRWHq_dv_FA
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: null
+    non_veg: null
+    jain: null
+  opens: '11:00'
+  closes: '23:59'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Hotel Mast Malwani is a local restaurant situated in Valanjawadi, Khed. It
+      focuses on regional Malvani cuisine, particularly crab, tandoori fish, and other
+      seafood preparations.
+    mr: खेडमधील वळंजवाडी येथे असलेले हॉटेल मस्त मालवणी हे एक स्थानिक रेस्टॉरंट आहे.
+      हे ठिकाण प्रामुख्याने खेकडा, तंदुरी फिश आणि मालवणी पद्धतीच्या सीफूडसाठी ओळखले
+      जाते.
+    hi: खेड के वलंजवाडी में स्थित होटल मस्त मालवणी एक स्थानीय रेस्टोरेंट है। यह मुख्य
+      रूप से केकड़ा, तंदूरी फिश और मालवणी शैली के सीफूड पर ध्यान केंद्रित करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJd1CeEVPe6TsRLRWHq_dv_FA
+    - https://magicpin.in/Ratnagiri/Valanjawadi/Restaurant/Hotel-Mast-Malwani-Khed/store/1675767
+  _collected_by: gemini 2026-11-03, verified on Maps
+  _review: Confirmed on Google Maps as 'Hotel Mast Malwani Khed' (via Gemini, 2026-11-03);
+    authenticity label is Gemini judgement; description EN/MR/HI by Gemini (maps);
+    needs review
+- slug: ibus-restaurant-khed
+  status: ai_draft
+  name_en: IBU'S Restaurant
+  name_mr: आयबूज रेस्टॉरंट
+  name_hi: आयबूज रेस्टोरेंट
+  taluka: Khed
+  area: Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJJXVKrRPf6TsRit6EK7TVbfI
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 90288 33973
+  whatsapp: null
+  description:
+    en: IBU'S Restaurant is a multi-cuisine establishment located on LTT School Road
+      in Khed. It serves a variety of tourist-friendly vegetarian and non-vegetarian
+      dishes, including Chinese and Indian options.
+    mr: खेडमधील एलटीटी स्कूल रोडवर असलेले इबुस रेस्टॉरंट हे एक मल्टीक्युझिन भोजनालय
+      आहे. पर्यटकांसाठी इथे चायनीज आणि इंडियन पदार्थांसह शाकाहारी तसेच मांसाहारी जेवणाचे
+      पर्याय उपलब्ध आहेत.
+    hi: खेड में एलटीटी स्कूल रोड पर स्थित इबुस रेस्टोरेंट एक मल्टीक्यूज़ीन भोजनालय
+      है। पर्यटकों के अनुकूल इस स्थान पर चाइनीज़ और इंडियन व्यंजनों सहित शाकाहारी
+      और मांसाहारी भोजन के विकल्प मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJXVKrRPf6TsRit6EK7TVbfI
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-kalkai-krupa-bharane
+  status: ai_draft
+  name_en: Hotel Kalkai Krupa
+  name_mr: हॉटेल काळकाई कृपा
+  name_hi: होटल कालकाई कृपा
+  taluka: Khed
+  area: Bharane
+  lat: null
+  lng: null
+  google_place_id: ChIJaZaAybTf6TsRu8qvYCxQPbY
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:30
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 96891 64056
+  whatsapp: null
+  description:
+    en: Hotel Kalkai Krupa is a local restaurant offering vegetarian and non-vegetarian
+      meals in Bharane, Khed.
+    mr: हॉटेल काळकाई कृपा हे खेडच्या भरणे भागात शाकाहारी आणि मांसाहारी जेवण देणारे
+      एक स्थानिक रेस्टॉरंट आहे.
+    hi: होटल कालकाई कृपा खेड के भरणे में शाकाहारी और मांसाहारी भोजन परोसने वाला एक
+      स्थानीय रेस्टोरेंट है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJaZaAybTf6TsRu8qvYCxQPbY
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: patils-kitchen-khed
+  status: ai_draft
+  name_en: Patil's Kitchen
+  name_mr: पाटील्स किचन
+  name_hi: पाटिल्स किचन
+  taluka: Khed
+  area: Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJs-Ak1j7d6TsROs4ldO4tou0
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:30
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 95456 16579
+  whatsapp: null
+  description:
+    en: Patil's Kitchen serves home-style vegetarian and non-vegetarian food in Khed.
+    mr: पाटील्स किचन हे खेडमध्ये शाकाहारी आणि मांसाहारी जेवण देणारे एक घरगुती पद्धतीचे
+      भोजनालय आहे.
+    hi: पाटिलस किचन खेड में शाकाहारी और मांसाहारी भोजन परोसने वाला एक घरेलू शैली का
+      भोजनालय है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJs-Ak1j7d6TsROs4ldO4tou0
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: anugraha-khanaval-khed
+  status: ai_draft
+  name_en: Anugraha Khanaval
+  name_mr: अनुग्रह खानावळ
+  name_hi: अनुग्रह खानावळ
+  taluka: Khed
+  area: Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJ3Y-4ZcPf6TsRAEo4FaEjsew
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:30'
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Anugraha Khanaval is a home-style eatery in Khed featuring a menu of both
+      vegetarian and non-vegetarian dishes.
+    mr: अनुग्रह खानावळ ही खेडमधील एक घरगुती पद्धतीची खानावळ असून इथे शाकाहारी आणि
+      मांसाहारी जेवण उपलब्ध असते.
+    hi: अनुग्रह खानावळ खेड में एक घरेलू शैली का भोजनालय है जहाँ शाकाहारी और मांसाहारी
+      दोनों तरह के व्यंजन मिलते हैं।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ3Y-4ZcPf6TsRAEo4FaEjsew
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: kokani-dine-inn-shivaji-chowk-khed
+  status: ai_draft
+  name_en: Kokani Dine-Inn
+  name_mr: कोकणी डाईन-इन
+  name_hi: कोकणी डाइन-इन
+  taluka: Khed
+  area: Shivaji Chowk, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJzeT0Fs_f6TsR53BY_4w0Eqg
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '12:00'
+  closes: '23:59'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 90289 35556
+  whatsapp: null
+  description:
+    en: Kokani Dine-Inn is a restaurant located at Shivaji Chowk serving local meals.
+      It remains open from noon until midnight daily.
+    mr: कोकणी डाईन-इन हे शिवाजी चौकात स्थित एक रेस्टॉरंट आहे जे स्थानिक जेवण देते.
+      हे दररोज दुपारपासून मध्यरात्रीपर्यंत उघडे असते.
+    hi: कोकणी डाइन-इन शिवाजी चौक में स्थित एक रेस्तरां है जो स्थानीय भोजन परोसता है।
+      यह प्रतिदिन दोपहर से आधी रात तक खुला रहता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJzeT0Fs_f6TsR53BY_4w0Eqg
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJzeT0Fs_f6TsR53BY_4w0Eqg
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-marathi-tadka-bharana-naka-khed
+  status: ai_draft
+  name_en: Hotel Marathi Tadka
+  name_mr: हॉटेल मराठी तडका
+  name_hi: होटल मराठी तड़का
+  taluka: Khed
+  area: Bharana Naka, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJi0D9ZoLf6TsROwqzKiElWnM
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 93243 87027
+  whatsapp: null
+  description:
+    en: Situated near the Kalkai Temple in Bharane, this eatery offers traditional
+      Maharashtrian dishes.
+    mr: भरणे येथील काळकाई मंदिराजवळ असलेल्या या खानावळीत पारंपारिक महाराष्ट्रीय पदार्थ
+      मिळतात.
+    hi: भरणे में कालकाई मंदिर के पास स्थित यह भोजनालय पारंपरिक महाराष्ट्रीयन व्यंजन
+      प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJi0D9ZoLf6TsROwqzKiElWnM
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJi0D9ZoLf6TsROwqzKiElWnM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-kokan-katta-kalbani-khed
+  status: ai_draft
+  name_en: HOTEL KOKAN KATTA
+  name_mr: हॉटेल कोकण कट्टा
+  name_hi: होटल कोकण कट्टा
+  taluka: Khed
+  area: Kalbani, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJ4SbyuH_f6TsRAvCOFZCnYYo
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: This garden restaurant is positioned along the Mumbai-Goa Highway in Khed.
+      It operates daily from morning to late evening.
+    mr: हे गार्डन रेस्टॉरंट खेडमध्ये मुंबई-गोवा महामार्गावर आहे. ते दररोज सकाळपासून
+      उशिरा संध्याकाळपर्यंत चालते.
+    hi: यह गार्डन रेस्तरां खेड़ में मुंबई-गोवा राजमार्ग पर स्थित है। यह प्रतिदिन सुबह
+      से देर शाम तक काम करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4SbyuH_f6TsRAvCOFZCnYYo
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4SbyuH_f6TsRAvCOFZCnYYo
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-swad-laybhari-bharane-khed
+  status: ai_draft
+  name_en: Hotel Swad Laybhari
+  name_mr: हॉटेल स्वाद लयभारी
+  name_hi: होटल स्वाद लयभारी
+  taluka: Khed
+  area: Bharane, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJ51ng3rff6TsRpVs-pLvlcCo
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '10:00'
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 96573 45120
+  whatsapp: null
+  description:
+    en: Hotel Swad Laybhari is situated near Mehta Petrol Pump Naka in Bharane. It
+      serves food every day from 10 AM to 11:30 PM.
+    mr: हॉटेल स्वाद लयभारी भरणे येथील मेहता पेट्रोल पंप नाक्याजवळ आहे. येथे दररोज
+      सकाळी 10 ते रात्री 11:30 या वेळेत जेवण दिले जाते.
+    hi: होटल स्वाद लयभारी भरणे में मेहता पेट्रोल पंप नाका के पास स्थित है। यह हर दिन
+      सुबह 10 बजे से रात 11:30 बजे तक भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ51ng3rff6TsRpVs-pLvlcCo
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ51ng3rff6TsRpVs-pLvlcCo
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: sondkar-family-restaurant-shivtar-rd-khed
+  status: ai_draft
+  name_en: Sondkar Family Restaurant
+  name_mr: सोंडकर फॅमिली रेस्टॉरंट
+  name_hi: सोंडकर फैमिली रेस्तरां
+  taluka: Khed
+  area: Shivtar Rd, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJ35rimrLf6TsRu3UccBRoMos
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '17:00'
+  closes: '23:00'
+  closed_days:
+  - mon
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 80873 32207
+  whatsapp: null
+  description:
+    en: Located on Khed-Shivtar Road, this restaurant is geared towards family dining.
+      It opens in the evening and is closed on Mondays.
+    mr: खेड-शिवतर रोडवर वसलेले हे रेस्टॉरंट कौटुंबिक जेवणासाठी बनवले आहे. ते संध्याकाळी
+      उघडते आणि सोमवारी बंद असते.
+    hi: खेड़-शिवतर रोड पर स्थित यह रेस्तरां पारिवारिक भोजन के लिए है। यह शाम को खुलता
+      है और सोमवार को बंद रहता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ35rimrLf6TsRu3UccBRoMos
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ35rimrLf6TsRu3UccBRoMos
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: gharguti-khanwal-mahad-naka-veral-khed
+  status: ai_draft
+  name_en: Gharguti Khanwal
+  name_mr: घरगुती खानावळ
+  name_hi: घरगुती खानावळ
+  taluka: Khed
+  area: Mahad Naka, Veral, Khed
+  lat: null
+  lng: null
+  google_place_id: ChIJo7VYkGXf6TsRM4DG4oOQd2E
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: This eatery operates near Ganpati Krupa Hotel in Veral. It focuses on serving
+      homestyle food to locals and travelers.
+    mr: ही खानावळ वेरलमधील गणपती कृपा हॉटेलजवळ चालते. हे स्थानिकांना आणि प्रवाशांना
+      घरगुती जेवण देण्यावर लक्ष केंद्रित करते.
+    hi: यह भोजनालय वेरल में गणपति कृपा होटल के पास संचालित होता है। यह स्थानीय लोगों
+      और यात्रियों को घरेलू शैली का भोजन परोसने पर केंद्रित है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJo7VYkGXf6TsRM4DG4oOQd2E
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJo7VYkGXf6TsRM4DG4oOQd2E
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

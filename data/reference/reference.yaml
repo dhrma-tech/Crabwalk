@@ -1,0 +1,31 @@
+# Reference data (spec 2.4, 2.16). status ai_draft.
+app_config:
+  fuel_price_inr:
+    value: null
+    candidates:
+    - value: 105.82
+      source: https://www.goldpriceindia.com/petrol-price-in-ratnagiri.php
+    - value: 111.21
+      source: https://www.bankbazaar.com/fuel/petrol-price-ratnagiri.html
+    - value: 113.17
+      source: https://www.cardekho.com/petrol-price-in-ratnagiri-city
+    as_of: '2026-11-03'
+    _review: three sites disagree (petrol, Ratnagiri, 3 Nov 2026); check at a local
+      pump or the oil company site, then set value
+  default_mileage_kmpl: null
+tide_dependent_places:
+- place: suvarnadurg-fort
+  taluka: Dapoli
+  note: EN text = Claude draft from sources, needs team review; MR/HI = Gemini translation,
+    needs native review
+- place: bamanghal-hedavi
+  taluka: Guhagar
+  note: 'tide-dependent per a homestay site: the sea gush through the rock cleft is
+    best at high tide; verify on field; no coordinates: needs pin; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'
+- place: devghali-beach
+  taluka: Rajapur
+  note: 'tide flag: cave access at low tide per Outlook Traveller; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review'

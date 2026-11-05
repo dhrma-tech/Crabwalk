@@ -1,0 +1,563 @@
+# Eateries - Sangameshwar taluka. status ai_draft. Directory-sourced rows were re-checked on Google Maps; unconfirmed rows removed.
+- slug: kokani-katta-devrukh
+  status: ai_draft
+  name_en: Kokani Katta
+  name_mr: कोकणी कट्टा
+  name_hi: कोंकणी कट्टा
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJ6XeMHVLnwTsRIeuqg43OqBg
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '22:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 98902 31839
+  whatsapp: null
+  description:
+    en: Located on the main road in Devrukh, Sangameshwar taluka, Kokani Katta is
+      a local eatery serving vegetarian and non-vegetarian meals. It provides casual
+      dining options for local residents and travelers.
+    mr: संगमेश्वर तालुक्यातील देवरूख येथे मुख्य रस्त्यावर स्थित, कोकणी कट्टा हे शाकाहारी
+      आणि मांसाहारी जेवण देणारे स्थानिक उपाहारगृह आहे. येथे खाद्यपदार्थांचे साधे पर्याय
+      उपलब्ध आहेत.
+    hi: संगमेश्वर तालुका के देवrukh में मुख्य सड़क पर स्थित, कोकणी कट्टा एक स्थानीय
+      भोजनालय है जो शाकाहारी और मांसाहारी भोजन परोसता है। यह स्थानीय लोगों और यात्रियों
+      को भोजन विकल्प प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ6XeMHVLnwTsRIeuqg43OqBg
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: swad-veg-non-veg-sangameshwar
+  status: ai_draft
+  name_en: Swad Veg Non-Veg
+  name_mr: स्वाद व्हेज नॉन-व्हेज
+  name_hi: स्वाद वेज नॉन-वेज
+  taluka: Sangameshwar
+  area: Sangameshwar
+  lat: null
+  lng: null
+  google_place_id: ChIJu7EMGvLjwTsREvREG4ALyIo
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 73853 72349
+  whatsapp: null
+  description:
+    en: Situated in Sangameshwar, Swad Veg Non-Veg is an eatery offering a selection
+      of vegetarian and non-vegetarian dishes. It serves regional food options in
+      a straightforward dining format.
+    mr: संगमेश्वर येथे स्थित, स्वाद वेज नॉन-वेज हे शाकाहारी आणि मांसाहारी खाद्यपदार्थ
+      उपलब्ध करून देणारे उपाहारगृह आहे. येथे प्रादेशिक पद्धतीचे जेवण मिळते.
+    hi: संगमेश्वर में स्थित, स्वाद वेज नॉन-वेज एक भोजनालय है जो शाकाहारी और मांसाहारी
+      व्यंजनों का चयन प्रस्तुत करता है। यह सरल प्रारूप में क्षेत्रीय भोजन उपलब्ध कराता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJu7EMGvLjwTsREvREG4ALyIo
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-pangat-devrukh
+  status: ai_draft
+  name_en: Hotel Pangat
+  name_mr: हॉटेल पंगत
+  name_hi: होटल पंगत
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJwS6XawDnwTsRhSXQGrzQOFU
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: '11:00'
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Located in Devrukh, Sangameshwar taluka, Hotel Pangat is a restaurant serving
+      a range of vegetarian and non-vegetarian dishes. It offers traditional meals
+      in a local setting.
+    mr: संगमेश्वर तालुक्यातील देवरूख येथे स्थित, हॉटेल पंगत हे विविध शाकाहारी आणि
+      मांसाहारी पदार्थ देणारे रेस्टॉरंट आहे. येथे पारंपारिक जेवण उपलब्ध असते.
+    hi: संगमेश्वर तालुका के देवrukh में स्थित, होटल पंगत एक रेस्तरां है जो कई प्रकार
+      के शाकाहारी और मांसाहारी व्यंजन परोसता है। यह स्थानीय परिवेश में पारंपरिक भोजन
+      प्रदान करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwS6XawDnwTsRhSXQGrzQOFU
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: khauch-ghar-devrukh
+  status: ai_draft
+  name_en: Khauch Ghar
+  name_mr: खाऊचं घर
+  name_hi: खाऊचं घर
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJFVfmWovnwTsRsfZvxNTnjLk
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '22:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 93734 18006
+  whatsapp: null
+  description:
+    en: Situated in Sadavali, Devrukh area of Sangameshwar taluka, Khauch Ghar is
+      a vegetarian eatery. It offers meat-free meal options for travelers and local
+      visitors.
+    mr: संगमेश्वर तालुक्यातील देवरूख भागातील साडवली येथे स्थित, खाऊचं घर हे एक शाकाहारी
+      उपाहारगृह आहे. येथे प्रवाशांसाठी शाकाहारी जेवणाचे पर्याय उपलब्ध आहेत.
+    hi: संगमेश्वर तालुका के देवrukh क्षेत्र के साडावली में स्थित, खाऊचं घर एक शाकाहारी
+      भोजनालय है। यह यात्रियों और स्थानीय आगंतुकों के लिए शाकाहारी भोजन विकल्प प्रदान
+      करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJFVfmWovnwTsRsfZvxNTnjLk
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; description EN/MR/HI by Gemini (maps); needs review
+- slug: hotel-shivanand-sangameshwar
+  status: ai_draft
+  name_en: Hotel Shivanand
+  name_mr: हॉटेल शिवानंद
+  name_hi: होटल शिवानंद
+  taluka: Sangameshwar
+  area: Sangameshwar
+  lat: null
+  lng: null
+  google_place_id: ChIJTV9HSksrwDsRZOte8Pd6kpI
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '21:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: Located in Sangameshwar, Hotel Shivanand is a local establishment offering
+      vegetarian and non-vegetarian food options. It serves meals suited for travelers
+      and residents in the area.
+    mr: संगमेश्वर येथे स्थित, हॉटेल शिखानंद हे शाकाहारी आणि मांसाहारी जेवणाचे पर्याय
+      देणारे स्थानिक ठिकाण आहे. येथे परिसरातील प्रवासी आणि स्थानिकांसाठी जेवण मिळते.
+    hi: संगमेश्वर में स्थित, होटल शवानंद एक स्थानीय प्रतिष्ठान है जो शाकाहारी और मांसाहारी
+      भोजन विकल्प प्रदान करता है। यह क्षेत्र के यात्रियों और निवासियों के लिए भोजन
+      परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJTV9HSksrwDsRZOte8Pd6kpI
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/hours/phone from Google Maps via Gemini; authenticity label is
+    Gemini judgement; place_id prefix differs from other Ratnagiri listings; confirm
+    it is in Sangameshwar; description EN/MR/HI by Gemini (maps); needs review
+- slug: shree-samarth-krupa-gharguti-khanaval-devrukh
+  status: ai_draft
+  name_en: Shree Samarth Krupa gharguti khanaval
+  name_mr: श्री समर्थ कृपा घरगुती खानावळ
+  name_hi: श्री समर्थ कृपा घरगुती खानावळ
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJnxguz1_nwTsRS_4x6SAi4RE
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 09:00
+  closes: '23:00'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: A family-run eatery in Devrukh providing traditional homemade Maharashtrian
+      meals.
+    mr: देवरूखमधील ही कौटुंबिक खानावळ पारंपारिक घरगुती महाराष्ट्रीय जेवण पुरवते.
+    hi: देवरुख में यह पारिवारिक भोजनालय पारंपरिक घरेलू महाराष्ट्रीयन भोजन प्रदान करता
+      है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJnxguz1_nwTsRS_4x6SAi4RE
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: purva-khanawal-devrukh
+  status: ai_draft
+  name_en: Purva Khanawal
+  name_mr: पूर्वा खानावळ
+  name_hi: पूर्वा खानावळ
+  taluka: Sangameshwar
+  area: Devrukh
+  lat: null
+  lng: null
+  google_place_id: ChIJSRYJGabnwTsRvoutuX6ZFnM
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 94238 17613
+  whatsapp: null
+  description:
+    en: Located opposite the Devrukh Police Station, this establishment serves regional
+      home-style food.
+    mr: देवरूख पोलीस स्टेशनच्या समोर स्थित, हे ठिकाण प्रादेशिक घरगुती पद्धतीचे अन्न
+      देते.
+    hi: देवरुख पुलिस स्टेशन के सामने स्थित, यह प्रतिष्ठान क्षेत्रीय घरेलू शैली का
+      भोजन परोसता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJSRYJGabnwTsRvoutuX6ZFnM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-ganesh-krupa-mabhale
+  status: ai_draft
+  name_en: Hotel Ganesh Krupa
+  name_mr: हॉटेल गणेश कृपा
+  name_hi: हॉटेल गणेश कृपा
+  taluka: Sangameshwar
+  area: Mabhale
+  lat: null
+  lng: null
+  google_place_id: ChIJH3SFqsz8wTsRSReByjEJB8A
+  authenticity: local_legend
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 08:00
+  closes: '21:30'
+  closed_days:
+  - mon
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 95615 56566
+  whatsapp: null
+  description:
+    en: A popular restaurant situated on the Mumbai - Goa Highway in Mabhale, open
+      six days a week.
+    mr: माभळे येथील मुंबई - गोवा महामार्गावर असलेले हे एक लोकप्रिय रेस्टॉरंट असून
+      आठवड्यातील सहा दिवस खुले असते.
+    hi: माभले में मुंबई-गोवा राजमार्ग पर स्थित एक लोकप्रिय रेस्तरां, जो सप्ताह में
+      छह दिन खुला रहता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJH3SFqsz8wTsRSReByjEJB8A
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: the-drive-inn-dhamani
+  status: ai_draft
+  name_en: The Drive Inn
+  name_mr: द ड्राईव्ह इन
+  name_hi: द ड्राइव इन
+  taluka: Sangameshwar
+  area: Dhamani
+  lat: null
+  lng: null
+  google_place_id: ChIJfzYAYoj8wTsR6O_IE8eFxi8
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: 07:00
+  closes: '23:30'
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: +91 99601 97010
+  whatsapp: null
+  description:
+    en: A highway eatery in Dhamani offering a variety of local and general dishes.
+    mr: धामणी येथील हे हायवे रेस्टॉरंट विविध प्रकारचे स्थानिक आणि सर्वसाधारण खाद्यपदार्थ
+      देते.
+    hi: धामणी में यह हाईवे भोजनालय विभिन्न प्रकार के स्थानीय और सामान्य व्यंजन प्रदान
+      करता है।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJfzYAYoj8wTsR6O_IE8eFxi8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: danish-restaurant-sangameshwar
+  status: ai_draft
+  name_en: Danish Restaurant
+  name_mr: डॅनिश रेस्टॉरंट
+  name_hi: डैनिश रेस्टोरेंट
+  taluka: Sangameshwar
+  area: Sangameshwar
+  lat: null
+  lng: null
+  google_place_id: ChIJBcSibvX9wTsRmfSjOLAd2lk
+  authenticity: tourist_oriented
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: A restaurant located off NH66 near the Rural Hospital in Sangameshwar.
+    mr: संगमेश्वरमध्ये ग्रामीण रुग्णालयाजवळ राष्ट्रीय महामार्ग 66 च्या जवळ स्थित एक
+      रेस्टॉरंट.
+    hi: संगमेश्वर में ग्रामीण अस्पताल के पास राष्ट्रीय राजमार्ग 66 पर स्थित एक रेस्तरां।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJBcSibvX9wTsRmfSjOLAd2lk
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: sarthak-gharguti-khanaval-sadavali
+  status: ai_draft
+  name_en: Sarthak Gharguti Khanaval
+  name_mr: सार्थक घरगुती खानावळ
+  name_hi: सार्थक घरगुती खानावळ
+  taluka: Sangameshwar
+  area: Sadavali
+  lat: null
+  lng: null
+  google_place_id: ChIJNU8oEADnwTsRlGMuswhMigo
+  authenticity: home_style
+  price_for_two: null
+  diet_flags:
+    veg: true
+    non_veg: true
+    jain: null
+  opens: null
+  closes: null
+  closed_days: []
+  food_apps:
+    swiggy:
+      available: null
+      link: null
+    zomato:
+      available: null
+      link: null
+    eatsure:
+      available: null
+      link: null
+    magicpin:
+      available: null
+      link: null
+  menu:
+    items: []
+  dishes: []
+  phone: null
+  whatsapp: null
+  description:
+    en: A local eating joint situated on Devrukh S.T. Bus Depot Road in Sadavali.
+    mr: साडवली येथील देवरूख एस.टी. बस डेपो रोडवर स्थित एक स्थानिक भोजनालय.
+    hi: साडवली में देवरुख एस.टी. बस डिपो रोड पर स्थित एक स्थानीय भोजनालय।
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJNU8oEADnwTsRlGMuswhMigo
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

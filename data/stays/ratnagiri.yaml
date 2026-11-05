@@ -1,0 +1,860 @@
+# Stays - Ratnagiri taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: westbay-resort-spa-ganpatipule
+  status: ai_draft
+  name_en: Westbay Resort & Spa
+  name_mr: वेस्टबे रिसॉर्ट अँड स्पा
+  name_hi: वेस्टबे रिसॉर्ट एंड स्पा
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJG7yaXwMQ6jsRlZz7Gvs6rf8
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - family
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 6666
+  price_max: null
+  price_source: null
+  price_url: https://www.easemytrip.com/hotels/hotels-near-ganpatipule-beach-ratnagiri/
+  phone: +91 76200 44777
+  whatsapp: null
+  official_url: null
+  description:
+    en: Westbay Resort & Spa is a luxury, professional property in Ganpatipule, Ratnagiri.
+      The resort caters to families and serves both vegetarian and non-vegetarian
+      food.
+    mr: वेस्टबे रिसॉर्ट अँड स्पा हे रत्नागिरीच्या गणपतीपुळे मधील एक आलिशान आणि व्यावसायिक
+      रिसॉर्ट आहे. हे ठिकाण कुटुंबांसाठी योग्य असून येथे शाकाहारी आणि मांसाहारी जेवण
+      उपलब्ध आहे.
+    hi: वेस्टबे रिज़ॉर्ट एंड स्पा रत्नागिरी के गणपतिपुले में एक लक्ज़री, व्यावसायिक
+      संपत्ति है। यह रिज़ॉर्ट परिवारों के लिए उपयुक्त है और यहाँ शाकाहारी और मांसाहारी
+      दोनों तरह का भोजन मिलता है।
+  ota_links:
+  - provider: easemytrip
+    url: https://www.easemytrip.com/hotels/hotels-near-ganpatipule-beach-ratnagiri/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJG7yaXwMQ6jsRlZz7Gvs6rf8
+    - https://www.easemytrip.com/hotels/hotels-near-ganpatipule-beach-ratnagiri/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, OTA category
+    page only; confirmed on Google Maps as 'Westbay Resort and Spa'; description EN/MR/HI
+    by Gemini (fields_only); needs review
+- slug: shantai-luxury-homestay-ganpatipule
+  status: ai_draft
+  name_en: Shantai Luxury Homestay
+  name_mr: शांतई लक्झरी होमस्टे
+  name_hi: शांतई लग्जरी होमस्टे
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJAQAAQLca6jsR-51Nrni7J60
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 5000
+  price_max: null
+  price_source: null
+  price_url: https://www.goibibo.com/hotels/homestays-in-ganpatipule-pt/
+  phone: +91 78876 64044
+  whatsapp: null
+  official_url: null
+  description:
+    en: Shantai Luxury Homestay offers homely accommodations in Ganpatipule, Ratnagiri.
+      It provides a comfortable and family-friendly stay.
+    mr: शांताई लक्झरी होमस्टे रत्नागिरीच्या गणपतीपुळे येथे घरगुती निवासाची सोय देते.
+      येथे कुटुंबासाठी आरामदायी वास्तव्याची व्यवस्था आहे.
+    hi: शांताई लक्ज़री होमस्टे रत्नागिरी के गणपतिपुले में घरेलू आवास प्रदान करता है।
+      यह परिवारों के लिए एक आरामदायक ठहरने की सुविधा देता है।
+  ota_links:
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/homestays-in-ganpatipule-pt/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJAQAAQLca6jsR-51Nrni7J60
+    - https://www.goibibo.com/hotels/homestays-in-ganpatipule-pt/
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; was low trust, OTA category
+    page only; confirmed on Google Maps as 'Shantai'; description EN/MR/HI by Gemini
+    (fields_only); needs review
+- slug: mtdc-resort-ganpatipule
+  status: ai_draft
+  name_en: MTDC Resort Ganpatipule
+  name_mr: एमटीडीसी रिसॉर्ट गणपतीपुळे
+  name_hi: एमटीडीसी रिसॉर्ट गणपतीपुले
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJByRTtK4a6jsRlenVi2aQiPI
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 2357 235248
+  whatsapp: '8308762182'
+  official_url: null
+  description:
+    en: MTDC Resort Ganpatipule is a professional accommodation located in Ganpatipule,
+      Ratnagiri. It is well-equipped for family visits.
+    mr: एमटीडीसी रिसॉर्ट गणपतीपुळे हे रत्नागिरीच्या गणपतीपुळे येथे असलेले एक व्यावसायिक
+      निवासस्थान आहे. हे कुटुंबासह भेट देण्यासाठी सुसज्ज आहे.
+    hi: एमटीडीसी रिज़ॉर्ट गणपतिपुले रत्नागिरी के गणपतिपुले में स्थित एक व्यावसायिक
+      आवास है। यह परिवार के साथ घूमने वालों के लिए उपयुक्त है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJByRTtK4a6jsRlenVi2aQiPI
+    - https://ratnagiri.gov.in/about-district/tourism/
+    phone:
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _collected_by: claude 2026-11-03
+  _review: state-run MTDC resort; phones from district tourism page (mobile listed
+    as official contact, stored in whatsapp field - verify it is WhatsApp-enabled
+    or move); family tag is Claude judgement; confirmed on Google Maps as 'MTDC Resort
+    Ganpatipule'; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: great-hornbill-homestay-mirjole
+  status: ai_draft
+  name_en: Great Hornbill Homestay
+  name_mr: ग्रेट हॉर्नबिल होमस्टे
+  name_hi: ग्रेट हॉर्नबिल होमस्टे
+  taluka: Ratnagiri
+  area: Mirjole
+  lat: null
+  lng: null
+  google_place_id: ChIJw_02PQAN6jsRPaBZVeZr7mk
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: true
+  price_min: 2049
+  price_max: 3749
+  price_source: null
+  price_url: https://www.trivago.in/en-IN/oar/guesthouse-great-hornbill-homestay-ratnagiri?search=100-37979024
+  phone: +91 70219 41617
+  whatsapp: null
+  official_url: https://hotelgreathornbill.com/
+  description:
+    en: Great Hornbill Homestay is a traditional Konkani home in Mirjole, Ratnagiri,
+      ideal for families and couples. It serves homemade Malvani cuisine, including
+      vegetarian and non-vegetarian dishes.
+    mr: ग्रेट हॉर्नबिल होमस्टे हे रत्नागिरीच्या मिर्जोळे येथील एक पारंपरिक कोकणी घर
+      आहे, जे कुटुंबे आणि जोडप्यांसाठी योग्य आहे. येथे शाकाहारी आणि मांसाहारी पदार्थांसह
+      घरगुती मालवणी जेवण दिले जाते.
+    hi: ग्रेट हॉर्नबिल होमस्टे रत्नागिरी के मिर्जोले में एक पारंपरिक कोंकणी घर है,
+      जो परिवारों और जोड़ों के लिए आदर्श है। यहाँ शाकाहारी और मांसाहारी व्यंजनों सहित
+      घरेलू मालवणी भोजन परोसा जाता है।
+  ota_links:
+  - provider: trivago
+    url: https://www.trivago.in/en-IN/oar/guesthouse-great-hornbill-homestay-ratnagiri?search=100-37979024
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJw_02PQAN6jsRPaBZVeZr7mk
+    - https://hotelgreathornbill.com/
+    - https://www.trivago.in/en-IN/oar/guesthouse-great-hornbill-homestay-ratnagiri?search=100-37979024
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: atithi-parinay-boutique-homestay-kotawde
+  status: ai_draft
+  name_en: Atithi Parinay Boutique Homestay
+  name_mr: अतिथी परिणय बुटीक होमस्टे
+  name_hi: अतिथि परिणय बुटीक होमस्टे
+  taluka: Ratnagiri
+  area: Kotawde (Aare Ware)
+  lat: null
+  lng: null
+  google_place_id: ChIJaxWMFlAO6jsRyaa5XK9rZ28
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - orchard_stay
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: true
+    homemade_included: true
+  price_min: 5500
+  price_max: 6500
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Atithi Parinay Boutique Homestay is a traditional Konkani home and orchard
+      stay in Kotawde, Ratnagiri. Ideal for families and couples, it offers homemade
+      Malvani food with vegetarian, non-vegetarian, and Jain options.
+    mr: अतिथी परिणय बुटीक होमस्टे हे रत्नागिरीच्या कोठवडे (आरे वारे) मधील एक पारंपरिक
+      कोकणी घर आणि बागेतील निवासस्थान आहे. कुटुंबे आणि जोडप्यांसाठी योग्य असलेल्या
+      या ठिकाणी शाकाहारी, मांसाहारी आणि जैन पर्यायांसह घरगुती मालवणी जेवण मिळते.
+    hi: अतिथि परिणय बुटीक होमस्टे रत्नागिरी के कोठवडे में एक पारंपरिक कोंकणी घर और
+      बगीचे में ठहरने की जगह है। परिवारों और जोड़ों के लिए आदर्श, यह शाकाहारी, मांसाहारी
+      और जैन विकल्पों के साथ घरेलू मालवणी भोजन प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJaxWMFlAO6jsRyaa5XK9rZ28
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; official
+    site and tariff page are http only; price 5500-6500 from http://www.atithiparinay.com/Tariff.html
+    not stored as URL; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: kokan-vibes-homestay-kalbadevi
+  status: ai_draft
+  name_en: Kokan Vibes Homestay
+  name_mr: कोकण वाईब्स होमस्टे
+  name_hi: कोंकण वाइब्स होमस्टे
+  taluka: Ratnagiri
+  area: Kalbadevi
+  lat: null
+  lng: null
+  google_place_id: ChIJGb6hPVQP6jsRNbfmfbh954c
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  - backpacker
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: true
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 92841 84616
+  whatsapp: null
+  official_url: https://instagram.com/kokanvibes_home_stay
+  description:
+    en: Kokan Vibes Homestay is a traditional Konkani house in Kalbadevi, Ratnagiri,
+      welcoming both families and backpackers. Guests can enjoy homemade Malvani meals,
+      with vegetarian and non-vegetarian choices.
+    mr: कोकण वाईब्स होमस्टे हे रत्नागिरीच्या काळबादेवी येथील एक पारंपरिक कोकणी घर
+      आहे, जे कुटुंबे आणि बॅकपॅकर्ससाठी खुले आहे. पाहुणे येथे शाकाहारी आणि मांसाहारी
+      पर्यायांसह घरगुती मालवणी जेवणाचा आस्वाद घेऊ शकतात.
+    hi: कोंकण वाइब्स होमस्टे रत्नागिरी के काल्बादेवी में एक पारंपरिक कोंकणी घर है,
+      जो परिवारों और बैकपैकर्स दोनों का स्वागत करता है। मेहमान यहाँ शाकाहारी और मांसाहारी
+      विकल्पों के साथ घरेलू मालवणी भोजन का आनंद ले सकते हैं।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJGb6hPVQP6jsRNbfmfbh954c
+    - https://instagram.com/kokanvibes_home_stay
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: kohinoor-samudra-beach-resort-bhatye
+  status: ai_draft
+  name_en: Kohinoor Samudra Beach Resort
+  name_mr: कोहिनूर समुद्र बीच रिसॉर्ट
+  name_hi: कोहिनूर समुद्र बीच रिसॉर्ट
+  taluka: Ratnagiri
+  area: Bhatye
+  lat: null
+  lng: null
+  google_place_id: ChIJwSKKYs_O5zsRLQ2ggtt0sx4
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - beachfront
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: true
+    homemade_included: null
+  price_min: 3402
+  price_max: 16182
+  price_source: null
+  price_url: https://www.momondo.in/hotels/ratnagiri/Kohinoor-Samudra-Beach-Resort.mhd104677.ksp
+  phone: +91 88509 32475
+  whatsapp: null
+  official_url: https://www.kohinoorhotels.com/kohinoor-samudra-ratnagiri/
+  description:
+    en: Kohinoor Samudra Beach Resort is a professional luxury property on the beachfront
+      in Bhatye, Ratnagiri. Perfect for families and couples, it serves vegetarian,
+      non-vegetarian, Jain, and Malvani cuisine.
+    mr: कोहिनूर समुद्र बीच रिसॉर्ट हे रत्नागिरीच्या भाट्ये समुद्रकिनाऱ्यावरील एक व्यावसायिक
+      आणि आलिशान ठिकाण आहे. कुटुंबे आणि जोडप्यांसाठी योग्य असलेल्या या ठिकाणी शाकाहारी,
+      मांसाहारी, जैन आणि मालवणी पदार्थ मिळतात.
+    hi: कोहिनूर समुद्र बीच रिज़ॉर्ट रत्नागिरी के भाट्ये में समुद्र तट पर एक व्यावसायिक
+      लक्ज़री रिज़ॉर्ट है। परिवारों और जोड़ों के लिए एकदम सही, यह शाकाहारी, मांसाहारी,
+      जैन और मालवणी भोजन परोसता है।
+  ota_links:
+  - provider: momondo
+    url: https://www.momondo.in/hotels/ratnagiri/Kohinoor-Samudra-Beach-Resort.mhd104677.ksp
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJwSKKYs_O5zsRLQ2ggtt0sx4
+    - https://www.kohinoorhotels.com/kohinoor-samudra-ratnagiri/
+    - https://www.momondo.in/hotels/ratnagiri/Kohinoor-Samudra-Beach-Resort.mhd104677.ksp
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: greenleaf-the-resort-spa-ganpatipule
+  status: ai_draft
+  name_en: Greenleaf The Resort & Spa
+  name_mr: ग्रीनलीफ द रिसॉर्ट अँड स्पा
+  name_hi: ग्रीनलीफ द रिसॉर्ट एंड स्पा
+  taluka: Ratnagiri
+  area: Ganpatipule
+  lat: null
+  lng: null
+  google_place_id: ChIJkRmAiv4P6jsRNuP4X695hz8
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: true
+    homemade_included: null
+  price_min: 4499
+  price_max: 6245
+  price_source: null
+  price_url: https://www.easemytrip.com/hotels/greenleaf-the-resort-and-spa-emthotel-28493/
+  phone: +91 89769 00881
+  whatsapp: null
+  official_url: null
+  description:
+    en: Greenleaf The Resort & Spa is a professional luxury resort in Ganpatipule,
+      Ratnagiri. It accommodates families and couples, providing a menu with vegetarian,
+      non-vegetarian, Jain, and Malvani options.
+    mr: ग्रीनलीफ द रिसॉर्ट अँड स्पा हे रत्नागिरीच्या गणपतीपुळे येथील एक व्यावसायिक
+      आणि आलिशान रिसॉर्ट आहे. येथे कुटुंबे आणि जोडप्यांची सोय केली जाते आणि शाकाहारी,
+      मांसाहारी, जैन व मालवणी जेवण मिळते.
+    hi: ग्रीनलीफ द रिज़ॉर्ट एंड स्पा रत्नागिरी के गणपतिपुले में एक व्यावसायिक लक्ज़री
+      रिज़ॉर्ट है। यह परिवारों और जोड़ों के ठहरने के लिए उपयुक्त है, जहाँ शाकाहारी,
+      मांसाहारी, जैन और मालवणी भोजन के विकल्प मिलते हैं।
+  ota_links:
+  - provider: easemytrip
+    url: https://www.easemytrip.com/hotels/greenleaf-the-resort-and-spa-emthotel-28493/
+  - provider: goibibo
+    url: https://www.goibibo.com/hotels/greenleaf-the-resort-spa-ganpatipule-hotel-in-ganpatipule-2445372989077805439/
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJkRmAiv4P6jsRNuP4X695hz8
+    - https://www.easemytrip.com/hotels/greenleaf-the-resort-and-spa-emthotel-28493/
+    - https://www.goibibo.com/hotels/greenleaf-the-resort-spa-ganpatipule-hotel-in-ganpatipule-2445372989077805439/
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: hotel-sea-fans-mandvi
+  status: ai_draft
+  name_en: Hotel Sea Fans
+  name_mr: हॉटेल सी फॅन्स
+  name_hi: होटल सी फैंस
+  taluka: Ratnagiri
+  area: Mandvi, Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJu3hbbmcN6jsRtyptZmKYvxg
+  service_style: professional
+  vibe_tags:
+  - family
+  - business
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: null
+  price_min: 2107
+  price_max: 3000
+  price_source: null
+  price_url: https://www.justdial.com/Ratnagiri/Hotel-Sea-Fans-Near-Mandavi-Beach-Mandavi/9999P2352-2352-130130154049-G7C3_BZDET
+  phone: +91 70667 52566
+  whatsapp: null
+  official_url: null
+  description:
+    en: Hotel Sea Fans is a professional hotel situated in Mandvi, Ratnagiri, catering
+      to both family and business travelers. The restaurant offers vegetarian, non-vegetarian,
+      and Malvani food.
+    mr: हॉटेल सी फॅन्स हे रत्नागिरीच्या मांडवी मध्ये स्थित एक व्यावसायिक हॉटेल आहे,
+      जे कौटुंबिक आणि व्यावसायिक प्रवाशांसाठी उपयुक्त आहे. येथील रेस्टॉरंटमध्ये शाकाहारी,
+      मांसाहारी आणि मालवणी जेवण उपलब्ध आहे.
+    hi: हॉटेल सी फैंस रत्नागिरी के मांडवी में स्थित एक व्यावसायिक होटल है, जो परिवार
+      और व्यापारिक यात्रियों दोनों के लिए उपयुक्त है। रेस्तरां में शाकाहारी, मांसाहारी
+      और मालवणी भोजन मिलता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJu3hbbmcN6jsRtyptZmKYvxg
+    - https://www.justdial.com/Ratnagiri/Hotel-Sea-Fans-Near-Mandavi-Beach-Mandavi/9999P2352-2352-130130154049-G7C3_BZDET
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; description
+    EN/MR/HI by Gemini (fields_only); needs review
+- slug: gayatri-homestay-ratnagiri-kuwarbav
+  status: ai_draft
+  name_en: Gayatri Homestay Ratnagiri
+  name_mr: गायत्री होमस्टे रत्नागिरी
+  name_hi: गायत्री होमस्टे रत्नागिरी
+  taluka: Ratnagiri
+  area: Kuwarbav
+  lat: null
+  lng: null
+  google_place_id: ChIJWS0YniQN6jsRAio8AIhaEiY
+  service_style: homely
+  vibe_tags:
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 80805 50345
+  whatsapp: null
+  official_url: null
+  description:
+    en: Gayatri Homestay is located in Kuwarbav, Ratnagiri, offering private room
+      accommodations with modern amenities. The property provides a cozy lodging experience
+      close to local transit points.
+    mr: गायत्री होमस्टे रत्नागिरीमधील कुवारबाव येथे स्थित असून आधुनिक सुविधांसह खाजगी
+      खोल्यांची राहण्याची सोय पुरवते.
+    hi: गायत्री होमस्टे रत्नागिरी के कुवारबाव में स्थित है, जो आधुनिक सुविधाओं के
+      साथ निजी कमरे की आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJWS0YniQN6jsRAio8AIhaEiY
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: the-blue-view-villa-s-kasop
+  status: ai_draft
+  name_en: The Blue View Villa's
+  name_mr: द ब्लू व्ह्यू विलाज
+  name_hi: द ब्लू व्यू विलाज
+  taluka: Ratnagiri
+  area: Kasop
+  lat: null
+  lng: null
+  google_place_id: ChIJ2fcUsyIN6jsRHrAiRNxqGE0
+  service_style: professional
+  vibe_tags:
+  - beachfront
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 95112 25501
+  whatsapp: null
+  official_url: null
+  description:
+    en: The Blue View Villa's is situated next to Kurli Beach in Kasop, Ratnagiri.
+      It offers sea-view villa accommodations with a lush lawn and an on-site dining
+      facility.
+    mr: द ब्लू व्ह्यू विलाज रत्नागिरीमधील कासोप येथे कुर्ली बीचजवळ स्थित आहे. हे समुद्रकाठच्या
+      दृश्यांसह विला स्वरूपाची राहण्याची सोय आणि जेवणाची सुविधा देते.
+    hi: द ब्लू व्यू विलाज रत्नागिरी के कासोप में कुर्ली बीच के पास स्थित है। यह समुद्र
+      के नज़ारे वाले विला आवास और भोजन की सुविधा प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ2fcUsyIN6jsRHrAiRNxqGE0
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: kokanwadi-resort-kotawde
+  status: ai_draft
+  name_en: Kokanwadi Resort
+  name_mr: कोकणवाडी रिसॉर्ट
+  name_hi: कोकणवाडी रिसॉर्ट
+  taluka: Ratnagiri
+  area: Kotawde
+  lat: null
+  lng: null
+  google_place_id: ChIJj9LFxXwP6jsRwNLZA8M9EZA
+  service_style: professional
+  vibe_tags:
+  - family
+  - orchard_stay
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 75592 07612
+  whatsapp: null
+  official_url: null
+  description:
+    en: Kokanwadi Resort is located in Kotawde, Ratnagiri, featuring family rooms
+      with scenic garden and mountain views. The property includes a family-friendly
+      restaurant serving local cuisine.
+    mr: कोकणवाडी रिसॉर्ट रत्नागिरीमधील कोटवडे येथे असून तेथे बागेचे व डोंगराचे दृश्य
+      असलेल्या कौटुंबिक खोल्या आहेत. येथे स्थानिक खाद्यपदार्थ मिळणारे रेस्टॉरंट आहे.
+    hi: कोकणवाडी रिसॉर्ट रत्नागिरी के कोटवडे में स्थित है, जिसमें बगीचे और पहाड़ के
+      नज़ारे वाले पारिवारिक कमरे हैं। यहाँ स्थानीय व्यंजन परोसने वाला रेस्तरां है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj9LFxXwP6jsRwNLZA8M9EZA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: hotel-sunstone-suites-nachane
+  status: ai_draft
+  name_en: Hotel Sunstone Suites
+  name_mr: हॉटेल सनस्टोन सुइट्स
+  name_hi: हॉटेल सनस्टोन सुइट्स
+  taluka: Ratnagiri
+  area: Nachane
+  lat: null
+  lng: null
+  google_place_id: ChIJO4shQQAN6jsR5JplslX3vy8
+  service_style: professional
+  vibe_tags:
+  - business
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 73910 94680
+  whatsapp: null
+  official_url: null
+  description:
+    en: Hotel Sunstone Suites is located in Nachane, Ratnagiri, providing suite accommodations
+      for travelers. The property is situated above the Nexa Showroom on Shivajinagar
+      road.
+    mr: हॉटेल सनस्टोन सुइट्स रत्नागिरीमधील नाचणे येथे शिवासगर रोडवर नेक्सा शोरूमच्या
+      वर सुइट स्वरूपाची राहण्याची सोय देते.
+    hi: हॉटेल सनस्टोन सुइट्स रत्नागिरी के नाचणे में स्थित है, जो यात्रियों के लिए
+      सुइट आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJO4shQQAN6jsR5JplslX3vy8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: shree-swami-samarth-family-homestay-ambeshet
+  status: ai_draft
+  name_en: Shree Swami Samarth Family Homestay
+  name_mr: श्री स्वामी समर्थ फॅमिली होमस्टे
+  name_hi: श्री स्वामी समर्थ फॅमिली होमस्टे
+  taluka: Ratnagiri
+  area: Ambeshet
+  lat: null
+  lng: null
+  google_place_id: ChIJsRJaXt0N6jsRwJK1Y6ct_8A
+  service_style: homely
+  vibe_tags:
+  - family
+  - traditional_konkani_home
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 3499
+  price_max: 3499
+  price_source: null
+  price_url: https://www.booking.com/hotel/in/shree-swami-samarth-homestay-ghosalewadi1.en-gb.html
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Shree Swami Samarth Family Homestay is located in Ghosalewadi, Ambeshet, Ratnagiri.
+      It offers multi-room homestay accommodation for families visiting the region.
+    mr: श्री स्वामी समर्थ फॅमिली होमस्टे रत्नागिरीमधील आंबशेत येथील घोसाळेवाडीत आहे.
+      हे कुटुंबांसाठी राहण्याची सोय पुरवते.
+    hi: श्री स्वामी समर्थ फॅमिली होमस्टे रत्नागिरी के आंबशेत में घोसाळेवाडी में स्थित
+      है। यह परिवारों के लिए होमस्टे आवास प्रदान करता है।
+  ota_links:
+  - provider: Booking.com
+    url: https://www.booking.com/hotel/in/shree-swami-samarth-homestay-ghosalewadi1.en-gb.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJsRJaXt0N6jsRwJK1Y6ct_8A
+    - https://www.booking.com/hotel/in/shree-swami-samarth-homestay-ghosalewadi1.en-gb.html
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: pilankar-home-stay-bhatye
+  status: ai_draft
+  name_en: Pilankar Home Stay Bhatye
+  name_mr: पिळणकर होम स्टे भाट्ये
+  name_hi: पिलणकर होम स्टे भाट्ये
+  taluka: Ratnagiri
+  area: Bhatye
+  lat: null
+  lng: null
+  google_place_id: ChIJj-6A6FEN6jsRgax6qFvKuyA
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 77098 32550
+  whatsapp: null
+  official_url: null
+  description:
+    en: A homestay located near the coconut research center in Bhatye.
+    mr: भाट्ये येथील नारळ संशोधन केंद्राजवळ स्थित हा एक होमस्टे आहे.
+    hi: भाट्ये में नारियल अनुसंधान केंद्र के पास स्थित यह एक होमस्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj-6A6FEN6jsRgax6qFvKuyA
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj-6A6FEN6jsRgax6qFvKuyA
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; Gemini put it in Lanja, moved to Ratnagiri by area'
+- slug: bhatye-beach-resort
+  status: ai_draft
+  name_en: Bhatye Beach Resort
+  name_mr: भाट्ये बीच रिसॉर्ट
+  name_hi: भाट्ये बीच रिसॉर्ट
+  taluka: Ratnagiri
+  area: Bhatye
+  lat: null
+  lng: null
+  google_place_id: ChIJM1khUeIN6jsRZWWYP-mkfvw
+  service_style: professional
+  vibe_tags:
+  - beachfront
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: A beach resort situated on Darga Road in Bhatye.
+    mr: भाट्ये येथील दर्गा रोडवर असलेले हे एक बीच रिसॉर्ट आहे.
+    hi: भाट्ये में दरगाह रोड पर स्थित यह एक बीच रिज़ॉर्ट है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJM1khUeIN6jsRZWWYP-mkfvw
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJM1khUeIN6jsRZWWYP-mkfvw
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; Gemini put it in Lanja, moved to Ratnagiri by area'
+- slug: shanti-the-grand-palace-ratnagiri
+  status: ai_draft
+  name_en: SHANTI THE GRAND PALACE
+  name_mr: शांती द ग्रँड पॅलेस
+  name_hi: शांति द ग्रैंड पैलेस
+  taluka: Ratnagiri
+  area: Ratnagiri
+  lat: null
+  lng: null
+  google_place_id: ChIJj-DZWGkN6jsRnELsRwvdPic
+  service_style: professional
+  vibe_tags:
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 98345 20762
+  whatsapp: null
+  official_url: null
+  description:
+    en: A down-to-earth budget hotel featuring functional rooms and a lobby seating
+      area in Ratnagiri.
+    mr: रत्नागिरीमधील या साध्या बजेट हॉटेलमध्ये उपयुक्त खोल्या आणि लॉबीमध्ये बसण्याची
+      व्यवस्था आहे.
+    hi: रत्नागिरी में इस साधारण बजट होटल में कार्यात्मक कमरे और लॉबी में बैठने की
+      व्यवस्था है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj-DZWGkN6jsRnELsRwvdPic
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJj-DZWGkN6jsRnELsRwvdPic
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; Gemini put it in Lanja, moved to Ratnagiri by area'
+- slug: vishwas-homestay-mtdc-approved-kotawde
+  status: ai_draft
+  name_en: Vishwas Homestay (MTDC approved)
+  name_mr: विश्वास होमस्टे
+  name_hi: विश्वास होमस्टे
+  taluka: Ratnagiri
+  area: Kotawde
+  lat: null
+  lng: null
+  google_place_id: ChIJJRkna4sP6jsRBgbrpT_NMT4
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: https://www.vishwashomestay.in/
+  description:
+    en: This MTDC approved homestay is located on Gawanwadi-Neware Road. It provides
+      traditional accommodation in a regional setting.
+    mr: हा MTDC मान्यताप्राप्त होमस्टे गवणवाडी-नेवरे रोडवर आहे. हे प्रादेशिक वातावरणात
+      पारंपारिक निवासाची सोय पुरवते.
+    hi: यह MTDC अनुमोदित होमस्टे गवनवाड़ी-नेवरे रोड पर स्थित है। यह क्षेत्रीय परिवेश
+      में पारंपरिक आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJRkna4sP6jsRBgbrpT_NMT4
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJJRkna4sP6jsRBgbrpT_NMT4
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; Gemini put it in Khed, moved to Ratnagiri by area'
+- slug: bhosale-homestay-karle-village
+  status: ai_draft
+  name_en: Bhosale Homestay
+  name_mr: भोसले होमस्टे
+  name_hi: भोसले होमस्टे
+  taluka: Ratnagiri
+  area: Karle Village
+  lat: null
+  lng: null
+  google_place_id: ChIJx0O0XAAN6jsRoSpAyRkwb5A
+  service_style: homely
+  vibe_tags:
+  - family
+  - traditional_konkani_home
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 82757 52262
+  whatsapp: null
+  official_url: null
+  description:
+    en: Bhosale Homestay offers local lodging situated on Nivkhol Road. It operates
+      as a residential-style stay for visitors to the district.
+    mr: भोसले होमस्टे निळखोल रोडवर स्थानिक निवासाची सोय देते. हे जिल्ह्यातील पर्यटकांसाठी
+      निवासी-शैलीतील मुक्काम म्हणून काम करते.
+    hi: भोसले होमस्टे निवखोल रोड पर स्थानीय आवास प्रदान करता है। यह जिले में आने वाले
+      आगंतुकों के लिए एक आवासीय शैली के प्रवास के रूप में कार्य करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJx0O0XAAN6jsRoSpAyRkwb5A
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJx0O0XAAN6jsRoSpAyRkwb5A
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review; Gemini put it in Khed, moved to Ratnagiri by area'

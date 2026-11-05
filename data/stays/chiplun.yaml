@@ -1,0 +1,432 @@
+# Stays - Chiplun taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: the-fern-riverview-resort-chiplun-parshuram
+  status: ai_draft
+  name_en: The Fern Riverview Resort Chiplun
+  name_mr: द फर्न रिव्हरव्ह्यू रिसॉर्ट चिपळूण
+  name_hi: द फर्न रिवरव्यू रिसॉर्ट चिपलूण
+  taluka: Chiplun
+  area: Parshuram
+  lat: null
+  lng: null
+  google_place_id: ChIJ4SOLuhUJwjsRYldKzP4tK88
+  service_style: professional
+  vibe_tags:
+  - luxury
+  - family
+  - couple_friendly
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 7500
+  price_max: 8500
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/chiplun-hotels.html
+  phone: +91 2355 352503
+  whatsapp: null
+  official_url: https://www.marriott.com/en-us/hotels/pnqrr-the-fern-riverview-resort-chiplun-series/overview/
+  description:
+    en: The Fern Riverview Resort is a luxury professional stay located in Parshuram,
+      Chiplun. It accommodates families and couples, offering views of the Vashishti
+      River.
+    mr: द फर्न रिव्हरव्ह्यू रिसॉर्ट हे चिपळूणच्या परशुराम येथील एक लक्झरी व्यावसायिक
+      रिसॉर्ट आहे. हे कुटुंब आणि जोडप्यांसाठी योग्य असून येथून वाशिष्ठी नदीचे दृश्य
+      दिसते.
+    hi: द फर्न रिवरव्यू रिज़ॉर्ट चिपलूण के परशुराम में स्थित एक लक्ज़री व्यावसायिक
+      ठहरने की जगह है। यह परिवारों और जोड़ों के अनुकूल है, जहाँ से वशिष्ठी नदी का
+      दृश्य दिखाई देता है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/chiplun-hotels.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ4SOLuhUJwjsRYldKzP4tK88
+    - https://www.marriott.com/en-us/hotels/pnqrr-the-fern-riverview-resort-chiplun-series/overview/
+    - https://www.makemytrip.com/hotels/chiplun-hotels.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (maps); needs review
+- slug: hotel-reemz-walope
+  status: ai_draft
+  name_en: Hotel Reemz
+  name_mr: हॉटेल रीम्झ
+  name_hi: होटल रीम्झ
+  taluka: Chiplun
+  area: Walope
+  lat: null
+  lng: null
+  google_place_id: ChIJjed2jZoIwjsRM3Nc0GfTbxY
+  service_style: professional
+  vibe_tags:
+  - family
+  - business
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2501
+  price_max: 3000
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/chiplun-hotels.html
+  phone: +91 2355 257865
+  whatsapp: null
+  official_url: https://hotelreemz.com/Chiplun/
+  description:
+    en: Hotel Reemz is a professional accommodation in Walope, Chiplun. It caters
+      to both family and business travelers visiting the area.
+    mr: हॉटेल रीम्झ हे चिपळूणमधील वालोपे येथे असलेले एक व्यावसायिक हॉटेल आहे. हे कुटुंब
+      आणि व्यावसायिक प्रवाशांसाठी योग्य आहे.
+    hi: होटल रीम्ज़ चिपलूण के वालोपे में एक व्यावसायिक होटल है। यह परिवारों और व्यावसायिक
+      यात्रियों दोनों के लिए उपयुक्त है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/chiplun-hotels.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJjed2jZoIwjsRM3Nc0GfTbxY
+    - https://hotelreemz.com/Chiplun/
+    - https://www.makemytrip.com/hotels/chiplun-hotels.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: hotel-red-soil-inn-bahadur-shaikh-naka
+  status: ai_draft
+  name_en: Hotel Red Soil Inn
+  name_mr: हॉटेल रेड सॉइल इन
+  name_hi: होटल रेड सॉइल इन
+  taluka: Chiplun
+  area: Bahadur Shaikh Naka
+  lat: null
+  lng: null
+  google_place_id: ChIJUY5J9C4HwjsRpddXdwSHsh8
+  service_style: professional
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 3398
+  price_max: 3950
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/chiplun-hotels-near-chiplun_railway_station.html
+  phone: +91 95036 35969
+  whatsapp: null
+  official_url: https://hotelredsoilinn.com/
+  description:
+    en: Hotel Red Soil Inn provides professional, family-friendly lodging at Bahadur
+      Shaikh Naka in Chiplun.
+    mr: हॉटेल रेड सॉईल इन हे चिपळूणमधील बहादूर शेख नाका येथे कौटुंबिक निवासाची व्यावसायिक
+      सोय देते.
+    hi: होटल रेड सॉइल इन चिपलूण में बहादुर शेख नाका पर स्थित एक व्यावसायिक और पारिवारिक
+      ठहरने की जगह है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/chiplun-hotels-near-chiplun_railway_station.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJUY5J9C4HwjsRpddXdwSHsh8
+    - https://hotelredsoilinn.com/
+    - https://www.makemytrip.com/hotels/chiplun-hotels-near-chiplun_railway_station.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: nutan-vilas-mahadik-paryatan-kendra-chandoli
+  status: ai_draft
+  name_en: Nutan Vilas Mahadik Paryatan Kendra
+  name_mr: नूतन विलास महाडिक पर्यटन केंद्र
+  name_hi: नूतन विलास महाडिक पर्यटन केंद्र
+  taluka: Chiplun
+  area: Chandoli
+  lat: null
+  lng: null
+  google_place_id: ChIJtX35TpkIwjsRL9dbjTJSnZU
+  service_style: homely
+  vibe_tags:
+  - family
+  - traditional_konkani_home
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2619
+  price_max: 2619
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/nutan_vilas_mahadik_paryatan_kendra_chiplun-details-chiplun.html
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: Nutan Vilas Mahadik Paryatan Kendra is a traditional Konkani homestay situated
+      in Chandoli, Chiplun. It offers a homely atmosphere suited for families.
+    mr: नूतन विलास महाडिक पर्यटन केंद्र हे चिपळूणच्या चांदोली येथील एक पारंपारिक कोकणी
+      घरगुती निवासस्थान आहे. येथे कुटुंबांसाठी योग्य असे घरगुती वातावरण मिळते.
+    hi: नूतन विलास महाडिक पर्यटन केंद्र चिपलूण के चांदोली में एक पारंपरिक कोंकणी होमस्टे
+      है। यहाँ परिवारों के लिए उपयुक्त घरेलू माहौल मिलता है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/nutan_vilas_mahadik_paryatan_kendra_chiplun-details-chiplun.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJtX35TpkIwjsRL9dbjTJSnZU
+    - https://www.makemytrip.com/hotels/nutan_vilas_mahadik_paryatan_kendra_chiplun-details-chiplun.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; also listed under Khed
+    in batch 1; kept once here; description EN/MR/HI by Gemini (fields_only); needs
+    review
+- slug: khatu-waada-the-heritage-home-umroli
+  status: ai_draft
+  name_en: Khatu Waada - The Heritage Home
+  name_mr: खातू वाडा - द हेरिटेज होम
+  name_hi: खातू वाडा - द हेरिटेज होम
+  taluka: Chiplun
+  area: Umroli
+  lat: null
+  lng: null
+  google_place_id: ChIJ46oSIgD96TsRmbtVp3tzKhs
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: 2752
+  price_max: 2752
+  price_source: null
+  price_url: https://www.makemytrip.com/hotels/khatu_waada_the_heritage_home-details-chiplun.html
+  phone: +91 70383 35454
+  whatsapp: null
+  official_url: https://khatuwaadatheheritagehome.bookmystay.io/
+  description:
+    en: Khatu Waada is a traditional Konkani heritage home providing homely accommodation
+      in Umroli, Chiplun. The property is well-suited for family stays.
+    mr: खातू वाडा हे चिपळूणच्या उमरोली येथील एक पारंपारिक कोकणी हेरिटेज घर आहे. हे
+      ठिकाण कुटुंबासोबत राहण्यासाठी अतिशय योग्य आहे.
+    hi: खातू वाडा चिपलूण के उमरोली में एक पारंपरिक कोंकणी हेरिटेज घर है। यह संपत्ति
+      परिवारों के ठहरने के लिए उपयुक्त है।
+  ota_links:
+  - provider: makemytrip
+    url: https://www.makemytrip.com/hotels/khatu_waada_the_heritage_home-details-chiplun.html
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ46oSIgD96TsRmbtVp3tzKhs
+    - https://khatuwaadatheheritagehome.bookmystay.io/
+    - https://www.makemytrip.com/hotels/khatu_waada_the_heritage_home-details-chiplun.html
+  _collected_by: gemini-maps 2026-11-03
+  _review: prices are OTA listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags = Gemini judgement; amenities/network FIELD-ONLY; description EN/MR/HI by
+    Gemini (fields_only); needs review
+- slug: sachin-home-stay-kalambaste
+  status: ai_draft
+  name_en: Sachin home stay
+  name_mr: सचिन होम स्टे
+  name_hi: सचिन होम स्टे
+  taluka: Chiplun
+  area: Kalambaste
+  lat: null
+  lng: null
+  google_place_id: ChIJR0acHPcHwjsRYGtCilJQVG8
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 89756 41479
+  whatsapp: null
+  official_url: https://mywebside.in/SACHIN-HOME-STAY
+  description:
+    en: It is a homestay located in Kalambaste, Chiplun.
+    mr: हे चिपळूणमधील कळंबस्ते येथे स्थित एक होमस्टे आहे.
+    hi: यह चिपलूण के कलंबस्ते में स्थित एक होमस्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJR0acHPcHwjsRYGtCilJQVG8
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJR0acHPcHwjsRYGtCilJQVG8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: shubham-home-stay-guest-house-villa-kalambaste
+  status: ai_draft
+  name_en: Shubham Home Stay / Guest House / Villa
+  name_mr: शुभम होम स्टे / गेस्ट हाऊस / व्हिला
+  name_hi: शुभम होम स्टे / गेस्ट हाउस / विला
+  taluka: Chiplun
+  area: Kalambaste
+  lat: null
+  lng: null
+  google_place_id: ChIJpzH2UzAHwjsRp5B63gJPHuI
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 77740 06663
+  whatsapp: null
+  official_url: https://www.instagram.com/shubham_homestay_chiplun?igsh=bXBiejZvd3pndnAz&utm_source=qr
+  description:
+    en: It is a guest house and villa situated near Mary Matha Church in Kalambaste.
+    mr: हे कळंबस्ते मधील मेरी माथा चर्चजवळ स्थित एक गेस्ट हाऊस आणि व्हिला आहे.
+    hi: यह कलंबस्ते में मैरी माथा चर्च के पास स्थित एक गेस्ट हाउस और विला है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJpzH2UzAHwjsRp5B63gJPHuI
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJpzH2UzAHwjsRp5B63gJPHuI
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: vidya-konkan-agro-tourism-pimpli-bk
+  status: ai_draft
+  name_en: Vidya Konkan Agro Tourism
+  name_mr: विद्या कोकण ॲग्रो टुरिझम
+  name_hi: विद्या कोंकण एग्रो टूरिज्म
+  taluka: Chiplun
+  area: Pimpli Bk.
+  lat: null
+  lng: null
+  google_place_id: ChIJeyVPS04FwjsRe6eTLr70md4
+  service_style: professional
+  vibe_tags:
+  - orchard_stay
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 98221 75750
+  whatsapp: null
+  official_url: null
+  description:
+    en: It is an agro-tourism stay located on the Chiplun-Karad road in Pimpli.
+    mr: हे पिंपळी येथील चिपळूण-कराड रोडवर स्थित एक कृषी-पर्यटन स्टे आहे.
+    hi: यह पिंपली में चिपलूण-कराड रोड पर स्थित एक कृषि-पर्यटन स्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJeyVPS04FwjsRe6eTLr70md4
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJeyVPS04FwjsRe6eTLr70md4
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: visava-home-stay-kapsal
+  status: ai_draft
+  name_en: Visava home stay
+  name_mr: विसावा होम स्टे
+  name_hi: विसावा होम स्टे
+  taluka: Chiplun
+  area: Kapsal
+  lat: null
+  lng: null
+  google_place_id: ChIJa0GIAVsHwjsRELNOo5_zZOM
+  service_style: homely
+  vibe_tags:
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: It is a homestay situated in Kapsal, Chiplun.
+    mr: हे चिपळूणमधील कापसाळ येथे स्थित एक होमस्टे आहे.
+    hi: यह चिपलूण के कापसाल में स्थित एक होमस्टे है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJa0GIAVsHwjsRELNOo5_zZOM
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJa0GIAVsHwjsRELNOo5_zZOM
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'
+- slug: red-roof-farmhouse-pimpali
+  status: ai_draft
+  name_en: Red Roof Farmhouse
+  name_mr: रेड रूफ फार्महाऊस
+  name_hi: रेड रूफ फार्महाउस
+  taluka: Chiplun
+  area: Pimpali
+  lat: null
+  lng: null
+  google_place_id: ChIJ73dV5BMFwjsRMJVV2d0KR6M
+  service_style: homely
+  vibe_tags:
+  - orchard_stay
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 99215 14705
+  whatsapp: null
+  official_url: null
+  description:
+    en: It is a farmhouse accommodation located in Pimpali.
+    mr: हे पिंपळी येथे स्थित एक फार्महाऊस आहे.
+    hi: यह पिंपली में स्थित एक फार्महाउस है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ73dV5BMFwjsRMJVV2d0KR6M
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJ73dV5BMFwjsRMJVV2d0KR6M
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

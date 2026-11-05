@@ -1,0 +1,216 @@
+# Stays - Mandangad taluka. status ai_draft. Phones = public business listing numbers, unverified.
+- slug: vilas-daripkars-homestay-velas
+  status: ai_draft
+  name_en: Vilas Daripkar's Homestay
+  name_mr: विलास दारीपकर्स होमस्टे
+  name_hi: विलास दारीपकर्स होमस्टे
+  taluka: Mandangad
+  area: Velas
+  lat: null
+  lng: null
+  google_place_id: ChIJNc8OwzG06TsRwCFVmGkGM50
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: true
+    non_veg: true
+    malvani: true
+    jain: null
+    homemade_included: true
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 98505 81022
+  whatsapp: null
+  official_url: null
+  description:
+    en: Vilas Daripkar's Homestay is a traditional Konkani home in Velas, Mandangad.
+      This family-friendly stay serves homemade Malvani food, with both vegetarian
+      and non-vegetarian options.
+    mr: विलास दरीपकर यांचे होमस्टे हे वेळास, मंडणगड येथील एक पारंपरिक कोकणी घर आहे.
+      हे कुटुंबासाठी अनुकूल असलेले ठिकाण शाकाहारी आणि मांसाहारी पर्यायांसह घरगुती
+      मालवणी जेवणाची सोय देते.
+    hi: विलास दरीपकर का होमस्टे वेलास, मंडणगड में एक पारंपरिक कोंकणी घर है। यह परिवारों
+      के अनुकूल होमस्टे शाकाहारी और मांसाहारी दोनों विकल्पों के साथ घरेलू मालवणी भोजन
+      परोसता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJNc8OwzG06TsRwCFVmGkGM50
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: prices are OTA/listing prices on 2026-11-03 (price_source open, Q10); vibe
+    tags and food flags = Gemini judgement; amenities/network FIELD-ONLY; phone is
+    the Maps listing number of an owner-run homestay; confirm owner consents to it
+    being shown; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: ridley-home-stay-velas
+  status: ai_draft
+  name_en: Ridley Home Stay
+  name_mr: रिडले होम स्टे
+  name_hi: रिडले होम स्टे
+  taluka: Mandangad
+  area: Velas
+  lat: null
+  lng: null
+  google_place_id: ChIJtSOITFC16TsRf6ySv4qQeXo
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 93700 73794
+  whatsapp: null
+  official_url: https://ridleyhomestay.com/
+  description:
+    en: Ridley Home Stay is a traditional Konkani home situated in Velas, Mandangad.
+      It offers homely and family-friendly accommodations.
+    mr: रिडले होम स्टे हे वेळास, मंडणगड मध्ये स्थित एक पारंपरिक कोकणी घर आहे. हे घरगुती
+      आणि कुटुंबासाठी अनुकूल निवास प्रदान करते.
+    hi: रिडले होम स्टे वेलास, मंडणगड में स्थित एक पारंपरिक कोंकणी घर है। यह घरेलू
+      और परिवारों के अनुकूल आवास प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJtSOITFC16TsRf6ySv4qQeXo
+    - https://ridleyhomestay.com/
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/phone from Google Maps via Gemini; owner-run homestay - confirm
+    owner OK with phone display; vibe tags = Gemini judgement; description EN/MR/HI
+    by Gemini (fields_only); needs review
+- slug: velas-sai-shraddha-homestay-velas
+  status: ai_draft
+  name_en: Velas Sai Shraddha Homestay
+  name_mr: वेळास साई श्रद्धा होमस्टे वेळास
+  name_hi: वेळास साई श्रद्धा होमस्टे
+  taluka: Mandangad
+  area: Velas
+  lat: null
+  lng: null
+  google_place_id: ChIJXygLlce16TsRXj1mo5Ne9TA
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 92723 78752
+  whatsapp: null
+  official_url: null
+  description:
+    en: Velas Sai Shraddha Homestay provides a traditional Konkani home experience
+      in Velas, Mandangad. The property is homely and suitable for families.
+    mr: वेळास साई श्रद्धा होमस्टे वेळास, मंडणगड मध्ये पारंपरिक कोकणी घराचा अनुभव देते.
+      हे घरगुती ठिकाण कुटुंबांसाठी योग्य आहे.
+    hi: वेलास साई श्रद्धा होमस्टे वेलास, मंडणगड में एक पारंपरिक कोंकणी घर का अनुभव
+      प्रदान करता है। यह घरेलू संपत्ति परिवारों के लिए उपयुक्त है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJXygLlce16TsRXj1mo5Ne9TA
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/phone from Google Maps via Gemini; owner-run homestay - confirm
+    owner OK with phone display; vibe tags = Gemini judgement; description EN/MR/HI
+    by Gemini (fields_only); needs review
+- slug: turtle-nest-home-stay-velas
+  status: ai_draft
+  name_en: Turtle Nest Home Stay
+  name_mr: टर्टल नेस्ट होम स्टे
+  name_hi: टर्टल नेस्ट होम स्टे
+  taluka: Mandangad
+  area: Velas
+  lat: null
+  lng: null
+  google_place_id: ChIJAWe44F-16TsRxGENY3KCY0I
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: +91 89837 67388
+  whatsapp: null
+  official_url: null
+  description:
+    en: Turtle Nest Home Stay is a homely, traditional Konkani house located in Velas,
+      Mandangad. It offers a family-friendly environment.
+    mr: टर्टल नेस्ट होम स्टे हे वेळास, मंडणगड येथील एक घरगुती आणि पारंपरिक कोकणी घर
+      आहे. हे कुटुंबासाठी अनुकूल वातावरण देते.
+    hi: टर्टल नेस्ट होम स्टे वेलास, मंडणगड में स्थित एक घरेलू और पारंपरिक कोंकणी घर
+      है। यह परिवारों के लिए अनुकूल वातावरण प्रदान करता है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJAWe44F-16TsRxGENY3KCY0I
+  _collected_by: gemini-maps 2026-11-03 (round 2)
+  _review: identity/phone from Google Maps via Gemini; owner-run homestay - confirm
+    owner OK with phone display; vibe tags = Gemini judgement; Turtle Nest official
+    site is http only; description EN/MR/HI by Gemini (fields_only); needs review
+- slug: turtle-nature-home-stay-velas
+  status: ai_draft
+  name_en: Turtle Nature Home stay velas
+  name_mr: टर्टल नेचर होम स्टे वेळास
+  name_hi: टर्टल नेचर होम स्टे वेलास
+  taluka: Mandangad
+  area: Velas
+  lat: null
+  lng: null
+  google_place_id: ChIJZTpQsz616TsRE_IlP1iupy8
+  service_style: homely
+  vibe_tags:
+  - traditional_konkani_home
+  - family
+  food_at_stay:
+    veg: null
+    non_veg: null
+    malvani: null
+    jain: null
+    homemade_included: null
+  price_min: null
+  price_max: null
+  price_source: null
+  price_url: null
+  phone: null
+  whatsapp: null
+  official_url: null
+  description:
+    en: This is a homestay located in Velas village. It is situated near the area
+      known for the annual turtle festival.
+    mr: हा वेळास गावातील एक होमस्टे आहे. हा वार्षिक कासव महोत्सवासाठी प्रसिद्ध असलेल्या
+      परिसराजवळ आहे.
+    hi: यह वेलास गांव में स्थित एक होमस्टे है। यह वार्षिक कछुआ उत्सव के लिए जाने जाने
+      वाले क्षेत्र के पास स्थित है।
+  ota_links: []
+  _sources:
+    _all:
+    - https://www.google.com/maps/place//data=!4m2!3m1!19sChIJZTpQsz616TsRE_IlP1iupy8
+  _collected_by: gemini-maps 2026-11-03 (batch 2)
+  _review: 'batch 2: place_id from Gemini Maps tool, not separately re-verified; labels
+    (vibe/authenticity) = Gemini judgement; description EN/MR/HI by Gemini from the
+    listing; needs review'

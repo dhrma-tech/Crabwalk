@@ -1,0 +1,1598 @@
+# Places - Sangameshwar taluka. status ai_draft. Batches P-A/P-B/P-C (facts). Text (P-D): EN drafted by Claude for sourced places; MR/HI = Gemini translation of the EN draft, needs native review.
+# Facts: Gemini (Google Search) + Claude (Wikipedia/Wikivoyage), cleaned by Claude. Coordinates: repo OSM extract only.
+# _sources._all = per-place source list (per-field mapping lost for Gemini rows; see Q4).
+- slug: marleshwar-temple
+  status: ai_draft
+  name_en: Marleshwar Temple
+  name_mr: मार्लेश्वर मंदिर
+  name_hi: मार्लेश्वर मंदिर
+  category: temple
+  taluka: Sangameshwar
+  lat: 17.074525
+  lng: 73.735969
+  coord_source: osm way/3079354716
+  osm_id: way/3079354716
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Monsoon
+  how_to_reach: 18 km from Devrukh; ST buses run to Maral village.
+  nearest_station: null
+  nearest_bus_stop: Maral
+  monsoon_status: risky
+  monsoon_reason: Paths get muddy and slippery; the temple may close if the waterfall
+    reaches the cave.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Marleshwar is a Shiva temple inside a cave in the Sahyadri hills,
+        18 km from Devrukh in Sangameshwar taluka. A large waterfall flows close by
+        and is at its best in the monsoon.
+
+
+        Every Makar Sankranti a big fair celebrates the wedding of Marleshwar and
+        goddess Girija, with bhajans, kirtans and Dashavatar plays over two days.'
+      history: null
+      significance: One of the most visited Shiva shrines in the district, famous
+        for its Makar Sankranti fair.
+      dos: '- Visit in the monsoon for the waterfall
+
+        - Plan around Makar Sankranti if you want to see the fair'
+      donts: '- Don''t carry footwear into the cave'
+      safety_text: '- Paths get muddy and slippery in the rain
+
+        - The temple may close when the waterfall floods the cave area'
+    mr:
+      short_story: 'मार्लेश्वर हे संगमेश्वर तालुक्यातील देवरुखपासून 18 किमी अंतरावर
+        सह्याद्रीच्या पर्वतरांगांमधील एका गुहेत वसलेले शिवमंदिर आहे. जवळूनच एक मोठा
+        धबधबा वाहतो जो पावसाळ्यात सर्वात सुंदर दिसतो.
+
+
+        दर मकर संक्रांतीला इथे मार्लेश्वर आणि गिरिजा देवीच्या विवाहाचा मोठा उत्सव
+        साजरा केला जातो. या जत्रेत दोन दिवस भजन, कीर्तन आणि दशावताराचे खेळ चालतात.'
+      history: null
+      significance: जिल्ह्यातील सर्वात प्रसिद्ध शिवमंदिरांपैकी एक, मकर संक्रांतीच्या
+        जत्रेसाठी प्रसिद्ध.
+      dos: '- धबधबा पाहण्यासाठी पावसाळ्यात भेट द्या
+
+        - जत्रा पाहायची असेल तर मकर संक्रांतीच्या आसपास नियोजन करा'
+      donts: '- गुहेत पादत्राणे (चप्पल/बूट) घालून जाऊ नका'
+      safety_text: '- पावसात वाटा चिखलाच्या आणि निसरड्या होतात
+
+        - जेव्हा धबधब्याचे पाणी गुहेच्या परिसरात येते तेव्हा मंदिर बंद केले जाऊ शकते'
+    hi:
+      short_story: 'मार्लेश्वर संगमेश्वर तालुका में देवरुख से 18 किमी दूर सह्याद्री
+        की पहाड़ियों में एक गुफा के अंदर स्थित एक शिव मंदिर है। इसके पास ही एक बड़ा
+        जलप्रपात बहता है जो मानसून में बहुत खूबसूरत दिखता है।
+
+
+        हर मकर संक्रांति पर यहाँ मार्लेश्वर और देवी गिरिजा की शादी का जश्न मनाने के
+        लिए एक बड़ा मेला लगता है, जिसमें दो दिनों तक भजन, कीर्तन और दशावतार नाटक होते
+        हैं।'
+      history: null
+      significance: जिले के सबसे अधिक देखे जाने वाले शिव मंदिरों में से एक, जो अपने
+        मकर संक्रांति मेले के लिए प्रसिद्ध है।
+      dos: '- जलप्रपात देखने के लिए मानसून में जाएँ
+
+        - यदि आप मेला देखना चाहते हैं तो मकर संक्रांति के आसपास की योजना बनाएँ'
+      donts: '- गुफा के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: '- बारिश में रास्ते कीचड़ भरे और फिसलन वाले हो जाते हैं
+
+        - जब जलप्रपात का पानी गुफा क्षेत्र में भर जाता है तो मंदिर बंद किया जा सकता
+        है'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/4/45/Marleshwar_temple.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Pranav
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Marleshwar_temple.JPG
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://utsav.gov.in/view-event/marleshwar-yatra-sangameshawar
+    - https://travelkonkan.in/marleshwar-temple/
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: marleshwar-waterfall
+  status: ai_draft
+  name_en: Marleshwar Waterfall (Dhareshwar)
+  name_mr: मार्लेश्वर धबधबा (धारेश्वर)
+  name_hi: मार्लेश्वर जलप्रपात (धारेश्वर)
+  category: waterfall
+  taluka: Sangameshwar
+  lat: 17.076383
+  lng: 73.7365
+  coord_source: wikidata Q12446537
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Monsoon
+  how_to_reach: Next to Marleshwar temple at Maral; seen from the cave temple.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 9
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: The waterfall next to the Marleshwar cave temple, 18 km from Devrukh,
+        is one of the big monsoon sights of Sangameshwar taluka. It is fullest in
+        the rains and can be seen from the temple area.
+      history: null
+      significance: null
+      dos: '- Go in the monsoon'
+      donts: '- Don''t go into the plunge pool'
+      safety_text: '- Rocks near the falls are slippery in the rains'
+    mr:
+      short_story: देवरुखपासून 18 किमी अंतरावर असलेल्या मार्लेश्वर गुहा मंदिराजवळचा
+        हा धबधबा संगमेश्वर तालुक्यातील पावसाळ्यातील मुख्य आकर्षणांपैकी एक आहे. पावसात
+        हा धबधबा पूर्ण क्षमतेने वाहतो आणि मंदिर परिसरातूनही तो पाहता येतो.
+      history: null
+      significance: null
+      dos: '- पावसाळ्यात भेट द्या'
+      donts: '- धबधब्याच्या तलावात जाऊ नका'
+      safety_text: '- पावसात धबधब्याजवळील खडक निसरडे होतात'
+    hi:
+      short_story: देवरुख से 18 किमी दूर मार्लेश्वर गुफा मंदिर के बगल में स्थित यह
+        जलप्रपात संगमेश्वर तालुका के प्रमुख मानसून आकर्षणों में से एक है। बारिश में
+        यह सबसे बड़ा होता है और इसे मंदिर क्षेत्र से देखा जा सकता है।
+      history: null
+      significance: null
+      dos: '- मानसून में जाएँ'
+      donts: '- जलप्रपात के कुंड (प्लंज पूल) में न जाएं'
+      safety_text: '- बारिश में जलप्रपात के पास की चट्टानें फिसलन भरी हो जाती हैं'
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/9/9d/Marleshwar_Waterfall.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Prabodh
+    licence: CC BY 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Marleshwar_Waterfall.jpg
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://travelkonkan.in/marleshwar-temple/
+    - https://www.makemytrip.com/tripideas/attractions/marleshwar-waterfalls
+  _review: season months 6-9 set by Claude (Gemini gave none); verify; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review; pin from wikidata, check on map
+  _collected_by: claude+gemini 2026-11-03
+- slug: karneshwar-temple-kasba
+  status: ai_draft
+  name_en: Karneshwar Temple, Kasba
+  name_mr: कर्णेश्वर मंदिर, कसबा
+  name_hi: कर्णेश्वर मंदिर, कस्बा
+  category: temple
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Kasba, Sangameshwar.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kasba Sangameshwar sits where the Shastri and Sonavi rivers meet
+        on the Mumbai-Goa highway. Tradition says the area once had around 360 temples
+        from the Pandava era. The Karneshwar temple is its main attraction today.
+      history: null
+      significance: null
+      dos: '- Combine with the Sambhaji Maharaj memorial in Kasba'
+      donts: '- Don''t carry footwear into the temple'
+      safety_text: null
+    mr:
+      short_story: कसबा संगमेश्वर हे मुंबई-गोवा महामार्गावर शास्त्री आणि सोनवी नद्यांच्या
+        संगमावर वसले आहे. परंपरेनुसार, या भागात पांडव काळातील सुमारे 360 मंदिरे होती
+        असे म्हटले जाते. कर्णेश्वर मंदिर हे आज इथलं मुख्य आकर्षण आहे.
+      history: null
+      significance: null
+      dos: '- कसब्यातील संभाजी महाराजांच्या स्मारकालाही यासोबत भेट द्या'
+      donts: '- मंदिरात पादत्राणे (चप्पल/बूट) घालून जाऊ नका'
+      safety_text: null
+    hi:
+      short_story: कस्बा संगमेश्वर मुंबई-गोवा राजमार्ग पर शास्त्री और सोनवी नदियों
+        के संगम पर स्थित है। परंपरा के अनुसार, इस क्षेत्र में कभी पांडव युग के लगभग
+        360 मंदिर थे। कर्णेश्वर मंदिर आज यहाँ का मुख्य आकर्षण है।
+      history: null
+      significance: null
+      dos: '- कस्बा में संभाजी महाराज स्मारक को भी इसके साथ घूमें'
+      donts: '- मंदिर के अंदर जूते-चप्पल न ले जाएं'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://kalyangeetha.wordpress.com/tag/karneshwar-temple-sangameshwar/
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: prachitgad-fort
+  status: ai_draft
+  name_en: Prachitgad Fort
+  name_mr: प्रचितगड किल्ला
+  name_hi: प्रचितगढ़ किला
+  category: fort
+  taluka: Sangameshwar
+  lat: 17.225619
+  lng: 73.690495
+  coord_source: osm node/7196520969
+  osm_id: node/7196520969
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: 480
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: From Kasba Sangameshwar to Shringarpur village (about 17 km), then
+    a 2,500 ft climb.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: closed
+  monsoon_reason: Avoid during the monsoon and the two months after.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Prachitgad stands on the Sahyadri crest on the Ratnagiri-Sangli
+        border. The base village is Shringarpur, about 17 km by road from Kasba Sangameshwar.
+        The climb is about 2,500 feet, with six iron ladders, and the round trip takes
+        around 8 hours.
+
+
+        At the top are rock-cut tanks, a Bhairi Bhavani temple, five small cannons
+        and bastions.'
+      history: It was likely built to watch the Tivre and Rede ghats, possibly before
+        Shivaji's time. It was linked to the Surve family, captured by Shivaji's forces
+        in 1660, and taken by the British in 1818.
+      significance: null
+      dos: '- Take a local guide from Shringarpur
+
+        - Start early in the morning
+
+        - Carry enough water; there is none on the way'
+      donts: '- Don''t climb without a guide or experienced companion
+
+        - Don''t go in the monsoon or the two months after'
+      safety_text: '- Steep, gravelly and slippery trail with a deep ravine near the
+        north gate'
+    mr:
+      short_story: 'प्रचितगड हा रत्नागिरी-सांगलीच्या सीमेवर सह्याद्रीच्या मुख्य रांगेवर
+        स्थित आहे. याच्या पायथ्याचे गाव शृंगारपूर आहे, जे कसबा संगमेश्वरपासून रस्त्याने
+        सुमारे 17 किमी अंतरावर आहे. किल्ल्याची चढाई सुमारे 2,500 फुटांची आहे, ज्यामध्ये
+        सहा लोखंडी शिड्या लागतात आणि जाऊन-येऊन साधारण 8 तास लागतात.
+
+
+        माथ्यावर खडकात कोरलेली पाण्याची टाकी, एक भैरी भवानी मंदिर, पाच लहान तोफा आणि
+        बुरूज आहेत.'
+      history: तिवरे आणि रेडे घाटावर लक्ष ठेवण्यासाठी शिवकाळापूर्वीच हा किल्ला बांधला
+        गेला असण्याची शक्यता आहे. हा किल्ला सुर्वे घराण्याशी संबंधित होता, 1660 मध्ये
+        शिवरायांच्या सैन्याने तो जिंकला आणि 1818 मध्ये तो ब्रिटिशांच्या ताब्यात गेला.
+      significance: null
+      dos: '- शृंगारपूरहून सोबत स्थानिक वाटाड्या (गाईड) घ्या
+
+        - सकाळी लवकर चढायला सुरुवात करा
+
+        - सोबत पुरेसे पाणी ठेवा; वाटेत पाणी नाही'
+      donts: '- वाटाड्या किंवा अनुभवी सोबत्याशिवाय चढाई करू नका
+
+        - पावसाळ्यात किंवा त्यानंतरचे दोन महिने जाऊ नका'
+      safety_text: '- उत्तरेकडच्या दरवाज्याजवळ खोल दरी असून इथली वाट अत्यंत खडी, निसरडी
+        आणि घसाऱ्याची आहे'
+    hi:
+      short_story: 'प्रचितगढ़ रत्नागिरी-सांगली सीमा पर सह्याद्री की चोटी पर स्थित
+        है। इसका आधार गाँव श्रृंगारपुर है, जो सड़क मार्ग से कस्बा संगमेश्वर से लगभग
+        17 किमी दूर है। इसकी चढ़ाई लगभग 2,500 फीट है, जिसमें छह लोहे की सीढ़ियाँ हैं,
+        और पूरी यात्रा में लगभग 8 घंटे लगते हैं।
+
+
+        चोटी पर चट्टानों को काटकर बनाए गए पानी के कुंड, एक भैरी भवानी मंदिर, पांच
+        छोटी तोपें और गढ़ (बुर्ज) हैं।'
+      history: इसे संभवतः तिवरे और रेडे घाटों पर नजर रखने के लिए शिवाजी के समय से
+        पहले बनाया गया था। यह सुर्वे परिवार से जुड़ा था, जिसे 1660 में शिवाजी की सेना
+        ने अपने कब्जे में ले लिया और 1818 में अंग्रेजों ने इसे जीत लिया।
+      significance: null
+      dos: '- श्रृंगारपुर से एक स्थानीय गाइड लें
+
+        - सुबह जल्दी शुरू करें
+
+        - पर्याप्त पानी साथ रखें; रास्ते में पानी नहीं है'
+      donts: '- गाइड या अनुभवी साथी के बिना न चढ़ें
+
+        - मानसून या उसके दो महीने बाद तक न जाएं'
+      safety_text: '- उत्तरी द्वार के पास एक गहरी खाई है और यहाँ का रास्ता बहुत खड़ी,
+        बजरी वाली और फिसलन भरी है'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/prachitgad/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: mahimatgad-fort
+  status: ai_draft
+  name_en: Mahimatgad Fort
+  name_mr: महिमतगड किल्ला
+  name_hi: महिमतगढ़ किला
+  category: fort
+  taluka: Sangameshwar
+  lat: 17.089624
+  lng: 73.712232
+  coord_source: osm node/7196556343
+  osm_id: node/7196556343
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Via Devrukh and Bellari to Nigudwadi or Kundi, then about 2.5 hours
+    on foot.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Mahimatgad is a hill fort in Sangameshwar taluka, reached via
+        Devrukh and Bellari to the base village of Nigudwadi or Kundi. It once guarded
+        the old trade road from Sangameshwar to Kolhapur.
+
+
+        The fort has seven rock-cut cisterns, an east gate, a citadel, a dry lake
+        and a Mahishasurmardini temple. From Nigudwadi it is about an hour on a rough
+        road and then about 1.5 hours on foot.'
+      history: Its cisterns suggest it predates Shivaji, who captured it together
+        with Prachitgad in 1661.
+      significance: null
+      dos: '- Start early
+
+        - Carry water'
+      donts: null
+      safety_text: '- Thick, thorny bushes on the paths
+
+        - The approach road was badly damaged as of 2019'
+    mr:
+      short_story: 'महिमतगड हा संगमेश्वर तालुक्यातील एक गिरीदुर्ग आहे, जिथे देवरुख
+        आणि बेल्लारीमार्गे पायथ्याच्या निगुडवाडी किंवा कुंडी गावाला पोहोचता येते.
+        या किल्ल्याने पूर्वी संगमेश्वर ते कोल्हापूर या जुन्या व्यापारी मार्गाचे रक्षण
+        केले होते.
+
+
+        किल्ल्यावर खडकात कोरलेली सात पाण्याची टाकी, एक पूर्वेकडचा दरवाजा, बालेकिल्ला,
+        एक कोरडा तलाव आणि महिषासुरमर्दिनीचे मंदिर आहे. निगुडवाडीपासून खराब रस्त्याने
+        सुमारे एक तास आणि त्यानंतर पायी सुमारे 1.5 तास लागतात.'
+      history: इथली पाण्याची टाकी सुचवतात की हा किल्ला शिवकाळापूर्वीचा आहे. 1661 मध्ये
+        प्रचितगडासोबतच शिवरायांनी हा किल्लाही जिंकून घेतला.
+      significance: null
+      dos: '- लवकर सुरुवात करा
+
+        - सोबत पाणी ठेवा'
+      donts: null
+      safety_text: '- वाटेवर दाट आणि काटेरी झुडपे आहेत
+
+        - 2019 च्या माहितीनुसार इथला रस्ता खूप खराब झाला होता'
+    hi:
+      short_story: 'महिमतगढ़ संगमेश्वर तालुका में एक पहाड़ी किला है, जहाँ देवरुख और
+        बेल्लारी होते हुए आधार गाँव निगुडवाड़ी या कुंडी तक पहुँचा जा सकता है। इसने
+        कभी संगमेश्वर से कोल्हापुर तक के पुराने व्यापार मार्ग की रक्षा की थी।
+
+
+        किले में सात चट्टानों को काटकर बनाए गए कुंड, एक पूर्वी द्वार, एक मुख्य गढ़,
+        एक सूखी झील और एक महिषासुरमर्दिनी मंदिर है। निगुडवाड़ी से ऊबड़-खाबड़ रास्ते
+        पर लगभग एक घंटा और फिर पैदल लगभग 1.5 घंटे लगते हैं।'
+      history: इसके कुंडों से पता चलता है कि यह शिवाजी के समय से पहले का है, जिन्होंने
+        1661 में प्रचितगढ़ के साथ इसे भी जीत लिया था।
+      significance: null
+      dos: '- जल्दी शुरू करें
+
+        - पानी साथ रखें'
+      donts: null
+      safety_text: '- रास्तों पर घनी, कांटेदार झाड़ियाँ हैं
+
+        - 2019 तक इसके पहुँच मार्ग की हालत बहुत खराब थी'
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://durgbharari.in/mahimatgad/
+  _review: single fort-database source; OSM puts it in Sangameshwar; EN text = Claude
+    draft from sources, needs team review; MR/HI = Gemini translation, needs native
+    review
+  _collected_by: claude+gemini 2026-11-03
+- slug: saddle-view-point-devrukh
+  status: ai_draft
+  name_en: Saddle View Point, Devrukh
+  name_mr: सॅडल व्ह्यू पॉईंट, देवरूख
+  name_hi: सैडल व्यू पॉइंट, देवरुख
+  category: viewpoint
+  taluka: Sangameshwar
+  lat: 16.991909
+  lng: 73.781074
+  coord_source: osm node/10242094197
+  osm_id: node/10242094197
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: October to February
+  how_to_reach: Beside the Ratnagiri-Kolhapur road near Devrukh, about 52 km from
+    Ratnagiri.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Saddle View Point is a natural roadside viewpoint located along
+        the highway in the Ratnagiri district of Maharashtra. Named for its distinctive
+        saddle-shaped contour where the road passes between elevated sections, it
+        features rugged terrain with rocky outcrops and vegetation.
+
+
+        Visitors can observe panoramic valley views on both sides with hills framing
+        the front and back. The location serves as a frequent stop for travelers exploring
+        the Konkan region.'
+      history: Saddle View Point is a natural formation that has served as a local
+        landmark for generations without a documented historical timeline.
+      significance: A natural roadside vantage point offering panoramic valley views
+        along the Konkan highway.
+      dos: '- Carry your own water and snacks as there are no vendors on site
+
+        - Wear comfortable footwear if walking around the rocky terrain
+
+        - Keep your vehicle locked and valuables secure'
+      donts: '- Do not visit late in the evening as the area can become deserted
+
+        - Do not litter around the natural ridge'
+      safety_text: Visit during daylight hours for visibility and safety along the
+        open roadside.
+    mr:
+      short_story: 'सेंडल व्यू पॉईंट हे महाराष्ट्रातील रत्नागिरी जिल्ह्यातील महामार्गालगत
+        असलेले एक नैसर्गिक रस्ताकडचे प्रेक्षणीय ठिकाण आहे. या ठिकाणाला ''सेंडल'' सारख्या
+        दिसणाऱ्या वैशिष्ट्यपूर्ण आकारावरून हे नाव मिळाले असून, येथे खडकाळ भूप्रदेश
+        आणि वनस्पती आहेत.
+
+
+        येथून दोन्ही बाजूला खिंडीचे आणि समोर व मागे पसरलेल्या डोंगरांचे विहंगम दृश्य
+        दिसते. कोकण भागातील प्रवाशांसाठी हे एक नेहमीचे विश्रांतीचे ठिकाण आहे.'
+      history: सेंडल व्यू पॉईंट ही एक नैसर्गिक रचना आहे जी पिढ्यानपिढ्या स्थानिक खूण
+        म्हणून ओळखली जाते आणि याचा कोणताही लेखी इतिहास उपलब्ध नाही.
+      significance: कोकण महामार्गावर दोन्ही बाजूंची विहंगम दृश्ये देणारे एक नैसर्गिक
+        ठिकाण.
+      dos: '- स्वतःचे पाणी आणि खाऊ सोबत ठेवा कारण तिथे कोणतीही दुकाने नाहीत
+
+        - खडकाळ भागात चालण्यासाठी आरामदायक पादत्राणे घाला
+
+        - आपले वाहन लॉक करून ठेवा आणि मौल्यवान वस्तू सुरक्षित ठेवा'
+      donts: '- संध्याकाळच्या वेळी तिथे जाणे टाळा कारण परिसर उजाड असू शकतो
+
+        - नैसर्गिक परिसरात कचरा टाकू नका'
+      safety_text: दृष्यमानता आणि सुरक्षिततेसाठी दिवसा भेट द्या.
+    hi:
+      short_story: 'सेंडल व्यू प्वाइंट महाराष्ट्र के रत्नागिरी जिले में राजमार्ग के
+        किनारे स्थित एक प्राकृतिक व्यूपॉइंट है। सड़क के दोनों ओर उठे हुए हिस्सों के
+        बीच घोड़े की काठी (सेंडल) जैसे आकार के कारण इसे यह नाम मिला है, जहाँ ऊबड़-खाबड़
+        चट्टानें और वनस्पतियां हैं।
+
+        निसर्ग प्रेमियों और यात्रियों के लिए यह एक खुला सड़क किनारे का स्थान है जहाँ
+        से घाटी के दोनों तरफ के नजारे दिखाई देते हैं।'
+      history: सेंडल व्यू प्वाइंट एक प्राकृतिक भू-संरचना है जो पीढ़ियों से एक स्थानीय
+        लैंडमार्क रही है और इसका कोई लिखित इतिहास उपलब्ध नहीं है.
+      significance: कोंकण राजमार्ग के किनारे घाटी के मनोरम दृश्य प्रस्तुत करने वाला
+        एक प्राकृतिक स्थल।
+      dos: '- अपने साथ पानी और खाने-पीने की चीजें रखें क्योंकि वहां कोई विक्रेता नहीं
+        है
+
+        - पथरीली जमीन पर चलने के लिए आरामदायक जूते पहनें
+
+        - अपने वाहन को लॉक रखें और कीमती सामान सुरक्षित रखें'
+      donts: '- देर शाम को जाने से बचें क्योंकि यह क्षेत्र सुनसान हो सकता है
+
+        - प्राकृतिक परिसर में कचरा न फैलाएं'
+      safety_text: सुरक्षा और दृश्यता के लिए दिन के समय ही जाएं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.trypdeals.com/destination/ratnagiri/saddle-view-point/
+  _review: 'travel-deal site source; Gemini said Ratnagiri-Pune highway, corrected
+    wording needs check; no text: no reliable source found (2026-11-03 search); needs
+    field visit or local source; EN text + MR/HI by Gemini (Google Search, batch T-2),
+    not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: amneshwar-temple
+  status: ai_draft
+  name_en: Amnayeshwar Temple, Burambad
+  name_mr: आम्नायेश्वर मंदिर, बुरंबाड
+  name_hi: आमनायेश्वर मंदिर, बुरंबाड
+  category: temple
+  taluka: Sangameshwar
+  lat: 17.296808
+  lng: 73.486645
+  coord_source: osm way/1375769870
+  osm_id: way/1375769870
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: 06:00
+  closes: '20:30'
+  closed_days: []
+  best_time: null
+  how_to_reach: At Burambad village on the Aravli-Makhjan road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'The Amnayeshwar temple in Burambad village is a black stone Shiva
+        temple in Hemadpanti style with five spires. It is the family deity of many
+        Konkanastha Brahmins. Darshan is from 6 am to 12:30 pm and 4 pm to 8:30 pm.
+
+
+        Inside are a large single-stone Nandi, a Shivling about 6.5 feet tall with
+        eleven silver spouts dripping water on it, and carvings of elephants, peacocks
+        and wrestlers on the outer walls. A stone pond with four tirthas and a tall
+        deepmal stand in the courtyard.'
+      history: Tradition says the Pandavas built the temple in a single night. Another
+        legend tells of a stone that split into three, giving the Kataleshwar, Kalpeshwar
+        and Amnayeshwar shrines. The temple was renovated a few years ago.
+      significance: An old black-stone Hemadpanti Shiva temple, family deity of many
+        Konkanastha Brahmins.
+      dos: '- Visit on Mahashivratri or Tripurari Pournima for the festivals
+
+        - Look for the four tirthas in the pond when the water is low'
+      donts: '- Don''t visit between 12:30 and 4 pm; the temple is closed'
+      safety_text: null
+    mr:
+      short_story: 'बुरंबाड गावातील आम्नायेश्वर मंदिर हे पाच शिखरे असलेली हेमांडपंथी
+        शैलीतील काळ्या दगडातील शिवमंदिर आहे. हे अनेक कोकणस्थ ब्राह्मणांचे कुलदैवत
+        आहे. दर्शन सकाळी 6 ते दुपारी 12:30 आणि दुपारी 4 ते रात्री 8:30 पर्यंत असते.
+
+
+        आत एक मोठा एकात्मिक दगडी नंदी, सुमारे 6.5 फूट उंच पिंडी ज्यावर पाणी टिपकण्यासाठी
+        अकरा चांदीचे प्रणाल (तोंडळे) आहेत, आणि बाहेरील भिंतीवर हत्ती, मोर आणि मल्लांची
+        शिल्पे आहेत. प्रांगणात चार तीर्थांचे दगडी मळे आणि एक उंच दीपमाळ आहे.'
+      history: परंपरेनुसार पांडवांनी हे मंदिर एकाच रात्रीत बांधले. दुसरी आख्यायिका
+        एका दगडाची आहे जो तीन तुकड्यांत विभागला गेला, ज्यातून कातळेश्वर, कल्पेश्वर
+        आणि आम्नायेश्वर ही मंदિरे निर्माण झाली. या मंदिराचा काही वर्षांपूर्वी जीर्णोद्धार
+        करण्यात आला.
+      significance: एक जुने काळ्या दगडाचे हेमांडपंथी शिवमंदिर, अनेक कोकणस्थ ब्राह्मणांचे
+        कुलदैवत.
+      dos: '- महाशिवरात्री किंवा त्रिपुरी पौर्णिमेच्या उत्सवासाठी भेट द्या
+
+        - पाणी कमी असताना तलावातील चार तीर्थे पहा'
+      donts: '- दुपारी 12:30 ते 4 दरम्यान भेट देऊ नका; मंदिर बंद असते'
+      safety_text: null
+    hi:
+      short_story: 'बुरंबाड गाँव में आमनायेश्वर मंदिर पाँच शिखरों वाली हेमांडपंथी
+        शैली का काले पत्थर का शिव मंदिर है। यह कई कोकणस्थ ब्राह्मणों का कुलदैवत है।
+        दर्शन सुबह 6 बजे से दोपहर 12:30 बजे तक और दोपहर 4 बजे से रात 8:30 बजे तक होते
+        हैं।
+
+
+        अंदर एक बड़ा एक ही पत्थर से बना नंदी, लगभग 6.5 फीट ऊँचा शिवलिंग है जिस पर
+        पानी टपकाने के लिए ग्यारह चाँदी की टोंटियाँ लगी हैं, और बाहरी दीवारों पर हाथियों,
+        मोरों और पहलवानों की नक्काशी है। प्रांगण में चार तीर्थों वाला एक पत्थर का
+        कुंड और एक ऊँचा दीपमाल स्तंभ है।'
+      history: पारंपरिक कथा है कि पांडवों ने इस मंदिर को एक ही रात में बनाया था। एक
+        अन्य किंवदंती एक ऐसे पत्थर के बारे में बताती है जो तीन हिस्सों में विभाजित
+        हो गया, जिससे कातलेश्वर, कल्पेश्वर और आमनायेश्वर मंदिर बने। मंदिर का कुछ साल
+        पहले जीर्णोद्धार किया गया था।
+      significance: एक पुराना काले पत्थर का हेमांडपंथी शिव मंदिर, जो कई कोकणस्थ ब्राह्मणों
+        का कुलदैवत है।
+      dos: '- त्योहारों के लिए महाशिवरात्रि या त्रिपुरी पूर्णिमा पर जाएँ
+
+        - जब पानी कम हो तो कुंड में चार तीर्थों को देखें'
+      donts: '- दोपहर 12:30 और 4 बजे के बीच न जाएँ; मंदिर बंद रहता है'
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://pilgrimdata.in/temple/amnayeshwar-temple-burambad-ta-sangameshwar-dist-ratnagiri/
+  _review: name likely Amnayeshwar; confirm spelling; distance in source (41 km from
+    Sangameshwar) looks high; verify; EN text = Claude draft from sources, needs team
+    review; MR/HI = Gemini translation, needs native review
+  _collected_by: claude+gemini 2026-11-03
+- slug: sangameshwar-river-confluence
+  status: ai_draft
+  name_en: Sangameshwar River Confluence
+  name_mr: संगमेश्वर संगम
+  name_hi: संगमेश्वर संगम
+  category: backwater
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: In Sangameshwar town, where the Shastri and Sonvi rivers meet.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Sangameshwar takes its name from the confluence of the Shastri
+        and Sonavi rivers, on the Mumbai-Goa highway. The old Kasba area around it
+        is said to have had about 360 temples from the Pandava era.
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: मुंबई-गोवा महामार्गावर असलेल्या शास्त्री आणि सोनवी नद्यांच्या संगमावरून
+        संगमेश्वरला हे नाव पडले आहे. याच्या आजूबाजूच्या जुन्या कसबा परिसरात पांडव
+        काळात सुमारे 360 मंदिरे होती असे म्हटले जाते.
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: मुंबई-गोवा राजमार्ग पर शास्त्री और सोनवी नदियों के संगम से संगमेश्वर
+        का नाम पड़ा है। कहा जाता है कि इसके आसपास के पुराने कस्बा क्षेत्र में पांडव
+        युग के लगभग 360 मंदिर थे।
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+    - https://artsandculture.google.com/entity/sangameshwar/m02plnhq?hl=fr
+  _review: 'no coordinates: needs pin; EN text = Claude draft from sources, needs
+    team review; MR/HI = Gemini translation, needs native review'
+  _collected_by: claude+gemini 2026-11-03
+- slug: chhatrapati-sambhaji-maharaj-smarak-kasba
+  status: ai_draft
+  name_en: Chhatrapati Sambhaji Maharaj Smarak, Kasba
+  name_mr: छत्रपती संभाजी महाराज स्मारक, कसबा
+  name_hi: छत्रपति संभाजी महाराज स्मारक, कस्बा
+  category: museum
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: At Kasba, Sangameshwar, on the Mumbai-Goa highway.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Kasba Sangameshwar is the place where Chhatrapati Sambhaji Maharaj
+        was captured by Aurangzeb's forces, which led to his execution. A memorial
+        has been built at the site.
+      history: null
+      significance: Site of the capture of Chhatrapati Sambhaji Maharaj.
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: कसबा संगमेश्वर हे ते ठिकाण आहे जिथे औरंगजेबाच्या सैन्याने छत्रपती
+        संभाजी महाराजांना कैद केले आणि पुढे त्यांची हत्या झाली. या ठिकाणी आता त्यांचे
+        स्मारक बांधण्यात आले आहे.
+      history: null
+      significance: छत्रपती संभाजी महाराजांना कैद करण्यात आले ते ठिकाण.
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: कस्बा संगमेश्वर वह स्थान है जहाँ औरंगजेब की सेना ने छत्रपति संभाजी
+        महाराज को बंदी बनाया था, जिसके बाद उन्हें मृत्युदंड दिया गया। इस स्थान पर
+        एक स्मारक बनाया गया है।
+      history: null
+      significance: वह स्थान जहाँ छत्रपति संभाजी महाराज को बंदी बनाया गया था।
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://ratnagiri.gov.in/about-district/tourism/
+  _review: EN text = Claude draft from sources, needs team review; MR/HI = Gemini
+    translation, needs native review
+  _collected_by: claude 2026-11-03
+- slug: bhavanigad-fort
+  status: ai_draft
+  name_en: Bhavanigad Fort
+  name_mr: भवानीगड किल्ला
+  name_hi: भवानीगढ़ किला
+  category: fort
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: Oct-Mar
+  how_to_reach: From Sangameshwar town, take a bus or vehicle north towards Tural
+    village on the Mumbai-Goa old highway to Kadwai or Mhadgewadi, then trek about
+    2 km to the fort.
+  nearest_station: Sangameshwar Road Railway Station, 12 km
+  nearest_bus_stop: Kadwai / Mhadgewadi Bus Stop
+  monsoon_status: risky
+  monsoon_reason: Steep unpaved trails become slippery and prone to heavy rains during
+    monsoon.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Bhavanigad Fort is a hill fort located near Kadvai village in
+        the Sangameshwar taluka of Ratnagiri district. The trail to the fort passes
+        through communities such as Mhadgewadi, Gosaviwadi, and Shirkewadi, leading
+        up to a citadel area containing a temple, a bust of Chhatrapati Shivaji Maharaj,
+        and an ancient idol of Goddess Bhavani.
+
+
+        Visitors to the fort can observe ancient water cisterns located near the entrance
+        and along the southern tip of the structure.'
+      history: Experts claim the fort was built in the 14th century. Chhatrapati Shivaji
+        Maharaj renovated it in 1661 and built the Bhavani Mata temple, and the British
+        captured the fort in 1818.
+      significance: A historic hill fort in Sangameshwar featuring the Bhavani Mata
+        temple and ancient water cisterns.
+      dos: '- Hire a local rickshaw or private vehicle to reach Kadvai or Mhadgewadi
+        base villages
+
+        - Follow the trail through Mhadgewadi, Gosaviwadi, and Shirkewadi'
+      donts: '- Do not wander off designated trekking trails into dense vegetation'
+      safety_text: The final approach involves a steep walking trail; exercise caution
+        during the monsoon when paths may be slippery.
+    mr:
+      short_story: 'भवानीगड किल्ला हा रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील
+        कडकई (कडवई) गावाजवळ असलेला एक डोंगरी किल्ला आहे. या किल्ल्याकडे जाणारी वाट
+        महाडवाडी, गोसावीवाडी आणि शिर्केवाडी या वस्त्यांमधून जाते, जिथे बालेकिल्ल्याच्या
+        भागात एक मंदिर, छत्रपती शिवाजी महाराजांचा पुतळा आणि भवानी मातेची प्राचीन मूर्ती
+        आहे.
+
+
+        किल्ल्याला भेट देणाऱ्यांना प्रवेशजվळ आणि दक्षिणेकडील टोकावर प्राचीन पाण्याच्या
+        टाक्या पाहायला मिळतात.'
+      history: तज्ज्ञांच्या मते हा किल्ला 14 व्या शतकात बांधला गेला. छत्रपती शिवाजी
+        महाराजांनी 1661 मध्ये या किल्ल्याचा जिर्णोद्धार करून भवानी मातेचे मंदिर बांधले
+        आणि 1815 मध्ये ब्रिटिश सैन्याने हा किल्ला जिंकला.
+      significance: भवानी मातेचे मंदिर आणि प्राचीन पाणी साठवण टाक्या असलेला संगमेश्वरमधील
+        एक ऐतिहासिक डोंगरी किल्ला.
+      dos: '- कडवई किंवा महाडवाडी पायथ्याच्या गावांपर्यंत पोहोचण्यासाठी स्थानिक रिक्षा
+        किंवा खाजगी वाहनाचा वापर करा
+
+        - महाडवाडी, गोसावीवाडी आणि शिर्केवाडी मार्गावरील पायवाटेने चाल ु राहा'
+      donts: '- ठरवलेल्या ट्रेकिंग वाटेवरून बाजूला जंगलात जाऊ नका'
+      safety_text: किल्ल्याच्या वाटेवर चढण आहे; पावसाळ्यात वाट सरकणी असू शकते त्यामुळे
+        काळजी घ्या.
+    hi:
+      short_story: 'भवानीगढ़ किला रत्नागिरी जिले के संगमेश्वर तालुका में कडवई गांव
+        के पास स्थित एक पहाड़ी किला है। किले की ओर जाने वाला रास्ता म्हड़गेवाड़ी, गोसावीवाड़ी
+        और शिर्केवाड़ी बस्तियों से होकर गुजरता है, जहां गढ़ के भीतर एक मंदिर, छत्रपति
+        शिवाजी महाराज की आवर्ती प्रतिमा और देवी भवानी की प्राचीन मूर्ति स्थित है।
+
+        किले में प्रवेश द्वार के पास और दक्षिणी छोर पर प्राचीन जल कुंड बने हुए हैं।'
+      history: विशेषज्ञों का दावा है कि इस किले का निर्माण 14वीं शताब्दी में हुआ था।
+        छत्रपति शिवाजी महाराज ने 1661 में इस किले का जीर्णोद्धार कर भवानी माता का
+        मंदिर बनवाया तथा 1818 में अंग्रेजों ने इस किले पर अधिकार कर लिया।
+      significance: भवानी माता मंदिर और प्राचीन जल कुंडों वाला संगमेश्वर का एक ऐतिहासिक
+        पहाड़ी किला।
+      dos: '- कडवई या म्हड़गेवाड़ी बेस गांवों तक पहुंचने के लिए स्थानीय ऑटो-रिक्शा
+        या निजी वाहन का उपयोग करें
+
+        - म्हड़गेवाड़ी, गोसावीवाड़ी और शिर्केवाड़ी के रास्तों का पालन करें'
+      donts: '- ट्रेकिंग के निर्धारित रास्तों से हटकर घनी झाड़ियों में न भटकें'
+      safety_text: अंतिम रास्ता चढ़ाई वाला है; मानसून के दौरान जब रास्ते फिसलन भरे
+        हो सकते हैं, तब सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.konkankatta.in/2017/12/bhavanigad-fort.html
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; EN
+    text + MR/HI by Gemini (Google Search, batch T-2), not Claude-drafted: check facts
+    against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: sapteshwar-temple
+  status: ai_draft
+  name_en: Sapteshwar Temple
+  name_mr: सप्तेश्वर मंदिर
+  name_hi: सप्तेश्वर मंदिर
+  category: temple
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: null
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Sangameshwar
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Sapteshwar Temple is a historic shrine located in the Sangameshwar
+        region of Ratnagiri district, set within a natural environment. The temple
+        complex features adjacent water tanks where water from seven natural underground
+        springs converges.
+
+
+        Visitors can observe the traditional stone structure and the unique water
+        management system where spring streams feed the sacred tanks.'
+      history: The temple was built in the 12th century during the rule of dynasties
+        such as the Shilaharas.
+      significance: An ancient 12th-century temple featuring a traditional water management
+        system fed by seven natural springs.
+      dos: '- Use offline maps or local directions as the temple is located within
+        a secluded pocket
+
+        - Wear appropriate clothing suitable for a religious shrine'
+      donts: '- Do not ride heavy two-wheelers carelessly if paths are muddy or have
+        loose gravel'
+      safety_text: Access roads can have slippery patches and loose grits on turns,
+        so drive carefully.
+    mr:
+      short_story: 'सप्तेश्वर मंदिर हे रत्नागिरी जिल्ह्यातील संगमेश्वर भागात निसर्गाच्या
+        सानिध्यात वसलेले एक ऐतिहासिक मंदिर आहे. या मंदिर परिसराच्या बाजूला पाण्याची
+        दोन कुंड आहेत, ज्यामध्ये सात नैसर्गिक पाण्याचे झरे एकत्र येऊन पडतात.
+
+
+        येथे येणाऱ्यांना प्राचीन स्थापत्यकला आणि झऱ्यांचे पाणी गोळा करणारी अनोखी प्राचीन
+        जलव्यवस्थापन प्रणाली पाहायला मिळते.'
+      history: हे मंदिर 12 व्या शतकात शिलाहार राजवटीच्या काळात बांधले गेले.
+      significance: सात नैसर्गिक झऱ्यांचे पाणी एकत्र येणारी प्राचीन जलव्यवस्था असलेली
+        12 व्या शतकातील वास्तू.
+      dos: '- मंदिर एका निर्जन भागात असल्याने ऑफलाईन नकाशे किंवा स्थानिक मार्गदर्शनाचा
+        वापर करा
+
+        - धार्मिक स्थळाला साजेसे योग्य कपडे घाला'
+      donts: '- रस्ते मातीचे किंवा खुरदरे असताना दुचाकी काळजीपूर्वक चालवा'
+      safety_text: येथील रस्त्यांवर चिखलाचे भाग आणि वळणावर सैल खडी असू शकते, त्यामुळे
+        वाहन काळजीपूर्वक चालवा.
+    hi:
+      short_story: 'सप्तेश्वर मंदिर रत्नागिरी जिले के संगमेश्वर क्षेत्र में प्राकृतिक
+        परिवेश में स्थित एक ऐतिहासिक मंदिर है। मंदिर परिसर के पास दो जल कुंड बने हुए
+        हैं, जिनमें सात प्राकृतिक भूमिगत झरनों का पानी आकर मिलता है।
+
+        यहाँ आने वाले लोग पारंपरिक वास्तुकला और झरनों द्वारा पोषित प्राचीन जल प्रबंधन
+        प्रणाली को देख सकते हैं।'
+      history: इस मंदिर का निर्माण 12वीं शताब्दी में शिलाहार राजाओं के शासनकाल के
+        दौरान हुआ था।
+      significance: सात प्राकृतिक झरनों से पोषित प्राचीन जल प्रबंधन प्रणाली वाला एक
+        ऐतिहासिक 12वीं शताब्दी का मंदिर।
+      dos: '- ऑफ़लाइन मानचित्र या स्थानीय निर्देशों का उपयोग करें क्योंकि मंदिर एक
+        एकांत क्षेत्र में है
+
+        - धार्मिक स्थल के अनुकूल उचित कपड़े पहनें'
+      donts: '- यदि रास्ते गीले या कंकड़ वाले हों तो दोपहिया वाहन लापरवाही से न चलाएं'
+      safety_text: पहुंच मार्गों पर कीचड़ भरे पैच और मोड़ों पर ढीले कंकड़ हो सकते
+        हैं, इसलिए वाहन सावधानी से चलाएं।
+  photo:
+    file_url: https://upload.wikimedia.org/wikipedia/commons/d/d6/Sapteshwar_Temple.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original
+    credit: Maheshdhanavade10
+    licence: CC BY-SA 3.0
+    source_url: https://commons.wikimedia.org/wiki/File:Sapteshwar_Temple.JPG
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Sangameshwar
+    - https://www.justdial.com/Ratnagiri/Sapteshwar-Temple-Sangameshwar/9999P2352-2352-220212004106-M6Z7_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: kadwai-dam
+  status: ai_draft
+  name_en: Kadwai Dam
+  name_mr: कडवई धरण
+  name_hi: कदवई बांध
+  category: backwater
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: Free
+  entry_fee_inr: 0
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Kadwai village, easily accessible by local transport or
+    road from Ratnagiri and Sangameshwar.
+  nearest_station: Sangameshwar Road Railway Station, 9 km
+  nearest_bus_stop: Kadwai Bus Stop
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Kadwai Dam is a minor irrigation tank located in Kadwai village
+        within Sangameshwar taluka of Ratnagiri district. The water body stores local
+        water resources for the area and serves as a point of interest for visitors
+        exploring the surrounding countryside.
+
+
+        Visitors to the dam site can observe the open water storage area, the surrounding
+        embankments, and the adjacent local terrain of the Konkan region. The location
+        provides views of the water body and nearby rural landscapes.'
+      history: null
+      significance: It functions as a local water storage and irrigation reservoir
+        in Sangameshwar taluka.
+      dos: '- Respect local property and water boundaries
+
+        - Carry drinking water as facilities are limited'
+      donts: '- Do not enter deep water areas or swim in the reservoir
+
+        - Do not litter around the dam embankments'
+      safety_text: Exercise caution near deep water edges and slippery surfaces around
+        the reservoir.
+    mr:
+      short_story: 'कदवई बांध हा रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील कदवई
+        गावातील एक लघू सिंचन प्रकल्प आहे. हा जलसाठा परिसरातील जलस्त्रोतांचे व्यवस्थापन
+        करतो आणि ग्रामीण परिसर पाहण्यासाठी येणाऱ्या पर्यüकांसाठी एक ठिकाण आहे.
+
+
+        येथे आल्यावर पाण्याचा साठा, बांधाचा परिसर आणि कोकणातील ग्रामीण भूप्रदेश पाहता
+        येतो. या ठिकाնरून जलाशयाचा परिसर आणि आजूबाजूचा निसर्ग दिसतो.'
+      history: null
+      significance: हा संगमेश्वर तालुक्यातील एक स्थानिक जलसाठा आणि सिंचन प्रकल्प म्हणून
+        काम करतो.
+      dos: '- स्थानिकांच्या मालमत्तेचा व पाण्याच्या क्षेत्राचा आदर करा
+
+        - पिण्याच्या पाण्याची सोबत ठेवा कारण येथे सुविधा मर्यादित आहेत'
+      donts: '- पाण्याच्या खोल भागात जाऊ नका किंवा जलाशयात पोहू नका
+
+        - बांधाच्या परिसरात कचरा टाकू नका'
+      safety_text: जلاशयाजवळच्या खोल पाण्याच्या कडांवर आणि घसरत्या भागांवर काळजी घ्या.
+    hi:
+      short_story: 'कदवई बांध रत्नागिरी जिले के संगमेश्वर तालुक के कदवई गाँव में स्थित
+        एक लघु सिंचाई टैंक है। यह जल निकाय क्षेत्र के लिए जल संसाधनों का भंडारण करता
+        है और ग्रामीण परिवेश देखने आने वालों के लिए एक दर्शनीय स्थल है।
+
+
+        यहाँ आने वाले पर्यटक जल भंडारण क्षेत्र, बाँध के तटबंधों और कोंडण क्षेत्र की
+        स्थानीय भूदृश्य को देख सकते हैं। इस स्थान से जलाशय और आसपास के ग्रामीण दृश्यों
+        का अवलोकन किया जा सकता है।'
+      history: null
+      significance: यह संगमेश्वर तालुक में एक स्थानीय जल भंडारण और सिंचाई जलाशय के
+        रूप में कार्य करता है।
+      dos: '- स्थानीय संपत्ति और पानी की सीमाओं का सम्मान करें
+
+        - पीने का पानी साथ रखें क्योंकि सुविधाएँ सीमित हैं'
+      donts: '- गहरे पानी के क्षेत्रों में प्रवेश न करें और जलाशय में न तैरें
+
+        - बाँध के तटबंधों के आसपास कचरा न फैलाएँ'
+      safety_text: जलाशय के पास गहरे पानी के किनारों और फिसलन वाले स्थानों पर सावधानी
+        बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Kadwai-Dam-Kadwai-Ratnagiri/9999P2352-2352-220416210126-H6X9_BZDET
+    - https://www.mumbailakewaterlevel.in/maharashtra-dams/ratnagiri/kadwai-m-i-tank
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: vardan-devi-temple
+  status: ai_draft
+  name_en: Vardan Devi Temple
+  name_mr: वरदान देवी मंदिर
+  name_hi: वरदान देवी मंदिर
+  category: temple
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Kadwai/Burambad area of Sangameshwar taluka, accessible
+    by road via local transport from Sangameshwar.
+  nearest_station: null
+  nearest_bus_stop: Modern English School Bus Stop (Burambad)
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Vardan Devi Temple is a Hindu place of worship situated in Kadwai
+        within Sangameshwar taluka of Ratnagiri district. The temple is located near
+        local community landmarks and serves the religious needs of the residents.
+
+
+        Visitors to the temple can observe the structure of the shrine and the surrounding
+        rural settlement of Kadwai. The temple premises offer a quiet environment
+        reflecting local architectural styles.'
+      history: null
+      significance: It serves as a local religious shrine and community focal point
+        in Kadwai.
+      dos: '- Maintain modest attire and quiet behavior inside the premises
+
+        - Remove footwear before entering the shrine area'
+      donts: '- Do not take photographs inside the main sanctum if prohibited
+
+        - Do not disturb local religious customs'
+      safety_text: Keep personal belongings secure during crowded festival days.
+    mr:
+      short_story: 'वरदान देवी मंदिर हे रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील
+        कदवई येथे स्थित एक हिंदू प्रार्थना स्थळ आहे. हे मंदिर स्थानिक लोकवस्तीच्या
+        जवळ असून परिसरातील नागरिकांच्या धार्मिक गरजा पूर्ण करते.
+
+
+        येथे येणारे भाविक मंदिराची वास्तुरचना आणि कदवई परिसरातील ग्रामीण भाग पाहू
+        शकतात. मंदिर परिसरात शांत वातावरण पाहायला मिळते.'
+      history: null
+      significance: हे कदवईमधील एक स्थानिक धार्मिक स्थळ आणि समुदाय केंद्र म्हणून कार्य
+        करते.
+      dos: '- मंदिरात प्रवेश करताना योग्य वेशभूषा ठेवा आणि शांतता पाळा
+
+        - मंदिरात जाण्यापूर्वी पादत्राणे बाहेर काढा'
+      donts: '- बंदी असल्यास मुख्य गाभाऱ्यात फोटो काढू नका
+
+        - स्थानिक धार्मिक रितीरिवाजांमध्ये अडथळा आणू नका'
+      safety_text: गर्दीच्या दिवसांत आपल्या वैयक्तिक वस्तूंची काळजी घ्या.
+    hi:
+      short_story: 'वरदान देवी मंदिर रत्नागिरी जिले के संगमेश्वर तालुक के कदवई में
+        स्थित एक हिंदू पूजा स्थल है। यह मंदिर स्थानीय सामुदायिक स्थलों के निकट स्थित
+        है और क्षेत्र के निवासियों की धार्मिक आवश्यकताओं को पूरा करता है।
+
+
+        मंदिर आने वाले आगंतुकों को यहाँ की संरचना और कदवई की ग्रामीण बस्ती देखने को
+        मिलती है। मंदिर परिसर में स्थानीय वास्तुकला को दर्शाने वाला शांत वातावरण है।'
+      history: null
+      significance: यह कदवई में एक स्थानीय धार्मिक तीर्थ और सामुदायिक केंद्र के रूप
+        में कार्य करता है।
+      dos: '- परिसर के भीतर विनम्र पोशाक पहनें और शांति बनाए रखें
+
+        - मंदिर क्षेत्र में प्रवेश करने से पहले जूते-चप्पल उतार दें'
+      donts: '- यदि मनाही हो तो मुख्य गर्भ गृह के अंदर तस्वीरें न लें
+
+        - स्थानीय धार्मिक रिवाजों में बाधा न डालें'
+      safety_text: भीड़भाड़ वाले दिनों में अपने व्यक्तिगत सामान की सुरक्षा का ध्यान
+        रखें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://mapcarta.com/W1377228005
+    - https://www.justdial.com/Ratnagiri/Vardan-Devi-Kadwai-Ratnagiri/9999P2352-2352-230202001006-E8X8_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: shringarpur-village
+  status: ai_draft
+  name_en: Shringarpur Village
+  name_mr: शिंगारपूर गाव
+  name_hi: शृंगारपुरगाँव
+  category: village
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located about 61 km from Ratnagiri and approximately 22 km from Sangameshwar,
+    accessible by road.
+  nearest_station: Sangameshwar Road Railway Station, 22 km
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: https://en.wikipedia.org/wiki/Shringarpur
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: 'Shringarpur is a village located in Sangameshwar tehsil of Ratnagiri
+        district, Maharashtra, covering a geographical area of over 1,300 hectares.
+        As per census records, it has a modest population and features basic rural
+        infrastructure including an Anganwadi centre.
+
+
+        Visitors to Shringarpur can observe traditional Konkan village houses, local
+        agricultural lands, and fallow terrain. The settlement serves as one of the
+        base locations for trekking expeditions toward Prachitgad.'
+      history: Chhatrapati Shivaji attacked Shringarpur on 29th April 1661 and removed
+        Suryarao Surve from the throne.
+      significance: It is a historical base village for the Prachitgad trek in the
+        Sangameshwar region.
+      dos: '- Respect local village customs and interact politely with residents
+
+        - Hire local guides if undertaking the trek to Prachitgad'
+      donts: '- Do not damage natural vegetation or agricultural property
+
+        - Do not drop litter in public village areas or trails'
+      safety_text: Be cautious on unpaved village tracks and verify trek routes with
+        locals before proceeding toward forest areas.
+    mr:
+      short_story: 'शृंगारपूर हे महाराष्ट्र राज्यातील रत्नागिरी जिल्ह्यातील संगमेश्वर
+        तालुक्यातील एक गाव असून याचे भौगोलिक क्षेत्र 1300 हेक्टरहून अधिक आहे. जनगणनेनुसार
+        येथील लोकसंख्या मर्यादित असून येथे अंगणवाडी केंद्रासह मूलभूत ग्रामीण सुविधा
+        उपलब्ध आहेत.
+
+
+        येथे पारंपरिक कोकणी ग्रामीण घरे, शेतजमीन आणि पडीक परिसर पाहता येतो. हे ठिकाण
+        प्रचितगड ट्रेकसाठी मुख्य बेस गावकरांपैकी एक म्हणून ओळखले जाते.'
+      history: छत्रपती शिवाजी महाराजांनी 29 एप्रिल 1661 रोजी शृंगारपूरवर आक्रमण करून
+        सूर्यराव सुर्वे यास सत्ताच्युत केले.
+      significance: हे संगमेश्वर परिसरातील प्रचितगड ट्रेकसाठीचे एक ऐतिहासिक पायथ्याचे
+        गाव आहे.
+      dos: '- ग्रामस्थांच्या रूढी-परंपरांचा आदर करा आणि त्यांच्याशी नम्रपणे वागा
+
+        - प्रचितगड ट्रेकसाठी जात असल्यास स्थानिक मार्गदर्शकांची मदत घ्या'
+      donts: '- नैसर्गिक वनस्पती किंवा शेतीचे नुकसान करू नका
+
+        - गावठाण किंवा ट्रेकच्या वाटेवर कचरा टाकू नका'
+      safety_text: गावच्या कच्च्या रस्त्यांवर चालताना काळजी घ्या आणि जंगलाच्या वाटेवर
+        जाण्यापूर्वी स्थानिकांकडून मार्ग तपासून घ्या.
+    hi:
+      short_story: 'शृंगारपूर महाराष्ट्र के रत्नागिरी जिले के संगमेश्वर तहसील में
+        स्थित एक गाँव है, जो 1,300 हेक्टेयर से अधिक क्षेत्र में फैला है। जनगणना के
+        अनुसार इसकी आबादी सीमित है और यहाँ आंगनवाड़ी केंद्र जैसी बुनियादी ग्रामीण
+        सुविधाएँ उपलब्ध हैं।
+
+
+        शृंगारपूर में पारंपरिक कोंकण ग्रामीण घर, कृषि भूमि और खाली पड़े भूभाग देखे
+        जा सकते हैं। यह बस्ती प्रचितगढ़ की ओर जाने वाले ट्रेकिंग अभियानों के लिए आधार
+        गाँवों में से एक के रूप में कार्य करती है।'
+      history: छत्रपति शिवाजी ने 29 अप्रैल 1661 को शृंगारपुर पर आक्रमण किया और सूर्यराव
+        सुर्वे को गद्दी से हटा दिया।
+      significance: यह संगमेश्वर क्षेत्र में प्रचितगढ़ ट्रेक के लिए एक ऐतिहासिक आधार
+        गाँव है।
+      dos: '- स्थानीय गाँव के रीति-रिवाजों का सम्मान करें और निवासियों से विनम्रता
+        से पेश आएँ
+
+        - प्रचितगढ़ ट्रेक पर जाते समय स्थानीय गाइड की सहायता लें'
+      donts: '- प्राकृतिक वनस्पति या कृषि संपत्ति को नुकसान न पहुँचाएँ
+
+        - सार्वजनिक ग्रामीण क्षेत्रों या ट्रेक पथ पर कचरा न फेंके'
+      safety_text: गाँव के कच्चे रास्तों पर सावधानी बरतें और जंगली क्षेत्रों की ओर
+        बढ़ने से पहले स्थानीय लोगों से ट्रेक मार्ग की पुष्टि करें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://en.wikipedia.org/wiki/Shringarpur
+    - https://villageinfo.in/maharashtra/ratnagiri/sangameshwar/shringapur/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: dingni-sunset-point
+  status: ai_draft
+  name_en: Dingni Sunset Point
+  name_mr: डिंगणी सनसेट पॉईंट
+  name_hi: डिंणी सनसेट पॉइंट
+  category: viewpoint
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Dingni in Sangameshwar taluka, accessible by road via
+    local transport.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: risky
+  monsoon_reason: Slippery edges and low visibility in heavy rain.
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Dingni Sunset Point is a tourist attraction located near Dingni
+        in Sangameshwar taluka, Ratnagiri district. The viewpoint features a constructed
+        area with stairs and railings overlooking the surrounding landscape.
+      history: null
+      significance: A hilltop vantage point used for viewing sunsets in the Sangameshwar
+        region.
+      dos: '- Carry drinking water
+
+        - Wear comfortable walking shoes'
+      donts: '- Do not litter around the viewpoint area'
+      safety_text: Exercise caution near unrailed edges and steep drops.
+    mr:
+      short_story: डिंणी सनसेट पॉईंट हे रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील
+        डिंणी गावाजवळ स्थित एक पर्यटन ठिकाण आहे. या दृष्टिक्षेपात पायऱ्या आणि आजूबाजूला
+        रेलिंग असलेला बांधलेला परिसर आहे, जिथून निसर्गरम्य परिसर दिसतो.
+      history: null
+      significance: संगमेश्वर परिसरातील सूर्यास्त पाहण्यासाठीचे एक उंच ठिकाण.
+      dos: '- पिण्याचे पाणी सोबत ठेवा
+
+        - चालण्यासाठी आरामदायक पादत्राणे घाला'
+      donts: '- पॉईंटच्या परिसरात कचरा टाकू नका'
+      safety_text: काठावर आणि तीव्र उताराजवळ काळजी घ्या.
+    hi:
+      short_story: डिंणी सनसेट पॉइंट रत्नागिरी जिले के संगमेश्वर तालुका में डिंणी
+        के पास स्थित एक पर्यटक आकर्षण है। इस दृष्टिकोण में सीढ़ियों और रेलिंग के साथ
+        एक निर्मित क्षेत्र है जो आसपास के परिदृश्य को देखता है।
+      history: null
+      significance: संगमेश्वर क्षेत्र में सूर्यास्त देखने के लिए एक पहाड़ी का किनारा।
+      dos: '- पीने का पानी साथ रखें
+
+        - आरामदायक पैदल चलने वाले जूते पहनें'
+      donts: '- दृष्टिकोण क्षेत्र के आसपास कचरा न फैलाएं'
+      safety_text: बिना रेलिंग वाले किनारों और ढलानों के पास सावधानी बरतें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Dingni-Modasunset-Point-Near-Dingni-Sangameshwar/9999P2352-2352-240721085730-C7V5_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: nive-dam
+  status: ai_draft
+  name_en: Nive Dam
+  name_mr: निव्ये धरण
+  name_hi: निवे बांध
+  category: backwater
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located near Nive village close to Devrukh in Sangameshwar taluka,
+    accessible by road via Devrukh-Sakharpa road.
+  nearest_station: null
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Nive Dam is a water reservoir and tourist attraction located near
+        Nive village in Devrukh, Sangameshwar taluka, Ratnagiri district. The site
+        offers backwater views and is surrounded by regional vegetation.
+      history: null
+      significance: A water storage structure and local scenic spot in the Devrukh
+        area.
+      dos: '- Maintain cleanliness near the water body'
+      donts: '- Do not enter deep water areas'
+      safety_text: Avoid stepping on slippery rocks near the water edge.
+    mr:
+      short_story: निवे धरण हे रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील देवळूक
+        येथील निवे गावाजवळ स्थित एक जलसाठा आणि पर्यटन स्थळ आहे. या ठिकाणी पाण्याचा
+        साठा आणि परिसर पाहता येतो.
+      history: null
+      significance: देवरुख परिसरातील जलसाठा आणि स्थानिक निसर्गरम्य ठिकाण.
+      dos: '- पाणवठ्या जवळ स्वच्छता राख ू नका'
+      donts: '- पाण्याच्या खोल भागात जाऊ नका'
+      safety_text: पाण्याच्या कठाणवळील घसरत्या खडकांवर चालणे टाळा.
+    hi:
+      short_story: निवे बांध रत्नागिरी जिले के संगमेश्वर तालुका के देवरुख में निवे
+        गाँव के पास स्थित एक जल जलाशय और पर्यटक आकर्षण है। यह स्थल बैकवाटर के दृश्य
+        प्रस्तुत करता है और क्षेत्रीय वनस्पतियों से घिरा हुआ है।
+      history: null
+      significance: देवरुख क्षेत्र में एक जल भंडारण संरचना और स्थानीय दर्शनीय स्थल।
+      dos: '- जल निकाय के पास स्वच्छता बनाए रखें'
+      donts: '- गहरे पानी के क्षेत्रों में प्रवेश न करें'
+      safety_text: पानी के किनारे पर फिसलन भरी चट्टानों पर पैर रखने से बचें।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Nive-Dam-Near-Nive-Devrukh-Ratnagiri/9999P2352-2352-250825210607-U3E3_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: devale-waterfall
+  status: ai_draft
+  name_en: Devale Waterfall
+  name_mr: देवाळे धबधबा
+  name_hi: देवाले वॉटरफॉल
+  category: waterfall
+  taluka: Sangameshwar
+  lat: null
+  lng: null
+  coord_source: null
+  osm_id: null
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: 00:00
+  closes: '23:59'
+  closed_days: []
+  best_time: null
+  how_to_reach: Located in Devale village, accessible via road from Sakharapa or Sangameshwar.
+  nearest_station: Sangameshwar Road Railway Station, 24 km
+  nearest_bus_stop: Sakharapa Bus Stand
+  monsoon_status: risky
+  monsoon_reason: Strong flow and slippery rocks after heavy rain.
+  is_tide_dependent: false
+  seasons:
+  - season: waterfall
+    from_month: 6
+    to_month: 10
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: Devale Waterfall is a natural waterfall located in Devale village
+        within Sangameshwar taluka, Ratnagiri district. Water cascades down a rock
+        face surrounded by seasonal greenery.
+      history: null
+      significance: A local seasonal waterfall attraction in rural Ratnagiri.
+      dos: '- Wear grip-soled footwear'
+      donts: '- Do not climb slippery waterfall rocks'
+      safety_text: Currents and rocks can be unpredictable during heavy flow.
+    mr:
+      short_story: देवाले धबधबा हे रत्नागिरी जिल्ह्यातील संगमेश्वर तालुक्यातील देवाले
+        गावात असलेले एक नैसर्गिक धबधबा आहे. हा धबधबा खडकावरून खाली पडतो आणि ऋतूनुसार
+        हिरवळीने वेढलेला असतो.
+      history: null
+      significance: ग्रामीण रत्नागिरीतील एक स्थानिक हंगामी धबधबा आकर्षण.
+      dos: '- ग्रिप असलेले पादत्राणे घाला'
+      donts: '- धबधब्याच्या घसरत्या खडकांवर चढू नका'
+      safety_text: पाण्याचा प्रवाह जास्त असताना प्रवाह आणि खडक धोकादायक ठरू शकतात.
+    hi:
+      short_story: देवाले वॉटरफॉल रत्नागिरी जिले के संगमेश्वर तालुका के अंतर्गत देवाले
+        गाँव में स्थित एक प्राकृतिक झरना है। मौसमी हरियाली से घिरे चट्टानी चेहरे पर
+        पानी नीचे गिरता है।
+      history: null
+      significance: ग्रामीण रत्नागिरी में एक स्थानीय मौसमी झरने का आकर्षण।
+      dos: '- ग्रिप-सोले वाले जूते पहनें'
+      donts: '- फिसलन भरी झरने की चट्टानों पर न चढ़ें'
+      safety_text: भारी बहाव के दौरान धाराएं और चट्टानें अप्रत्याशित हो सकती हैं।
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Devale-Waterfall-Devale/9999P2352-2352-220202000715-Q8M6_BZDET
+    - https://www.trip.com/travel-guide/attraction/ratnagiri/devale-waterfall-137103921/
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; no coordinates: needs pin; collected
+    with Gemini fallback model (Pro limit reached): LOW TRUST, re-check facts; monsoon_status
+    is a category default, not sourced; EN text + MR/HI by Gemini (Google Search,
+    batch T-2), not Claude-drafted: check facts against sources'
+  _collected_by: claude+gemini 2026-11-03
+- slug: talekarin-devi-temple
+  status: ai_draft
+  name_en: Talekarin Devi Temple
+  name_mr: तळेकरीण देवी मंदिर, करजुवे
+  name_hi: तलेकरीण देवी मंदिर
+  category: temple
+  taluka: Sangameshwar
+  lat: 17.213025
+  lng: 73.451482
+  coord_source: osm node/4873422921
+  osm_id: node/4873422921
+  entry_fee_text: null
+  entry_fee_inr: null
+  visit_minutes: null
+  opens: null
+  closes: null
+  closed_days: []
+  best_time: null
+  how_to_reach: Located along Karjuve-Dhamapur Road near Pirandavne in Sangameshwar
+    taluka, accessible by road.
+  nearest_station: Sangameshwar Road Railway Station, 10 km
+  nearest_bus_stop: null
+  monsoon_status: open
+  monsoon_reason: null
+  is_tide_dependent: false
+  seasons: []
+  wikipedia_url: null
+  is_hidden_gem: false
+  text:
+    en:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    mr:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+    hi:
+      short_story: null
+      history: null
+      significance: null
+      dos: null
+      donts: null
+      safety_text: null
+  photo:
+    file_url: null
+    credit: null
+    licence: null
+    source_url: null
+  _sources:
+    _all:
+    - https://www.justdial.com/Ratnagiri/Talekarin-Devi-Karjuve-Pirandavne/9999P2352-2352-250906151218-G1J8_BZDET
+  _review: 'batch P-F (2026-11-03): identity + facts by Gemini (Google Search), unsourced
+    values dropped by Claude; no EN text yet; collected with Gemini fallback model
+    (Pro limit reached): LOW TRUST, re-check facts; OSM match by name, check pin;
+    monsoon_status is a category default, not sourced; name_hi by Claude, check'
+  _collected_by: claude+gemini 2026-11-03

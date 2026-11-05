@@ -1,0 +1,60 @@
+# Seasonal highlights (place_seasonal), spec 2.3. status ai_draft. Derived from places[].seasons.
+# turtle_nesting: hatching Jan-Apr (IOTN Konkan data 2003-04); nesting Nov-Mar; Velas visitor season Mar-May (The Week 2025).
+# waterfall: monsoon months, set from place sources; verify.
+# mango: no row yet - spec needs a place; Ratnagiri Alphonso harvest late Mar-Jun, peak Apr-May (aamrai.com). Add once orchard/farm places exist.
+# firefly: no Ratnagiri firefly site found in sources (known sites are Bhandardara, Purushwadi, Rajmachi etc., outside district).
+- place: sawatsada-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 9
+  status: ai_draft
+- place: karde-beach
+  season: turtle_nesting
+  from_month: 1
+  to_month: 4
+  status: ai_draft
+- place: anjarle-beach
+  season: turtle_nesting
+  from_month: 1
+  to_month: 4
+  status: ai_draft
+- place: kelshi-beach
+  season: turtle_nesting
+  from_month: 1
+  to_month: 4
+  status: ai_draft
+- place: khorninko-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 10
+  status: ai_draft
+- place: velas-beach
+  season: turtle_nesting
+  from_month: 1
+  to_month: 4
+  status: ai_draft
+- place: palavani-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 10
+  status: ai_draft
+- place: savatkada-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 9
+  status: ai_draft
+- place: ukshi-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 9
+  status: ai_draft
+- place: marleshwar-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 9
+  status: ai_draft
+- place: devale-waterfall
+  season: waterfall
+  from_month: 6
+  to_month: 10
+  status: ai_draft
