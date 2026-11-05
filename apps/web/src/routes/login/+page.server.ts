@@ -2,6 +2,7 @@ import { fail, redirect } from '@sveltejs/kit';
 import { z } from 'zod';
 import { SUPABASE_URL } from '$app/env/public';
 import { NEXT_COOKIE, nextPath } from '#lib/login.ts';
+import { quickLogin } from '#lib/devAuth.server.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 const email = z.email().max(254);
@@ -11,10 +12,31 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 	const user = await locals.getUser();
 	const next = nextPath(url.searchParams.get('next'));
 	if (user && next) redirect(303, next);
-	return { email: user?.email ?? null, error: url.searchParams.get('error'), next };
+	return {
+		email: user?.email ?? null,
+		error: url.searchParams.get('error'),
+		next,
+		quick: !!quickLogin(url.hostname)
+	};
 };
 
 export const actions: Actions = {
+	// Dev-only (lib/devAuth.server.ts): "Continue as admin / user" without an email code.
+	quick: async ({ locals, request, url }) => {
+		const q = quickLogin(url.hostname);
+		if (!q) return fail(404);
+		const form = await request.formData();
+		const next = nextPath(form.get('next'));
+		const admin = form.get('as') === 'admin';
+		const email = admin ? q.admin : q.user;
+		if (!email) return fail(400, { error: 'quick', next });
+		const { error } = await locals.supabase.auth.signInWithPassword({
+			email,
+			password: q.password
+		});
+		if (error) return fail(400, { error: 'quick', next });
+		redirect(303, next ?? (admin ? '/admin/review' : '/'));
+	},
 	google: async ({ locals, url, request, cookies }) => {
 		const next = nextPath((await request.formData()).get('next'));
 		if (next)
