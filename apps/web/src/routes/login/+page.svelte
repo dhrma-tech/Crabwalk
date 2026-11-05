@@ -15,7 +15,9 @@
 		email: m.login_err_email,
 		send: m.login_err_send,
 		rate: m.login_err_rate,
-		code: m.login_err_code
+		code: m.login_err_code,
+		// Dev-only quick sign-in (not translated: never in a build).
+		quick: () => 'Dev sign-in failed: check DEV_LOGIN_* in .env.local.'
 	};
 	const error = $derived(form?.error ?? data.error);
 	// Email and code errors show under their field; the rest are a page-level alert.
@@ -111,6 +113,24 @@
 						<Button type="submit" class="w-full">{m.login_verify()}</Button>
 					</form>
 				{:else}
+					{#if data.quick}
+						<!-- Dev server on localhost only (DEV_QUICK_LOGIN): turn off before deploy. -->
+						<div
+							class="flex flex-col gap-2 rounded-lg border border-dashed border-border p-3"
+							data-testid="dev-quick-login"
+						>
+							<p class="type-small text-text-2">Dev only: skip sign-in as</p>
+							<div class="flex gap-2 [&>*]:flex-1">
+								{#each [['admin', 'Admin'], ['user', 'User']] as [as, label] (as)}
+									<form method="POST" action="?/quick" class="[&_button]:w-full">
+										<input type="hidden" name="next" value={next} />
+										<input type="hidden" name="as" value={as} />
+										<Button type="submit" variant="outline">{label}</Button>
+									</form>
+								{/each}
+							</div>
+						</div>
+					{/if}
 					<form method="POST" action="?/google">
 						<input type="hidden" name="next" value={next} />
 						<!-- Google's sign-in branding: the standard four-colour G on a plain outline button. -->
