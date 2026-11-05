@@ -238,6 +238,7 @@ export async function seasonStrip(db: DB) {
 		db
 			.from('events_calendar')
 			.select('name_en, name_hi, name_mr, type, from_date, to_date')
+			.eq('status', 'published')
 			.lte('from_date', today)
 			.gte('to_date', today)
 			.limit(5)

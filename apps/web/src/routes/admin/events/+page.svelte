@@ -121,8 +121,18 @@
 									e.to_date
 								)}</span
 							>
+							{#if e.status !== 'published'}<span
+									class="rounded-full bg-alphonso-50 px-2 py-0.5 type-label text-alphonso-ink"
+									>{m.event_draft()}</span
+								>{/if}
 						</summary>
 						<div class="mt-3 flex flex-col gap-3">
+							{#if e.status !== 'published'}
+								<form method="POST" action="?/publish" use:submitting>
+									<input type="hidden" name="id" value={e.id} />
+									<Button type="submit">{m.event_publish()}</Button>
+								</form>
+							{/if}
 							{@render editor(e)}
 							<form method="POST" action="?/delete" use:submitting>
 								<input type="hidden" name="id" value={e.id} />

@@ -293,7 +293,7 @@ isOneToOne: false
                   }
                   ComputedFields: never
                   Insert: {
-                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location": unknown,"menu"?: Json | null,"owner_id"?: string | null,"phone"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
+                    "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"menu"?: Json | null,"owner_id"?: string | null,"phone"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
                   }
                   Update: {
                     "authenticity"?: Database["public"]['Enums']["eatery_authenticity"] | null,"created_at"?: string,"diet_flags"?: NonNullable<Json>,"food_apps"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"menu"?: Json | null,"owner_id"?: string | null,"phone"?: string | null,"price_for_two"?: number | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
@@ -375,14 +375,14 @@ isOneToOne: false
                   ]
                 },"events_calendar": {
                   Row: {
-                    "created_at": string,"from_date": string,"id": string,"impact": NonNullable<Json>,"name_en": string,"name_hi": string | null,"name_mr": string | null,"taluka_id": string | null,"to_date": string,"type": string,"updated_at": string | null
+                    "created_at": string,"from_date": string,"id": string,"impact": NonNullable<Json>,"name_en": string,"name_hi": string | null,"name_mr": string | null,"status": Database["public"]['Enums']["content_status"],"taluka_id": string | null,"to_date": string,"type": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"from_date": string,"id"?: string,"impact"?: NonNullable<Json>,"name_en": string,"name_hi"?: string | null,"name_mr"?: string | null,"taluka_id"?: string | null,"to_date": string,"type": string,"updated_at"?: string | null
+                    "created_at"?: string,"from_date": string,"id"?: string,"impact"?: NonNullable<Json>,"name_en": string,"name_hi"?: string | null,"name_mr"?: string | null,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string | null,"to_date": string,"type": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "created_at"?: string,"from_date"?: string,"id"?: string,"impact"?: NonNullable<Json>,"name_en"?: string,"name_hi"?: string | null,"name_mr"?: string | null,"taluka_id"?: string | null,"to_date"?: string,"type"?: string,"updated_at"?: string | null
+                    "created_at"?: string,"from_date"?: string,"id"?: string,"impact"?: NonNullable<Json>,"name_en"?: string,"name_hi"?: string | null,"name_mr"?: string | null,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string | null,"to_date"?: string,"type"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     {
@@ -412,6 +412,20 @@ isOneToOne: false
       referencedRelation: "trips"
       referencedColumns: ["id"]
     }
+                  ]
+                },"import_audit": {
+                  Row: {
+                    "created_at": string,"entity_key": string,"entity_type": string,"id": string,"meta": NonNullable<Json>,"needs_review": boolean,"review_reason": string | null,"source_file": string,"updated_at": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "created_at"?: string,"entity_key": string,"entity_type": string,"id"?: string,"meta"?: NonNullable<Json>,"needs_review"?: boolean,"review_reason"?: string | null,"source_file": string,"updated_at"?: string | null
+                  }
+                  Update: {
+                    "created_at"?: string,"entity_key"?: string,"entity_type"?: string,"id"?: string,"meta"?: NonNullable<Json>,"needs_review"?: boolean,"review_reason"?: string | null,"source_file"?: string,"updated_at"?: string | null
+                  }
+                  Relationships: [
+                    
                   ]
                 },"journal_photos": {
                   Row: {
@@ -581,7 +595,7 @@ isOneToOne: false
                   }
                   ComputedFields: never
                   Insert: {
-                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"dwell_minutes"?: number | null,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location": unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"source_urls"?: (string)[],"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null,"verification_method"?: Database["public"]['Enums']["verification_method"],"visit_minutes"?: number | null
+                    "best_time_text"?: string | null,"category": Database["public"]['Enums']["place_category"],"created_at"?: string,"dwell_minutes"?: number | null,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug": string,"source_urls"?: (string)[],"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"tide_station_id"?: string | null,"updated_at"?: string | null,"verification_method"?: Database["public"]['Enums']["verification_method"],"visit_minutes"?: number | null
                   }
                   Update: {
                     "best_time_text"?: string | null,"category"?: Database["public"]['Enums']["place_category"],"created_at"?: string,"dwell_minutes"?: number | null,"entry_fee_inr"?: number | null,"entry_fee_text"?: string | null,"food_delivery"?: NonNullable<Json>,"how_to_reach_text"?: string | null,"id"?: string,"is_hidden_gem"?: boolean,"is_seed"?: boolean,"is_tide_dependent"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"monsoon_reason"?: string | null,"monsoon_status"?: Database["public"]['Enums']["monsoon_status"],"nearest_bus_stop_text"?: string | null,"nearest_station_text"?: string | null,"next_recheck_at"?: string | null,"slug"?: string,"source_urls"?: (string)[],"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"tide_station_id"?: string | null,"updated_at"?: string | null,"verification_method"?: Database["public"]['Enums']["verification_method"],"visit_minutes"?: number | null
@@ -927,7 +941,7 @@ isOneToOne: false
                   }
                   ComputedFields: never
                   Insert: {
-                    "amenities"?: NonNullable<Json>,"claimed_at"?: string | null,"created_at"?: string,"food_at_stay"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location": unknown,"network_strength"?: NonNullable<Json>,"owner_id"?: string | null,"phone"?: string | null,"price_max"?: number | null,"price_min"?: number | null,"price_source"?: Database["public"]['Enums']["price_source"] | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
+                    "amenities"?: NonNullable<Json>,"claimed_at"?: string | null,"created_at"?: string,"food_at_stay"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"network_strength"?: NonNullable<Json>,"owner_id"?: string | null,"phone"?: string | null,"price_max"?: number | null,"price_min"?: number | null,"price_source"?: Database["public"]['Enums']["price_source"] | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug": string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id": string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null
                   }
                   Update: {
                     "amenities"?: NonNullable<Json>,"claimed_at"?: string | null,"created_at"?: string,"food_at_stay"?: NonNullable<Json>,"id"?: string,"is_seed"?: boolean,"is_verified"?: boolean,"last_verified_at"?: string | null,"location"?: unknown,"network_strength"?: NonNullable<Json>,"owner_id"?: string | null,"phone"?: string | null,"price_max"?: number | null,"price_min"?: number | null,"price_source"?: Database["public"]['Enums']["price_source"] | null,"service_style"?: Database["public"]['Enums']["service_style"] | null,"slug"?: string,"status"?: Database["public"]['Enums']["content_status"],"taluka_id"?: string,"updated_at"?: string | null,"vibe_tags"?: (string)[],"whatsapp"?: string | null

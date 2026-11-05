@@ -54,6 +54,17 @@ export const actions: Actions = {
 		if (error) return fail(403, { error: true });
 		return { saved: true };
 	},
+	// Imported events arrive as drafts (desk import): the planner and the Today strip read published ones only.
+	publish: async (event) => {
+		await requireStaff(event, 'admin');
+		const id = z.uuid().safeParse((await event.request.formData()).get('id'));
+		if (!id.success) return fail(400);
+		const { error } = await event.locals.supabase
+			.from('events_calendar')
+			.update({ status: 'published' })
+			.eq('id', id.data);
+		if (error) return fail(403);
+	},
 	delete: async (event) => {
 		await requireStaff(event, 'admin');
 		const id = z.uuid().safeParse((await event.request.formData()).get('id'));

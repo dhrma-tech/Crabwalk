@@ -111,8 +111,9 @@ export const actions: Actions = {
 		try {
 			await saveDrafts(event.locals.supabase, type, id, await event.request.formData());
 			await publish(event.locals.supabase, type, id);
-		} catch {
-			return fail(400, { error: 'publish' });
+		} catch (e) {
+			// 23514: the *_pin_to_publish check — a desk row without a location can't go live.
+			return fail(400, { error: (e as { code?: string }).code === '23514' ? 'pin' : 'publish' });
 		}
 		return { published: true };
 	},

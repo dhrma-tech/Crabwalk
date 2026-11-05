@@ -131,6 +131,7 @@ export async function loadPlannerData(db: DB, p: PlannerParams) {
 		db
 			.from('events_calendar')
 			.select('taluka_id, from_date, to_date, impact')
+			.eq('status', 'published')
 			.lte('from_date', dates.at(-1)!.date)
 			.gte('to_date', dates[0]!.date),
 		p.startDate === istToday()

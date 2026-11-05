@@ -26,7 +26,8 @@ export const GET: RequestHandler = async ({ url, locals }) => {
 		db.from('places').select('slug, updated_at').eq('status', 'published').limit(5000),
 		db.from('stays').select('slug, updated_at').eq('status', 'published').limit(5000),
 		db.from('eateries').select('slug, updated_at').eq('status', 'published').limit(5000),
-		db.from('dishes').select('slug, updated_at').limit(5000),
+		// A dish page exists only once a reviewer has approved its text (imported dishes start as drafts).
+		db.from('dishes').select('slug, updated_at, dish_translations!inner(lang)').limit(5000),
 		listItineraries(db, 'en', 500)
 	]);
 	const rows: [string, string | null][] = [

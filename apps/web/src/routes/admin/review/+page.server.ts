@@ -9,21 +9,34 @@ export const load: PageServerLoad = async (event) => {
 	await requireStaff(event, 'reviewer');
 	const lang = getLocale() as Lang;
 	const db = event.locals.supabase;
+	// Desk imports flagged in import_audit (low-trust source, CHECK, no English text) are listed first with
+	// "Check first", including the ones kept as draft.
+	const { data: flags } = await db
+		.from('import_audit')
+		.select('entity_type, entity_key')
+		.eq('needs_review', true);
+	const flagged = new Set((flags ?? []).map((f) => `${f.entity_type}:${f.entity_key}`));
+	const waiting = (t: string) => {
+		const slugs = (flags ?? []).filter((f) => f.entity_type === t).map((f) => f.entity_key);
+		return slugs.length
+			? `status.eq.in_review,and(status.eq.draft,slug.in.(${slugs.join(',')}))`
+			: 'status.eq.in_review';
+	};
 	const [p, s, e, d] = await Promise.all([
 		db
 			.from('places')
-			.select('id, place_translations(lang, name), created_at')
-			.eq('status', 'in_review')
+			.select('id, slug, place_translations(lang, name), created_at')
+			.or(waiting('place'))
 			.order('created_at'),
 		db
 			.from('stays')
-			.select('id, stay_translations(lang, name), created_at')
-			.eq('status', 'in_review')
+			.select('id, slug, stay_translations(lang, name), created_at')
+			.or(waiting('stay'))
 			.order('created_at'),
 		db
 			.from('eateries')
-			.select('id, eatery_translations(lang, name), created_at')
-			.eq('status', 'in_review')
+			.select('id, slug, eatery_translations(lang, name), created_at')
+			.or(waiting('eatery'))
 			.order('created_at'),
 		db.from('dishes').select('id, slug, dish_translations(lang, name)').order('slug')
 	]);
@@ -32,19 +45,22 @@ export const load: PageServerLoad = async (event) => {
 			...(p.data ?? []).map((x) => ({
 				type: 'place',
 				id: x.id,
-				name: tr(x.place_translations, lang)
+				name: tr(x.place_translations, lang),
+				check: flagged.has(`place:${x.slug}`)
 			})),
 			...(s.data ?? []).map((x) => ({
 				type: 'stay',
 				id: x.id,
-				name: tr(x.stay_translations, lang)
+				name: tr(x.stay_translations, lang),
+				check: flagged.has(`stay:${x.slug}`)
 			})),
 			...(e.data ?? []).map((x) => ({
 				type: 'eatery',
 				id: x.id,
-				name: tr(x.eatery_translations, lang)
+				name: tr(x.eatery_translations, lang),
+				check: flagged.has(`eatery:${x.slug}`)
 			}))
-		],
+		].sort((a, b) => Number(b.check) - Number(a.check)),
 		dishes: (d.data ?? []).map((x) => ({
 			id: x.id,
 			slug: x.slug,

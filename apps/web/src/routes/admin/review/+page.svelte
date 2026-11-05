@@ -24,8 +24,10 @@
 							href={resolve('/admin/review/[type]/[id]', { type: it.type, id: it.id })}
 							class="row-link flex min-h-14 items-center gap-3 px-4 py-2.5 text-text no-underline"
 						>
-							<span class="min-w-0 flex-1 type-body-strong">{it.name}</span><span
-								class="type-small text-text-2">{msg(`type_${it.type}`)}</span
+							<span class="min-w-0 flex-1 type-body-strong">{it.name}</span>{#if it.check}<span
+									class="rounded-full bg-alphonso-50 px-2 py-0.5 type-label text-alphonso-ink"
+									>{m.review_check_first()}</span
+								>{/if}<span class="type-small text-text-2">{msg(`type_${it.type}`)}</span
 							><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" />
 						</a>
 					</li>
