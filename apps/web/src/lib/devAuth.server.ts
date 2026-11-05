@@ -1,9 +1,31 @@
 import { json } from '@sveltejs/kit';
 import type { Handle } from '@sveltejs/kit/hooks';
 import type { User } from '@supabase/supabase-js';
+import { dev } from '$app/env';
+import {
+	DEV_LOGIN_ADMIN,
+	DEV_LOGIN_PASSWORD,
+	DEV_LOGIN_USER,
+	DEV_QUICK_LOGIN
+} from '$app/env/private';
 import { NOT_SAVED, NOT_SAVED_HEADER, devBypass } from '#lib/devAuth.ts';
 
 export { devBypass };
+
+/**
+ * Dev-only one-click sign-in on /login (DEV_QUICK_LOGIN=true, accounts + password in .env.local): a real password
+ * sign-in to a local account, so the database sees that user (RLS, saves). Same gate as devBypass: never in a
+ * build, never off localhost. Turn it off before deploy.
+ */
+export function quickLogin(hostname: string) {
+	const on =
+		dev &&
+		!import.meta.env.PROD &&
+		DEV_QUICK_LOGIN === 'true' &&
+		(hostname === 'localhost' || hostname === '127.0.0.1');
+	if (!on || !DEV_LOGIN_PASSWORD) return null;
+	return { admin: DEV_LOGIN_ADMIN, user: DEV_LOGIN_USER, password: DEV_LOGIN_PASSWORD };
+}
 
 // Cookie-only writes (language/theme) and sign-in/out still go through.
 const PASS_WRITES = ['/prefs', '/login'];
