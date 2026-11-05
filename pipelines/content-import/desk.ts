@@ -1,9 +1,9 @@
 // Desk data importer for data/ (YAML from DATA_REQUIREMENTS §4.4; user approval 2026-11-05: S1–S3, C1–C4, P1, D1).
-// Places and eateries land unpublished (in_review, desk; low-trust rows and places with no English text as draft),
+// Places, stays and eateries land unpublished (in_review, desk; low-trust rows and places with no English text as draft),
 // dishes as a bare slug with all their text in content_drafts, events as draft, seasons as rows of their place.
 // Every long text and every HI name goes to content_drafts for a reviewer; `_sources` / `_review` / source keys
-// with no column go to import_audit. Never written: is_verified, is_hidden_gem, last_verified_at, phones of
-// hospitals and police (C2), stays (Q10), itineraries (P7-15).
+// with no column go to import_audit. Never written: is_verified, is_hidden_gem, last_verified_at, amenities,
+// network strength, phones and 24 h status of hospitals and police (C2, Q13), itineraries (P7-15).
 // Re-runs change only what changed in the YAML (C4): a published listing is never touched, nor a draft a reviewer
 // approved, rejected or edited (import_audit keeps a hash of the text last imported).
 // Local stack only (M23). --dry-run runs every write inside a transaction that is rolled back.
@@ -16,7 +16,7 @@ import { parse } from 'yaml';
 import { DATA, db } from '../lib/common.ts';
 import {
 	LANGS, PLACE_TEXT, dishSchema, eaterySchema, eventSchema, flagOf, hoursOf, osmKey, photoSchema, placeSchema,
-	reason, seasonalSchema, softChecks, sourceUrls, utilitySchema
+	reason, seasonalSchema, softChecks, sourceUrls, staySchema, utilitySchema
 } from './desk-schema.ts';
 import { importPhotos, photoSizes, type Photo } from './photos.ts';
 
@@ -424,6 +424,58 @@ try {
 		});
 	}
 
+	// Stays (no pins yet: S1). A price found online is `listed_online` (Q10); `owner` only when the owner confirms.
+	// OTA pages become plain stay_offers (Q12). Amenities, network and is_verified are field-only: never set.
+	const sschema = staySchema(ctx);
+	for (const { f, r } of yamls('stays')) {
+		const tag = `${f} :: ${r.slug}`;
+		const p = sschema.safeParse(r);
+		if (!p.success) {
+			fail('stays', tag, reason(p.error));
+			continue;
+		}
+		const x = p.data;
+		if (seen.has(`stay:${x.slug}`)) {
+			fail('stays', tag, 'slug repeated');
+			continue;
+		}
+		seen.add(`stay:${x.slug}`);
+		const soft = softChecks({
+			mr: [x.name_mr, x.description.mr as string],
+			hi: [x.name_hi, x.description.hi as string],
+			long: LANGS.map((l) => x.description[l] as string)
+		});
+		soft.forEach((w) => warnings.push(`stay ${x.slug}: ${w}`));
+		const flag = flagOf(x._review);
+		const needs = [flag, ...soft].filter((s): s is string => !!s);
+		const priced = x.price_min != null || x.price_max != null;
+		await guarded(client, 'stays', tag, async () => {
+			const { id, state } = await upsert(
+				client, 'stays', 'stays', { slug: x.slug },
+				{
+					taluka_id: x.taluka, service_style: x.service_style, vibe_tags: x.vibe_tags,
+					food_at_stay: compact(x.food_at_stay), price_min: x.price_min, price_max: x.price_max,
+					price_source: priced ? (x.price_source ?? 'listed_online') : null, phone: x.phone, whatsapp: x.whatsapp
+				},
+				x.lat == null ? null : [x.lng!, x.lat],
+				{ status: flag ? 'draft' : 'in_review' }
+			);
+			if (state === 'skip') return;
+			if (needs.length) held.push(`stay ${x.slug}: ${needs.join('; ')}`);
+			await names(client, 'stay_translations', 'stay_id', id, { en: x.name_en, mr: x.name_mr });
+			for (const o of x.ota_links)
+				await upsert(client, 'stay_offers', 'stay_offers', { stay_id: id, provider: o.provider, deep_link: o.url }, {}, undefined);
+			const want: Record<string, string> = {};
+			for (const l of LANGS) if (x.description[l]) want[`${l}.description`] = x.description[l] as string;
+			if (x.name_hi) want['hi.name'] = x.name_hi;
+			const snap = await drafts(client, 'stay', id, want, await priorDrafts(client, 'stay', x.slug));
+			await audit(client, 'stay', x.slug, f, {
+				_sources: x._sources, _review: x._review, _collected_by: x._collected_by, area: x.area,
+				google_place_id: x.google_place_id, price_url: x.price_url, official_url: x.official_url, _drafts: snap
+			}, needs);
+		});
+	}
+
 	// Seasons: rows of their place (read only once the place is published).
 	const seasonal = load('seasonal/place_seasonal.yaml');
 	const filed = seasonal.map((s) => `${s.place}|${s.season}|${s.from_month}|${s.to_month}`);
@@ -506,9 +558,7 @@ try {
 	}
 
 	// Not imported in this run.
-	const stays = yamls('stays').length;
 	const trips = load('itineraries/itineraries.yaml').length;
-	notes.push(`stays: ${stays} not imported (price_source blank, Q10; ota_links held, Q12)`);
 	notes.push(`itineraries: ${trips} not imported (made in the planner and promoted, DECISIONS P7-15)`);
 	notes.push('reference.yaml: nothing to write (fuel price and mileage are null; tide station links have no write path, M3)');
 

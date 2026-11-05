@@ -362,6 +362,7 @@
 	"label_description": "Description",
 	"source_agoda": "Agoda",
 	"source_affiliate": "booking site",
+	"source_listed_online": "online listing",
 	"verdict_place_1": "Skip",
 	"verdict_place_2": "Timepass",
 	"verdict_place_3": "Worth it",

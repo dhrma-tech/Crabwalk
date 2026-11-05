@@ -58,5 +58,10 @@ select is((select count(*)::int from public.import_audit), 0, 'anon: import_audi
 reset role;
 select col_default_is('public', 'events_calendar', 'status', 'published'::public.content_status, 'admin-entered events stay published');
 
+-- Q10 / Q13.
+select enum_has_labels('public', 'price_source', array['owner', 'agoda', 'affiliate', 'listed_online'], 'listed_online price source');
+select col_is_null('public', 'utility_pois', 'emergency_24h', 'emergency_24h: null = unknown');
+select col_hasnt_default('public', 'utility_pois', 'emergency_24h', 'emergency_24h: no default');
+
 select * from finish();
 rollback;

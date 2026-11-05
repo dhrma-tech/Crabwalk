@@ -126,6 +126,55 @@ export function eaterySchema(ctx: Ctx, dishSlugs: Set<string>) {
 		.refine((r) => (r.lat == null) === (r.lng == null), { path: ['lng'], message: 'give both lat and lng, or neither' });
 }
 
+export const VIBES = [
+	'traditional_konkani_home', 'family', 'luxury', 'business', 'backpacker', 'couple_friendly', 'pet_friendly',
+	'beachfront', 'orchard_stay'
+] as const;
+
+export function staySchema(ctx: Ctx) {
+	return z
+		.strictObject({
+			slug: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'lowercase words joined by -').max(60),
+			status: z.literal('ai_draft'),
+			name_en: z.string().min(2).max(120),
+			name_mr: text(120),
+			name_hi: text(120),
+			taluka: taluka(ctx),
+			area: z.string().nullable(),
+			lat: coord(-90, 90),
+			lng: coord(-180, 180),
+			google_place_id: z.string().nullable(),
+			service_style: z.enum(['homely', 'professional']).nullable(),
+			vibe_tags: z.array(z.enum(VIBES)).default([]),
+			food_at_stay: tri(['veg', 'non_veg', 'malvani', 'jain', 'homemade_included'], z.boolean().nullable()),
+			price_min: int(0, 1_000_000),
+			price_max: int(0, 1_000_000),
+			price_source: z.enum(['owner', 'agoda', 'affiliate', 'listed_online']).nullable(),
+			price_url: https.nullable(),
+			phone,
+			whatsapp: phone,
+			official_url: https.nullable(),
+			description: tri(LANGS, text(5000)),
+			// Plain OTA pages (Q12): stay_offers without an affiliate network until those accounts exist.
+			// Provider ids as in §4.4 (`Booking.com` → `booking_com`).
+			ota_links: z.array(
+				z.strictObject({
+					provider: z
+						.string()
+						.transform((s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, ''))
+						.pipe(z.string().regex(/^[a-z0-9_]+$/, 'provider id')),
+					url: https
+				})
+			),
+			...meta
+		})
+		.refine((r) => (r.lat == null) === (r.lng == null), { path: ['lng'], message: 'give both lat and lng, or neither' })
+		.refine((r) => r.price_min == null || r.price_max == null || r.price_max >= r.price_min, {
+			path: ['price_max'],
+			message: 'below price_min'
+		});
+}
+
 export const dishSchema = z.strictObject({
 	slug: z.string().regex(/^[a-z][a-z0-9_-]{1,40}$/, 'dish slug'),
 	status: z.literal('ai_draft'),
