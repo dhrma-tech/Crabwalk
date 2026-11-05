@@ -77,7 +77,8 @@
 						<li class="flex flex-col">
 							<p class="type-body">
 								{#if s.arrive}<span class="tabular-nums">{s.arrive}</span> ·
-								{/if}{#if s.href}<a href={s.href}>{s.name}</a>{:else}{s.name}{/if}
+								{/if}{#if s.href}<a href={s.href} class="underline underline-offset-2">{s.name}</a
+									>{:else}{s.name}{/if}
 								{#if s.travelMin}<span class="type-small text-text-2">
 										· {m.rep_travel({ min: s.travelMin })}</span
 									>{/if}

@@ -85,6 +85,25 @@ shaders in SwiftShader, as on `/map`. One page view makes one data load and one 
 loop). SEO 66 is `is-crawlable`: private trips are `noindex` on purpose. Accessibility 99 → 100 after fixing `heading-order`
 (DECISIONS P11-8).
 
+## Lighthouse — phase-12 (Crabby AI, step N)
+
+Same setup (`vite build --mode audit` + `wrangler pages dev`, local Supabase, AI on the mock provider, Lighthouse 13.5
+simulated), signed out, on the public P12 pages with e2e data. Median of 3 runs (benchmark ~2400–2840).
+
+| Page | Mobile | Desktop |
+|---|---|---|
+| `/journal/:token` (shared journal) | 84 / 100 / 100 / 69 | 98 / 100 / 100 / 69 |
+| `/plan/share/:token/report` (shared report) | 84 / 100 / 100† / 66 | 98 / 100 / 100† / 66 |
+| `/crabby?spot=:code` (Crabby at the spot) | 84 / 100 / 100 / 66 | 98 / 100 / 100 / 66 |
+
+† 96 on the first pass: Crabby's chat asked `/api/me/questions` for a signed-out visitor (a 401 in the console). Now it asks
+only when the auth cookie is set (DECISIONS P12-13); re-run 84 / 100 / 100 / 66.
+
+TBT is 0–27 ms; mobile LCP is 3.3–3.7 s (desktop 0.7–1.0 s), the same first-paint cost as the other pages since the
+Tideline glass (T-57). SEO 66–69 is `is-crawlable`: share links are private (`noindex`, robots `Disallow`) on purpose.
+Not measured: the signed-in P12 surfaces (group chat, report and journal editors live on `/plan/:id`, measured in P11;
+`/me/crabby`, owner and admin request pages are behind sign-in).
+
 ## Findings
 
 ### Critical

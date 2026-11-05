@@ -172,6 +172,8 @@ export async function ask(text: string) {
 
 /** The user's questions to our team; new answers are marked seen once shown. */
 export async function loadTeamQuestions() {
+	// Signed out (share pages, QR spot): no request, so no 401 in the console.
+	if (!document.cookie.includes('-auth-token')) return;
 	const r = await fetch('/api/me/questions').catch(() => null);
 	if (!r?.ok) return;
 	crabby.team = (await r.json()) as TeamQuestion[];

@@ -159,7 +159,7 @@
 							{@const opts = (x.payload?.options as string[]) ?? []}
 							{@const total = (x.tally ?? []).reduce((a, b) => a + b, 0)}
 							<p class="type-body-strong">{x.body}</p>
-							<ul class="flex flex-col gap-1.5" role="group" aria-label={x.body ?? ''}>
+							<ul class="flex flex-col gap-1.5" aria-label={x.body ?? ''}>
 								{#each opts as o, i (i)}
 									{@const mine = x.picked?.includes(i)}
 									<li>
