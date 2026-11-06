@@ -36,6 +36,9 @@
 	import CloudOff from '@lucide/svelte/icons/cloud-off';
 	import Pencil from '@lucide/svelte/icons/pencil';
 	import Eye from '@lucide/svelte/icons/eye';
+	import PanelLeftOpen from '@lucide/svelte/icons/panel-left-open';
+	import PanelLeftClose from '@lucide/svelte/icons/panel-left-close';
+	import TripSetup from '#lib/components/plan/TripSetup.svelte';
 	import type { OpResult, WorkspaceOp } from '#lib/server/planner/workspace.ts';
 	import type { StripLeg } from '#lib/nav/strip.ts';
 	import type { PageProps } from './$types';
@@ -110,6 +113,8 @@
 	);
 
 	const open = $state({
+		// Trip setup (the planner questions): open until the trip has an itinerary.
+		setup: untrack(() => !data.setup?.hasStops),
 		overview: true,
 		places: true,
 		itinerary: true,
@@ -124,6 +129,7 @@
 		for (const k of Object.keys(open) as (keyof typeof open)[]) open[k] = to;
 	}
 	const outline = $derived<OutlineItem[]>([
+		...(data.setup ? [{ id: 'setup', label: m.plan_setup(), section: 'setup' }] : []),
 		{ id: 'overview', label: m.plan_overview(), section: 'overview' },
 		{ id: 'places', label: m.plan_places(), section: 'places' },
 		...data.lists.map((l) => ({
@@ -157,7 +163,9 @@
 			});
 		})
 	);
+	let rail = $state(false);
 	async function pick(item: OutlineItem) {
+		rail = false;
 		open[item.section as keyof typeof open] = true;
 		if (item.sub && item.section === 'itinerary') tab = Number(item.id.slice(4));
 		if (!wide && snap !== 'full') snap = 'full';
@@ -458,9 +466,32 @@
 	class="relative min-h-0 flex-1 lg:flex lg:h-[calc(100dvh-var(--bar-h))] lg:flex-none print:block print:h-auto"
 >
 	<h1 class="sr-only">{data.trip.title}</h1>
+	<!-- Laptops: the outline rail stays collapsed until tapped (a slim strip with one button). -->
+	{#if !rail}
+		<div class="hidden shrink-0 border-r border-border p-2 lg:block print:hidden">
+			<IconButton
+				label={m.plan_outline_show()}
+				aria-expanded="false"
+				aria-controls="plan-outline"
+				onclick={() => (rail = true)}><PanelLeftOpen size={20} aria-hidden="true" /></IconButton
+			>
+		</div>
+	{/if}
 	<aside
-		class="hidden w-56 shrink-0 flex-col gap-4 overflow-y-auto border-r border-border p-4 lg:flex print:hidden"
+		id="plan-outline"
+		class={[
+			'hidden w-56 shrink-0 flex-col gap-4 overflow-y-auto border-r border-border p-4 print:hidden',
+			rail && 'lg:flex'
+		]}
 	>
+		<div class="-mt-1 -ml-1">
+			<IconButton
+				label={m.plan_outline_hide()}
+				aria-expanded="true"
+				aria-controls="plan-outline"
+				onclick={() => (rail = false)}><PanelLeftClose size={20} aria-hidden="true" /></IconButton
+			>
+		</div>
 		<Outline items={outline} label={m.plan_outline()} variant="rail" onpick={pick} />
 		<button
 			type="button"
@@ -565,6 +596,27 @@
 			<div class="sticky top-0 z-map-ui -mx-5 bg-surface px-5 py-2 lg:hidden print:hidden">
 				<Outline items={outline} label={m.plan_outline()} variant="chips" onpick={pick} />
 			</div>
+
+			{#if data.setup}
+				<WorkspaceSection id="setup" title={m.plan_setup()} bind:open={open.setup}>
+					{#key data.trip.id}
+						<TripSetup
+							tripId={data.trip.id}
+							starts={data.setup.starts}
+							tomorrow={data.setup.tomorrow}
+							values={data.setup.values}
+							hasStops={data.setup.hasStops}
+							ondone={async () => {
+								await invalidateAll();
+								open.setup = false;
+								open.itinerary = true;
+								await tick();
+								document.getElementById('itinerary')?.scrollIntoView({ behavior: 'smooth' });
+							}}
+						/>
+					{/key}
+				</WorkspaceSection>
+			{/if}
 
 			<WorkspaceSection id="overview" title={m.plan_overview()} bind:open={open.overview}>
 				{#if data.budget}

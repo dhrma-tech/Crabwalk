@@ -109,13 +109,35 @@ export async function createTrip(
 	p: PlanInput,
 	opts: { mileage?: number | null } = {}
 ) {
-	const { data, days } = await computeTrip(db, p);
-	const mileage = opts.mileage ?? data.mileage;
 	const { data: trip, error } = await db
 		.from('trips')
 		.insert({
 			owner_id: ownerId,
 			title: m.plan_default_title({ days: p.days, from: p.start.label }),
+			days: p.days
+		})
+		.select('id')
+		.single();
+	if (error) throw error;
+	return generateInto(db, trip.id, p, opts);
+}
+
+/**
+ * Fill (or refill) an existing trip from the planner inputs: the trip's inputs, a fresh itinerary (the old stops
+ * are replaced) and the budget estimate. Used by the "Trip setup" section of the workspace and by createTrip.
+ */
+export async function generateInto(
+	db: DB,
+	tripId: string,
+	p: PlanInput,
+	opts: { mileage?: number | null; title?: string } = {}
+) {
+	const { data, days } = await computeTrip(db, p);
+	const mileage = opts.mileage ?? data.mileage;
+	const { error } = await db
+		.from('trips')
+		.update({
+			...(opts.title ? { title: opts.title } : {}),
 			days: p.days,
 			start_date: p.start_date,
 			start_point: p.start,
@@ -126,13 +148,12 @@ export async function createTrip(
 			standout: p.standout,
 			diet: p.diet
 		})
-		.select('id')
-		.single();
+		.eq('id', tripId);
 	if (error) throw error;
 
 	const rows = days.flatMap((d, i) =>
 		d.stops.map((s, order) => ({
-			trip_id: trip.id,
+			trip_id: tripId,
 			day: i + 1,
 			order,
 			kind: s.kind,
@@ -146,6 +167,8 @@ export async function createTrip(
 			)
 		}))
 	);
+	const { error: del } = await db.from('trip_stops').delete().eq('trip_id', tripId);
+	if (del) throw del;
 	if (rows.length) {
 		const { error: e2 } = await db.from('trip_stops').insert(rows);
 		if (e2) throw e2;
@@ -167,19 +190,79 @@ export async function createTrip(
 		mileage,
 		activities: 0
 	});
-	const { error: e3 } = await db.from('trip_budget').insert({
-		trip_id: trip.id,
-		stay: b.stay,
-		food: b.food,
-		fuel: b.fuel ?? 0,
-		entry: b.entry,
-		activities: 0,
-		people: p.people,
-		fuel_price: data.fuelPrice,
-		vehicle_mileage_kmpl: mileage
-	});
+	const { error: e3 } = await db.from('trip_budget').upsert(
+		{
+			trip_id: tripId,
+			stay: b.stay,
+			food: b.food,
+			fuel: b.fuel ?? 0,
+			entry: b.entry,
+			activities: 0,
+			people: p.people,
+			fuel_price: data.fuelPrice,
+			vehicle_mileage_kmpl: mileage
+		},
+		{ onConflict: 'trip_id' }
+	);
 	if (e3) throw e3;
-	return { id: trip.id, needsTideCheck: data.needsTideCheck.length };
+	return { id: tripId, needsTideCheck: data.needsTideCheck.length };
+}
+
+/**
+ * An empty draft trip to open the workspace on (Plan in the nav). The traveller's newest still-empty draft is
+ * reused, so tapping Plan twice doesn't pile up blank trips.
+ */
+export async function blankTrip(db: DB, ownerId: string) {
+	const { data: drafts } = await db
+		.from('trips')
+		.select('id, start_point, trip_stops(count)')
+		.eq('owner_id', ownerId)
+		.eq('status', 'draft')
+		.is('start_point', null)
+		.order('created_at', { ascending: false })
+		.limit(5);
+	const empty = (drafts ?? []).find(
+		(t) => ((t.trip_stops as unknown as { count: number }[])[0]?.count ?? 0) === 0
+	);
+	if (empty) return empty.id;
+	const { data: trip, error } = await db
+		.from('trips')
+		.insert({
+			owner_id: ownerId,
+			title: m.plan_new_trip_title(),
+			days: 2,
+			start_date: addDays(istToday(), 1).date
+		})
+		.select('id')
+		.single();
+	if (error) throw error;
+	return trip.id;
+}
+
+/** True while the trip still has the blank-trip title in any language (so a first generate may rename it). */
+export const isBlankTitle = (title: string) =>
+	(['en', 'hi', 'mr'] as const).some((locale) => title === m.plan_new_trip_title({}, { locale }));
+
+/** Start points for the planner (DECISIONS P7-10): railway stations + bus stands, one per name. */
+export async function startPoints(db: DB) {
+	const { data } = await db
+		.from('utility_pois')
+		.select('name, type, location')
+		.in('type', ['railway_station', 'bus_stand'])
+		.not('name', 'is', null)
+		.order('type', { ascending: false })
+		.order('name')
+		.limit(1000);
+	return [
+		...new Map(
+			(data ?? []).flatMap((u) => {
+				const c = lonLat(u.location);
+				return c
+					? [[u.name!, { label: u.name!, type: u.type, lon: c[0], lat: c[1] }] as const]
+					: [];
+			})
+		).values()
+	];
 }
 
 type StopRow = Database['public']['Tables']['trip_stops']['Row'];

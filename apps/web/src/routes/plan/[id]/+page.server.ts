@@ -3,7 +3,15 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { nearby, type Lang } from '#lib/server/listings.ts';
-import { describeStops, editTrip, suggestOrder, tripView } from '#lib/server/planner/trips.ts';
+import {
+	describeStops,
+	editTrip,
+	startPoints,
+	suggestOrder,
+	tripView
+} from '#lib/server/planner/trips.ts';
+import { addDays, istToday } from '#lib/server/planner/data.ts';
+import { loadProfile, plannerDefaults } from '#lib/server/profile.ts';
 import { workspaceView } from '#lib/server/planner/workspace.ts';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -49,6 +57,31 @@ export const load: PageServerLoad = async (event) => {
 		})
 	);
 
+	// Trip setup (the planner questions on one screen): owner and editors only. A new, still-empty trip is prefilled
+	// from the profile quiz, like the old planner form.
+	const canEdit = role === 'owner' || role === 'editor';
+	const blank = !t.start_point;
+	const defaults = canEdit && blank ? plannerDefaults(await loadProfile(db, s.user.id)) : null;
+	const setup = canEdit
+		? {
+				starts: await startPoints(db),
+				tomorrow: addDays(istToday(), 1).date,
+				values: {
+					days: t.days,
+					start_date: t.start_date,
+					start: t.start_point as { label: string; lon: number; lat: number } | null,
+					group_type: t.group_type ?? defaults?.group_type ?? null,
+					people: budget?.people ?? null,
+					budget: t.budget,
+					interests: blank && !t.interests.length ? (defaults?.interests ?? []) : t.interests,
+					pace: t.pace,
+					standout: t.standout,
+					diet: (t.diet ?? defaults?.diet ?? null) as 'veg' | 'non_veg' | 'jain' | null
+				},
+				hasStops: t.trip_stops.length > 0
+			}
+		: null;
+
 	const route = Array.isArray(t.published_routes) ? t.published_routes[0] : t.published_routes;
 	const workspace = await workspaceView(
 		db,
@@ -73,7 +106,8 @@ export const load: PageServerLoad = async (event) => {
 		add,
 		shareToken: t.share_token,
 		published: (route as { status: string } | null)?.status ?? null,
-		isAdmin: s.isAdmin
+		isAdmin: s.isAdmin,
+		setup
 	};
 };
 

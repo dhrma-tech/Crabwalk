@@ -1,33 +1,15 @@
-import { lonLat } from '#lib/server/listings.ts';
-import { addDays, istToday } from '#lib/server/planner/data.ts';
-import { loadProfile, plannerDefaults } from '#lib/server/profile.ts';
+import { redirect } from '@sveltejs/kit';
+import { resolve } from '$app/paths';
+import { session } from '#lib/server/auth.ts';
+import { blankTrip } from '#lib/server/planner/trips.ts';
 import type { PageServerLoad } from './$types';
 
-// Planner input (FRONTEND §7.8). Start points = railway stations + bus stands (DECISIONS P7-10).
-export const load: PageServerLoad = async ({ locals }) => {
-	const user = await locals.getUser();
-	if (!user)
-		return { signedIn: false as const, starts: [], tomorrow: '', defaults: plannerDefaults(null) };
-	const { data } = await locals.supabase
-		.from('utility_pois')
-		.select('name, type, location')
-		.in('type', ['railway_station', 'bus_stand'])
-		.not('name', 'is', null)
-		.order('type', { ascending: false })
-		.order('name')
-		.limit(1000);
-	// One entry per name (OSM often has duplicate stops); the datalist picks by label.
-	const starts = [
-		...new Map(
-			(data ?? []).flatMap((u) => {
-				const c = lonLat(u.location);
-				return c
-					? [[u.name!, { label: u.name!, type: u.type, lon: c[0], lat: c[1] }] as const]
-					: [];
-			})
-		).values()
-	];
-	// Profile quiz answers prefill the form (P12, product plan 10.7); the traveller can change any of them.
-	const defaults = plannerDefaults(await loadProfile(locals.supabase, user.id));
-	return { signedIn: true as const, starts, tomorrow: addDays(istToday(), 1).date, defaults };
+// Plan (nav): no onboarding steps. Open the traveller's empty draft trip (or a new one) straight in the workspace;
+// its "Trip setup" section asks the planner questions on one screen and generates the itinerary there.
+// A page route (not an endpoint) so the client router doesn't match /plan/[id] with id "new". An empty draft is
+// reused, so a link preload never piles up trips.
+export const load: PageServerLoad = async (event) => {
+	const { user } = await session(event);
+	const id = await blankTrip(event.locals.supabase, user.id);
+	redirect(303, resolve('/plan/[id]', { id }));
 };
