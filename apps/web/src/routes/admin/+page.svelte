@@ -7,6 +7,7 @@
 	import CalendarDays from '@lucide/svelte/icons/calendar-days';
 	import SlidersHorizontal from '@lucide/svelte/icons/sliders-horizontal';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import FilePen from '@lucide/svelte/icons/file-pen';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -34,6 +35,7 @@
 		{ href: resolve('/admin/alerts'), label: m.alerts_title(), icon: TriangleAlert },
 		...(data.isAdmin
 			? [
+					{ href: resolve('/admin/content'), label: () => 'Edit all content', icon: FilePen },
 					{ href: resolve('/admin/qr'), label: m.qr_admin_title(), icon: QrCode },
 					{ href: resolve('/admin/events'), label: m.events_title(), icon: CalendarDays },
 					{ href: resolve('/admin/planner'), label: m.planner_settings(), icon: SlidersHorizontal }

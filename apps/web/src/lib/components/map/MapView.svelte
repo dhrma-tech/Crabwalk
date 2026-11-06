@@ -72,7 +72,9 @@
 		oninfo,
 		onpins,
 		onpick,
-		onstop
+		onstop,
+		dragPin = null,
+		ondragpin
 	}: {
 		tilesBase: string;
 		kinds?: string[];
@@ -109,6 +111,9 @@
 		/** This stop's pin pulses and the camera pans to it. */
 		activeStop?: string | null;
 		onstop?: (id: string) => void;
+		/** Admin editor: a draggable pin at [lon, lat]; dragging reports the new point. */
+		dragPin?: [number, number] | null;
+		ondragpin?: (at: [number, number]) => void;
 	} = $props();
 	const EMPTY: FeatureCollection = { type: 'FeatureCollection', features: [] };
 	let tideData: FeatureCollection & { date?: string } = EMPTY;
@@ -866,6 +871,26 @@
 			else m.setPaintProperty('stop-halo', 'circle-radius', 24);
 		});
 		return () => cancelAnimationFrame(raf);
+	});
+
+	// Admin editor GPS field: one draggable pin, moved by drag (or by a tap through onpick).
+	let pinMarker: Marker | undefined;
+	$effect(() => {
+		if (!map || !ready || !MarkerCtor) return;
+		if (!dragPin) {
+			pinMarker?.remove();
+			pinMarker = undefined;
+			return;
+		}
+		if (!pinMarker) {
+			pinMarker = new MarkerCtor({ color: mapColors(theme()).cluster, draggable: true })
+				.setLngLat(dragPin)
+				.addTo(map);
+			pinMarker.on('dragend', () => {
+				const p = pinMarker!.getLngLat();
+				ondragpin?.([p.lng, p.lat]);
+			});
+		} else pinMarker.setLngLat(dragPin);
 	});
 
 	// Ola search marker: shown with "Ola Maps" attribution only while on screen (BACKEND §6.1).
