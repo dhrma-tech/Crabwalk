@@ -30,7 +30,9 @@
 				'input:not([type=checkbox],[type=radio],[type=range],[type=file],[type=button],[type=submit]),textarea,[contenteditable]'
 			);
 		const onIn = (e: FocusEvent) => (typing = field(e.target));
-		const onOut = (e: FocusEvent) => (typing = field(e.relatedTarget));
+		// Deferred: focusout also fires when a focused element is removed mid-update, where writing state throws
+		// state_unsafe_mutation (found via the admin editor, ADMIN_ACCESS_CHANGES.md).
+		const onOut = (e: FocusEvent) => queueMicrotask(() => (typing = field(e.relatedTarget)));
 		addEventListener('focusin', onIn);
 		addEventListener('focusout', onOut);
 		return () => {
