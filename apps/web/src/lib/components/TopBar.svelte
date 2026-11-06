@@ -10,6 +10,7 @@
 	import BrandMark from './BrandMark.svelte';
 	import SearchBox from './SearchBox.svelte';
 	import OfflineBanner from './OfflineBanner.svelte';
+	import AdminBadge from './AdminBadge.svelte';
 
 	// Report 2 §7 (T-3, T-21). Phones: back chevron or the mark (the wordmark on Discover), the title, search,
 	// language pill. Laptops: one persistent bar, full width even with Crabby docked: wordmark, links, search,
@@ -90,6 +91,8 @@
 		{/if}
 		<span class={['rounded-full', clear && 'glass shadow-e1']}><LanguageSwitch /></span>
 	</div>
+	<!-- TODO(before-deploy): restore full auth — temp gate admin indicator (phones: own row, the bar has no room). -->
+	<div class="flex justify-end px-3 pb-1 empty:hidden lg:hidden"><AdminBadge /></div>
 
 	<div class="mx-auto hidden h-18 max-w-300 items-center gap-4 px-8 lg:flex" data-clip-check>
 		<a
@@ -120,6 +123,8 @@
 			</ul>
 		</nav>
 		<SearchBox class="mx-auto max-w-120 min-w-0 flex-1" />
+		<!-- TODO(before-deploy): restore full auth — temp gate admin indicator. -->
+		<AdminBadge compact />
 		<LanguageSwitch />
 		<a
 			href={resolve('/me')}

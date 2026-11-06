@@ -14,7 +14,7 @@
 	import { devClient } from '#lib/devAuth.client.ts';
 	import type { LayoutProps } from './$types';
 
-	let { children }: LayoutProps = $props();
+	let { children, data }: LayoutProps = $props();
 	onMount(guardPlainForms);
 	onMount(() => {
 		if (devBypass(location.hostname)) return devClient();
@@ -44,6 +44,11 @@
 		});
 	});
 </script>
+
+<svelte:head>
+	<!-- TODO(before-deploy): restore full auth — no indexing while the temp gate is on. -->
+	{#if data.gate.on}<meta name="robots" content="noindex, nofollow" />{/if}
+</svelte:head>
 
 <a
 	href="#main"

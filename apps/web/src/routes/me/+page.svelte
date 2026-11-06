@@ -23,10 +23,18 @@
 	import type { PageProps } from './$types';
 	import { page } from '$app/state';
 	import { loginHref } from '#lib/login.ts';
+	import AdminGate from '#lib/components/AdminGate.svelte';
+	import AdminBadge from '#lib/components/AdminBadge.svelte';
 
 	// Me (FRONTEND §7.14). Tideline (Report 2 §9.12, Report 1 §4.7, T-37): profile card, then trips → offline packs
 	// → Crabby & you (P12 profile) → privacy choices → language & theme → tools → privacy → sign out. Saved follows trips (T-46).
 	let { data }: PageProps = $props();
+	// TODO(before-deploy): restore full auth — temp gate: the Sign in toggle opens the admin email sheet.
+	const gate = $derived(data.gate);
+	let gateOpen = $state(false);
+	onMount(() => {
+		if (page.url.searchParams.has('admin')) gateOpen = true;
+	});
 	const SAVED_ICON = { place: MapPin, stay: BedDouble, eatery: Utensils };
 	let push = $state<'on' | 'off' | 'unsupported' | 'denied'>('unsupported');
 	onMount(async () => (push = await pushStatus()));
@@ -81,7 +89,19 @@
 				>{#if data.email}{data.email[0]}{:else}<User size={26} />{/if}</span
 			>
 			<div class="flex min-w-0 flex-1 flex-col items-start gap-2">
-				{#if data.email}
+				{#if gate.on}
+					<!-- TODO(before-deploy): restore full auth — temp gate profile card. -->
+					{#if gate.admin}
+						<p class="type-body break-words text-text">{m.gate_admin_as({ email: gate.admin })}</p>
+						<div class="flex flex-wrap items-center gap-2">
+							<Button href="/admin/content">{m.gate_panel()}</Button>
+							<AdminBadge />
+						</div>
+					{:else}
+						<p class="type-body text-text">{m.gate_guest()}</p>
+						<Button onclick={() => (gateOpen = true)} data-testid="gate-open">{m.sign_in()}</Button>
+					{/if}
+				{:else if data.email}
 					<p class="type-body break-words text-text">{m.me_signed_in_as({ email: data.email })}</p>
 				{:else}
 					<p class="type-body text-text">{m.me_guest()}</p>
@@ -90,7 +110,7 @@
 			</div>
 		</section>
 
-		{#if data.email}
+		{#if data.signedIn}
 			<section class="flex flex-col gap-3" data-testid="my-trips">
 				<h2 class="type-h2">{m.me_trips()}</h2>
 				{#if data.trips.length}
@@ -149,7 +169,7 @@
 
 		<OfflinePacks />
 
-		{#if data.email}
+		{#if data.signedIn}
 			<!-- P12: Crabby's memory is the profile (quiz, sources, style) on its own page. -->
 			<a
 				href={resolve('/me/crabby')}
@@ -285,10 +305,12 @@
 			</ul>
 		</InsetList>
 
-		{#if data.email}
+		{#if data.email && !gate.on}
 			<form method="POST" action="/login?/signOut" class="[&>*]:w-full">
 				<Button variant="outline" type="submit">{m.sign_out()}</Button>
 			</form>
 		{/if}
 	</div>
 </Page>
+<!-- TODO(before-deploy): restore full auth — temp admin email gate. -->
+{#if gate.on}<AdminGate bind:open={gateOpen} />{/if}

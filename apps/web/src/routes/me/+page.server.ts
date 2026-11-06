@@ -4,6 +4,7 @@ import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import { tr, type Lang } from '#lib/server/listings.ts';
 import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
+import { gateAdmin, tempGate } from '#lib/server/gate.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 // Saved listings (T-5 / T-46), newest first, named in the page language; unpublished ones drop out (RLS).
@@ -47,6 +48,9 @@ async function savedList(db: App.Locals['supabase']) {
 }
 
 export const load: PageServerLoad = async ({ locals, cookies, url }) => {
+	// TODO(before-deploy): restore full auth — temp mode: guests are anonymous users; staff = the signed admin cookie.
+	const gate = tempGate();
+	const admin = gate ? await gateAdmin({ cookies }) : null;
 	const user = await locals.getUser();
 	const theme = cookies.get(THEME_COOKIE);
 	const { data: roles } = devBypass(url.hostname)
@@ -77,10 +81,11 @@ export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 		: { data: [] };
 	const saved = user ? await savedList(locals.supabase) : [];
 	return {
-		email: user?.email ?? null,
+		email: user?.email || null,
+		signedIn: !!user,
 		saved,
 		theme: isTheme(theme) ? theme : 'system',
-		isStaff: has('verifier') || has('reviewer') || has('admin'),
+		isStaff: gate ? !!admin : has('verifier') || has('reviewer') || has('admin'),
 		isOwner: has('owner'),
 		trips: trips ?? [],
 		dwell: (consents ?? []).some((c) => c.type === 'dwell_time' && c.granted && !c.revoked_at)
