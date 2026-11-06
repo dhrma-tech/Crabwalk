@@ -1,9 +1,13 @@
 import { createServerClient } from '@supabase/ssr';
 import type { Handle, HandleServerError } from '@sveltejs/kit/hooks';
+import type { User } from '@supabase/supabase-js';
 import { sequence } from '@sveltejs/kit/hooks';
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$app/env/public';
 import type { Database } from '#lib/db.types.ts';
 import { devAuth } from '#lib/devAuth.server.ts';
+// TODO(before-deploy): restore full auth — temp access gate (docs/RESTORE_AUTH.md).
+import { guestGate } from '#lib/server/guest.ts';
+import { tempGate } from '#lib/server/gate.ts';
 import { paraglideMiddleware } from '#lib/paraglide/server.js';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
 import { allowed, ruleFor } from '#lib/server/rate.ts';
@@ -24,10 +28,12 @@ const supabase: Handle = async ({ event, resolve }) => {
 	});
 
 	// getUser() validates the JWT with the auth server; never trust getSession() alone on the server.
-	event.locals.getUser = async () => {
-		const { data, error } = await event.locals.supabase.auth.getUser();
-		return error ? null : data.user;
-	};
+	// Memoised per request: several loads ask, and the temp gate below may create a guest session once.
+	let user: Promise<User | null> | undefined;
+	event.locals.getUser = () =>
+		(user ??= event.locals.supabase.auth
+			.getUser()
+			.then(({ data, error }) => (error ? null : data.user)));
 
 	return resolve(event, {
 		filterSerializedResponseHeaders: (name) =>
@@ -64,11 +70,13 @@ const limits: Handle = async ({ event, resolve }) => {
 	);
 	h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 	if (!h.has('X-Frame-Options')) h.set('X-Frame-Options', 'DENY');
-	if (isPrivatePath(event.url.pathname)) h.set('X-Robots-Tag', 'noindex');
+	// TODO(before-deploy): restore full auth — the whole site stays out of search while the temp gate is on.
+	if (tempGate()) h.set('X-Robots-Tag', 'noindex, nofollow');
+	else if (isPrivatePath(event.url.pathname)) h.set('X-Robots-Tag', 'noindex');
 	return res;
 };
 
-export const handle = sequence(shell, supabase, devAuth, limits);
+export const handle = sequence(shell, supabase, devAuth, guestGate, limits);
 
 // Unexpected errors (thrown by our code): details go to the server log under a short id and the user sees only
 // that id. error() and framework errors (404s) keep SvelteKit's safe defaults — no stack traces either way.

@@ -3,12 +3,15 @@ import { z } from 'zod';
 import { SUPABASE_URL } from '$app/env/public';
 import { NEXT_COOKIE, nextPath } from '#lib/login.ts';
 import { quickLogin } from '#lib/devAuth.server.ts';
+import { tempGate } from '#lib/server/gate.ts';
 import type { Actions, PageServerLoad } from './$types';
 
 const email = z.email().max(254);
 const code = z.string().regex(/^\d{6}$/);
 
 export const load: PageServerLoad = async ({ locals, url }) => {
+	// TODO(before-deploy): restore full auth — temp mode has no sign-in page: guests need none, admins use the gate.
+	if (tempGate()) redirect(303, '/me?admin=1');
 	const user = await locals.getUser();
 	const next = nextPath(url.searchParams.get('next'));
 	if (user && next) redirect(303, next);
@@ -38,6 +41,7 @@ export const actions: Actions = {
 		redirect(303, next ?? (admin ? '/admin/review' : '/'));
 	},
 	google: async ({ locals, url, request, cookies }) => {
+		if (tempGate()) return fail(404); // TODO(before-deploy): restore full auth
 		const next = nextPath((await request.formData()).get('next'));
 		if (next)
 			cookies.set(NEXT_COOKIE, next, {
@@ -56,6 +60,7 @@ export const actions: Actions = {
 	},
 
 	sendCode: async ({ locals, request }) => {
+		if (tempGate()) return fail(404); // TODO(before-deploy): restore full auth
 		const form = await request.formData();
 		const next = nextPath(form.get('next'));
 		const e = email.safeParse(String(form.get('email') ?? '').trim());
@@ -69,6 +74,7 @@ export const actions: Actions = {
 	},
 
 	verifyCode: async ({ locals, request }) => {
+		if (tempGate()) return fail(404); // TODO(before-deploy): restore full auth
 		const form = await request.formData();
 		const next = nextPath(form.get('next'));
 		const e = email.safeParse(String(form.get('email') ?? '').trim());
