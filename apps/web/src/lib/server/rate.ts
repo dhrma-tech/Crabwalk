@@ -23,6 +23,8 @@ export const RULES: Rule[] = [
 		limit: 10,
 		windowS: 600
 	},
+	// TODO(before-deploy): restore full auth — temp admin email gate (lib/server/gate.ts): no allowlist guessing.
+	{ name: 'admin-gate', method: 'POST', path: /^\/auth\/admin$/, limit: 10, windowS: 600 },
 	{
 		name: 'report',
 		method: 'POST',
@@ -40,7 +42,13 @@ export const RULES: Rule[] = [
 		limit: 60,
 		windowS: 600
 	},
-	{ name: 'plan', method: 'POST', path: /^\/api\/trips\/plan$/, limit: 20, windowS: 600 },
+	{
+		name: 'plan',
+		method: 'POST',
+		path: /^\/api\/trips\/(plan|[^/]+\/generate)$/,
+		limit: 20,
+		windowS: 600
+	},
 	// Availability requests to owners (P12): the DB also caps 10 a day per traveller.
 	{ name: 'stay-request', method: 'POST', path: /^\/api\/requests$/, limit: 20, windowS: 3600 },
 	{ name: 'trip-edit', method: 'PATCH', path: /^\/api\/trips\/[^/]+$/, limit: 120, windowS: 600 },
@@ -87,8 +95,11 @@ async function hmac(text: string) {
 	return [...new Uint8Array(sig)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-/** True if allowed. Fails open (logs) if the counter is unreachable — never blocks people on our outage. */
-export async function allowed(event: RequestEvent, rule: Rule) {
+/** HMAC of `name` + the client IP: a stable per-client key that never stores the IP. */
+export async function clientKey(
+	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
+	name: string
+) {
 	const ip =
 		event.request.headers.get('cf-connecting-ip') ??
 		(() => {
@@ -98,8 +109,13 @@ export async function allowed(event: RequestEvent, rule: Rule) {
 				return 'unknown';
 			}
 		})();
+	return hmac(`${name}:${ip}`);
+}
+
+/** True if allowed. Fails open (logs) if the counter is unreachable — never blocks people on our outage. */
+export async function allowed(event: RequestEvent, rule: Rule) {
 	const { data, error } = await event.locals.supabase.rpc('rate_take', {
-		_key: await hmac(`${rule.name}:${ip}`),
+		_key: await clientKey(event, rule.name),
 		// e2e builds sign in dozens of test users from one IP: same code path, 100× headroom.
 		_limit: import.meta.env.MODE === 'e2e' ? rule.limit * 100 : rule.limit,
 		_window_s: rule.windowS
