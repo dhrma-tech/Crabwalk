@@ -36,5 +36,14 @@ export const variables = defineEnvVars({
 	DEV_QUICK_LOGIN: { schema: optional },
 	DEV_LOGIN_ADMIN: { schema: optional },
 	DEV_LOGIN_USER: { schema: optional },
-	DEV_LOGIN_PASSWORD: { schema: optional }
+	DEV_LOGIN_PASSWORD: { schema: optional },
+	// TODO(before-deploy): restore full auth — temporary access gate (lib/server/gate.ts, docs/RESTORE_AUTH.md).
+	// AUTH_MODE=temp_email_gate: guests need no sign-in; admins enter an ADMIN_EMAILS address. Anything else = full.
+	AUTH_MODE: { schema: optional },
+	ADMIN_EMAILS: { schema: optional },
+	ADMIN_SESSION_SECRET: { schema: optional },
+	// Team passcode asked together with the admin email (server only).
+	ADMIN_PASSCODE: { schema: optional },
+	// Server only: admin editor writes (after the admin cookie check) and admin session provisioning.
+	SUPABASE_SERVICE_ROLE_KEY: { schema: optional }
 });
