@@ -30,3 +30,6 @@ pipelines/bin/
 
 # Desk research scratch (raw AI batches, local receiver script, leftovers)
 data/_work/
+
+# Database backups (scripts/backup-db.mjs) — never committed
+backups/
