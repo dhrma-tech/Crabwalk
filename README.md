@@ -104,7 +104,7 @@ Email sign-in codes arrive in Mailpit (http://127.0.0.1:54324).
 | `pnpm envguard` | Fails if a committed env file enables the dev auth bypass or holds a dev password |
 | `pnpm db:backup` | Full SQL backup of the hosted database into `backups/` (git-ignored) |
 | `pnpm db:types` | Regenerate `apps/web/src/lib/db.types.ts` from the local schema |
-| `cd apps/web && E2E_SUPABASE=local pnpm e2e` | Playwright suites against the local stack (stop any old preview on :4173 first) |
+| `cd apps/web && E2E_SUPABASE=local pnpm e2e` | Playwright suites against the local stack (a stale preview on :4173 is stopped automatically) |
 | `cd apps/web && pnpm exec lighthouse http://localhost:4173` | Lighthouse against a running preview |
 
 ## API overview
