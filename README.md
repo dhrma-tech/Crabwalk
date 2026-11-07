@@ -134,6 +134,10 @@ Functions, auth URLs, SMTP), data pipelines with `--live`, tiles host, the ola-p
 Cloudflare Pages project with its environment variables. Remove seed data before launch
 (`pipelines/seed-cleanup`).
 
+**Temporary access gate:** the current build runs with `AUTH_MODE=temp_email_gate` (guests get an anonymous
+session, admins enter an allow-listed email). Restore full auth before the public launch: steps in
+[`docs/RESTORE_AUTH.md`](docs/RESTORE_AUTH.md), background in [`ADMIN_ACCESS_CHANGES.md`](ADMIN_ACCESS_CHANGES.md).
+
 ## Contributing
 
 Work on a branch and open a pull request against `main`. Before pushing, run `pnpm lint`,
