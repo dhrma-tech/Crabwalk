@@ -74,6 +74,17 @@ scripts/                  AI-firewall check, env-file guard, hosted DB backup
 Product scope, locked decisions and the build plan live in `CRABWALK_PLAN.md`, `CRABWALK_BACKEND.md`,
 `CRABWALK_FRONTEND.md` and `docs/DECISIONS.md`.
 
+Other docs:
+
+| File | What's in it |
+|---|---|
+| `docs/DATA_REQUIREMENTS.md` | Fields the team collects per place, stay and eatery |
+| `docs/VALUE_MAPPING.md` | How form answers map to database values |
+| `docs/DEPLOY.md` · `docs/DEPLOY_CHECKLIST.md` | Deploy runbook and the live deploy's checklist |
+| `docs/RESTORE_AUTH.md` | Steps to turn full sign-in back on |
+| `docs/P11 Plan workspace.md` · `docs/P12 Crabby AI.md` | Phase notes for the plan workspace and Crabby |
+| `docs/design/` · `docs/reports/` | Design brief and the gap / redesign reports |
+
 ## Getting started
 
 **Prerequisites:** Node ≥ 22, pnpm 10, Docker Desktop (local Supabase; pipelines), and optionally the
