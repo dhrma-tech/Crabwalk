@@ -60,13 +60,15 @@ apps/web/                 SvelteKit app
   src/service-worker/     offline shell, content and taluka-pack caches
   messages/               en / hi / mr strings
   e2e/                    Playwright suites
+  scripts/                font subsetting, free-port helper for e2e
 services/ola-proxy/       Cloudflare Worker in front of Ola Maps (key never leaves it)
 supabase/migrations/      append-only schema (tables, RLS, functions, crons)
 supabase/functions/       Edge Functions
 supabase/tests/           pgTAP tests
-pipelines/                OSM extract, tiles, road flags, OSRM matrix, POIs, trails, tides, embeddings
+pipelines/                OSM extract, tiles, road flags, OSRM matrix, POIs, trails, tides, embeddings,
+                          content import (desk CSV), seed cleanup
 docs/                     decisions log, deploy runbook, design brief
-scripts/                  AI-firewall check
+scripts/                  AI-firewall check, env-file guard, hosted DB backup
 ```
 
 Product scope, locked decisions and the build plan live in `CRABWALK_PLAN.md`, `CRABWALK_BACKEND.md`,
