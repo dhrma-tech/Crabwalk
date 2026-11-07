@@ -2,7 +2,7 @@
 
 Guided deploy (DECISIONS P10-1): each step is run with the owner's approval; secrets live only in the
 local `.env`, Supabase function secrets / Vault, and Cloudflare env vars — never in git.
-Production URL: Cloudflare Pages `*.pages.dev` (P10-2). Shell: Git Bash from the repo root.
+Production URL: https://crabwalk.pages.dev (Cloudflare Pages, P10-2, AG-6). Shell: Git Bash from the repo root.
 
 ## 0. Accounts and keys (owner)
 
@@ -20,7 +20,7 @@ Production URL: Cloudflare Pages `*.pages.dev` (P10-2). Shell: Git Bash from the
 
 ## 1. Local secrets
 Fill `.env` (see `.env.example`). Generate once if missing: `RATE_LIMIT_SALT` (32 random bytes hex),
-`CRON_SECRET` (random), VAPID keys (already generated locally, P9-3) and set `VAPID_SUBJECT=https://<app>.pages.dev`.
+`CRON_SECRET` (random), VAPID keys (already generated locally, P9-3) and set `VAPID_SUBJECT=https://crabwalk.pages.dev`.
 
 ## 2. Database (Supabase live)
 ```bash
@@ -35,7 +35,7 @@ select vault.create_secret('<CRON_SECRET>', 'cron_secret');
 -- P12 group chat: random key; the same value goes into the web app's CRABBY_SIGNING_KEY (§7).
 select vault.create_secret('<CRABBY_SIGNING_KEY>', 'crabby_key');
 ```
-Auth: set `site_url` / `additional_redirect_urls` to `https://<app>.pages.dev` (+ `/auth/callback`), enable
+Auth: set `site_url` / `additional_redirect_urls` to `https://crabwalk.pages.dev` (+ `/auth/callback`), enable
 `[auth.email.smtp]` with the SMTP creds, then `npx supabase config push`. Verify the 6-digit email template.
 
 ## 3. Edge functions
@@ -46,7 +46,7 @@ for f in weather-refresh tide-refresh booking-proof-cleanup review-summaries tri
 done
 npx supabase secrets set CRON_SECRET=… OPENWEATHER_API_KEY=… TIDECHECK_API_KEY=… TIDE_PROVIDER=tidecheck \
   GROQ_API_KEY=… AI_MODEL_INTENT=llama-3.1-8b-instant AI_MODEL_EXPLAIN=llama-3.3-70b-versatile \
-  VAPID_PUBLIC_KEY=… VAPID_PRIVATE_KEY=… VAPID_SUBJECT=https://<app>.pages.dev
+  VAPID_PUBLIC_KEY=… VAPID_PRIVATE_KEY=… VAPID_SUBJECT=https://crabwalk.pages.dev
 ```
 Check: `select jobname, schedule from cron.job;` lists weather-refresh, tide-refresh, booking-proof-cleanup,
 review-summaries, trip-nudges, refresh-patterns; after the next run, `cron.job_run_details` shows success.
@@ -92,7 +92,7 @@ cd apps/web && pnpm build && pnpm exec wrangler pages deploy .svelte-kit/cloudfl
 - Place page, map layers, QR page (`/q/<code>`) on a phone; Crabby answers one question (real Groq).
 - Navigate a saved trip with the phone offline after a pack download (P9 acceptance).
 - Push reminder on Android Chrome and an installed iPhone PWA (P9).
-- Headers: `curl.exe -sI https://<app>.pages.dev | findstr /i "content-security x-frame strict-transport"`.
+- Headers: `curl.exe -sI https://crabwalk.pages.dev | findstr /i "content-security x-frame strict-transport"`.
 - Lighthouse mobile on `/`, `/place/<slug>`, `/stays` — LCP < 2.5 s (FRONTEND §11).
 
 ## 9. Free-tier quota check (PLAN P10 task 7)
