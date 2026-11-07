@@ -4,7 +4,7 @@
 stays, eat like a local, and plan trips that respect tides, ghat roads and monsoon closures — in English,
 Hindi and Marathi. Starting in Ratnagiri.
 
-![Crabwalk screenshot](docs/design/screenshot.png) <!-- placeholder: add a 1280 px Discover screenshot -->
+<!-- TODO: add a 1280 px Discover screenshot at docs/design/screenshot.png and link it here -->
 
 **Live:** https://crabwalk.pages.dev (team verification build, see `docs/DEPLOY_CHECKLIST.md`)
 
