@@ -6,7 +6,7 @@ Hindi and Marathi. Starting in Ratnagiri.
 
 ![Crabwalk screenshot](docs/design/screenshot.png) <!-- placeholder: add a 1280 px Discover screenshot -->
 
-**Live:** `https://<project>.pages.dev` <!-- placeholder until the production deploy (docs/DEPLOY.md) -->
+**Live:** https://crabwalk.pages.dev (team verification build, see `docs/DEPLOY_CHECKLIST.md`)
 
 ## Features
 
