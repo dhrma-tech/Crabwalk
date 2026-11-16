@@ -11,7 +11,7 @@
 	const field = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 </script>
 
-<Page title={m.qr_admin_title()} back tool>
+<Page title={m.qr_admin_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<nav class="flex flex-wrap items-center gap-2" aria-label={m.qr_admin_type()}>
 			<span class="type-small text-text-2">{m.qr_admin_type()}</span>

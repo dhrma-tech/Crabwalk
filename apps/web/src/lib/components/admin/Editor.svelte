@@ -495,8 +495,26 @@
 			Claimed by its owner (owner account set by the claim flow; not editable here).
 		</p>{/if}
 
+	{#snippet photoSlots(heading: boolean)}
+		<PhotoSlots
+			type={entry.type}
+			id={entry.id}
+			slots={def.slots}
+			photos={entry.photos}
+			{heading}
+			onchange={(e) => {
+				const fresh = e as Entry;
+				entry = { ...entry, photos: fresh.photos };
+			}}
+		/>
+	{/snippet}
+
 	{#each def.sections as s (s.title)}
-		{@const n = sectionMissing(s.fields.map((f) => f.key))}
+		{@const isPhotos = s.title === 'Photos'}
+		{@const n = sectionMissing([
+			...s.fields.map((f) => f.key),
+			...(isPhotos ? def.slots.map((x) => `photos.${x.slot}`) : [])
+		])}
 		<details open class="rounded-lg bg-surface shadow-e1">
 			<summary class="flex min-h-14 cursor-pointer items-center gap-2 px-4 type-h3">
 				{s.title}{#if n}<span
@@ -527,6 +545,7 @@
 						/>
 					</div>
 				{/each}
+				{#if isPhotos}<div class="md:col-span-2">{@render photoSlots(false)}</div>{/if}
 			</div>
 		</details>
 	{/each}
@@ -537,18 +556,10 @@
 		</div>
 	{/each}
 
-	<div class="rounded-lg bg-surface p-4 shadow-e1">
-		<PhotoSlots
-			type={entry.type}
-			id={entry.id}
-			slots={def.slots}
-			photos={entry.photos}
-			onchange={(e) => {
-				const fresh = e as Entry;
-				entry = { ...entry, photos: fresh.photos };
-			}}
-		/>
-	</div>
+	<!-- Dishes have no Photos section in their form: their photo slots stay a card of their own. -->
+	{#if !def.sections.some((s) => s.title === 'Photos')}
+		<div class="rounded-lg bg-surface p-4 shadow-e1">{@render photoSlots(true)}</div>
+	{/if}
 
 	{#if entry.type !== 'dish'}
 		<section

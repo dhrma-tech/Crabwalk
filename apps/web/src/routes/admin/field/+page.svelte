@@ -254,7 +254,7 @@
 	const legend = 'float-left mb-1 w-full type-h3';
 </script>
 
-<Page title={m.field_title()} back tool>
+<Page title={m.field_title()} back>
 	<form
 		onsubmit={submit}
 		class="mx-auto flex max-w-170 flex-col gap-4 pb-8"

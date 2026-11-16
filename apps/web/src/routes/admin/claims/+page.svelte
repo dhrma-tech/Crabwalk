@@ -9,7 +9,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.claims_title()} back tool>
+<Page title={m.claims_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<p class="type-small text-text-2">{m.claim_call_first()}</p>
 		{#each data.claims as c (c.id)}

@@ -14,7 +14,7 @@
 	const LANG = { en: 'EN', hi: 'हि', mr: 'म' } as const;
 </script>
 
-<Page title={m.team_title()} back tool>
+<Page title={m.team_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-6">
 		<section class="flex flex-col gap-3">
 			{#each data.open as q (q.id)}

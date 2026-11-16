@@ -24,13 +24,16 @@
 		id,
 		slots,
 		photos,
-		onchange
+		onchange,
+		heading = true
 	}: {
 		type: string;
 		id: string;
 		slots: Slot[];
 		photos: Photo[];
 		onchange: (entry: unknown) => void;
+		/** false inside the editor's Photos section, which already has the title. */
+		heading?: boolean;
 	} = $props();
 
 	let busy = $state<string | null>(null);
@@ -229,8 +232,8 @@
 	</li>
 {/snippet}
 
-<section class="flex flex-col gap-4" aria-labelledby="photos-h" data-testid="photo-slots">
-	<h2 id="photos-h" class="type-h2">Photos</h2>
+<section class="flex flex-col gap-4" aria-label="Photos" data-testid="photo-slots">
+	{#if heading}<h2 class="type-h2">Photos</h2>{/if}
 	{#if problem}<p class="type-body text-danger" role="alert">{problem}</p>{/if}
 	{#each slots as s (s.slot)}
 		{@const list = inSlot(s.slot)}

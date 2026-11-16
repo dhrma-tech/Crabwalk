@@ -102,7 +102,7 @@
 	</form>
 {/snippet}
 
-<Page title={m.events_title()} back tool>
+<Page title={m.events_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.event_add()}</h2>

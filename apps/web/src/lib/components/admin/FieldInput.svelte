@@ -173,7 +173,8 @@
 						? 'tel'
 						: 'text'}
 			inputmode={field.kind === 'phone' ? 'tel' : undefined}
-			class={[input, border, field.kind === 'code' && 'uppercase']}
+			class={[input, border, field.kind === 'code' && 'bg-surface-2 uppercase']}
+			readonly={field.kind === 'code'}
 			lang={field.lang}
 			maxlength={field.max}
 			aria-invalid={!!error}

@@ -255,7 +255,7 @@ const place: TypeDef = {
 		{
 			title: 'Basic details',
 			fields: [
-				{ key: 'code', label: 'Place ID', kind: 'code', required: true, help: 'e.g. RTN-P-014' },
+				{ key: 'code', label: 'Place ID', kind: 'code', help: 'Assigned automatically' },
 				...names({ mr: true }),
 				{
 					key: 'category',
@@ -635,7 +635,7 @@ const stay: TypeDef = {
 		{
 			title: 'Basic details',
 			fields: [
-				{ key: 'code', label: 'Stay ID', kind: 'code', required: true, help: 'e.g. RTN-S-007' },
+				{ key: 'code', label: 'Stay ID', kind: 'code', help: 'Assigned automatically' },
 				...names({ mr: false }),
 				{
 					key: 'form.type',
@@ -964,7 +964,7 @@ const eatery: TypeDef = {
 		{
 			title: 'Basic details',
 			fields: [
-				{ key: 'code', label: 'Eatery ID', kind: 'code', required: true, help: 'e.g. RTN-F-012' },
+				{ key: 'code', label: 'Eatery ID', kind: 'code', help: 'Assigned automatically' },
 				...names({ mr: false }),
 				{
 					key: 'form.type',
@@ -1208,7 +1208,7 @@ const dish: TypeDef = {
 		{
 			title: 'Dish details',
 			fields: [
-				{ key: 'code', label: 'Dish ID', kind: 'code', required: true, help: 'e.g. DISH-001' },
+				{ key: 'code', label: 'Dish ID', kind: 'code', help: 'Assigned automatically' },
 				...names({ mr: true }),
 				{
 					key: 'form.other_spellings',

@@ -148,8 +148,10 @@ describe('admin validation (forms)', () => {
 	it('completeness counts required fields, photo slots and required rows', () => {
 		const none = missingRequired('dish', {}, {}, {});
 		expect(none.map((m) => m.key)).toEqual(
-			expect.arrayContaining(['code', 'tr.en.name', 'private.source_notes', 'photos.dish', 'links'])
+			expect.arrayContaining(['tr.en.name', 'private.source_notes', 'photos.dish', 'links'])
 		);
+		// The ID is assigned by the database, never an empty required field.
+		expect(none.map((m) => m.key)).not.toContain('code');
 		expect(completeness('dish', {}, none)).toBe(0);
 		// Safety notes are required only for the risky categories.
 		const beach = missingRequired('place', { category: 'beach' }, {}, {}).map((m) => m.key);

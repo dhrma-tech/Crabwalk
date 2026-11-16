@@ -115,7 +115,7 @@
 		'min-h-11 w-full rounded-md border border-border-strong bg-surface px-2 type-body text-text';
 </script>
 
-<Page title={data.label} back tool>
+<Page title={data.label} back>
 	<div class="lg:grid lg:grid-cols-[22rem_minmax(0,1fr)] lg:gap-6">
 		<aside class={['flex flex-col gap-2', (selected || creating) && 'hidden lg:flex']}>
 			<a href={resolve('/admin/content')} class="type-label">← Listings editor</a>

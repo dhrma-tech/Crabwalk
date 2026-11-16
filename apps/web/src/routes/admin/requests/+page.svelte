@@ -8,7 +8,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.req_team_title()} back tool>
+<Page title={m.req_team_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<p class="type-small text-text-2">{m.req_team_hint()}</p>
 		{#each data.requests as r (r.id)}

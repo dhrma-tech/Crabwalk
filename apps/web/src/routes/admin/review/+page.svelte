@@ -11,7 +11,7 @@
 	let { data, form }: PageProps = $props();
 </script>
 
-<Page title={m.review_title()} back tool>
+<Page title={m.review_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.items.length}
 			<ul

@@ -9,7 +9,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.routes_title()} back tool>
+<Page title={m.routes_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#each data.routes as r (r.trip_id)}
 			<article

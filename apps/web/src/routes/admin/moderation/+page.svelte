@@ -10,7 +10,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.moderation_title()} back tool>
+<Page title={m.moderation_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#each data.reviews as r (r.id)}
 			<article

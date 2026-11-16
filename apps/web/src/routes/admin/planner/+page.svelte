@@ -10,7 +10,7 @@
 	const field = 'field h-12 w-28 px-3 type-body text-text';
 </script>
 
-<Page title={m.planner_settings()} back tool>
+<Page title={m.planner_settings()} back>
 	<form method="POST" action="?/save" use:submitting class="mx-auto flex max-w-170 flex-col gap-4">
 		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.budget_fuel()}</h2>

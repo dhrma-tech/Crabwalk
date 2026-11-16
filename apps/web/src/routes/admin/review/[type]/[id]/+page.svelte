@@ -37,7 +37,7 @@
 	const field = 'field w-full p-3 type-body text-text';
 </script>
 
-<Page title={data.text.en.name ?? msg(`type_${data.type}`)} back tool>
+<Page title={data.text.en.name ?? msg(`type_${data.type}`)} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<form
 			method="POST"

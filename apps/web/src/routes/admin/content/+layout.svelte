@@ -52,7 +52,7 @@
 	}
 </script>
 
-<Page title="Content editor" back tool>
+<Page title="Content editor" back>
 	<div class="lg:grid lg:grid-cols-[24rem_minmax(0,1fr)] lg:items-start lg:gap-6">
 		<aside
 			class={['flex flex-col gap-3 lg:sticky lg:top-24', detail && 'hidden lg:flex']}

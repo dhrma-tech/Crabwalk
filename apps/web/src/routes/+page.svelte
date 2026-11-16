@@ -16,10 +16,14 @@
 	import ItineraryList from '#lib/components/plan/ItineraryList.svelte';
 	import ScrollProgress from '#lib/components/ScrollProgress.svelte';
 	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
+	import StayCard from '#lib/components/StayCard.svelte';
+	import Utensils from '@lucide/svelte/icons/utensils';
+	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { formatINR } from '#lib/format.ts';
 	import type { PageProps } from './$types';
 
-	// Layout order LOCKED (FRONTEND §7.1): search → season strip → categories → hidden gems → itineraries
-	// → Taste Konkan → near me. Tideline (Report 2 §9.1): a hero block (greeting, search, "Today on the coast"),
+	// Layout order (FRONTEND §7.1, changed by the user 2026-11-11): search → season strip → categories → places
+	// → stays → food → hidden gems → itineraries → Taste Konkan → near me. Tideline (Report 2 §9.1): a hero block (greeting, search, "Today on the coast"),
 	// on laptops split 7/5 with the first photographed gem. Categories (photo tiles), gems, itineraries, dishes and
 	// near me are sideways scroll rows on every screen (user, 2026-11-03).
 	let { data }: PageProps = $props();
@@ -48,9 +52,18 @@
 					.slice(0, 8)
 			: []
 	);
+	const locale = getLocale();
+	const nameOf = (n: { en: string; hi: string | null; mr: string | null }) =>
+		(locale === 'hi' ? n.hi : locale === 'mr' ? n.mr : null) || n.en;
 	const featured = $derived(data.gems.find((g) => g.photo));
 	const categoryName = $derived(data.category ? msg(`cat_${data.category}`) : null);
 </script>
+
+{#snippet rowEmpty(text: string)}
+	<p class="rounded-lg border border-dashed border-border-strong px-4 py-5 type-small text-text-2">
+		{text}
+	</p>
+{/snippet}
 
 {#snippet seeAll(href: string, label: string)}
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
@@ -155,6 +168,151 @@
 				{/if}
 			</section>
 		{:else}
+			<!-- Places → Stays → Food straight after Explore (user, 2026-11-11), each row its own card style:
+			     tall photo tiles · listing cards with price · compact thumbnail cards. -->
+			{#if data.placeRow.length}
+				<section aria-labelledby="places-title" class="flex scroll-scope flex-col gap-3">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 id="places-title" class="type-h2">{m.discover_places()}</h2>
+						{@render seeAll(resolve('/map'), m.discover_on_map())}
+					</div>
+					<ul
+						class="scroll-row -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:scroll-px-0 lg:px-0"
+						data-clip-check
+					>
+						{#each data.placeRow as p (p.slug)}
+							<li class="w-44 shrink-0 snap-start lg:w-52">
+								<a
+									href={resolve('/place/[slug]', { slug: p.slug })}
+									class={[
+										'group relative isolate flex h-60 flex-col justify-between overflow-hidden rounded-lg bg-surface-2 bg-cover bg-center p-3 no-underline shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2 lg:h-68',
+										p.photo ? 'text-white' : 'text-text'
+									]}
+									style:background-image={p.photo?.lqip ? `url(${p.photo.lqip})` : undefined}
+								>
+									<div class="absolute inset-0 -z-10">
+										{#if p.photo}
+											<img
+												src={p.photo.src}
+												srcset={p.photo.srcset}
+												sizes="208px"
+												alt={p.photo.alt}
+												loading="lazy"
+												class="size-full object-cover transition-transform duration-500 ease-brand group-hover:scale-105"
+											/>
+											<span
+												class="absolute inset-0 bg-linear-to-t from-black/75 via-black/10 to-transparent"
+											></span>
+										{:else}<NoPhoto category={p.category} label={false} />{/if}
+									</div>
+									<span
+										class={[
+											'flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 type-small font-semibold',
+											p.photo ? 'bg-black/35 backdrop-blur-sm' : 'bg-surface'
+										]}
+										><CategoryIcon category={p.category} size={14} />{msg(
+											`cat_${p.category}`
+										)}</span
+									>
+									<span class="type-body-strong text-balance">{nameOf(p.names)}</span>
+								</a>
+							</li>
+						{/each}
+					</ul>
+					<ScrollProgress />
+				</section>
+			{/if}
+
+			<section aria-labelledby="stays-title" class="flex flex-col gap-3">
+				<div class="flex items-baseline justify-between gap-4">
+					<h2 id="stays-title" class="type-h2">{m.stays_title()}</h2>
+					{#if data.stays.length}{@render seeAll(resolve('/stays'), m.see_all())}{/if}
+				</div>
+				{#if data.stays.length}
+					<Carousel label={m.stays_title()}>
+						{#each data.stays as s (s.slug)}
+							<li>
+								<StayCard
+									href={resolve('/stays/[slug]', { slug: s.slug })}
+									slug={s.slug}
+									names={s.names}
+									photo={s.photo}
+									priceMin={s.priceMin}
+									priceMax={s.priceMax}
+									priceSource={s.priceSource}
+									serviceStyle={s.serviceStyle}
+								/>
+							</li>
+						{/each}
+					</Carousel>
+				{:else}
+					{@render rowEmpty(m.discover_stays_empty())}
+				{/if}
+			</section>
+
+			<section aria-labelledby="food-title" class="flex scroll-scope flex-col gap-3">
+				<div class="flex items-baseline justify-between gap-4">
+					<h2 id="food-title" class="type-h2">{m.food_title()}</h2>
+					{#if data.eateries.length}{@render seeAll(resolve('/food'), m.see_all())}{/if}
+				</div>
+				{#if data.eateries.length}
+					<ul
+						class="scroll-row -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:scroll-px-0 lg:px-0"
+						data-clip-check
+					>
+						{#each data.eateries as e (e.slug)}
+							<li class="w-72 shrink-0 snap-start">
+								<a
+									href={resolve('/food/[slug]', { slug: e.slug })}
+									class="flex h-full items-center gap-3 rounded-lg border border-border bg-surface p-2.5 text-text no-underline transition-colors duration-300 ease-brand hover:bg-surface-2"
+								>
+									<div
+										class="size-20 shrink-0 overflow-hidden rounded-md bg-surface-2 bg-cover"
+										style:background-image={e.photo?.lqip ? `url(${e.photo.lqip})` : undefined}
+									>
+										{#if e.photo}<img
+												src={e.photo.src}
+												srcset={e.photo.srcset}
+												sizes="80px"
+												alt={e.photo.alt}
+												loading="lazy"
+												class="size-full object-cover"
+											/>{:else}<NoPhoto kind="eatery" label={false} />{/if}
+									</div>
+									<div class="flex min-w-0 flex-col gap-0.5">
+										<span class="line-clamp-2 type-body-strong">{e.name}</span>
+										{#if e.signature}<span
+												class="flex items-center gap-1 truncate type-small text-alphonso-ink"
+												><Utensils
+													size={14}
+													aria-hidden="true"
+													class="shrink-0"
+												/>{e.signature}</span
+											>{/if}
+										<span class="flex flex-wrap items-center gap-x-2.5 type-small text-text-2">
+											{#if e.priceForTwo != null}{m.price_for_two({
+													price: formatINR(e.priceForTwo)
+												})}{/if}
+											{#if e.veg}<span class="flex items-center gap-1"
+													><span class="size-2 rounded-full bg-ok" aria-hidden="true"
+													></span>{m.diet_veg()}</span
+												>{/if}
+											{#if e.nonVeg}<span class="flex items-center gap-1"
+													><span class="size-2 rounded-full bg-danger" aria-hidden="true"
+													></span>{m.diet_nonveg()}</span
+												>{/if}
+										</span>
+									</div>
+								</a>
+							</li>
+						{/each}
+					</ul>
+					<ScrollProgress />
+				{:else}
+					{@render rowEmpty(m.discover_food_empty())}
+				{/if}
+			</section>
+
 			{#if data.gems.length}
 				<section aria-labelledby="gems-title" class="flex flex-col gap-3">
 					<h2 id="gems-title" class="type-h2">{m.discover_hidden_gems()}</h2>

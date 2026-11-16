@@ -44,7 +44,7 @@
 	]);
 </script>
 
-<Page title={m.admin_title()} back tool>
+<Page title={m.admin_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-6">
 		<section aria-labelledby="waiting" class="flex flex-col gap-3">
 			<h2 id="waiting" class="type-h2">{m.admin_waiting()}</h2>
