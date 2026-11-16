@@ -1827,6 +1827,11 @@ isOneToOne: false
 "trip_group_profile":
 { Args: { "_trip": string }; Returns: Json
                            },
+"trip_invite_preview":
+{ Args: { "_token": string }; Returns: {
+              "role": Database["public"]['Enums']["trip_role"],"title": string
+            }[]
+                           },
 "trip_report_by_token":
 { Args: { "_lang": Database["public"]['Enums']["lang"],"_token": string }; Returns: {
               "created_at": string,"payload": Json,"summary": string,"title": string,"version": number

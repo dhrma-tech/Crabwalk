@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { assertPublished, GROUPS } from '#lib/server/ratings.ts';
 import { formBody } from '#lib/server/http.ts';
+import { typeMatches } from '#lib/server/sniff.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({
@@ -48,6 +49,7 @@ export const POST: RequestHandler = async (event) => {
 		if (
 			w480.type !== 'image/webp' ||
 			w480.size > 3 << 20 ||
+			!(await typeMatches(w480)) ||
 			!lqip.startsWith('data:image/webp;base64,') ||
 			lqip.length > 4000
 		)
@@ -60,6 +62,7 @@ export const POST: RequestHandler = async (event) => {
 			[960, w960]
 		] as const) {
 			if (!(f instanceof File) || f.type !== 'image/webp' || f.size > 3 << 20) continue;
+			if (!(await typeMatches(f))) error(400, 'bad photo');
 			const { error: up } = await storage.upload(`${path}-${w}.webp`, f, {
 				contentType: 'image/webp'
 			});

@@ -12,6 +12,7 @@ import {
 	removePhoto,
 	setPhotoCredit
 } from '#lib/server/content.ts';
+import { typeMatches } from '#lib/server/sniff.ts';
 import type { RequestHandler } from './$types';
 
 // Photos per form slot (hero, card, gallery, rooms, menu, …). The browser already compressed them to WebP at
@@ -49,7 +50,7 @@ export const POST: RequestHandler = async (event) => {
 	for (const w of [480, 960, 1600]) {
 		const f = form.get(`w${w}`);
 		if (!(f instanceof File)) continue;
-		if (f.type !== 'image/webp' || f.size > 3 * 1024 * 1024)
+		if (f.type !== 'image/webp' || f.size > 3 * 1024 * 1024 || !(await typeMatches(f)))
 			error(400, 'photos must be WebP ≤ 3 MB');
 		files.push([w, f]);
 	}

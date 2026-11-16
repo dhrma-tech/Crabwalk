@@ -200,9 +200,9 @@ test('shared trip page and API: title and start label, no start coordinates (SEC
 }) => {
 	const token = Date.now().toString(16).padStart(32, '0').slice(-32);
 	psql(
-		`insert into trips (owner_id, title, days, start_point, share_token)
-		 select id, 'Shared ${token}', 1, jsonb_build_object('label', 'Sea View Home', 'lon', 73.301234, 'lat', 16.991234), '${token}'
-		 from auth.users order by created_at limit 1`
+		`with u as (insert into auth.users (id, email) values (gen_random_uuid(), 'share-${token}@e2e.local') returning id)
+		 insert into trips (owner_id, title, days, start_point, share_token)
+		 select id, 'Shared ${token}', 1, jsonb_build_object('label', 'Sea View Home', 'lon', 73.301234, 'lat', 16.991234), '${token}' from u`
 	);
 	const html = await (await request.get(`/plan/share/${token}`)).text();
 	expect(html).toContain(`Shared ${token}`);
@@ -210,4 +210,24 @@ test('shared trip page and API: title and start label, no start coordinates (SEC
 	const api = await (await request.get(`/api/trips/share/${token}`)).text();
 	for (const body of [html, api]) expect(body).not.toMatch(/73\.3012|16\.9912/);
 	psql(`delete from trips where share_token = '${token}'`);
+});
+
+test('uploads: a text file sent as image/webp is refused (SEC-18)', async ({ browser }) => {
+	const page = await (await browser.newContext()).newPage();
+	await signIn(page, `sniff-${Date.now().toString(36)}@e2e.local`);
+	const stay = psql(`select id from stays where slug = 'seed-stay-1'`);
+	const res = await page.request.post('/api/booking-proofs', {
+		headers: { origin: 'http://localhost:4173' },
+		multipart: {
+			entity_type: 'stay',
+			entity_id: stay,
+			file: {
+				name: 'proof.webp',
+				mimeType: 'image/webp',
+				buffer: Buffer.from('<html>not an image</html>')
+			}
+		}
+	});
+	expect(res.status()).toBe(400);
+	await page.context().close();
 });

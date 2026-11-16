@@ -1205,5 +1205,7 @@
 	"guest_continue": "Continue as guest",
 	"vote_guest_note": "Your verdict is saved. It counts once you sign in.",
 	"qr_plaque_check": "Check the address bar says {host}",
-	"qr_admin_origin_missing": "Plaques can't be printed yet: the site's permanent web address (PUBLIC_ORIGIN) isn't set. Codes still work."
+	"qr_admin_origin_missing": "Plaques can't be printed yet: the site's permanent web address (PUBLIC_ORIGIN) isn't set. Codes still work.",
+	"plan_join_title": "Join this trip?",
+	"plan_join_button": "Join the trip"
 }

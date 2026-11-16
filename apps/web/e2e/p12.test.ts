@@ -298,6 +298,7 @@ test('G: group chat — live messages, @Crabby with a poll, proactive within the
 	await ed.setViewportSize({ width: 1280, height: 800 });
 	await signIn(ed, `p12-ed-${run}@e2e.local`);
 	await ed.goto(`/plan/join/${token}`);
+	await ed.getByRole('button', { name: 'Join the trip' }).click();
 	await expect(ed).toHaveURL(new RegExp(`/plan/${trip}$`));
 	await page.goto(`/plan/${trip}`);
 	const chat = (p: Page) => p.getByTestId('trip-chat');

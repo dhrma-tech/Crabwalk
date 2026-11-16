@@ -242,6 +242,13 @@ test('co-editing: invite links, live edits both ways, viewer reads only', async 
 	await editor.setViewportSize({ width: 1280, height: 800 });
 	await signIn(editor, `p11-ed-${run}@e2e.local`);
 	await editor.goto(`/plan/join/${token('editor')}`);
+	// SEC-20: opening the link (or a link preview fetching it) adds nobody; only the Join tap does.
+	expect(
+		psql(
+			`select count(*) from trip_members m join auth.users u on u.id = m.user_id where m.trip_id = '${trip}' and u.email = 'p11-ed-${run}@e2e.local'`
+		)
+	).toBe('0');
+	await editor.getByRole('button', { name: 'Join the trip' }).click();
 	await expect(editor).toHaveURL(new RegExp(`/plan/${trip}$`));
 	await editor.waitForLoadState('networkidle');
 	await expect(editor.getByTestId('save-status')).toHaveText('Saved');
@@ -265,6 +272,7 @@ test('co-editing: invite links, live edits both ways, viewer reads only', async 
 	const viewer = await (await browser.newContext()).newPage();
 	await signIn(viewer, `p11-view-${run}@e2e.local`);
 	await viewer.goto(`/plan/join/${token('viewer')}`);
+	await viewer.getByRole('button', { name: 'Join the trip' }).click();
 	await expect(viewer).toHaveURL(new RegExp(`/plan/${trip}$`));
 	await expect(viewer.getByText('View only')).toBeVisible();
 	await expect(

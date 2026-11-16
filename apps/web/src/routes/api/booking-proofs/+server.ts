@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import { assertPublished } from '#lib/server/ratings.ts';
 import { formBody } from '#lib/server/http.ts';
+import { typeMatches } from '#lib/server/sniff.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({ entity_type: z.enum(['stay', 'eatery']), entity_id: z.uuid() });
@@ -24,6 +25,7 @@ export const POST: RequestHandler = async (event) => {
 	const file = form.get('file');
 	if (!m.success || !(file instanceof File) || !TYPES[file.type] || file.size > 5 << 20)
 		error(400, 'bad request');
+	if (!(await typeMatches(file))) error(400, 'not an image');
 	const db = event.locals.supabase;
 	if (!(await assertPublished(db, m.data.entity_type, m.data.entity_id))) error(404, 'not found');
 	const path = `${user.id}/${crypto.randomUUID()}.${TYPES[file.type]}`;

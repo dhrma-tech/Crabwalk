@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { session } from '#lib/server/auth.ts';
 import type { Lang } from '#lib/server/listings.ts';
+import { typeMatches } from '#lib/server/sniff.ts';
 import type { RequestHandler } from './$types';
 
 // Shared journal photos (P12 step M, P12-0): only photos the user puts in their journal are uploaded — webp,
@@ -33,7 +34,12 @@ export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
 	const form = await event.request.formData().catch(() => null);
 	const file = form?.get('photo');
-	if (!(file instanceof File) || file.type !== 'image/webp' || file.size > MAX)
+	if (
+		!(file instanceof File) ||
+		file.type !== 'image/webp' ||
+		file.size > MAX ||
+		!(await typeMatches(file))
+	)
 		error(400, 'bad photo');
 	const caption =
 		String(form?.get('caption') ?? '')

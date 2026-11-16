@@ -4,6 +4,7 @@ import { session } from '#lib/server/auth.ts';
 import { PHOTO_WIDTHS } from '#lib/server/listings.ts';
 import { formBody } from '#lib/server/http.ts';
 import { creditInput } from '#lib/server/photoCredit.ts';
+import { typeMatches } from '#lib/server/sniff.ts';
 import type { RequestHandler } from './$types';
 
 const meta = z.object({
@@ -37,7 +38,7 @@ export const POST: RequestHandler = async (event) => {
 	for (const w of PHOTO_WIDTHS) {
 		const f = form.get(`w${w}`);
 		if (!(f instanceof File)) continue;
-		if (f.type !== 'image/webp' || f.size > 3 * 1024 * 1024)
+		if (f.type !== 'image/webp' || f.size > 3 * 1024 * 1024 || !(await typeMatches(f)))
 			error(400, 'photos must be WebP ≤ 3 MB');
 		const { error: up } = await storage.upload(`${path}-${w}.webp`, f, {
 			contentType: 'image/webp',
