@@ -38,11 +38,12 @@
 	async function withCaptcha(e: SubmitEvent) {
 		const f = e.currentTarget as HTMLFormElement;
 		const field = f.elements.namedItem('captcha') as HTMLInputElement;
-		if (field.value) return;
 		e.preventDefault();
 		field.value = (await captchaToken().catch(() => '')) ?? '';
 		if (!field.value) field.value = 'none'; // no site key (or blocked): the server sends without a token
-		f.requestSubmit();
+		// submit(), not requestSubmit(): with no site key the token resolves in a microtask, while the browser is
+		// still dispatching this submit event, and requestSubmit() is ignored during that (the click did nothing).
+		f.submit();
 	}
 </script>
 

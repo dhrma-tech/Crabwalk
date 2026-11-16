@@ -10,6 +10,8 @@ export const psql = (sql: string) =>
 /** Email-OTP sign-in through the real UI; the 6-digit code is read from local Mailpit. */
 export async function signIn(page: Page, email: string) {
 	await page.goto('/login');
+	// Hydrated first: the form's submit handler (CAPTCHA token, SEC-02) is the path real visitors take.
+	await page.waitForLoadState('networkidle');
 	await page.getByLabel('Email').fill(email);
 	await page.getByRole('button', { name: 'Send code' }).click();
 	await expect(page.getByLabel('6-digit code')).toBeVisible();
