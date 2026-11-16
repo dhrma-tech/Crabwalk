@@ -7,7 +7,8 @@ vi.mock('$app/env/public', () => ({ DEV_BYPASS_AUTH: 'false' }));
 vi.mock('$app/env/private', () => ({
 	AUTH_MODE: 'temp_email_gate',
 	ADMIN_EMAILS: 'admin@example.org',
-	ADMIN_SESSION_SECRET: 'test-secret-that-is-long-enough-123456'
+	ADMIN_SESSION_SECRET: 'test-secret-that-is-long-enough-123456',
+	ADMIN_SESSION_EPOCH: ''
 }));
 
 const { guestGate } = await import('./guest.ts');

@@ -11,6 +11,7 @@ vi.mock('$app/env/private', () => ({
 	ADMIN_EMAILS: ' Admin.One@Example.org , two@example.org,three@example.org ',
 	ADMIN_SESSION_SECRET: 'test-secret-that-is-long-enough-123456',
 	ADMIN_PASSCODE: 'kq7m-x2pt-9vhd-r4nw-c8ja',
+	ADMIN_SESSION_EPOCH: '',
 	SUPABASE_SERVICE_ROLE_KEY: 'service-key'
 }));
 
@@ -82,7 +83,8 @@ describe('team passcode', () => {
 });
 
 describe('signed admin cookie', () => {
-	it('verifies for 7 days, then expires', async () => {
+	it('verifies for 24 hours, then expires (SEC-08)', async () => {
+		expect(ADMIN_TTL_MS).toBe(24 * 60 * 60 * 1000);
 		const now = Date.UTC(2026, 10, 6);
 		const c = await signAdmin(' B@x.org ', SECRET, now);
 		expect(await verifyAdmin(c, SECRET, LIST, now + 1000)).toBe('b@x.org');
@@ -102,6 +104,54 @@ describe('signed admin cookie', () => {
 		expect(await verifyAdmin(c, 'another-secret', LIST)).toBeNull();
 		for (const junk of [undefined, '', 'abc', `${p}.`, `.${s}`, `${p}.${s}.x`, 'a.b'])
 			expect(await verifyAdmin(junk, SECRET, LIST)).toBeNull();
+	});
+
+	it('a cookie issued before the epoch is rejected; one issued after it works (SEC-08)', async () => {
+		const epoch = Date.UTC(2026, 10, 16, 12);
+		const before = await signAdmin('a@x.org', SECRET, epoch - 1000);
+		const after = await signAdmin('a@x.org', SECRET, epoch + 1000);
+		expect(await verifyAdmin(before, SECRET, LIST, epoch + 2000, epoch)).toBeNull();
+		expect(await verifyAdmin(after, SECRET, LIST, epoch + 2000, epoch)).toBe('a@x.org');
+		expect(await verifyAdmin(before, SECRET, LIST, epoch + 2000)).toBe('a@x.org'); // no epoch set
+		// An old-format cookie (no issued-at) is refused once an epoch is set.
+		const b64 = (t: string) => btoa(t).replace(/=+$/, '').replace(/\+/g, '-').replace(/\//g, '_');
+		const payload = b64(JSON.stringify({ e: 'a@x.org', x: epoch + 1e9 }));
+		const key = await crypto.subtle.importKey(
+			'raw',
+			new TextEncoder().encode(SECRET),
+			{ name: 'HMAC', hash: 'SHA-256' },
+			false,
+			['sign']
+		);
+		const sig = new Uint8Array(
+			await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(payload))
+		);
+		const legacy = `${payload}.${b64(String.fromCharCode(...sig))}`;
+		expect(await verifyAdmin(legacy, SECRET, LIST, epoch + 2000)).toBe('a@x.org');
+		expect(await verifyAdmin(legacy, SECRET, LIST, epoch + 2000, epoch)).toBeNull();
+	});
+
+	it('gateAdmin accepts the __Host- cookie and the old name (SEC-08)', async () => {
+		const ok = await signAdmin('two@example.org', SECRET);
+		const ev = (name: string) =>
+			({ cookies: { get: (n: string) => (n === name ? ok : undefined) } }) as never;
+		expect(await gate.gateAdmin(ev(gate.ADMIN_COOKIE_HOST))).toBe('two@example.org');
+		expect(await gate.gateAdmin(ev(ADMIN_COOKIE))).toBe('two@example.org');
+		expect(await gate.gateAdmin(ev('other'))).toBeNull();
+	});
+
+	it('the cookie is __Host- and Secure on https, plain only on http://localhost (SEC-08)', async () => {
+		const set: { name: string; opts: Record<string, unknown> }[] = [];
+		const cookies = {
+			set: (name: string, _v: string, opts: Record<string, unknown>) => set.push({ name, opts }),
+			delete: () => {}
+		} as never;
+		await gate.setAdminCookie(cookies, 'two@example.org', new URL('https://crabwalk.example/x'));
+		await gate.setAdminCookie(cookies, 'two@example.org', new URL('http://localhost:4173/x'));
+		expect(set.map((c) => [c.name, c.opts.secure, c.opts.path, c.opts.maxAge])).toEqual([
+			['__Host-cw_admin', true, '/', 86400],
+			['cw_admin', false, '/', 86400]
+		]);
 	});
 
 	it('stops working once the email is taken off the allowlist', async () => {

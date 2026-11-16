@@ -427,6 +427,8 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 
 - `e2e/p11.test.ts` "1280 px: outline rail…" is stale since `52eaab8` (outline rail collapsed by default); it fails first and, the file being serial, its followers skip unless run with `-g`. `p11` "lists" (drag into Day 2) is timing-sensitive: it failed in 2 of 4 runs on 2026-11-16, at different steps. Not fixed (P11 scope).
 
+- Hardening 2026-11 (SEC-08): new optional env `ADMIN_SESSION_EPOCH` (ms). Admin cookies issued before it stop working; set it to the current time to sign every admin out. The admin cookie now lasts 24 hours and is `__Host-cw_admin` on https. `docs/RESTORE_AUTH.md` should mention it when full auth returns (not edited: spec-like doc).
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|

@@ -70,3 +70,34 @@ test('"Continue as guest" unlocks the vote in place; /guest rejects off-site nex
 	await page.goto('/guest?next=//evil.example/x');
 	await expect(page).toHaveURL('http://localhost:4175/');
 });
+
+test('admin gate: wrong passcode counts towards the global lock; right one signs in for 24 h; exit clears it (SEC-08)', async ({
+	page
+}) => {
+	const fails = () =>
+		Number(psql(`select coalesce(sum(fails), 0) from gate_attempts where key = repeat('0', 64)`));
+	const before = fails();
+	const bad = await page.request.post('/auth/admin', {
+		data: { email: 'e2e-admin@e2e.local', passcode: 'wrong-passcode' }
+	});
+	expect(await bad.json()).toEqual({ admin: false });
+	expect(fails()).toBe(before + 1);
+
+	const ok = await page.request.post('/auth/admin', {
+		data: { email: 'E2E-Admin@e2e.local ', passcode: 'e2e-only-passcode-1234' }
+	});
+	expect(await ok.json()).toMatchObject({ admin: true });
+	const cookie = (await page.context().cookies()).find((c) => c.name === 'cw_admin');
+	expect(cookie?.httpOnly).toBe(true);
+	// 24 hours (± a minute for the round trip).
+	expect(Math.abs(cookie!.expires - (Date.now() / 1000 + 86400))).toBeLessThan(60);
+	await page.goto('/admin/content');
+	await expect(page).toHaveURL(/\/admin\/content/);
+
+	// Same-origin, like the Exit admin button (SvelteKit refuses cross-site DELETEs).
+	const exit = await page.request.delete('/auth/admin', {
+		headers: { origin: 'http://localhost:4175' }
+	});
+	expect(exit.status(), await exit.text()).toBe(200);
+	expect((await page.context().cookies()).find((c) => c.name === 'cw_admin')).toBeUndefined();
+});

@@ -45,6 +45,8 @@ export const variables = defineEnvVars({
 	AUTH_MODE: { schema: optional },
 	ADMIN_EMAILS: { schema: optional },
 	ADMIN_SESSION_SECRET: { schema: optional },
+	// SEC-08: ms timestamp; admin cookies issued before it stop working (set it to now to sign every admin out).
+	ADMIN_SESSION_EPOCH: { schema: optional },
 	// Team passcode asked together with the admin email (server only).
 	ADMIN_PASSCODE: { schema: optional },
 	// Server only: admin editor writes (after the admin cookie check) and admin session provisioning.

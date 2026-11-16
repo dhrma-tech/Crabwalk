@@ -1697,7 +1697,7 @@ isOneToOne: false
 { Args: { "_key": string }; Returns: string
                            },
 "gate_record":
-{ Args: { "_key": string,"_ok": boolean }; Returns: string
+{ Args: { "_key": string,"_lock_s"?: number,"_max"?: number,"_ok": boolean }; Returns: string
                            },
 "get_route_for_review":
 { Args: { "_trip": string }; Returns: Json
