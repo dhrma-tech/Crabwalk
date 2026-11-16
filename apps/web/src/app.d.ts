@@ -19,6 +19,8 @@ declare global {
 		interface Locals {
 			supabase: SupabaseClient<Database>;
 			getUser: () => Promise<User | null>;
+			/** Short request id for log lines (lib/server/log.ts, SEC-16). */
+			rid: string;
 		}
 		// interface PageData {}
 		// interface PageState {}

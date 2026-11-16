@@ -14,9 +14,16 @@ import { allowed, rulesFor } from '#lib/server/rate.ts';
 import { takeAiBudget } from '#lib/server/aiBudget.ts';
 import { setBudget } from '#lib/server/ai/router.ts';
 import { isPrivatePath } from '#lib/seo.ts';
+import { log, securityEvent } from '#lib/server/log.ts';
 
 // SEC-11: every model call first takes from the global daily budget (and respects the kill switch).
 setBudget(takeAiBudget);
+
+// SEC-16: one short id per request, on every log line it causes and on unexpected-error references.
+const requestId: Handle = ({ event, resolve }) => {
+	event.locals.rid = crypto.randomUUID().slice(0, 8);
+	return resolve(event);
+};
 
 const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
@@ -66,6 +73,8 @@ const limits: Handle = async ({ event, resolve }) => {
 				headers: { 'Content-Type': 'application/json', 'Retry-After': String(rule.windowS) }
 			});
 	const res = await resolve(event);
+	// A 429 from a route (not the limiter above): a per-user quota or daily cap was reached.
+	if (res.status === 429) await securityEvent('quota_hit', { method: event.request.method }, event);
 	const h = res.headers;
 	h.set('X-Content-Type-Options', 'nosniff');
 	h.set('Referrer-Policy', 'strict-origin-when-cross-origin');
@@ -84,13 +93,14 @@ const limits: Handle = async ({ event, resolve }) => {
 	return res;
 };
 
-export const handle = sequence(shell, supabase, devAuth, guestGate, limits);
+export const handle = sequence(requestId, shell, supabase, devAuth, guestGate, limits);
 
 // Unexpected errors (thrown by our code): details go to the server log under a short id and the user sees only
 // that id. error() and framework errors (404s) keep SvelteKit's safe defaults — no stack traces either way.
 export const handleError: HandleServerError = ({ kind, error, event }) => {
 	if (kind !== 'unknown') return;
-	const id = crypto.randomUUID().slice(0, 8);
+	const id = event.locals.rid ?? crypto.randomUUID().slice(0, 8);
+	log('unexpected_error', { method: event.request.method }, event, 500);
 	console.error(`[${id}] ${event.request.method} ${event.url.pathname}`, error);
 	return { id };
 };

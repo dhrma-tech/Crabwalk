@@ -77,11 +77,21 @@ test('admin gate: wrong passcode counts towards the global lock; right one signs
 	const fails = () =>
 		Number(psql(`select coalesce(sum(fails), 0) from gate_attempts where key = repeat('0', 64)`));
 	const before = fails();
+	const events = () =>
+		Number(psql(`select count(*) from security_events where kind = 'admin_gate_fail'`));
+	const eventsBefore = events();
 	const bad = await page.request.post('/auth/admin', {
 		data: { email: 'e2e-admin@e2e.local', passcode: 'wrong-passcode' }
 	});
 	expect(await bad.json()).toEqual({ admin: false });
 	expect(fails()).toBe(before + 1);
+	// SEC-16: one security event, with a hash of the email and nothing readable.
+	expect(events()).toBe(eventsBefore + 1);
+	const row = psql(
+		`select row_to_json(e)::text from security_events e where kind = 'admin_gate_fail' order by id desc limit 1`
+	);
+	expect(row).toMatch(/"email_sha256": ?"[0-9a-f]{64}"/);
+	expect(row).not.toMatch(/@|e2e-admin|wrong-passcode/);
 
 	const ok = await page.request.post('/auth/admin', {
 		data: { email: 'E2E-Admin@e2e.local ', passcode: 'e2e-only-passcode-1234' }
@@ -93,6 +103,29 @@ test('admin gate: wrong passcode counts towards the global lock; right one signs
 	expect(Math.abs(cookie!.expires - (Date.now() / 1000 + 86400))).toBeLessThan(60);
 	await page.goto('/admin/content');
 	await expect(page).toHaveURL(/\/admin\/content/);
+
+	// SEC-16: an editor save leaves one audit row with the changed keys only and a hashed editor.
+	const place = psql(`select id from places where slug = 'seed-fort-1'`);
+	const audits = () =>
+		Number(psql(`select count(*) from admin_audit where entity_id = '${place}'`));
+	const auditsBefore = audits();
+	const entry = await (await page.request.get(`/api/admin/content/place/${place}`)).json();
+	const saved = await page.request.put(`/api/admin/content/place/${place}`, {
+		headers: { origin: 'http://localhost:4175' },
+		data: {
+			version: entry.version,
+			changes: { how_to_reach_text: `Bus from the stand ${Date.now()}` }
+		}
+	});
+	expect(saved.status(), await saved.text()).toBe(200);
+	expect(audits()).toBe(auditsBefore + 1);
+	const audit = psql(
+		`select row_to_json(a)::text from admin_audit a where entity_id = '${place}' order by id desc limit 1`
+	);
+	expect(audit).toContain('how_to_reach_text');
+	expect(audit).not.toMatch(/@|Bus from the stand/);
+	await page.goto('/admin/security');
+	await expect(page.getByTestId('security-events')).toContainText('admin_gate_fail');
 
 	// Same-origin, like the Exit admin button (SvelteKit refuses cross-site DELETEs).
 	const exit = await page.request.delete('/auth/admin', {

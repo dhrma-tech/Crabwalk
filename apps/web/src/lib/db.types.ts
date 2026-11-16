@@ -5,7 +5,21 @@ export type Database = {
   
   "public": {
           Tables: {
-            "ai_actions": {
+            "admin_audit": {
+                  Row: {
+                    "action": string,"actor": string | null,"at": string,"diff": Json | null,"entity_id": string,"entity_type": string,"id": number
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "action": string,"actor"?: string | null,"at"?: string,"diff"?: Json | null,"entity_id": string,"entity_type": string,"id"?: never
+                  }
+                  Update: {
+                    "action"?: string,"actor"?: string | null,"at"?: string,"diff"?: Json | null,"entity_id"?: string,"entity_type"?: string,"id"?: never
+                  }
+                  Relationships: [
+                    
+                  ]
+                },"ai_actions": {
                   Row: {
                     "created_at": string,"id": string,"preview": NonNullable<Json>,"status": Database["public"]['Enums']["ai_action_status"],"type": string,"updated_at": string | null,"user_id": string
                   }
@@ -937,6 +951,20 @@ isOneToOne: false
                   Relationships: [
                     
                   ]
+                },"security_events": {
+                  Row: {
+                    "at": string,"client_key": string | null,"detail": Json | null,"id": number,"kind": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "at"?: string,"client_key"?: string | null,"detail"?: Json | null,"id"?: never,"kind": string
+                  }
+                  Update: {
+                    "at"?: string,"client_key"?: string | null,"detail"?: Json | null,"id"?: never,"kind"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"sponsors": {
                   Row: {
                     "created_at": string,"entity_id": string | null,"entity_type": Database["public"]['Enums']["entity_type"] | null,"id": string,"name": string,"updated_at": string | null
@@ -1714,6 +1742,9 @@ isOneToOne: false
 { Args: { "_slug": string,"_weekday": number }; Returns: {
               "category": string,"km": number,"level": string,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
             }[]
+                           },
+"log_security_event":
+{ Args: { "_client_key"?: string,"_detail"?: Json,"_kind": string }; Returns: undefined
                            },
 "log_trip_expense":
 { Args: { "_amount": number,"_category": Database["public"]['Enums']["expense_category"],"_label": string,"_paid_by": string,"_shares": Json,"_spent_on": string,"_split_custom": boolean,"_stop_id": string,"_trip": string }; Returns: string

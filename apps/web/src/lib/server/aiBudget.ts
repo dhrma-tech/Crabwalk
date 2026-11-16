@@ -1,6 +1,7 @@
 // Global AI budget and kill switch (hardening 2026-11, SEC-11). Lives outside lib/server/ai on purpose: AI code
 // never imports the service-role client. hooks.server.ts hands this function to the router (setBudget).
 import { serviceClient } from './service.ts';
+import { securityEvent } from './log.ts';
 
 /**
  * Takes one model call from today's budget (public.ai_budget_take). False = do not call the model: AI is
@@ -15,6 +16,6 @@ export async function takeAiBudget() {
 	} catch {
 		reason = 'no-service-client';
 	}
-	console.warn(JSON.stringify({ event: 'ai_budget_refused', reason }));
+	await securityEvent('ai_budget_refused', { reason });
 	return false;
 }

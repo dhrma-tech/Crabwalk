@@ -4,6 +4,7 @@
 	import MapPinPlus from '@lucide/svelte/icons/map-pin-plus';
 	import TriangleAlert from '@lucide/svelte/icons/triangle-alert';
 	import QrCode from '@lucide/svelte/icons/qr-code';
+	import ShieldAlert from '@lucide/svelte/icons/shield-alert';
 	import CalendarDays from '@lucide/svelte/icons/calendar-days';
 	import SlidersHorizontal from '@lucide/svelte/icons/sliders-horizontal';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
@@ -37,6 +38,8 @@
 			? [
 					{ href: resolve('/admin/content'), label: () => 'Edit all content', icon: FilePen },
 					{ href: resolve('/admin/qr'), label: m.qr_admin_title(), icon: QrCode },
+					// Internal tool, English only like the content editor (hardening D-22).
+					{ href: resolve('/admin/security'), label: () => 'Security events', icon: ShieldAlert },
 					{ href: resolve('/admin/events'), label: m.events_title(), icon: CalendarDays },
 					{ href: resolve('/admin/planner'), label: m.planner_settings(), icon: SlidersHorizontal }
 				]

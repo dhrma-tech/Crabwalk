@@ -5,6 +5,7 @@
 import type { RequestEvent } from '@sveltejs/kit';
 import { RATE_LIMIT_SALT } from '$app/env/private';
 import { serviceClient } from './service.ts';
+import { securityEvent } from './log.ts';
 
 export type Rule = {
 	name: string;
@@ -140,13 +141,18 @@ export async function allowed(event: RequestEvent, rule: Rule) {
 			_limit: import.meta.env.MODE === 'e2e' ? rule.limit * 100 : rule.limit,
 			_window_s: rule.windowS
 		});
-		if (!error) return data !== false;
+		if (!error) {
+			// SEC-16: one denial in ten becomes a security event (a burst would otherwise flood the table).
+			if (data === false && Math.random() < 0.1)
+				await securityEvent('limiter_deny', { rule: rule.name }, event, _key);
+			return data !== false;
+		}
 		reason = error.code || 'rpc';
 	} catch {
 		// No service-role key: normal in local dev, a misconfiguration in production.
 		if (!import.meta.env.PROD) return true;
 		reason = 'no-service-client';
 	}
-	console.warn(JSON.stringify({ event: 'rate_fail_open', rule: rule.name, reason }));
+	await securityEvent('limiter_fail_open', { rule: rule.name, reason }, event);
 	return true;
 }
