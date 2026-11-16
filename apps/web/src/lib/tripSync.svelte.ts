@@ -45,7 +45,7 @@ export function tripSync(tripId: string, reload: () => Promise<unknown>) {
 	// Offline, a data reload would fail and SvelteKit would fall back to a full page load, which shows the browser's
 	// offline page since private pages are not cached (SEC-09). Keep it for when the connection is back (flush).
 	async function reloadNow() {
-		if (!navigator.onLine) return void (dirty = true);
+		if (globalThis.navigator?.onLine === false) return void (dirty = true);
 		dirty = false;
 		await reload();
 	}
