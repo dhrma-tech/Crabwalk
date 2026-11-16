@@ -57,6 +57,15 @@ test('"Continue as guest" unlocks the vote in place; /guest rejects off-site nex
 	await vote.getByTestId('guest-continue').click();
 	await expect(vote.getByTestId('guest-continue')).toHaveCount(0);
 	await expect(page).toHaveURL(/\/place\/seed-fort-1$/);
+	// SEC-03: a guest vote is stored but not counted, and the page says so.
+	await expect(vote.getByTestId('vote-guest-note')).toBeVisible();
+	const uncounted = () =>
+		psql(
+			`select count(*) from verdicts v join auth.users u on u.id = v.user_id where u.is_anonymous and not v.counted`
+		);
+	const before = Number(uncounted());
+	await vote.getByRole('button', { name: 'Must visit' }).click();
+	await expect.poll(() => Number(uncounted())).toBe(before + 1);
 	// Already signed in: /guest just forwards, and only to a same-origin path.
 	await page.goto('/guest?next=//evil.example/x');
 	await expect(page).toHaveURL('http://localhost:4175/');

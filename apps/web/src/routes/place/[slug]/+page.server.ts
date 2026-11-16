@@ -53,7 +53,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			photos: p.photos.map((ph) => photoUrls(ph, n[lang] || n.en)),
 			coords
 		},
-		ratings: await ratingsFor(locals.supabase, 'place', p.id, (await locals.getUser())?.id ?? null),
+		ratings: await ratingsFor(locals.supabase, 'place', p.id, await locals.getUser()),
 		// FRONTEND §7.2 (P8): embeddings + rules, no LLM.
 		similar: (await locals.supabase.rpc('similar_places', { _slug: p.slug, _limit: 4 })).data ?? [],
 		lessCrowded:

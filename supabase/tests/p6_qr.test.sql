@@ -74,20 +74,22 @@ select pg_temp.root();
 select is((select count(*)::int from public.qr_scans where code = (select code from codes where k = 'place')), 1, 'same session within 10 min = one row');
 
 -- ------------------------------------------------ verified visit
-select pg_temp.anon();
-select throws_ok($$ select * from public.qr_verify_visit((select code from codes where k = 'place'), 17.0018, 73.3) $$, '42501', null, 'anon cannot verify a visit');
+-- Hardening 2026-11 (SEC-03): only the web server verifies a visit (user id, accuracy and client key passed in).
+select pg_temp.login('00000000-0000-0000-0006-0000000000b1');
+select throws_ok($$ select * from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'place'), 17.0018, 73.3, 10, null) $$, '42501', null, 'users cannot verify a visit directly');
+
+select pg_temp.root();
+select is((select verified from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'place'), 17.00225, 73.3, 10, null)), false, '250 m fails');
+select is((select count(*)::int from public.verified_visits where user_id = '00000000-0000-0000-0006-0000000000b1'), 0, 'failed check inserts nothing');
+select is((select verified from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'place'), 17.0018, 73.3, 10, null)), true, '199 m passes');
+select ok((select distance_m from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'place'), 17.0018, 73.3, 10, null)) between 195 and 200, 'distance computed server-side (~199 m)');
+select is((select count(*)::int from public.verified_visits where user_id = '00000000-0000-0000-0006-0000000000b1' and method = 'qr_gps'), 1, 'one qr_gps visit per day');
+select throws_ok($$ select * from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'station'), 17.02, 73.32, 10, null) $$, 'P0002', null, 'station code has no listing to verify');
+-- Verified at the eatery, then the hygiene sub-score is allowed.
+select is((select verified from public.qr_verify_visit('00000000-0000-0000-0006-0000000000b1', (select code from codes where k = 'eat'), 17, 73.301, 10, null)), true, 'eatery visit verified');
 
 select pg_temp.login('00000000-0000-0000-0006-0000000000b1');
-select is((select verified from public.qr_verify_visit((select code from codes where k = 'place'), 17.00225, 73.3)), false, '250 m fails');
-select is((select count(*)::int from public.verified_visits), 0, 'failed check inserts nothing');
-select is((select verified from public.qr_verify_visit((select code from codes where k = 'place'), 17.0018, 73.3)), true, '199 m passes');
-select ok((select distance_m from public.qr_verify_visit((select code from codes where k = 'place'), 17.0018, 73.3)) between 195 and 200, 'distance computed server-side (~199 m)');
-select is((select count(*)::int from public.verified_visits where method = 'qr_gps'), 1, 'one qr_gps visit per day');
-select throws_ok($$ select * from public.qr_verify_visit((select code from codes where k = 'station'), 17.02, 73.32) $$, 'P0002', null, 'station code has no listing to verify');
 select throws_ok($$ insert into public.verified_visits (user_id, entity_type, entity_id, method) values ('00000000-0000-0000-0006-0000000000b1', 'place', (select place from ids), 'qr_gps') $$, '42501', null, 'clients cannot insert visits directly');
-
--- Verified at the eatery â†’ hygiene sub-score allowed.
-select is((select verified from public.qr_verify_visit((select code from codes where k = 'eat'), 17, 73.301)), true, 'eatery visit verified');
 select lives_ok($$ insert into public.sub_scores (user_id, entity_type, entity_id, dimension, score) values ('00000000-0000-0000-0006-0000000000b1', 'eatery', (select eat from ids), 'hygiene', 4) $$, 'QR+GPS visit unlocks hygiene');
 
 -- ------------------------------------------------ near me now

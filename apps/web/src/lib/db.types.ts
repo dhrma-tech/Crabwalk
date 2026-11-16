@@ -1013,14 +1013,14 @@ isOneToOne: false
                   ]
                 },"sub_scores": {
                   Row: {
-                    "created_at": string,"dimension": Database["public"]['Enums']["sub_score_dimension"],"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"score": number,"updated_at": string | null,"user_id": string
+                    "counted": boolean,"created_at": string,"dimension": Database["public"]['Enums']["sub_score_dimension"],"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"score": number,"updated_at": string | null,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"dimension": Database["public"]['Enums']["sub_score_dimension"],"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"score": number,"updated_at"?: string | null,"user_id": string
+                    "counted"?: boolean,"created_at"?: string,"dimension": Database["public"]['Enums']["sub_score_dimension"],"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"score": number,"updated_at"?: string | null,"user_id": string
                   }
                   Update: {
-                    "created_at"?: string,"dimension"?: Database["public"]['Enums']["sub_score_dimension"],"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"score"?: number,"updated_at"?: string | null,"user_id"?: string
+                    "counted"?: boolean,"created_at"?: string,"dimension"?: Database["public"]['Enums']["sub_score_dimension"],"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"score"?: number,"updated_at"?: string | null,"user_id"?: string
                   }
                   Relationships: [
                     
@@ -1547,28 +1547,28 @@ isOneToOne: false
                   ]
                 },"verdicts": {
                   Row: {
-                    "created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id": string,"level": number,"updated_at": string | null,"user_id": string
+                    "counted": boolean,"created_at": string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id": string,"level": number,"updated_at": string | null,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id"?: string,"level": number,"updated_at"?: string | null,"user_id": string
+                    "counted"?: boolean,"created_at"?: string,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"group_type": Database["public"]['Enums']["group_type"],"id"?: string,"level": number,"updated_at"?: string | null,"user_id": string
                   }
                   Update: {
-                    "created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"group_type"?: Database["public"]['Enums']["group_type"],"id"?: string,"level"?: number,"updated_at"?: string | null,"user_id"?: string
+                    "counted"?: boolean,"created_at"?: string,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"group_type"?: Database["public"]['Enums']["group_type"],"id"?: string,"level"?: number,"updated_at"?: string | null,"user_id"?: string
                   }
                   Relationships: [
                     
                   ]
                 },"verified_visits": {
                   Row: {
-                    "created_at": string,"distance_m": number | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"method": Database["public"]['Enums']["visit_method"],"updated_at": string | null,"user_id": string
+                    "accuracy_m": number | null,"client_key": string | null,"created_at": string,"distance_m": number | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"method": Database["public"]['Enums']["visit_method"],"updated_at": string | null,"user_id": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "created_at"?: string,"distance_m"?: number | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"method": Database["public"]['Enums']["visit_method"],"updated_at"?: string | null,"user_id": string
+                    "accuracy_m"?: number | null,"client_key"?: string | null,"created_at"?: string,"distance_m"?: number | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"method": Database["public"]['Enums']["visit_method"],"updated_at"?: string | null,"user_id": string
                   }
                   Update: {
-                    "created_at"?: string,"distance_m"?: number | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"method"?: Database["public"]['Enums']["visit_method"],"updated_at"?: string | null,"user_id"?: string
+                    "accuracy_m"?: number | null,"client_key"?: string | null,"created_at"?: string,"distance_m"?: number | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"method"?: Database["public"]['Enums']["visit_method"],"updated_at"?: string | null,"user_id"?: string
                   }
                   Relationships: [
                     
@@ -1762,7 +1762,7 @@ isOneToOne: false
 { Args: { "_client_key"?: string,"_code": string,"_lang"?: Database["public"]['Enums']["lang"],"_lat"?: number,"_lng"?: number,"_session_hash": string }; Returns: undefined
                            },
 "qr_verify_visit":
-{ Args: { "_code": string,"_lat": number,"_lng": number }; Returns: {
+{ Args: { "_accuracy": number,"_client_key": string,"_code": string,"_lat": number,"_lng": number,"_user": string }; Returns: {
               "distance_m": number,"verified": boolean
             }[]
                            },

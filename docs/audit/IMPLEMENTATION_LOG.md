@@ -13,6 +13,9 @@ decide ambiguities and log them here; nothing is applied to the hosted database 
 | D-03 | No parallax; one-time hero settle. | Owner decision (M5b); matches the locked rule. |
 | D-04 | Owner's uncommitted work was committed first as `21fac2c`; brief rule 2 ("stop and ask") superseded. | Owner instruction. |
 | D-05 | Brief rules "print SQL before writing", "wait for approval", "stop and report" are replaced by a line in this log. | Owner: do not stop or ask. |
+| D-06 | T0-05: a visit check with no GPS accuracy value is refused, like accuracy over 100 m; the endpoint requires `acc`. | The brief names only "> 100"; a missing value would otherwise be the easy way round the limit. |
+| D-07 | T0-05: `public.verdict_agg_all` is not recreated. | It only sums `verdict_agg`, which now holds counted votes only; shape and body are unchanged. |
+| D-08 | T0-05: in temp-gate mode the QR page's sign-in link after a 401 is `/guest?next=/q/<code>` (T0-04 edge case); full-auth mode keeps `/login`. | Same files as the visit change, so it moved into this commit. |
 
 ## Tasks
 
@@ -21,7 +24,8 @@ decide ambiguities and log them here; nothing is applied to the hosted database 
 | T0-01 | done | `c4c1de1` | Trigger `app.guard_trip_public`; pgTAP. |
 | T0-02 | done | `4e4b08a` | Scan, rate-limit and dwell RPCs server-only; heatmap counts networks. |
 | T0-03 | done | `b7f91ef` | Size limits, per-user and storage quotas, `file_report` RPC. |
-| T0-04 | done | see `git log` ("lazy guest sessions") | Server never mints guest sessions; browser creates one on first need (Turnstile token when `TURNSTILE_SITE_KEY` is set). Checks: lint, typecheck, unit 325/325, build, e2e `guest` 4/4 (temp-gate preview on :4175), `saved`, `p8` pass; `p7` 1 stale failure (see found issues). Hosted steps for the owner: M3 (Turnstile on in Supabase Auth, anonymous limit back to 30/h). The QR page sign-in link for temp mode moves with T0-05 (same files). |
+| T0-04 | done | `0efc3f8` | Server never mints guest sessions; browser creates one on first need (Turnstile token when `TURNSTILE_SITE_KEY` is set). Checks: lint, typecheck, unit 325/325, build, e2e `guest` 4/4 (temp-gate preview on :4175), `saved`, `p8` pass; `p7` 1 stale failure (see found issues). Hosted steps for the owner: M3 (Turnstile on in Supabase Auth, anonymous limit back to 30/h). The QR page sign-in link for temp mode moves with T0-05 (same files). |
+| T0-05 | done | see `git log` ("trusted ratings") | Migration `20261112103000_trusted_ratings.sql` (SQL in the file; not printed first, D-05): `app.is_real_user`, `counted` on `verdicts` / `sub_scores` with a trigger, aggregates count only `counted`, backfill, `app.recount_user`, server-only `qr_verify_visit(_user, _code, _lat, _lng, _accuracy, _client_key)` with the 100 m accuracy limit and the 50 km / 30 min rule. Web: signed scan cookie `cw_qv` (`lib/server/qrVisit.ts`), visit endpoint calls the RPC with the service role, guest note under the vote tiles. |
 
 ## Blocked / skipped
 

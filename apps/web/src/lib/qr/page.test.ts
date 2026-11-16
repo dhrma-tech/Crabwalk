@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { clip, type QrData } from '#lib/server/qr.ts';
-import { renderQrMissing, renderQrPage } from './page.ts';
+import { JS, renderQrMissing, renderQrPage } from './page.ts';
 
 // PLAN P6 acceptance / FRONTEND §11: scan page < 100 KB total, no webfonts, no framework.
 // The only other transfer is the 480 px hero (WebP); the HTML budget leaves ≥ 58 KB for it. 42 KB (user, T-44):
@@ -63,6 +63,18 @@ const base: QrData = {
 
 describe('QR scan page', () => {
 	const html = renderQrPage(base, { lang: 'mr', reported: false, time });
+
+	it('the sign-in link after a 401 goes where the server says (temp gate: /guest and back)', () => {
+		expect(html).toContain('<p id="vlogin" hidden><a href="/login">');
+		const guest = renderQrPage(base, {
+			lang: 'en',
+			reported: false,
+			time,
+			signIn: '/guest?next=%2Fq%2FRTN-001'
+		});
+		expect(guest).toContain('<a href="/guest?next=%2Fq%2FRTN-001">');
+		expect(JS).toContain('acc:Math.round(c.accuracy)');
+	});
 
 	it('fits the size budget with long Devanagari content', () => {
 		expect(bytes(html)).toBeLessThan(HTML_BUDGET);

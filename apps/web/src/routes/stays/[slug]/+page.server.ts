@@ -30,7 +30,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 			photos: s.photos.map((p) => photoUrls(p, n[lang] || n.en))
 		},
 		prices: await priceRows(s),
-		ratings: await ratingsFor(locals.supabase, 'stay', s.id, (await locals.getUser())?.id ?? null),
+		ratings: await ratingsFor(locals.supabase, 'stay', s.id, await locals.getUser()),
 		dims: DIMENSIONS.stay
 	};
 };

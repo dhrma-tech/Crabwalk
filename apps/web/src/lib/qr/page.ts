@@ -45,7 +45,7 @@ scan=c=>post('scan',c?{lat:c.latitude,lng:c.longitude}:{}).catch(()=>{});
 navigator.permissions?navigator.permissions.query({name:'geolocation'}).then(s=>s.state=='granted'?gps().then(scan,()=>scan()):scan(),()=>scan()):scan();
 document.querySelectorAll('[data-js]').forEach(e=>e.hidden=!1);
 const say=t=>{$('vmsg').textContent=t};
-$('verify')&&($('verify').onclick=()=>{say(b.tWait);gps().then(c=>post('visit',{lat:c.latitude,lng:c.longitude}).then(async r=>{if(r.status==401){say(b.tSignin);$('vlogin').hidden=!1;return}if(!r.ok)return say(b.tFail);const j=await r.json();say(j.verified?b.tOk:b.tFar.replace('{m}',j.distance_m))},()=>say(b.tFail)),()=>say(b.tGps))});
+$('verify')&&($('verify').onclick=()=>{say(b.tWait);gps().then(c=>post('visit',{lat:c.latitude,lng:c.longitude,acc:Math.round(c.accuracy)}).then(async r=>{if(r.status==401){say(b.tSignin);$('vlogin').hidden=!1;return}if(!r.ok)return say(b.tFail);const j=await r.json();say(j.verified?b.tOk:b.tFar.replace('{m}',j.distance_m))},()=>say(b.tFail)),()=>say(b.tGps))});
 $('share').onclick=()=>{const send=(la,ln)=>{const t=b.tShare+' https://maps.google.com/?q='+la+','+ln;navigator.share?navigator.share({text:t}).catch(()=>{}):location.href='sms:?&body='+encodeURIComponent(t)};
 $('smsg').textContent='';gps().then(c=>send(c.latitude.toFixed(5),c.longitude.toFixed(5)),()=>b.lat?send(b.lat,b.lng):$('smsg').textContent=b.tGps)}})()`;
 
@@ -98,7 +98,7 @@ const section = (title: string, html: string) =>
 
 export function renderQrPage(
 	d: QrData,
-	o: { lang: Lang; reported: boolean; time: (iso: string) => string }
+	o: { lang: Lang; reported: boolean; time: (iso: string) => string; signIn?: string }
 ) {
 	const parts: string[] = [];
 	parts.push(
@@ -180,7 +180,7 @@ export function renderQrPage(
 	}
 
 	parts.push(
-		`<section class="card" data-js hidden><h2>${esc(m.qr_verify_title())}</h2><p class="small">${esc(m.qr_verify_hint())}</p><p style="margin-top:12px"><button class="btn" type="button" id="verify">${esc(m.qr_verify())}</button></p><p id="vmsg" role="status" style="margin-top:8px"></p><p id="vlogin" hidden><a href="/login">${esc(m.sign_in())}</a></p></section>`
+		`<section class="card" data-js hidden><h2>${esc(m.qr_verify_title())}</h2><p class="small">${esc(m.qr_verify_hint())}</p><p style="margin-top:12px"><button class="btn" type="button" id="verify">${esc(m.qr_verify())}</button></p><p id="vmsg" role="status" style="margin-top:8px"></p><p id="vlogin" hidden><a href="${esc(o.signIn ?? '/login')}">${esc(m.sign_in())}</a></p></section>`
 	);
 	if (d.near.length)
 		parts.push(section(m.qr_near_me(), `<ul class="near">${d.near.map(nearRow).join('')}</ul>`));

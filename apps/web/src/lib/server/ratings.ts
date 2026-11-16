@@ -39,7 +39,13 @@ const toAgg = (r: {
 });
 
 /** Everything the gauge + vote UI needs for one listing. */
-export async function ratingsFor(db: DB, type: EntityType, id: string, userId: string | null) {
+export async function ratingsFor(
+	db: DB,
+	type: EntityType,
+	id: string,
+	user: { id: string; is_anonymous?: boolean } | null
+) {
+	const userId = user?.id ?? null;
 	const [groups, all, subs, reviews, summary, mine, mySubs, visit, myProof] = await Promise.all([
 		db.from('verdict_agg').select('*').eq('entity_type', type).eq('entity_id', id),
 		db
@@ -117,7 +123,9 @@ export async function ratingsFor(db: DB, type: EntityType, id: string, userId: s
 			verified: !!visit.data?.length,
 			proofPending: !!myProof.data?.length
 		},
-		signedIn: !!userId
+		signedIn: !!userId,
+		// Guest votes are stored but not counted (SEC-03); the vote UI says so.
+		guest: !!user?.is_anonymous
 	};
 }
 

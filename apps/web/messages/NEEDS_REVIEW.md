@@ -26,3 +26,4 @@ Points to check first:
 ## Hardening pass 2026-11 (all HI / MR below are Claude drafts)
 
 - T0-04 guest session (safety: none; check tone): `guest_title`, `guest_ready`, `guest_failed`, `guest_failed_hint`, `guest_noscript`, `guest_continue`
+- T0-05 guest vote note (trust wording: check it does not read as "your vote was rejected"): `vote_guest_note`

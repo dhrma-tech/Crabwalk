@@ -63,12 +63,7 @@ export const load: PageServerLoad = async ({ params, locals }) => {
 				}),
 			photos: e.photos.map((p) => photoUrls(p, n[lang] || n.en))
 		},
-		ratings: await ratingsFor(
-			locals.supabase,
-			'eatery',
-			e.id,
-			(await locals.getUser())?.id ?? null
-		),
+		ratings: await ratingsFor(locals.supabase, 'eatery', e.id, await locals.getUser()),
 		dims: DIMENSIONS.eatery
 	};
 };

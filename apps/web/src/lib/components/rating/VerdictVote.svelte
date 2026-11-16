@@ -23,7 +23,8 @@
 		id,
 		dims,
 		mine,
-		signedIn
+		signedIn,
+		guest = false
 	}: {
 		type: EntityType;
 		id: string;
@@ -35,6 +36,8 @@
 			proofPending: boolean;
 		};
 		signedIn: boolean;
+		/** Anonymous session: the vote is stored but not counted (SEC-03). */
+		guest?: boolean;
 	} = $props();
 
 	const groups = ['family', 'couple', 'solo', 'friends'] as const;
@@ -155,6 +158,9 @@
 				</button>
 			{/each}
 		</div>
+		{#if guest}
+			<p class="type-small text-text-2" data-testid="vote-guest-note">{m.vote_guest_note()}</p>
+		{/if}
 
 		{#if dims.length}
 			<div class="flex flex-col gap-3">

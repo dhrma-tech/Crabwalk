@@ -182,6 +182,7 @@
 					dims={data.dims}
 					mine={data.ratings.mine}
 					signedIn={data.ratings.signedIn}
+					guest={data.ratings.guest}
 				/>
 			</div>
 

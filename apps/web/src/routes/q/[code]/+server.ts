@@ -4,6 +4,8 @@ import { SUPABASE_URL } from '$app/env/public';
 import { qrCsp, renderQrMissing, renderQrPage } from '#lib/qr/page.ts';
 import { CODE_RE, SESSION_COOKIE, resolveQr, sessionHash } from '#lib/server/qr.ts';
 import type { Lang } from '#lib/server/listings.ts';
+import { tempGate } from '#lib/server/gate.ts';
+import { VISIT_COOKIE, VISIT_TTL_S, signVisit } from '#lib/server/qrVisit.ts';
 import { clientKey } from '#lib/server/rate.ts';
 import { serviceClient } from '#lib/server/service.ts';
 import type { RequestHandler } from './$types';
@@ -32,8 +34,9 @@ export const GET: RequestHandler = async (event) => {
 	if (code !== params.code) redirect(301, `/q/${code}`);
 
 	// Anonymous scan session: random id in a 1-day cookie; only its hash is stored (DECISIONS P6-4).
-	if (!cookies.get(SESSION_COOKIE))
-		cookies.set(SESSION_COOKIE, crypto.randomUUID(), {
+	let sid = cookies.get(SESSION_COOKIE);
+	if (!sid)
+		cookies.set(SESSION_COOKIE, (sid = crypto.randomUUID()), {
 			path: '/q',
 			maxAge: 86400,
 			httpOnly: true,
@@ -44,7 +47,7 @@ export const GET: RequestHandler = async (event) => {
 	if (r.type === 'missing') return html(renderQrMissing(lang), 404);
 	if (r.type === 'start') {
 		// No page here to run the scan beacon, so the redirect itself is the scan (no position).
-		const id = cookies.get(SESSION_COOKIE);
+		const id = sid;
 		// Server-only RPC (SEC-04). A missing key or salt must never break a printed code: skip the scan.
 		if (id)
 			try {
@@ -60,11 +63,32 @@ export const GET: RequestHandler = async (event) => {
 		redirect(303, `/start?from=${code}`);
 	}
 
+	// Scan token (SEC-03): proof that this browser loaded this code's page; POST /q/:code/visit requires it.
+	// A missing salt must never break a printed code: without the cookie only "Verify visit" is refused.
+	try {
+		cookies.set(VISIT_COOKIE, await signVisit(code, sid), {
+			path: '/q',
+			maxAge: VISIT_TTL_S,
+			httpOnly: true,
+			sameSite: 'lax'
+		});
+	} catch {
+		console.warn(JSON.stringify({ event: 'qr_visit_token_skipped', code }));
+	}
+
 	const time = (iso: string) =>
 		new Intl.DateTimeFormat(`${lang}-IN`, {
 			hour: 'numeric',
 			minute: '2-digit',
 			timeZone: 'Asia/Kolkata'
 		}).format(new Date(iso));
-	return html(renderQrPage(r.data, { lang, reported: url.searchParams.has('reported'), time }));
+	return html(
+		renderQrPage(r.data, {
+			lang,
+			reported: url.searchParams.has('reported'),
+			time,
+			// TODO(before-deploy): restore full auth — temp gate: /guest creates the guest session and comes back.
+			signIn: tempGate() ? `/guest?next=${encodeURIComponent(`/q/${code}`)}` : '/login'
+		})
+	);
 };

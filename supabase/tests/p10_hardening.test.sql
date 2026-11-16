@@ -20,7 +20,7 @@ select is(
   '', 'anon can execute only the allowlisted security-definer functions');
 
 select ok(not has_function_privilege('anon', 'public.ai_take_message()', 'execute'), 'anon cannot use the AI cap');
-select ok(not has_function_privilege('anon', 'public.qr_verify_visit(text, float8, float8)', 'execute'), 'anon cannot verify visits');
+select ok(not has_function_privilege('anon', 'public.qr_verify_visit(uuid, text, float8, float8, integer, text)', 'execute'), 'anon cannot verify visits');
 select ok(not has_function_privilege('authenticated', 'public.refresh_patterns()', 'execute'), 'users cannot run the pattern job');
 
 -- Rate limiter (called by the web server with the service role since hardening 2026-11).

@@ -139,7 +139,15 @@ test('verified visit: anon asked to sign in; 250 m fails; 199 m passes', async (
 	});
 	const page = await ctx.newPage();
 	await signIn(page, email);
+	// SEC-03: no scan cookie (the scan page was never opened in this browser) → refused.
+	const at = { lat: LAT + 0.0018, lng: LNG };
+	expect((await page.request.post(`/q/${CODE}/visit`, { data: { ...at, acc: 5 } })).status()).toBe(
+		403
+	);
 	await page.goto(`/q/${CODE}`);
+	// Poor GPS accuracy is never verified, even at the spot.
+	const poor = await page.request.post(`/q/${CODE}/visit`, { data: { ...at, acc: 500 } });
+	expect((await poor.json()).verified).toBe(false);
 	await page.getByRole('button', { name: /verify/ }).click();
 	await expect(page.getByText(/You are about 2\d\d m away/)).toBeVisible();
 

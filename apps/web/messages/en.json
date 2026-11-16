@@ -1202,5 +1202,6 @@
 	"guest_failed": "We couldn't get you started",
 	"guest_failed_hint": "Check your connection and try again. You can still browse places, stays and food.",
 	"guest_noscript": "Saving, voting and planning need JavaScript. You can still read every guide.",
-	"guest_continue": "Continue as guest"
+	"guest_continue": "Continue as guest",
+	"vote_guest_note": "Your verdict is saved. It counts once you sign in."
 }
