@@ -75,6 +75,9 @@ const limits: Handle = async ({ event, resolve }) => {
 	);
 	h.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains');
 	if (!h.has('X-Frame-Options')) h.set('X-Frame-Options', 'DENY');
+	// SEC-24: no cross-origin window handles to our pages; our responses are not embeddable by other sites.
+	h.set('Cross-Origin-Opener-Policy', 'same-origin');
+	h.set('Cross-Origin-Resource-Policy', 'same-site');
 	// TODO(before-deploy): restore full auth — the whole site stays out of search while the temp gate is on.
 	if (tempGate()) h.set('X-Robots-Tag', 'noindex, nofollow');
 	else if (isPrivatePath(event.url.pathname)) h.set('X-Robots-Tag', 'noindex');

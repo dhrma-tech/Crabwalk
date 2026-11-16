@@ -425,6 +425,8 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 
 - Hardening 2026-11: **app shell 200.6 KB gz, over the 200 KB e2e budget** (199.3 KB before the pass). Every UI message in all three languages sits in the always-loaded main chunk, so each new string grows the shell. Needs an owner decision: raise the budget or load messages per route. Details: `docs/audit/IMPLEMENTATION_LOG.md` D-12.
 
+- `e2e/p11.test.ts` "1280 px: outline rail…" is stale since `52eaab8` (outline rail collapsed by default); it fails first and, the file being serial, its followers skip unless run with `-g`. `p11` "lists" (drag into Day 2) is timing-sensitive: it failed in 2 of 4 runs on 2026-11-16, at different steps. Not fixed (P11 scope).
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|

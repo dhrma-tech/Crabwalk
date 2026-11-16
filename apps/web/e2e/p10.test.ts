@@ -121,6 +121,22 @@ test('security headers on pages, API and the QR page', async ({ request }) => {
 	}
 	const page = (await request.get('/')).headers();
 	expect(page['content-security-policy']).toMatch(/frame-ancestors 'none'/);
+	// SEC-10 / SEC-24: exact hosts only, violations reported, isolation headers.
+	expect(page['content-security-policy']).not.toMatch(/\*\.supabase\.co|\*\.pages\.dev/);
+	expect(page['content-security-policy']).toMatch(/report-uri \/api\/csp-report/);
+	expect(page['cross-origin-opener-policy']).toBe('same-origin');
+	expect(page['cross-origin-resource-policy']).toBe('same-site');
+	const report = await request.post('/api/csp-report', {
+		headers: { 'content-type': 'application/csp-report' },
+		data: JSON.stringify({
+			'csp-report': {
+				'effective-directive': 'img-src',
+				'blocked-uri': 'https://evil.example/x.png?t=1',
+				'document-uri': 'http://localhost:4173/plan/share/abcdefghijklmnopqrstuvwxyz?x=1'
+			}
+		})
+	});
+	expect(report.status()).toBe(204);
 	const code = psql(`select code from qr_codes where entity_type = 'place' limit 1`);
 	if (code) {
 		const q = (await request.get(`/q/${code}`)).headers();

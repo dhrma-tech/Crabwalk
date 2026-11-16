@@ -37,6 +37,8 @@ export const RULES: Rule[] = [
 		limit: 10,
 		windowS: 600
 	},
+	// Browsers send one report per violation; a broken deploy must not flood the logs.
+	{ name: 'csp-report', method: 'POST', path: /^\/api\/csp-report$/, limit: 60, windowS: 600 },
 	{ name: 'qr-scan', method: 'POST', path: /^\/q\/[^/]+\/scan$/, limit: 60, windowS: 600 },
 	{ name: 'qr-visit', method: 'POST', path: /^\/q\/[^/]+\/visit$/, limit: 20, windowS: 600 },
 	// Trip group chat (P12): messages, poll votes, applying Crabby's cards. The no-login vote link is retired.

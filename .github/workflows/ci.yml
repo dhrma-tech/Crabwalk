@@ -13,6 +13,8 @@ jobs:
       # Placeholders for the build: the prerendered /navigate runs the Supabase hook (no DB call).
       SUPABASE_URL: http://127.0.0.1:54321
       SUPABASE_ANON_KEY: ci-placeholder
+      # The production build names the exact tiles host in its CSP (SEC-10) and stops without one.
+      PMTILES_BASE_URL: http://127.0.0.1:4174
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
