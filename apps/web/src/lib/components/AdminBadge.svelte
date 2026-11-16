@@ -11,6 +11,8 @@
 	const admin = $derived((page.data as { gate?: { admin: string | null } }).gate?.admin ?? null);
 
 	async function exit() {
+		// SEC-09: drop cached pages first. Imported on demand: this badge is in the app shell (size budget).
+		await import('#lib/sw.ts').then((m) => m.purgePrivateCaches()).catch(() => null);
 		await fetch('/auth/admin', { method: 'DELETE' }).catch(() => null);
 		location.assign('/');
 	}

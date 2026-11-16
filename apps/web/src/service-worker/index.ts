@@ -6,8 +6,11 @@ import { version } from '$app/env';
 // copy as offline fallback; published-content APIs are stale-while-revalidate (P4). Taluka packs in P9.
 // Auth/prefs/staff/owner pages, POSTs and other origins (Supabase, Ola) are never cached here.
 const SHELL = `shell-${version}`;
-const PAGES = 'pages-v1';
-const CONTENT = 'content-v1';
+// v2 (hardening 2026-11, SEC-09): the v1 caches could hold private pages; they are dropped on activate.
+const PAGES = 'pages-v2';
+const CONTENT = 'content-v2';
+const MAX_PAGES = 60;
+const MAX_CONTENT = 200;
 // P9: downloaded taluka packs (PMTiles + data) and saved trips' routes. Never evicted on update.
 const PACKS = 'packs-v1';
 const TRIPS = 'trips-v1';
@@ -25,8 +28,29 @@ const NO_CACHE = [
 	'/api/admin',
 	'/api/owner',
 	// The user's own saved list (T-5): always from the network.
-	'/api/saved'
+	'/api/saved',
+	// SEC-09: pages about one person never go into a cache shared by whoever uses this browser next.
+	'/me',
+	'/plan',
+	'/trip',
+	'/journal',
+	'/crabby',
+	'/guest',
+	'/q'
 ];
+/** Whole path segments: '/me' covers /me and /me/requests, not /menu. */
+const noCache = (path: string) => NO_CACHE.some((p) => path === p || path.startsWith(p + '/'));
+/** A response the server marked as personal is never stored. */
+const shareable = (res: Response) =>
+	!/private|no-store/i.test(res.headers.get('cache-control') ?? '');
+
+/** Store, then drop the oldest entries beyond `max` (cache keys come back oldest first). */
+async function putCapped(name: string, max: number, req: Request, res: Response) {
+	const c = await caches.open(name);
+	await c.put(req, res);
+	const keys = await c.keys();
+	await Promise.all(keys.slice(0, Math.max(0, keys.length - max)).map((k) => c.delete(k)));
+}
 // Not pins (open-now is time-sensitive) and not tides (safety data, provider 24 h rule).
 const PUBLISHED = /^\/api\/(places|stays|eateries|dishes|map\/utilities)(\/|$)/;
 
@@ -85,7 +109,7 @@ sw.addEventListener('fetch', (event) => {
 		return;
 	}
 	if (req.method !== 'GET' || url.origin !== sw.location.origin) return;
-	if (NO_CACHE.some((p) => url.pathname.startsWith(p))) return;
+	if (noCache(url.pathname)) return;
 
 	if (precache.includes(url.pathname)) {
 		// By pathname: prerendered client pages (/navigate?trip=…) are cached once for every query string.
@@ -114,7 +138,10 @@ sw.addEventListener('fetch', (event) => {
 			caches.open(CONTENT).then(async (c) => {
 				const hit = await c.match(req);
 				const fresh = fetch(req)
-					.then((res) => (res.ok && c.put(req, res.clone()), res))
+					.then((res) => {
+						if (res.ok) void putCapped(CONTENT, MAX_CONTENT, req, res.clone()).catch(() => {});
+						return res;
+					})
 					.catch(() => hit ?? Response.error());
 				if (hit) event.waitUntil(fresh);
 				return hit ?? fresh;
@@ -127,10 +154,8 @@ sw.addEventListener('fetch', (event) => {
 		event.respondWith(
 			fetch(req)
 				.then((res) => {
-					if (res.ok) {
-						const copy = res.clone();
-						caches.open(PAGES).then((c) => c.put(req, copy));
-					}
+					if (res.ok && shareable(res))
+						void putCapped(PAGES, MAX_PAGES, req, res.clone()).catch(() => {});
 					return res;
 				})
 				.catch(async () => {
@@ -145,6 +170,24 @@ sw.addEventListener('fetch', (event) => {
 				})
 		);
 	}
+});
+
+// Sign-out and admin exit (lib/sw.ts) ask for this first: cached pages and saved trip routes go, so the next
+// person on this browser cannot open them offline. Packs (public map data) stay.
+sw.addEventListener('message', (event) => {
+	if ((event.data as { type?: string } | null)?.type !== 'purge') return;
+	event.waitUntil(
+		caches
+			.keys()
+			.then((keys) =>
+				Promise.all(
+					keys
+						.filter((k) => k.startsWith('pages-') || k.startsWith('trips-'))
+						.map((k) => caches.delete(k))
+				)
+			)
+			.then(() => event.ports[0]?.postMessage('purged'))
+	);
 });
 
 // Trip time nudges (DECISIONS P9-3): show the push; tapping it opens the live trip.

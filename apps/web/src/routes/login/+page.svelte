@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { purgeThenSubmit } from '#lib/sw.ts';
 	import { onMount } from 'svelte';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import { m } from '#lib/paraglide/messages.js';
@@ -60,7 +61,7 @@
 				<p class="type-body break-words">{m.me_signed_in_as({ email: data.email })}</p>
 				<div class="flex flex-col gap-3 [&>*]:w-full [&_button]:w-full">
 					<Button href="/">{m.go_discover()}</Button>
-					<form method="POST" action="?/signOut">
+					<form method="POST" action="?/signOut" onsubmit={purgeThenSubmit}>
 						<Button variant="outline" type="submit">{m.sign_out()}</Button>
 					</form>
 				</div>

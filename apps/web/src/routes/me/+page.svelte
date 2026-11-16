@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { purgeThenSubmit } from '#lib/sw.ts';
 	import { resolve } from '$app/paths';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import Route from '@lucide/svelte/icons/route';
@@ -306,7 +307,7 @@
 		</InsetList>
 
 		{#if data.email && !gate.on}
-			<form method="POST" action="/login?/signOut" class="[&>*]:w-full">
+			<form method="POST" action="/login?/signOut" class="[&>*]:w-full" onsubmit={purgeThenSubmit}>
 				<Button variant="outline" type="submit">{m.sign_out()}</Button>
 			</form>
 		{/if}

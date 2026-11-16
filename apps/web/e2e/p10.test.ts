@@ -144,3 +144,37 @@ test('attribution: OSM on the map; tide provider next to tide data', async ({ pa
 	);
 	if (tideRows !== '0') await expect(tides).toContainText(/Tide data/);
 });
+
+test('service worker: private pages are never cached; sign-out purges cached pages (SEC-09)', async ({
+	browser
+}) => {
+	const ctx = await browser.newContext();
+	const page = await ctx.newPage();
+	await signIn(page, `sw-${Date.now().toString(36)}@e2e.local`);
+	await page.goto('/');
+	await page.evaluate(() => navigator.serviceWorker.ready);
+	await page.reload(); // from here on the worker controls the page
+	await page.waitForFunction(() => !!navigator.serviceWorker.controller);
+	await page.goto('/stays');
+	await page.goto('/me');
+	const cached = () =>
+		page.evaluate(async () => {
+			const out: string[] = [];
+			for (const k of await caches.keys())
+				if (k.startsWith('pages-'))
+					for (const r of await (await caches.open(k)).keys()) out.push(new URL(r.url).pathname);
+			return out;
+		});
+	await expect.poll(cached).toContain('/stays');
+	expect(await cached()).not.toContain('/me');
+
+	await page.waitForLoadState('networkidle'); // hydrated: the sign-out form purges before it posts
+	await page.getByRole('button', { name: 'Sign out' }).click();
+	await page.waitForLoadState('networkidle');
+	expect(await cached()).not.toContain('/stays');
+	expect(await cached()).not.toContain('/me');
+	await ctx.setOffline(true);
+	// Nothing of the old session opens offline: /me is not in any cache, so the navigation simply fails.
+	await expect(page.goto('/me')).rejects.toThrow();
+	await ctx.close();
+});

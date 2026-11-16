@@ -423,6 +423,8 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 
 - Hardening 2026-11: the local database was reset to seed data (migrations for T0-01…T0-06); the cleaned local listings are gone from the local stack (still on hosted and in `backups/2026-11-06…`). `e2e/p12.test.ts` C, F and G need data a fresh database lacks (OSM stations, a QR code on a published place, two beaches). Details in `docs/audit/IMPLEMENTATION_LOG.md`.
 
+- Hardening 2026-11: **app shell 200.6 KB gz, over the 200 KB e2e budget** (199.3 KB before the pass). Every UI message in all three languages sits in the always-loaded main chunk, so each new string grows the shell. Needs an owner decision: raise the budget or load messages per route. Details: `docs/audit/IMPLEMENTATION_LOG.md` D-12.
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|
