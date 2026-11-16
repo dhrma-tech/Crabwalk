@@ -52,17 +52,6 @@
 
 	// Opt-in dwell (DECISIONS: DPDPA consent, anonymous): arrival ≤ 150 m, leaving > 300 m after ≥ 5 min.
 	let visit: { slug: string; at: string; since: number } | null = null;
-	const anonId = () => {
-		const key = `cw_dwell_${new Date().toISOString().slice(0, 10)}`;
-		try {
-			return (
-				localStorage.getItem(key) ??
-				(localStorage.setItem(key, crypto.randomUUID()), localStorage.getItem(key)!)
-			);
-		} catch {
-			return crypto.randomUUID();
-		}
-	};
 	function trackDwell(p: [number, number]) {
 		if (!data.dwellConsent) return;
 		const near = day?.stops.find(
@@ -80,8 +69,7 @@
 						method: 'POST',
 						headers: { 'Content-Type': 'application/json' },
 						body: JSON.stringify({
-							place: left.slug,
-							anon_id: anonId(),
+							place: left.slug, // the per-day anonymous id is derived on the server
 							arrived_at: left.at,
 							left_at: new Date().toISOString()
 						})

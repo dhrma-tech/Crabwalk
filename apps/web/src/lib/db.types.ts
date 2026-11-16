@@ -755,14 +755,14 @@ isOneToOne: false
                   ]
                 },"qr_scans": {
                   Row: {
-                    "code": string,"created_at": string,"id": string,"lang": Database["public"]['Enums']["lang"] | null,"lat": number | null,"lng": number | null,"scanned_at": string,"session_hash": string
+                    "client_key": string | null,"code": string,"created_at": string,"id": string,"lang": Database["public"]['Enums']["lang"] | null,"lat": number | null,"lng": number | null,"scanned_at": string,"session_hash": string
                   }
                   ComputedFields: never
                   Insert: {
-                    "code": string,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"] | null,"lat"?: number | null,"lng"?: number | null,"scanned_at"?: string,"session_hash": string
+                    "client_key"?: string | null,"code": string,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"] | null,"lat"?: number | null,"lng"?: number | null,"scanned_at"?: string,"session_hash": string
                   }
                   Update: {
-                    "code"?: string,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"] | null,"lat"?: number | null,"lng"?: number | null,"scanned_at"?: string,"session_hash"?: string
+                    "client_key"?: string | null,"code"?: string,"created_at"?: string,"id"?: string,"lang"?: Database["public"]['Enums']["lang"] | null,"lat"?: number | null,"lng"?: number | null,"scanned_at"?: string,"session_hash"?: string
                   }
                   Relationships: [
                     {
@@ -1756,7 +1756,7 @@ isOneToOne: false
             }[]
                            },
 "qr_record_scan":
-{ Args: { "_code": string,"_lang"?: Database["public"]['Enums']["lang"],"_lat"?: number,"_lng"?: number,"_session_hash": string }; Returns: undefined
+{ Args: { "_client_key"?: string,"_code": string,"_lang"?: Database["public"]['Enums']["lang"],"_lat"?: number,"_lng"?: number,"_session_hash": string }; Returns: undefined
                            },
 "qr_verify_visit":
 { Args: { "_code": string,"_lat": number,"_lng": number }; Returns: {
@@ -1765,6 +1765,9 @@ isOneToOne: false
                            },
 "rate_take":
 { Args: { "_key": string,"_limit": number,"_window_s": number }; Returns: boolean
+                           },
+"record_dwell":
+{ Args: { "_anon_id": string,"_arrived": string,"_left": string,"_place": string,"_user": string }; Returns: undefined
                            },
 "redeem_trip_invite":
 { Args: { "_token": string }; Returns: string

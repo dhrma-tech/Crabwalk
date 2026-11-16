@@ -10,12 +10,16 @@ if (existsSync('../../.env')) process.loadEnvFile('../../.env');
 const local = process.env.E2E_SUPABASE === 'local';
 let url = process.env.SUPABASE_URL ?? 'http://127.0.0.1:54321';
 let key = process.env.SUPABASE_ANON_KEY ?? 'e2e-placeholder';
+let serviceKey = '';
 if (local) {
 	const s = JSON.parse(
 		execSync('pnpm exec supabase status -o json', { cwd: '../..', encoding: 'utf8' })
 	);
 	url = s.API_URL;
 	key = s.ANON_KEY;
+	// Hardening 2026-11: the limiter, scans, reports and visit checks run through the service-role client.
+	// This is the local stack's well-known dev key, never a hosted one.
+	serviceKey = s.SERVICE_ROLE_KEY;
 }
 // A preview left on :4173 by an earlier run would be reused and test an old build: stop it first (main process only).
 if (!process.env.CI && !process.env.TEST_WORKER_INDEX)
@@ -50,7 +54,7 @@ export default defineConfig({
 		{
 			// Local stack: Crabby runs on the scripted mock provider (DECISIONS P8-2) — no real LLM calls; the group chat
 			// signing key is the dev value seeded into Vault (supabase/seed/seed.sql).
-			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''}${local ? ' -b AI_PROVIDER=mock -b CRABBY_SIGNING_KEY=local-dev-crabby-key' : ''}`,
+			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''} -b RATE_LIMIT_SALT=e2e-only-salt${local ? ` -b AI_PROVIDER=mock -b CRABBY_SIGNING_KEY=local-dev-crabby-key -b SUPABASE_SERVICE_ROLE_KEY=${serviceKey}` : ''}`,
 			url: 'http://localhost:4173',
 			timeout: 180_000,
 			reuseExistingServer: false

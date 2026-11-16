@@ -4,6 +4,8 @@ import { SUPABASE_URL } from '$app/env/public';
 import { qrCsp, renderQrMissing, renderQrPage } from '#lib/qr/page.ts';
 import { CODE_RE, SESSION_COOKIE, resolveQr, sessionHash } from '#lib/server/qr.ts';
 import type { Lang } from '#lib/server/listings.ts';
+import { clientKey } from '#lib/server/rate.ts';
+import { serviceClient } from '#lib/server/service.ts';
 import type { RequestHandler } from './$types';
 
 let csp: Promise<string> | undefined;
@@ -22,7 +24,8 @@ const html = async (body: string, status = 200) =>
 
 // GET /q/:code (BACKEND §9): permanent short URL → standalone scan page with entity data inlined.
 // Content comes from the listing, so editing it never needs a reprint. Station/bus-stand codes → /start.
-export const GET: RequestHandler = async ({ params, locals, cookies, url }) => {
+export const GET: RequestHandler = async (event) => {
+	const { params, locals, cookies, url } = event;
 	const lang = getLocale() as Lang;
 	const code = params.code.toUpperCase();
 	if (!CODE_RE.test(code)) return html(renderQrMissing(lang), 404);
@@ -42,12 +45,18 @@ export const GET: RequestHandler = async ({ params, locals, cookies, url }) => {
 	if (r.type === 'start') {
 		// No page here to run the scan beacon, so the redirect itself is the scan (no position).
 		const id = cookies.get(SESSION_COOKIE);
+		// Server-only RPC (SEC-04). A missing key or salt must never break a printed code: skip the scan.
 		if (id)
-			await locals.supabase.rpc('qr_record_scan', {
-				_code: code,
-				_session_hash: await sessionHash(id),
-				_lang: lang
-			});
+			try {
+				await serviceClient().rpc('qr_record_scan', {
+					_code: code,
+					_session_hash: await sessionHash(id),
+					_lang: lang,
+					_client_key: await clientKey(event, 'qr-scan')
+				});
+			} catch {
+				console.warn(JSON.stringify({ event: 'qr_scan_skipped', code }));
+			}
 		redirect(303, `/start?from=${code}`);
 	}
 

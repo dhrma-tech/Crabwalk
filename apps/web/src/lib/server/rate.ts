@@ -1,7 +1,10 @@
 // Per-client rate limits for write endpoints (P10, closes the P4-3 deferral; BACKEND §14).
 // Key = HMAC(salt, rule + client IP) so the DB never sees an IP. Fixed windows in public.rate_hits.
+// Hardening 2026-11 (SEC-06): the counter RPC is service-role only, the IP comes only from the platform
+// (never from a request header), and production refuses to run without RATE_LIMIT_SALT.
 import type { RequestEvent } from '@sveltejs/kit';
 import { RATE_LIMIT_SALT } from '$app/env/private';
+import { serviceClient } from './service.ts';
 
 export type Rule = {
 	name: string;
@@ -83,10 +86,18 @@ export const ruleFor = (method: string, url: URL) =>
 			r.method === method && r.path.test(url.pathname) && (!r.search || r.search.test(url.search))
 	);
 
-async function hmac(text: string) {
+// Checked on first use, not at import: the build prerenders through the hooks with no secrets bound.
+function salt() {
+	if (RATE_LIMIT_SALT) return RATE_LIMIT_SALT;
+	if (import.meta.env.PROD) throw new Error('RATE_LIMIT_SALT not set');
+	return 'dev-only-salt';
+}
+
+/** Hex HMAC-SHA256 keyed with RATE_LIMIT_SALT. Also signs the QR scan token and derives dwell ids. */
+export async function hmac(text: string) {
 	const key = await crypto.subtle.importKey(
 		'raw',
-		new TextEncoder().encode(RATE_LIMIT_SALT || 'dev-only-salt'),
+		new TextEncoder().encode(salt()),
 		{ name: 'HMAC', hash: 'SHA-256' },
 		false,
 		['sign']
@@ -100,29 +111,35 @@ export async function clientKey(
 	event: Pick<RequestEvent, 'request' | 'getClientAddress'>,
 	name: string
 ) {
-	const ip =
-		event.request.headers.get('cf-connecting-ip') ??
-		(() => {
-			try {
-				return event.getClientAddress();
-			} catch {
-				return 'unknown';
-			}
-		})();
+	// Only the platform's address (the Cloudflare adapter reads the trusted header itself). A client-sent
+	// cf-connecting-ip must never pick the key.
+	let ip = 'unknown';
+	try {
+		ip = event.getClientAddress();
+	} catch {
+		// prerender: no platform address
+	}
 	return hmac(`${name}:${ip}`);
 }
 
-/** True if allowed. Fails open (logs) if the counter is unreachable — never blocks people on our outage. */
+/** True if allowed. Fails open (one JSON log line) if the counter is unreachable — never blocks people on our outage. */
 export async function allowed(event: RequestEvent, rule: Rule) {
-	const { data, error } = await event.locals.supabase.rpc('rate_take', {
-		_key: await clientKey(event, rule.name),
-		// e2e builds sign in dozens of test users from one IP: same code path, 100× headroom.
-		_limit: import.meta.env.MODE === 'e2e' ? rule.limit * 100 : rule.limit,
-		_window_s: rule.windowS
-	});
-	if (error) {
-		console.warn('rate limit unavailable', error.message);
-		return true;
+	const _key = await clientKey(event, rule.name);
+	let reason: string;
+	try {
+		const { data, error } = await serviceClient().rpc('rate_take', {
+			_key,
+			// e2e builds sign in dozens of test users from one IP: same code path, 100× headroom.
+			_limit: import.meta.env.MODE === 'e2e' ? rule.limit * 100 : rule.limit,
+			_window_s: rule.windowS
+		});
+		if (!error) return data !== false;
+		reason = error.code || 'rpc';
+	} catch {
+		// No service-role key: normal in local dev, a misconfiguration in production.
+		if (!import.meta.env.PROD) return true;
+		reason = 'no-service-client';
 	}
-	return data !== false;
+	console.warn(JSON.stringify({ event: 'rate_fail_open', rule: rule.name, reason }));
+	return true;
 }

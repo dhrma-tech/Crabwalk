@@ -14,8 +14,8 @@ select is(
    from pg_proc p join pg_namespace n on n.oid = p.pronamespace
    where n.nspname = 'public' and p.prosecdef
      and has_function_privilege('anon', p.oid, 'execute')
-     and p.proname not in ('get_shared_trip', 'map_heatmap', 'qr_record_scan',
-                           'sub_score_summary', 'rate_take',
+     and p.proname not in ('get_shared_trip', 'map_heatmap', -- qr_record_scan, rate_take: server only (SEC-04/06)
+                           'sub_score_summary',
                            'trip_report_by_token', 'journal_by_token')), -- P12 share links
   '', 'anon can execute only the allowlisted security-definer functions');
 
@@ -23,14 +23,15 @@ select ok(not has_function_privilege('anon', 'public.ai_take_message()', 'execut
 select ok(not has_function_privilege('anon', 'public.qr_verify_visit(text, float8, float8)', 'execute'), 'anon cannot verify visits');
 select ok(not has_function_privilege('authenticated', 'public.refresh_patterns()', 'execute'), 'users cannot run the pattern job');
 
--- Rate limiter.
-set local role anon;
+-- Rate limiter (called by the web server with the service role since hardening 2026-11).
 select is(public.rate_take(repeat('a', 64), 2, 600), true, '1st call allowed');
 select is(public.rate_take(repeat('a', 64), 2, 600), true, '2nd call allowed');
 select is(public.rate_take(repeat('a', 64), 2, 600), false, '3rd call over the limit refused');
 select is(public.rate_take(repeat('b', 64), 2, 600), true, 'other clients unaffected');
 select throws_ok($$ select public.rate_take('203.0.113.7', 2, 600) $$, '22023', null, 'raw IPs are rejected as keys');
+set local role anon;
 select is((select count(*)::int from public.rate_hits), 0, 'clients cannot read counters');
+select throws_ok($$ select public.rate_take(repeat('c', 64), 2, 600) $$, '42501', null, 'clients cannot call the limiter');
 
 select * from finish();
 rollback;

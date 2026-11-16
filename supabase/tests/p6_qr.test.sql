@@ -61,10 +61,14 @@ select throws_ok($$ select public.create_qr_code('station', (select fuel from id
 select throws_ok($$ delete from public.qr_codes where code = (select code from codes where k = 'eat') $$, '42501', null, 'codes cannot be deleted, even by admins');
 
 -- ------------------------------------------------ scans
+-- Hardening 2026-11 (SEC-04): scans are recorded by the web server (service role) only.
 select pg_temp.anon();
-select lives_ok($$ select public.qr_record_scan((select code from codes where k = 'place'), repeat('ab', 32), 'en', null, null) $$, 'anon can record a scan');
+select throws_ok($$ select public.qr_record_scan((select code from codes where k = 'place'), repeat('ab', 32), 'en', null, null) $$, '42501', null, 'anon cannot record a scan directly');
+select pg_temp.root();
+select lives_ok($$ select public.qr_record_scan((select code from codes where k = 'place'), repeat('ab', 32), 'en', null, null) $$, 'the server records a scan');
 select public.qr_record_scan((select code from codes where k = 'place'), repeat('ab', 32), 'en', null, null);
 select throws_ok($$ select public.qr_record_scan((select code from codes where k = 'place'), 'not-a-hash', 'en', null, null) $$, '22023', null, 'session hash validated');
+select pg_temp.anon();
 select is((select count(*)::int from public.qr_scans), 0, 'qr_scans not readable by clients (RLS, no policies)');
 select pg_temp.root();
 select is((select count(*)::int from public.qr_scans where code = (select code from codes where k = 'place')), 1, 'same session within 10 min = one row');

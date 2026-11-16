@@ -56,12 +56,16 @@ select ok(not exists (select 1 from public.map_heatmap(80, 20, 80.2, 20.2) where
 
 -- ------------------------------------------------ dwell only with consent; revocable
 select pg_temp.login('00000000-0000-0000-0009-0000000000a1');
-select throws_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_at, left_at) select gen_random_uuid()::text, calm, now() - interval '1 hour', now() from ids $$, '42501', null, 'no dwell rows without consent');
+-- Hardening 2026-11 (SEC-04): rows arrive only through record_dwell (service role), which checks the consent.
+select pg_temp.root();
+select throws_ok($$ select public.record_dwell('00000000-0000-0000-0009-0000000000a1', (select calm from ids), gen_random_uuid()::text, now() - interval '1 hour', now()) $$, '42501', null, 'no dwell rows without consent');
 insert into public.consents (user_id, type, granted, granted_at) values ('00000000-0000-0000-0009-0000000000a1', 'dwell_time', true, now());
-select lives_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_at, left_at) select gen_random_uuid()::text, calm, now() - interval '1 hour', now() from ids $$, 'dwell accepted with consent');
-select throws_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_at) select 'user@example.com', calm, now() from ids $$, '23514', null, 'anon id must be a random uuid (no identifiers)');
+select lives_ok($$ select public.record_dwell('00000000-0000-0000-0009-0000000000a1', (select calm from ids), gen_random_uuid()::text, now() - interval '1 hour', now()) $$, 'dwell accepted with consent');
+select throws_ok($$ select public.record_dwell('00000000-0000-0000-0009-0000000000a1', (select calm from ids), 'user@example.com', now() - interval '1 hour', now()) $$, '23514', null, 'anon id must be a random uuid (no identifiers)');
 update public.consents set granted = false, revoked_at = now() where user_id = '00000000-0000-0000-0009-0000000000a1' and type = 'dwell_time';
-select throws_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_at) select gen_random_uuid()::text, calm, now() from ids $$, '42501', null, 'revoked consent stops collection');
+select throws_ok($$ select public.record_dwell('00000000-0000-0000-0009-0000000000a1', (select calm from ids), gen_random_uuid()::text, now() - interval '1 hour', now()) $$, '42501', null, 'revoked consent stops collection');
+select pg_temp.login('00000000-0000-0000-0009-0000000000a1');
+select throws_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_at) select gen_random_uuid()::text, calm, now() from ids $$, '42501', null, 'no direct inserts');
 select is((select count(*)::int from public.dwell_events), 0, 'users cannot read dwell rows');
 
 -- ------------------------------------------------ push only with consent; revoke removes subscriptions
