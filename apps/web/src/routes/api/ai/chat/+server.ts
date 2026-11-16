@@ -28,6 +28,9 @@ export const POST: RequestHandler = async (event) => {
 	const { user } = await session(event);
 	const b = body.safeParse(await event.request.json().catch(() => null));
 	if (!b.success) error(400, 'bad request');
+	// SEC-11: guests get shorter messages and fewer tool rounds.
+	const guest = !!user.is_anonymous;
+	if (guest && b.data.message.length > 500) error(400, 'message too long');
 	const r = await crabbyTurn(
 		event.locals.supabase,
 		user.id,
@@ -35,7 +38,8 @@ export const POST: RequestHandler = async (event) => {
 		b.data.message,
 		b.data.history,
 		b.data.path,
-		b.data.spot
+		b.data.spot,
+		guest
 	);
 	return json(r, { status: r.kind === 'limit' ? 429 : 200 });
 };

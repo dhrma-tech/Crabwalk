@@ -10,8 +10,13 @@ import { guestGate } from '#lib/server/guest.ts';
 import { tempGate } from '#lib/server/gate.ts';
 import { paraglideMiddleware } from '#lib/paraglide/server.js';
 import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
-import { allowed, ruleFor } from '#lib/server/rate.ts';
+import { allowed, rulesFor } from '#lib/server/rate.ts';
+import { takeAiBudget } from '#lib/server/aiBudget.ts';
+import { setBudget } from '#lib/server/ai/router.ts';
 import { isPrivatePath } from '#lib/seo.ts';
+
+// SEC-11: every model call first takes from the global daily budget (and respects the kill switch).
+setBudget(takeAiBudget);
 
 const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
@@ -54,12 +59,12 @@ const shell: Handle = ({ event, resolve }) =>
 
 // P10: per-client limits on write endpoints (429 with Retry-After), then security headers on every response.
 const limits: Handle = async ({ event, resolve }) => {
-	const rule = ruleFor(event.request.method, event.url);
-	if (rule && !(await allowed(event, rule)))
-		return new Response(JSON.stringify({ message: 'too many requests' }), {
-			status: 429,
-			headers: { 'Content-Type': 'application/json', 'Retry-After': String(rule.windowS) }
-		});
+	for (const rule of rulesFor(event.request.method, event.url))
+		if (!(await allowed(event, rule)))
+			return new Response(JSON.stringify({ message: 'too many requests' }), {
+				status: 429,
+				headers: { 'Content-Type': 'application/json', 'Retry-After': String(rule.windowS) }
+			});
 	const res = await resolve(event);
 	const h = res.headers;
 	h.set('X-Content-Type-Options', 'nosniff');

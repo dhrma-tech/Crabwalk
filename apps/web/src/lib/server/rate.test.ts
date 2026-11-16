@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { clientKey, ruleFor } from './rate.ts';
+import { clientKey, rulesFor } from './rate.ts';
+
+const ruleFor = (method: string, url: URL) => rulesFor(method, url)[0];
 
 const u = (p: string) => new URL(`https://x.test${p}`);
 
@@ -13,6 +15,13 @@ describe('rate-limit rules (P10)', () => {
 		expect(ruleFor('POST', u('/api/trips/plan'))?.name).toBe('plan');
 		expect(ruleFor('POST', u('/api/ai/chat'))?.name).toBe('ai');
 		expect(ruleFor('POST', u('/login?/sendCode'))?.name).toBe('login-code');
+	});
+	it('AI endpoints have a 10-minute and a daily window (SEC-11)', () => {
+		expect(rulesFor('POST', u('/api/ai/chat')).map((r) => [r.name, r.limit, r.windowS])).toEqual([
+			['ai', 40, 600],
+			['ai-day', 150, 86400]
+		]);
+		expect(rulesFor('POST', u('/api/reports'))).toHaveLength(1);
 	});
 	it('keys clients by the platform address only: a spoofed cf-connecting-ip changes nothing (SEC-06)', async () => {
 		const ev = (addr: string, spoof?: string) => ({

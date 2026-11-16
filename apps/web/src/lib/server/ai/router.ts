@@ -21,6 +21,16 @@ import { scrubMessages } from './scrub.ts';
 /** Every payload leaving the server passes through here (tests inspect it via `onPayload`). */
 export const audit: { onPayload?: (provider: string, req: ChatRequest) => void } = {};
 
+/**
+ * Global daily budget + kill switch (SEC-11), handed in by hooks.server.ts (lib/server/aiBudget.ts): AI code
+ * never imports the service client. Asked before every real provider call; not set = refused.
+ */
+let budget: (() => Promise<boolean>) | undefined;
+export const setBudget = (fn: (() => Promise<boolean>) | undefined) => {
+	budget = fn;
+};
+class BudgetError extends ProviderError {}
+
 export type Task = 'intent' | 'explain' | 'draft' | 'vision';
 type Link = { provider: Provider; model: string };
 
@@ -51,7 +61,9 @@ export function chain(task: Task): Link[] {
 }
 
 const retryable = (e: unknown) =>
-	e instanceof ProviderError && (e.status === 429 || e.status === 0 || e.status >= 500);
+	e instanceof ProviderError &&
+	!(e instanceof BudgetError) &&
+	(e.status === 429 || e.status === 0 || e.status >= 500);
 
 /** Runs the request down the chain; throws the last error when every link fails. */
 export async function route(
@@ -61,6 +73,9 @@ export async function route(
 	let last: unknown = new Error('no providers');
 	for (const l of links) {
 		try {
+			// Budget first: a refused call sends nothing and is not retried on the next link.
+			if (l.provider !== mock && !(await budget?.().catch(() => false)))
+				throw new BudgetError('budget', 429, 'ai budget');
 			// Last guard: no phone numbers / coordinates in any payload (CLAUDE.md §2).
 			const safe: ChatRequest = { ...req, model: l.model, messages: scrubMessages(req.messages) };
 			audit.onPayload?.(l.provider.name, safe);

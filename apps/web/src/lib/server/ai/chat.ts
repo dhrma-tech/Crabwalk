@@ -14,9 +14,10 @@ import type { Question } from '#lib/questions.ts';
 import { learnFromChat, loadProfile, profileSummary, refreshProfile } from '../profile.ts';
 import { personaRules, type Persona } from './persona.ts';
 import { spotContext, todaysTrip } from './spot.ts';
+import { CONTEXT_RULE, contextBlock, type Turn } from './context.ts';
 
 type DB = SupabaseClient<Database>;
-export type Turn = { role: 'user' | 'assistant'; content: string };
+export type { Turn };
 export type ChatReply =
 	| { kind: 'emergency' }
 	| { kind: 'limit' }
@@ -40,6 +41,8 @@ const LANG_NAME: Record<Lang, string> = {
 	mr: 'Marathi (Devanagari)'
 };
 const MAX_TOOL_ROUNDS = 4;
+// Guests (anonymous sessions) get a shorter turn (SEC-11).
+const GUEST_TOOL_ROUNDS = 2;
 
 const MODERATION = `You screen messages sent to a travel assistant for the Konkan coast (India).
 Reply ONLY with JSON {"safe": true|false}. Unsafe = sexual content, hate, harassment, self-harm instructions,
@@ -65,6 +68,7 @@ RULES — follow strictly:
 - When the user's message answers a card ("Header: choice" lines), use those answers. For "Let Crabby decide",
   choose and say which option you picked and why (build_plan: list it in crabby_decides).
 - Never joke about safety. For emergencies tell the user to call 112.
+- ${CONTEXT_RULE}
 What the user told Crabby about themselves (defaults only — what they say now wins):
 ${prefs}`;
 
@@ -82,6 +86,7 @@ If CRABBY CHOSE lists choices, say what you picked and why.
 Results from team_answers were checked by our local team: use them, say they come from our team and give the date.
 If an ask_team preview was proposed, say you don't know yet and can ask our team (usually within a day).
 Every plan stop you mention gets a short reason from the results. No jokes on safety topics.
+${CONTEXT_RULE}
 Keep it under 120 words. No markdown tables.`;
 
 /** Drive steps the allowlist refused, for the explanation ("I can't open that"). */
@@ -112,7 +117,9 @@ export async function crabbyTurn(
 	history: Turn[],
 	path: string | null = null,
 	/** QR code of the spot the user scanned (10.3): Crabby starts from that place's facts. */
-	spot: string | null = null
+	spot: string | null = null,
+	/** Anonymous session: fewer tool rounds (the endpoint also caps the message length). */
+	anonymous = false
 ): Promise<ChatReply> {
 	// Second guard (the browser already checked): no LLM call at all.
 	if (isEmergency(message)) return { kind: 'emergency' };
@@ -133,7 +140,8 @@ export async function crabbyTurn(
 			json: true,
 			maxTokens: 20
 		});
-		if (/"safe"\s*:\s*false/.test(mod.content)) return { kind: 'refused', remaining };
+		// Fail closed (SEC-11): anything but an explicit "safe": true is refused.
+		if (!/"safe"\s*:\s*true/.test(mod.content)) return { kind: 'refused', remaining };
 
 		// Profile (10.7): a short summary of the visible lines, refreshed once a day; never raw activity.
 		let profile = await loadProfile(db, userId);
@@ -158,7 +166,7 @@ export async function crabbyTurn(
 				role: 'system',
 				content: system(lang, prefs, path?.replace(/[0-9a-f-]{36}/g, ':id') ?? null)
 			},
-			...history.slice(-6).map((h) => ({ role: h.role, content: h.content.slice(0, 600) })),
+			...contextBlock(history, 6),
 			{ role: 'user', content: message }
 		];
 		const results: { tool: string; result: unknown }[] = [];
@@ -184,7 +192,8 @@ export async function crabbyTurn(
 				content: `The user is at ${at.name} right now (they scanned its QR code; ${at.kind} slug "${at.slug}"). Use that slug with get_conditions / nearby. Facts: ${JSON.stringify(results[0]!.result).slice(0, 3000)}`
 			});
 		}
-		for (let round = 0; round < MAX_TOOL_ROUNDS; round++) {
+		const rounds = anonymous ? GUEST_TOOL_ROUNDS : MAX_TOOL_ROUNDS;
+		for (let round = 0; round < rounds; round++) {
 			const r = await route(chain('intent'), { messages: convo, tools: TOOL_DEFS, maxTokens: 400 });
 			if (!r.tool_calls.length) break;
 			convo.push({ role: 'assistant', content: r.content, tool_calls: r.tool_calls });
@@ -228,7 +237,7 @@ export async function crabbyTurn(
 		const final = await route(chain('explain'), {
 			messages: [
 				{ role: 'system', content: explainSystem(lang, profile?.persona ?? 'playful') },
-				...history.slice(-4).map((h) => ({ role: h.role, content: h.content.slice(0, 600) })),
+				...contextBlock(history, 4),
 				{ role: 'user', content: message },
 				{
 					role: 'system',

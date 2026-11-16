@@ -421,6 +421,8 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 - Hardening 2026-11: a build started from a lower-case drive path (`e:/CODEBASE/…`, VS Code's default cwd) is broken in the browser — SvelteKit 3.1.0 bundles its `payload.js` twice and the public env is undefined on every page. Build and run e2e from `E:/CODEBASE/…`. Details in `docs/audit/IMPLEMENTATION_LOG.md`. Not fixed (tooling).
 - `e2e/p7.test.ts` "generate…" is stale since `52eaab8` (one-screen trip setup; the test still clicks the wizard's "Next"). Fails on its own; its two serial followers do not run. Not fixed (outside the hardening pass).
 
+- Hardening 2026-11: the local database was reset to seed data (migrations for T0-01…T0-06); the cleaned local listings are gone from the local stack (still on hosted and in `backups/2026-11-06…`). `e2e/p12.test.ts` C, F and G need data a fresh database lacks (OSM stations, a QR code on a published place, two beaches). Details in `docs/audit/IMPLEMENTATION_LOG.md`.
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|

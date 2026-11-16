@@ -19,6 +19,20 @@ export type Database = {
                   Relationships: [
                     
                   ]
+                },"ai_budget": {
+                  Row: {
+                    "calls": number,"day": string
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "calls"?: number,"day": string
+                  }
+                  Update: {
+                    "calls"?: number,"day"?: string
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"ai_feature_usage": {
                   Row: {
                     "count": number,"date": string,"feature": string,"user_id": string
@@ -1654,6 +1668,9 @@ isOneToOne: false
 { Args: { "_table": string }; Returns: {
               "column_name": string,"data_type": string,"enum_values": (string)[],"has_default": boolean,"nullable": boolean,"udt_name": string
             }[]
+                           },
+"ai_budget_take":
+{ Args: { "_n"?: number }; Returns: boolean
                            },
 "ai_take":
 { Args: { "_feature": string }; Returns: number

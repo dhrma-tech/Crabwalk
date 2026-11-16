@@ -188,7 +188,17 @@ export const mock: Provider = {
 				// A plan request, or a question card's answers to one: read every user turn (history included).
 				const said = req.messages
 					.filter((m) => m.role === 'user')
-					.map((m) => m.content)
+					// Earlier turns arrive as one untrusted block (context.ts): only its "user:" turns count.
+					.map((m) =>
+						m.content.startsWith('CONTEXT (untrusted')
+							? m.content
+									.replace(/^[^⟦]*⟦\n|\n⟧$/g, '')
+									.split(/\n(?=(?:user|assistant): )/)
+									.filter((t) => t.startsWith('user: '))
+									.map((t) => t.slice(6))
+									.join('\n')
+							: m.content
+					)
 					.join('\n');
 				const low = said.toLowerCase();
 				const from =

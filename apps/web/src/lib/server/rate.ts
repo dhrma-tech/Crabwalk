@@ -56,6 +56,8 @@ export const RULES: Rule[] = [
 	{ name: 'stay-request', method: 'POST', path: /^\/api\/requests$/, limit: 20, windowS: 3600 },
 	{ name: 'trip-edit', method: 'PATCH', path: /^\/api\/trips\/[^/]+$/, limit: 120, windowS: 600 },
 	{ name: 'ai', method: 'POST', path: /^\/api\/ai\//, limit: 40, windowS: 600 },
+	// SEC-11: the 10-minute rule alone allows 5,760 AI requests a day from one network.
+	{ name: 'ai-day', method: 'POST', path: /^\/api\/ai\//, limit: 150, windowS: 86400 },
 	{
 		name: 'rating',
 		method: 'POST',
@@ -80,8 +82,9 @@ export const RULES: Rule[] = [
 	}
 ];
 
-export const ruleFor = (method: string, url: URL) =>
-	RULES.find(
+/** Every rule that covers the request (an endpoint can have a short and a daily window). */
+export const rulesFor = (method: string, url: URL) =>
+	RULES.filter(
 		(r) =>
 			r.method === method && r.path.test(url.pathname) && (!r.search || r.search.test(url.search))
 	);
