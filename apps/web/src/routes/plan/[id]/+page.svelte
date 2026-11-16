@@ -432,12 +432,11 @@
 		const email = inviteEmail.trim();
 		const r = await call({ op: 'invite.email', email, role: inviteRole });
 		if (!r) return;
-		if (r.added) {
-			toast(m.plan_invite_added({ email }));
-			inviteEmail = '';
-			await invalidateAll();
-			return;
-		}
+		// SEC-07: the server never says whether the address has an account, so both cases get the same answer and
+		// the invite link goes out by email either way.
+		toast(m.plan_invite_sent({ email }));
+		inviteEmail = '';
+		void invalidateAll();
 		const url = await inviteLink(inviteRole);
 		if (!url) return;
 		const q = (s: string) => encodeURIComponent(s);

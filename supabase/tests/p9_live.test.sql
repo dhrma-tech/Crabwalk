@@ -69,9 +69,9 @@ select throws_ok($$ insert into public.dwell_events (anon_id, place_id, arrived_
 select is((select count(*)::int from public.dwell_events), 0, 'users cannot read dwell rows');
 
 -- ------------------------------------------------ push only with consent; revoke removes subscriptions
-select throws_ok($$ insert into public.push_subscriptions (user_id, endpoint, p256dh, auth) values ('00000000-0000-0000-0009-0000000000a1', 'https://push.example/1', 'k', 'a') $$, '42501', null, 'no subscription without push consent');
+select throws_ok($$ insert into public.push_subscriptions (user_id, endpoint, p256dh, auth) values ('00000000-0000-0000-0009-0000000000a1', 'https://fcm.googleapis.com/fcm/send/p9-1', 'k', 'a') $$, '42501', null, 'no subscription without push consent');
 insert into public.consents (user_id, type, granted, granted_at) values ('00000000-0000-0000-0009-0000000000a1', 'push', true, now());
-insert into public.push_subscriptions (user_id, endpoint, p256dh, auth) values ('00000000-0000-0000-0009-0000000000a1', 'https://push.example/1', 'k', 'a');
+insert into public.push_subscriptions (user_id, endpoint, p256dh, auth) values ('00000000-0000-0000-0009-0000000000a1', 'https://fcm.googleapis.com/fcm/send/p9-1', 'k', 'a');
 select is((select count(*)::int from public.push_subscriptions), 1, 'subscribed after consent');
 update public.consents set granted = false, revoked_at = now() where user_id = '00000000-0000-0000-0009-0000000000a1' and type = 'push';
 select is((select count(*)::int from public.push_subscriptions), 0, 'revoking push consent deletes subscriptions');

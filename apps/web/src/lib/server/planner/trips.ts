@@ -541,16 +541,30 @@ async function recost(
 }
 
 /** One Google Maps link set per day (≤ 10 points each), starting from the day's start point. */
-export function dayLinks(start: Pt, days: { pts: Pt[] }[]) {
+/** Google Maps links per day. Without a start point (shared trips, SEC-17) day 1 starts at its first stop. */
+export function dayLinks(start: Pt | null, days: { pts: Pt[] }[]) {
 	let from = start;
 	return days.map((d) => {
-		const links = d.pts.length ? gmapsLinks([from, ...d.pts]) : [];
+		const links = d.pts.length ? gmapsLinks(from ? [from, ...d.pts] : d.pts) : [];
 		from = d.pts.at(-1) ?? from;
 		return links;
 	});
 }
 
 type TripRow = Database['public']['Tables']['trips']['Row'];
+
+/** What get_shared_trip / get_route_for_review return for the trip (SEC-17): the start point as a label only. */
+export type SharedTrip = Pick<
+	TripRow,
+	'id' | 'title' | 'days' | 'pace' | 'start_date' | 'status' | 'group_type'
+> & { start_label: string | null };
+/** A shared trip in the shape tripView takes. */
+export const fromShared = (t: SharedTrip) => ({
+	...t,
+	start_point: t.start_label ? { label: t.start_label } : null,
+	is_ready_made: false,
+	slug: null
+});
 type BudgetRow = Database['public']['Tables']['trip_budget']['Row'];
 
 const hhmm = (iso: string | null) =>
@@ -565,7 +579,19 @@ const hhmm = (iso: string | null) =>
 /** Everything the plan view needs: day tabs, timeline, Maps links, budget (owner, share, itinerary). */
 export async function tripView(
 	db: DB,
-	trip: Omit<TripRow, 'owner_id' | 'share_token'> & { share_token?: string | null },
+	trip: Pick<
+		TripRow,
+		| 'id'
+		| 'title'
+		| 'days'
+		| 'start_date'
+		| 'start_point'
+		| 'pace'
+		| 'group_type'
+		| 'status'
+		| 'is_ready_made'
+		| 'slug'
+	>,
 	stops: StopRow[],
 	budget: BudgetRow | null,
 	lang: Lang
@@ -595,8 +621,12 @@ export async function tripView(
 			pts: list.map((s) => info.get(s.entity_id)?.pt).filter((p): p is Pt => !!p)
 		};
 	});
-	const start = trip.start_point as (Pt & { label: string }) | null;
-	const links = start ? dayLinks(start, days) : days.map(() => []);
+	const start = trip.start_point as (Partial<Pt> & { label?: string }) | null;
+	const pt =
+		typeof start?.lon === 'number' && typeof start.lat === 'number'
+			? { lon: start.lon, lat: start.lat }
+			: null;
+	const links = dayLinks(pt, days);
 	const total = budget
 		? budget.stay + budget.food + budget.fuel + budget.entry + budget.activities
 		: null;

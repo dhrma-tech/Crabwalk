@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { Constants } from '#lib/db.types.ts';
 import { requireStaff } from '#lib/server/auth.ts';
+import { serviceClient } from '#lib/server/service.ts';
 import { tr, type Lang } from '#lib/server/listings.ts';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -43,7 +44,12 @@ export const load: PageServerLoad = async (event) => {
 		? (event.url.searchParams.get('type') as QrType)
 		: 'place';
 	const [{ data: codes }, options] = await Promise.all([
-		db.from('qr_codes').select('*, sponsors(name)').order('code', { ascending: false }).limit(500),
+		// Permission notes and install dates are not readable with a user session (SEC-19); admin checked above.
+		serviceClient()
+			.from('qr_codes')
+			.select('*, sponsors(name)')
+			.order('code', { ascending: false })
+			.limit(500),
 		targets(db, type, lang)
 	]);
 	const names = new Map<string, string>();

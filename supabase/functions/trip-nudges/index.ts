@@ -5,6 +5,10 @@
 import webpush from 'npm:web-push@3.6.7';
 import { admin, authorized, json } from '../_shared/cron.ts';
 
+// SEC-13: only ever send to the browsers' push services (also a DB constraint on push_subscriptions).
+const PUSH_HOST =
+	/^https:\/\/([a-z0-9-]+\.)*(fcm\.googleapis\.com|push\.services\.mozilla\.com|notify\.windows\.com|push\.apple\.com)\//;
+
 const TEXT = {
 	en: (p: string, t: string) => ({ title: `Time to head to ${p}`, body: `Leave by ${t} to stay on plan.` }),
 	hi: (p: string, t: string) => ({ title: `${p} के लिए निकलने का समय`, body: `प्लान पर रहने के लिए ${t} तक निकलें।` }),
@@ -76,7 +80,7 @@ Deno.serve(async (req) => {
 			const lang = (prof?.language ?? 'en') as keyof typeof TEXT;
 			const name = (names ?? []).find((n) => n.lang === lang)?.name ?? (names ?? []).find((n) => n.lang === 'en')?.name ?? '';
 			const msg = (TEXT[lang] ?? TEXT.en)(name, istClock(s.depart_at!));
-			for (const sub of subs ?? []) {
+			for (const sub of (subs ?? []).filter((x) => PUSH_HOST.test(x.endpoint))) {
 				try {
 					await webpush.sendNotification(
 						{ endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
@@ -107,7 +111,7 @@ Deno.serve(async (req) => {
 		]);
 		const lang = (prof?.language ?? 'en') as keyof typeof QUEUED;
 		const text = (QUEUED[lang] ?? QUEUED.en)[q.kind as Kind]((q.params ?? {}) as Record<string, unknown>);
-		for (const sub of subs ?? []) {
+		for (const sub of (subs ?? []).filter((x) => PUSH_HOST.test(x.endpoint))) {
 			try {
 				await webpush.sendNotification(
 					{ endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },

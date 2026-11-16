@@ -35,8 +35,8 @@ select trip, '00000000-0000-0000-0011-0000000000a1', 'P11 trip', 2 from ids;
 -- ------------------------------------------------ owner row
 select is((select role::text from public.trip_members where trip_id = (select trip from ids)), 'owner',
   'creating a trip adds the owner as a tripmate');
-select is((select display_name from public.trip_members where trip_id = (select trip from ids)), 'p11owner',
-  'owner name falls back to the email local part');
+select is((select display_name from public.trip_members where trip_id = (select trip from ids)), 'Me',
+  'owner name is never taken from the email (SEC-07)');
 
 -- ------------------------------------------------ invite links
 insert into public.trip_invites (trip_id, role) select trip, 'editor' from ids;
@@ -131,8 +131,8 @@ select pg_temp.login('00000000-0000-0000-0011-0000000000a2');
 select throws_ok($$ select public.add_trip_member_by_email((select trip from ids), 'p11outsider@test.local', 'viewer') $$,
   '42501', null, 'only the owner invites by email');
 select pg_temp.login('00000000-0000-0000-0011-0000000000a1');
-select is(public.add_trip_member_by_email((select trip from ids), 'nobody@test.local', 'viewer'), false,
-  'unknown address: false (page opens the mail app)');
+select is(public.add_trip_member_by_email((select trip from ids), 'nobody@test.local', 'viewer'), true,
+  'unknown address: true too, so the answer tells nothing (SEC-07); the page opens the mail app');
 select is(public.add_trip_member_by_email((select trip from ids), ' P11Outsider@test.local ', 'editor'), true,
   'known address is added straight away');
 select is((select role::text from public.trip_members where user_id = '00000000-0000-0000-0011-0000000000a4'), 'editor',

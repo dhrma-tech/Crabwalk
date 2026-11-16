@@ -429,6 +429,8 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 
 - Hardening 2026-11 (SEC-08): new optional env `ADMIN_SESSION_EPOCH` (ms). Admin cookies issued before it stop working; set it to the current time to sign every admin out. The admin cookie now lasts 24 hours and is `__Host-cw_admin` on https. `docs/RESTORE_AUTH.md` should mention it when full auth returns (not edited: spec-like doc).
 
+- Hardening 2026-11 (SEC-07): a trip owner with no profile name now shows as "Me" in the member list, which other tripmates also see. The brief chose it; a better default needs a profile name prompt or per-viewer labels. Not changed.
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|

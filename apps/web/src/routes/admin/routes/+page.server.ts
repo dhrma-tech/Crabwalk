@@ -3,10 +3,10 @@ import { z } from 'zod';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { requireStaff } from '#lib/server/auth.ts';
 import type { Lang } from '#lib/server/listings.ts';
-import { tripView } from '#lib/server/planner/trips.ts';
+import { fromShared, tripView, type SharedTrip } from '#lib/server/planner/trips.ts';
 import type { Actions, PageServerLoad } from './$types';
 
-type Shared = { trip: Parameters<typeof tripView>[1]; stops: Parameters<typeof tripView>[2] };
+type Shared = { trip: SharedTrip; stops: Parameters<typeof tripView>[2] };
 
 // Custom routes: users submit, reviewers approve before they appear in /itineraries (PLAN P7 task 10).
 export const load: PageServerLoad = async (event) => {
@@ -25,7 +25,7 @@ export const load: PageServerLoad = async (event) => {
 			const d = data as Shared | null;
 			return {
 				trip_id: p.trip_id,
-				view: d ? await tripView(db, d.trip, d.stops, null, lang) : null
+				view: d ? await tripView(db, fromShared(d.trip), d.stops, null, lang) : null
 			};
 		})
 	);

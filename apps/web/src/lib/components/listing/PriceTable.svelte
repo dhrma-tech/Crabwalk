@@ -27,7 +27,7 @@
 						<td class="py-3 pr-4 text-right type-body-strong whitespace-nowrap">
 							{#if r.href}
 								<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- external booking link -->
-								<a href={r.href} target="_blank" rel="noopener sponsored"
+								<a href={r.href} target="_blank" rel="noopener noreferrer sponsored"
 									>{r.price ?? m.price_see()}</a
 								>
 							{:else}

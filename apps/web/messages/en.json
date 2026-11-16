@@ -595,7 +595,7 @@
 	"plan_role_editor": "Can edit",
 	"plan_role_viewer": "Can view",
 	"plan_invite_send": "Invite tripmate",
-	"plan_invite_added": "{email} is now a tripmate.",
+	"plan_invite_sent": "If {email} has an account, they're on the trip now. Your email app opens with the invite link too.",
 	"plan_invite_mail_subject": "Plan our trip with me on Crabwalk",
 	"plan_invite_mail_body": "Join me on \"{title}\": {link}",
 	"plan_tripmate_role": "{name}'s role",

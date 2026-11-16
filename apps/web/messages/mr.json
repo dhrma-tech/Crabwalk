@@ -595,7 +595,7 @@
 	"plan_role_editor": "बदलू शकतात",
 	"plan_role_viewer": "पाहू शकतात",
 	"plan_invite_send": "सोबती बोलवा",
-	"plan_invite_added": "{email} आता सोबती आहेत.",
+	"plan_invite_sent": "{email} यांचे खाते असल्यास ते आता या सहलीत आहेत. आमंत्रण लिंकसह तुमचे ईमेल ॲपही उघडेल.",
 	"plan_invite_mail_subject": "Crabwalk वर माझ्यासोबत सफर आखा",
 	"plan_invite_mail_body": "\"{title}\" मध्ये माझ्यासोबत या: {link}",
 	"plan_tripmate_role": "{name} यांची भूमिका",

@@ -3,8 +3,11 @@ import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
 import type { RequestHandler } from './$types';
 
+// Browsers' push services only (SEC-13); the same rule is a DB constraint and is checked again before sending.
+const PUSH_HOST =
+	/^https:\/\/([a-z0-9-]+\.)*(fcm\.googleapis\.com|push\.services\.mozilla\.com|notify\.windows\.com|push\.apple\.com)\//;
 const sub = z.object({
-	endpoint: z.url().max(1000),
+	endpoint: z.url().max(1000).regex(PUSH_HOST),
 	keys: z.object({ p256dh: z.string().max(200), auth: z.string().max(100) })
 });
 
@@ -31,7 +34,7 @@ export const POST: RequestHandler = async (event) => {
 		},
 		{ onConflict: 'endpoint' }
 	);
-	if (err) error(403, 'not saved');
+	if (err) error(err.code === '54000' ? 429 : 403, 'not saved');
 	return json({ ok: true }, { status: 201 });
 };
 

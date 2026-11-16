@@ -194,3 +194,20 @@ test('service worker: private pages are never cached; sign-out purges cached pag
 	await expect(page.goto('/me')).rejects.toThrow();
 	await ctx.close();
 });
+
+test('shared trip page and API: title and start label, no start coordinates (SEC-17)', async ({
+	request
+}) => {
+	const token = Date.now().toString(16).padStart(32, '0').slice(-32);
+	psql(
+		`insert into trips (owner_id, title, days, start_point, share_token)
+		 select id, 'Shared ${token}', 1, jsonb_build_object('label', 'Sea View Home', 'lon', 73.301234, 'lat', 16.991234), '${token}'
+		 from auth.users order by created_at limit 1`
+	);
+	const html = await (await request.get(`/plan/share/${token}`)).text();
+	expect(html).toContain(`Shared ${token}`);
+	expect(html).toContain('Sea View Home');
+	const api = await (await request.get(`/api/trips/share/${token}`)).text();
+	for (const body of [html, api]) expect(body).not.toMatch(/73\.3012|16\.9912/);
+	psql(`delete from trips where share_token = '${token}'`);
+});
