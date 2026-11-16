@@ -42,6 +42,13 @@ export function tripSync(tripId: string, reload: () => Promise<unknown>) {
 			/* storage full or blocked: the in-memory queue still syncs while the page is open */
 		}
 	}
+	// Offline, a data reload would fail and SvelteKit would fall back to a full page load, which shows the browser's
+	// offline page since private pages are not cached (SEC-09). Keep it for when the connection is back (flush).
+	async function reloadNow() {
+		if (!navigator.onLine) return void (dirty = true);
+		dirty = false;
+		await reload();
+	}
 	async function pump() {
 		if (busy) return;
 		busy = true;
@@ -65,10 +72,7 @@ export function tripSync(tripId: string, reload: () => Promise<unknown>) {
 			else toast(m.send_failed());
 		}
 		busy = false;
-		if (dirty) {
-			dirty = false;
-			await reload();
-		}
+		if (dirty) await reloadNow();
 	}
 	function enqueue(...reqs: Req[]) {
 		outbox.push(...reqs);
@@ -119,7 +123,7 @@ export function tripSync(tripId: string, reload: () => Promise<unknown>) {
 		/** Someone else changed the trip (realtime): reload now, or after our own queued edits land. */
 		refresh() {
 			if (busy || outbox.length) dirty = true;
-			else void reload();
+			else void reloadNow();
 		},
 		/** Replay what was queued offline (page open, connection back). */
 		flush: () => void pump()
