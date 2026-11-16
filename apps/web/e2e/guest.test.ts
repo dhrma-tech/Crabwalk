@@ -1,0 +1,63 @@
+import { expect, test } from '@playwright/test';
+import { psql } from './helpers.ts';
+
+// Temp access gate (AUTH_MODE=temp_email_gate) after hardening 2026-11 (SEC-02): page views create no account;
+// the browser creates the guest session on the first action that needs one. Runs against the second preview
+// server (playwright.config.ts, port 4175).
+test.skip(process.env.E2E_SUPABASE !== 'local', 'needs E2E_SUPABASE=local');
+test.use({ baseURL: 'http://localhost:4175' });
+// One at a time: the first test counts anonymous users, and the others create them.
+test.describe.configure({ mode: 'serial' });
+
+const authCookies = async (page: import('@playwright/test').Page) =>
+	(await page.context().cookies()).filter((c) => c.name.includes('-auth-token'));
+const card = (page: import('@playwright/test').Page, name: string) =>
+	page.locator('article', { has: page.getByRole('heading', { name, exact: true }) });
+
+test('a cookieless page view sets no Supabase auth cookie and creates no user', async ({
+	page
+}) => {
+	const before = psql('select count(*) from auth.users where is_anonymous');
+	await page.goto('/');
+	await page.waitForLoadState('networkidle');
+	await page.goto('/stays');
+	await page.waitForLoadState('networkidle');
+	expect(await authCookies(page)).toEqual([]);
+	expect(psql('select count(*) from auth.users where is_anonymous')).toBe(before);
+	expect((await page.request.get('/api/saved')).status()).toBe(401);
+});
+
+test('first heart tap on a fresh profile ends with the item saved', async ({ page }) => {
+	await page.goto('/stays');
+	await page.waitForLoadState('networkidle'); // hydrated: the heart is a JS button
+	const heart = card(page, 'Seed Stay 1').getByRole('button', { name: /^Save/ });
+	await heart.click();
+	await expect(heart).toHaveAttribute('aria-pressed', 'true');
+	expect((await authCookies(page)).length).toBeGreaterThan(0);
+	await expect(page).toHaveURL(/\/stays$/); // no sign-in detour
+	// The heart turns on optimistically; the save lands a moment later.
+	await expect
+		.poll(async () => (await page.request.get('/api/saved')).json())
+		.toEqual([{ type: 'stay', slug: 'seed-stay-1' }]);
+});
+
+test('a page that needs a session goes through /guest and comes back', async ({ page }) => {
+	await page.goto('/plan/new');
+	// /plan/new → /guest?next=/plan/new → guest session → /plan/new → the new trip's workspace.
+	await expect(page).toHaveURL(/\/plan\/[0-9a-f-]{36}$/, { timeout: 30_000 });
+	expect((await authCookies(page)).length).toBeGreaterThan(0);
+});
+
+test('"Continue as guest" unlocks the vote in place; /guest rejects off-site next', async ({
+	page
+}) => {
+	await page.goto('/place/seed-fort-1');
+	await page.waitForLoadState('networkidle');
+	const vote = page.getByTestId('verdict-vote');
+	await vote.getByTestId('guest-continue').click();
+	await expect(vote.getByTestId('guest-continue')).toHaveCount(0);
+	await expect(page).toHaveURL(/\/place\/seed-fort-1$/);
+	// Already signed in: /guest just forwards, and only to a same-origin path.
+	await page.goto('/guest?next=//evil.example/x');
+	await expect(page).toHaveURL('http://localhost:4175/');
+});

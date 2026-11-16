@@ -8,6 +8,7 @@ export const PRIVATE_PREFIXES = [
 	'/trip/',
 	'/me',
 	'/login',
+	'/guest',
 	'/auth/',
 	'/q/',
 	'/crabby',

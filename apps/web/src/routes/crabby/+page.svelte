@@ -4,11 +4,10 @@
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import { m } from '#lib/paraglide/messages.js';
 	import TopBar from '#lib/components/TopBar.svelte';
-	import Button from '#lib/components/Button.svelte';
 	import CrabbyChat from '#lib/components/crabby/CrabbyChat.svelte';
 	import { ask, crabby } from '#lib/crabby.svelte.ts';
 	import Meta from '#lib/components/Meta.svelte';
-	import { loginHref } from '#lib/login.ts';
+	import SignInButton from '#lib/components/SignInButton.svelte';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.13 / §6.7. ?ask= sends a prompt chip picked elsewhere (place page bubble). ?spot=<QR code>
@@ -64,7 +63,7 @@
 			{/if}
 			<div class="flex flex-col items-center gap-3 rounded-xl bg-surface-2 p-5 text-center">
 				<p class="type-body-strong">{m.spot_signin()}</p>
-				<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
+				<SignInButton />
 			</div>
 		</section>
 	{:else}

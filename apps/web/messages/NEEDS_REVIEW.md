@@ -22,3 +22,7 @@ Points to check first:
 - P12 keys (`drive_*`, `q_*`, `prof_*`, `vehicle_*`, `quiz_*`, `thinks_*`, `source_*`, `src_*`, `persona_*`, `crabby_me_*`, `team_*`, `spot_*`, `chat_*`, `rep_*`, `req_*`, `host_*`, `snap_*`, `reel_*`, `journal_*`, `privacy_p12_*` and the updated `privacy_ai_sent_2` / `privacy_ai_limits`): drafts. The privacy lines also need the legal review the rest of /privacy is waiting for. **Also review Crabby's persona humour in `src/lib/server/ai/persona.ts` (HI/MR lines were drafted by Claude, not translated — DECISIONS P12-3); Crabby jokes only when they read naturally to a native speaker.**
 - Temp access gate keys (`gate_*`, TODO(before-deploy)): drafts; removed again when full auth returns (docs/RESTORE_AUTH.md).
 - Plan workspace keys (`plan_new_trip_title`, `plan_setup*`, `plan_regenerate*`, `plan_outline_show/hide`): drafts.
+
+## Hardening pass 2026-11 (all HI / MR below are Claude drafts)
+
+- T0-04 guest session (safety: none; check tone): `guest_title`, `guest_ready`, `guest_failed`, `guest_failed_hint`, `guest_noscript`, `guest_continue`

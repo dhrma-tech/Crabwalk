@@ -5,8 +5,7 @@
 	import PlanDays from '#lib/components/plan/PlanDays.svelte';
 	import BudgetCard from '#lib/components/plan/BudgetCard.svelte';
 	import type { PageProps } from './$types';
-	import { page } from '$app/state';
-	import { loginHref } from '#lib/login.ts';
+	import SignInButton from '#lib/components/SignInButton.svelte';
 
 	// A ready-made / community itinerary (P7). Tideline (T-30): reading column, the "use it" form on a card. The
 	// day list and budget card are the plan view's components (restyled with the plan view).
@@ -42,7 +41,7 @@
 					<Button type="submit">{m.itin_use()}</Button>
 				</form>
 			{:else}
-				<div><Button href={loginHref(page.url)}>{m.itin_signin()}</Button></div>
+				<div><SignInButton label={m.itin_signin()} /></div>
 			{/if}
 		</section>
 	</div>

@@ -417,6 +417,9 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 - Language toggle buttons (top bar) have `aria-label="English"` etc. over the visible "EN" / "हि" / "म": Lighthouse `label-content-name-mismatch` (not scored; axe WCAG tags pass). Found in P11 step G, present since phase-10b; not fixed (scope).
 - Full local e2e run at the end of P11 (3 workers, 10.1 min): 66 passed, 9 failed. 6 = `shell.test.ts` gallery snapshots, stale since the theme change `7e8f70f` (P11-4, before P11) — baselines refreshed in step G. 3 = 5 s waits under load: `actions.test.ts` "add to day 2" (redirect after the add), `p7.test.ts` "publish → reviewer approves" (publish status) and `p11.test.ts` "lists" (list place after add); each passes when its file runs on its own (actions 2/2, p7 and p11 8/8). Same class as the slow-run waits above; P11 adds a Realtime echo reload after each own edit on the plan page, which adds load. Not fixed (needs longer waits or fewer workers — test-harness choice).
 
+- Hardening 2026-11: a build started from a lower-case drive path (`e:/CODEBASE/…`, VS Code's default cwd) is broken in the browser — SvelteKit 3.1.0 bundles its `payload.js` twice and the public env is undefined on every page. Build and run e2e from `E:/CODEBASE/…`. Details in `docs/audit/IMPLEMENTATION_LOG.md`. Not fixed (tooling).
+- `e2e/p7.test.ts` "generate…" is stale since `52eaab8` (one-screen trip setup; the test still clicks the wizard's "Next"). Fails on its own; its two serial followers do not run. Not fixed (outside the hardening pass).
+
 ## Phase log
 | Phase | Tag | Deferred |
 |---|---|---|

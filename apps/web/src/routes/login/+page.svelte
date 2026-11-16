@@ -6,6 +6,7 @@
 	import Button from '#lib/components/Button.svelte';
 	import BrandMark from '#lib/components/BrandMark.svelte';
 	import Input from '#lib/components/Input.svelte';
+	import { captchaToken } from '#lib/guest.client.ts';
 	import type { PageProps } from './$types';
 
 	let { data, form }: PageProps = $props();
@@ -31,6 +32,18 @@
 	let boxes = $state(false);
 	let focused = $state(false);
 	onMount(() => (boxes = true));
+
+	// SEC-02: with a Turnstile site key set, the email-code request carries a CAPTCHA token (Supabase Auth
+	// refuses OTP requests without one once CAPTCHA is on). No key (local dev, e2e): a plain form post.
+	async function withCaptcha(e: SubmitEvent) {
+		const f = e.currentTarget as HTMLFormElement;
+		const field = f.elements.namedItem('captcha') as HTMLInputElement;
+		if (field.value) return;
+		e.preventDefault();
+		field.value = (await captchaToken().catch(() => '')) ?? '';
+		if (!field.value) field.value = 'none'; // no site key (or blocked): the server sends without a token
+		f.requestSubmit();
+	}
 </script>
 
 <Page title={m.sign_in()} back>
@@ -160,8 +173,14 @@
 							class="h-px flex-1 bg-border"
 						></span>
 					</p>
-					<form method="POST" action="?/sendCode" class="flex flex-col gap-4">
+					<form
+						method="POST"
+						action="?/sendCode"
+						class="flex flex-col gap-4"
+						onsubmit={withCaptcha}
+					>
 						<input type="hidden" name="next" value={next} />
+						<input type="hidden" name="captcha" value="" />
 						<Input
 							id="email"
 							name="email"

@@ -10,7 +10,7 @@
 	import X from '@lucide/svelte/icons/x';
 	import { m } from '#lib/paraglide/messages.js';
 	import { formatDate } from '#lib/format.ts';
-	import { loginHref } from '#lib/login.ts';
+	import { signInHref, withSession } from '#lib/guest.client.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import { isSaved, loadSaved, toggleSaved, type SavedKind } from '#lib/saved.svelte.ts';
 	import Button from '../Button.svelte';
@@ -43,8 +43,8 @@
 		chosen = null;
 		trips = null;
 		dialog?.showModal();
-		const r = await fetch('/api/trips').catch(() => null);
-		if (r?.status === 401) return void (location.href = loginHref(location));
+		const r = await withSession(() => fetch('/api/trips')).catch(() => null);
+		if (r?.status === 401) return void (location.href = signInHref(location));
 		if (!r?.ok) {
 			dialog?.close();
 			return toast(m.send_failed());

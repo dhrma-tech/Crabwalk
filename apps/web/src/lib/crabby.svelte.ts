@@ -2,6 +2,7 @@
 // Emergency keywords are caught HERE, before any network call (§11.6).
 import { page } from '$app/state';
 import { isEmergency } from './emergency.ts';
+import { withSession } from './guest.client.ts';
 import { m } from './paraglide/messages.js';
 import type { DriveStep, PageName } from './drive.ts';
 import type { Question } from './questions.ts';
@@ -119,11 +120,13 @@ export async function ask(text: string) {
 	crabby.turns.push({ role: 'user', content: message });
 	crabby.busy = true;
 	try {
-		const res = await fetch('/api/ai/chat', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ message, history, path: page.url.pathname, spot: crabby.spot })
-		});
+		const res = await withSession(() =>
+			fetch('/api/ai/chat', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ message, history, path: page.url.pathname, spot: crabby.spot })
+			})
+		);
 		if (res.status === 401) {
 			crabby.signin = true;
 			crabby.turns.pop();
@@ -213,11 +216,13 @@ export async function snap(file: File, caption: string) {
 	crabby.busy = true;
 	try {
 		const [image, near] = await Promise.all([shrink(file), whereIfAllowed()]);
-		const res = await fetch('/api/ai/snap', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ image, caption, near })
-		});
+		const res = await withSession(() =>
+			fetch('/api/ai/snap', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ image, caption, near })
+			})
+		);
 		if (res.status === 401) {
 			crabby.signin = true;
 			crabby.turns.pop();
@@ -243,11 +248,13 @@ async function reel(shown: string, input: { url?: string | null; caption?: strin
 	crabby.busy = true;
 	try {
 		const image = input.image ? await shrink(input.image) : null;
-		const res = await fetch('/api/ai/reel', {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ url, caption: input.caption ?? '', image })
-		});
+		const res = await withSession(() =>
+			fetch('/api/ai/reel', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ url, caption: input.caption ?? '', image })
+			})
+		);
 		if (res.status === 401) {
 			crabby.signin = true;
 			crabby.turns.pop();

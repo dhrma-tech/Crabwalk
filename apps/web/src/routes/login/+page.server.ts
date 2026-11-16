@@ -65,7 +65,13 @@ export const actions: Actions = {
 		const next = nextPath(form.get('next'));
 		const e = email.safeParse(String(form.get('email') ?? '').trim());
 		if (!e.success) return fail(400, { error: 'email', next });
-		const { error } = await locals.supabase.auth.signInWithOtp({ email: e.data });
+		// SEC-02: Turnstile token from the form when a site key is configured (see +page.svelte). Google sign-in
+		// has no CAPTCHA step in Supabase Auth: the redirect to Google is the challenge.
+		const captcha = String(form.get('captcha') ?? '');
+		const { error } = await locals.supabase.auth.signInWithOtp({
+			email: e.data,
+			options: captcha && captcha !== 'none' ? { captchaToken: captcha.slice(0, 4096) } : undefined
+		});
 		if (error)
 			return error.status === 429
 				? fail(429, { error: 'rate', email: e.data, next })

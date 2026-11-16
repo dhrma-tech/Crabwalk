@@ -31,7 +31,7 @@
 	import TideToday from '#lib/components/map/TideToday.svelte';
 	import { utilityIcons, type UtilityType } from '#lib/map/icons.ts';
 	import type { PageProps } from './$types';
-	import { loginHref } from '#lib/login.ts';
+	import { signInHref } from '#lib/guest.client.ts';
 	import Meta from '#lib/components/Meta.svelte';
 
 	// FRONTEND §7 Map (LOCKED order): search + filter chips → layer FAB → tide slider when the tide layer is on →
@@ -437,7 +437,7 @@
 							<li class="px-4 py-3 type-small text-text-2">
 								{#if !data.signedIn && q.trim().length >= 3}
 									<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -- /login + a validated return path -->
-									<a href={loginHref(page.url)}>{m.map_search_more_signin()}</a>
+									<a href={signInHref(page.url)}>{m.map_search_more_signin()}</a>
 								{:else}
 									{m.map_no_results()}
 								{/if}

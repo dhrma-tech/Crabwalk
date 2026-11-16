@@ -23,7 +23,8 @@ if (local) {
 }
 // A preview left on :4173 by an earlier run would be reused and test an old build: stop it first (main process only).
 if (!process.env.CI && !process.env.TEST_WORKER_INDEX)
-	execSync('node scripts/free-port.mjs 4173', { stdio: 'inherit' });
+	for (const port of [4173, 4175])
+		execSync(`node scripts/free-port.mjs ${port}`, { stdio: 'inherit' });
 // The build prerenders /navigate through the Supabase hook, so it needs values too (CI has no .env).
 process.env.SUPABASE_URL ??= url;
 process.env.SUPABASE_ANON_KEY ??= key;
@@ -59,6 +60,17 @@ export default defineConfig({
 			timeout: 180_000,
 			reuseExistingServer: false
 		},
+		// Same build, temp access gate on (e2e/guest.test.ts): started after the build above.
+		...(local
+			? [
+					{
+						command: `node scripts/wait-for.mjs http://localhost:4173 && pnpm exec wrangler pages dev .svelte-kit/cloudflare --port 4175 -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key} -b SUPABASE_SERVICE_ROLE_KEY=${serviceKey} -b RATE_LIMIT_SALT=e2e-only-salt -b AI_PROVIDER=mock -b AUTH_MODE=temp_email_gate -b ADMIN_EMAILS=e2e-admin@e2e.local -b ADMIN_SESSION_SECRET=e2e-only-admin-session-secret-0123456789 -b ADMIN_PASSCODE=e2e-only-passcode-1234`,
+						url: 'http://localhost:4175',
+						timeout: 300_000,
+						reuseExistingServer: false
+					}
+				]
+			: []),
 		...(localTiles
 			? [
 					{

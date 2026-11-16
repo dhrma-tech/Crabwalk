@@ -23,7 +23,9 @@ const csp = (mode: string): Csp => {
 		mode: 'auto' as const,
 		directives: {
 			'default-src': ['self' as const],
-			'script-src': ['self' as const],
+			// Cloudflare Turnstile (SEC-02): the challenge script and its iframe, nothing else third-party.
+			'script-src': ['self' as const, 'https://challenges.cloudflare.com'],
+			'frame-src': ['https://challenges.cloudflare.com'],
 			'style-src': ['self' as const, 'unsafe-inline' as const],
 			'img-src': ['self' as const, 'data:', 'blob:', 'https://*.supabase.co', ...local],
 			'media-src': ['self' as const, 'https://*.supabase.co', ...local],

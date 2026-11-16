@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { page } from '$app/state';
 	import { m } from '#lib/paraglide/messages.js';
-	import { loginHref } from '#lib/login.ts';
+	import SignInButton from '#lib/components/SignInButton.svelte';
 	import Button from './Button.svelte';
 
 	// "Is it free?" (P12 step I, product plan 10.2): an availability request to the owner — or, for listings not
@@ -52,7 +51,7 @@
 			{m.req_sent()} <a href={resolve('/me/requests')}>{m.req_mine()}</a>
 		</p>
 	{:else if !signedIn}
-		<div><Button variant="secondary" href={loginHref(page.url)}>{m.sign_in()}</Button></div>
+		<div><SignInButton variant="secondary" /></div>
 	{:else if !open}
 		<div><Button variant="secondary" onclick={() => (open = true)}>{m.req_open()}</Button></div>
 	{:else}

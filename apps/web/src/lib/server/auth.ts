@@ -26,7 +26,12 @@ export async function session(event: Ev) {
 	const user = await event.locals.getUser();
 	if (!user) {
 		if (event.url.pathname.startsWith('/api/')) error(401, 'sign in');
-		redirect(303, loginHref(event.url));
+		// TODO(before-deploy): restore full auth — temp mode has no sign-in page for guests: /guest creates the
+		// anonymous session in the browser (SEC-02) and comes back here.
+		redirect(
+			303,
+			tempGate() ? loginHref(event.url).replace('/login?', '/guest?') : loginHref(event.url)
+		);
 	}
 	// TODO(before-deploy): restore full auth — temp mode: the signed admin cookie, not user_roles, grants staff.
 	if (tempGate()) {

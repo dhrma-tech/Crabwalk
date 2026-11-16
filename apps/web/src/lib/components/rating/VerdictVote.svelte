@@ -14,8 +14,7 @@
 	import Button from '../Button.svelte';
 	import Segmented from '../Segmented.svelte';
 	import type { EntityType } from './VerdictGauge.svelte';
-	import { page } from '$app/state';
-	import { loginHref } from '#lib/login.ts';
+	import SignInButton from '#lib/components/SignInButton.svelte';
 
 	// FRONTEND §6.4 voting: 4 large verdict buttons (icon + label, no emoji) → optional quick-tap sub-scores →
 	// optional text/photos. Hygiene/cleanliness taps disabled with explanation unless verified (DB-enforced too).
@@ -119,7 +118,7 @@
 <section id="vote" class="flex scroll-mt-20 flex-col gap-4" data-testid="verdict-vote">
 	<h2 class="type-h2">{m.vote_title()}</h2>
 	{#if !signedIn}
-		<div><Button href={loginHref(page.url)} variant="secondary">{m.vote_signin()}</Button></div>
+		<div><SignInButton label={m.vote_signin()} variant="secondary" /></div>
 	{:else}
 		<div class="flex flex-col gap-1.5">
 			<span class="type-small text-text-2">{m.vote_as()}</span>

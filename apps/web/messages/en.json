@@ -1196,5 +1196,11 @@
 	"plan_regenerate": "Generate again",
 	"plan_regenerate_confirm": "This replaces the current itinerary. Continue?",
 	"plan_outline_show": "Show sections",
-	"plan_outline_hide": "Hide sections"
+	"plan_outline_hide": "Hide sections",
+	"guest_title": "One moment",
+	"guest_ready": "Getting things ready…",
+	"guest_failed": "We couldn't get you started",
+	"guest_failed_hint": "Check your connection and try again. You can still browse places, stays and food.",
+	"guest_noscript": "Saving, voting and planning need JavaScript. You can still read every guide.",
+	"guest_continue": "Continue as guest"
 }

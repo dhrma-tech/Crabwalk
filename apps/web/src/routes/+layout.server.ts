@@ -1,4 +1,5 @@
 import { building } from '$app/env';
+import { TURNSTILE_SITE_KEY } from '$app/env/public';
 import { gateAdmin, tempGate } from '#lib/server/gate.ts';
 import type { LayoutServerLoad } from './$types';
 
@@ -7,6 +8,8 @@ import type { LayoutServerLoad } from './$types';
 export const load: LayoutServerLoad = async (event) => ({
 	gate: {
 		on: !building && tempGate(),
-		admin: building ? null : await gateAdmin(event)
+		admin: building ? null : await gateAdmin(event),
+		// Turnstile site key (public by design): the browser needs it to create a guest session or request a code.
+		captcha: TURNSTILE_SITE_KEY || null
 	}
 });

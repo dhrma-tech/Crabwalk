@@ -202,6 +202,7 @@ email_sent = 2
 # Number of SMS messages that can be sent per hour. Requires auth.sms to be enabled.
 sms_sent = 30
 # Number of anonymous sign-ins that can be made per hour per IP address. Requires enable_anonymous_sign_ins = true.
+# Hardening 2026-11 (SEC-02): keep 30. The hosted project was raised to 1,000 (DEPLOY_CHECKLIST): put it back.
 anonymous_users = 30
 # Number of sessions that can be refreshed in a 5 minute interval per IP address.
 token_refresh = 150
@@ -213,10 +214,13 @@ token_verifications = 30
 web3 = 30
 
 # Configure one of the supported captcha providers: `hcaptcha`, `turnstile`.
+# Hardening 2026-11 (SEC-02): the HOSTED project must have Cloudflare Turnstile on (Dashboard → Authentication →
+# Attack Protection) so anonymous sign-ups and email-code requests need a token; the web app sends one when
+# TURNSTILE_SITE_KEY is set. Left off locally so e2e and the dev server work without Cloudflare.
 # [auth.captcha]
 # enabled = true
-# provider = "hcaptcha"
-# secret = ""
+# provider = "turnstile"
+# secret = "env(TURNSTILE_SECRET)"
 
 [auth.email]
 # Allow/disallow new user signups via email to your project.

@@ -24,8 +24,7 @@
 	import ActionPreviewCard from './ActionPreviewCard.svelte';
 	import QuestionCard from './QuestionCard.svelte';
 	import RealityCheck from './RealityCheck.svelte';
-	import { page } from '$app/state';
-	import { loginHref } from '#lib/login.ts';
+	import SignInButton from '#lib/components/SignInButton.svelte';
 
 	// FRONTEND §6.7: chat bubbles, ActionPreviewCard (Apply / Discard), mic (Web Speech API), honest
 	// "I don't know" + verified alternatives, daily-limit state, login wall. Emergency → EmergencyCard.
@@ -257,7 +256,7 @@
 			<Crabby size={48} />
 			<p class="type-body-strong text-text">{m.crabby_signin()}</p>
 			<div class="w-full [&>*]:w-full">
-				<Button href={loginHref(page.url)}>{m.sign_in()}</Button>
+				<SignInButton />
 			</div>
 		</div>
 	{:else}

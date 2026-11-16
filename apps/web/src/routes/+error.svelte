@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { m } from '#lib/paraglide/messages.js';
-	import { loginHref } from '#lib/login.ts';
+	import { signInHref } from '#lib/guest.client.ts';
 	import Page from '#lib/components/Page.svelte';
 	import ErrorState from '#lib/components/ErrorState.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -29,7 +29,7 @@
 			{#snippet action()}
 				<div class="flex flex-wrap items-center justify-center gap-3">
 					<Button href="/">{m.go_discover()}</Button>
-					<Button variant="ghost" href={loginHref(page.url)}>{m.sign_in()}</Button>
+					<Button variant="ghost" href={signInHref(page.url)}>{m.sign_in()}</Button>
 				</div>
 			{/snippet}
 		</ErrorState>
