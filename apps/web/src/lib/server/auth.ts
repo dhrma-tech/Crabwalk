@@ -1,6 +1,6 @@
 import { error, redirect } from '@sveltejs/kit';
 import type { RequestEvent } from '@sveltejs/kit';
-import { loginHref } from '#lib/login.ts';
+import { signInPath } from '#lib/login.ts';
 import { DEV_ROLES, devBypass } from '#lib/devAuth.server.ts';
 import { gateAdmin, tempGate } from '#lib/server/gate.ts';
 
@@ -28,10 +28,7 @@ export async function session(event: Ev) {
 		if (event.url.pathname.startsWith('/api/')) error(401, 'sign in');
 		// TODO(before-deploy): restore full auth — temp mode has no sign-in page for guests: /guest creates the
 		// anonymous session in the browser (SEC-02) and comes back here.
-		redirect(
-			303,
-			tempGate() ? loginHref(event.url).replace('/login?', '/guest?') : loginHref(event.url)
-		);
+		redirect(303, signInPath(event.url, tempGate()));
 	}
 	// TODO(before-deploy): restore full auth — temp mode: the signed admin cookie, not user_roles, grants staff.
 	if (tempGate()) {

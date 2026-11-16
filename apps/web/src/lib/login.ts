@@ -11,3 +11,10 @@ export const nextPath = (v: unknown) =>
 /** Sign-in link that brings the user back to `here` (path + query) afterwards. */
 export const loginHref = (here: { pathname: string; search: string }) =>
 	`/login?next=${encodeURIComponent(here.pathname + here.search)}`;
+
+/**
+ * Where a signed-out visitor goes to get a session and come back. Temp gate (`guest`): /guest creates the
+ * guest session in the browser (SEC-02); full auth: /login. TODO(before-deploy): restore full auth.
+ */
+export const signInPath = (here: { pathname: string; search: string }, guest: boolean) =>
+	guest ? loginHref(here).replace('/login?', '/guest?') : loginHref(here);

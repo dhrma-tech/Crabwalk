@@ -28,6 +28,8 @@ export const RULES: Rule[] = [
 	},
 	// TODO(before-deploy): restore full auth — temp admin email gate (lib/server/gate.ts): no allowlist guessing.
 	{ name: 'admin-gate', method: 'POST', path: /^\/auth\/admin$/, limit: 10, windowS: 600 },
+	// Guest sessions handed over by the browser (SEC-02); Supabase Auth limits the sign-ups themselves.
+	{ name: 'guest', method: 'POST', path: /^\/auth\/guest$/, limit: 20, windowS: 600 },
 	{
 		name: 'report',
 		method: 'POST',
