@@ -12,6 +12,7 @@ $$;
 create function pg_temp.su() returns void language plpgsql as $$
 begin
   perform set_config('role', 'postgres', true);
+  perform set_config('request.jwt.claims', '', true); -- no stale user: guard_trip_public treats a uid as a user
 end;
 $$;
 
