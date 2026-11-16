@@ -1673,6 +1673,9 @@ isOneToOne: false
 "create_qr_code":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: string
                            },
+"file_report":
+{ Args: { "_id": string,"_kind": Database["public"]['Enums']["report_type"],"_qr"?: string,"_text": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: undefined
+                           },
 "gate_locked":
 { Args: { "_key": string }; Returns: string
                            },

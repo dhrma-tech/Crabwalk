@@ -2,6 +2,7 @@ import { error, redirect } from '@sveltejs/kit';
 import { z } from 'zod';
 import { CODE_RE } from '#lib/server/qr.ts';
 import { formBody } from '#lib/server/http.ts';
+import { serviceClient } from '#lib/server/service.ts';
 import type { RequestHandler } from './$types';
 
 const body = z.object({
@@ -11,7 +12,7 @@ const body = z.object({
 });
 
 // POST /q/:code/report (plain form, works without JS) → reports with qr_code set → triage (B10).
-// Anon allowed; throttled in the DB (P4-3).
+// Anon allowed; throttled per IP in the hook and per listing / per hour in the DB.
 export const POST: RequestHandler = async ({ params, request, locals }) => {
 	const b = body.safeParse(Object.fromEntries(await formBody(request)));
 	if (!CODE_RE.test(params.code) || !b.success) error(400, 'bad request');
@@ -21,12 +22,14 @@ export const POST: RequestHandler = async ({ params, request, locals }) => {
 		.eq('code', params.code)
 		.maybeSingle();
 	if (!q) error(404, 'unknown code');
-	const { error: err } = await locals.supabase.from('reports').insert({
-		...q,
-		qr_code: params.code,
-		type: b.data.type,
-		text: b.data.text || null
+	// file_report is service-role only (SEC-05); the per-IP limit (rule `report`) already ran in the hook.
+	const { error: err } = await serviceClient().rpc('file_report', {
+		_type: q.entity_type,
+		_id: q.entity_id,
+		_kind: b.data.type,
+		_text: b.data.text ?? '',
+		_qr: params.code
 	});
-	if (err) error(err.code === '54000' ? 429 : 400, 'report not saved');
+	if (err) error(err.code === '54000' ? 429 : err.code === 'P0002' ? 404 : 400, 'report not saved');
 	redirect(303, `/q/${params.code}?reported=1#report`);
 };

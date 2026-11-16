@@ -98,7 +98,9 @@ select ok(exists (select 1 from public.qr_near_me((select code from codes where 
 select ok(not exists (select 1 from public.qr_near_me((select code from codes where k = 'place')) where kind = 'place' and slug = 'p6-place'), 'own place excluded');
 
 -- ------------------------------------------------ reports from a QR
-select lives_ok($$ insert into public.reports (entity_type, entity_id, qr_code, type) values ('station', (select station from ids), (select code from codes where k = 'station'), 'broken_qr') $$, 'anon broken-QR report with qr_code');
+select pg_temp.root();
+select lives_ok($$ select public.file_report('station', (select station from ids), 'broken_qr', null, (select code from codes where k = 'station')) $$, 'broken-QR report with qr_code (station via utility_pois)');
+select is((select qr_code from public.reports where entity_id = (select station from ids)), (select code from codes where k = 'station'), 'the code is stored');
 
 select * from finish();
 rollback;

@@ -106,9 +106,12 @@ select ok((select next_recheck_at > now() + interval '27 days' from public.place
 
 select pg_temp.anon();
 select is((select count(*)::int from public.places where id = (select place from ids)), 1, 'published place visible to anon');
-select lives_ok($$ insert into public.reports (entity_type, entity_id, type, text) select 'place', place, 'wrong_info', 'closed now' from ids $$,
-  'anon can report a problem');
+-- Hardening 2026-11 (SEC-05): reports go through file_report (web server, service role), not a direct insert.
+select throws_ok($$ insert into public.reports (entity_type, entity_id, type, text) select 'place', place, 'wrong_info', 'closed now' from ids $$,
+  '42501', null, 'anon cannot insert a report directly');
 select pg_temp.root();
+select lives_ok($$ select public.file_report('place', (select place from ids), 'wrong_info', 'closed now') $$,
+  'a problem report is filed through the server');
 select ok((select next_recheck_at <= now() from public.places where id = (select place from ids)), 'report pulls the re-check forward');
 
 -- ---------------------------------------------------------------- owner claims (G5)

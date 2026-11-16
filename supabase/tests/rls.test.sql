@@ -221,16 +221,17 @@ select is(count(*)::int, 1, 'reviewer moderates') from u;
 -- ================================================================ reports
 reset role;
 select pg_temp.anon();
-select lives_ok(
+-- Hardening 2026-11 (SEC-05): no direct inserts; the web server calls file_report with the service role.
+select throws_ok(
   $$ insert into public.reports (entity_type, entity_id, type) select 'place', p_pub, 'broken_qr' from ids $$,
-  'anon files report');
+  '42501', null, 'anon cannot insert a report directly');
 select is((select count(*)::int from public.reports), 0, 'anon cannot read reports');
 
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000a1');
-select lives_ok(
+select throws_ok(
   $$ insert into public.reports (entity_type, entity_id, type) select 'place', p_pub, 'garbage' from ids $$,
-  'user files report');
+  '42501', null, 'user cannot insert a report directly');
 
 reset role;
 select pg_temp.login('00000000-0000-0000-0000-0000000000b1');
