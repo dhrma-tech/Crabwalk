@@ -4,6 +4,8 @@ import { getLocale } from '#lib/paraglide/runtime.js';
 import { Constants } from '#lib/db.types.ts';
 import { requireStaff } from '#lib/server/auth.ts';
 import { serviceClient } from '#lib/server/service.ts';
+import { PUBLIC_ORIGIN } from '$app/env/private';
+import { plaqueOrigin } from '#lib/server/origin.ts';
 import { tr, type Lang } from '#lib/server/listings.ts';
 import type { Actions, PageServerLoad } from './$types';
 
@@ -59,6 +61,8 @@ export const load: PageServerLoad = async (event) => {
 			for (const o of await targets(db, t, lang)) if (ids.has(o.id)) names.set(o.id, o.name);
 	}
 	return {
+		// SEC-14: plaques print only once the permanent domain is set.
+		plaques: plaqueOrigin(PUBLIC_ORIGIN).ok,
 		type,
 		types: TYPES,
 		options,

@@ -28,3 +28,4 @@ Points to check first:
 - T0-04 guest session (safety: none; check tone): `guest_title`, `guest_ready`, `guest_failed`, `guest_failed_hint`, `guest_noscript`, `guest_continue`
 - T0-05 guest vote note (trust wording: check it does not read as "your vote was rejected"): `vote_guest_note`
 - T0-10 email invite (replaces `plan_invite_added`; must not say whether the address has an account): `plan_invite_sent`
+- T0-11 QR plaques (printed on the plaque in EN + MR; check it reads as an instruction to the visitor): `qr_plaque_check`, `qr_admin_origin_missing`

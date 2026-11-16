@@ -202,7 +202,10 @@ test('admin creates a code (region prefix) and prints its plaque', async ({ page
 	expect(res.headers()['content-type']).toContain('image/svg+xml');
 	const svg = await res.text();
 	expect(svg).toContain(`E2E QR Fort ${run}`);
-	expect(svg).toContain(`/q/${code}`);
+	// SEC-14: the permanent origin (PUBLIC_ORIGIN in playwright.config.ts), never the preview's localhost.
+	expect(svg).toContain(`crabwalk.example/q/${code}`);
+	expect(svg).not.toContain('localhost');
+	expect(svg).toContain('Check the address bar says crabwalk.example');
 	expect(svg).toContain('112');
 	expect(svg).toMatch(/<path d="M[\d.]+ [\d.]+h/);
 	psql(`delete from qr_codes where code = '${code}'`);

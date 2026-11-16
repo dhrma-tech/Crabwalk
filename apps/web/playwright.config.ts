@@ -55,7 +55,7 @@ export default defineConfig({
 		{
 			// Local stack: Crabby runs on the scripted mock provider (DECISIONS P8-2) — no real LLM calls; the group chat
 			// signing key is the dev value seeded into Vault (supabase/seed/seed.sql).
-			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''} -b RATE_LIMIT_SALT=e2e-only-salt${local ? ` -b AI_PROVIDER=mock -b CRABBY_SIGNING_KEY=local-dev-crabby-key -b SUPABASE_SERVICE_ROLE_KEY=${serviceKey}` : ''}`,
+			command: `pnpm exec vite build --mode e2e && pnpm run preview -b SUPABASE_URL=${url} -b SUPABASE_ANON_KEY=${key}${tiles ? ` -b PMTILES_BASE_URL=${tiles}` : ''} -b RATE_LIMIT_SALT=e2e-only-salt -b PUBLIC_ORIGIN=https://crabwalk.example${local ? ` -b AI_PROVIDER=mock -b CRABBY_SIGNING_KEY=local-dev-crabby-key -b SUPABASE_SERVICE_ROLE_KEY=${serviceKey}` : ''}`,
 			url: 'http://localhost:4173',
 			timeout: 180_000,
 			reuseExistingServer: false

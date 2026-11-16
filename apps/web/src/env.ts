@@ -45,6 +45,9 @@ export const variables = defineEnvVars({
 	AUTH_MODE: { schema: optional },
 	ADMIN_EMAILS: { schema: optional },
 	ADMIN_SESSION_SECRET: { schema: optional },
+	// SEC-14: the site's permanent https origin, printed on QR plaques (e.g. https://crabwalk.example). Unset,
+	// *.pages.dev, localhost or an IP → plaques are not printed (owner step M4).
+	PUBLIC_ORIGIN: { schema: optional },
 	// SEC-08: ms timestamp; admin cookies issued before it stop working (set it to now to sign every admin out).
 	ADMIN_SESSION_EPOCH: { schema: optional },
 	// Team passcode asked together with the admin email (server only).

@@ -1203,5 +1203,7 @@
 	"guest_failed_hint": "Check your connection and try again. You can still browse places, stays and food.",
 	"guest_noscript": "Saving, voting and planning need JavaScript. You can still read every guide.",
 	"guest_continue": "Continue as guest",
-	"vote_guest_note": "Your verdict is saved. It counts once you sign in."
+	"vote_guest_note": "Your verdict is saved. It counts once you sign in.",
+	"qr_plaque_check": "Check the address bar says {host}",
+	"qr_admin_origin_missing": "Plaques can't be printed yet: the site's permanent web address (PUBLIC_ORIGIN) isn't set. Codes still work."
 }

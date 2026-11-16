@@ -13,6 +13,15 @@
 
 <Page title={m.qr_admin_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
+		{#if !data.plaques}
+			<p
+				role="alert"
+				class="rounded-md bg-surface-2 p-4 type-body"
+				data-testid="plaque-origin-missing"
+			>
+				{m.qr_admin_origin_missing()}
+			</p>
+		{/if}
 		<nav class="flex flex-wrap items-center gap-2" aria-label={m.qr_admin_type()}>
 			<span class="type-small text-text-2">{m.qr_admin_type()}</span>
 			{#each data.types as t (t)}

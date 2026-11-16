@@ -1,18 +1,24 @@
 import { error } from '@sveltejs/kit';
+import { PUBLIC_ORIGIN } from '$app/env/private';
 import { encode } from 'uqr';
 import { m } from '#lib/paraglide/messages.js';
 import { esc } from '#lib/qr/page.ts';
 import { requireStaff } from '#lib/server/auth.ts';
 import { CODE_RE } from '#lib/server/qr.ts';
 import { names } from '#lib/server/listings.ts';
+import { plaqueOrigin } from '#lib/server/origin.ts';
 import type { RequestHandler } from './$types';
 
 // Plaque sheet (BACKEND §9): printable A5 SVG — place name, QR → short URL, "112", short URL text.
 // Print at 100 % from the browser. Text in English + Marathi.
+// SEC-14: the QR always encodes PUBLIC_ORIGIN, never the host serving this page; without a permanent domain
+// nothing is printed (409).
 export const GET: RequestHandler = async (event) => {
 	await requireStaff(event, 'admin');
 	const code = event.params.code;
 	if (!CODE_RE.test(code)) error(404, 'not found');
+	const site = plaqueOrigin(PUBLIC_ORIGIN);
+	if (!site.ok) error(409, m.qr_admin_origin_missing());
 	const db = event.locals.supabase;
 	const { data: q } = await db
 		.from('qr_codes')
@@ -37,7 +43,7 @@ export const GET: RequestHandler = async (event) => {
 		name = { en: n.en || code, mr: n.mr };
 	}
 
-	const url = `${event.url.origin}/q/${code}`;
+	const url = `${site.origin}/q/${code}`;
 	const qr = encode(url, { ecc: 'Q', border: 0 });
 	const side = 96; // mm
 	const cell = side / qr.size;
@@ -61,6 +67,7 @@ ${name.mr ? `<text x="74" y="32" text-anchor="middle" font-size="8.5" fill="#1E1
 <text x="74" y="46" text-anchor="middle" font-size="4.2" fill="#5A4A35">${esc(m.qr_plaque_scan({}, mr))}</text>
 <path d="${path}" fill="#000"/>
 <text x="74" y="${y0 + side + 10}" text-anchor="middle" font-size="6" font-family="ui-monospace, monospace" fill="#1E1B16">${esc(url.replace(/^https?:\/\//, ''))}</text>
+<text x="74" y="${y0 + side + 16}" text-anchor="middle" font-size="3.6" fill="#5A4A35">${esc(m.qr_plaque_check({ host: site.host }, { locale: 'en' }))} · ${esc(m.qr_plaque_check({ host: site.host }, mr))}</text>
 <rect x="14" y="172" width="120" height="24" rx="12" fill="#D32F2F"/>
 <text x="74" y="188.5" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">${esc(m.qr_emergency({}, { locale: 'en' }))} 112 · ${esc(m.qr_emergency({}, mr))}</text>
 </svg>`;
