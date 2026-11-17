@@ -35,7 +35,11 @@ audio,input{accent-color:var(--ko)}audio{width:100%}ul{margin:0;padding-left:20p
 .sos p{position:absolute;left:16px;right:16px;bottom:100%;margin:0 0 8px;padding:8px 12px;border-radius:12px;background:var(--tx);color:var(--bg)}.sos p:empty{display:none}
 label{display:flex;gap:8px;align-items:center;min-height:44px}textarea{width:100%;font:inherit;border:1.5px solid transparent;border-radius:12px;background:var(--s2);color:var(--tx);padding:12px}textarea:focus{border-color:var(--tx);background:var(--sf);outline:0}
 summary{cursor:pointer;color:var(--ln);font-weight:600;min-height:44px;display:flex;align-items:center}.sponsor{color:var(--t2);font-size:14px}.hp{display:none}
-:focus-visible{outline:2px solid var(--ln);outline-offset:2px}`;
+:focus-visible{outline:2px solid var(--ln);outline-offset:2px}
+h1{animation:up .26s both}@keyframes up{from{opacity:0;transform:translateY(8px)}}.far{color:var(--ca)}
+#vst{display:none;width:48px;stroke:var(--ln)}.ok+#vst{display:block}.d{stroke-dasharray:1;animation:dr .48s both}.d+.d{animation:dr .2s .48s both}
+.r{transform-origin:50%;animation:po .4s cubic-bezier(.34,1.56,.64,1)}@keyframes dr{from{stroke-dashoffset:1}}@keyframes po{from{transform:scale(.8)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}`;
 
 // Scan beacon (position only if already granted), GPS-verified visit, emergency location share (P6-2).
 export const JS = `(()=>{const b=document.body.dataset,$=i=>document.getElementById(i),
@@ -44,8 +48,8 @@ gps=()=>new Promise((y,n)=>navigator.geolocation?navigator.geolocation.getCurren
 scan=c=>post('scan',c?{lat:c.latitude,lng:c.longitude}:{}).catch(()=>{});
 navigator.permissions?navigator.permissions.query({name:'geolocation'}).then(s=>s.state=='granted'?gps().then(scan,()=>scan()):scan(),()=>scan()):scan();
 document.querySelectorAll('[data-js]').forEach(e=>e.hidden=!1);
-const say=t=>{$('vmsg').textContent=t};
-$('verify')&&($('verify').onclick=()=>{say(b.tWait);gps().then(c=>post('visit',{lat:c.latitude,lng:c.longitude,acc:Math.round(c.accuracy)}).then(async r=>{if(r.status==401){say(b.tSignin);$('vlogin').hidden=!1;return}if(!r.ok)return say(b.tFail);const j=await r.json();say(j.verified?b.tOk:b.tFar.replace('{m}',j.distance_m))},()=>say(b.tFail)),()=>say(b.tGps))});
+const say=(t,c='')=>{const e=$('vmsg');e.textContent=t;e.className=c};
+$('verify')&&($('verify').onclick=()=>{say(b.tWait);gps().then(c=>post('visit',{lat:c.latitude,lng:c.longitude,acc:Math.round(c.accuracy)}).then(async r=>{if(r.status==401){say(b.tSignin);$('vlogin').hidden=!1;return}if(!r.ok)return say(b.tFail,'far');const j=await r.json();say(j.verified?b.tOk:b.tFar.replace('{m}',j.distance_m),j.verified?'ok':'far')},()=>say(b.tFail,'far')),()=>say(b.tGps,'far'))});
 $('share').onclick=()=>{const send=(la,ln)=>{const t=b.tShare+' https://maps.google.com/?q='+la+','+ln;navigator.share?navigator.share({text:t}).catch(()=>{}):location.href='sms:?&body='+encodeURIComponent(t)};
 $('smsg').textContent='';gps().then(c=>send(c.latitude.toFixed(5),c.longitude.toFixed(5)),()=>b.lat?send(b.lat,b.lng):$('smsg').textContent=b.tGps)}})()`;
 
@@ -180,7 +184,7 @@ export function renderQrPage(
 	}
 
 	parts.push(
-		`<section class="card" data-js hidden><h2>${esc(m.qr_verify_title())}</h2><p class="small">${esc(m.qr_verify_hint())}</p><p style="margin-top:12px"><button class="btn" type="button" id="verify">${esc(m.qr_verify())}</button></p><p id="vmsg" role="status" style="margin-top:8px"></p><p id="vlogin" hidden><a href="${esc(o.signIn ?? '/login')}">${esc(m.sign_in())}</a></p></section>`
+		`<section class="card" data-js hidden><h2>${esc(m.qr_verify_title())}</h2><p class="small">${esc(m.qr_verify_hint())}</p><p style="margin-top:12px"><button class="btn" type="button" id="verify">${esc(m.qr_verify())}</button></p><p id="vmsg" role="status" style="margin-top:8px"></p><svg id="vst" viewBox="0 0 48 48" fill="none" stroke-width="3" aria-hidden="true"><circle class="r" cx="24" cy="24" r="22" stroke-width="1.5" stroke-dasharray="3 4"/><circle class="d" pathLength="1" cx="24" cy="24" r="19"/><path class="d" pathLength="1" d="M15 24l6 6 12-13"/></svg><p id="vlogin" hidden><a href="${esc(o.signIn ?? '/login')}">${esc(m.sign_in())}</a></p></section>`
 	);
 	if (d.near.length)
 		parts.push(section(m.qr_near_me(), `<ul class="near">${d.near.map(nearRow).join('')}</ul>`));

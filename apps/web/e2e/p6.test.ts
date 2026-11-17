@@ -150,10 +150,14 @@ test('verified visit: anon asked to sign in; 250 m fails; 199 m passes', async (
 	expect((await poor.json()).verified).toBe(false);
 	await page.getByRole('button', { name: /verify/ }).click();
 	await expect(page.getByText(/You are about 2\d\d m away/)).toBeVisible();
+	// T1-08: too far is caution text only; no stamp.
+	await expect(page.locator('#vmsg')).toHaveClass('far');
+	await expect(page.locator('#vst')).toBeHidden();
 
 	await ctx.setGeolocation({ latitude: LAT + 0.0018, longitude: LNG });
 	await page.getByRole('button', { name: /verify/ }).click();
 	await expect(page.getByText('Visit verified. Thank you!')).toBeVisible();
+	await expect(page.locator('#vst')).toBeVisible();
 	expect(
 		psql(
 			`select count(*) from verified_visits v join auth.users u on u.id = v.user_id

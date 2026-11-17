@@ -1,11 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { clip, type QrData } from '#lib/server/qr.ts';
-import { JS, renderQrMissing, renderQrPage } from './page.ts';
+import { createHash } from 'node:crypto';
+import { JS, qrCsp, renderQrMissing, renderQrPage } from './page.ts';
 
 // PLAN P6 acceptance / FRONTEND §11: scan page < 100 KB total, no webfonts, no framework.
 // The only other transfer is the 480 px hero (WebP); the HTML budget leaves ≥ 58 KB for it. 42 KB (user, T-44):
-// was 40 KB until the nearby-alerts block (Report 1 §2.2) was added.
-const HTML_BUDGET = 42_000;
+// was 40 KB until the nearby-alerts block (Report 1 §2.2) was added. 42.5 KB (hardening D-26): the verified
+// stamp (brief section 4.8 allows up to 1.2 KB) adds 0.8 KB (worst case 42.1 KB); the hero keeps ≥ 57.5 KB.
+const HTML_BUDGET = 42_500;
 const bytes = (s: string) => new TextEncoder().encode(s).length;
 const deva = (n: number) => 'कोकणातील किल्ला '.repeat(Math.ceil(n / 16)).slice(0, n);
 const time = (iso: string) => iso.slice(11, 16);
@@ -76,8 +78,27 @@ describe('QR scan page', () => {
 		expect(JS).toContain('acc:Math.round(c.accuracy)');
 	});
 
+	it('verify success shows the drawn stamp; too far or failure is caution text; reduced motion = final state (T1-08)', () => {
+		expect(html).toMatch(
+			/<p id="vmsg" role="status"[^>]*><\/p><svg id="vst"[^>]*aria-hidden="true">/
+		);
+		expect(html).toContain('.ok+#vst{display:block}');
+		// The undrawn state lives only in the animation's `from` frame, so no animation = the drawn stamp.
+		expect(html).toContain('@keyframes dr{from{stroke-dashoffset:1}}');
+		expect(html).toContain('@media(prefers-reduced-motion:reduce){*{animation:none!important}}');
+		expect(JS).toContain("j.verified?'ok':'far'");
+		expect(JS).toContain("say(b.tFail,'far')");
+		expect(JS).toContain("say(b.tGps,'far')");
+	});
+
 	it('fits the size budget with long Devanagari content', () => {
 		expect(bytes(html)).toBeLessThan(HTML_BUDGET);
+	});
+
+	it('the CSP script hash matches the script embedded in the page (T1-08)', async () => {
+		const embedded = html.match(/<script>([\s\S]*?)<\/script>/)?.[1] ?? '';
+		const hash = createHash('sha256').update(embedded).digest('base64');
+		expect(await qrCsp('https://abc.supabase.co')).toContain(`script-src 'sha256-${hash}'`);
 	});
 
 	it('uses no webfonts, external CSS/JS or framework', () => {
