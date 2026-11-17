@@ -186,6 +186,8 @@ test('service worker: private pages are never cached; sign-out purges cached pag
 
 	await page.waitForLoadState('networkidle'); // hydrated: the sign-out form purges before it posts
 	await page.getByRole('button', { name: 'Sign out' }).click();
+	// The form purges the caches, then posts; sign-out lands on /login.
+	await page.waitForURL('**/login');
 	await page.waitForLoadState('networkidle');
 	expect(await cached()).not.toContain('/stays');
 	expect(await cached()).not.toContain('/me');

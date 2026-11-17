@@ -301,6 +301,8 @@ test('G: group chat — live messages, @Crabby with a poll, proactive within the
 	await ed.getByRole('button', { name: 'Join the trip' }).click();
 	await expect(ed).toHaveURL(new RegExp(`/plan/${trip}$`));
 	await page.goto(`/plan/${trip}`);
+	// Realtime joins after the token request (SEC-10): wait until both pages have it before the first message.
+	await Promise.all([ed.waitForLoadState('networkidle'), page.waitForLoadState('networkidle')]);
 	const chat = (p: Page) => p.getByTestId('trip-chat');
 	const say = async (p: Page, t: string) => {
 		await chat(p).getByLabel('Message the group — tag @Crabby to ask').fill(t);
