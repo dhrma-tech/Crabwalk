@@ -77,6 +77,9 @@ export const RULES: Rule[] = [
 		limit: 30,
 		windowS: 3600
 	},
+	// Account export and deletion (SEC-15).
+	{ name: 'me-export', method: 'GET', path: /^\/api\/me\/export$/, limit: 10, windowS: 3600 },
+	{ name: 'me-delete', method: 'POST', path: /^\/api\/me\/delete$/, limit: 5, windowS: 3600 },
 	{ name: 'claim', method: 'POST', path: /^\/api\/owner\/claim$/, limit: 5, windowS: 3600 },
 	{
 		name: 'consent',

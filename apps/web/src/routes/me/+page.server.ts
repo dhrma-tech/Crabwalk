@@ -83,6 +83,8 @@ export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 	return {
 		email: user?.email || null,
 		signedIn: !!user,
+		// SEC-15: a guest (anonymous session) is told where their trips and saves live.
+		guest: !!user?.is_anonymous,
 		saved,
 		theme: isTheme(theme) ? theme : 'system',
 		isStaff: gate ? !!admin : has('verifier') || has('reviewer') || has('admin'),

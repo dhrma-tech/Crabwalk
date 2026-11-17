@@ -231,3 +231,65 @@ test('uploads: a text file sent as image/webp is refused (SEC-18)', async ({ bro
 	expect(res.status()).toBe(400);
 	await page.context().close();
 });
+
+test('your data: export has my save and trip; delete removes account, rows and files (SEC-15)', async ({
+	browser
+}) => {
+	const email = `del-${Date.now().toString(36)}@e2e.local`;
+	const ctx = await browser.newContext();
+	const page = await ctx.newPage();
+	await signIn(page, email);
+	const uid = psql(`select id from auth.users where email = '${email}'`);
+	const origin = { origin: 'http://localhost:4173' };
+	expect(
+		(
+			await page.request.post('/api/saved', {
+				headers: origin,
+				data: { type: 'stay', slug: 'seed-stay-1' }
+			})
+		).ok()
+	).toBe(true);
+	psql(`insert into trips (owner_id, title, days) values ('${uid}', 'Delete me trip', 1)`);
+	// A booking proof: a real file in the user's storage folder.
+	const webp = Buffer.from(
+		'UklGRiQAAABXRUJQVlA4IBgAAAAwAQCdASoBAAEAAQAcJaQAA3AA/vuUAAA=',
+		'base64'
+	);
+	const proof = await page.request.post('/api/booking-proofs', {
+		headers: origin,
+		multipart: {
+			entity_type: 'stay',
+			entity_id: psql(`select id from stays where slug = 'seed-stay-1'`),
+			file: { name: 'p.webp', mimeType: 'image/webp', buffer: webp }
+		}
+	});
+	expect(proof.status(), await proof.text()).toBeLessThan(300);
+	const files = () =>
+		Number(psql(`select count(*) from storage.objects where name like '${uid}/%'`));
+	expect(files()).toBeGreaterThan(0);
+
+	const res = await page.request.get('/api/me/export');
+	expect(res.headers()['content-disposition']).toContain('attachment');
+	const data = await res.json();
+	expect(data.saved).toHaveLength(1);
+	expect(data.trips.trips.map((t: { title: string }) => t.title)).toContain('Delete me trip');
+
+	await page.goto('/me');
+	await page.waitForLoadState('networkidle');
+	await page.getByRole('button', { name: 'Delete my account' }).click();
+	const forever = page.getByRole('button', { name: 'Delete forever' });
+	await expect(forever).toBeDisabled();
+	await page.getByTestId('delete-confirm').fill('delete');
+	await forever.click();
+	await expect(page).toHaveURL('http://localhost:4173/');
+	expect(psql(`select count(*) from auth.users where id = '${uid}'`)).toBe('0');
+	expect(psql(`select count(*) from trips where owner_id = '${uid}'`)).toBe('0');
+	expect(files()).toBe(0);
+
+	// Signing in again with the same address starts an empty account.
+	await signIn(page, email);
+	const again = await (await page.request.get('/api/me/export')).json();
+	expect(again.saved).toEqual([]);
+	expect(again.trips.trips).toEqual([]);
+	await ctx.close();
+});

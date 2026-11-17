@@ -66,6 +66,9 @@ test('"Continue as guest" unlocks the vote in place; /guest rejects off-site nex
 	const before = Number(uncounted());
 	await vote.getByRole('button', { name: 'Must visit' }).click();
 	await expect.poll(() => Number(uncounted())).toBe(before + 1);
+	// SEC-15: Me tells a guest where their things live.
+	await page.goto('/me');
+	await expect(page.getByTestId('guest-notice')).toBeVisible();
 	// Already signed in: /guest just forwards, and only to a same-origin path.
 	await page.goto('/guest?next=//evil.example/x');
 	await expect(page).toHaveURL('http://localhost:4175/');

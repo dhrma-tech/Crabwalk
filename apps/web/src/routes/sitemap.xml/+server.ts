@@ -11,7 +11,8 @@ const STATIC = [
 	'/taste-konkan',
 	'/itineraries',
 	'/start',
-	'/privacy'
+	'/privacy',
+	'/terms'
 ];
 
 const esc = (s: string) =>

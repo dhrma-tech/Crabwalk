@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { purgeThenSubmit } from '#lib/sw.ts';
+	import { purgePrivateCaches, purgeThenSubmit } from '#lib/sw.ts';
+	import { toast } from '#lib/toast.svelte.ts';
+	import FileText from '@lucide/svelte/icons/file-text';
 	import { resolve } from '$app/paths';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import Route from '@lucide/svelte/icons/route';
@@ -61,6 +63,27 @@
 		'min-h-11 rounded-full px-4 type-label transition-[background-color,box-shadow,color] duration-(--dur-state)',
 		on ? 'bg-surface text-text shadow-e1' : 'text-text-2 hover:text-text'
 	];
+
+	// Your data (SEC-15): export as a file; delete after typing the word. Caches are purged first, so nothing of
+	// the account stays readable offline on this phone.
+	let deleteDialog: HTMLDialogElement | undefined = $state();
+	let confirmWord = $state('');
+	let deleting = $state(false);
+	async function deleteAccount(e: SubmitEvent) {
+		e.preventDefault();
+		if (confirmWord.trim().toLowerCase() !== 'delete') return;
+		deleting = true;
+		await purgePrivateCaches();
+		const r = await fetch('/api/me/delete', {
+			method: 'POST',
+			headers: { 'content-type': 'application/json' },
+			body: JSON.stringify({ confirm: 'delete' })
+		}).catch(() => null);
+		deleting = false;
+		if (r?.ok) return void location.assign('/');
+		deleteDialog?.close();
+		toast(r?.status === 403 || r?.status === 409 ? m.data_delete_blocked() : m.send_failed());
+	}
 </script>
 
 <!-- A switch that reads as one (Standout toggle, T-31); the button's name stays the action ("Turn on"). -->
@@ -242,6 +265,58 @@
 			</section>
 		{/if}
 
+		{#if data.signedIn}
+			<section class="flex flex-col gap-3" data-testid="your-data">
+				<h2 class="type-h2">{m.data_title()}</h2>
+				{#if data.guest}<p class="type-body text-text-2" data-testid="guest-notice">
+						{m.data_guest()}
+					</p>{/if}
+				<div class="flex flex-wrap gap-3">
+					<a
+						href={resolve('/api/me/export')}
+						download
+						class="inline-flex min-h-12 items-center rounded-md bg-surface-2 px-5 type-body-strong text-text no-underline hover:bg-surface-3"
+						data-testid="data-export">{m.data_export()}</a
+					>
+					{#if !data.isStaff}
+						<Button variant="ghost" onclick={() => ((confirmWord = ''), deleteDialog?.showModal())}
+							>{m.data_delete()}</Button
+						>
+					{/if}
+				</div>
+			</section>
+			<dialog
+				bind:this={deleteDialog}
+				class="m-auto w-[min(28rem,calc(100vw-2rem))] rounded-xl bg-surface p-5 text-text shadow-e3 backdrop:bg-text/40"
+				aria-labelledby="delete-title"
+			>
+				<form class="flex flex-col gap-4" onsubmit={deleteAccount}>
+					<h2 id="delete-title" class="type-h2">{m.data_delete()}</h2>
+					<p class="type-body">{m.data_delete_body()}</p>
+					<label class="flex flex-col gap-1.5 type-small">
+						{m.data_delete_type()}
+						<input
+							bind:value={confirmWord}
+							class="field h-12 px-3 type-body"
+							autocomplete="off"
+							data-testid="delete-confirm"
+						/>
+					</label>
+					<div class="flex flex-wrap justify-end gap-2">
+						<Button variant="ghost" type="button" onclick={() => deleteDialog?.close()}
+							>{m.data_keep()}</Button
+						>
+						<Button
+							type="submit"
+							loading={deleting}
+							disabled={confirmWord.trim().toLowerCase() !== 'delete'}
+							>{m.data_delete_confirm()}</Button
+						>
+					</div>
+				</form>
+			</dialog>
+		{/if}
+
 		<section class="flex flex-col gap-3">
 			<h2 class="type-h2">{m.language()} · {m.theme()}</h2>
 			<div class="flex flex-col gap-4 rounded-lg bg-surface p-4 shadow-e1">
@@ -296,6 +371,13 @@
 							><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" /></a
 						>
 					</li>{/if}
+				<li class="border-b border-border">
+					<a href={resolve('/terms')} class={row}
+						><FileText size={20} class="shrink-0 text-text-2" aria-hidden="true" /><span
+							class="flex-1 type-body-strong">{m.terms_title()}</span
+						><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" /></a
+					>
+				</li>
 				<li>
 					<a href={resolve('/privacy')} class={row}
 						><Shield size={20} class="shrink-0 text-text-2" aria-hidden="true" /><span

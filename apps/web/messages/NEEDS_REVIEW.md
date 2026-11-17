@@ -30,3 +30,4 @@ Points to check first:
 - T0-10 email invite (replaces `plan_invite_added`; must not say whether the address has an account): `plan_invite_sent`
 - T0-11 QR plaques (printed on the plaque in EN + MR; check it reads as an instruction to the visitor): `qr_plaque_check`, `qr_admin_origin_missing`
 - T0-12 trip invite confirm page: `plan_join_title`, `plan_join_button`
+- T0-14 your data + terms (deletion wording is a consequence statement: check it is unambiguous; terms headings only, legal text pending M9): `data_*`, `terms_*`
