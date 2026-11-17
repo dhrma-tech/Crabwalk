@@ -120,7 +120,8 @@ test('sheet opens from the gallery and snaps on tap', async ({ page }) => {
 	await expect(handle).toHaveAttribute('aria-expanded', 'true');
 });
 
-test('app shell JS < 200 KB gzipped', async ({ page }) => {
+// 210 KB (owner, 2026-11-17, hardening D-12): every UI message in three languages loads with the shell.
+test('app shell JS < 210 KB gzipped', async ({ page }) => {
 	const scripts: Promise<Buffer>[] = [];
 	page.on('response', (res) => {
 		if (res.request().resourceType() === 'script' || res.url().endsWith('.js'))
@@ -129,7 +130,7 @@ test('app shell JS < 200 KB gzipped', async ({ page }) => {
 	await page.goto('/', { waitUntil: 'networkidle' });
 	const total = (await Promise.all(scripts)).reduce((n, b) => n + gzipSync(b).length, 0);
 	console.log(`app shell JS: ${(total / 1024).toFixed(1)} KB gzipped (${scripts.length} files)`);
-	expect(total).toBeLessThan(200 * 1024);
+	expect(total).toBeLessThan(210 * 1024);
 });
 
 test('works offline after first visit', async ({ page, context }) => {

@@ -1,5 +1,5 @@
 // The heavy half of lib/guest.client.ts (SEC-02): Turnstile and the anonymous sign-in. Loaded on demand, the
-// first time a visitor needs a session, so none of it sits in the app shell (200 KB budget).
+// first time a visitor needs a session, so none of it sits in the app shell (210 KB budget).
 // No supabase-js here: any on-demand path from the shell to supabase-js makes the bundler move its CommonJS
 // helper out of the main chunk into one more shell request. The browser calls Supabase Auth's sign-up endpoint
 // itself (so Auth's per-IP limits and CAPTCHA see the visitor, not our server) and hands the new session to
