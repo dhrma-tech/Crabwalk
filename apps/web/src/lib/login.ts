@@ -18,3 +18,11 @@ export const loginHref = (here: { pathname: string; search: string }) =>
  */
 export const signInPath = (here: { pathname: string; search: string }, guest: boolean) =>
 	guest ? loginHref(here).replace('/login?', '/guest?') : loginHref(here);
+
+/**
+ * Readable companion of the httpOnly auth cookies (SEC-10): "1" while a session exists. Browser code checks it
+ * to skip requests that would only answer 401; it grants nothing (the server checks the real session).
+ */
+export const SIGNED_IN_COOKIE = 'cw_signed_in';
+export const hasSessionCookie = () =>
+	typeof document !== 'undefined' && document.cookie.includes(`${SIGNED_IN_COOKIE}=1`);

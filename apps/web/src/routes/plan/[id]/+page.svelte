@@ -377,13 +377,24 @@
 					{ event, schema: 'public', table, filter: `trip_id=eq.${id}` },
 					() => chatTick++
 				);
-		// Join as the signed-in tripmate (the client hands its session to Realtime only after the first auth event).
-		void db.auth.getSession().then(async ({ data: { session } }) => {
-			await db.realtime.setAuth(session?.access_token ?? null);
+		// Join as the signed-in tripmate. The auth cookies are httpOnly (SEC-10): the token comes from the server and
+		// is renewed every 50 minutes (access tokens last an hour).
+		const token = () =>
+			fetch('/api/me/token')
+				.then((r) => (r.ok ? (r.json() as Promise<{ token: string }>) : null))
+				.then((j) => j?.token ?? null)
+				.catch(() => null);
+		const renew = setInterval(async () => {
+			const tk = await token();
+			if (tk) await db.realtime.setAuth(tk);
+		}, 50 * 60_000);
+		void token().then(async (tk) => {
+			await db.realtime.setAuth(tk);
 			ch.subscribe();
 			del.subscribe();
 		});
 		return () => {
+			clearInterval(renew);
 			removeEventListener('online', online);
 			removeEventListener('pointerdown', down);
 			removeEventListener('pointerup', up);

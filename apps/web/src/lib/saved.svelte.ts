@@ -2,6 +2,7 @@ import { SvelteSet } from 'svelte/reactivity';
 import { m } from '#lib/paraglide/messages.js';
 import { ensureSession, guestMode, signInHref, withSession } from '#lib/guest.client.ts';
 import { toast } from '#lib/toast.svelte.ts';
+import { hasSessionCookie } from '#lib/login.ts';
 
 // Hearts on listing cards (DECISIONS T-5 / T-46): the signed-in visitor's saved listings, loaded once per page load
 // from /api/saved (browser only), toggled optimistically and rolled back if the server says no. Guests → sign in.
@@ -10,9 +11,9 @@ const key = (t: SavedKind, slug: string) => `${t}/${slug}`;
 const ids = new SvelteSet<string>();
 let loading: Promise<boolean> | null = null;
 
-// A guest has no Supabase auth cookie (@supabase/ssr sets it readable by scripts), so no request is made and no
-// 401 lands in the console on every listing page.
-const signedIn = () => document.cookie.includes('-auth-token');
+// Without a session there is no companion cookie (SEC-10: the auth cookies themselves are httpOnly), so no
+// request is made and no 401 lands in the console on every listing page.
+const signedIn = hasSessionCookie;
 
 /** Fetch the saved list once. Resolves false for a guest (no cookie or 401), and then retries next time. */
 export function loadSaved() {

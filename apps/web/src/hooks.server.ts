@@ -14,6 +14,7 @@ import { allowed, rulesFor } from '#lib/server/rate.ts';
 import { takeAiBudget } from '#lib/server/aiBudget.ts';
 import { setBudget } from '#lib/server/ai/router.ts';
 import { isPrivatePath } from '#lib/seo.ts';
+import { SIGNED_IN_COOKIE } from '#lib/login.ts';
 import { log, securityEvent } from '#lib/server/log.ts';
 
 // SEC-11: every model call first takes from the global daily budget (and respects the kill switch).
@@ -29,15 +30,48 @@ const supabase: Handle = async ({ event, resolve }) => {
 	if (!SUPABASE_URL || !SUPABASE_ANON_KEY)
 		throw new Error('SUPABASE_URL / SUPABASE_ANON_KEY not set');
 
+	// SEC-10: the auth cookies are httpOnly, so a script injected into a page cannot read the session. Browser
+	// code only learns "signed in or not" from the readable companion cookie; the plan page's Realtime client
+	// gets its token from GET /api/me/token.
+	const companion = (on: boolean, maxAge?: number) =>
+		on
+			? event.cookies.set(SIGNED_IN_COOKIE, '1', {
+					path: '/',
+					httpOnly: false,
+					sameSite: 'lax',
+					maxAge: maxAge ?? 400 * 86400
+				})
+			: event.cookies.delete(SIGNED_IN_COOKIE, { path: '/' });
 	event.locals.supabase = createServerClient<Database>(SUPABASE_URL, SUPABASE_ANON_KEY, {
 		cookies: {
 			getAll: () => event.cookies.getAll(),
-			setAll: (cookies) =>
-				cookies.forEach(({ name, value, options }) =>
-					event.cookies.set(name, value, { ...options, path: '/' })
-				)
+			setAll: (cookies) => {
+				let set = false;
+				let cleared = false;
+				let age: number | undefined;
+				for (const { name, value, options } of cookies) {
+					const auth = name.includes('-auth-token');
+					event.cookies.set(name, value, {
+						...options,
+						path: '/',
+						httpOnly: auth || options.httpOnly
+					});
+					if (auth && value && options.maxAge !== 0) {
+						set = true;
+						age = options.maxAge;
+					} else if (auth) cleared = true;
+				}
+				if (set) companion(true, age);
+				else if (cleared) companion(false);
+			}
 		}
 	});
+	// Sessions from before this change: give them the companion on their next request.
+	if (
+		!event.cookies.get(SIGNED_IN_COOKIE) &&
+		event.cookies.getAll().some((c) => c.name.includes('-auth-token') && c.value)
+	)
+		companion(true);
 
 	// getUser() validates the JWT with the auth server; never trust getSession() alone on the server.
 	// Memoised per request: several loads ask, and the temp gate below may create a guest session once.

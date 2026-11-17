@@ -1,6 +1,7 @@
 import { error, json } from '@sveltejs/kit';
 import { z } from 'zod';
 import { session } from '#lib/server/auth.ts';
+import { SIGNED_IN_COOKIE } from '#lib/login.ts';
 import { removeUserFiles } from '#lib/server/account.ts';
 import { securityEvent } from '#lib/server/log.ts';
 import { serviceClient } from '#lib/server/service.ts';
@@ -35,6 +36,7 @@ export const POST: RequestHandler = async (event) => {
 	await securityEvent('account_deleted', { files }, event);
 	await event.locals.supabase.auth.signOut({ scope: 'local' }).catch(() => null);
 	for (const c of event.cookies.getAll())
-		if (c.name.startsWith('sb-')) event.cookies.delete(c.name, { path: '/' });
+		if (c.name.startsWith('sb-') || c.name === SIGNED_IN_COOKIE)
+			event.cookies.delete(c.name, { path: '/' });
 	return json({ ok: true });
 };

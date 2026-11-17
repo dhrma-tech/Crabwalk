@@ -2,6 +2,7 @@
 // Emergency keywords are caught HERE, before any network call (§11.6).
 import { page } from '$app/state';
 import { isEmergency } from './emergency.ts';
+import { hasSessionCookie } from './login.ts';
 import { withSession } from './guest.client.ts';
 import { m } from './paraglide/messages.js';
 import type { DriveStep, PageName } from './drive.ts';
@@ -176,7 +177,7 @@ export async function ask(text: string) {
 /** The user's questions to our team; new answers are marked seen once shown. */
 export async function loadTeamQuestions() {
 	// Signed out (share pages, QR spot): no request, so no 401 in the console.
-	if (!document.cookie.includes('-auth-token')) return;
+	if (!hasSessionCookie()) return;
 	const r = await fetch('/api/me/questions').catch(() => null);
 	if (!r?.ok) return;
 	crabby.team = (await r.json()) as TeamQuestion[];

@@ -34,6 +34,10 @@ test('first heart tap on a fresh profile ends with the item saved', async ({ pag
 	await heart.click();
 	await expect(heart).toHaveAttribute('aria-pressed', 'true');
 	expect((await authCookies(page)).length).toBeGreaterThan(0);
+	// SEC-10: the session is httpOnly; scripts only see the companion flag.
+	for (const c of await authCookies(page)) expect(c.httpOnly, c.name).toBe(true);
+	expect((await page.context().cookies()).find((c) => c.name === 'cw_signed_in')?.value).toBe('1');
+	expect(await page.evaluate(() => document.cookie)).not.toContain('-auth-token');
 	await expect(page).toHaveURL(/\/stays$/); // no sign-in detour
 	// The heart turns on optimistically; the save lands a moment later.
 	await expect
