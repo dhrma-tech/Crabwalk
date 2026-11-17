@@ -54,6 +54,7 @@
 
 <div bind:this={sentinel} class="pointer-events-none absolute top-0 left-0 h-px w-px"></div>
 <header
+	style:view-transition-name="topbar"
 	class={[
 		'sticky top-0 z-bar pt-[env(safe-area-inset-top)] transition-[background-color,box-shadow] duration-200 print:hidden',
 		'lg:[:has(~[data-dock])>&]:-mr-(--dock-w)',

@@ -44,6 +44,7 @@
 </script>
 
 <nav
+	style:view-transition-name="appnav"
 	aria-label={m.nav_label()}
 	data-clip-check
 	class={[

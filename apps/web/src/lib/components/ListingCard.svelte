@@ -96,6 +96,7 @@
 						? 'size-24 rounded-md'
 						: 'aspect-[4/3] w-full rounded-t-lg'
 			]}
+			data-vt-photo
 			style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
 		>
 			{#if photo}

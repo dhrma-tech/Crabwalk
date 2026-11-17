@@ -10,7 +10,8 @@
 	import { logActivity } from '#lib/activity.ts';
 	import { page } from '$app/state';
 	import { guardPlainForms } from '#lib/forms.ts';
-	import { dataSaver, lowEnd } from '#lib/motion.ts';
+	import { dataSaver, lowEnd, reducedMotion } from '#lib/motion.ts';
+	import { driver } from '#lib/drive.svelte.ts';
 	import { devBypass } from '#lib/devAuth.ts';
 	import { devClient } from '#lib/devAuth.client.ts';
 	import type { LayoutProps } from './$types';
@@ -37,14 +38,53 @@
 		const slug = page.params.slug ?? page.params.dish;
 		if (type && slug) untrack(() => logActivity({ kind: 'view', type, slug }));
 	});
-	// Report 2 §5: client navigations cross-fade (View Transitions, where supported); none under reduced motion.
+	// Page transitions (brief section 4.3; View Transitions where supported, none under reduced motion).
+	// `data-nav`: tab roots and Crabby's drive steps cross-fade; back rises from above; anything else from below.
+	const TABS = ['/', '/map', '/crabby', '/plan/new', '/me'];
+	let tapped: HTMLElement | null = null;
+	onMount(() => {
+		const click = (e: MouseEvent) => {
+			const a = (e.target as Element | null)?.closest('a');
+			tapped = a?.querySelector<HTMLElement>('[data-vt-photo]') ?? null;
+		};
+		addEventListener('click', click, true);
+		return () => removeEventListener('click', click, true);
+	});
+	const photoLinkingTo = (path: string) =>
+		[...document.querySelectorAll<HTMLAnchorElement>('a[href]')]
+			.find((a) => a.pathname === path)
+			?.querySelector<HTMLElement>('[data-vt-photo]') ?? null;
 	onNavigate((nav) => {
-		if (!document.startViewTransition || matchMedia('(prefers-reduced-motion: reduce)').matches)
-			return;
+		const card = tapped;
+		tapped = null;
+		if (!document.startViewTransition || reducedMotion.current) return;
+		const to = nav.to?.url.pathname ?? '';
+		const back = nav.type === 'popstate' && (nav.delta ?? 0) < 0;
+		document.documentElement.dataset.nav =
+			driver.status || TABS.includes(to) ? 'tab' : back ? 'back' : 'forward';
+		// Shared hero: one element holds the name at a time. Forward: the tapped card's photo (the old page's own
+		// hero gives the name up); back: the hero morphs into the card that links to the page being left.
+		const named: HTMLElement[] = [];
+		const name = (el: HTMLElement | null) => {
+			if (!el) return;
+			el.style.viewTransitionName = 'hero';
+			named.push(el);
+		};
+		const heroes = [...document.querySelectorAll<HTMLElement>('[data-vt-hero]')];
+		if (card && nav.type === 'link' && card.closest('a')?.pathname === to) {
+			for (const h of heroes) h.style.viewTransitionName = 'none';
+			name(card);
+		}
 		return new Promise((done) => {
-			document.startViewTransition(async () => {
+			const t = document.startViewTransition(async () => {
 				done();
 				await nav.complete;
+				for (const el of [...named, ...heroes]) el.style.viewTransitionName = '';
+				if (back && nav.from && !document.querySelector('[data-vt-hero]'))
+					name(photoLinkingTo(nav.from.url.pathname));
+			});
+			t.finished.finally(() => {
+				for (const el of named) el.style.viewTransitionName = '';
 			});
 		});
 	});

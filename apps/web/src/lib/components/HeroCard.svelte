@@ -50,7 +50,7 @@
 		style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
 		data-clip-check
 	>
-		<div class="absolute inset-0" aria-hidden={!photo || undefined}>
+		<div class="absolute inset-0" aria-hidden={!photo || undefined} data-vt-photo>
 			{#if photo}
 				<img
 					src={photo.src}

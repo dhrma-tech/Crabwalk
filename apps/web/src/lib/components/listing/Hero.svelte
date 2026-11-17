@@ -31,6 +31,7 @@
 		immersive && (photo ? 'lg:aspect-video' : 'lg:aspect-3/1')
 	]}
 	style:background-image={photo?.lqip ? `url(${photo.lqip})` : undefined}
+	data-vt-hero
 >
 	{#if photo}
 		<img
@@ -40,7 +41,7 @@
 			alt={photo.alt}
 			fetchpriority="high"
 			decoding="async"
-			class="h-full w-full object-cover"
+			class="settle h-full w-full object-cover"
 		/>
 		{#if photo.credit}
 			{@const c = photo.credit}
@@ -65,3 +66,16 @@
 		<div class={['h-full', immersive && 'pb-7 lg:pb-0']}><NoPhoto {category} {kind} /></div>
 	{/if}
 </div>
+
+<style>
+	/* Brief section 4.3: the photo settles once from 1.04 after the page transition. Not parallax: nothing
+	   follows scroll. Scale only, so the LCP image is never hidden. */
+	.settle {
+		animation: settle var(--dur-emph) var(--ease) var(--dur-page) backwards;
+	}
+	@keyframes settle {
+		from {
+			transform: scale(1.04);
+		}
+	}
+</style>
