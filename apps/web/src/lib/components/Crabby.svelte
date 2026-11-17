@@ -50,7 +50,7 @@
 <style>
 	/* Loader: Crabby walks sideways (FRONTEND §6.13). */
 	.walking {
-		animation: sidestep 0.6s var(--ease) infinite alternate;
+		animation: sidestep calc(var(--dur-page) * 2) var(--ease) infinite alternate;
 	}
 	@keyframes sidestep {
 		from {
@@ -63,7 +63,7 @@
 	/* Success: the right claw rotates 20° twice from where it meets the body. */
 	.waving {
 		transform-origin: 33px 19px;
-		animation: wave 0.9s var(--ease) 1;
+		animation: wave calc(var(--dur-page) * 3) var(--ease) 1;
 	}
 	@keyframes wave {
 		0%,

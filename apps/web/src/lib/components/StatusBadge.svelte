@@ -77,9 +77,12 @@
 {/if}
 
 <style>
-	/* "Live" breathes softly (2 s); the global reduced-motion rule stops it. */
+	/* "Live" breathes softly (2 s); the global reduced-motion rule stops it, and data saver / low-end phones skip it. */
 	.pulse {
-		animation: pulse 2s ease-in-out infinite;
+		animation: pulse calc(var(--dur-ambient) / 3) var(--ease-inout) infinite;
+	}
+	:global(html[data-lite]) .pulse {
+		animation: none;
 	}
 	@keyframes pulse {
 		50% {

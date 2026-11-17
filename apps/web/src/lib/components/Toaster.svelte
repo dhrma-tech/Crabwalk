@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
 	import { toasts } from '#lib/toast.svelte.ts';
+	import { dur } from '#lib/motion.ts';
 </script>
 
 <!-- Report 2 §8: ink toast above the phone nav, slides up, 4 s (toast.svelte.ts). -->
@@ -12,7 +13,7 @@
 	{#each toasts as t (t.id)}
 		<p
 			class="max-w-170 rounded-md bg-text px-4 py-3 type-small text-bg shadow-e3"
-			transition:fly={{ y: 16, duration: 200 }}
+			transition:fly={{ y: 16, duration: dur(260) }}
 		>
 			{t.text}
 		</p>

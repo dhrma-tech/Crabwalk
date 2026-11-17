@@ -10,6 +10,7 @@
 	import { logActivity } from '#lib/activity.ts';
 	import { page } from '$app/state';
 	import { guardPlainForms } from '#lib/forms.ts';
+	import { dataSaver, lowEnd } from '#lib/motion.ts';
 	import { devBypass } from '#lib/devAuth.ts';
 	import { devClient } from '#lib/devAuth.client.ts';
 	import type { LayoutProps } from './$types';
@@ -18,6 +19,10 @@
 	onMount(guardPlainForms);
 	onMount(() => {
 		if (devBypass(location.hostname)) return devClient();
+	});
+	// Brief section 4.2: data saver or a low-end phone → no reveals, no ambient loops (`html[data-lite]` in CSS).
+	$effect(() => {
+		document.documentElement.toggleAttribute('data-lite', dataSaver.current || lowEnd());
 	});
 	// Profile activity source (P12): a listing view, only when the user switched that source on.
 	const VIEW = {

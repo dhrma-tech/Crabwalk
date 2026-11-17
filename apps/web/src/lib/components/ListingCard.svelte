@@ -68,9 +68,9 @@
 	class={[
 		'group relative text-text',
 		!row &&
-			'h-full rounded-lg bg-surface shadow-e1 transition-shadow duration-300 ease-brand hover:shadow-e2',
+			'h-full rounded-lg bg-surface shadow-e1 transition-shadow duration-(--dur-page) ease-brand hover:shadow-e2',
 		both &&
-			'lg:h-full lg:rounded-lg lg:bg-surface lg:shadow-e1 lg:transition-shadow lg:duration-300 lg:ease-brand lg:hover:shadow-e2'
+			'lg:h-full lg:rounded-lg lg:bg-surface lg:shadow-e1 lg:transition-shadow lg:duration-(--dur-page) lg:ease-brand lg:hover:shadow-e2'
 	]}
 	data-clip-check
 >
@@ -112,7 +112,7 @@
 					decoding="async"
 					width="400"
 					height="300"
-					class="h-full w-full object-cover transition-transform duration-300 ease-brand group-hover:scale-[1.03]"
+					class="h-full w-full object-cover transition-transform duration-(--dur-page) ease-brand group-hover:scale-[1.03]"
 				/>
 			{:else}
 				<NoPhoto {category} {kind} label={both ? 'lg' : !row} />
