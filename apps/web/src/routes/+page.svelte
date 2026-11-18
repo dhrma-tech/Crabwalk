@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { msg } from '#lib/msg.ts';
+	import { VIBES } from '#lib/vocab.ts';
 	import Page from '#lib/components/Page.svelte';
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import PlaceCard from '#lib/components/PlaceCard.svelte';
@@ -95,6 +96,28 @@
 						<p class="type-display-xl">{m.discover_heading()}</p>
 					</div>
 					<SearchBox id="search" />
+					<!-- T1-10 (UX-01): one tap from the hero to stays of a kind; links to the existing stays filter. -->
+					<nav aria-labelledby="vibes-title" class="flex flex-col gap-1" data-testid="vibe-row">
+						<h2 id="vibes-title" class="type-label text-text-2">{m.discover_vibes()}</h2>
+						<ul
+							class="-mx-5 flex gap-1 overflow-x-auto px-5 [scrollbar-width:none] lg:mx-0 lg:flex-wrap lg:px-0"
+						>
+							{#each VIBES as v (v)}
+								<li class="shrink-0">
+									<!-- eslint-disable svelte/no-navigation-without-resolve -- resolve()d path + a query -->
+									<a
+										href={`${resolve('/stays')}?vibe=${v}`}
+										class="group/press inline-flex min-h-11 items-center no-underline"
+										><span
+											class="inline-flex min-h-9 items-center rounded-full bg-surface-2 px-3.5 py-1 type-label text-text transition-transform duration-(--dur-press) ease-brand group-hover/press:bg-surface-3 group-active/press:scale-[.97]"
+											>{msg(`vibe_${v}`)}</span
+										></a
+									>
+									<!-- eslint-enable svelte/no-navigation-without-resolve -->
+								</li>
+							{/each}
+						</ul>
+					</nav>
 					{#if data.today}<TodayStrip today={data.today} season={data.season} {here} />{/if}
 				</div>
 				{#if featured}

@@ -106,3 +106,13 @@ test('a category has its own heading, canonical and description', async ({ page 
 	await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/\?category=fort$/);
 	await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /^Fort on the/);
 });
+
+// T1-10 (UX-01): "Stays by vibe" under the search box links to the stays filter, no new data.
+test('vibe row links each vibe to the stays filter', async ({ page }) => {
+	await page.goto('/');
+	const row = page.getByTestId('vibe-row');
+	await expect(row.getByRole('heading', { name: 'Stays by vibe' })).toBeVisible();
+	await expect(row.getByRole('link')).toHaveCount(9);
+	await row.getByRole('link', { name: 'Beachfront' }).click();
+	await expect(page).toHaveURL(/\/stays\?vibe=beachfront$/);
+});
