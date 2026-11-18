@@ -151,7 +151,13 @@
 		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
 			<ActionBar type="eatery" slug={e.slug} name={primary} coords={e.coords} />
 			<div class="order-2 lg:order-none">
-				<VerdictGauge type="eatery" all={data.ratings.all} groups={data.ratings.groups} />
+				<VerdictGauge
+					type="eatery"
+					id={e.id}
+					all={data.ratings.all}
+					groups={data.ratings.groups}
+					mine={data.ratings.mine}
+				/>
 			</div>
 			<div class="order-3 lg:order-none">
 				<SubScores dims={data.dims} subs={data.ratings.subs} />

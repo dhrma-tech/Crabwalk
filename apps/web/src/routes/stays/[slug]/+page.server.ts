@@ -5,7 +5,9 @@ import { ratingsFor, DIMENSIONS } from '#lib/server/ratings.ts';
 import { priceRows } from '#lib/server/prices.ts';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, locals }) => {
+export const load: PageServerLoad = async ({ params, locals, depends }) => {
+	// A vote refreshes only this data (`invalidate('app:ratings')`, hardening T1-05).
+	depends('app:ratings');
 	const s = await getStay(locals.supabase, params.slug);
 	if (!s) error(404, 'not found');
 	const lang = getLocale() as Lang;

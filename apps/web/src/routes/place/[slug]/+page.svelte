@@ -241,7 +241,13 @@
 		<div class="contents lg:col-span-5 lg:flex lg:flex-col lg:gap-6">
 			<ActionBar type="place" slug={p.slug} name={primary} coords={p.coords} />
 			<div class="order-3 lg:order-none">
-				<VerdictGauge type="place" all={data.ratings.all} groups={data.ratings.groups} />
+				<VerdictGauge
+					type="place"
+					id={p.id}
+					all={data.ratings.all}
+					groups={data.ratings.groups}
+					mine={data.ratings.mine}
+				/>
 			</div>
 			<div class="order-4 lg:order-none">
 				<VerdictVote

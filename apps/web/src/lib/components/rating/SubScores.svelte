@@ -26,9 +26,10 @@
 						? m.score_of({ dim: msg(`dim_${d}`), n: formatNumber(s.avg) })
 						: msg(`dim_${d}`)}
 				>
+					<!-- T1-05: a new average animates the bar's `scaleX` (no layout). -->
 					{#if s}<span
-							class="block h-full rounded-full bg-lagoon"
-							style:width="{(s.avg / 5) * 100}%"
+							class="block h-full origin-left rounded-full bg-lagoon transition-transform duration-(--dur-state) ease-brand"
+							style:transform="scaleX({s.avg / 5})"
 						></span>{/if}
 				</span>
 				<span class="text-text-2">{s ? formatNumber(s.avg) : '–'}</span>

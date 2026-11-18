@@ -274,8 +274,8 @@
 		</section>
 
 		<section class="grid gap-4 sm:grid-cols-2">
-			<VerdictGauge type="place" all={agg} groups={{ couple: fresh }} />
-			<VerdictGauge type="stay" all={null} groups={{}} />
+			<VerdictGauge type="place" id="dev-gauge-1" all={agg} groups={{ couple: fresh }} />
+			<VerdictGauge type="stay" id="dev-gauge-2" all={null} groups={{}} />
 		</section>
 		<SubScores
 			dims={['taste', 'hygiene']}
@@ -288,7 +288,13 @@
 			type="eatery"
 			id="sample"
 			dims={['taste', 'hygiene']}
-			mine={{ verdicts: { family: 4 }, subs: { taste: 4 }, verified: false, proofPending: false }}
+			mine={{
+				verdicts: { family: 4 },
+				subs: { taste: 4 },
+				verified: false,
+				proofPending: false,
+				group: 'family'
+			}}
 			signedIn
 		/>
 

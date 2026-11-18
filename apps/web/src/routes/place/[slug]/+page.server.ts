@@ -4,7 +4,9 @@ import { ratingsFor } from '#lib/server/ratings.ts';
 import { getPlace, lonLat, names, nearby, photoUrls, tr, type Lang } from '#lib/server/listings.ts';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ params, locals }) => {
+export const load: PageServerLoad = async ({ params, locals, depends }) => {
+	// A vote refreshes only this data (`invalidate('app:ratings')`, hardening T1-05).
+	depends('app:ratings');
 	const p = await getPlace(locals.supabase, params.slug);
 	if (!p) error(404, 'not found');
 	const lang = getLocale() as Lang;

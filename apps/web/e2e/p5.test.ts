@@ -144,6 +144,8 @@ test('review is moderated before it appears', async ({ browser }) => {
 	await page.goto(`/stays/${slug}`);
 	await page.waitForLoadState('networkidle');
 	const text = `Lovely host, quiet nights ${run}`;
+	// T1-05: reviews are per traveller group; with none remembered, the group comes first.
+	await page.getByTestId('verdict-vote').getByRole('radio', { name: 'Family' }).click();
 	await page.getByLabel('Add a few words (optional)').fill(text);
 	await page
 		.getByTestId('verdict-vote')

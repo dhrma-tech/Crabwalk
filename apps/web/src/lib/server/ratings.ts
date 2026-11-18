@@ -46,60 +46,68 @@ export async function ratingsFor(
 	user: { id: string; is_anonymous?: boolean } | null
 ) {
 	const userId = user?.id ?? null;
-	const [groups, all, subs, reviews, summary, mine, mySubs, visit, myProof] = await Promise.all([
-		db.from('verdict_agg').select('*').eq('entity_type', type).eq('entity_id', id),
-		db
-			.from('verdict_agg_all')
-			.select('*')
-			.eq('entity_type', type)
-			.eq('entity_id', id)
-			.maybeSingle(),
-		db.rpc('sub_score_summary', { _type: type, _id: id }),
-		db
-			.from('reviews')
-			.select('id, group_type, text, created_at, review_photos(id, storage_path, lqip)')
-			.eq('entity_type', type)
-			.eq('entity_id', id)
-			.eq('moderation_status', 'approved')
-			.order('created_at', { ascending: false })
-			.limit(20),
-		db.from('review_summaries').select('lang, summary').eq('entity_type', type).eq('entity_id', id),
-		userId
-			? db
-					.from('verdicts')
-					.select('group_type, level')
-					.eq('entity_type', type)
-					.eq('entity_id', id)
-					.eq('user_id', userId)
-			: Promise.resolve({ data: [] }),
-		userId
-			? db
-					.from('sub_scores')
-					.select('dimension, score')
-					.eq('entity_type', type)
-					.eq('entity_id', id)
-					.eq('user_id', userId)
-			: Promise.resolve({ data: [] }),
-		userId
-			? db
-					.from('verified_visits')
-					.select('id')
-					.eq('entity_type', type)
-					.eq('entity_id', id)
-					.eq('user_id', userId)
-					.limit(1)
-			: Promise.resolve({ data: [] }),
-		userId && type !== 'place'
-			? db
-					.from('booking_proofs')
-					.select('id')
-					.eq('entity_type', type)
-					.eq('entity_id', id)
-					.eq('user_id', userId)
-					.eq('status', 'pending')
-					.limit(1)
-			: Promise.resolve({ data: [] })
-	]);
+	const [groups, all, subs, reviews, summary, mine, mySubs, visit, myProof, pref] =
+		await Promise.all([
+			db.from('verdict_agg').select('*').eq('entity_type', type).eq('entity_id', id),
+			db
+				.from('verdict_agg_all')
+				.select('*')
+				.eq('entity_type', type)
+				.eq('entity_id', id)
+				.maybeSingle(),
+			db.rpc('sub_score_summary', { _type: type, _id: id }),
+			db
+				.from('reviews')
+				.select('id, group_type, text, created_at, review_photos(id, storage_path, lqip)')
+				.eq('entity_type', type)
+				.eq('entity_id', id)
+				.eq('moderation_status', 'approved')
+				.order('created_at', { ascending: false })
+				.limit(20),
+			db
+				.from('review_summaries')
+				.select('lang, summary')
+				.eq('entity_type', type)
+				.eq('entity_id', id),
+			userId
+				? db
+						.from('verdicts')
+						.select('group_type, level')
+						.eq('entity_type', type)
+						.eq('entity_id', id)
+						.eq('user_id', userId)
+				: Promise.resolve({ data: [] }),
+			userId
+				? db
+						.from('sub_scores')
+						.select('dimension, score')
+						.eq('entity_type', type)
+						.eq('entity_id', id)
+						.eq('user_id', userId)
+				: Promise.resolve({ data: [] }),
+			userId
+				? db
+						.from('verified_visits')
+						.select('id')
+						.eq('entity_type', type)
+						.eq('entity_id', id)
+						.eq('user_id', userId)
+						.limit(1)
+				: Promise.resolve({ data: [] }),
+			userId && type !== 'place'
+				? db
+						.from('booking_proofs')
+						.select('id')
+						.eq('entity_type', type)
+						.eq('entity_id', id)
+						.eq('user_id', userId)
+						.eq('status', 'pending')
+						.limit(1)
+				: Promise.resolve({ data: [] }),
+			userId
+				? db.from('user_preferences').select('group_type').eq('user_id', userId).maybeSingle()
+				: Promise.resolve({ data: null })
+		]);
 	return {
 		groups: Object.fromEntries((groups.data ?? []).map((g) => [g.group_type, toAgg(g)])) as Partial<
 			Record<Group, Agg>
@@ -121,7 +129,9 @@ export async function ratingsFor(
 				number
 			>,
 			verified: !!visit.data?.length,
-			proofPending: !!myProof.data?.length
+			proofPending: !!myProof.data?.length,
+			// The traveller group to vote as by default (hardening T1-05); null → the person picks one first.
+			group: (pref.data?.group_type ?? null) as Group | null
 		},
 		signedIn: !!userId,
 		// Guest votes are stored but not counted (SEC-03); the vote UI says so.
@@ -154,7 +164,9 @@ const entity = { entity_type: z.enum(['place', 'stay', 'eatery']), entity_id: z.
 export const verdictInput = z.object({
 	...entity,
 	group_type: z.enum(GROUPS),
-	level: z.number().int().min(1).max(4)
+	level: z.number().int().min(1).max(4),
+	/** First vote with no stored traveller group: keep this one as the default (T1-05). */
+	remember: z.boolean().optional()
 });
 export const subScoreInput = z.object({
 	...entity,

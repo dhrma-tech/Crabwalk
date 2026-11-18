@@ -68,6 +68,8 @@ test('"Continue as guest" unlocks the vote in place; /guest rejects off-site nex
 			`select count(*) from verdicts v join auth.users u on u.id = v.user_id where u.is_anonymous and not v.counted`
 		);
 	const before = Number(uncounted());
+	// T1-05: no remembered traveller group yet, so the group comes first.
+	await vote.getByRole('radio', { name: 'Solo' }).click();
 	await vote.getByRole('button', { name: 'Must visit' }).click();
 	await expect.poll(() => Number(uncounted())).toBe(before + 1);
 	// SEC-15: Me tells a guest where their things live.

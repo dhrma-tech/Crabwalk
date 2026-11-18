@@ -1226,5 +1226,17 @@
 	"terms_s_listings": "Listings, prices and bookings",
 	"terms_s_liability": "Safety and liability",
 	"terms_s_changes": "Changes to these terms",
-	"terms_s_contact": "Contact"
+	"terms_s_contact": "Contact",
+	"vote_pick_group": "Choose who you travelled with, then pick your verdict.",
+	"verdict_most_all": "Most travellers say: {verdict}",
+	"verdict_most_family": "Most families say: {verdict}",
+	"verdict_most_couple": "Most couples say: {verdict}",
+	"verdict_most_solo": "Most solo travellers say: {verdict}",
+	"verdict_most_friends": "Most friend groups say: {verdict}",
+	"verdict_you": "You: {verdict}",
+	"ratings_how": "How ratings work",
+	"ratings_how_words": "Four plain verdicts instead of stars, from a clear no to a must.",
+	"ratings_how_groups": "Families, couples, solo travellers and friends vote separately, so you can see what people like you think.",
+	"ratings_how_verified": "Hygiene and cleanliness scores count only from verified visits: a QR scan on site, or a booking or bill we have checked.",
+	"ratings_how_moderation": "Written reviews and photos appear only after a moderation check. Owners cannot rate their own listing."
 }

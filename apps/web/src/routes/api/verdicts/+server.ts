@@ -10,12 +10,25 @@ export const POST: RequestHandler = async (event) => {
 	if (!b.success) error(400, 'bad request');
 	const db = event.locals.supabase;
 	if (!(await assertPublished(db, b.data.entity_type, b.data.entity_id))) error(404, 'not found');
+	const { remember, ...vote } = b.data;
 	const { error: err } = await db
 		.from('verdicts')
 		.upsert(
-			{ ...b.data, user_id: user.id, updated_at: new Date().toISOString() },
+			{ ...vote, user_id: user.id, updated_at: new Date().toISOString() },
 			{ onConflict: 'user_id,entity_type,entity_id,group_type' }
 		);
 	if (err) error(err.code === '42501' ? 403 : 400, 'vote not saved');
+	// Remember the traveller group (T1-05): never overwrites one already chosen.
+	if (remember) {
+		const group_type = vote.group_type;
+		await db
+			.from('user_preferences')
+			.upsert({ user_id: user.id, group_type }, { onConflict: 'user_id', ignoreDuplicates: true });
+		await db
+			.from('user_preferences')
+			.update({ group_type, updated_at: new Date().toISOString() })
+			.eq('user_id', user.id)
+			.is('group_type', null);
+	}
 	return json({ ok: true });
 };
