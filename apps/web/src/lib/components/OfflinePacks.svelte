@@ -6,6 +6,7 @@
 	import Button from './Button.svelte';
 	import Skeleton from './Skeleton.svelte';
 	import Illustration from './Illustration.svelte';
+	import { track } from '#lib/track.ts';
 	import CircleCheck from '@lucide/svelte/icons/circle-check';
 	import Download from '@lucide/svelte/icons/download';
 
@@ -31,7 +32,10 @@
 		error = false;
 		try {
 			if (saved[p.id]) await deletePack(p.id);
-			else await downloadPack(p, (share) => (progress = share));
+			else {
+				await downloadPack(p, (share) => (progress = share));
+				track('pack_download');
+			}
 		} catch {
 			error = true;
 		}

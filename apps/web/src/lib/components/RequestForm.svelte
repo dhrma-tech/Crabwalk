@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import SignInButton from '#lib/components/SignInButton.svelte';
@@ -33,8 +34,10 @@
 			})
 		}).catch(() => null);
 		busy = false;
-		if (r?.ok) sent = true;
-		else failed = true;
+		if (r?.ok) {
+			sent = true;
+			track('request_send', { kind: type });
+		} else failed = true;
 	}
 	const field = 'field h-12 w-full px-3 type-body text-text';
 	const label = 'flex flex-col gap-1.5 type-small text-text-2';
