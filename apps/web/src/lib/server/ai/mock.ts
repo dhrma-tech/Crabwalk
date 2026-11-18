@@ -27,6 +27,14 @@ export const mockLog: ChatRequest[] = [];
 
 export const mock: Provider = {
 	name: 'mock',
+	/** T2-02: the same answer as `chat`, a few words at a time. */
+	async *chatStream(req) {
+		const words = (await mock.chat(req)).content.split(/(?<= )/);
+		for (let i = 0; i < words.length; i += 3) {
+			await new Promise((r) => setTimeout(r, 5));
+			yield words.slice(i, i + 3).join('');
+		}
+	},
 	async chat(req): Promise<ChatResult> {
 		mockLog.push(req);
 		if (mockLog.length > 200) mockLog.shift();
@@ -228,6 +236,18 @@ export const mock: Provider = {
 			else {
 				const cat = CATS.find((c) => text.includes(c));
 				if (cat) plan.push([call('search_places', { category: cat })]);
+			}
+			// T2-02: Crabby's first round starts with triage (cues: mockunsafe, mockofftopic, mocknotriage).
+			if (!done && req.tools.some((t) => t.name === 'triage') && !text.includes('mocknotriage')) {
+				const systems = req.messages.filter((m) => m.role === 'system').map((m) => m.content);
+				const lang = /App language: (en|hi|mr)/.exec(systems.join('\n'))?.[1] ?? 'en';
+				const triage = call('triage', {
+					safe: !text.includes('mockunsafe'),
+					on_topic: !text.includes('mockofftopic'),
+					lang,
+					script: lang === 'en' ? 'latin' : 'devanagari'
+				});
+				return { content: '', tool_calls: [triage, ...(plan[0] ?? [])] };
 			}
 			return { content: '', tool_calls: plan[done] ?? [] };
 		}

@@ -1,7 +1,9 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { isEmergency } from '#lib/emergency.ts';
 import { ProviderError, type ChatRequest, type Provider } from './providers.ts';
-import { audit, route, setBudget } from './router.ts';
+import { audit, route, routeStream, setBudget } from './router.ts';
+import { mock } from './mock.ts';
+import { gate, readTriage, replyLanguage } from './triage.ts';
 import { contextBlock } from './context.ts';
 import { scrub } from './scrub.ts';
 
@@ -79,6 +81,77 @@ describe('router (PLAN P8 acceptance: provider 429 → falls through chain)', ()
 			expect(body).toContain('[number removed]');
 			expect(body).toContain('[location removed]');
 		}
+	});
+});
+
+describe('streaming (T2-02)', () => {
+	beforeAll(() => setBudget(async () => true));
+	afterAll(() => setBudget(undefined));
+	const streamer = (name: string, chunks: string[], failAfter = -1, status = 429): Provider => ({
+		name,
+		chat: async () => ({ content: chunks.join(''), tool_calls: [] }),
+		async *chatStream() {
+			for (const [i, c] of chunks.entries()) {
+				if (i === failAfter) throw new ProviderError(name, status, 'boom');
+				yield c;
+			}
+			if (failAfter === chunks.length) throw new ProviderError(name, status, 'boom');
+		}
+	});
+	const all = async (it: AsyncIterable<string>) => {
+		const out: string[] = [];
+		for await (const c of it) out.push(c);
+		return out;
+	};
+	it('yields chunks in order; a provider without chatStream answers in one piece', async () => {
+		expect(
+			await all(
+				routeStream([{ provider: streamer('a', ['He', 'llo']), model: 'm' }], { messages: [] })
+			)
+		).toEqual(['He', 'llo']);
+		const plain = provider('b', () => ({ content: 'whole' }));
+		expect(await all(routeStream([{ provider: plain.p, model: 'm' }], { messages: [] }))).toEqual([
+			'whole'
+		]);
+	});
+	it('429 before the first chunk moves to the next link; after it, the error surfaces', async () => {
+		const links = (failAfter: number) => [
+			{ provider: streamer('a', ['x', 'y'], failAfter), model: '1' },
+			{ provider: streamer('b', ['ok']), model: '2' }
+		];
+		expect(await all(routeStream(links(0), { messages: [] }))).toEqual(['ok']);
+		await expect(all(routeStream(links(1), { messages: [] }))).rejects.toMatchObject({
+			status: 429
+		});
+	});
+	it('the mock streams the same text as its plain answer, in chunks', async () => {
+		const req = {
+			model: 'mock-explain',
+			messages: [{ role: 'system' as const, content: 'TOOL RESULTS:\n[{"name":"Seed Fort 1"}]' }]
+		};
+		const chunks = await all(mock.chatStream!(req));
+		expect(chunks.length).toBeGreaterThan(1);
+		expect(chunks.join('')).toBe((await mock.chat(req)).content);
+	});
+});
+
+describe('triage (T2-02, AI Spec 5.1)', () => {
+	const tc = (name: string, args: unknown) => ({ id: name, name, args: JSON.stringify(args) });
+	const ok = { safe: true, on_topic: true, lang: 'mr', script: 'devanagari' };
+	it('no triage call, a broken one, or safe: false → refused', () => {
+		expect(gate(readTriage([tc('search_places', { category: 'fort' })]))).toBe('refused');
+		expect(gate(readTriage([]))).toBe('refused');
+		expect(gate(readTriage([{ id: 't', name: 'triage', args: '{not json' }]))).toBe('refused');
+		expect(gate(readTriage([tc('triage', { ...ok, lang: 'fr' })]))).toBe('refused');
+		expect(gate(readTriage([tc('triage', { ...ok, safe: false })]))).toBe('refused');
+	});
+	it('off topic and ok; the reply language follows what the user wrote', () => {
+		expect(gate(readTriage([tc('triage', { ...ok, on_topic: false })]))).toBe('off_topic');
+		const t = readTriage([tc('triage', ok), tc('search_places', {})]);
+		expect(gate(t)).toBe('ok');
+		expect(replyLanguage(t!)).toBe('Marathi (Devanagari)');
+		expect(replyLanguage({ lang: 'hi', script: 'latin' })).toMatch(/^Hindi \(in Latin letters/);
+		expect(replyLanguage({ lang: 'en', script: 'latin' })).toBe('English');
 	});
 });
 
