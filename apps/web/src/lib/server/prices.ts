@@ -16,6 +16,7 @@ type Stay = {
 	price_min: number | null;
 	price_max: number | null;
 	stay_offers: {
+		id: string;
 		provider: string;
 		deep_link: string;
 		affiliate_network: string | null;
@@ -43,7 +44,7 @@ export async function priceRows(s: Stay): Promise<PriceRow[]> {
 			label: o.provider.replace(/_/g, ' ').replace(/^./, (c) => c.toUpperCase()),
 			price: price != null ? formatINR(price) : null,
 			source: live ? m.source_agoda_live() : (NETWORK[o.affiliate_network ?? ''] ?? o.provider),
-			href: o.deep_link
+			offer: o.id
 		});
 	}
 	return rows;

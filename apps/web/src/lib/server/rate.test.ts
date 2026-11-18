@@ -23,6 +23,15 @@ describe('rate-limit rules (P10)', () => {
 		]);
 		expect(rulesFor('POST', u('/api/reports'))).toHaveLength(1);
 	});
+	it('outbound booking clicks: 60 per 10 minutes (T1-10)', () => {
+		expect(
+			rulesFor('GET', u('/out/3f1c2a4e-0000-4000-8000-000000000000')).map((r) => [
+				r.name,
+				r.limit,
+				r.windowS
+			])
+		).toEqual([['out', 60, 600]]);
+	});
 	it('keys clients by the platform address only: a spoofed cf-connecting-ip changes nothing (SEC-06)', async () => {
 		const ev = (addr: string, spoof?: string) => ({
 			request: new Request('https://x.test/', {

@@ -34,3 +34,4 @@ Points to check first:
 - Hardening T1-05 keys (`vote_pick_group`, `verdict_most_*`, `verdict_you`, `ratings_how*`): drafts. `ratings_how_verified` and `ratings_how_moderation` state rating rules — check the wording matches the product before launch.
 - Hardening T1-10 key `review_expect` ("Usually approved within a day."): draft; it states a moderation turnaround, so confirm the team can keep it.
 - Hardening T1-10 key `discover_vibes` ("Stays by vibe"): draft.
+- Hardening T1-10 keys `out_never_pay`, `out_continue`: drafts; `out_never_pay` is a product promise, check it first.

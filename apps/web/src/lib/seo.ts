@@ -15,7 +15,8 @@ export const PRIVATE_PREFIXES = [
 	'/navigate',
 	'/prefs',
 	'/ola/',
-	'/dev/'
+	'/dev/',
+	'/out/'
 ] as const;
 
 export const isPrivatePath = (path: string) =>

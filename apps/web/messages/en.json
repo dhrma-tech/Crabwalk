@@ -1240,5 +1240,7 @@
 	"ratings_how_verified": "Hygiene and cleanliness scores count only from verified visits: a QR scan on site, or a booking or bill we have checked.",
 	"ratings_how_moderation": "Written reviews and photos appear only after a moderation check. Owners cannot rate their own listing.",
 	"review_expect": "Usually approved within a day.",
-	"discover_vibes": "Stays by vibe"
+	"discover_vibes": "Stays by vibe",
+	"out_never_pay": "Crabwalk never takes payment. You book and pay on their site.",
+	"out_continue": "Continue to {provider}"
 }

@@ -206,6 +206,26 @@ test('stay price table shows a source label on every row', async ({ page }) => {
 	await expect(rows).toHaveCount(3);
 	const sources = await page.getByTestId('price-source').allTextContents();
 	expect(sources).toEqual(['Source: owner', 'Source: INRDeals', 'Source: Cuelinks']);
+	// T1-10 (UX-11): a booking row opens a sheet; Continue goes through /out/<offer>, which redirects (303) to the
+	// stored link and never to a URL from the request. /out/ is noindex.
+	await page.waitForLoadState('networkidle');
+	await page.getByTestId('price-table').getByRole('button', { name: 'See price' }).first().click();
+	const sheet = page.getByTestId('out-sheet');
+	await expect(sheet.getByRole('heading', { name: 'Makemytrip' })).toBeVisible();
+	await expect(sheet).toContainText('Crabwalk never takes payment');
+	const go = sheet.getByRole('link', { name: 'Continue to Makemytrip' });
+	await expect(go).toHaveAttribute('target', '_blank');
+	const out = (await go.getAttribute('href'))!;
+	expect(out).toMatch(/^\/out\/[0-9a-f-]{36}$/);
+	const r = await page.request.get(out, { maxRedirects: 0 });
+	expect(r.status()).toBe(303);
+	expect(r.headers()['location']).toBe('https://example.com/mmt');
+	expect(r.headers()['x-robots-tag']).toContain('noindex');
+	expect(
+		(
+			await page.request.get('/out/not-a-uuid?to=https://evil.example', { maxRedirects: 0 })
+		).status()
+	).toBe(404);
 	await expect(page.getByRole('link', { name: 'Call' })).toHaveAttribute(
 		'href',
 		'tel:+919800000000'

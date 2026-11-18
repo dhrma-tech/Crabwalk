@@ -77,6 +77,8 @@ export const RULES: Rule[] = [
 		limit: 30,
 		windowS: 3600
 	},
+	// Outbound booking clicks (T1-10, UX-11): `/out/<offer>` redirects to the stored link.
+	{ name: 'out', method: 'GET', path: /^\/out\/[^/]+$/, limit: 60, windowS: 600 },
 	// Account export and deletion (SEC-15).
 	{ name: 'me-export', method: 'GET', path: /^\/api\/me\/export$/, limit: 10, windowS: 3600 },
 	{ name: 'me-delete', method: 'POST', path: /^\/api\/me\/delete$/, limit: 5, windowS: 3600 },

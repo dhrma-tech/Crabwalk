@@ -308,7 +308,12 @@
 		/>
 		<PriceTable
 			rows={[
-				{ label: s.room, price: '₹ 2,400', source: 'Agoda', href: '#' },
+				{
+					label: s.room,
+					price: '₹ 2,400',
+					source: 'Agoda',
+					offer: '00000000-0000-4000-8000-000000000000'
+				},
 				{ label: s.room, price: null, source: s.auth }
 			]}
 		/>
