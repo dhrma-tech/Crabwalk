@@ -62,6 +62,10 @@ export type Bubble = {
 	kind?: 'refused' | 'unavailable' | 'limit' | 'unknown';
 	actions?: Action[];
 	alternatives?: { slug: string; name: string }[];
+	/** T2-05: the turn's log id (thumbs), the user's thumbs, and the "send to our team?" offer after a 👎. */
+	turn?: number | null;
+	thumbs?: -1 | 1;
+	offer?: 'ask' | 'sent' | 'closed';
 	/** Listings the reply names (T2-03): chips linking to them. */
 	cites?: { kind: 'place' | 'stay' | 'eatery' | 'dish'; slug: string; name: string }[];
 	/** "Ask, don't assume" card; answered once the user sends their picks. */
@@ -172,6 +176,7 @@ export async function ask(text: string) {
 				actions: r.actions,
 				alternatives: r.alternatives,
 				...(r.cites?.length ? { cites: r.cites } : {}),
+				...(r.turn ? { turn: r.turn } : {}),
 				...(r.questions?.length ? { questions: r.questions } : {}),
 				...(unknown ? { kind: 'unknown' as const } : {})
 			});
@@ -200,8 +205,42 @@ type Reply =
 			questions: Question[] | null;
 			alternatives: Bubble['alternatives'];
 			cites?: Bubble['cites'];
+			turn?: number | null;
 			remaining: number;
 	  };
+
+/** T2-05: 👍 / 👎 on an answer (stored on the turn's no-text log row). A 👎 offers to send it to our team. */
+export async function rate(t: Bubble, thumbs: -1 | 1) {
+	if (!t.turn || t.thumbs) return;
+	t.thumbs = thumbs;
+	if (thumbs === -1) t.offer = 'ask';
+	const r = await fetch('/api/ai/feedback', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ turn: t.turn, thumbs })
+	}).catch(() => null);
+	if (!r?.ok) {
+		t.thumbs = undefined;
+		t.offer = undefined;
+	}
+}
+
+/** The question before this answer and the answer itself go to our team only when the user says yes. */
+export async function sendToTeam(t: Bubble, yes: boolean) {
+	if (!yes) return void (t.offer = 'closed');
+	const i = crabby.turns.indexOf(t);
+	const question = crabby.turns
+		.slice(0, i)
+		.findLast((x) => x.role === 'user')
+		?.content.slice(0, 450);
+	if (!question) return void (t.offer = 'closed');
+	const r = await fetch('/api/ai/feedback', {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify({ send: true, question, answer: t.content.slice(0, 450) })
+	}).catch(() => null);
+	t.offer = r?.ok ? 'sent' : 'closed';
+}
 
 /** Server-sent events from a fetch body: `event:` name and JSON `data:` (T2-02). */
 async function* events(body: ReadableStream<Uint8Array>) {

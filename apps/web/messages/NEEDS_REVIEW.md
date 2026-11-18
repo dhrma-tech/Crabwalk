@@ -38,3 +38,4 @@ Points to check first:
 - Hardening T1-10 keys `outbox_queued`, `outbox_failed`: drafts.
 - Hardening T2-02 keys `crabby_off_topic` (fixed reply when a message is not about Konkan travel; it is the whole answer, so check tone), `crabby_status_tools`, `crabby_status_writing`: drafts.
 - Hardening T2-03 keys `crabby_dont_know` (shown when a reply fails the fact checks twice; it is the whole answer), `crabby_cites` (label of the list of places a reply names): drafts.
+- Hardening T2-05 keys `crabby_helpful`, `crabby_not_helpful`, `crabby_feedback_thanks`, `crabby_send_team_ask` (asks consent to send the user's own question and answer to the team: check it reads as optional), `crabby_send_team_yes`, `crabby_send_team_no`: drafts.

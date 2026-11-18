@@ -14,9 +14,14 @@
 		crabby,
 		decide,
 		loadTeamQuestions,
+		rate,
+		sendToTeam,
 		snap,
 		type Action
 	} from '#lib/crabby.svelte.ts';
+	import ThumbsUp from '@lucide/svelte/icons/thumbs-up';
+	import ThumbsDown from '@lucide/svelte/icons/thumbs-down';
+	import IconButton from '../IconButton.svelte';
 	import { onMount } from 'svelte';
 	import Crabby from '../Crabby.svelte';
 	import Illustration from '../Illustration.svelte';
@@ -199,6 +204,38 @@
 									</li>
 								{/each}
 							</ul>
+						{/if}
+						{#if t.turn}
+							<!-- T2-05: thumbs on the answer; a 👎 offers (never sends by itself) to tell our team. -->
+							<div class="-mb-1 flex items-center gap-1 text-text-2" data-testid="crabby-thumbs">
+								<IconButton
+									label={m.crabby_helpful()}
+									aria-pressed={t.thumbs === 1}
+									disabled={!!t.thumbs}
+									onclick={() => rate(t, 1)}><ThumbsUp size={18} aria-hidden="true" /></IconButton
+								>
+								<IconButton
+									label={m.crabby_not_helpful()}
+									aria-pressed={t.thumbs === -1}
+									disabled={!!t.thumbs}
+									onclick={() => rate(t, -1)}
+									><ThumbsDown size={18} aria-hidden="true" /></IconButton
+								>
+								{#if t.thumbs === 1 || t.offer === 'sent' || t.offer === 'closed'}
+									<span class="type-small" role="status">{m.crabby_feedback_thanks()}</span>
+								{/if}
+							</div>
+							{#if t.offer === 'ask'}
+								<div class="flex flex-col gap-2 rounded-md bg-surface-2 p-3">
+									<p class="type-small">{m.crabby_send_team_ask()}</p>
+									<div class="flex gap-2">
+										<Button onclick={() => sendToTeam(t, true)}>{m.crabby_send_team_yes()}</Button>
+										<Button variant="ghost" onclick={() => sendToTeam(t, false)}
+											>{m.crabby_send_team_no()}</Button
+										>
+									</div>
+								</div>
+							{/if}
 						{/if}
 						{#if t.questions}
 							<QuestionCard

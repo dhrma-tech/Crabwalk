@@ -121,12 +121,13 @@ test('plan preview changes nothing until Apply', async () => {
 test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode unchanged; triage', async () => {
 	// SSE, read in the page. The first event is timed from the response start: time before that is the
 	// shared hooks (session, rate limiter), the same for every endpoint and machine-load dependent.
-	const s = await page.evaluate(async () => {
+	// The run id keeps the T2-05 answer cache of an earlier run (10 minutes) out of this one.
+	const s = await page.evaluate(async (run) => {
 		const t0 = performance.now();
 		const res = await fetch('/api/ai/chat', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
-			body: JSON.stringify({ message: 'show me a cave' })
+			body: JSON.stringify({ message: `show me a cave ${run}` })
 		});
 		const head = performance.now() - t0;
 		const reader = res.body!.getReader();
@@ -140,7 +141,7 @@ test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode un
 			text += dec.decode(value, { stream: true });
 		}
 		return { type: res.headers.get('content-type'), first, text };
-	});
+	}, run);
 	expect(s.type).toContain('text/event-stream');
 	expect(s.first).toBeLessThan(300);
 	const names = [...s.text.matchAll(/^event: (\w+)$/gm)].map((x) => x[1]);
@@ -164,7 +165,7 @@ test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode un
 
 	// No Accept header: the JSON answer, as before.
 	const j = await (
-		await page.request.post('/api/ai/chat', { data: { message: 'show me a cave' } })
+		await page.request.post('/api/ai/chat', { data: { message: `show me a cave ${run}` } })
 	).json();
 	expect(j).toMatchObject({ kind: 'answer' });
 	expect(j.reply).toContain(`P8 Cave ${run}`);
@@ -185,6 +186,44 @@ test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode un
 	});
 	const log = await (await page.request.get('/api/ai/mock-log')).text();
 	expect(log).not.toContain('You screen messages sent to a travel assistant');
+});
+
+test('cache, turn log and thumbs (T2-05)', async () => {
+	const ask = async (message: string) =>
+		(await page.request.post('/api/ai/chat', { data: { message } })).json();
+	// A first question with nothing personal around it: the second time, zero provider payloads.
+	const q = `show me a cave please ${run}`;
+	const a = await ask(q);
+	expect(a.reply).toContain(`P8 Cave ${run}`);
+	const before = await (await page.request.get('/api/ai/mock-log')).text();
+	const b = await ask(q);
+	expect(await (await page.request.get('/api/ai/mock-log')).text()).toBe(before);
+	expect(b).toMatchObject({ kind: 'answer', reply: a.reply, cites: a.cites });
+	// One row per turn, no text: the first used search_places, the second came from the cache.
+	expect(psql(`select outcome, tools, cached from ai_turns where id = ${a.turn}`)).toBe(
+		'answer|{search_places}|f'
+	);
+	expect(psql(`select outcome, tools, cached from ai_turns where id = ${b.turn}`)).toBe(
+		'answer|{}|t'
+	);
+
+	// Thumbs down in the chat → stored on the turn; the exchange reaches our team only after "Send".
+	await page.goto('/crabby');
+	await page.waitForLoadState('networkidle');
+	await say(`show me a cave thumbs ${run}`);
+	const answer = lastAnswer();
+	await expect(answer).toContainText(`P8 Cave ${run}`);
+	await answer.getByRole('button', { name: 'Not helpful' }).click();
+	await expect(answer.getByText('Send this question and answer to our team')).toBeVisible();
+	const leads = () =>
+		psql(`select count(*) from ai_leads where input like 'Thumbs down.%thumbs ${run}%'`);
+	expect(leads()).toBe('0');
+	await answer.getByRole('button', { name: 'Send', exact: true }).click();
+	await expect(answer.getByText('Thanks for telling us.')).toBeVisible();
+	expect(leads()).toBe('1');
+	expect(psql(`select count(*) from ai_turns where thumbs = -1 and day = current_date`)).not.toBe(
+		'0'
+	);
 });
 
 test('21st message in a day is refused gracefully', async () => {
