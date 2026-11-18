@@ -23,6 +23,11 @@ describe('rate-limit rules (P10)', () => {
 		]);
 		expect(rulesFor('POST', u('/api/reports'))).toHaveLength(1);
 	});
+	it('analytics events: 240 per 10 minutes (T1-11)', () => {
+		expect(rulesFor('POST', u('/api/e')).map((r) => [r.name, r.limit, r.windowS])).toEqual([
+			['events', 240, 600]
+		]);
+	});
 	it('outbound booking clicks: 60 per 10 minutes (T1-10)', () => {
 		expect(
 			rulesFor('GET', u('/out/3f1c2a4e-0000-4000-8000-000000000000')).map((r) => [
