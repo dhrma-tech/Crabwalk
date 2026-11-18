@@ -50,22 +50,27 @@ export const POST: RequestHandler = async (event) => {
 		const r = await turn({});
 		return json(r, { status: r.kind === 'limit' ? 429 : 200 });
 	}
+	// The turn writes into a TransformStream after the response is returned (the Workers streaming pattern):
+	// work done inside a ReadableStream `start()` can hold back its first chunk until `start()` finishes.
 	const enc = new TextEncoder();
-	const stream = new ReadableStream<Uint8Array>({
-		async start(c) {
-			const send = (name: string, data: unknown) =>
-				c.enqueue(enc.encode(`event: ${name}\ndata: ${JSON.stringify(data)}\n\n`));
-			// The first event goes out with the response (AI-01: status within 300 ms), before the cap check.
-			send('status', { step: 'thinking' });
-			try {
-				send('final', await turn({ emit: (e) => send(e.event, e.data) }));
-			} catch {
-				send('error', { kind: 'unavailable' });
-			}
-			c.close();
+	const { readable, writable } = new TransformStream<Uint8Array, Uint8Array>();
+	const out = writable.getWriter();
+	const send = (name: string, data: unknown) =>
+		void out.write(enc.encode(`event: ${name}\ndata: ${JSON.stringify(data)}\n\n`)).catch(() => {});
+	const run = (async () => {
+		// The first event goes out with the response (AI-01: status within 300 ms), before the cap check. A 2 KB
+		// SSE comment first (clients ignore it) so no proxy holds the small first event back.
+		void out.write(enc.encode(`:${' '.repeat(2048)}\n\n`)).catch(() => {});
+		send('status', { step: 'thinking' });
+		try {
+			send('final', await turn({ emit: (e) => send(e.event, e.data) }));
+		} catch {
+			send('error', { kind: 'unavailable' });
 		}
-	});
-	return new Response(stream, {
+		await out.close().catch(() => {});
+	})();
+	event.platform?.ctx?.waitUntil?.(run);
+	return new Response(readable, {
 		headers: { 'Content-Type': 'text/event-stream', 'Cache-Control': 'no-cache, no-store' }
 	});
 };
