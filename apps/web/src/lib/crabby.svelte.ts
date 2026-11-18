@@ -8,6 +8,7 @@ import { m } from './paraglide/messages.js';
 import type { DriveStep, PageName } from './drive.ts';
 import type { Question } from './questions.ts';
 import { drive } from './drive.svelte.ts';
+import { track } from './track.ts';
 import type { ReelResult } from './server/ai/reel.ts';
 
 const PAGE_NAME: Record<PageName, () => string> = {
@@ -120,6 +121,7 @@ export async function ask(text: string) {
 		.map((t) => ({ role: t.role, content: t.content }));
 	crabby.turns.push({ role: 'user', content: message });
 	crabby.busy = true;
+	track('crabby_turn');
 	try {
 		const res = await withSession(() =>
 			fetch('/api/ai/chat', {
@@ -298,5 +300,6 @@ export async function decide(a: Action, apply: boolean): Promise<string | null> 
 		return null;
 	}
 	a.state = apply ? 'applied' : 'discarded';
+	if (apply) track('crabby_action_apply');
 	return ((await res.json()) as { href: string | null }).href;
 }
