@@ -116,3 +116,25 @@ test('vibe row links each vibe to the stays filter', async ({ page }) => {
 	await row.getByRole('link', { name: 'Beachfront' }).click();
 	await expect(page).toHaveURL(/\/stays\?vibe=beachfront$/);
 });
+
+// T1-10 (UX-07): a home row is left out until it has at least three items.
+test('home rows show only with three or more items', async ({ page }) => {
+	await page.goto('/');
+	const rows = [
+		'places-title',
+		'stays-title',
+		'food-title',
+		'gems-title',
+		'itin-title',
+		'taste-title'
+	];
+	let shown = 0;
+	for (const id of rows) {
+		const section = page.locator(`section[aria-labelledby="${id}"]`);
+		if (!(await section.count())) continue;
+		shown++;
+		expect(await section.locator('li:visible').count(), id).toBeGreaterThanOrEqual(3);
+	}
+	expect(shown).toBeGreaterThan(0);
+	await expect(page.getByText('Verified stays will show up here.')).toHaveCount(0);
+});

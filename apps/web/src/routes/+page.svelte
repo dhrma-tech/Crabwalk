@@ -58,17 +58,11 @@
 	const locale = getLocale();
 	const nameOf = (n: { en: string; hi: string | null; mr: string | null }) =>
 		(locale === 'hi' ? n.hi : locale === 'mr' ? n.mr : null) || n.en;
+	// T1-10 (UX-07): a home row shows only once it has at least three items; until then it is left out.
+	const full = (n: number) => n >= 3;
 	const featured = $derived(data.gems.find((g) => g.photo));
 	const categoryName = $derived(data.category ? msg(`cat_${data.category}`) : null);
 </script>
-
-{#snippet rowEmpty(text: string)}
-	<p
-		class="weave rounded-lg border border-dashed border-border-strong px-4 py-5 type-small text-text-2"
-	>
-		{text}
-	</p>
-{/snippet}
 
 {#snippet seeAll(href: string, label: string)}
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
@@ -201,7 +195,7 @@
 		{:else}
 			<!-- Places → Stays → Food straight after Explore (user, 2026-11-11), each row its own card style:
 			     tall photo tiles · listing cards with price · compact thumbnail cards. -->
-			{#if data.placeRow.length}
+			{#if full(data.placeRow.length)}
 				<section aria-labelledby="places-title" class="flex scroll-scope flex-col gap-3">
 					<div class="flex items-baseline justify-between gap-4">
 						<h2 id="places-title" class="type-h2">{m.discover_places()}</h2>
@@ -254,12 +248,12 @@
 				</section>
 			{/if}
 
-			<section aria-labelledby="stays-title" class="flex flex-col gap-3">
-				<div class="flex items-baseline justify-between gap-4">
-					<h2 id="stays-title" class="type-h2">{m.stays_title()}</h2>
-					{#if data.stays.length}{@render seeAll(resolve('/stays'), m.see_all())}{/if}
-				</div>
-				{#if data.stays.length}
+			{#if full(data.stays.length)}
+				<section aria-labelledby="stays-title" class="flex flex-col gap-3">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 id="stays-title" class="type-h2">{m.stays_title()}</h2>
+						{@render seeAll(resolve('/stays'), m.see_all())}
+					</div>
 					<Carousel label={m.stays_title()}>
 						{#each data.stays as s (s.slug)}
 							<li>
@@ -276,17 +270,15 @@
 							</li>
 						{/each}
 					</Carousel>
-				{:else}
-					{@render rowEmpty(m.discover_stays_empty())}
-				{/if}
-			</section>
+				</section>
+			{/if}
 
-			<section aria-labelledby="food-title" class="flex scroll-scope flex-col gap-3">
-				<div class="flex items-baseline justify-between gap-4">
-					<h2 id="food-title" class="type-h2">{m.food_title()}</h2>
-					{#if data.eateries.length}{@render seeAll(resolve('/food'), m.see_all())}{/if}
-				</div>
-				{#if data.eateries.length}
+			{#if full(data.eateries.length)}
+				<section aria-labelledby="food-title" class="flex scroll-scope flex-col gap-3">
+					<div class="flex items-baseline justify-between gap-4">
+						<h2 id="food-title" class="type-h2">{m.food_title()}</h2>
+						{@render seeAll(resolve('/food'), m.see_all())}
+					</div>
 					<ul
 						class="scroll-row -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:scroll-px-0 lg:px-0"
 						data-clip-check
@@ -339,14 +331,12 @@
 						{/each}
 					</ul>
 					<ScrollProgress />
-				{:else}
-					{@render rowEmpty(m.discover_food_empty())}
-				{/if}
-			</section>
+				</section>
+			{/if}
 
 			<div class="laterite-course" aria-hidden="true"></div>
 
-			{#if data.gems.length}
+			{#if full(data.gems.length)}
 				<section aria-labelledby="gems-title" class="flex flex-col gap-3">
 					<h2 id="gems-title" class="type-h2">{m.discover_hidden_gems()}</h2>
 					<Carousel label={m.discover_hidden_gems()}>
@@ -368,7 +358,7 @@
 				</section>
 			{/if}
 
-			{#if data.itineraries.length}
+			{#if full(data.itineraries.length)}
 				<section aria-labelledby="itin-title" class="flex scroll-scope flex-col gap-3">
 					<div class="flex items-baseline justify-between gap-4">
 						<h2 id="itin-title" class="type-h2">{m.itin_title()}</h2>
@@ -378,7 +368,7 @@
 				</section>
 			{/if}
 
-			{#if data.dishes.length}
+			{#if full(data.dishes.length)}
 				<section aria-labelledby="taste-title" class="flex scroll-scope flex-col gap-3">
 					<div class="flex items-baseline justify-between gap-4">
 						<h2 id="taste-title" class="type-h2">{m.discover_taste()}</h2>
