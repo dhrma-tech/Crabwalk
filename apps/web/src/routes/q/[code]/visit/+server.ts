@@ -5,6 +5,7 @@ import { VISIT_COOKIE, checkVisit } from '#lib/server/qrVisit.ts';
 import { clientKey } from '#lib/server/rate.ts';
 import { serviceClient } from '#lib/server/service.ts';
 import type { RequestHandler } from './$types';
+import { logEvent } from '#lib/server/analytics.ts';
 
 const body = z.object({
 	lat: z.number().min(-90).max(90),
@@ -35,5 +36,6 @@ export const POST: RequestHandler = async (event) => {
 		})
 		.single();
 	if (err) error(err.code === 'P0002' ? 404 : 400, 'visit not checked');
+	void logEvent(event, 'qr_verify', { verified: !!data?.verified });
 	return json(data);
 };

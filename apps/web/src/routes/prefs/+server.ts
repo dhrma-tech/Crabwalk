@@ -2,11 +2,13 @@ import { redirect } from '@sveltejs/kit';
 import { cookieName, cookieMaxAge, isLocale, type Locale } from '#lib/paraglide/runtime.js';
 import { THEME_COOKIE, isTheme, safeReturnPath } from '#lib/prefs.ts';
 import { formBody } from '#lib/server/http.ts';
+import { logEvent } from '#lib/server/analytics.ts';
 import type { RequestHandler } from './$types';
 
 // Language switch (top bar) and theme switch (Me). Plain form POST so it works without JS.
 // Saved in a cookie for everyone and on the profile for signed-in users (FRONTEND §10, §12).
-export const POST: RequestHandler = async ({ request, cookies, locals }) => {
+export const POST: RequestHandler = async (event) => {
+	const { request, cookies, locals } = event;
 	const form = await formBody(request);
 	const locale = form.get('locale');
 	const theme = form.get('theme');
@@ -16,6 +18,7 @@ export const POST: RequestHandler = async ({ request, cookies, locals }) => {
 	if (isLocale(locale)) {
 		cookies.set(cookieName, locale, opts);
 		profile.language = locale;
+		void logEvent(event, 'lang_switch', { to: locale });
 	}
 	if (theme === 'system') {
 		cookies.delete(THEME_COOKIE, { path: '/' });

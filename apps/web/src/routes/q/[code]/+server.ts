@@ -2,6 +2,7 @@ import { redirect } from '@sveltejs/kit';
 import { getLocale } from '#lib/paraglide/runtime.js';
 import { SUPABASE_URL } from '$app/env/public';
 import { qrCsp, renderQrMissing, renderQrPage } from '#lib/qr/page.ts';
+import { logEvent } from '#lib/server/analytics.ts';
 import { CODE_RE, SESSION_COOKIE, resolveQr, sessionHash } from '#lib/server/qr.ts';
 import type { Lang } from '#lib/server/listings.ts';
 import { tempGate } from '#lib/server/gate.ts';
@@ -82,6 +83,7 @@ export const GET: RequestHandler = async (event) => {
 			minute: '2-digit',
 			timeZone: 'Asia/Kolkata'
 		}).format(new Date(iso));
+	void logEvent(event, 'qr_landing');
 	return html(
 		renderQrPage(r.data, {
 			lang,
