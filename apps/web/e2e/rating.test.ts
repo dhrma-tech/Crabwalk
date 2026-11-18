@@ -119,7 +119,7 @@ test('a failed vote reverts and shows the failure toast', async () => {
 	const vote = page.getByTestId('verdict-vote');
 	await page.route('**/api/verdicts', (r) => r.fulfill({ status: 500, body: '{}' }));
 	await vote.getByRole('button', { name: 'Skip' }).click();
-	await expect(page.getByText('Couldn’t send. Check the fields and try again.')).toBeVisible();
+	await expect(page.getByText("That didn't go through. Please try again.")).toBeVisible();
 	await expect(vote.getByRole('button', { name: 'Skip' })).toHaveAttribute('aria-pressed', 'false');
 	await expect(vote.getByRole('button', { name: 'Local legend' })).toHaveAttribute(
 		'aria-pressed',
@@ -167,6 +167,28 @@ test('"How ratings work" opens a sheet with four points; axe passes on the vote 
 	await expect(sheet.getByRole('listitem')).toHaveCount(4);
 	await sheet.getByRole('button', { name: 'Close' }).click();
 	await expect(sheet).toBeHidden();
+});
+
+// T1-10 (UX-15): offline, the vote waits on the phone and is sent when the connection is back.
+test('offline vote is kept and sent once back online', async () => {
+	await page.goto(`/food/${slug}`);
+	await page.waitForLoadState('networkidle');
+	const level = () =>
+		psql(
+			`select level from verdicts where group_type = 'couple' and entity_id = (select id from eateries where slug = '${slug}') and user_id = (select id from auth.users where email = '${email}')`
+		);
+	expect(level()).toBe('4');
+	await page.context().setOffline(true);
+	await page.getByTestId('verdict-vote').getByRole('button', { name: 'Okay' }).click();
+	await expect(
+		page.getByText('Saved on this phone. It will send when you are back online.')
+	).toBeVisible();
+	await expect(
+		page.getByTestId('verdict-vote').getByRole('button', { name: 'Okay' })
+	).toHaveAttribute('aria-pressed', 'true');
+	expect(level()).toBe('4');
+	await page.context().setOffline(false);
+	await expect.poll(level, { timeout: 15_000 }).toBe('2');
 });
 
 test.describe('reduced motion', () => {

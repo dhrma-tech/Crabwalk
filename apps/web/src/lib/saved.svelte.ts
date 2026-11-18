@@ -3,6 +3,7 @@ import { m } from '#lib/paraglide/messages.js';
 import { ensureSession, guestMode, signInHref, withSession } from '#lib/guest.client.ts';
 import { toast } from '#lib/toast.svelte.ts';
 import { hasSessionCookie } from '#lib/login.ts';
+import { send } from '#lib/outbox.ts';
 
 // Hearts on listing cards (DECISIONS T-5 / T-46): the signed-in visitor's saved listings, loaded once per page load
 // from /api/saved (browser only), toggled optimistically and rolled back if the server says no. Guests → sign in.
@@ -42,21 +43,17 @@ export async function toggleSaved(t: SavedKind, slug: string) {
 	const on = !ids.has(k);
 	if (on) ids.add(k);
 	else ids.delete(k);
-	const r = await withSession(() =>
-		fetch(
-			on ? '/api/saved' : `/api/saved?type=${t}&slug=${encodeURIComponent(slug)}`,
-			on
-				? {
-						method: 'POST',
-						headers: { 'content-type': 'application/json' },
-						body: JSON.stringify({ type: t, slug })
-					}
-				: { method: 'DELETE' }
-		)
-	).catch(() => null);
-	if (r?.ok) return;
+	// Offline (T1-10, UX-15): the heart waits on this phone; the latest tap per listing wins.
+	const r = await send(
+		`saved:${k}`,
+		on ? '/api/saved' : `/api/saved?type=${t}&slug=${encodeURIComponent(slug)}`,
+		on ? { method: 'POST', body: { type: t, slug } } : { method: 'DELETE' },
+		withSession
+	);
+	if (!r) return void toast(m.outbox_queued());
+	if (r.ok) return;
 	if (on) ids.delete(k);
 	else ids.add(k);
-	if (r?.status === 401) return void (location.href = signInHref(location));
-	toast(m.send_failed());
+	if (r.status === 401) return void (location.href = signInHref(location));
+	toast(m.outbox_failed());
 }

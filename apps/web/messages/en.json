@@ -1242,5 +1242,7 @@
 	"review_expect": "Usually approved within a day.",
 	"discover_vibes": "Stays by vibe",
 	"out_never_pay": "Crabwalk never takes payment. You book and pay on their site.",
-	"out_continue": "Continue to {provider}"
+	"out_continue": "Continue to {provider}",
+	"outbox_queued": "Saved on this phone. It will send when you are back online.",
+	"outbox_failed": "That didn't go through. Please try again."
 }

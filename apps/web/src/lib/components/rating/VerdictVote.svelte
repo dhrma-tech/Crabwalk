@@ -20,6 +20,7 @@
 	import type { EntityType } from './VerdictGauge.svelte';
 	import SignInButton from '#lib/components/SignInButton.svelte';
 	import { live } from './live.svelte.ts';
+	import { send } from '#lib/outbox.ts';
 
 	// FRONTEND §6.4 voting: 4 large verdict buttons (icon + label, no emoji) → optional quick-tap sub-scores →
 	// optional text/photos. Hygiene/cleanliness taps locked with explanation unless verified (DB-enforced too).
@@ -74,12 +75,9 @@
 		live.id === id ? { ...mine.verdicts, ...live.verdicts } : mine.verdicts
 	);
 
-	const post = (url: string, body: unknown) =>
-		fetch(url, {
-			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify(body)
-		}).catch(() => null);
+	// Offline (T1-10, UX-15): the vote waits on this phone and the optimistic state stays.
+	const post = (key: string, url: string, body: unknown) =>
+		send(key, url, { method: 'POST', body });
 
 	let tapped = $state<number | null>(null);
 	let shaking = $state<number | null>(null);
@@ -92,20 +90,21 @@
 		if (!guest) live.pending = { group: g, prev, level };
 		tapped = level;
 		navigator.vibrate?.(12);
-		const r = await post('/api/verdicts', {
+		const r = await post(`verdict:${type}:${id}:${g}`, '/api/verdicts', {
 			entity_type: type,
 			entity_id: id,
 			group_type: g,
 			level,
 			...(mine.group ? {} : { remember: true })
 		});
-		if (!r?.ok) {
+		if (!r) return toast(m.outbox_queued());
+		if (!r.ok) {
 			if (prev) live.verdicts[g] = prev;
 			else delete live.verdicts[g];
 			live.pending = null;
 			tapped = null;
 			shaking = level;
-			toast(m.send_failed());
+			toast(m.outbox_failed());
 			return;
 		}
 		await invalidate('app:ratings');
@@ -138,15 +137,16 @@
 		});
 		clearTimeout(timers[d]);
 		timers[d] = setTimeout(async () => {
-			const r = await post('/api/subscores', {
+			const r = await post(`sub:${type}:${id}:${d}`, '/api/subscores', {
 				entity_type: type,
 				entity_id: id,
 				scores: { [d]: n }
 			});
-			if (!r?.ok) {
+			if (!r) return toast(m.outbox_queued());
+			if (!r.ok) {
 				if (before === undefined) delete subs[d];
 				else subs[d] = before;
-				toast(r?.status === 403 ? m.verified_only_why() : m.send_failed());
+				toast(r.status === 403 ? m.verified_only_why() : m.outbox_failed());
 				return;
 			}
 			await invalidate('app:ratings');

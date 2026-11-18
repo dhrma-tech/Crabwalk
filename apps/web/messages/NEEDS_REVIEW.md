@@ -35,3 +35,4 @@ Points to check first:
 - Hardening T1-10 key `review_expect` ("Usually approved within a day."): draft; it states a moderation turnaround, so confirm the team can keep it.
 - Hardening T1-10 key `discover_vibes` ("Stays by vibe"): draft.
 - Hardening T1-10 keys `out_never_pay`, `out_continue`: drafts; `out_never_pay` is a product promise, check it first.
+- Hardening T1-10 keys `outbox_queued`, `outbox_failed`: drafts.

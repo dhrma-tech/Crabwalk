@@ -11,6 +11,7 @@
 	import { logActivity } from '#lib/activity.ts';
 	import { page } from '$app/state';
 	import { guardPlainForms } from '#lib/forms.ts';
+	import { startOutbox } from '#lib/outbox.ts';
 	import { booted, dataSaver, lowEnd, reducedMotion } from '#lib/motion.ts';
 	import { driver } from '#lib/drive.svelte.ts';
 	import { devBypass } from '#lib/devAuth.ts';
@@ -19,6 +20,7 @@
 
 	let { children, data }: LayoutProps = $props();
 	onMount(guardPlainForms);
+	onMount(startOutbox);
 	onMount(booted);
 	onMount(() => {
 		if (devBypass(location.hostname)) return devClient();
