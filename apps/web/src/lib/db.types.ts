@@ -117,6 +117,20 @@ export type Database = {
                   Relationships: [
                     
                   ]
+                },"analytics_events": {
+                  Row: {
+                    "at": string,"day": string,"id": number,"lang": Database["public"]['Enums']["lang"] | null,"name": string,"props": NonNullable<Json>,"route": string | null,"session_hash": string | null
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "at"?: string,"day"?: string,"id"?: never,"lang"?: Database["public"]['Enums']["lang"] | null,"name": string,"props"?: NonNullable<Json>,"route"?: string | null,"session_hash"?: string | null
+                  }
+                  Update: {
+                    "at"?: string,"day"?: string,"id"?: never,"lang"?: Database["public"]['Enums']["lang"] | null,"name"?: string,"props"?: NonNullable<Json>,"route"?: string | null,"session_hash"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"app_config": {
                   Row: {
                     "key": string,"notes": string | null,"updated_at": string | null,"value": NonNullable<Json>
@@ -1706,6 +1720,11 @@ isOneToOne: false
 "ai_take_message":
 { Args: Record<PropertyKey, never>; Returns: number
                            },
+"analytics_daily":
+{ Args: { "_days"?: number }; Returns: {
+              "day": string,"n": number,"name": string
+            }[]
+                           },
 "approve_listing":
 { Args: { "_id": string,"_type": Database["public"]['Enums']["listing_type"] }; Returns: undefined
                            },
@@ -1742,6 +1761,9 @@ isOneToOne: false
 { Args: { "_slug": string,"_weekday": number }; Returns: {
               "category": string,"km": number,"level": string,"name_en": string,"name_hi": string,"name_mr": string,"slug": string
             }[]
+                           },
+"log_analytics_event":
+{ Args: { "_lang": Database["public"]['Enums']["lang"],"_name": string,"_props": Json,"_route": string,"_session_hash": string }; Returns: undefined
                            },
 "log_security_event":
 { Args: { "_client_key"?: string,"_detail"?: Json,"_kind": string }; Returns: undefined
