@@ -9,7 +9,9 @@ import { m } from '#lib/paraglide/messages.js';
 import type { Lang } from '../listings.ts';
 import { istToday } from '../planner/data.ts';
 import type { Msg } from './providers.ts';
-import { chain, route, routeStream } from './router.ts';
+import { chain, route } from './router.ts';
+import { explainGrounded, GROUNDING_RULES } from './explain.ts';
+import { listingNames, type KINDS } from './ground.ts';
 import { proposeAskTeam, runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
 import type { DriveStep } from '#lib/drive.ts';
 import type { Question } from '#lib/questions.ts';
@@ -36,6 +38,8 @@ export type ChatReply =
 			/** A question card to answer before Crabby goes on ("Ask, don't assume"). */
 			questions: Question[] | null;
 			alternatives: { slug: string; name: string }[];
+			/** Listings the reply names (T2-03), checked against this turn's tool results. */
+			cites: { kind: (typeof KINDS)[number]; slug: string; name: string }[];
 			remaining: number;
 	  };
 
@@ -93,7 +97,8 @@ Results from team_answers were checked by our local team: use them, say they com
 If an ask_team preview was proposed, say you don't know yet and can ask our team (usually within a day).
 Every plan stop you mention gets a short reason from the results. No jokes on safety topics.
 ${CONTEXT_RULE}
-Keep it under 120 words. No markdown tables.`;
+Keep it under 120 words. No markdown tables.
+${GROUNDING_RULES}`;
 
 /** Drive steps the allowlist refused, for the explanation ("I can't open that"). */
 const refusedSteps = (results: { tool: string; result: unknown }[]) => {
@@ -224,6 +229,7 @@ export async function crabbyTurn(
 						drive: [],
 						questions: null,
 						alternatives: [],
+						cites: [],
 						remaining
 					};
 				language = replyLanguage(t);
@@ -268,9 +274,9 @@ export async function crabbyTurn(
 		}
 
 		io.emit?.({ event: 'status', data: { step: 'writing' } });
-		let reply = '';
-		for await (const chunk of routeStream(chain('explain'), {
-			messages: [
+		// T2-03: JSON reply checked against this turn's results; one retry; then "don't know".
+		const said = await explainGrounded(
+			[
 				{
 					role: 'system',
 					content: explainSystem(language, replyLang, profile?.persona ?? 'playful')
@@ -282,21 +288,31 @@ export async function crabbyTurn(
 					content: `TOOL RESULTS:\n${results.length ? fit(results, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}${ctx.questions ? `\nQUESTIONS: ${ctx.questions.map((q) => q.header).join(', ')}` : ''}${chosen(results)}`
 				}
 			],
-			maxTokens: 400
-		})) {
-			reply += chunk;
-			io.emit?.({ event: 'delta', data: chunk });
+			results
+		);
+		if (!said && !alternatives.length) {
+			const alt = (await runTool(ctx, 'search_places', JSON.stringify({ limit: 3 }))) as {
+				slug: string;
+				name: string;
+			}[];
+			alternatives = alt.map((a) => ({ slug: a.slug, name: a.name }));
 		}
+		const reply = said?.text.trim() || m.crabby_dont_know({}, { locale: replyLang });
+		const names = listingNames(results);
+		const cites = (said?.cites ?? []).map((c) => ({ ...c, name: names.get(c.slug) ?? c.slug }));
+		// Shown only after it passed the checks (the simpler option of T2-03).
+		io.emit?.({ event: 'delta', data: reply });
 		// Stated preferences only, when the chat source is on (10.7); the chat itself is never stored. It runs
 		// after the response (waitUntil), so the user never waits for it.
 		io.defer?.(learnFromChat(db, userId, profile, message).catch(() => {}));
 		return {
 			kind: 'answer',
-			reply: reply.trim(),
+			reply,
 			actions: ctx.proposed,
 			drive: ctx.drive,
 			questions: ctx.questions,
 			alternatives,
+			cites,
 			remaining
 		};
 	} catch (e) {

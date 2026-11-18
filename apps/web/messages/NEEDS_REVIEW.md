@@ -37,3 +37,4 @@ Points to check first:
 - Hardening T1-10 keys `out_never_pay`, `out_continue`: drafts; `out_never_pay` is a product promise, check it first.
 - Hardening T1-10 keys `outbox_queued`, `outbox_failed`: drafts.
 - Hardening T2-02 keys `crabby_off_topic` (fixed reply when a message is not about Konkan travel; it is the whole answer, so check tone), `crabby_status_tools`, `crabby_status_writing`: drafts.
+- Hardening T2-03 keys `crabby_dont_know` (shown when a reply fails the fact checks twice; it is the whole answer), `crabby_cites` (label of the list of places a reply names): drafts.

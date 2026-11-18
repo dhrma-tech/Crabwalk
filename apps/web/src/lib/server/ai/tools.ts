@@ -685,6 +685,8 @@ export async function runTool(ctx: Ctx, name: string, rawArgs: string): Promise<
 			if (!d) return { found: false };
 			return {
 				found: true,
+				// T2-03: a reply naming the dish cites this slug.
+				slug: d.slug,
 				name: tr(d.dish_translations, lang),
 				what_it_is: tr(d.dish_translations, lang, 'what_it_is'),
 				story: tr(d.dish_translations, lang, 'story'),

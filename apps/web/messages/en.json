@@ -943,6 +943,8 @@
 	"crabby_mic": "Speak",
 	"crabby_mic_stop": "Stop listening",
 	"crabby_thinking": "Crabby is checking…",
+	"crabby_cites": "Places in this answer",
+	"crabby_dont_know": "I don’t know that yet.",
 	"crabby_status_writing": "Crabby is writing…",
 	"crabby_status_tools": "Crabby is looking it up…",
 	"crabby_off_topic": "I can help with places, stays, food and trips on the Konkan coast.",

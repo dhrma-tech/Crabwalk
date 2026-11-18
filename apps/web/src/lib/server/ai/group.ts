@@ -17,6 +17,8 @@ import type { Msg, ToolDef } from './providers.ts';
 import { chain, route } from './router.ts';
 import { runTool, TOOL_DEFS, type Ctx } from './tools.ts';
 import { fit } from './fit.ts';
+import { explainGrounded, GROUNDING_RULES } from './explain.ts';
+import { m } from '#lib/paraglide/messages.js';
 
 type DB = SupabaseClient<Database>;
 const LANG_NAME: Record<Lang, string> = {
@@ -86,7 +88,8 @@ const explain = (
 ${personaRules(persona, lang)}
 Write the reply in ${LANG_NAME[lang]}, under 90 words, to the whole group. Use ONLY facts in the TOOL RESULTS,
 the TRIP and the GROUP TOTALS. If a poll was posted, invite everyone to vote. If a plan change was proposed,
-say any editor can apply it below. If you don't know, say so in one sentence. No markdown tables.`;
+say any editor can apply it below. If you don't know, say so in one sentence. No markdown tables.
+${GROUNDING_RULES}`;
 
 async function tripSummary(db: DB, tripId: string, lang: Lang) {
 	const { data: t } = await db
@@ -247,8 +250,9 @@ export async function crabbyInGroup(
 		}
 	}
 
-	const final = await route(chain('explain'), {
-		messages: [
+	// T2-03: checked against everything this prompt may use (tool results, the trip, the group totals).
+	const said = await explainGrounded(
+		[
 			{ role: 'system', content: explain(lang, profile?.persona ?? 'playful') },
 			{ role: 'user', content: `Recent chat:\n${chat.slice(-2000)}` },
 			{
@@ -256,12 +260,13 @@ export async function crabbyInGroup(
 				content: `TRIP: ${trip}\nGROUP TOTALS: ${totals}\nTOOL RESULTS:\n${results.length ? fit(results, 10000) : '(none)'}${poll ? `\nPOLL POSTED: ${poll.question}` : ''}${ctx.proposed.length ? `\nPROPOSED: ${ctx.proposed.map((p) => p.type).join(', ')}` : ''}`
 			}
 		],
-		maxTokens: 300
-	});
+		{ results, trip, totals },
+		450
+	);
 	try {
 		await postMessage(db, tripId, {
 			kind: 'text',
-			body: final.content.trim().slice(0, 4000),
+			body: (said?.text.trim() || m.crabby_dont_know({}, { locale: lang })).slice(0, 4000),
 			crabby: true,
 			proactive: !tagged
 		});
