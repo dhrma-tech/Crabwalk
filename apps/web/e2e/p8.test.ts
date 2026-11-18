@@ -112,6 +112,67 @@ test('plan preview changes nothing until Apply', async () => {
 	await expect(page.getByTestId('plan-stop').filter({ hasText: `P8 Cave ${run}` })).toBeVisible();
 });
 
+test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode unchanged; triage', async () => {
+	// SSE, read in the page. The first event is timed from the response start: time before that is the
+	// shared hooks (session, rate limiter), the same for every endpoint and machine-load dependent.
+	const s = await page.evaluate(async () => {
+		const t0 = performance.now();
+		const res = await fetch('/api/ai/chat', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
+			body: JSON.stringify({ message: 'show me a cave' })
+		});
+		const head = performance.now() - t0;
+		const reader = res.body!.getReader();
+		const dec = new TextDecoder();
+		let text = '';
+		let first = -1;
+		let reads = 0;
+		for (;;) {
+			const { value, done } = await reader.read();
+			if (done) break;
+			if (first < 0) first = performance.now() - t0 - head;
+			reads++;
+			text += dec.decode(value, { stream: true });
+		}
+		return { type: res.headers.get('content-type'), first, text, reads };
+	});
+	expect(s.type).toContain('text/event-stream');
+	expect(s.first).toBeLessThan(300);
+	expect(s.reads).toBeGreaterThan(1); // events arrive as they happen, not in one buffered body
+	const names = [...s.text.matchAll(/^event: (\w+)$/gm)].map((x) => x[1]);
+	expect(names[0]).toBe('status');
+	expect(names).toContain('delta');
+	expect(names.at(-1)).toBe('final');
+	const final = JSON.parse(/event: final\ndata: (.+)/.exec(s.text)![1]!);
+	expect(final.kind).toBe('answer');
+	expect(final.reply).toContain(`P8 Cave ${run}`);
+
+	// No Accept header: the JSON answer, as before.
+	const j = await (
+		await page.request.post('/api/ai/chat', { data: { message: 'show me a cave' } })
+	).json();
+	expect(j).toMatchObject({ kind: 'answer' });
+	expect(j.reply).toContain(`P8 Cave ${run}`);
+
+	// Triage replaces the moderation call: no triage call → refused; unsafe → refused; off topic → fixed line.
+	for (const message of ['mocknotriage show me a cave', 'mockunsafe show me a cave'])
+		expect(
+			await (await page.request.post('/api/ai/chat', { data: { message } })).json()
+		).toMatchObject({ kind: 'refused' });
+	expect(
+		await (
+			await page.request.post('/api/ai/chat', { data: { message: 'mockofftopic stocks?' } })
+		).json()
+	).toMatchObject({
+		kind: 'answer',
+		reply: 'I can help with places, stays, food and trips on the Konkan coast.',
+		actions: []
+	});
+	const log = await (await page.request.get('/api/ai/mock-log')).text();
+	expect(log).not.toContain('You screen messages sent to a travel assistant');
+});
+
 test('21st message in a day is refused gracefully', async () => {
 	psql(
 		`update ai_usage set message_count = 20 where user_id = (select id from auth.users where email = '${email}') and date = (now() at time zone 'Asia/Kolkata')::date`

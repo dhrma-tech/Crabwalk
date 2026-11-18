@@ -246,7 +246,12 @@
 		{/each}
 		{#if crabby.busy}
 			<div class="flex items-center gap-2 self-start" role="status">
-				<Crabby size={30} walking /><span class="type-small text-text-2">{m.crabby_thinking()}</span
+				<Crabby size={30} walking /><span class="type-small text-text-2"
+					>{crabby.status === 'tools'
+						? m.crabby_status_tools()
+						: crabby.status === 'writing'
+							? m.crabby_status_writing()
+							: m.crabby_thinking()}</span
 				>
 			</div>
 		{/if}

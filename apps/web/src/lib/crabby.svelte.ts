@@ -91,6 +91,8 @@ export const crabby = $state({
 	spot: null as string | null,
 	turns: [] as Bubble[],
 	busy: false,
+	/** What a streaming turn is doing now (T2-02), shown next to the walking crab. */
+	status: 'thinking' as 'thinking' | 'tools' | 'writing',
 	remaining: null as number | null,
 	emergency: false,
 	signin: false,
@@ -121,12 +123,19 @@ export async function ask(text: string) {
 		.map((t) => ({ role: t.role, content: t.content }));
 	crabby.turns.push({ role: 'user', content: message });
 	crabby.busy = true;
+	crabby.status = 'thinking';
 	track('crabby_turn');
+	// The reply streams into this bubble (T2-02); the final answer replaces it.
+	let live = -1;
+	const put = (b: Bubble) => {
+		if (live >= 0) crabby.turns[live] = b;
+		else crabby.turns.push(b);
+	};
 	try {
 		const res = await withSession(() =>
 			fetch('/api/ai/chat', {
 				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
+				headers: { 'Content-Type': 'application/json', Accept: 'text/event-stream' },
 				body: JSON.stringify({ message, history, path: page.url.pathname, spot: crabby.spot })
 			})
 		);
@@ -135,27 +144,27 @@ export async function ask(text: string) {
 			crabby.turns.pop();
 			return;
 		}
-		const r = (await res.json()) as
-			| { kind: 'emergency' }
-			| { kind: 'limit' }
-			| { kind: 'refused' | 'unavailable'; remaining: number }
-			| {
-					kind: 'answer';
-					reply: string;
-					actions: Action[];
-					drive: DriveStep[];
-					questions: Question[] | null;
-					alternatives: Bubble['alternatives'];
-					remaining: number;
-			  };
-		if (r.kind === 'emergency') crabby.emergency = true;
-		else if (r.kind === 'limit') {
+		let r: Reply | null = null;
+		if (res.headers.get('content-type')?.startsWith('text/event-stream') && res.body)
+			for await (const ev of events(res.body)) {
+				if (ev.event === 'status') crabby.status = (ev.data as { step: typeof crabby.status }).step;
+				else if (ev.event === 'delta') {
+					if (live < 0) live = crabby.turns.push({ role: 'assistant', content: '' }) - 1;
+					crabby.turns[live]!.content += ev.data as string;
+				} else if (ev.event === 'final') r = ev.data as Reply;
+			}
+		else r = (await res.json()) as Reply;
+		if (!r) throw new Error('no answer');
+		if (r.kind === 'emergency') {
+			if (live >= 0) crabby.turns.splice(live, 1);
+			crabby.emergency = true;
+		} else if (r.kind === 'limit') {
 			crabby.remaining = 0;
-			crabby.turns.push({ role: 'assistant', content: '', kind: 'limit' });
+			put({ role: 'assistant', content: '', kind: 'limit' });
 		} else if (r.kind === 'answer') {
 			crabby.remaining = r.remaining;
 			const unknown = !r.actions.length && !!r.alternatives?.length;
-			crabby.turns.push({
+			put({
 				role: 'assistant',
 				content: r.reply,
 				actions: r.actions,
@@ -167,12 +176,46 @@ export async function ask(text: string) {
 			if (r.drive?.length) void drive(r.drive, stepLabel);
 		} else {
 			crabby.remaining = r.remaining;
-			crabby.turns.push({ role: 'assistant', content: '', kind: r.kind });
+			put({ role: 'assistant', content: '', kind: r.kind });
 		}
 	} catch {
-		crabby.turns.push({ role: 'assistant', content: '', kind: 'unavailable' });
+		put({ role: 'assistant', content: '', kind: 'unavailable' });
 	} finally {
 		crabby.busy = false;
+	}
+}
+
+type Reply =
+	| { kind: 'emergency' }
+	| { kind: 'limit' }
+	| { kind: 'refused' | 'unavailable'; remaining: number }
+	| {
+			kind: 'answer';
+			reply: string;
+			actions: Action[];
+			drive: DriveStep[];
+			questions: Question[] | null;
+			alternatives: Bubble['alternatives'];
+			remaining: number;
+	  };
+
+/** Server-sent events from a fetch body: `event:` name and JSON `data:` (T2-02). */
+async function* events(body: ReadableStream<Uint8Array>) {
+	const reader = body.getReader();
+	const dec = new TextDecoder();
+	let buf = '';
+	for (;;) {
+		const { value, done } = await reader.read();
+		if (done) return;
+		buf += dec.decode(value, { stream: true });
+		let i;
+		while ((i = buf.indexOf('\n\n')) >= 0) {
+			const block = buf.slice(0, i);
+			buf = buf.slice(i + 2);
+			const name = /^event: (.+)$/m.exec(block)?.[1];
+			const data = /^data: (.+)$/m.exec(block)?.[1];
+			if (name && data) yield { event: name, data: JSON.parse(data) as unknown };
+		}
 	}
 }
 
