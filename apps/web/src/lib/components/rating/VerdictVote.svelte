@@ -21,6 +21,7 @@
 	import SignInButton from '#lib/components/SignInButton.svelte';
 	import { live } from './live.svelte.ts';
 	import { send } from '#lib/outbox.ts';
+	import { track } from '#lib/track.ts';
 
 	// FRONTEND §6.4 voting: 4 large verdict buttons (icon + label, no emoji) → optional quick-tap sub-scores →
 	// optional text/photos. Hygiene/cleanliness taps locked with explanation unless verified (DB-enforced too).
@@ -97,6 +98,7 @@
 			level,
 			...(mine.group ? {} : { remember: true })
 		});
+		if (!r || r.ok) track('vote', { kind: type, level, group: g });
 		if (!r) return toast(m.outbox_queued());
 		if (!r.ok) {
 			if (prev) live.verdicts[g] = prev;
@@ -142,6 +144,7 @@
 				entity_id: id,
 				scores: { [d]: n }
 			});
+			if (!r || r.ok) track('subscore', { kind: type, dim: d });
 			if (!r) return toast(m.outbox_queued());
 			if (!r.ok) {
 				if (before === undefined) delete subs[d];
@@ -219,6 +222,7 @@
 		const r = await fetch('/api/reviews', { method: 'POST', body: f });
 		busy = false;
 		reviewed = r.ok;
+		if (r.ok) track('review_submit', { kind: type, photos: photos.length });
 		if (!r.ok) toast(m.send_failed());
 	}
 	async function proof(e: SubmitEvent) {

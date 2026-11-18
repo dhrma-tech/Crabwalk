@@ -4,6 +4,7 @@ import { ensureSession, guestMode, signInHref, withSession } from '#lib/guest.cl
 import { toast } from '#lib/toast.svelte.ts';
 import { hasSessionCookie } from '#lib/login.ts';
 import { send } from '#lib/outbox.ts';
+import { track } from '#lib/track.ts';
 
 // Hearts on listing cards (DECISIONS T-5 / T-46): the signed-in visitor's saved listings, loaded once per page load
 // from /api/saved (browser only), toggled optimistically and rolled back if the server says no. Guests → sign in.
@@ -50,6 +51,7 @@ export async function toggleSaved(t: SavedKind, slug: string) {
 		on ? { method: 'POST', body: { type: t, slug } } : { method: 'DELETE' },
 		withSession
 	);
+	if (!r || r.ok) track('save', { kind: t, on });
 	if (!r) return void toast(m.outbox_queued());
 	if (r.ok) return;
 	if (on) ids.delete(k);
