@@ -7,7 +7,9 @@
 	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
 	import CrabbyDriver from '#lib/components/crabby/CrabbyDriver.svelte';
 	import { onMount, untrack } from 'svelte';
-	import { onNavigate } from '$app/navigation';
+	import { afterNavigate, onNavigate } from '$app/navigation';
+	import { track } from '#lib/track.ts';
+	import { watchVitals } from '#lib/vitals.ts';
 	import { logActivity } from '#lib/activity.ts';
 	import { page } from '$app/state';
 	import { guardPlainForms } from '#lib/forms.ts';
@@ -21,6 +23,9 @@
 	let { children, data }: LayoutProps = $props();
 	onMount(guardPlainForms);
 	onMount(startOutbox);
+	// First-party analytics (T1-11): route ids only, never the address.
+	afterNavigate(() => track('page_view'));
+	onMount(watchVitals);
 	onMount(booted);
 	onMount(() => {
 		if (devBypass(location.hostname)) return devClient();
