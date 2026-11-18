@@ -47,6 +47,20 @@ export type Database = {
                   Relationships: [
                     
                   ]
+                },"ai_cache": {
+                  Row: {
+                    "expires_at": string,"key": string,"value": NonNullable<Json>
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "expires_at": string,"key": string,"value": NonNullable<Json>
+                  }
+                  Update: {
+                    "expires_at"?: string,"key"?: string,"value"?: NonNullable<Json>
+                  }
+                  Relationships: [
+                    
+                  ]
                 },"ai_feature_usage": {
                   Row: {
                     "count": number,"date": string,"feature": string,"user_id": string
@@ -71,6 +85,20 @@ export type Database = {
                   }
                   Update: {
                     "created_at"?: string,"id"?: string,"input"?: string,"kind"?: string,"status"?: string,"url"?: string | null,"user_id"?: string | null
+                  }
+                  Relationships: [
+                    
+                  ]
+                },"ai_turns": {
+                  Row: {
+                    "cached": boolean,"day": string,"id": number,"lang": Database["public"]['Enums']["lang"] | null,"latency_ms": number | null,"outcome": string,"rounds": number,"thumbs": number | null,"tools": (string)[],"validator_retries": number
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "cached"?: boolean,"day"?: string,"id"?: never,"lang"?: Database["public"]['Enums']["lang"] | null,"latency_ms"?: number | null,"outcome": string,"rounds"?: number,"thumbs"?: number | null,"tools"?: (string)[],"validator_retries"?: number
+                  }
+                  Update: {
+                    "cached"?: boolean,"day"?: string,"id"?: never,"lang"?: Database["public"]['Enums']["lang"] | null,"latency_ms"?: number | null,"outcome"?: string,"rounds"?: number,"thumbs"?: number | null,"tools"?: (string)[],"validator_retries"?: number
                   }
                   Relationships: [
                     
@@ -1714,11 +1742,23 @@ isOneToOne: false
 "ai_budget_take":
 { Args: { "_n"?: number }; Returns: boolean
                            },
+"ai_cache_get":
+{ Args: { "_key": string }; Returns: Json
+                           },
+"ai_cache_put":
+{ Args: { "_key": string,"_ttl_s": number,"_value": Json }; Returns: undefined
+                           },
 "ai_take":
 { Args: { "_feature": string }; Returns: number
                            },
 "ai_take_message":
 { Args: Record<PropertyKey, never>; Returns: number
+                           },
+"ai_turn_log":
+{ Args: { "_cached": boolean,"_lang": Database["public"]['Enums']["lang"],"_latency_ms": number,"_outcome": string,"_rounds": number,"_tools": (string)[],"_validator_retries": number }; Returns: number
+                           },
+"ai_turn_thumbs":
+{ Args: { "_id": number,"_thumbs": number }; Returns: boolean
                            },
 "analytics_daily":
 { Args: { "_days"?: number }; Returns: {
