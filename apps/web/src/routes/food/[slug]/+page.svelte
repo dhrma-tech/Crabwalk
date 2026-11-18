@@ -7,6 +7,7 @@
 	import { msg } from '#lib/msg.ts';
 	import { formatINR, menuLine } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
+	import { listingJsonLd } from '#lib/jsonld.ts';
 	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
@@ -40,6 +41,13 @@
 	heading={false}
 	description={e.description}
 	image={e.photos[0]?.src}
+	jsonld={listingJsonLd({
+		type: 'eatery',
+		name: primary,
+		image: e.photos[0]?.src,
+		coords: e.coords,
+		agg: data.ratings.all
+	})}
 >
 	<Hero photo={e.photos[0] ?? null} kind="eatery" immersive />
 

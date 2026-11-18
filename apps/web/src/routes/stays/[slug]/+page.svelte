@@ -10,6 +10,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
+	import { listingJsonLd } from '#lib/jsonld.ts';
 	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
@@ -53,6 +54,13 @@
 	heading={false}
 	description={s.description}
 	image={s.photos[0]?.src}
+	jsonld={listingJsonLd({
+		type: 'stay',
+		name: primary,
+		image: s.photos[0]?.src,
+		coords: s.coords,
+		agg: data.ratings.all
+	})}
 >
 	<Hero photo={s.photos[0] ?? null} kind="stay" immersive />
 

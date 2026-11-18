@@ -14,6 +14,7 @@
 	import { clock, msg } from '#lib/msg.ts';
 	import { formatNumber } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
+	import { listingJsonLd } from '#lib/jsonld.ts';
 	import ActionBar from '#lib/components/listing/ActionBar.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
@@ -100,6 +101,13 @@
 	heading={false}
 	description={p.text.story || p.text.significance}
 	image={p.photos[0]?.src}
+	jsonld={listingJsonLd({
+		type: 'place',
+		name: primary,
+		image: p.photos[0]?.src,
+		coords: p.coords,
+		agg: data.ratings.all
+	})}
 >
 	<Hero photo={p.photos[0] ?? null} category={p.category} immersive />
 
