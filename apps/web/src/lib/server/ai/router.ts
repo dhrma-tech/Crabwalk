@@ -65,6 +65,17 @@ const retryable = (e: unknown) =>
 	!(e instanceof BudgetError) &&
 	(e.status === 429 || e.status === 0 || e.status >= 500);
 
+/** Budget check, then the scrubbed request for this link (every payload leaving the server goes through here). */
+async function prepare(l: Link, req: Omit<ChatRequest, 'model'>): Promise<ChatRequest> {
+	// Budget first: a refused call sends nothing and is not retried on the next link.
+	if (l.provider !== mock && !(await budget?.().catch(() => false)))
+		throw new BudgetError('budget', 429, 'ai budget');
+	// Last guard: no phone numbers / coordinates in any payload (CLAUDE.md §2).
+	const safe: ChatRequest = { ...req, model: l.model, messages: scrubMessages(req.messages) };
+	audit.onPayload?.(l.provider.name, safe);
+	return safe;
+}
+
 /** Runs the request down the chain; throws the last error when every link fails. */
 export async function route(
 	links: Link[],
@@ -73,17 +84,41 @@ export async function route(
 	let last: unknown = new Error('no providers');
 	for (const l of links) {
 		try {
-			// Budget first: a refused call sends nothing and is not retried on the next link.
-			if (l.provider !== mock && !(await budget?.().catch(() => false)))
-				throw new BudgetError('budget', 429, 'ai budget');
-			// Last guard: no phone numbers / coordinates in any payload (CLAUDE.md §2).
-			const safe: ChatRequest = { ...req, model: l.model, messages: scrubMessages(req.messages) };
-			audit.onPayload?.(l.provider.name, safe);
-			const r = await l.provider.chat(safe);
+			const r = await l.provider.chat(await prepare(l, req));
 			return { ...r, provider: l.provider.name, model: l.model };
 		} catch (e) {
 			last = e;
 			if (!retryable(e)) throw e;
+		}
+	}
+	throw last;
+}
+
+/**
+ * Streamed text (T2-02). Falls through the chain like `route` until the first chunk arrives; after that a
+ * failure is thrown to the caller (half an answer cannot be continued by another model).
+ */
+export async function* routeStream(
+	links: Link[],
+	req: Omit<ChatRequest, 'model'>
+): AsyncGenerator<string> {
+	let last: unknown = new Error('no providers');
+	for (const l of links) {
+		let started = false;
+		try {
+			const safe = await prepare(l, req);
+			if (!l.provider.chatStream) {
+				yield (await l.provider.chat(safe)).content;
+				return;
+			}
+			for await (const chunk of l.provider.chatStream(safe)) {
+				started = true;
+				yield chunk;
+			}
+			return;
+		} catch (e) {
+			last = e;
+			if (started || !retryable(e)) throw e;
 		}
 	}
 	throw last;

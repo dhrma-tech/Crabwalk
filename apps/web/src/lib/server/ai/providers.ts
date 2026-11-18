@@ -36,9 +36,11 @@ export class ProviderError extends Error {
 export interface Provider {
 	name: string;
 	chat(req: ChatRequest): Promise<ChatResult>;
+	/** Text only, in chunks as they are generated (T2-02). Providers without it are called with `chat`. */
+	chatStream?(req: ChatRequest): AsyncIterable<string>;
 }
 
-async function post(provider: string, url: string, headers: Record<string, string>, body: unknown) {
+async function send(provider: string, url: string, headers: Record<string, string>, body: unknown) {
 	const res = await fetch(url, {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json', ...headers },
@@ -47,47 +49,60 @@ async function post(provider: string, url: string, headers: Record<string, strin
 		throw new ProviderError(provider, 0, e instanceof Error ? e.message : 'network');
 	});
 	if (!res.ok) throw new ProviderError(provider, res.status, (await res.text()).slice(0, 200));
-	return res.json();
+	return res;
 }
+const post = async (
+	provider: string,
+	url: string,
+	headers: Record<string, string>,
+	body: unknown
+) => (await send(provider, url, headers, body)).json();
+
+/** `data:` payloads of a server-sent event stream, until `[DONE]`. */
+async function* sseData(body: ReadableStream<Uint8Array>) {
+	const dec = new TextDecoder();
+	let buf = '';
+	for await (const chunk of body as unknown as AsyncIterable<Uint8Array>) {
+		buf += dec.decode(chunk, { stream: true });
+		let i;
+		while ((i = buf.indexOf('\n')) >= 0) {
+			const line = buf.slice(0, i).trim();
+			buf = buf.slice(i + 1);
+			if (!line.startsWith('data:')) continue;
+			const data = line.slice(5).trim();
+			if (data === '[DONE]') return;
+			yield data;
+		}
+	}
+}
+
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 
 /** Groq: OpenAI-compatible chat completions with tool calling. */
 export const groq: Provider = {
 	name: 'groq',
+	async *chatStream(req) {
+		if (!GROQ_API_KEY) throw new ProviderError('groq', 503, 'GROQ_API_KEY not set');
+		const res = await send(
+			'groq',
+			GROQ_URL,
+			{ Authorization: `Bearer ${GROQ_API_KEY}` },
+			{ ...groqBody(req), stream: true }
+		);
+		if (!res.body) throw new ProviderError('groq', 0, 'no body');
+		for await (const data of sseData(res.body)) {
+			const d = JSON.parse(data) as { choices?: { delta?: { content?: string | null } }[] };
+			const text = d.choices?.[0]?.delta?.content;
+			if (text) yield text;
+		}
+	},
 	async chat(req) {
 		if (!GROQ_API_KEY) throw new ProviderError('groq', 503, 'GROQ_API_KEY not set');
-		const body = {
-			model: req.model,
-			messages: req.messages.map((m) => ({
-				role: m.role,
-				content: m.images?.length
-					? [
-							{ type: 'text', text: m.content },
-							...m.images.map((url) => ({ type: 'image_url', image_url: { url } }))
-						]
-					: m.content,
-				...(m.tool_calls?.length
-					? {
-							tool_calls: m.tool_calls.map((t) => ({
-								id: t.id,
-								type: 'function',
-								function: { name: t.name, arguments: t.args }
-							}))
-						}
-					: {}),
-				...(m.tool_call_id ? { tool_call_id: m.tool_call_id } : {})
-			})),
-			...(req.tools?.length
-				? { tools: req.tools.map((t) => ({ type: 'function', function: t })), tool_choice: 'auto' }
-				: {}),
-			...(req.json ? { response_format: { type: 'json_object' } } : {}),
-			max_tokens: req.maxTokens ?? 800,
-			temperature: 0.2
-		};
 		const r = (await post(
 			'groq',
-			'https://api.groq.com/openai/v1/chat/completions',
+			GROQ_URL,
 			{ Authorization: `Bearer ${GROQ_API_KEY}` },
-			body
+			groqBody(req)
 		)) as {
 			choices: {
 				message: {
@@ -107,6 +122,37 @@ export const groq: Provider = {
 		};
 	}
 };
+
+function groqBody(req: ChatRequest) {
+	return {
+		model: req.model,
+		messages: req.messages.map((m) => ({
+			role: m.role,
+			content: m.images?.length
+				? [
+						{ type: 'text', text: m.content },
+						...m.images.map((url) => ({ type: 'image_url', image_url: { url } }))
+					]
+				: m.content,
+			...(m.tool_calls?.length
+				? {
+						tool_calls: m.tool_calls.map((t) => ({
+							id: t.id,
+							type: 'function',
+							function: { name: t.name, arguments: t.args }
+						}))
+					}
+				: {}),
+			...(m.tool_call_id ? { tool_call_id: m.tool_call_id } : {})
+		})),
+		...(req.tools?.length
+			? { tools: req.tools.map((t) => ({ type: 'function', function: t })), tool_choice: 'auto' }
+			: {}),
+		...(req.json ? { response_format: { type: 'json_object' } } : {}),
+		max_tokens: req.maxTokens ?? 800,
+		temperature: 0.2
+	};
+}
 
 /** Gemini: staff content drafting only (DECISIONS P8-1) — no tools, no traveller text. */
 export const gemini: Provider = {
