@@ -4,6 +4,7 @@
 </script>
 
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import { onMount, type Snippet } from 'svelte';
 	import { isSaved, loadSaved, toggleSaved, type SavedKind } from '#lib/saved.svelte.ts';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
@@ -90,6 +91,7 @@
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
 	<a
 		{href}
+		onclick={() => track('card_open', { kind: kind ?? 'place' })}
 		class={[
 			'text-text no-underline',
 			both

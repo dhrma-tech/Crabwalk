@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import { logActivity } from '#lib/activity.ts';
 	import SearchIcon from '@lucide/svelte/icons/search';
 	import History from '@lucide/svelte/icons/history';
@@ -35,6 +36,7 @@
 		timer = setTimeout(async () => {
 			const r = await fetch(`/api/map/search?q=${encodeURIComponent(q.trim())}`).catch(() => null);
 			results = r?.ok ? await r.json() : [];
+			if (r?.ok) track('search', { results: results.length, zero: !results.length });
 		}, 300);
 	}
 	function onFocus() {

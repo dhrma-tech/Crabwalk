@@ -26,6 +26,7 @@
 </script>
 
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import X from '@lucide/svelte/icons/x';
 	import { page } from '$app/state';
@@ -116,7 +117,11 @@
 	class="mx-auto mt-auto mb-0 w-full max-w-none rounded-t-xl bg-surface p-5 pb-[calc(--spacing(5)+env(safe-area-inset-bottom))] text-text shadow-e3 backdrop:bg-(--scrim) lg:m-auto lg:max-w-105 lg:rounded-xl lg:pb-5"
 >
 	{#if current}
-		<form method="GET" class="flex flex-col gap-4">
+		<form
+			method="GET"
+			class="flex flex-col gap-4"
+			onsubmit={() => current && track('filter_apply', { filter: current.name })}
+		>
 			<div class="flex items-center justify-between gap-2">
 				<h2 id="filter-title" class="type-h2">{current.label}</h2>
 				<IconButton label={m.close()} onclick={() => dialog?.close()}
