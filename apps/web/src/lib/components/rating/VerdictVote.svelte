@@ -412,9 +412,12 @@
 			</div>
 		</div>
 		{#if reviewed}
-			<p class="flex items-center gap-2 type-body enter-rise" role="status">
-				<Crabby size={32} waving />{m.review_pending()}
-			</p>
+			<div class="flex items-center gap-2 enter-rise" role="status">
+				<Crabby size={32} waving />
+				<p class="flex flex-col type-body">
+					{m.review_pending()}<span class="type-small text-text-2">{m.review_expect()}</span>
+				</p>
+			</div>
 		{/if}
 	{/if}
 </section>

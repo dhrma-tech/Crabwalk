@@ -97,6 +97,17 @@ test('auto-detects language from the phone', async ({ browser }) => {
 
 // Lighthouse 12 dropped its PWA audit; Chrome's own installability check replaces it (DECISIONS P2-2).
 // Needs a persistent (non-incognito) profile.
+// T1-10 (UX-17): a stable app id and shortcuts to Map, Plan and Crabby.
+test('manifest has an id and three shortcuts', async ({ request }) => {
+	const man = await (await request.get('/manifest.webmanifest')).json();
+	expect(man.id).toBe('/');
+	expect(man.shortcuts.map((s: { url: string }) => s.url)).toEqual([
+		'/map',
+		'/plan/new',
+		'/crabby'
+	]);
+});
+
 test('PWA is installable (Chrome installability check)', async ({ playwright }, info) => {
 	const ctx = await playwright.chromium.launchPersistentContext(info.outputPath('profile'), {
 		channel: 'chromium'

@@ -154,6 +154,8 @@ test('review is moderated before it appears', async ({ browser }) => {
 	await expect(page.getByText('1/4')).toBeVisible();
 	await page.getByRole('button', { name: 'Post review' }).click();
 	await expect(page.getByText('Thanks — your review appears after a quick check.')).toBeVisible();
+	// T1-10 (UX-16): what to expect.
+	await expect(page.getByText('Usually approved within a day.')).toBeVisible();
 
 	const anon = await browser.newContext();
 	const a = await anon.newPage();

@@ -32,3 +32,4 @@ Points to check first:
 - T0-12 trip invite confirm page: `plan_join_title`, `plan_join_button`
 - T0-14 your data + terms (deletion wording is a consequence statement: check it is unambiguous; terms headings only, legal text pending M9): `data_*`, `terms_*`
 - Hardening T1-05 keys (`vote_pick_group`, `verdict_most_*`, `verdict_you`, `ratings_how*`): drafts. `ratings_how_verified` and `ratings_how_moderation` state rating rules — check the wording matches the product before launch.
+- Hardening T1-10 key `review_expect` ("Usually approved within a day."): draft; it states a moderation turnaround, so confirm the team can keep it.
