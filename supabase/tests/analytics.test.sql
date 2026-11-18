@@ -2,6 +2,8 @@
 begin;
 create extension if not exists pgtap with schema extensions;
 select no_plan();
+-- Start from an empty table (rows from e2e runs would skew the counts); rolled back below.
+delete from public.analytics_events;
 
 create function pg_temp.service() returns void language plpgsql as $$
 begin
