@@ -62,6 +62,8 @@ export type Bubble = {
 	kind?: 'refused' | 'unavailable' | 'limit' | 'unknown';
 	actions?: Action[];
 	alternatives?: { slug: string; name: string }[];
+	/** Listings the reply names (T2-03): chips linking to them. */
+	cites?: { kind: 'place' | 'stay' | 'eatery' | 'dish'; slug: string; name: string }[];
 	/** "Ask, don't assume" card; answered once the user sends their picks. */
 	questions?: Question[];
 	/** Snap and ask (P12): what Crabby matched, "not sure", or that photos are switched off. */
@@ -169,6 +171,7 @@ export async function ask(text: string) {
 				content: r.reply,
 				actions: r.actions,
 				alternatives: r.alternatives,
+				...(r.cites?.length ? { cites: r.cites } : {}),
 				...(r.questions?.length ? { questions: r.questions } : {}),
 				...(unknown ? { kind: 'unknown' as const } : {})
 			});
@@ -196,6 +199,7 @@ type Reply =
 			drive: DriveStep[];
 			questions: Question[] | null;
 			alternatives: Bubble['alternatives'];
+			cites?: Bubble['cites'];
 			remaining: number;
 	  };
 

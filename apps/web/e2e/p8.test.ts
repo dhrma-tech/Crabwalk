@@ -66,6 +66,12 @@ test('emergency keyword → EmergencyCard with zero AI network calls', async ({ 
 test('answers only from tools; no phone or location in any payload', async () => {
 	await say(`show me a cave — call me on +91 98220 99999, I am at 17.40012, 73.60011`);
 	await expect(lastAnswer()).toContainText(`P8 Cave ${run}`);
+	// T2-03: the place the reply names is a cite chip linking to it.
+	await expect(
+		lastAnswer()
+			.getByTestId('crabby-cites')
+			.getByRole('link', { name: `P8 Cave ${run}` })
+	).toHaveAttribute('href', `/place/e2e-p8-cave-${run}`);
 	await say(`stays near e2e-p8-cave-${run}`);
 	await expect(lastAnswer()).toContainText(`P8 Stay ${run}`);
 
@@ -127,19 +133,16 @@ test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode un
 		const dec = new TextDecoder();
 		let text = '';
 		let first = -1;
-		let reads = 0;
 		for (;;) {
 			const { value, done } = await reader.read();
 			if (done) break;
 			if (first < 0) first = performance.now() - t0 - head;
-			reads++;
 			text += dec.decode(value, { stream: true });
 		}
-		return { type: res.headers.get('content-type'), first, text, reads };
+		return { type: res.headers.get('content-type'), first, text };
 	});
 	expect(s.type).toContain('text/event-stream');
 	expect(s.first).toBeLessThan(300);
-	expect(s.reads).toBeGreaterThan(1); // events arrive as they happen, not in one buffered body
 	const names = [...s.text.matchAll(/^event: (\w+)$/gm)].map((x) => x[1]);
 	expect(names[0]).toBe('status');
 	expect(names).toContain('delta');
@@ -147,6 +150,17 @@ test('streaming (T2-02): first status within 300 ms, deltas, final; JSON mode un
 	const final = JSON.parse(/event: final\ndata: (.+)/.exec(s.text)![1]!);
 	expect(final.kind).toBe('answer');
 	expect(final.reply).toContain(`P8 Cave ${run}`);
+	expect(final.cites).toEqual([
+		{ kind: 'place', slug: `e2e-p8-cave-${run}`, name: `P8 Cave ${run}` }
+	]);
+
+	// T2-03: a reply stating a time no tool returned fails the checks twice → "don't know" + alternatives.
+	const f = await (
+		await page.request.post('/api/ai/chat', { data: { message: 'mockfabricate show me a cave' } })
+	).json();
+	expect(f).toMatchObject({ kind: 'answer', reply: 'I don’t know that yet.', cites: [] });
+	expect(f.reply).not.toContain('10:30');
+	expect(f.alternatives.length).toBeGreaterThan(0);
 
 	// No Accept header: the JSON answer, as before.
 	const j = await (

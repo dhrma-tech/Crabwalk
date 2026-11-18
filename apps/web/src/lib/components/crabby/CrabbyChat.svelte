@@ -160,6 +160,30 @@
 						{:else}
 							<p class="type-body whitespace-pre-line">{t.content}</p>
 						{/if}
+						{#if t.cites?.length}
+							<!-- T2-03: the listings the reply names, checked against this turn's results. -->
+							<ul
+								class="flex flex-wrap gap-2"
+								aria-label={m.crabby_cites()}
+								data-testid="crabby-cites"
+							>
+								{#each t.cites as c (c.slug)}
+									<li>
+										<a
+											href={c.kind === 'stay'
+												? resolve('/stays/[slug]', { slug: c.slug })
+												: c.kind === 'eatery'
+													? resolve('/food/[slug]', { slug: c.slug })
+													: c.kind === 'dish'
+														? resolve('/taste-konkan/[dish]', { dish: c.slug })
+														: resolve('/place/[slug]', { slug: c.slug })}
+											class="inline-flex min-h-11 items-center rounded-full bg-surface-2 px-3.5 type-small text-text no-underline hover:bg-surface-3"
+											>{c.name}</a
+										>
+									</li>
+								{/each}
+							</ul>
+						{/if}
 						{#if t.alternatives?.length}
 							<p class="type-small text-text-2">{m.crabby_alternatives()}</p>
 							<ul class="flex flex-col gap-1.5" data-testid="crabby-alternatives">
