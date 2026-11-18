@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import Share2 from '@lucide/svelte/icons/share-2';
 	import Link from '@lucide/svelte/icons/link';
 	import FileDown from '@lucide/svelte/icons/file-down';
@@ -835,8 +836,10 @@
 			<button
 				type="button"
 				class={row}
-				onclick={() => copy(`${origin}/plan/share/${data.shareToken}`)}
-				><Link size={20} aria-hidden="true" class="text-text-2" />{m.plan_share()}</button
+				onclick={() => {
+					track('plan_share');
+					void copy(`${origin}/plan/share/${data.shareToken}`);
+				}}><Link size={20} aria-hidden="true" class="text-text-2" />{m.plan_share()}</button
 			>
 			<button
 				type="button"

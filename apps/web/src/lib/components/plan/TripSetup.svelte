@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { track } from '#lib/track.ts';
 	import Minus from '@lucide/svelte/icons/minus';
 	import Plus from '@lucide/svelte/icons/plus';
 	import LocateFixed from '@lucide/svelte/icons/locate-fixed';
@@ -122,6 +123,7 @@
 			return;
 		}
 		status = 'idle';
+		track('plan_generate', { days });
 		await ondone();
 	}
 
