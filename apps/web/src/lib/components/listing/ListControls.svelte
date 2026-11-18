@@ -1,9 +1,34 @@
+<script lang="ts" module>
+	import { m } from '#lib/paraglide/messages.js';
+	import { formatINR } from '#lib/format.ts';
+
+	export type Field = {
+		name: string;
+		label: string;
+		value: string | number | undefined;
+		options?: { value: string; label: string }[];
+		type?: 'number';
+	};
+	type Url = { pathname: string; searchParams: Iterable<[string, string]> };
+	export const isSet = (f: Field) => f.value != null && f.value !== '';
+	export const valueLabel = (f: Field) =>
+		f.type === 'number'
+			? m.filter_up_to({ amount: formatINR(Number(f.value)) })
+			: (f.options?.find((o) => o.value === f.value)?.label ?? String(f.value));
+	/** `url`'s non-empty params minus `drop`. */
+	export const params = (url: Url, ...drop: string[]) =>
+		[...url.searchParams].filter(([k, v]) => v !== '' && !drop.includes(k));
+	/** The same list without filter `name` (other filters and sort kept). */
+	export const without = (url: Url, name: string) => {
+		const q = new URLSearchParams(params(url, name));
+		return q.size ? `?${q}` : url.pathname;
+	};
+</script>
+
 <script lang="ts">
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import X from '@lucide/svelte/icons/x';
 	import { page } from '$app/state';
-	import { m } from '#lib/paraglide/messages.js';
-	import { formatINR } from '#lib/format.ts';
 	import { SORTS, type Sort } from '#lib/sort.ts';
 	import Button from '../Button.svelte';
 	import IconButton from '../IconButton.svelte';
@@ -11,29 +36,12 @@
 	// Stays/Food list controls (Report 2 §9.4, DECISIONS T-27): a sticky chip row with one chip per filter (tap →
 	// a sheet with its choices; a set filter is an ink chip that clears it), then the result count and sort.
 	// Filters and sort live in the URL (GET forms), so lists stay shareable.
-	type Field = {
-		name: string;
-		label: string;
-		value: string | number | undefined;
-		options?: { value: string; label: string }[];
-		type?: 'number';
-	};
 	let { fields, count, sort }: { fields: Field[]; count: number; sort: Sort } = $props();
 
 	let dialog: HTMLDialogElement | undefined = $state();
 	let current = $state<Field | null>(null);
-	const set = (f: Field) => f.value != null && f.value !== '';
-	const valueLabel = (f: Field) =>
-		f.type === 'number'
-			? m.filter_up_to({ amount: formatINR(Number(f.value)) })
-			: (f.options?.find((o) => o.value === f.value)?.label ?? String(f.value));
 	/** The current URL's params minus `drop` (hidden inputs keep the other filters on submit). */
-	const keep = (...drop: string[]) =>
-		[...page.url.searchParams].filter(([k, v]) => v !== '' && !drop.includes(k));
-	const without = (name: string) => {
-		const q = new URLSearchParams(keep(name));
-		return q.size ? `?${q}` : page.url.pathname;
-	};
+	const keep = (...drop: string[]) => params(page.url, ...drop);
 	function choose(f: Field) {
 		current = f;
 		dialog?.showModal();
@@ -55,10 +63,10 @@
 		data-drive="setFilters"
 	>
 		{#each fields as f (f.name)}
-			{#if set(f)}
+			{#if isSet(f)}
 				<!-- eslint-disable svelte/no-navigation-without-resolve -- same page, query only -->
 				<a
-					href={without(f.name)}
+					href={without(page.url, f.name)}
 					class="inline-flex min-h-11 shrink-0 items-center no-underline"
 					aria-label={`${f.label}: ${valueLabel(f)}. ${m.filter_clear({ filter: f.label })}`}
 				>

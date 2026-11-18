@@ -6,10 +6,9 @@
 	import Page from '#lib/components/Page.svelte';
 	import MiniVerdict from '#lib/components/rating/MiniVerdict.svelte';
 	import StayCard from '#lib/components/StayCard.svelte';
-	import EmptyState from '#lib/components/EmptyState.svelte';
-	import Button from '#lib/components/Button.svelte';
+	import FilterEmpty from '#lib/components/listing/FilterEmpty.svelte';
 	import InsetList from '#lib/components/InsetList.svelte';
-	import ListControls from '#lib/components/listing/ListControls.svelte';
+	import ListControls, { type Field } from '#lib/components/listing/ListControls.svelte';
 	import type { PageProps } from './$types';
 
 	// FRONTEND §7.5: filters (vibe, service style, price, amenities) → cards. Report 2 §9.4: sticky chip bar +
@@ -17,6 +16,32 @@
 	let { data }: PageProps = $props();
 	const opt = (prefix: string, keys: readonly string[]) =>
 		keys.map((k) => ({ value: k, label: msg(`${prefix}${k}`) }));
+	const fields: Field[] = $derived([
+		{
+			name: 'vibe',
+			label: m.filter_vibe(),
+			value: data.filters.vibe,
+			options: opt('vibe_', VIBES)
+		},
+		{
+			name: 'style',
+			label: m.filter_style(),
+			value: data.filters.style,
+			options: opt('service_', ['homely', 'professional'])
+		},
+		{
+			name: 'amenity',
+			label: m.filter_amenity(),
+			value: data.filters.amenity,
+			options: opt('amenity_', AMENITIES)
+		},
+		{
+			name: 'max_price',
+			label: m.filter_max_price(),
+			value: data.filters.maxPrice,
+			type: 'number'
+		}
+	]);
 </script>
 
 {#snippet card(s: (typeof data.stays)[number])}
@@ -39,36 +64,7 @@
 
 <Page title={m.stays_title()} description={m.meta_stays()}>
 	<div class="flex flex-col gap-4">
-		<ListControls
-			count={data.stays.length}
-			sort={data.sort}
-			fields={[
-				{
-					name: 'vibe',
-					label: m.filter_vibe(),
-					value: data.filters.vibe,
-					options: opt('vibe_', VIBES)
-				},
-				{
-					name: 'style',
-					label: m.filter_style(),
-					value: data.filters.style,
-					options: opt('service_', ['homely', 'professional'])
-				},
-				{
-					name: 'amenity',
-					label: m.filter_amenity(),
-					value: data.filters.amenity,
-					options: opt('amenity_', AMENITIES)
-				},
-				{
-					name: 'max_price',
-					label: m.filter_max_price(),
-					value: data.filters.maxPrice,
-					type: 'number'
-				}
-			]}
-		/>
+		<ListControls count={data.stays.length} sort={data.sort} {fields} />
 		{#if data.stays.length}
 			<!-- Rows on phones, a 3-column card grid from lg up; each stay rendered once. -->
 			<InsetList gridLg>
@@ -78,11 +74,7 @@
 			</InsetList>
 		{:else}
 			<!-- Report 1 §4.1: one helpful action. -->
-			<EmptyState title={m.soon_title()} body={m.no_results()} art="net">
-				{#snippet action()}<Button href={resolve('/stays')} variant="secondary"
-						>{m.filters_clear_all()}</Button
-					>{/snippet}
-			</EmptyState>
+			<FilterEmpty {fields} clear={resolve('/stays')} />
 		{/if}
 	</div>
 </Page>
