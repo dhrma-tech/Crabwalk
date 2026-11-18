@@ -3,6 +3,7 @@
 	import { licenceUrl, type Credit } from '#lib/photoCredit.ts';
 	import type { Category } from '../CategoryIcon.svelte';
 	import NoPhoto, { type Kind } from '../NoPhoto.svelte';
+	import { fadeIn } from '#lib/motion.ts';
 
 	// 16:9 hero (FRONTEND §3). Own or CC-licensed photos only (T-7); without one, the designed no-photo card.
 	// `immersive` (detail pages, Report 2 §9.2): phones get a full-bleed 4:5 photo under the transparent top bar
@@ -42,6 +43,7 @@
 			fetchpriority="high"
 			decoding="async"
 			class="settle h-full w-full object-cover"
+			{@attach fadeIn(true)}
 		/>
 		{#if photo.credit}
 			{@const c = photo.credit}

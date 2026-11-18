@@ -13,6 +13,7 @@
 	import type { Category } from './CategoryIcon.svelte';
 	import NoPhoto, { type Kind } from './NoPhoto.svelte';
 	import IconButton from './IconButton.svelte';
+	import { fadeIn } from '#lib/motion.ts';
 
 	// Shared shell for Place/Stay/Eatery cards (Report 2 §8): a surface card, 4:3 photo (or the designed no-photo
 	// card) with glass badges top-left (`overlay`) and the heart top-right, then name, other script and body.
@@ -114,6 +115,7 @@
 					width="400"
 					height="300"
 					class="h-full w-full object-cover transition-transform duration-(--dur-page) ease-brand group-hover:scale-[1.03]"
+					{@attach fadeIn()}
 				/>
 			{:else}
 				<NoPhoto {category} {kind} label={both ? 'lg' : !row} />

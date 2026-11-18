@@ -244,6 +244,7 @@
 				signatureDish={s.dish}
 				priceForTwo={650}
 				diet={['veg', 'nonveg', 'jain']}
+				photo={{ src: '/categories/beach.webp', alt: '' }}
 				onsave={() => {}}
 			/>
 		</section>

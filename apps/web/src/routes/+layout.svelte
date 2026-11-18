@@ -3,6 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import AppNav from '#lib/components/AppNav.svelte';
 	import Toaster from '#lib/components/Toaster.svelte';
+	import RouteProgress from '#lib/components/RouteProgress.svelte';
 	import CrabbyBubble from '#lib/components/crabby/CrabbyBubble.svelte';
 	import CrabbyDriver from '#lib/components/crabby/CrabbyDriver.svelte';
 	import { onMount, untrack } from 'svelte';
@@ -10,7 +11,7 @@
 	import { logActivity } from '#lib/activity.ts';
 	import { page } from '$app/state';
 	import { guardPlainForms } from '#lib/forms.ts';
-	import { dataSaver, lowEnd, reducedMotion } from '#lib/motion.ts';
+	import { booted, dataSaver, lowEnd, reducedMotion } from '#lib/motion.ts';
 	import { driver } from '#lib/drive.svelte.ts';
 	import { devBypass } from '#lib/devAuth.ts';
 	import { devClient } from '#lib/devAuth.client.ts';
@@ -18,6 +19,7 @@
 
 	let { children, data }: LayoutProps = $props();
 	onMount(guardPlainForms);
+	onMount(booted);
 	onMount(() => {
 		if (devBypass(location.hostname)) return devClient();
 	});
@@ -109,6 +111,7 @@
 >
 	{@render children()}
 </div>
+<RouteProgress />
 <AppNav />
 <CrabbyBubble />
 <CrabbyDriver />

@@ -32,3 +32,27 @@ export const lowEnd = () => {
 
 /** Duration in ms, or 0 when the viewer prefers reduced motion. */
 export const dur = (ms: number) => (reducedMotion.current ? 0 : ms);
+
+// Brief section 4.4: an image starts transparent only when it is not loaded at mount, then fades in over
+// --dur-state on load, so a cached image never flashes. `lcp`: not on the first, server-rendered page (the root
+// layout calls `booted()` after hydration), so the LCP image never starts hidden (section 4.12).
+let hydrated = false;
+export const booted = () => {
+	hydrated = true;
+};
+export const fadeIn =
+	(lcp = false) =>
+	(img: HTMLImageElement) => {
+		if (img.complete || (lcp && !hydrated)) return;
+		img.style.opacity = '0';
+		const show = () => {
+			img.style.opacity = '';
+			img.animate({ opacity: [0, 1] }, { duration: dur(200), easing: 'ease-out' });
+		};
+		img.addEventListener('load', show, { once: true });
+		img.addEventListener('error', show, { once: true });
+		return () => {
+			img.removeEventListener('load', show);
+			img.removeEventListener('error', show);
+		};
+	};
