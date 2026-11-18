@@ -9,6 +9,8 @@
 	import Carousel from '#lib/components/Carousel.svelte';
 	import StatusBadge from '#lib/components/StatusBadge.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
+	import CoastBand from '#lib/components/CoastBand.svelte';
+	import Illustration from '#lib/components/Illustration.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import SearchBox from '#lib/components/SearchBox.svelte';
 	import TodayStrip from '#lib/components/TodayStrip.svelte';
@@ -60,7 +62,9 @@
 </script>
 
 {#snippet rowEmpty(text: string)}
-	<p class="rounded-lg border border-dashed border-border-strong px-4 py-5 type-small text-text-2">
+	<p
+		class="weave rounded-lg border border-dashed border-border-strong px-4 py-5 type-small text-text-2"
+	>
 		{text}
 	</p>
 {/snippet}
@@ -86,7 +90,10 @@
 		{#if !data.category}
 			<div class="grid gap-8 lg:grid-cols-12">
 				<div class="flex flex-col gap-5 lg:col-span-7 lg:justify-center">
-					<p class="type-display-xl">{m.discover_heading()}</p>
+					<div class="relative isolate">
+						<CoastBand />
+						<p class="type-display-xl">{m.discover_heading()}</p>
+					</div>
 					<SearchBox id="search" />
 					{#if data.today}<TodayStrip today={data.today} season={data.season} {here} />{/if}
 				</div>
@@ -104,6 +111,7 @@
 					</div>
 				{/if}
 			</div>
+			<div class="laterite-course" aria-hidden="true"></div>
 		{/if}
 
 		<section aria-labelledby="cat-title" class="flex scroll-scope flex-col gap-3">
@@ -160,7 +168,7 @@
 						{/each}
 					</div>
 				{:else}
-					<EmptyState title={m.soon_title()} body={m.discover_empty()}>
+					<EmptyState title={m.soon_title()} body={m.discover_empty()} art="net">
 						{#snippet action()}<Button href={resolve('/')} variant="secondary"
 								>{m.discover_all()}</Button
 							>{/snippet}
@@ -313,6 +321,8 @@
 				{/if}
 			</section>
 
+			<div class="laterite-course" aria-hidden="true"></div>
+
 			{#if data.gems.length}
 				<section aria-labelledby="gems-title" class="flex flex-col gap-3">
 					<h2 id="gems-title" class="type-h2">{m.discover_hidden_gems()}</h2>
@@ -404,7 +414,10 @@
 						{/each}
 					</Carousel>
 				{:else if locError}
-					<p class="type-body text-text-2">{m.discover_location_denied()}</p>
+					<div class="flex flex-col items-start gap-2" data-testid="near-denied">
+						<Illustration name="compass" class="w-32" />
+						<p class="type-body text-text-2">{m.discover_location_denied()}</p>
+					</div>
 				{:else if data.places.length}
 					<div>
 						<Button variant="secondary" onclick={nearMe}>{m.discover_near_me_cta()}</Button>

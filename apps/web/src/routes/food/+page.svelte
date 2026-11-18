@@ -75,7 +75,7 @@
 				{/each}
 			</InsetList>
 		{:else}
-			<EmptyState title={m.soon_title()} body={m.no_results()}>
+			<EmptyState title={m.soon_title()} body={m.no_results()} art="net">
 				{#snippet action()}<Button href={resolve('/food')} variant="secondary"
 						>{m.filters_clear_all()}</Button
 					>{/snippet}

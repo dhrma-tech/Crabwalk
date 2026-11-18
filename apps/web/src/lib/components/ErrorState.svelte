@@ -1,15 +1,11 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Illustration from './Illustration.svelte';
+	import Illustration, { type Art } from './Illustration.svelte';
 
 	// FRONTEND §6.12: what happened + what to do. Never a raw error. Report 2 §8: illustration (fort = 404,
 	// boat = offline) + heading + one sentence + one CTA.
-	let {
-		title,
-		body,
-		art,
-		action
-	}: { title: string; body: string; art?: 'fort' | 'boat'; action?: Snippet } = $props();
+	let { title, body, art, action }: { title: string; body: string; art?: Art; action?: Snippet } =
+		$props();
 </script>
 
 <div

@@ -162,7 +162,7 @@
 				<Skeleton class="aspect-[10/3] w-full rounded-lg print:hidden" />
 			{/if}
 			{#if !work[i]?.length}
-				<p class="type-body text-text-2">{m.plan_day_empty()}</p>
+				<p class="weave rounded-lg px-4 py-5 type-body text-text-2">{m.plan_day_empty()}</p>
 			{:else}
 				<ol
 					class="flex flex-col"

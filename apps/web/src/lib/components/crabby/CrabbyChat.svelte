@@ -19,6 +19,7 @@
 	} from '#lib/crabby.svelte.ts';
 	import { onMount } from 'svelte';
 	import Crabby from '../Crabby.svelte';
+	import Illustration from '../Illustration.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';
 	import ActionPreviewCard from './ActionPreviewCard.svelte';
@@ -149,10 +150,12 @@
 						data-testid="bubble-crabby"
 					>
 						{#if t.kind === 'limit'}
+							<Illustration name="tide" class="w-28" />
 							<p class="type-body" data-testid="crabby-limit">{m.crabby_limit()}</p>
 						{:else if t.kind === 'refused'}
 							<p class="type-body">{m.crabby_refused()}</p>
 						{:else if t.kind === 'unavailable'}
+							<Illustration name="lamp" class="w-28" />
 							<p class="type-body">{m.crabby_unavailable()}</p>
 						{:else}
 							<p class="type-body whitespace-pre-line">{t.content}</p>

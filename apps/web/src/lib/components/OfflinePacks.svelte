@@ -5,6 +5,7 @@
 	import { deletePack, downloadPack, savedPacks, type Pack, type Saved } from '#lib/packs.ts';
 	import Button from './Button.svelte';
 	import Skeleton from './Skeleton.svelte';
+	import Illustration from './Illustration.svelte';
 	import CircleCheck from '@lucide/svelte/icons/circle-check';
 	import Download from '@lucide/svelte/icons/download';
 
@@ -12,6 +13,7 @@
 	let packs = $state<Pack[]>([]);
 	let saved = $state<Saved>({});
 	let busy = $state<string | null>(null);
+	let progress = $state<number | null>(null);
 	let error = $state(false);
 	// Until the list arrives, skeleton rows — never "No packs" (Report 1 §2.4).
 	let loaded = $state(false);
@@ -29,17 +31,18 @@
 		error = false;
 		try {
 			if (saved[p.id]) await deletePack(p.id);
-			else await downloadPack(p);
+			else await downloadPack(p, (share) => (progress = share));
 		} catch {
 			error = true;
 		}
 		saved = await savedPacks();
 		busy = null;
+		progress = null;
 	}
 </script>
 
-<!-- Tideline (T-37): an inset list; a saved pack shows an ok tick. No progress ring: the download is two fetches with
-     no progress events, so the button shows the Crabby walker while it runs. -->
+<!-- Tideline (T-37): an inset list; a saved pack shows an ok tick. While a pack downloads, a mango crate fills with
+     the real share of bytes received (T1-07); the button keeps the Crabby walker. -->
 <section class="flex flex-col gap-3" data-testid="packs" aria-busy={!loaded}>
 	<h2 class="type-h2">{m.packs_title()}</h2>
 	<p class="type-small text-text-2">{m.packs_hint()}</p>
@@ -84,6 +87,19 @@
 					<Button variant="outline" loading={busy === p.id} onclick={() => toggle(p)}>
 						{s ? m.packs_delete() : m.packs_download()}
 					</Button>
+					{#if busy === p.id && progress !== null}
+						<div
+							class="flex w-full justify-center"
+							role="progressbar"
+							aria-label={p.name}
+							aria-valuemin={0}
+							aria-valuemax={100}
+							aria-valuenow={Math.round(progress * 100)}
+							data-testid="pack-progress"
+						>
+							<Illustration name="crate" {progress} class="w-32" />
+						</div>
+					{/if}
 				</li>
 			{/each}
 		</ul>

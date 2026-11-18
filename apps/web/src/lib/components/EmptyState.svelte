@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import Illustration from './Illustration.svelte';
+	import Illustration, { type Art } from './Illustration.svelte';
 
 	// Report 2 §8: illustration + heading + one sentence + at most one CTA.
 	let {
@@ -8,7 +8,7 @@
 		body,
 		art = 'crab',
 		action
-	}: { title: string; body: string; art?: 'crab' | 'boat' | 'fort'; action?: Snippet } = $props();
+	}: { title: string; body: string; art?: Art; action?: Snippet } = $props();
 </script>
 
 <div class="mx-auto flex max-w-170 flex-col items-center gap-2 py-8 text-center" data-clip-check>

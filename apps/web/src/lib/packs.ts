@@ -53,11 +53,30 @@ async function writeMeta(c: Cache, meta: Saved) {
 	);
 }
 
-export async function downloadPack(p: Pack) {
+/** `onProgress` gets the share of bytes received (0–1); the size is Content-Length, else `p.bytes`. */
+export async function downloadPack(p: Pack, onProgress?: (share: number) => void) {
 	const c = await open();
 	const [tiles, data] = await Promise.all([fetch(p.tiles, { mode: 'cors' }), fetch(p.data)]);
 	if (!tiles.ok || !data.ok) throw new Error('download failed');
-	await Promise.all([c.put(p.tiles, tiles), c.put(p.data, data)]);
+	const size = (r: Response) => Number(r.headers.get('content-length')) || 0;
+	const total = size(tiles) && size(data) ? size(tiles) + size(data) : p.bytes;
+	let got = 0;
+	const counted = (r: Response) =>
+		!r.body || !onProgress || !total
+			? r
+			: new Response(
+					r.body.pipeThrough(
+						new TransformStream<Uint8Array, Uint8Array>({
+							transform(chunk, out) {
+								got += chunk.byteLength;
+								onProgress(Math.min(1, got / total));
+								out.enqueue(chunk);
+							}
+						})
+					),
+					{ status: r.status, statusText: r.statusText, headers: r.headers }
+				);
+	await Promise.all([c.put(p.tiles, counted(tiles)), c.put(p.data, counted(data))]);
 	const meta = await savedPacks();
 	meta[p.id] = { ...p, saved_at: new Date().toISOString() };
 	await writeMeta(c, meta);

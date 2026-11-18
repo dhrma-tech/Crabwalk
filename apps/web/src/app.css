@@ -577,6 +577,31 @@ html[data-nav='back']::view-transition-new(root) {
 		}
 	}
 }
+/* Patterns (T1-07, brief section 4.9): SVG shapes as masks, coloured by tokens so both themes work.
+   `weave`: a 12 px two-line weave at 3 % under empty rows and an empty plan day. `laterite-course`: one row of
+   laterite blocks (6 px) between Discover sections; static. */
+@utility weave {
+	position: relative;
+	isolation: isolate;
+	&::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		z-index: -1;
+		border-radius: inherit;
+		background: currentColor;
+		opacity: 0.03;
+		mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12'%3E%3Cpath d='M0 3q3-3 6 0t6 0M0 9q3 3 6 0t6 0' fill='none' stroke='%23000' stroke-width='1.5'/%3E%3C/svg%3E")
+			0 0 / 12px 12px repeat;
+		pointer-events: none;
+	}
+}
+@utility laterite-course {
+	height: 6px;
+	background: var(--laterite-50);
+	mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='6'%3E%3Crect width='34' height='6' rx='3'/%3E%3Crect x='38' width='22' height='6' rx='3'/%3E%3Crect x='64' width='40' height='6' rx='3'/%3E%3Crect x='108' width='8' height='6' rx='3'/%3E%3C/svg%3E")
+		0 0 / 120px 6px repeat-x;
+}
 /* Glass (Report 2 §5): only over photos and the map, never behind body text. Solid where blur is missing or
    the viewer asks for less transparency. */
 @utility glass {

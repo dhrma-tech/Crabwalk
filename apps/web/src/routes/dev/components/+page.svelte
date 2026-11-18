@@ -22,6 +22,7 @@
 	import Input from '#lib/components/Input.svelte';
 	import Skeleton from '#lib/components/Skeleton.svelte';
 	import EmptyState from '#lib/components/EmptyState.svelte';
+	import Illustration from '#lib/components/Illustration.svelte';
 	import ErrorState from '#lib/components/ErrorState.svelte';
 	import BottomSheet from '#lib/components/BottomSheet.svelte';
 	import CategoryIcon, { type Category } from '#lib/components/CategoryIcon.svelte';
@@ -336,6 +337,13 @@
 			{#snippet action()}<Button variant="secondary">{s.button}</Button>{/snippet}
 		</ErrorState>
 		<ErrorState title={s.risky} body={s.name} art="boat" />
+		<!-- T1-07 vignettes (both themes in the gallery screenshots); the crate at 60 %. -->
+		<div class="flex flex-wrap gap-4" data-testid="vignettes">
+			{#each ['net', 'tide', 'lamp', 'compass'] as const as v (v)}<Illustration name={v} />{/each}
+			<Illustration name="crate" progress={0.6} />
+		</div>
+		<p class="weave rounded-lg px-4 py-5 type-body text-text-2">{s.name}</p>
+		<div class="laterite-course" aria-hidden="true"></div>
 
 		<Button variant="ghost" onclick={() => toast(s.name)}>{s.button}</Button>
 		<Button variant="secondary" onclick={() => (sheet = !sheet)}>{s.button}</Button>

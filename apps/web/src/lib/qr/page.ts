@@ -218,12 +218,15 @@ export function renderQrPage(
 	);
 }
 
+// T1-07 (brief section 4.9): a blank laterite plaque on a wall, decorative.
+const PLAQUE = `<svg viewBox="0 0 160 100" width="160" height="100" aria-hidden="true" fill="none" stroke-width="1.5"><path d="M0 30h160M0 60h160M0 90h160M30 0v30M90 0v30M150 0v30M60 30v30M120 30v30M20 60v30M80 60v30M140 60v30" stroke="var(--bd)"/><rect x="40" y="18" width="80" height="62" rx="6" fill="var(--sf)" stroke="var(--dg)"/><rect x="49" y="27" width="62" height="44" rx="3" stroke="var(--dg)" stroke-dasharray="3 4"/><path d="M45 23h.1M115 23h.1M45 75h.1M115 75h.1" stroke="var(--t2)" stroke-width="4" stroke-linecap="round"/></svg>`;
+
 /** Unknown/retired code: still offers 112 (no JS needed for the call). */
 export function renderQrMissing(lang: Lang) {
 	return shell(
 		lang,
 		m.qr_missing(),
-		`<main><h1>${esc(m.qr_missing())}</h1><p>${esc(m.qr_missing_hint())}</p><p><a class="btn pri" href="/">Crabwalk</a></p></main><nav class="sos" aria-label="${esc(m.qr_emergency())}"><a href="tel:112">${esc(m.qr_call_112())}</a></nav>`,
+		`<main>${PLAQUE}<h1>${esc(m.qr_missing())}</h1><p>${esc(m.qr_missing_hint())}</p><p><a class="btn pri" href="/">Crabwalk</a></p></main><nav class="sos" aria-label="${esc(m.qr_emergency())}"><a href="tel:112">${esc(m.qr_call_112())}</a></nav>`,
 		{}
 	);
 }

@@ -78,7 +78,7 @@
 			</InsetList>
 		{:else}
 			<!-- Report 1 §4.1: one helpful action. -->
-			<EmptyState title={m.soon_title()} body={m.no_results()}>
+			<EmptyState title={m.soon_title()} body={m.no_results()} art="net">
 				{#snippet action()}<Button href={resolve('/stays')} variant="secondary"
 						>{m.filters_clear_all()}</Button
 					>{/snippet}
