@@ -120,6 +120,46 @@ test('sheet opens from the gallery and snaps on tap', async ({ page }) => {
 	await expect(handle).toHaveAttribute('aria-expanded', 'true');
 });
 
+// T1-03 (brief section 4.5): dragging moves the sheet with `transform` only — no Layout per frame. A flick up
+// goes to the next snap. The trace is Chromium's own (the DevTools timeline category).
+test('sheet drag: no layout per frame; a flick goes to the next snap', async ({
+	page,
+	browser
+}) => {
+	await page.setViewportSize({ width: 390, height: 844 });
+	await gallery(page);
+	await page.waitForLoadState('networkidle');
+	await page.getByRole('button', { name: 'Add to my trip plan' }).last().click();
+	const handle = page.getByRole('button', { name: 'Drag to resize' });
+	const box = (await handle.boundingBox())!;
+	const x = box.x + box.width / 2;
+	let y = box.y + box.height / 2;
+	await page.mouse.move(x, y);
+	await page.mouse.down();
+	await page.mouse.move(x, (y -= 10)); // drag starts (one-time class change)
+	await browser.startTracing(page, { categories: ['devtools.timeline'] });
+	const frames = 20;
+	for (let i = 0; i < frames; i++) {
+		await page.mouse.move(x, (y -= 8));
+		await page.evaluate(() => new Promise(requestAnimationFrame));
+	}
+	const trace = JSON.parse((await browser.stopTracing()).toString()) as {
+		traceEvents: { name: string }[];
+	};
+	const layouts = trace.traceEvents.filter((e) => e.name === 'Layout').length;
+	console.log(`sheet drag: ${layouts} Layout events over ${frames} frames`);
+	expect(layouts).toBe(0);
+	// Fast upward release from peek → half (the next snap), not back to the nearest.
+	await page.mouse.move(x, y - 30, { steps: 1 });
+	await page.mouse.up();
+	await expect(handle).toHaveAttribute('aria-expanded', 'true');
+	// Keyboard cycles like a tap: half → full → peek.
+	await handle.focus();
+	await page.keyboard.press('Enter');
+	await page.keyboard.press('Enter');
+	await expect(handle).toHaveAttribute('aria-expanded', 'false');
+});
+
 // 210 KB (owner, 2026-11-17, hardening D-12): every UI message in three languages loads with the shell.
 test('app shell JS < 210 KB gzipped', async ({ page }) => {
 	const scripts: Promise<Buffer>[] = [];
