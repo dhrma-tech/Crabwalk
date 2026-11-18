@@ -15,6 +15,7 @@ import { learnFromChat, loadProfile, profileSummary, refreshProfile } from '../p
 import { personaRules, type Persona } from './persona.ts';
 import { spotContext, todaysTrip } from './spot.ts';
 import { CONTEXT_RULE, contextBlock, type Turn } from './context.ts';
+import { fit } from './fit.ts';
 
 type DB = SupabaseClient<Database>;
 export type { Turn };
@@ -189,7 +190,7 @@ export async function crabbyTurn(
 			});
 			convo.push({
 				role: 'system',
-				content: `The user is at ${at.name} right now (they scanned its QR code; ${at.kind} slug "${at.slug}"). Use that slug with get_conditions / nearby. Facts: ${JSON.stringify(results[0]!.result).slice(0, 3000)}`
+				content: `The user is at ${at.name} right now (they scanned its QR code; ${at.kind} slug "${at.slug}"). Use that slug with get_conditions / nearby. Facts: ${fit(results[0]!.result, 3000)}`
 			});
 		}
 		const rounds = anonymous ? GUEST_TOOL_ROUNDS : MAX_TOOL_ROUNDS;
@@ -203,7 +204,7 @@ export async function crabbyTurn(
 				convo.push({
 					role: 'tool',
 					tool_call_id: call.id,
-					content: JSON.stringify(result).slice(0, 6000)
+					content: fit(result, 6000)
 				});
 			}
 			// A question card ends the turn: Crabby waits for the answers instead of guessing.
@@ -241,7 +242,7 @@ export async function crabbyTurn(
 				{ role: 'user', content: message },
 				{
 					role: 'system',
-					content: `TOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}${ctx.questions ? `\nQUESTIONS: ${ctx.questions.map((q) => q.header).join(', ')}` : ''}${chosen(results)}`
+					content: `TOOL RESULTS:\n${results.length ? fit(results, 12000) : '(none)'}${ctx.proposed.length ? `\nPROPOSED PREVIEWS: ${ctx.proposed.map((x) => x.type).join(', ')}` : ''}${ctx.drive.length ? `\nDOING: ${ctx.drive.map((x) => x.action).join(', ')}` : ''}${refusedSteps(results)}${ctx.questions ? `\nQUESTIONS: ${ctx.questions.map((q) => q.header).join(', ')}` : ''}${chosen(results)}`
 				}
 			],
 			maxTokens: 400

@@ -16,6 +16,7 @@ import { personaRules } from './persona.ts';
 import type { Msg, ToolDef } from './providers.ts';
 import { chain, route } from './router.ts';
 import { runTool, TOOL_DEFS, type Ctx } from './tools.ts';
+import { fit } from './fit.ts';
 
 type DB = SupabaseClient<Database>;
 const LANG_NAME: Record<Lang, string> = {
@@ -241,7 +242,7 @@ export async function crabbyInGroup(
 			convo.push({
 				role: 'tool',
 				tool_call_id: call.id,
-				content: JSON.stringify(result).slice(0, 6000)
+				content: fit(result, 6000)
 			});
 		}
 	}
@@ -252,7 +253,7 @@ export async function crabbyInGroup(
 			{ role: 'user', content: `Recent chat:\n${chat.slice(-2000)}` },
 			{
 				role: 'system',
-				content: `TRIP: ${trip}\nGROUP TOTALS: ${totals}\nTOOL RESULTS:\n${results.length ? JSON.stringify(results).slice(0, 10000) : '(none)'}${poll ? `\nPOLL POSTED: ${poll.question}` : ''}${ctx.proposed.length ? `\nPROPOSED: ${ctx.proposed.map((p) => p.type).join(', ')}` : ''}`
+				content: `TRIP: ${trip}\nGROUP TOTALS: ${totals}\nTOOL RESULTS:\n${results.length ? fit(results, 10000) : '(none)'}${poll ? `\nPOLL POSTED: ${poll.question}` : ''}${ctx.proposed.length ? `\nPROPOSED: ${ctx.proposed.map((p) => p.type).join(', ')}` : ''}`
 			}
 		],
 		maxTokens: 300
