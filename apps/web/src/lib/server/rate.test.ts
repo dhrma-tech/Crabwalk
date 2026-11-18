@@ -23,6 +23,11 @@ describe('rate-limit rules (P10)', () => {
 		]);
 		expect(rulesFor('POST', u('/api/reports'))).toHaveLength(1);
 	});
+	it('Crabby feedback: 30 per 10 minutes (T2-05)', () => {
+		expect(
+			rulesFor('POST', u('/api/ai/feedback')).map((r) => [r.name, r.limit, r.windowS])
+		).toEqual([['ai-feedback', 30, 600]]);
+	});
 	it('analytics events: 240 per 10 minutes (T1-11)', () => {
 		expect(rulesFor('POST', u('/api/e')).map((r) => [r.name, r.limit, r.windowS])).toEqual([
 			['events', 240, 600]

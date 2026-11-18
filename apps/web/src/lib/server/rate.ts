@@ -60,9 +60,9 @@ export const RULES: Rule[] = [
 	// Availability requests to owners (P12): the DB also caps 10 a day per traveller.
 	{ name: 'stay-request', method: 'POST', path: /^\/api\/requests$/, limit: 20, windowS: 3600 },
 	{ name: 'trip-edit', method: 'PATCH', path: /^\/api\/trips\/[^/]+$/, limit: 120, windowS: 600 },
-	{ name: 'ai', method: 'POST', path: /^\/api\/ai\//, limit: 40, windowS: 600 },
+	{ name: 'ai', method: 'POST', path: /^\/api\/ai\/(?!feedback$)/, limit: 40, windowS: 600 },
 	// SEC-11: the 10-minute rule alone allows 5,760 AI requests a day from one network.
-	{ name: 'ai-day', method: 'POST', path: /^\/api\/ai\//, limit: 150, windowS: 86400 },
+	{ name: 'ai-day', method: 'POST', path: /^\/api\/ai\/(?!feedback$)/, limit: 150, windowS: 86400 },
 	{
 		name: 'rating',
 		method: 'POST',
@@ -79,6 +79,8 @@ export const RULES: Rule[] = [
 	},
 	// Outbound booking clicks (T1-10, UX-11): `/out/<offer>` redirects to the stored link.
 	{ name: 'out', method: 'GET', path: /^\/out\/[^/]+$/, limit: 60, windowS: 600 },
+	// Crabby thumbs and "send to our team" (T2-05): not model calls, so outside the two AI rules above.
+	{ name: 'ai-feedback', method: 'POST', path: /^\/api\/ai\/feedback$/, limit: 30, windowS: 600 },
 	// First-party analytics (T1-11).
 	{ name: 'events', method: 'POST', path: /^\/api\/e$/, limit: 240, windowS: 600 },
 	// Account export and deletion (SEC-15).
