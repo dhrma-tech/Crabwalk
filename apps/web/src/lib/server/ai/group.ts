@@ -251,7 +251,7 @@ export async function crabbyInGroup(
 	}
 
 	// T2-03: checked against everything this prompt may use (tool results, the trip, the group totals).
-	const said = await explainGrounded(
+	const { said } = await explainGrounded(
 		[
 			{ role: 'system', content: explain(lang, profile?.persona ?? 'playful') },
 			{ role: 'user', content: `Recent chat:\n${chat.slice(-2000)}` },

@@ -13,12 +13,16 @@ import { THEME_COOKIE, isTheme } from '#lib/prefs.ts';
 import { allowed, rulesFor } from '#lib/server/rate.ts';
 import { takeAiBudget } from '#lib/server/aiBudget.ts';
 import { setBudget } from '#lib/server/ai/router.ts';
+import { setStore } from '#lib/server/ai/store.ts';
+import { aiStore } from '#lib/server/aiStore.ts';
 import { isPrivatePath } from '#lib/seo.ts';
 import { SIGNED_IN_COOKIE } from '#lib/login.ts';
 import { log, securityEvent } from '#lib/server/log.ts';
 
 // SEC-11: every model call first takes from the global daily budget (and respects the kill switch).
 setBudget(takeAiBudget);
+// T2-05: Crabby's cache and turn log, through the service client the AI code never holds.
+setStore(aiStore);
 
 // SEC-16: one short id per request, on every log line it causes and on unexpected-error references.
 const requestId: Handle = ({ event, resolve }) => {

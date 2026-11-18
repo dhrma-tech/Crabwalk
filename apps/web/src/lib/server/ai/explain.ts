@@ -14,12 +14,12 @@ export async function explainGrounded(
 	messages: Msg[],
 	results: unknown,
 	maxTokens = 600
-): Promise<Explanation | null> {
+): Promise<{ said: Explanation | null; retries: number }> {
 	const ask = (extra: Msg[]) =>
 		route(chain('explain'), { messages: [...messages, ...extra], json: true, maxTokens });
 	const first = await ask([]);
 	const g = ground(first.content, results);
-	if (g.ok) return g.value;
+	if (g.ok) return { said: g.value, retries: 0 };
 	const again = await ask([
 		{ role: 'assistant', content: first.content },
 		{
@@ -28,5 +28,5 @@ export async function explainGrounded(
 		}
 	]);
 	const h = ground(again.content, results);
-	return h.ok ? h.value : null;
+	return { said: h.ok ? h.value : null, retries: 1 };
 }

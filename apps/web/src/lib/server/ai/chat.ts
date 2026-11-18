@@ -12,6 +12,7 @@ import type { Msg } from './providers.ts';
 import { chain, route } from './router.ts';
 import { explainGrounded, GROUNDING_RULES } from './explain.ts';
 import { listingNames, type KINDS } from './ground.ts';
+import { aiStore, cacheKey, type Outcome } from './store.ts';
 import { proposeAskTeam, runTool, TOOL_DEFS, type Ctx, type Proposed } from './tools.ts';
 import type { DriveStep } from '#lib/drive.ts';
 import type { Question } from '#lib/questions.ts';
@@ -41,6 +42,8 @@ export type ChatReply =
 			/** Listings the reply names (T2-03), checked against this turn's tool results. */
 			cites: { kind: (typeof KINDS)[number]; slug: string; name: string }[];
 			remaining: number;
+			/** T2-05: this turn's log id, for thumbs (POST /api/ai/feedback); null when not logged. */
+			turn: number | null;
 	  };
 
 /** Progress for a streaming client (T2-02): status steps, then the reply text as it is written. The endpoint
@@ -120,6 +123,33 @@ const empty = (r: unknown) =>
 	(typeof r === 'object' &&
 		('found' in (r as object) ? !(r as { found: boolean }).found : 'error' in (r as object)));
 
+// T2-05: public tool results are cached 10 minutes, keyed by SHA-256 of (tool, args, lang). Tools that read the
+// user's own data (trips, profile, previews) never are; an answer is reused only if every tool was public.
+const CACHE_S = 600;
+const TOOL_CACHE = new Set(['get_place', 'get_conditions', 'nearby', 'get_dish']);
+const PUBLIC_TOOLS = new Set([...TOOL_CACHE, 'search_places', 'search_stays', 'search_eateries']);
+type Cached = {
+	reply: string;
+	cites: Extract<ChatReply, { kind: 'answer' }>['cites'];
+	outcome: Outcome;
+};
+
+async function cachedTool(ctx: Ctx, name: string, args: string) {
+	if (!TOOL_CACHE.has(name)) return runTool(ctx, name, args);
+	let parsed: unknown;
+	try {
+		parsed = JSON.parse(args || '{}');
+	} catch {
+		return runTool(ctx, name, args);
+	}
+	const key = await cacheKey('tool', name, parsed, ctx.lang);
+	const hit = await aiStore()?.get(key);
+	if (hit != null) return hit;
+	const result = await runTool(ctx, name, args);
+	if (!empty(result)) await aiStore()?.put(key, result, CACHE_S);
+	return result;
+}
+
 /** Data from the database inside ⟦ ⟧ can never close the block. */
 const data = (s: string) => `⟦${s.replace(/[⟦⟧]/g, '')}⟧`;
 
@@ -145,6 +175,15 @@ export async function crabbyTurn(
 		throw capErr;
 	}
 	const remaining = left ?? 0;
+	// T2-05: one row per turn, no text; the answer carries its id for thumbs.
+	const t0 = Date.now();
+	const log = { tools: [] as string[], rounds: 0, validatorRetries: 0 };
+	const finish = async (r: ChatReply, outcome: Outcome, cached = false): Promise<ChatReply> => {
+		const turn =
+			(await aiStore()?.logTurn({ lang, outcome, cached, latencyMs: Date.now() - t0, ...log })) ??
+			null;
+		return r.kind === 'answer' ? { ...r, turn } : r;
+	};
 	// Team answers need only the message: the query runs while the model works.
 	const team = Promise.resolve(db.rpc('match_team_answers', { _q: message.slice(0, 500) })).then(
 		(r) => r.data ?? [],
@@ -161,6 +200,29 @@ export async function crabbyTurn(
 		let profile = loaded;
 		if (profile && Date.parse(profile.updated_at ?? profile.created_at) < Date.now() - 864e5)
 			profile = await refreshProfile(db, userId, profile).catch(() => profile);
+
+		// T2-05: a first question with nothing personal around it (no history, no profile lines, no spot) may be
+		// answered from the cache: no provider call at all.
+		const answerKey =
+			!history.length && !spot && profileSummary(profile) === 'none'
+				? await cacheKey('answer', lang, message.trim().toLowerCase().replace(/\s+/g, ' '))
+				: null;
+		const hit = answerKey ? ((await aiStore()?.get(answerKey)) as Cached | null) : null;
+		if (hit) {
+			io.emit?.({ event: 'delta', data: hit.reply });
+			const r: ChatReply = {
+				kind: 'answer',
+				reply: hit.reply,
+				actions: [],
+				drive: [],
+				questions: null,
+				alternatives: [],
+				cites: hit.cites,
+				remaining,
+				turn: null
+			};
+			return finish(r, hit.outcome, true);
+		}
 
 		const ctx: Ctx = {
 			db,
@@ -216,22 +278,27 @@ export async function crabbyTurn(
 				tools: round ? TOOL_DEFS : [TRIAGE_DEF, ...TOOL_DEFS],
 				maxTokens: 400
 			});
+			log.rounds = round + 1;
 			if (!round) {
 				// Fail closed: no triage call, or anything but safe → refused (AI Spec 5.1).
 				const t = readTriage(r.tool_calls);
 				const g = gate(t);
-				if (g === 'refused' || !t) return { kind: 'refused', remaining };
+				if (g === 'refused' || !t) return finish({ kind: 'refused', remaining }, 'refused');
 				if (g === 'off_topic')
-					return {
-						kind: 'answer',
-						reply: m.crabby_off_topic({}, { locale: t.lang }),
-						actions: [],
-						drive: [],
-						questions: null,
-						alternatives: [],
-						cites: [],
-						remaining
-					};
+					return finish(
+						{
+							kind: 'answer',
+							reply: m.crabby_off_topic({}, { locale: t.lang }),
+							actions: [],
+							drive: [],
+							questions: null,
+							alternatives: [],
+							cites: [],
+							remaining,
+							turn: null
+						},
+						'off_topic'
+					);
 				language = replyLanguage(t);
 				replyLang = t.lang;
 			}
@@ -240,8 +307,9 @@ export async function crabbyTurn(
 			if (r.tool_calls.some((c) => c.name !== 'triage'))
 				io.emit?.({ event: 'status', data: { step: 'tools' } });
 			for (const call of r.tool_calls) {
+				if (call.name !== 'triage') log.tools.push(call.name);
 				const result =
-					call.name === 'triage' ? { ok: true } : await runTool(ctx, call.name, call.args);
+					call.name === 'triage' ? { ok: true } : await cachedTool(ctx, call.name, call.args);
 				if (call.name !== 'triage') results.push({ tool: call.name, result });
 				convo.push({ role: 'tool', tool_call_id: call.id, content: fit(result, 6000) });
 			}
@@ -275,7 +343,7 @@ export async function crabbyTurn(
 
 		io.emit?.({ event: 'status', data: { step: 'writing' } });
 		// T2-03: JSON reply checked against this turn's results; one retry; then "don't know".
-		const said = await explainGrounded(
+		const { said, retries } = await explainGrounded(
 			[
 				{
 					role: 'system',
@@ -290,6 +358,7 @@ export async function crabbyTurn(
 			],
 			results
 		);
+		log.validatorRetries = retries;
 		if (!said && !alternatives.length) {
 			const alt = (await runTool(ctx, 'search_places', JSON.stringify({ limit: 3 }))) as {
 				slug: string;
@@ -305,18 +374,34 @@ export async function crabbyTurn(
 		// Stated preferences only, when the chat source is on (10.7); the chat itself is never stored. It runs
 		// after the response (waitUntil), so the user never waits for it.
 		io.defer?.(learnFromChat(db, userId, profile, message).catch(() => {}));
-		return {
-			kind: 'answer',
-			reply,
-			actions: ctx.proposed,
-			drive: ctx.drive,
-			questions: ctx.questions,
-			alternatives,
-			cites,
-			remaining
-		};
+		const outcome = said && said.confidence !== 'unknown' ? 'answer' : 'unknown';
+		// T2-05: the whole answer is reused for 10 minutes when nothing in it was about this user.
+		const reusable =
+			answerKey &&
+			said &&
+			log.tools.every((t) => PUBLIC_TOOLS.has(t)) &&
+			!ctx.proposed.length &&
+			!ctx.drive.length &&
+			!ctx.questions &&
+			!alternatives.length;
+		if (reusable)
+			await aiStore()?.put(answerKey, { reply, cites, outcome } satisfies Cached, CACHE_S);
+		return finish(
+			{
+				kind: 'answer',
+				reply,
+				actions: ctx.proposed,
+				drive: ctx.drive,
+				questions: ctx.questions,
+				alternatives,
+				cites,
+				remaining,
+				turn: null
+			},
+			outcome
+		);
 	} catch (e) {
 		console.error('crabby', e instanceof Error ? e.message : e);
-		return { kind: 'unavailable', remaining };
+		return finish({ kind: 'unavailable', remaining }, 'unavailable');
 	}
 }
