@@ -6,13 +6,13 @@
 <script lang="ts">
 	import { onMount, type Snippet } from 'svelte';
 	import { isSaved, loadSaved, toggleSaved, type SavedKind } from '#lib/saved.svelte.ts';
-	import Heart from '@lucide/svelte/icons/heart';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import type { Category } from './CategoryIcon.svelte';
 	import NoPhoto, { type Kind } from './NoPhoto.svelte';
 	import IconButton from './IconButton.svelte';
+	import SavedHeart from './SavedHeart.svelte';
 	import { fadeIn } from '#lib/motion.ts';
 
 	// Shared shell for Place/Stay/Eatery cards (Report 2 §8): a surface card, 4:3 photo (or the designed no-photo
@@ -53,6 +53,14 @@
 	onMount(() => void (item && loadSaved()));
 	const on = $derived(item ? isSaved(item.type, item.slug) : saved);
 	const save = $derived(item ? () => toggleSaved(item.type, item.slug) : onsave);
+	let pop = $state(0);
+	function tapSave() {
+		if (!on) {
+			pop++;
+			navigator.vibrate?.(10);
+		}
+		save?.();
+	}
 
 	// Primary language on top, the other script below (§2.3).
 	const locale = getLocale();
@@ -68,10 +76,14 @@
 <article
 	class={[
 		'group relative text-text',
-		!row &&
-			'h-full rounded-lg bg-surface shadow-e1 transition-shadow duration-(--dur-page) ease-brand hover:shadow-e2',
-		both &&
-			'lg:h-full lg:rounded-lg lg:bg-surface lg:shadow-e1 lg:transition-shadow lg:duration-(--dur-page) lg:ease-brand lg:hover:shadow-e2'
+		!row && [
+			'h-full rounded-lg bg-surface shadow-e1 transition-transform duration-(--dur-state) ease-brand motion-safe:hover:-translate-y-0.5',
+			'after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-e2 after:transition-opacity after:duration-(--dur-state) hover:after:opacity-100'
+		],
+		both && [
+			'lg:h-full lg:rounded-lg lg:bg-surface lg:shadow-e1 lg:transition-transform lg:duration-(--dur-state) lg:ease-brand lg:motion-safe:hover:-translate-y-0.5',
+			'lg:after:pointer-events-none lg:after:absolute lg:after:inset-0 lg:after:rounded-lg lg:after:opacity-0 lg:after:shadow-e2 lg:after:transition-opacity lg:after:duration-(--dur-state) lg:hover:after:opacity-100'
+		]
 	]}
 	data-clip-check
 >
@@ -159,14 +171,9 @@
 						? 'top-1/2 -translate-y-1/2'
 						: 'top-2'
 			]}
-			onclick={save}
+			onclick={tapSave}
 		>
-			<Heart
-				size={20}
-				fill={on ? 'currentColor' : 'none'}
-				aria-hidden="true"
-				class={on ? 'text-kokum' : undefined}
-			/>
+			<SavedHeart {on} {pop} />
 		</IconButton>
 	{/if}
 </article>

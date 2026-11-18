@@ -41,6 +41,8 @@
 		};
 	});
 	const hidden = $derived(typing || page.route.id === '/navigate' || crabby.emergency);
+	// Brief section 4.7: one dot slides to the active tab (none for Crabby's raised button or other pages).
+	const active = $derived(items.findIndex((i) => isActive(page.url.pathname, i.href)));
 </script>
 
 <nav
@@ -52,7 +54,18 @@
 		hidden && 'hidden'
 	]}
 >
-	<ul class="glass grid h-17 grid-cols-5 rounded-xl shadow-e2">
+	<ul class="glass relative grid h-17 grid-cols-5 rounded-xl shadow-e2">
+		<li
+			class={[
+				'pointer-events-none absolute inset-y-0 left-0 flex w-1/5 justify-center transition-[transform,opacity] duration-(--dur-state) ease-(--ease-inout)',
+				(active < 0 || !items[active]?.icon) && 'opacity-0'
+			]}
+			style:transform="translateX({Math.max(active, 0) * 100}%)"
+			aria-hidden="true"
+			data-nav-dot
+		>
+			<span class="absolute bottom-1 size-1 rounded-full bg-kokum"></span>
+		</li>
 		{#each items as item (item.href)}
 			{@const on = isActive(page.url.pathname, item.href)}
 			<li class="flex">
@@ -61,18 +74,21 @@
 					data-drive="openPage:{item.drive}"
 					aria-current={on ? 'page' : undefined}
 					class={[
-						'relative flex flex-1 flex-col items-center justify-center gap-0.5 px-0.5 text-center type-label no-underline',
+						'group/press relative flex flex-1 flex-col items-center justify-center px-0.5 text-center type-label no-underline',
 						on ? 'text-text' : 'text-text-2'
 					]}
 				>
 					{#if item.icon}
 						{@const Icon = item.icon}
-						<Icon size={24} aria-hidden="true" class={on ? 'text-kokum' : undefined} />
-						<span>{item.label()}</span>
-						{#if on}<span class="absolute bottom-1 size-1 rounded-full bg-kokum"></span>{/if}
+						<span
+							class="flex flex-col items-center gap-0.5 transition-transform duration-(--dur-press) ease-brand group-active/press:scale-[.97]"
+						>
+							<Icon size={24} aria-hidden="true" class={on ? 'text-kokum' : undefined} />
+							<span>{item.label()}</span>
+						</span>
 					{:else}
 						<span
-							class="absolute -top-3.5 flex size-14 items-center justify-center rounded-full bg-kokum shadow-e2"
+							class="absolute -top-3.5 flex size-14 items-center justify-center rounded-full bg-kokum shadow-e2 transition-transform duration-(--dur-press) ease-brand group-active/press:scale-[.97]"
 							><Crabby size={36} tone="white" /></span
 						>
 						<span class="mt-auto pb-1.5">{item.label()}</span>

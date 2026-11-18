@@ -29,7 +29,7 @@
 	<span
 		class={[
 			'inline-flex min-h-9 items-center gap-1.5 rounded-full px-3.5 py-1 type-label',
-			'transition-[background-color,color,transform] duration-(--dur-state) ease-brand group-active:scale-[.97]',
+			'[transition:background-color_var(--dur-state)_var(--ease),color_var(--dur-state)_var(--ease),transform_var(--dur-press)_var(--ease)] group-active:scale-[.97]',
 			selected
 				? 'bg-text text-bg'
 				: glass

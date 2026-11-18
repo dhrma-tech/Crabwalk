@@ -265,8 +265,8 @@
 					disabled={!group}
 					aria-describedby={group ? undefined : `pick-${id}`}
 					class={[
-						'tile relative flex min-h-20 flex-col items-center justify-center gap-1.5 rounded-md border-2 px-2 py-3 type-body-strong text-text',
-						'transition-[transform,background-color,border-color] duration-(--dur-press) ease-brand enabled:active:scale-[.97] disabled:opacity-60',
+						'group/press relative flex min-h-20 flex-col items-center justify-center rounded-md border-2 px-2 py-3 type-body-strong text-text',
+						'transition-[background-color,border-color] duration-(--dur-press) ease-brand disabled:opacity-60',
 						on ? '' : 'border-transparent bg-surface-2 enabled:hover:bg-surface-3',
 						tapped !== null && tapped !== level && 'dim',
 						shaking === level && 'shake'
@@ -286,9 +286,12 @@
 							aria-hidden="true"
 							class={['absolute top-2 right-2', tapped === level && 'pop']}
 						/>{/if}
-					<span class={['flex', tapped === level && 'tilt']}
-						><Icon size={24} aria-hidden="true" /></span
-					>{msg(`verdict_${type}_${level}`)}
+					<span
+						class="flex flex-col items-center gap-1.5 transition-transform duration-(--dur-press) ease-brand group-enabled/press:group-active/press:scale-[.97]"
+						><span class={['flex', tapped === level && 'tilt']}
+							><Icon size={24} aria-hidden="true" /></span
+						>{msg(`verdict_${type}_${level}`)}</span
+					>
 				</button>
 			{/each}
 		</div>

@@ -4,7 +4,7 @@
 	import { resolve } from '$app/paths';
 	import Navigation from '@lucide/svelte/icons/navigation';
 	import CalendarPlus from '@lucide/svelte/icons/calendar-plus';
-	import Heart from '@lucide/svelte/icons/heart';
+	import Check from '@lucide/svelte/icons/check';
 	import Share2 from '@lucide/svelte/icons/share-2';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import X from '@lucide/svelte/icons/x';
@@ -15,6 +15,7 @@
 	import { isSaved, loadSaved, toggleSaved, type SavedKind } from '#lib/saved.svelte.ts';
 	import Button from '../Button.svelte';
 	import IconButton from '../IconButton.svelte';
+	import SavedHeart from '../SavedHeart.svelte';
 	import Skeleton from '../Skeleton.svelte';
 
 	// Listing action bar (DECISIONS T-4 / T-47; Report 1 §3.9, Report 2 §9.2): Directions · Add to trip (primary) ·
@@ -65,6 +66,16 @@
 		await goto(resolve('/plan/[id]', { id: t.id }));
 	}
 
+	// Section 4.7: a save tap pops the heart; a copied link shows a check for 1.2 s.
+	let pop = $state(0);
+	let copied = $state(false);
+	function tapSave() {
+		if (!saved) {
+			pop++;
+			navigator.vibrate?.(10);
+		}
+		toggleSaved(type, slug);
+	}
 	async function share() {
 		const url = location.href;
 		try {
@@ -75,6 +86,8 @@
 		try {
 			await navigator.clipboard.writeText(url);
 			toast(m.link_copied());
+			copied = true;
+			setTimeout(() => (copied = false), 1200);
 		} catch {
 			toast(m.send_failed());
 		}
@@ -103,19 +116,18 @@
 		label={saved ? m.saved() : m.save()}
 		aria-pressed={saved}
 		class="size-12 bg-surface-2 shadow-none hover:bg-surface-3"
-		onclick={() => toggleSaved(type, slug)}
+		onclick={tapSave}
 	>
-		<Heart
-			size={20}
-			fill={saved ? 'currentColor' : 'none'}
-			aria-hidden="true"
-			class={saved ? 'text-kokum' : undefined}
-		/>
+		<SavedHeart on={saved} {pop} />
 	</IconButton>
 	<IconButton
 		label={m.action_share()}
 		class="size-12 bg-surface-2 shadow-none hover:bg-surface-3"
-		onclick={share}><Share2 size={20} aria-hidden="true" /></IconButton
+		onclick={share}
+		>{#if copied}<Check size={20} aria-hidden="true" class="pop text-lagoon" />{:else}<Share2
+				size={20}
+				aria-hidden="true"
+			/>{/if}</IconButton
 	>
 </div>
 
