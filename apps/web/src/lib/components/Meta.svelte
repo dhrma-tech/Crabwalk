@@ -2,19 +2,23 @@
 	import { page } from '$app/state';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
+	import { jsonLdText } from '#lib/jsonld.ts';
 
 	// Title, description and share card for every page (search results, link previews).
 	// `image`: a listing's own photo when it has one — never a stock image; otherwise the app icon.
+	// `jsonld` (T1-12): schema.org data; a JSON data block is never executed, so CSP script-src does not apply.
 	let {
 		title,
 		description,
 		image,
-		canonical
+		canonical,
+		jsonld
 	}: {
 		title: string;
 		description?: string | null;
 		image?: string | null;
 		canonical?: string;
+		jsonld?: object | null;
 	} = $props();
 
 	const full = $derived(title === m.app_name() ? title : `${title} · ${m.app_name()}`);
@@ -24,6 +28,11 @@
 	const url = $derived(page.url.origin + (canonical ?? page.url.pathname));
 	const img = $derived(image || `${page.url.origin}/icons/icon-512.png`);
 	const locale = { en: 'en_IN', hi: 'hi_IN', mr: 'mr_IN' }[getLocale()];
+	const ld = $derived(
+		jsonld &&
+			// eslint-disable-next-line no-useless-escape -- a bare closing tag would end this <script> block
+			`<script type="application/ld+json">${jsonLdText({ '@context': 'https://schema.org', ...jsonld, url })}<\/script>`
+	);
 </script>
 
 <svelte:head>
@@ -38,4 +47,8 @@
 	<meta property="og:image" content={img} />
 	<meta property="og:locale" content={locale} />
 	<meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+	{#if ld}
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- our own JSON with `<` escaped (jsonLdText) -->
+		{@html ld}
+	{/if}
 </svelte:head>

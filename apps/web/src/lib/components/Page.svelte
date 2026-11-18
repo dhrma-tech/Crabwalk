@@ -12,6 +12,7 @@
 		canonical,
 		heading = page.url.pathname !== '/',
 		overlay = false,
+		jsonld,
 		children
 	}: {
 		title: string;
@@ -24,11 +25,13 @@
 		heading?: boolean;
 		/** Phones: transparent top bar over a full-bleed hero (detail pages). */
 		overlay?: boolean;
+		/** schema.org data for the page head (detail pages, T1-12). */
+		jsonld?: object | null;
 		children: Snippet;
 	} = $props();
 </script>
 
-<Meta {title} {description} {image} {canonical} />
+<Meta {title} {description} {image} {canonical} {jsonld} />
 <TopBar {title} {back} {overlay} />
 <!-- The page heading (T-21): phones show the title in the top bar, laptops above the content. -->
 <main id="main" class="mx-auto w-full max-w-300 px-5 pt-2 pb-10 lg:px-8 lg:pt-6">
