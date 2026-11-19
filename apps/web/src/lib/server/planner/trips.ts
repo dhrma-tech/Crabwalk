@@ -162,6 +162,7 @@ export async function generateInto(
 			arrive_at: at(data.dates[i]!.date, s.arrive),
 			depart_at: at(data.dates[i]!.date, s.depart),
 			travel_from_prev_s: s.travel.s,
+			travel_source: s.travel.source,
 			...Object.fromEntries(
 				Object.entries(reasonText(s.reasons)).map(([l, t]) => [`reason_${l}`, t])
 			)
@@ -463,6 +464,7 @@ async function retimeTrip(
 				arrive_at: at(date, t.arrive),
 				depart_at: at(date, t.depart),
 				travel_from_prev_s: t.travel.s,
+				travel_source: t.travel.source,
 				...Object.fromEntries(Object.entries(reasonText(codes)).map(([l, x]) => [`reason_${l}`, x]))
 			});
 		});
@@ -614,6 +616,8 @@ export async function tripView(
 					arrive: hhmm(s.arrive_at),
 					depart: hhmm(s.depart_at),
 					travelMin: s.travel_from_prev_s != null ? Math.round(s.travel_from_prev_s / 60) : null,
+					// T2-08: a straight-line estimate (no road time in the matrix) is labelled as such.
+					travelEstimated: s.travel_source === 'estimate',
 					reason: (s[`reason_${lang}` as const] ?? s.reason_en) || null,
 					pt: i?.pt ? { lon: i.pt.lon, lat: i.pt.lat } : null
 				};

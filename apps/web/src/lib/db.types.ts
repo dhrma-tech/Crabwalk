@@ -1501,14 +1501,14 @@ isOneToOne: false
                   ]
                 },"trip_stops": {
                   Row: {
-                    "arrive_at": string | null,"created_at": string,"day": number,"depart_at": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at": string | null,"order": number,"reason_en": string | null,"reason_hi": string | null,"reason_mr": string | null,"travel_from_prev_s": number | null,"trip_id": string,"updated_at": string | null
+                    "arrive_at": string | null,"created_at": string,"day": number,"depart_at": string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id": string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at": string | null,"order": number,"reason_en": string | null,"reason_hi": string | null,"reason_mr": string | null,"travel_from_prev_s": number | null,"travel_source": string | null,"trip_id": string,"updated_at": string | null
                   }
                   ComputedFields: never
                   Insert: {
-                    "arrive_at"?: string | null,"created_at"?: string,"day": number,"depart_at"?: string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order": number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id": string,"updated_at"?: string | null
+                    "arrive_at"?: string | null,"created_at"?: string,"day": number,"depart_at"?: string | null,"entity_id": string,"entity_type": Database["public"]['Enums']["entity_type"],"id"?: string,"kind": Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order": number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"travel_source"?: string | null,"trip_id": string,"updated_at"?: string | null
                   }
                   Update: {
-                    "arrive_at"?: string | null,"created_at"?: string,"day"?: number,"depart_at"?: string | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"kind"?: Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order"?: number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"trip_id"?: string,"updated_at"?: string | null
+                    "arrive_at"?: string | null,"created_at"?: string,"day"?: number,"depart_at"?: string | null,"entity_id"?: string,"entity_type"?: Database["public"]['Enums']["entity_type"],"id"?: string,"kind"?: Database["public"]['Enums']["stop_kind"],"nudged_at"?: string | null,"order"?: number,"reason_en"?: string | null,"reason_hi"?: string | null,"reason_mr"?: string | null,"travel_from_prev_s"?: number | null,"travel_source"?: string | null,"trip_id"?: string,"updated_at"?: string | null
                   }
                   Relationships: [
                     {
@@ -1864,6 +1864,9 @@ isOneToOne: false
                            },
 "planner_matrix":
 { Args: { "_ids": (string)[] }; Returns: Json
+                           },
+"planner_readiness":
+{ Args: Record<PropertyKey, never>; Returns: Json
                            },
 "post_trip_message":
 { Args: { "_body": string,"_crabby": boolean,"_kind": Database["public"]['Enums']["message_kind"],"_nonce": string,"_payload": string,"_proactive": boolean,"_sig": string,"_trip": string }; Returns: string

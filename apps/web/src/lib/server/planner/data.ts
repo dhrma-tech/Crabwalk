@@ -304,6 +304,6 @@ export async function travelFor(db: DB, ids: string[]): Promise<Travel> {
 		m.set(`${a}|${b}`, [s, dist]);
 	return (from, to) => {
 		const hit = from.id && to.id ? m.get(`${from.id}|${to.id}`) : undefined;
-		return hit ? { s: hit[0], m: hit[1], estimated: false } : estimatedLeg(from, to);
+		return hit ? { s: hit[0], m: hit[1], source: 'road' } : estimatedLeg(from, to);
 	};
 }

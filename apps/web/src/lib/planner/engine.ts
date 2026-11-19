@@ -10,7 +10,8 @@ export const MAX_GMAPS_POINTS = 10;
 
 export type Win = [number, number];
 export type Pt = { lon: number; lat: number };
-export type Leg = { s: number; m: number; estimated: boolean };
+/** T2-08: `road` = from the OSRM matrix; `estimate` = straight-line fallback (shown as "estimated"). */
+export type Leg = { s: number; m: number; source: 'road' | 'estimate' };
 export type Travel = (from: Pt & { id?: string }, to: Pt & { id?: string }) => Leg;
 
 /** A day's opening: windows already intersected with hours/daylight/tide; confirmed = real hours. */
@@ -363,5 +364,5 @@ export function estimatedLeg(a: Pt, b: Pt): Leg {
 			(b.lon - a.lon) * 111.32 * Math.cos((a.lat * Math.PI) / 180),
 			(b.lat - a.lat) * 110.57
 		) * 1.4;
-	return { s: Math.round((km / 35) * 3600), m: Math.round(km * 1000), estimated: true };
+	return { s: Math.round((km / 35) * 3600), m: Math.round(km * 1000), source: 'estimate' };
 }

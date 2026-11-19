@@ -243,3 +243,15 @@ describe('budget estimator', () => {
 		).toBe(1050);
 	});
 });
+
+describe('leg source (hardening T2-08)', () => {
+	it('a straight-line leg is an estimate; a matrix leg stays road through the plan', () => {
+		expect(estimatedLeg({ lon: 73.3, lat: 17 }, { lon: 73.4, lat: 17.1 }).source).toBe('estimate');
+		// Pairs between two listings come from the "matrix"; the first leg from the start point does not.
+		const travel: PlanInput['travel'] = (a, b) =>
+			a.id && b.id ? { ...estimatedLeg(a, b), source: 'road' } : estimatedLeg(a, b);
+		const stops = plan(base({ days: 1, travel })).flatMap((d) => d.stops);
+		expect(stops[0]!.travel.source).toBe('estimate');
+		expect(stops.slice(1).every((s) => s.travel.source === 'road')).toBe(true);
+	});
+});
