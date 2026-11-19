@@ -43,3 +43,4 @@ Points to check first:
 - Hardening T3-02 keys `qr_health_scans`, `qr_health_broken`, `qr_health_silent` (staff plaque health on /admin/qr): drafts.
 - Hardening T3-03 keys `monsoon_mode`, `monsoon_mode_hint` (Discover toggle; the hint describes the order of the lists): drafts.
 - Hardening T3-04 keys `me_stamps`, `me_stamps_empty` (Me: visited stamps): drafts.
+- Hardening T3-06 key `plan_copy_trip` (button on a shared plan): draft.

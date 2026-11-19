@@ -393,6 +393,57 @@ export async function editTrip(db: DB, id: string, e: z.infer<typeof editInput>)
 	return true;
 }
 
+/**
+ * Hardening T3-06: the viewer's own copy of a shared plan — same title, days and stops, re-timed and re-costed
+ * for them by editTrip (createTrip would plan afresh, which is not a copy). The shared payload has no start
+ * coordinates (SEC-17), so the start is the station or bus stand of that name, else the first stop.
+ */
+export async function copySharedTrip(
+	db: DB,
+	ownerId: string,
+	t: SharedTrip,
+	stops: { day: number; order: number; kind: Stop['kind']; entity_type: Kind; entity_id: string }[]
+) {
+	const sorted = [...stops].sort((a, b) => a.day - b.day || a.order - b.order);
+	let start: { label: string; lon: number; lat: number } | null = null;
+	if (t.start_label) {
+		const { data } = await db
+			.from('utility_pois')
+			.select('location')
+			.in('type', ['railway_station', 'bus_stand'])
+			.eq('name', t.start_label)
+			.limit(1)
+			.maybeSingle();
+		const c = data ? lonLat(data.location) : null;
+		if (c) start = { label: t.start_label, lon: c[0], lat: c[1] };
+	}
+	if (!start && sorted[0]) {
+		const first = (await describeStops(db, [sorted[0]], 'en')).get(sorted[0].entity_id);
+		if (first?.pt) start = { label: first.name ?? t.start_label ?? '', ...first.pt };
+	}
+	const tomorrow = addDays(istToday(), 1).date;
+	const { data: trip, error } = await db
+		.from('trips')
+		.insert({
+			owner_id: ownerId,
+			title: t.title,
+			days: t.days,
+			start_date: t.start_date && t.start_date >= tomorrow ? t.start_date : tomorrow,
+			start_point: start,
+			pace: t.pace,
+			group_type: t.group_type
+		})
+		.select('id')
+		.single();
+	if (error) throw error;
+	await editTrip(db, trip.id, {
+		days: Array.from({ length: t.days }, (_, d) =>
+			sorted.filter((s) => s.day === d + 1).map((s) => ({ kind: s.kind, entity_id: s.entity_id }))
+		)
+	});
+	return trip.id;
+}
+
 async function retimeTrip(
 	db: DB,
 	trip: {

@@ -282,6 +282,49 @@ test('shared trip page and API: title and start label, no start coordinates (SEC
 	psql(`delete from trips where share_token = '${token}'`);
 });
 
+test('copy a shared trip: the viewer gets their own trip with the same stops (T3-06)', async ({
+	browser
+}) => {
+	const token = (Date.now() + 1).toString(16).padStart(32, '0').slice(-32);
+	const owner = psql(
+		`with u as (insert into auth.users (id, email) values (gen_random_uuid(), 'share-copy-${token}@e2e.local') returning id)
+		 insert into trips (owner_id, title, days, start_date, start_point, share_token)
+		 select id, 'Copy me ${token}', 2, (now() at time zone 'Asia/Kolkata')::date + 10,
+		        jsonb_build_object('label', 'Ratnagiri', 'lon', 73.33, 'lat', 16.99), '${token}' from u returning id`
+	);
+	const stop = (day: number, order: number, slug: string) =>
+		psql(
+			`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind)
+			 select '${owner}', ${day}, ${order}, 'place', id, 'place' from places where slug = '${slug}'`
+		);
+	stop(1, 0, 'seed-fort-1');
+	stop(1, 1, 'seed-temple-1');
+	stop(2, 0, 'seed-beach-1');
+	const ctx = await browser.newContext();
+	const page = await ctx.newPage();
+	const email = `p10-copy-${Date.now()}@e2e.local`;
+	await signIn(page, email);
+	await page.goto(`/plan/share/${token}`);
+	await page.getByTestId('copy-trip').click();
+	await expect(page).toHaveURL(/\/plan\/[0-9a-f-]{36}$/);
+	const copy = page.url().split('/').at(-1)!;
+	expect(copy).not.toBe(owner);
+	const stops = (trip: string) =>
+		psql(
+			`select string_agg(day || ':' || p.slug, ',' order by day, "order") from trip_stops s
+			 join places p on p.id = s.entity_id where s.trip_id = '${trip}'`
+		);
+	expect(stops(copy)).toBe('1:seed-fort-1,1:seed-temple-1,2:seed-beach-1');
+	expect(
+		psql(
+			`select t.title || '|' || (u.email = '${email}') || '|' || t.days from trips t join auth.users u on u.id = t.owner_id where t.id = '${copy}'`
+		)
+	).toBe(`Copy me ${token}|true|2`);
+	expect(stops(owner)).toBe('1:seed-fort-1,1:seed-temple-1,2:seed-beach-1'); // the original is untouched
+	psql(`delete from trips where id in ('${owner}', '${copy}')`);
+	await ctx.close();
+});
+
 test('uploads: a text file sent as image/webp is refused (SEC-18)', async ({ browser }) => {
 	const page = await (await browser.newContext()).newPage();
 	await signIn(page, `sniff-${Date.now().toString(36)}@e2e.local`);

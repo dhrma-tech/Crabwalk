@@ -1,5 +1,7 @@
 <script lang="ts">
 	import FileDown from '@lucide/svelte/icons/file-down';
+	import Copy from '@lucide/svelte/icons/copy';
+	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -23,6 +25,13 @@
 		</p>
 		<PlanDays days={data.days} />
 		<div class="flex flex-wrap gap-2 print:hidden">
+			<!-- T3-06: an editable copy for the viewer; a plain form, so it works without JS. -->
+			<form method="POST" action="?/copy" use:submitting>
+				<Button type="submit" data-testid="copy-trip">
+					{#snippet icon()}<Copy size={20} aria-hidden="true" />{/snippet}
+					{m.plan_copy_trip()}
+				</Button>
+			</form>
 			<Button variant="secondary" onclick={() => window.print()}>
 				{#snippet icon()}<FileDown size={20} aria-hidden="true" />{/snippet}
 				{m.plan_pdf()}
