@@ -217,6 +217,31 @@ async function answer(req: ChatRequest): Promise<ChatResult> {
 			const slug = /stays near ([a-z0-9-]+)/.exec(text)?.[1] ?? '';
 			plan.push([call('search_stays', { near_place: slug })]);
 		} else if (text.includes('unicorn')) plan.push([call('search_places', { name: 'unicorn' })]);
+		// T2-04 / T2-07: what the traveller wants (find_places), diets, vibes and prices.
+		else if (/\b(quiet|calm|rain|monsoon|hidden)\b/.test(text)) {
+			const near = /near ([a-z0-9-]+)/.exec(text)?.[1];
+			const cat = CATS.find((c) => text.replace(near ?? '', '').includes(c));
+			plan.push([
+				call('find_places', {
+					...(cat ? { categories: [cat] } : {}),
+					...(/\b(quiet|calm)\b/.test(text) ? { crowd: 'calm' } : {}),
+					...(/\b(rain|monsoon)\b/.test(text) ? { monsoon_ok: true } : {}),
+					...(/\bhidden\b/.test(text) ? { hidden_gem: true } : {}),
+					...(near ? { near, max_km: 15 } : {})
+				})
+			]);
+		} else if (/\bveg\b/.test(text) && /thali|food|eat/.test(text))
+			plan.push([call('search_eateries', { diet: 'veg' })]);
+		else if (/romantic|by the sea/.test(text))
+			plan.push([
+				call('search_stays', { vibe: /romantic/.test(text) ? 'couple_friendly' : 'beachfront' })
+			]);
+		else if (/\bstays?\b.*under ₹?\s?[\d,]+/.test(text))
+			plan.push([
+				call('search_stays', {
+					max_price: Number(/under ₹?\s?([\d,]+)/.exec(text)![1]!.replace(/,/g, ''))
+				})
+			]);
 		else {
 			const cat = CATS.find((c) => text.includes(c));
 			if (cat) plan.push([call('search_places', { category: cat })]);
@@ -227,7 +252,9 @@ async function answer(req: ChatRequest): Promise<ChatResult> {
 			const lang = /App language: (en|hi|mr)/.exec(systems.join('\n'))?.[1] ?? 'en';
 			const triage = call('triage', {
 				safe: !text.includes('mockunsafe'),
-				on_topic: !text.includes('mockofftopic'),
+				// T2-07 (S1, S3): code and prompt requests are not about the Konkan coast.
+				on_topic:
+					!text.includes('mockofftopic') && !/\b(python|scraper|system prompt)\b/.test(text),
 				lang,
 				script: lang === 'en' ? 'latin' : 'devanagari'
 			});

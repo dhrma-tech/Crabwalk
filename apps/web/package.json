@@ -16,7 +16,8 @@
 		"test:unit": "vitest",
 		"e2e": "playwright test",
 		"test": "vitest --run --passWithNoTests",
-		"gen": "wrangler types"
+		"gen": "wrangler types",
+		"ai:eval": "node --experimental-transform-types --no-warnings scripts/ai-eval.ts"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "4.13.0",
