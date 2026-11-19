@@ -15,14 +15,19 @@ import { placeFilter, readFilter } from '#lib/server/filters.ts';
 import { cardAggs } from '#lib/server/ratings.ts';
 import { listItineraries } from '#lib/server/planner/itineraries.ts';
 import { getLocale } from '#lib/paraglide/runtime.js';
+import { byMonsoon, MONSOON_COOKIE, monsoonMode } from '#lib/prefs.ts';
 import type { PageServerLoad } from './$types';
 
 const withPhotoFirst = <T extends { photo: unknown }>(rows: T[]) =>
 	[...rows].sort((a, b) => Number(!!b.photo) - Number(!!a.photo));
 
 // Discover (FRONTEND §7.1, Report 2 §9.1). ?category= filters the place grid (own title, canonical, meta: Report 1 §3.11).
-export const load: PageServerLoad = async ({ locals, url }) => {
+export const load: PageServerLoad = async ({ locals, url, cookies }) => {
 	const lang = getLocale() as Lang;
+	// T3-03: in monsoon mode place lists show closures first, then risky places, with a badge. Nothing is hidden.
+	const monsoon = monsoonMode(cookies.get(MONSOON_COOKIE));
+	const order = <T extends { monsoon: 'open' | 'risky' | 'closed' }>(rows: T[]) =>
+		monsoon ? byMonsoon(rows) : rows;
 	const category = readFilter(placeFilter, url.searchParams)?.category;
 	const [places, gems, dishes, season, itineraries, today, stays, eateries] = await Promise.all([
 		listPlaces(locals.supabase, { category }),
@@ -46,6 +51,7 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 			category: p.category,
 			names: n,
 			isGem: p.is_hidden_gem,
+			monsoon: p.monsoon_status,
 			agg: aggs.get(p.id) ?? null,
 			coords: lonLat(p.location),
 			photo: p.hero ? photoUrls(p.hero, n[lang] || n.en) : null
@@ -53,10 +59,11 @@ export const load: PageServerLoad = async ({ locals, url }) => {
 	};
 	return {
 		category: category ?? null,
-		places: places.map(card),
-		gems: gems.map(card),
+		monsoon,
+		places: order(places.map(card)),
+		gems: order(gems.map(card)),
 		// Discover rows (user, 2026-11-11): Places → Stays → Food after Explore; photographed listings first.
-		placeRow: category ? [] : withPhotoFirst(places.map(card)).slice(0, 12),
+		placeRow: category ? [] : order(withPhotoFirst(places.map(card))).slice(0, 12),
 		stays: withPhotoFirst(
 			stays.map((s) => {
 				const n = names(s.stay_translations);

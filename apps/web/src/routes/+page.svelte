@@ -21,6 +21,7 @@
 	import CategoryIcon, { categoryIcons, type Category } from '#lib/components/CategoryIcon.svelte';
 	import StayCard from '#lib/components/StayCard.svelte';
 	import Utensils from '@lucide/svelte/icons/utensils';
+	import CloudRain from '@lucide/svelte/icons/cloud-rain';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { formatINR } from '#lib/format.ts';
 	import type { PageProps } from './$types';
@@ -63,6 +64,16 @@
 	const featured = $derived(data.gems.find((g) => g.photo));
 	const categoryName = $derived(data.category ? msg(`cat_${data.category}`) : null);
 </script>
+
+{#snippet monsoonBadge(state: 'open' | 'risky' | 'closed')}
+	<!-- T3-03: in monsoon mode, closed and risky places say so on the card. -->
+	{#if data.monsoon && state !== 'open'}<StatusBadge
+			kind="monsoon"
+			{state}
+			label={state === 'closed' ? m.monsoon_closed() : m.monsoon_risky()}
+			glass
+		/>{/if}
+{/snippet}
 
 {#snippet seeAll(href: string, label: string)}
 	<!-- eslint-disable svelte/no-navigation-without-resolve -- callers pass resolve()d hrefs -->
@@ -165,6 +176,25 @@
 				{/each}
 			</ul>
 			<ScrollProgress />
+			<!-- T3-03: monsoon mode (default June–September); a plain form, so it works without JS. -->
+			<form method="POST" action={resolve('/prefs')} class="flex flex-wrap items-center gap-x-3">
+				<input type="hidden" name="monsoon" value={data.monsoon ? 'off' : 'on'} />
+				<input
+					type="hidden"
+					name="return"
+					value={data.category ? `/?category=${data.category}` : '/'}
+				/>
+				<button
+					type="submit"
+					aria-pressed={data.monsoon}
+					data-testid="monsoon-toggle"
+					class={[
+						'inline-flex min-h-11 items-center gap-2 rounded-full px-4 type-label',
+						data.monsoon ? 'bg-text text-bg' : 'bg-surface-2 text-text hover:bg-surface-3'
+					]}><CloudRain size={16} aria-hidden="true" />{m.monsoon_mode()}</button
+				>
+				{#if data.monsoon}<span class="type-small text-text-2">{m.monsoon_mode_hint()}</span>{/if}
+			</form>
 		</section>
 
 		{#if data.category}
@@ -181,6 +211,7 @@
 								categoryLabel={msg(`cat_${p.category}`)}
 							>
 								{#snippet verdict()}<MiniVerdict type="place" agg={p.agg} />{/snippet}
+								{#snippet badges()}{@render monsoonBadge(p.monsoon)}{/snippet}
 							</PlaceCard>
 						{/each}
 					</div>
@@ -239,7 +270,11 @@
 											`cat_${p.category}`
 										)}</span
 									>
-									<span class="type-body-strong text-balance">{nameOf(p.names)}</span>
+									<span class="flex flex-col items-start gap-1.5"
+										>{@render monsoonBadge(p.monsoon)}<span class="type-body-strong text-balance"
+											>{nameOf(p.names)}</span
+										></span
+									>
 								</a>
 							</li>
 						{/each}
@@ -350,7 +385,9 @@
 									category={p.category}
 									sub={msg(`cat_${p.category}`)}
 								>
-									{#snippet badges()}<StatusBadge kind="gem" glass />{/snippet}
+									{#snippet badges()}<StatusBadge kind="gem" glass />{@render monsoonBadge(
+											p.monsoon
+										)}{/snippet}
 								</HeroCard>
 							</li>
 						{/each}

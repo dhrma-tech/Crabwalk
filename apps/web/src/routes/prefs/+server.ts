@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import { cookieName, cookieMaxAge, isLocale, type Locale } from '#lib/paraglide/runtime.js';
-import { THEME_COOKIE, isTheme, safeReturnPath } from '#lib/prefs.ts';
+import { MONSOON_COOKIE, THEME_COOKIE, isTheme, safeReturnPath } from '#lib/prefs.ts';
 import { formBody } from '#lib/server/http.ts';
 import { logEvent } from '#lib/server/analytics.ts';
 import type { RequestHandler } from './$types';
@@ -27,6 +27,9 @@ export const POST: RequestHandler = async (event) => {
 		cookies.set(THEME_COOKIE, theme, opts);
 		profile.theme = theme;
 	}
+	// T3-03: monsoon mode on or off on this device (cookie only).
+	const monsoon = form.get('monsoon');
+	if (monsoon === 'on' || monsoon === 'off') cookies.set(MONSOON_COOKIE, monsoon, opts);
 
 	const user = Object.keys(profile).length ? await locals.getUser() : null;
 	if (user) await locals.supabase.from('profiles').update(profile).eq('id', user.id);

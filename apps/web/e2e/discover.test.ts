@@ -138,3 +138,30 @@ test('home rows show only with three or more items', async ({ page }) => {
 	expect(shown).toBeGreaterThan(0);
 	await expect(page.getByText('Verified stays will show up here.')).toHaveCount(0);
 });
+
+// T3-03 (F3): monsoon mode orders place lists closures first with a badge, hides nothing, and the visitor can
+// turn it off (cookie). Forced on here with the cookie, since the default depends on the month.
+test('monsoon mode: closures first with a badge; the toggle turns it off', async ({ page }) => {
+	const before = psql(`select monsoon_status from places where slug = 'seed-beach-1'`);
+	psql(`update places set monsoon_status = 'closed' where slug = 'seed-beach-1'`);
+	try {
+		await page
+			.context()
+			.addCookies([{ name: 'monsoon', value: 'on', url: 'http://localhost:4173' }]);
+		await page.goto('/?category=beach');
+		const cards = page.locator('main article');
+		const count = await cards.count();
+		expect(count).toBeGreaterThan(1);
+		await expect(cards.first().locator('a[href="/place/seed-beach-1"]').first()).toBeVisible();
+		await expect(cards.first()).toContainText('Closed in monsoon');
+		await expect(page.getByTestId('monsoon-toggle')).toHaveAttribute('aria-pressed', 'true');
+
+		await page.getByTestId('monsoon-toggle').click();
+		await expect(page.getByTestId('monsoon-toggle')).toHaveAttribute('aria-pressed', 'false');
+		await expect(page).toHaveURL(/\/\?category=beach$/);
+		await expect(cards).toHaveCount(count); // reordered, never hidden
+		await expect(page.getByText('Closed in monsoon')).toHaveCount(0);
+	} finally {
+		psql(`update places set monsoon_status = '${before}' where slug = 'seed-beach-1'`);
+	}
+});
