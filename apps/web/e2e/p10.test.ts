@@ -100,7 +100,8 @@ test('signed-in screens: axe + CSP', async ({ browser }) => {
 		`/trip/live/${trip}`,
 		'/admin',
 		'/admin/alerts',
-		'/admin/qr'
+		'/admin/qr',
+		'/admin/planner'
 	]) {
 		const r = await audit(page, path);
 		problems.push(
@@ -109,6 +110,44 @@ test('signed-in screens: axe + CSP', async ({ browser }) => {
 		);
 	}
 	expect(problems, problems.join('\n')).toEqual([]);
+	await ctx.close();
+});
+
+test('planner readiness numbers; estimated drive times are labelled (T2-08)', async ({
+	browser
+}) => {
+	const ctx = await browser.newContext();
+	const page = await ctx.newPage();
+	const email = `p10-ready-${Date.now()}@e2e.local`;
+	await signIn(page, email);
+	psql(
+		`insert into user_roles (user_id, role) select id, 'admin' from auth.users where email = '${email}'`
+	);
+	await page.goto('/admin/planner');
+	const panel = page.getByTestId('planner-readiness');
+	const n = (k: string) => psql(`select public.planner_readiness()->>'${k}'`);
+	await expect(panel.locator('dd')).toHaveText([
+		n('published'),
+		n('no_matrix_point'),
+		n('no_hours'),
+		n('no_seasonal'),
+		`${n('tide_no_rule')} / ${n('tide_dependent')}`
+	]);
+
+	const trip = psql(
+		`insert into trips (owner_id, title, days, start_date, start_point, status) select id, 'P10 legs', 1, (now() at time zone 'Asia/Kolkata')::date, jsonb_build_object('label','Start','lon',73.279,'lat',16.999), 'saved' from auth.users where email = '${email}' returning id`
+	);
+	const stop = (order: number, slug: string, s: number, source: string) =>
+		psql(
+			`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind, travel_from_prev_s, travel_source)
+			 select '${trip}', 1, ${order}, 'place', id, 'place', ${s}, '${source}' from places where slug = '${slug}'`
+		);
+	stop(0, 'seed-fort-1', 1200, 'estimate');
+	stop(1, 'seed-temple-1', 600, 'road');
+	await page.goto(`/plan/${trip}`);
+	await expect(page.getByText('20 min drive').first()).toBeVisible();
+	await expect(page.getByTestId('travel-estimated')).toHaveCount(1);
+	await expect(page.getByTestId('travel-estimated')).toContainText('estimated');
 	await ctx.close();
 });
 

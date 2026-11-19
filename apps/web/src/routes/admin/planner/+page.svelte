@@ -11,6 +11,23 @@
 </script>
 
 <Page title={m.planner_settings()} back>
+	{#if data.ready}
+		<section
+			class="mx-auto mb-4 flex max-w-170 flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1"
+			data-testid="planner-readiness"
+		>
+			<h2 class="type-h2">{m.planner_ready()}</h2>
+			<p class="type-small text-text-2">{m.planner_ready_hint()}</p>
+			<dl class="flex flex-col gap-2 type-body">
+				{#each [[m.planner_ready_published(), data.ready.published], [m.planner_ready_no_matrix(), data.ready.no_matrix_point], [m.planner_ready_no_hours(), data.ready.no_hours], [m.planner_ready_no_seasonal(), data.ready.no_seasonal], [m.planner_ready_tide(), `${data.ready.tide_no_rule} / ${data.ready.tide_dependent}`]] as [label, n] (label)}
+					<div class="flex items-center justify-between gap-3">
+						<dt>{label}</dt>
+						<dd class="tabular-nums">{n}</dd>
+					</div>
+				{/each}
+			</dl>
+		</section>
+	{/if}
 	<form method="POST" action="?/save" use:submitting class="mx-auto flex max-w-170 flex-col gap-4">
 		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
 			<h2 class="type-h2">{m.budget_fuel()}</h2>

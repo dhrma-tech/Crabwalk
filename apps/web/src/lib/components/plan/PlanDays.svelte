@@ -9,6 +9,8 @@
 		arrive: string | null;
 		depart: string | null;
 		travelMin: number | null;
+		/** T2-08: the drive time is a straight-line estimate (no road time in the matrix). */
+		travelEstimated?: boolean;
 		reason: string | null;
 		/** Map position (plan workspace, P11); null when the listing has no point. */
 		pt?: { lon: number; lat: number } | null;
@@ -197,7 +199,11 @@
 									><span class="w-0 border-l-2 border-dotted border-lagoon"></span></span
 								>
 								<p class="flex items-center gap-1.5 py-2 type-small text-text-2">
-									<Car size={16} aria-hidden="true" />{m.plan_travel({ n: s.travelMin })}
+									<Car size={16} aria-hidden="true" />{m.plan_travel({
+										n: s.travelMin
+									})}{#if s.travelEstimated}<span data-testid="travel-estimated"
+											>· {m.plan_travel_estimated()}</span
+										>{/if}
 								</p>
 							{/if}
 							<span

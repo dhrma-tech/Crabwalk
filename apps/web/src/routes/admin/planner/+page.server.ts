@@ -2,24 +2,37 @@ import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 import { Constants } from '#lib/db.types.ts';
 import { requireStaff } from '#lib/server/auth.ts';
+import { serviceClient } from '#lib/server/service.ts';
 import type { Actions, PageServerLoad } from './$types';
 
+type Readiness = {
+	published: number;
+	no_matrix_point: number;
+	no_hours: number;
+	no_seasonal: number;
+	tide_dependent: number;
+	tide_no_rule: number;
+};
+
 // Planner settings (DECISIONS P7-2, P7-6): fuel price + default mileage, visit minutes per category.
+// Hardening T2-08: readiness counts (service-role RPC, read after the admin check).
 export const load: PageServerLoad = async (event) => {
 	await requireStaff(event, 'admin');
 	const db = event.locals.supabase;
-	const [{ data: cfg }, { data: cats }] = await Promise.all([
+	const [{ data: cfg }, { data: cats }, { data: ready }] = await Promise.all([
 		db
 			.from('app_config')
 			.select('key, value')
 			.in('key', ['fuel_price_inr', 'default_mileage_kmpl']),
-		db.from('category_visit_minutes').select('category, minutes').order('category')
+		db.from('category_visit_minutes').select('category, minutes').order('category'),
+		serviceClient().rpc('planner_readiness')
 	]);
 	const v = (k: string) => (cfg ?? []).find((r) => r.key === k)?.value as number | null;
 	return {
 		fuelPrice: v('fuel_price_inr') ?? null,
 		mileage: v('default_mileage_kmpl') ?? null,
-		cats: cats ?? []
+		cats: cats ?? [],
+		ready: (ready as Readiness | null) ?? null
 	};
 };
 
