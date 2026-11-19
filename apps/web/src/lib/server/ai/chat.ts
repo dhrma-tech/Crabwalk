@@ -127,7 +127,13 @@ const empty = (r: unknown) =>
 // user's own data (trips, profile, previews) never are; an answer is reused only if every tool was public.
 const CACHE_S = 600;
 const TOOL_CACHE = new Set(['get_place', 'get_conditions', 'nearby', 'get_dish']);
-const PUBLIC_TOOLS = new Set([...TOOL_CACHE, 'search_places', 'search_stays', 'search_eateries']);
+const PUBLIC_TOOLS = new Set([
+	...TOOL_CACHE,
+	'search_places',
+	'find_places',
+	'search_stays',
+	'search_eateries'
+]);
 type Cached = {
 	reply: string;
 	cites: Extract<ChatReply, { kind: 'answer' }>['cites'];

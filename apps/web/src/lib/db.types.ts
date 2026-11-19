@@ -1780,6 +1780,11 @@ isOneToOne: false
 "file_report":
 { Args: { "_id": string,"_kind": Database["public"]['Enums']["report_type"],"_qr"?: string,"_text": string,"_type": Database["public"]['Enums']["qr_entity_type"] }; Returns: undefined
                            },
+"find_places":
+{ Args: { "_categories"?: (Database["public"]['Enums']["place_category"])[],"_crowd"?: string,"_hidden_gem"?: boolean,"_limit"?: number,"_max_km"?: number,"_monsoon_ok"?: boolean,"_near_slug"?: string,"_taluka"?: string,"_tide_free"?: boolean,"_weekday"?: number }; Returns: {
+              "category": Database["public"]['Enums']["place_category"],"km": number,"matched": (string)[],"name_en": string,"name_hi": string,"name_mr": string,"score": number,"slug": string,"taluka": string
+            }[]
+                           },
 "gate_locked":
 { Args: { "_key": string }; Returns: string
                            },
