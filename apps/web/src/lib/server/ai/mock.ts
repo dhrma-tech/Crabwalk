@@ -272,7 +272,11 @@ async function answer(req: ChatRequest): Promise<ChatResult> {
 		/"tool":"team_answers","result":\[\{[^}]*"answer":"([^"]+)","answered_on":"([^"]+)"/.exec(
 			block
 		);
-	if (team) return { content: `Mock: our team says: ${team[1]} (${team[2]}).`, tool_calls: [] };
+	if (team)
+		return {
+			content: `Mock: our team says: ${team[1]!.replace(/[⟦⟧]/g, '')} (${team[2]}).`,
+			tool_calls: []
+		};
 	if (/^PROPOSED PREVIEWS: ask_team$/m.test(block))
 		return {
 			content: "Mock: I don't know that yet — I can ask our team (usually within a day).",

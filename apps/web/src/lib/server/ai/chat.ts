@@ -322,9 +322,10 @@ export async function crabbyTurn(
 		if (answers.length)
 			results.push({
 				tool: 'team_answers',
+				// T2-06: what people wrote (question and the team's answer) is data inside ⟦ ⟧.
 				result: answers.map((t) => ({
-					question: t.question,
-					answer: t.answer,
+					question: `⟦${t.question.replace(/[⟦⟧]/g, '')}⟧`,
+					answer: `⟦${t.answer.replace(/[⟦⟧]/g, '')}⟧`,
 					answered_on: t.answered_at.slice(0, 10)
 				}))
 			});
