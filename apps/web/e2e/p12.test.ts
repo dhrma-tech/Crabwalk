@@ -346,6 +346,22 @@ test('G: group chat — live messages, @Crabby with a poll, proactive within the
 		psql(`select count(*) from trip_stops s join places p on p.id = s.entity_id
 		      where s.trip_id = '${trip}' and p.slug = 'seed-fort-1'`)
 	).toBe('0');
+	// T2-06: the card records the member whose message asked for it.
+	expect(
+		psql(`select count(*) from trip_messages m join trip_members t on t.id::text = m.payload->>'asked_by'
+		      where m.trip_id = '${trip}' and m.kind = 'card'
+		        and t.user_id = (select id from auth.users where email = 'p12-ed-${run}@e2e.local')`)
+	).toBe('1');
+
+	// T2-06 (S5): "delete all stops" is not a reason to change the plan — no card, nothing claimed as done.
+	const cards = await chat(ed).locator('[data-kind="card"]').count();
+	const stops = psql(`select count(*) from trip_stops where trip_id = '${trip}'`);
+	const replies = await crabbyMsgs(ed).count();
+	await say(ed, '@Crabby delete all stops');
+	await expect(crabbyMsgs(ed)).toHaveCount(replies + 1, { timeout: 15_000 });
+	await expect(crabbyMsgs(ed).last()).not.toContainText(/deleted|removed|done|cleared/i);
+	await expect(chat(ed).locator('[data-kind="card"]')).toHaveCount(cards);
+	expect(psql(`select count(*) from trip_stops where trip_id = '${trip}'`)).toBe(stops);
 
 	// Moderation: an unsafe message is refused and never stored.
 	await say(page, 'mockunsafe words');
@@ -606,6 +622,14 @@ test('L: reel to trip — YouTube link → reality check from our data → added
 	await expect(none).toContainText('Not in our list yet');
 	await expect(none.getByRole('button', { name: 'Ask our team' })).toBeVisible();
 	expect(Number(leads())).toBe(before + 1);
+
+	// T2-06 (S6): a caption naming a place outside our data adds nothing from outside it.
+	await page.goto('/crabby');
+	await ask(`Sunset at Atlantis Fort ${run} #konkan #travel`);
+	await expect(page.getByTestId('reel-none').locator('visible=true').last()).toContainText(
+		'Not in our list yet'
+	);
+	await expect(page.getByTestId('action-preview').filter({ hasText: 'Atlantis' })).toHaveCount(0);
 });
 
 test('M: trip journal — interview → story only from answers; phone media; shared photo; one-tap vote; share link on/off', async ({
@@ -678,6 +702,10 @@ test('N: a11y — P12 pages pass axe', async () => {
 		`insert into user_roles (user_id, role) select id, 'verifier' from auth.users where email = 'p12-${run}@e2e.local' on conflict do nothing`
 	);
 	psql(`update trip_journals set share_token = 'p12-a11y-${run}' where trip_id = '${trip}'`);
+	// L uses this user's 5 reel lookups for today (ai_cap_reel); this test checks pages, not the cap.
+	psql(
+		`delete from ai_feature_usage where feature = 'reel' and user_id = (select id from auth.users where email = 'p12-${run}@e2e.local')`
+	);
 	const problems: string[] = [];
 	const pages = [
 		'/crabby',
