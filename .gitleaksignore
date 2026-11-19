@@ -1,0 +1,7 @@
+# Test fixtures, not secrets (hardening final check, 2026-11-19): ADMIN_SESSION_SECRET / ADMIN_PASSCODE values
+# mocked in gate.test.ts and guest.test.ts. Checked: they do not match any real value.
+51a68166c02150b167b8bf9ec83ab8dd2dd805f6:apps/web/src/lib/server/guest.test.ts:generic-api-key:10
+7b6d79c8aa67b1fcdbbe93820686e50ae6270ea8:apps/web/src/lib/server/guest.test.ts:generic-api-key:10
+18e77ad483576a5688e21429cf3c3f27cce2f110:apps/web/src/lib/server/gate.test.ts:generic-api-key:12
+18e77ad483576a5688e21429cf3c3f27cce2f110:apps/web/src/lib/server/gate.test.ts:generic-api-key:27
+c75e97455c37dbd9f4d32e33245a1d3e54155962:apps/web/src/lib/server/guest.test.ts:generic-api-key:9

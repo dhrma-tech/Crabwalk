@@ -448,3 +448,66 @@ Full notes: `ADMIN_ACCESS_CHANGES.md`; restore steps: `docs/RESTORE_AUTH.md`. Ev
 | P10b | `phase-10b` | Tideline redesign (T-1…T-56, steps A–G). Deferred: **mobile Perf 82–88, below 90 — glass blur, user decision T-57** (see AUDIT.md); map mobile Perf (excepted); map list before map init (T-52); credits on card thumbnails (T-51); HI/MR review of all phase-10b strings; Devanagari map labels, live-trip time formats, `verdict_votes` plural, p8 queue leftovers, slow-run e2e waits (Found issues); **hosted Supabase project unreachable — restore before deploy**. Then the guided deploy (Report 1 §1.3). |
 | P11 | `phase-11` | Plan workspace (P11-0…8, steps A–G). **Awaiting user confirmation:** P11-5 (step D readings), P11-6 (step E), P11-7 (step F). Deferred: spend ↔ stop link (stop ids change on every itinerary edit, P11-6); fully optimistic edits (P11-7); "Add to trip" sheet and live trip page for editors; Crabby workspace chips ("Fill day 2", "Find lunch near stop 3", §4); `/plan/:id` mobile Perf 67–80 (map WebGL, as `/map`); HI/MR review of all P11 strings; **live:** P11 migrations (`20261103100000_p11_workspace`, `20261103110000_p11_log_expense`) on the hosted project once it is restored (Found issues). |
 | P12 | `phase-12` | Crabby AI (P12-0…13, steps A–N). **Awaiting user confirmation:** P12-7 (step I relay by verifiers/admins, one counter offer). Deferred: Host Crabby on the admin field form (P12-8); generated story-card image (P12-11); Groq free limits read from console.groq.com before launch (P12-12); Lighthouse on signed-in P12 pages (AUDIT.md); HI/MR review of all P12 strings and persona humour (P12-3); privacy policy legal review; **live:** P12 migrations (`20261104100000`…`20261104140000`), Vault `crabby_key`, `CRABBY_SIGNING_KEY`, `AI_MODEL_VISION` on the hosted project once it is restored. `data/` (desk research) left untracked, not part of P12 (user). |
+
+## Hardening pass — Tier 2 end, T1-09 and Tier 3 (2026-11-19)
+
+Owner instruction 2026-11-19: "complete everything; for any doubts or optional things do what's best for us". Details per task in `docs/audit/IMPLEMENTATION_LOG.md`.
+
+**1. Completed** (commits on `main`, pushed)
+- T2-06 injection hardening: `8e2618c`, `1b4af48`, `1c69c2c`
+- T2-04 `find_places` (no tags): `a2aca47`
+- T2-07 eval runner: `0ef537f`
+- T2-08 planner readiness + leg labels: `aca8263`, `d0a94f4`
+- T1-09 glass budget: `172b0d3`
+- T3-01 colour aliases removed: `818623c`
+- T3-02 plaque health: `33205d7`
+- T3-03 monsoon mode: `c5a612b` (its strings landed in `80cc0c7`)
+- T3-04 visited stamps: `80cc0c7`
+- T3-05 tools split: `8648b66`
+- T3-06 copy a shared trip: `bd28ea7`
+
+**2. Skipped or partial**
+- T2-07 live run: the 17 non-structural cases (G, P except P3, L, S2, S4) need `GROQ_API_KEY` (owner step M11). The 13 structural cases pass on the mock.
+- T1-09 Lighthouse: no same-benchmark back-to-back pair was possible on this machine (another app was using the CPU). The recorded medians (83 → 78) follow the benchmark index, not the change.
+
+**3. Deviations (decided)**
+- T2-04 ships without `_tags`, since no place tag vocabulary exists. Hard filters: category, monsoon, taluka, hidden gem, tide-free, radius. Crowd only raises the score.
+- T1-09: the owner instruction is taken as M6 approval. Glass stays on the bars and from `lg` up.
+- T2-07: Node runs with `--experimental-transform-types`, because the AI code has TS parameter properties. P5 has no "cannot fit" output to check, so it passes when a preview is made and no amount above ₹3,000 is quoted. V4 "veg" means the eatery serves veg.
+- T2-08: `Leg.estimated` becomes `source: 'road' | 'estimate'`.
+- T3-02: a silent-plaque flag only after 30 days installed.
+- T3-03: orders by `places.monsoon_status`, not `place_seasonal`, which holds seasons.
+- T3-06: the copy goes through `editTrip`, not `createTrip`, which would plan afresh. Its start point is the station or bus stand of that name, else the first stop.
+- T2-06 e2e: test N now resets the reel cap.
+
+**4. New risks and found issues** (also in `docs/audit/IMPLEMENTATION_LOG.md`)
+- App shell is 213.8 KB gz, over the owner's 210 KB budget (D-12). Most of it is the Tier 2 Crabby UI and its strings. Recommendation: load staff-only messages outside the shell, or set 220 KB.
+- p8 "first status within 300 ms" depends on machine load: 324–489 ms on some runs today, at HEAD too, and it passed on others.
+- `guest.test.ts` SEC-08 gate: the global fail counter is window-sensitive. It failed once in the full run and passes alone (5/5).
+- A p8 rerun within 10 minutes hits the T2-05 answer cache for one question.
+- Any Crabby cap shows the "20 questions" card.
+- `.gitleaksignore` added for 5 test-fixture values in `gate.test.ts` / `guest.test.ts` (checked: none equals a real value). gitleaks is now clean.
+
+**5. Owner actions now due**
+- M8: on hosted, after reading each file, apply the new migrations `20261112130000_find_places`, `20261112140000_planner_readiness`, `20261112150000_qr_plaque_health` (with the earlier ones).
+- M11: set `GROQ_API_KEY`, then run `pnpm --filter @crabwalk/web run ai:eval` against the local stack.
+- M13: run the OSRM matrix pipeline and load hours, seasonal and tide rules until `/admin/planner` reads zero gaps.
+- M12: native-speaker review of the new HI/MR strings in `NEEDS_REVIEW.md` (T2-08, T3-02, T3-03, T3-04, T3-06).
+- Decide the shell budget (above).
+
+**§7 checklist, 2026-11-19 run**
+- lint, typecheck: pass.
+- Unit: web 453, pipelines 32, ola-proxy 6. Pass.
+- Build: pass (Playwright builds).
+- `db:test`: 677/678. Fail: the known `security_events` test 8.
+- `db:types`: no diff.
+- `pnpm audit --prod --audit-level=high`: clean.
+- firewall, envguard: pass.
+- gitleaks: clean after the ignore file.
+- Full Playwright: 118 passed, 5 failed, 12 did not run (serial followers).
+  - Already logged: p7 old wizard, p9 trails data, p11 outline rail, shell budget.
+  - Flaky: SEC-08 gate (passes alone).
+- AI structural evals: pass (Vitest 7/7, runner 13/13 on the mock).
+- p8 streaming and JSON modes: pass (24/24 with p12).
+- axe + CSP (p10): pass for en/mr light/dark, signed-in screens incl. `/admin/planner` and `/admin/qr`. `hi` is not in that suite.
+- Lighthouse on a place page and `/stays`, and the 4× CPU trace: not run this session.
