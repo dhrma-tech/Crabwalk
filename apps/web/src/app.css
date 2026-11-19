@@ -189,25 +189,6 @@
 	--e3: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 40px rgba(0, 0, 0, 0.4);
 	color-scheme: dark;
 }
-/* Suna names still used by components until steps D–E restyle them (T-18); removed at the end of step E. */
-:root {
-	--surface-raised: var(--surface);
-	--cta: var(--kokum);
-	--cta-hover: var(--kokum-hover);
-	--on-cta: var(--on-kokum);
-	--link: var(--lagoon);
-	--highlight: var(--alphonso);
-	--sakura: var(--danger-50);
-	--asagi: var(--lagoon-50);
-	--yama: var(--caution-50);
-	--wakaba: var(--ok-50);
-	--fuji: var(--surface-2);
-	--sakura-s: var(--danger);
-	--asagi-s: var(--lagoon);
-	--yama-s: var(--caution);
-	--wakaba-s: var(--ok);
-	--fuji-s: var(--text-2);
-}
 :lang(mr),
 :lang(hi) {
 	line-height: 1.65;
@@ -318,23 +299,6 @@
 	--shadow-e2: var(--e2);
 	--shadow-e3: var(--e3);
 	--ease-brand: var(--ease);
-	/* Suna compatibility (T-18), removed with the block above. */
-	--color-raised: var(--surface-raised);
-	--color-cta: var(--cta);
-	--color-cta-hover: var(--cta-hover);
-	--color-on-cta: var(--on-cta);
-	--color-link: var(--link);
-	--color-highlight: var(--highlight);
-	--color-sakura: var(--sakura);
-	--color-asagi: var(--asagi);
-	--color-yama: var(--yama);
-	--color-wakaba: var(--wakaba);
-	--color-fuji: var(--fuji);
-	--color-sakura-s: var(--sakura-s);
-	--color-asagi-s: var(--asagi-s);
-	--color-yama-s: var(--yama-s);
-	--color-wakaba-s: var(--wakaba-s);
-	--color-fuji-s: var(--fuji-s);
 }
 
 /* `dark:` follows the system unless the user picked a theme in Me. */

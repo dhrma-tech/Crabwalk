@@ -25,7 +25,7 @@
 
 <section class="flex flex-col gap-3" data-testid="reviews">
 	<h2 class="type-h2">{m.reviews_title()}</h2>
-	{#if summary}<p class="bg-asagi p-3 type-body text-text">
+	{#if summary}<p class="bg-lagoon-50 p-3 type-body text-text">
 			<strong>{m.review_summary()}:</strong>
 			{summary}
 		</p>{/if}

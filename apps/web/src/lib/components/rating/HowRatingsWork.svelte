@@ -11,7 +11,7 @@
 
 <button
 	type="button"
-	class="inline-flex min-h-11 w-fit items-center gap-1.5 type-label text-link underline-offset-4 hover:underline"
+	class="inline-flex min-h-11 w-fit items-center gap-1.5 type-label text-lagoon underline-offset-4 hover:underline"
 	aria-haspopup="dialog"
 	onclick={() => dialog?.showModal()}
 	><CircleHelp size={16} aria-hidden="true" />{m.ratings_how()}</button

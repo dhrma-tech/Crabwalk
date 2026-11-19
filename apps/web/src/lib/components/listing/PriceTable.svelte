@@ -47,7 +47,7 @@
 							{#if r.offer}
 								<button
 									type="button"
-									class="min-h-11 text-link underline-offset-4 hover:underline"
+									class="min-h-11 text-lagoon underline-offset-4 hover:underline"
 									aria-haspopup="dialog"
 									onclick={() => open(r)}>{r.price ?? m.price_see()}</button
 								>
