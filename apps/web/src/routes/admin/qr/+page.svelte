@@ -64,6 +64,24 @@
 								>{msg(`qr_type_${c.entity_type}`)} · {c.target}</span
 							>
 						</div>
+						{#if c.health}
+							<p
+								class="flex flex-wrap items-center gap-2 type-small text-text-2"
+								data-testid="qr-health"
+							>
+								<span
+									>{m.qr_health_scans({ week: c.health.scans_7d, month: c.health.scans_30d })}</span
+								>
+								{#if c.health.broken_open}<span class="text-text"
+										>{m.qr_health_broken({ n: c.health.broken_open })}</span
+									>{/if}
+								{#if c.health.silent}<span
+										class="inline-flex min-h-7 items-center gap-1.5 rounded-full bg-surface-2 px-2.5 type-label text-text"
+										><span class="size-2 shrink-0 rounded-full bg-caution" aria-hidden="true"
+										></span>{m.qr_health_silent()}</span
+									>{/if}
+							</p>
+						{/if}
 						<form method="POST" action="?/save" use:submitting class="grid gap-3 sm:grid-cols-2">
 							<input type="hidden" name="code" value={c.code} />
 							<label class="flex flex-col gap-1.5 type-small text-text-2">

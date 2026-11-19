@@ -45,15 +45,18 @@ export const load: PageServerLoad = async (event) => {
 	const type = (TYPES as readonly string[]).includes(event.url.searchParams.get('type') ?? '')
 		? (event.url.searchParams.get('type') as QrType)
 		: 'place';
-	const [{ data: codes }, options] = await Promise.all([
+	const [{ data: codes }, options, { data: health }] = await Promise.all([
 		// Permission notes and install dates are not readable with a user session (SEC-19); admin checked above.
 		serviceClient()
 			.from('qr_codes')
 			.select('*, sponsors(name)')
 			.order('code', { ascending: false })
 			.limit(500),
-		targets(db, type, lang)
+		targets(db, type, lang),
+		// T3-02: scans per plaque (distinct visitors), open broken-QR reports, silent plaques. Read-only.
+		serviceClient().rpc('qr_plaque_health')
 	]);
+	const healthOf = new Map((health ?? []).map((h) => [h.code, h]));
 	const names = new Map<string, string>();
 	for (const t of TYPES) {
 		const ids = new Set((codes ?? []).filter((c) => c.entity_type === t).map((c) => c.entity_id));
@@ -69,7 +72,8 @@ export const load: PageServerLoad = async (event) => {
 		codes: (codes ?? []).map((c) => ({
 			...c,
 			sponsor: (c.sponsors as { name: string } | null)?.name ?? '',
-			target: names.get(c.entity_id) ?? c.entity_id
+			target: names.get(c.entity_id) ?? c.entity_id,
+			health: healthOf.get(c.code) ?? null
 		}))
 	};
 };

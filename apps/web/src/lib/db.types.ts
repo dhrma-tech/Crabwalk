@@ -1876,6 +1876,11 @@ isOneToOne: false
               "distance_m": number,"kind": string,"minutes": number,"name_en": string,"name_hi": string,"name_mr": string,"phone": string,"slug": string,"sub": string
             }[]
                            },
+"qr_plaque_health":
+{ Args: Record<PropertyKey, never>; Returns: {
+              "broken_open": number,"code": string,"scans_30d": number,"scans_7d": number,"silent": boolean
+            }[]
+                           },
 "qr_record_scan":
 { Args: { "_client_key"?: string,"_code": string,"_lang"?: Database["public"]['Enums']["lang"],"_lat"?: number,"_lng"?: number,"_session_hash": string }; Returns: undefined
                            },
