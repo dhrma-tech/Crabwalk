@@ -47,6 +47,32 @@ async function savedList(db: App.Locals['supabase']) {
 	});
 }
 
+// T3-04 (F1): one stamp per place the user checked in at (verified_visits, own rows by RLS), dated by the first
+// visit, newest first.
+async function stampList(db: App.Locals['supabase']) {
+	const { data } = await db
+		.from('verified_visits')
+		.select('entity_id, created_at')
+		.eq('entity_type', 'place')
+		.order('created_at', { ascending: true })
+		.limit(500);
+	const first = new Map<string, string>();
+	for (const v of data ?? []) if (!first.has(v.entity_id)) first.set(v.entity_id, v.created_at);
+	if (!first.size) return [];
+	const { data: places } = await db
+		.from('places')
+		.select('id, slug, place_translations(lang, name)')
+		.in('id', [...first.keys()]);
+	const lang = getLocale() as Lang;
+	return (places ?? [])
+		.map((p) => ({
+			slug: p.slug,
+			name: tr(p.place_translations, lang) ?? p.slug,
+			date: first.get(p.id)!
+		}))
+		.sort((a, b) => b.date.localeCompare(a.date));
+}
+
 export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 	// TODO(before-deploy): restore full auth — temp mode: guests are anonymous users; staff = the signed admin cookie.
 	const gate = tempGate();
@@ -79,13 +105,16 @@ export const load: PageServerLoad = async ({ locals, cookies, url }) => {
 				.order('created_at', { ascending: false })
 				.limit(50)
 		: { data: [] };
-	const saved = user ? await savedList(locals.supabase) : [];
+	const [saved, stamps] = user
+		? await Promise.all([savedList(locals.supabase), stampList(locals.supabase)])
+		: [[], []];
 	return {
 		email: user?.email || null,
 		signedIn: !!user,
 		// SEC-15: a guest (anonymous session) is told where their trips and saves live.
 		guest: !!user?.is_anonymous,
 		saved,
+		stamps,
 		theme: isTheme(theme) ? theme : 'system',
 		isStaff: gate ? !!admin : has('verifier') || has('reviewer') || has('admin'),
 		isOwner: has('owner'),

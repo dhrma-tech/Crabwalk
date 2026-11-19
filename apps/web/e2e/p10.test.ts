@@ -151,6 +151,35 @@ test('planner readiness numbers; estimated drive times are labelled (T2-08)', as
 	await ctx.close();
 });
 
+test('stamps on Me: one per place checked in at, newest first; new ones pop once (T3-04)', async ({
+	browser
+}) => {
+	const ctx = await browser.newContext();
+	const page = await ctx.newPage();
+	const email = `p10-stamps-${Date.now()}@e2e.local`;
+	await signIn(page, email);
+	await page.goto('/me');
+	await expect(page.getByTestId('my-stamps')).toContainText('Check in at a place');
+	const visit = (slug: string, ago: string) =>
+		psql(
+			`insert into verified_visits (user_id, entity_type, entity_id, method, distance_m, created_at)
+			 select u.id, 'place', p.id, 'qr_gps', 20, now() - interval '${ago}'
+			 from auth.users u, places p where u.email = '${email}' and p.slug = '${slug}'`
+		);
+	visit('seed-fort-1', '3 days');
+	visit('seed-fort-1', '1 hour'); // a second visit to the same place: still one stamp
+	visit('seed-beach-1', '1 day');
+	await page.goto('/me');
+	const stamps = page.getByTestId('stamp');
+	await expect(stamps).toHaveCount(2);
+	await expect(stamps.first()).toContainText('Seed Beach 1');
+	await expect(page.locator('[data-testid="stamp"][data-fresh]')).toHaveCount(2);
+	await page.reload();
+	await expect(stamps).toHaveCount(2);
+	await expect(page.locator('[data-testid="stamp"][data-fresh]')).toHaveCount(0);
+	await ctx.close();
+});
+
 test('security headers on pages, API and the QR page', async ({ request }) => {
 	for (const path of ['/', '/api/places', '/privacy']) {
 		const h = (await request.get(path)).headers();

@@ -12,6 +12,7 @@
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import BedDouble from '@lucide/svelte/icons/bed-double';
 	import Utensils from '@lucide/svelte/icons/utensils';
+	import BadgeCheck from '@lucide/svelte/icons/badge-check';
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import Page from '#lib/components/Page.svelte';
@@ -39,6 +40,18 @@
 		if (page.url.searchParams.has('admin')) gateOpen = true;
 	});
 	const SAVED_ICON = { place: MapPin, stay: BedDouble, eatery: Utensils };
+	// T3-04: a stamp pops the first time this device shows it (seen list in localStorage; no storage → no pop).
+	const SEEN = 'cw-stamps-seen';
+	let fresh = $state(new Set<string>());
+	onMount(() => {
+		try {
+			const seen = new Set<string>(JSON.parse(localStorage.getItem(SEEN) ?? '[]'));
+			fresh = new Set(data.stamps.map((s) => s.slug).filter((s) => !seen.has(s)));
+			localStorage.setItem(SEEN, JSON.stringify([...seen, ...fresh]));
+		} catch {
+			// private mode or blocked storage: show the stamps without the animation
+		}
+	});
 	let push = $state<'on' | 'off' | 'unsupported' | 'denied'>('unsupported');
 	onMount(async () => (push = await pushStatus()));
 	async function togglePush() {
@@ -187,6 +200,33 @@
 					</InsetList>
 				{:else}
 					<p class="type-body text-text-2">{m.saved_empty()}</p>
+				{/if}
+			</section>
+
+			<!-- T3-04 (F1): a stamp for each place checked in at with its QR code, newest first. -->
+			<section class="flex flex-col gap-3" data-testid="my-stamps">
+				<h2 class="type-h2">{m.me_stamps()}</h2>
+				{#if data.stamps.length}
+					<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3">
+						{#each data.stamps as s (s.slug)}
+							<li>
+								<a
+									href={resolve('/place/[slug]', { slug: s.slug })}
+									class={[
+										'flex min-h-28 flex-col items-center justify-center gap-1 rounded-lg border-2 border-dashed border-lagoon p-3 text-center text-text no-underline',
+										fresh.has(s.slug) && 'pop'
+									]}
+									data-testid="stamp"
+									data-fresh={fresh.has(s.slug) || undefined}
+									><BadgeCheck size={20} class="text-lagoon" aria-hidden="true" /><span
+										class="type-label break-words">{s.name}</span
+									><span class="type-small text-text-2">{formatDate(s.date)}</span></a
+								>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p class="type-body text-text-2">{m.me_stamps_empty()}</p>
 				{/if}
 			</section>
 		{/if}

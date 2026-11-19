@@ -41,3 +41,5 @@ Points to check first:
 - Hardening T2-05 keys `crabby_helpful`, `crabby_not_helpful`, `crabby_feedback_thanks`, `crabby_send_team_ask` (asks consent to send the user's own question and answer to the team: check it reads as optional), `crabby_send_team_yes`, `crabby_send_team_no`: drafts.
 - Hardening T2-08 keys `plan_travel_estimated` (label next to a straight-line drive time), `planner_ready*` (staff readiness panel on /admin/planner): drafts.
 - Hardening T3-02 keys `qr_health_scans`, `qr_health_broken`, `qr_health_silent` (staff plaque health on /admin/qr): drafts.
+- Hardening T3-03 keys `monsoon_mode`, `monsoon_mode_hint` (Discover toggle; the hint describes the order of the lists): drafts.
+- Hardening T3-04 keys `me_stamps`, `me_stamps_empty` (Me: visited stamps): drafts.
