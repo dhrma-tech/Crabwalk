@@ -615,6 +615,21 @@ html[data-nav='back']::view-transition-new(root) {
 		background: var(--surface);
 	}
 }
+/* Hardening T1-09 (UI-02): chips and photo badges keep the --glass fill but blur only from lg up; on phones the
+   blur repaints under every scroll frame. Top bar and bottom nav keep `glass`. */
+@utility glass-lg {
+	background: var(--glass);
+	@media (width >= 1024px) {
+		-webkit-backdrop-filter: blur(14px) saturate(1.2);
+		backdrop-filter: blur(14px) saturate(1.2);
+		@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+			background: var(--surface);
+		}
+	}
+	@media (prefers-reduced-transparency: reduce) {
+		background: var(--surface);
+	}
+}
 /* Stacking layers, bottom to top. Use these names, not raw z-index numbers. */
 @utility z-map-ui {
 	z-index: 10; /* controls and legends floating over a map */

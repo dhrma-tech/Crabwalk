@@ -22,7 +22,7 @@
 	const crowdText = { empty: m.crowd_empty, calm: m.crowd_calm, busy: m.crowd_busy };
 	const pill = $derived([
 		'inline-flex min-h-7 w-fit items-center gap-1.5 rounded-full px-2.5 type-label text-text',
-		props.glass ? 'glass' : 'bg-surface-2'
+		props.glass ? 'glass-lg' : 'bg-surface-2'
 	]);
 </script>
 

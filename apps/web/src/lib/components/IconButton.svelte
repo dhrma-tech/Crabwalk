@@ -24,7 +24,7 @@
 		glass === 'lg'
 			? 'max-lg:bg-surface max-lg:hover:bg-surface-2 lg:glass'
 			: glass
-				? 'glass'
+				? 'glass-lg'
 				: 'bg-surface hover:bg-surface-2',
 		cls
 	]}

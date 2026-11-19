@@ -33,7 +33,7 @@
 			selected
 				? 'bg-text text-bg'
 				: glass
-					? 'glass text-text shadow-e1'
+					? 'glass-lg text-text shadow-e1'
 					: 'bg-surface-2 text-text group-hover:bg-surface-3'
 		]}
 	>
