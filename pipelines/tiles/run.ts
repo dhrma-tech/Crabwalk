@@ -3,7 +3,7 @@
 // `--deploy` uploads to the Cloudflare Pages project and writes talukas.pack_url / pack_version.
 // Requires osm-extract (talukas.geojson, region.bbox). Each file must stay < 25 MiB (Pages limit).
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { copyFileSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { DATA, ROOT, db, logger, region, target } from '../lib/common.ts';
 
@@ -51,6 +51,8 @@ writeFileSync(
 	`/*\n  Access-Control-Allow-Origin: *\n  Access-Control-Allow-Headers: Range\n  Access-Control-Expose-Headers: Content-Length, Content-Range, ETag\n  Cache-Control: public, max-age=86400\n\n/*.pmtiles\n  Content-Type: application/vnd.pmtiles\n`
 );
 writeFileSync(join(out, "manifest.json"), JSON.stringify({ version, source: build, region: files[0].path, files }, null, 2));
+// Pages ignores Range; this worker serves the byte ranges PMTiles needs (P3-7).
+copyFileSync(join(ROOT, 'tiles', 'worker.js'), join(out, '_worker.js'));
 
 if (process.argv.includes('--deploy')) {
 	const base = process.env.PMTILES_BASE_URL;
