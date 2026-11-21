@@ -9,3 +9,6 @@ bun.lockb
 /static/
 src/lib/db.types.ts
 src/lib/paraglide/
+src/lib/paraglide-staff/
+project.staff.inlang/cache/
+project.staff.inlang/.lix/

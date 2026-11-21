@@ -80,20 +80,14 @@ test('generate: no stop outside hours or tide cut-off; meals, stay, budget, Maps
 	owner = await ctx.newPage();
 	await signIn(owner, `p7-${run}@e2e.local`);
 	await owner.goto('/plan/new');
-	await owner.waitForLoadState('networkidle'); // hydrated: chip clicks register
-	// One question per step (T-31): days → start → group → budget → interests → pace → Standout.
-	const next = () => owner.getByRole('button', { name: 'Next' }).click();
-	await next();
-	await owner.getByLabel('Railway station or bus stand').fill(`P7 Station ${run}`);
-	await next();
-	await next();
-	await next();
-	await owner.getByRole('button', { name: 'Orchard' }).click();
-	await next();
-	await next();
-	await owner.getByRole('button', { name: 'Generate plan' }).click();
+	// /plan/new opens an empty draft in the workspace; its Trip setup asks every question on one screen.
 	await owner.waitForURL(/\/plan\/[0-9a-f-]{36}$/);
+	await owner.waitForLoadState('networkidle'); // hydrated: chip clicks register
 	tripId = owner.url().split('/').at(-1)!;
+	const setup = owner.getByTestId('trip-setup');
+	await setup.getByLabel('Railway station or bus stand').fill(`P7 Station ${run}`);
+	await setup.getByRole('button', { name: 'Orchard' }).click();
+	await setup.getByRole('button', { name: 'Generate plan' }).click();
 
 	const day1 = owner.getByTestId('plan-day').first();
 	const stops = day1.getByTestId('plan-stop');

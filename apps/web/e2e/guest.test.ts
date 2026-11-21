@@ -85,6 +85,9 @@ test('admin gate: wrong passcode counts towards the global lock; right one signs
 }) => {
 	const fails = () =>
 		Number(psql(`select coalesce(sum(fails), 0) from gate_attempts where key = repeat('0', 64)`));
+	// Start the global counter fresh: a row left by an earlier run restarts at 1 once its hour has passed,
+	// which made `before + 1` depend on the clock. Only this test fails the gate.
+	psql(`delete from gate_attempts where key = repeat('0', 64)`);
 	const before = fails();
 	const events = () =>
 		Number(psql(`select count(*) from security_events where kind = 'admin_gate_fail'`));

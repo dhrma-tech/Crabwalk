@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { LICENCES } from '#lib/photoCredit.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -16,8 +17,8 @@
 	] as const;
 	const long = (f: string) => f !== 'name';
 	const LABEL: Record<string, () => string> = {
-		name: m.label_name,
-		description: m.label_description,
+		name: s.label_name,
+		description: s.label_description,
 		short_story: m.place_story,
 		history: m.place_history,
 		significance: m.place_significance,
@@ -45,10 +46,10 @@
 			use:submitting
 			class="flex flex-col gap-3 rounded-lg bg-lagoon-50 p-4 text-text"
 		>
-			<p class="type-small">{m.review_ai_pending()}</p>
-			<div><Button type="submit" variant="secondary">{m.review_ai_draft()}</Button></div>
+			<p class="type-small">{s.review_ai_pending()}</p>
+			<div><Button type="submit" variant="secondary">{s.review_ai_draft()}</Button></div>
 			{#if form?.drafted != null}<p class="type-small" role="status">
-					{m.review_ai_drafted({ n: form.drafted })}
+					{s.review_ai_drafted({ n: form.drafted })}
 				</p>{/if}
 			{#if form?.error === 'draft'}<p class="type-small" role="alert">
 					{m.crabby_unavailable()}
@@ -69,7 +70,7 @@
 						>
 							<input type="hidden" name="photo" value={p.id} />
 							<label class="flex flex-col gap-1 type-small text-text-2"
-								>{m.photo_credit()}<input
+								>{s.photo_credit()}<input
 									name="credit"
 									maxlength="200"
 									value={p.credit?.name ?? ''}
@@ -77,7 +78,7 @@
 								/></label
 							>
 							<label class="flex flex-col gap-1 type-small text-text-2"
-								>{m.photo_licence()}<select name="licence" class={[field, 'h-12']}
+								>{s.photo_licence()}<select name="licence" class={[field, 'h-12']}
 									><option value="">—</option>{#each LICENCES as l (l)}<option
 											value={l}
 											selected={p.credit?.licence === l}>{l}</option
@@ -85,7 +86,7 @@
 								></label
 							>
 							<label class="flex flex-col gap-1 type-small text-text-2 sm:col-span-2"
-								>{m.photo_source()}<input
+								>{s.photo_source()}<input
 									name="source_url"
 									type="url"
 									placeholder="https://"
@@ -94,13 +95,13 @@
 								/></label
 							>
 							<div class="flex flex-wrap items-center gap-3 sm:col-span-2">
-								<Button type="submit" variant="secondary">{m.photo_credit_save()}</Button>
+								<Button type="submit" variant="secondary">{s.photo_credit_save()}</Button>
 								{#if form?.creditSaved === p.id}<span class="type-small" role="status"
 										>{m.owner_saved()}</span
 									>{/if}
 								{#if form?.creditError === p.id || form?.creditError === true}<span
 										class="type-small"
-										role="alert">{m.photo_credit_invalid()}</span
+										role="alert">{s.photo_credit_invalid()}</span
 									>{/if}
 							</div>
 						</form>
@@ -123,7 +124,7 @@
 
 		{#if data.notes.length}
 			<section class="flex flex-col gap-2">
-				<h2 class="type-h2">{m.review_notes()}</h2>
+				<h2 class="type-h2">{s.review_notes()}</h2>
 				{#each data.notes as n, i (i)}<p
 						class="rounded-lg bg-surface p-3 shadow-e1 type-body whitespace-pre-line"
 					>
@@ -176,22 +177,22 @@
 					{/each}
 				</div>
 			{/each}
-			{#if form?.saved}<p class="type-small" role="status">{m.review_saved()}</p>{/if}
-			{#if form?.published}<p class="type-small" role="status">{m.review_published()}</p>{/if}
-			{#if form?.error === 'pin'}<p class="type-small" role="alert">{m.review_needs_pin()}</p>
+			{#if form?.saved}<p class="type-small" role="status">{s.review_saved()}</p>{/if}
+			{#if form?.published}<p class="type-small" role="status">{s.review_published()}</p>{/if}
+			{#if form?.error === 'pin'}<p class="type-small" role="alert">{s.review_needs_pin()}</p>
 			{:else if form?.error === 'entext'}<p class="type-small" role="alert">
-					{m.review_needs_en_text()}
+					{s.review_needs_en_text()}
 				</p>
 			{:else if form?.error}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
 			<div class="flex flex-wrap gap-3">
-				<Button type="submit" variant="secondary">{m.review_save()}</Button>
-				<Button type="submit" formaction="?/publish">{m.review_publish()}</Button>
+				<Button type="submit" variant="secondary">{s.review_save()}</Button>
+				<Button type="submit" formaction="?/publish">{s.review_publish()}</Button>
 			</div>
 		</form>
 
 		{#if data.type === 'stay' && data.isAdmin}
 			<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
-				<h2 class="type-h2">{m.offers_title()}</h2>
+				<h2 class="type-h2">{s.offers_title()}</h2>
 				{#each data.offers as o (o.id)}
 					<form
 						method="POST"
@@ -207,20 +208,20 @@
 				<form method="POST" action="?/addOffer" use:submitting class="grid gap-2 sm:grid-cols-3">
 					<input
 						name="provider"
-						placeholder={m.offer_provider()}
+						placeholder={s.offer_provider()}
 						required
 						class={[field, 'h-12']}
 					/>
 					<input
 						name="deep_link"
 						type="url"
-						placeholder={m.offer_link()}
+						placeholder={s.offer_link()}
 						required
 						pattern="https://.*"
 						class={[field, 'h-12']}
 					/>
 					<select name="affiliate_network" class={[field, 'h-12']}>
-						<option value="">{m.offer_network()}</option><option value="agoda_partners"
+						<option value="">{s.offer_network()}</option><option value="agoda_partners"
 							>Agoda Partners</option
 						><option value="inrdeals">INRDeals</option><option value="cuelinks">Cuelinks</option>
 					</select>
@@ -237,7 +238,7 @@
 				use:submitting
 				class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1"
 			>
-				<h2 class="type-h2">{m.audio_upload()}</h2>
+				<h2 class="type-h2">{s.audio_upload()}</h2>
 				<input
 					type="file"
 					name="file"
@@ -252,7 +253,7 @@
 				<textarea name="transcript" rows="3" placeholder={m.audio_transcript()} class={field}
 				></textarea>
 				{#if form?.audio}<p class="type-small" role="status">{m.owner_saved()}</p>{/if}
-				<div><Button type="submit" variant="secondary">{m.audio_upload()}</Button></div>
+				<div><Button type="submit" variant="secondary">{s.audio_upload()}</Button></div>
 			</form>
 		{/if}
 	</div>

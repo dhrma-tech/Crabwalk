@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { msg } from '#lib/msg.ts';
 	import { relTime } from '#lib/format.ts';
@@ -24,7 +25,7 @@
 	}
 </script>
 
-<Page title={m.alerts_title()} back>
+<Page title={s.alerts_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<form
 			method="POST"
@@ -32,21 +33,21 @@
 			use:submitting
 			class="grid gap-3 rounded-lg bg-surface p-4 shadow-e1 sm:grid-cols-2"
 		>
-			<h2 class="type-h2 sm:col-span-2">{m.alerts_add()}</h2>
+			<h2 class="type-h2 sm:col-span-2">{s.alerts_add()}</h2>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.event_type()}<select name="type" class={field}
+				>{s.event_type()}<select name="type" class={field}
 					>{#each data.types as t (t)}<option value={t}>{msg(`alert_${t}`)}</option>{/each}</select
 				></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.alerts_severity()}<select name="severity" class={field}
+				>{s.alerts_severity()}<select name="severity" class={field}
 					><option value="caution">{m.severity_caution()}</option><option value="danger"
 						>{m.severity_danger()}</option
 					></select
 				></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2 sm:col-span-2"
-				>{m.alerts_reason()} (EN)<input
+				>{s.alerts_reason()} (EN)<input
 					name="reason_en"
 					required
 					minlength="3"
@@ -55,13 +56,13 @@
 				/></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.alerts_reason()} (MR)<input name="reason_mr" maxlength="300" class={field} /></label
+				>{s.alerts_reason()} (MR)<input name="reason_mr" maxlength="300" class={field} /></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.alerts_reason()} (HI)<input name="reason_hi" maxlength="300" class={field} /></label
+				>{s.alerts_reason()} (HI)<input name="reason_hi" maxlength="300" class={field} /></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.field_lat()}<input
+				>{s.field_lat()}<input
 					name="lat"
 					bind:value={lat}
 					required
@@ -70,7 +71,7 @@
 				/></label
 			>
 			<label class="flex flex-col gap-1 type-small text-text-2"
-				>{m.field_lon()}<input
+				>{s.field_lon()}<input
 					name="lon"
 					bind:value={lon}
 					required
@@ -80,7 +81,7 @@
 			>
 			<div class="flex flex-wrap gap-2 sm:col-span-2">
 				<Button type="button" variant="ghost" onclick={gps}>{m.plan_use_location()}</Button>
-				<Button type="submit">{m.alerts_add()}</Button>
+				<Button type="submit">{s.alerts_add()}</Button>
 			</div>
 			{#if form?.created}<p class="type-small" role="status">{m.owner_saved()}</p>{/if}
 			{#if form?.error}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
@@ -111,16 +112,16 @@
 					<div class="flex flex-wrap gap-2">
 						<form method="POST" action="?/confirm" use:submitting>
 							<input type="hidden" name="id" value={a.id} />
-							<Button type="submit" variant="secondary">{m.alerts_confirm()}</Button>
+							<Button type="submit" variant="secondary">{s.alerts_confirm()}</Button>
 						</form>
 						<form method="POST" action="?/remove" use:submitting>
 							<input type="hidden" name="id" value={a.id} />
-							<Button type="submit" variant="ghost">{m.alerts_remove()}</Button>
+							<Button type="submit" variant="ghost">{s.alerts_remove()}</Button>
 						</form>
 					</div>
 				</li>
 			{/each}
 		</ul>
-		{#if !data.alerts.length}<p class="type-body text-text-2">{m.alerts_none()}</p>{/if}
+		{#if !data.alerts.length}<p class="type-body text-text-2">{s.alerts_none()}</p>{/if}
 	</div>
 </Page>

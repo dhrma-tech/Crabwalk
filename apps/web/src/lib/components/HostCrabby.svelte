@@ -2,6 +2,7 @@
 	import Mic from '@lucide/svelte/icons/mic';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import type { HostFill } from '#lib/server/ai/host.ts';
 	import Crabby from './Crabby.svelte';
 	import Button from './Button.svelte';
@@ -54,9 +55,9 @@
 		if (r?.status === 429) return void (note = m.crabby_limit());
 		if (!r?.ok) return void (note = m.crabby_unavailable());
 		const { fill: f } = (await r.json()) as { fill: HostFill };
-		if (!Object.keys(f).length) return void (note = m.host_nothing());
+		if (!Object.keys(f).length) return void (note = s.host_nothing());
 		onfill(f);
-		note = m.host_filled();
+		note = s.host_filled();
 	}
 </script>
 
@@ -68,8 +69,8 @@
 	<div class="flex items-center gap-3">
 		<Crabby size={36} />
 		<div class="flex flex-col">
-			<h2 class="type-h3">{m.host_title()}</h2>
-			<p class="type-small text-text-2">{m.host_hint()}</p>
+			<h2 class="type-h3">{s.host_title()}</h2>
+			<p class="type-small text-text-2">{s.host_hint()}</p>
 		</div>
 	</div>
 	<div class="flex items-start gap-2">
@@ -77,8 +78,8 @@
 			bind:value={text}
 			rows="3"
 			maxlength="1500"
-			aria-label={m.host_title()}
-			placeholder={m.host_placeholder()}
+			aria-label={s.host_title()}
+			placeholder={s.host_placeholder()}
 			class="field min-w-0 flex-1 p-3 type-body text-text"></textarea>
 		{#if SR}
 			<button
@@ -94,7 +95,7 @@
 		{/if}
 	</div>
 	<div class="flex flex-wrap items-center gap-3">
-		<Button type="submit" variant="secondary" loading={busy}>{m.host_fill()}</Button>
+		<Button type="submit" variant="secondary" loading={busy}>{s.host_fill()}</Button>
 		{#if note}<p class="type-small" role="status">{note}</p>{/if}
 	</div>
 </form>

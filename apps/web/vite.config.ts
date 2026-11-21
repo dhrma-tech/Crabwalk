@@ -71,6 +71,13 @@ export default defineConfig(({ mode }) => {
 				strategy: ['cookie', 'preferredLanguage', 'baseLocale'],
 				emitTsDeclarations: true // keep in sync with the `i18n` script
 			}),
+			// Staff/owner strings: own catalogue, loaded only with those routes (src/lib/staff-messages.ts).
+			paraglideVitePlugin({
+				project: './project.staff.inlang',
+				outdir: './src/lib/paraglide-staff',
+				strategy: ['cookie', 'preferredLanguage', 'baseLocale'],
+				emitTsDeclarations: true // keep in sync with the `i18n` script
+			}),
 			sveltekit({
 				compilerOptions: {
 					// Force runes mode for the project, except for libraries. Can be removed in svelte 6.

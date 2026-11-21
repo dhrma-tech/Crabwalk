@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { untrack } from 'svelte';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -92,7 +93,7 @@
 	const pair = 'grid grid-cols-2 gap-3 rounded-lg bg-surface p-4 shadow-e1';
 </script>
 
-<Page title={data.name ?? m.owner_edit()} back>
+<Page title={data.name ?? s.owner_edit()} back>
 	<div class="mx-auto mb-4 max-w-170">
 		<HostCrabby type={data.stay ? 'stay' : 'eatery'} {onfill} />
 	</div>
@@ -103,13 +104,13 @@
 				size={18}
 				class="mt-0.5 shrink-0 text-lagoon"
 				aria-hidden="true"
-			/>{m.owner_ratings_readonly()}
+			/>{s.owner_ratings_readonly()}
 		</p>
 		<div class={card}><PhotoUpload type={data.type as 'stay' | 'eatery'} id={data.id} /></div>
 		{#if data.type === 'stay'}
 			<div class={pair}>
 				<label class={label}
-					>{m.field_price_min()}<input
+					>{s.field_price_min()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -118,7 +119,7 @@
 					/></label
 				>
 				<label class={label}
-					>{m.field_price_max()}<input
+					>{s.field_price_max()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -130,7 +131,7 @@
 		{:else}
 			<div class={card}>
 				<label class={label}
-					>{m.field_price_two()}<input
+					>{s.field_price_two()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -139,13 +140,13 @@
 					/></label
 				>
 				<label class={label}
-					>{m.menu()}<span class="type-small">{m.owner_menu_hint()}</span>
+					>{m.menu()}<span class="type-small">{s.owner_menu_hint()}</span>
 					<textarea rows="6" class="field p-3 type-body text-text" bind:value={menu} name="menu"
 					></textarea>
 				</label>
 			</div>
 			<fieldset class={card}>
-				<legend class="float-left mb-1 w-full type-h3">{m.field_hours()}</legend>
+				<legend class="float-left mb-1 w-full type-h3">{s.field_hours()}</legend>
 				{#each hours as h (h.weekday)}
 					<div
 						class="grid grid-cols-[2.5rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2 type-small"
@@ -178,10 +179,10 @@
 		{/if}
 		<div class={pair}>
 			<label class={label}
-				>{m.field_phone()}<input class={input} type="tel" bind:value={phone} name="phone" /></label
+				>{s.field_phone()}<input class={input} type="tel" bind:value={phone} name="phone" /></label
 			>
 			<label class={label}
-				>{m.field_whatsapp()}<input
+				>{s.field_whatsapp()}<input
 					class={input}
 					type="tel"
 					bind:value={whatsapp}
@@ -189,6 +190,6 @@
 				/></label
 			>
 		</div>
-		<div class="[&>*]:w-full"><Button type="submit" loading={busy}>{m.owner_save()}</Button></div>
+		<div class="[&>*]:w-full"><Button type="submit" loading={busy}>{s.owner_save()}</Button></div>
 	</form>
 </Page>

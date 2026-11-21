@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
-	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -10,7 +10,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.reports_title()} back>
+<Page title={s.reports_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.reports.length}
 			{#each data.reports as r (r.id)}
@@ -44,7 +44,7 @@
 				</article>
 			{/each}
 		{:else}
-			<p class="type-body text-text-2">{m.reports_empty()}</p>
+			<p class="type-body text-text-2">{s.reports_empty()}</p>
 		{/if}
 	</div>
 </Page>

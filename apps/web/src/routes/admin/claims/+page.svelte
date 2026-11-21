@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
-	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -9,9 +9,9 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.claims_title()} back>
+<Page title={s.claims_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
-		<p class="type-small text-text-2">{m.claim_call_first()}</p>
+		<p class="type-small text-text-2">{s.claim_call_first()}</p>
 		{#each data.claims as c (c.id)}
 			<article class="flex flex-col gap-2 rounded-lg bg-surface p-4 shadow-e1">
 				<p class="type-h3">
@@ -23,12 +23,12 @@
 				</p>
 				<form method="POST" action="?/review" use:submitting class="flex gap-2">
 					<input type="hidden" name="id" value={c.id} />
-					<Button type="submit" variant="secondary" name="approve" value="1">{m.approve()}</Button>
-					<Button type="submit" variant="ghost" name="approve" value="0">{m.reject()}</Button>
+					<Button type="submit" variant="secondary" name="approve" value="1">{s.approve()}</Button>
+					<Button type="submit" variant="ghost" name="approve" value="0">{s.reject()}</Button>
 				</form>
 			</article>
 		{:else}
-			<p class="type-body text-text-2">{m.claims_empty()}</p>
+			<p class="type-body text-text-2">{s.claims_empty()}</p>
 		{/each}
 	</div>
 </Page>

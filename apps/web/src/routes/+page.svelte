@@ -236,7 +236,7 @@
 						class="scroll-row -mx-5 flex snap-x snap-mandatory scroll-px-5 gap-3 overflow-x-auto px-5 pb-1 lg:mx-0 lg:scroll-px-0 lg:px-0"
 						data-clip-check
 					>
-						{#each data.placeRow as p (p.slug)}
+						{#each data.placeRow as p, i (p.slug)}
 							<li class="w-44 shrink-0 snap-start lg:w-52">
 								<a
 									href={resolve('/place/[slug]', { slug: p.slug })}
@@ -253,7 +253,8 @@
 												srcset={p.photo.srcset}
 												sizes="208px"
 												alt={p.photo.alt}
-												loading="lazy"
+												loading={i < 2 ? 'eager' : 'lazy'}
+												fetchpriority={i === 0 ? 'high' : 'auto'}
 												class="size-full object-cover transition-transform duration-500 ease-brand group-hover:scale-105"
 											/>
 											<span
@@ -264,7 +265,7 @@
 									<span
 										class={[
 											'flex w-fit items-center gap-1.5 rounded-full px-2.5 py-1 type-small font-semibold',
-											p.photo ? 'bg-black/35 backdrop-blur-sm' : 'bg-surface'
+											p.photo ? 'bg-black/55 lg:bg-black/35 lg:backdrop-blur-sm' : 'bg-surface'
 										]}
 										><CategoryIcon category={p.category} size={14} />{msg(
 											`cat_${p.category}`

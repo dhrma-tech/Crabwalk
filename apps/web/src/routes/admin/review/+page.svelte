@@ -2,6 +2,7 @@
 	import { resolve } from '$app/paths';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -11,7 +12,7 @@
 	let { data, form }: PageProps = $props();
 </script>
 
-<Page title={m.review_title()} back>
+<Page title={s.review_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.items.length}
 			<ul
@@ -26,7 +27,7 @@
 						>
 							<span class="min-w-0 flex-1 type-body-strong">{it.name}</span>{#if it.check}<span
 									class="rounded-full bg-alphonso-50 px-2 py-0.5 type-label text-alphonso-ink"
-									>{m.review_check_first()}</span
+									>{s.review_check_first()}</span
 								>{/if}<span class="type-small text-text-2">{msg(`type_${it.type}`)}</span
 							><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" />
 						</a>
@@ -34,7 +35,7 @@
 				{/each}
 			</ul>
 		{:else}
-			<p class="type-body text-text-2">{m.review_empty()}</p>
+			<p class="type-body text-text-2">{s.review_empty()}</p>
 		{/if}
 
 		<section class="flex flex-col gap-3">
@@ -55,13 +56,13 @@
 					<Input
 						id="slug"
 						name="slug"
-						label={m.dish_slug()}
+						label={s.dish_slug()}
 						required
 						pattern="[a-z][a-z0-9_\-]+"
 						error={form?.dishError ? m.send_failed() : null}
 					/>
 				</div>
-				<Button type="submit" variant="secondary">{m.new_dish()}</Button>
+				<Button type="submit" variant="secondary">{s.new_dish()}</Button>
 			</form>
 		</section>
 	</div>

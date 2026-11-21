@@ -4,7 +4,7 @@
 	import Utensils from '@lucide/svelte/icons/utensils';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import Clock from '@lucide/svelte/icons/clock';
-	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import Page from '#lib/components/Page.svelte';
 	import InsetList from '#lib/components/InsetList.svelte';
 	import type { PageProps } from './$types';
@@ -14,17 +14,17 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.owner_title()} back>
+<Page title={s.owner_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if data.pending}<p class="flex gap-2.5 rounded-md bg-caution-50 p-3 type-small text-text">
-				<Clock size={18} class="mt-0.5 shrink-0" aria-hidden="true" />{m.claim_pending()}
+				<Clock size={18} class="mt-0.5 shrink-0" aria-hidden="true" />{s.claim_pending()}
 			</p>{/if}
 		{#if data.listings.length}
 			<!-- P12 step I: availability requests for my listings. -->
 			<a
 				href={resolve('/owner/requests')}
 				class="row-link flex min-h-14 items-center gap-3 rounded-lg bg-surface px-4 text-text no-underline shadow-e1"
-				><span class="min-w-0 flex-1 type-body-strong">{m.req_incoming()}</span><ChevronRight
+				><span class="min-w-0 flex-1 type-body-strong">{s.req_incoming()}</span><ChevronRight
 					size={18}
 					class="shrink-0 text-text-2"
 					aria-hidden="true"
@@ -46,7 +46,7 @@
 										class="shrink-0 text-alphonso-ink"
 										aria-hidden="true"
 									/>{/if}<span class="min-w-0 flex-1 type-body-strong">{l.name}</span><span
-									class="type-small text-text-2">{m.owner_edit()}</span
+									class="type-small text-text-2">{s.owner_edit()}</span
 								><ChevronRight size={18} class="shrink-0 text-text-2" aria-hidden="true" /></a
 							>
 						</li>
@@ -54,8 +54,8 @@
 				</ul>
 			</InsetList>
 		{:else}
-			<p class="type-body text-text-2">{m.owner_none()}</p>
+			<p class="type-body text-text-2">{s.owner_none()}</p>
 		{/if}
-		<p class="type-small text-text-2">{m.owner_ratings_readonly()}</p>
+		<p class="type-small text-text-2">{s.owner_ratings_readonly()}</p>
 	</div>
 </Page>

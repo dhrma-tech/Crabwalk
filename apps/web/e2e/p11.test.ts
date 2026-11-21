@@ -30,7 +30,10 @@ test('1280 px: outline rail, folding sections, map beside them', async () => {
 	await page.setViewportSize({ width: 1280, height: 800 });
 	await page.goto(`/plan/${trip}`);
 	await page.waitForLoadState('networkidle');
+	// The rail stays collapsed until tapped (52eaab8).
 	const rail = page.getByRole('navigation', { name: 'Trip outline' }).locator('visible=true');
+	await expect(rail).toHaveCount(0);
+	await page.getByRole('button', { name: 'Show sections' }).click();
 	await expect(rail).toHaveCount(1);
 	await expect(rail.getByRole('link', { name: 'Day 2' })).toBeVisible();
 	await expect(page.getByRole('region', { name: 'Trip map' })).toBeVisible();
@@ -129,18 +132,25 @@ test('lists: add a place → drag into Day 2 → it shows on the map; move to da
 	await section('Overview').click();
 	await beach.evaluate((el) => el.scrollIntoView({ block: 'start' }));
 	await expect(target).toBeInViewport();
+	// Aim at Day 2's drop zone (the <ol>, which stays mounted; a stop row can detach while dnd-action re-renders),
+	// and measure it again mid-drag: the list shrinks once the card leaves it, so the zone moves up.
+	const zone = day2.locator('ol');
 	const from = (await beach.boundingBox())!;
 	await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2);
 	await page.mouse.down();
 	await page.mouse.move(from.x + from.width / 2, from.y + from.height / 2 + 10, { steps: 4 });
-	const to = (await target.boundingBox())!;
-	await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 20 });
+	for (let i = 0; i < 2; i++) {
+		const to = (await zone.boundingBox())!;
+		await page.mouse.move(to.x + to.width / 2, to.y + to.height / 2, { steps: 20 });
+		await page.waitForTimeout(200);
+	}
 	await page.waitForTimeout(400); // dnd-action looks for the zone under the card every ~150 ms
 	await page.mouse.up();
 	await expect(day2.getByTestId('plan-stop').filter({ hasText: 'Seed Beach 1' })).toBeVisible({
 		timeout: 15_000
 	});
-	await expect(beach).toHaveCount(0);
+	// The list lets the item go after the server round trip (item.delete + reload): slow under a full parallel run.
+	await expect(beach).toHaveCount(0, { timeout: 15_000 });
 	// Day 2's map now has both stops.
 	await page.waitForFunction(() => {
 		const m = (window as unknown as { __map?: E2EMap }).__map;

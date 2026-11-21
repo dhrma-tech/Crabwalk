@@ -87,9 +87,18 @@ test('map layers: heatmap legend names Live/Typical; tide slider with attributio
 	await expect(page.getByTestId('tide-slider')).toContainText('Passable');
 	const heat = await (await page.request.get('/api/map/heatmap?bbox=73,16.5,73.6,17.5')).json();
 	for (const f of heat.features) expect(['live', 'typical']).toContain(f.properties.source);
+	// Own fixture: the OSM trails pipeline may not have run on this stack.
+	psql(
+		`insert into trails (id, name_en, geometry, source, difficulty)
+		 values ('00000000-0000-4000-8009-0000000e2e01', 'E2E trail', 'SRID=4326;LINESTRING(73.28 17.0, 73.29 17.01)', 'osm', 'easy')
+		 on conflict (id) do nothing`
+	);
 	const trails = await (await page.request.get('/api/map/trails?bbox=72.5,15.5,74,18.5')).json();
-	expect(trails.features.length).toBeGreaterThan(0);
-	const gpx = await page.request.get(`/api/trails/${trails.features[0].properties.id}/gpx`);
+	const fixture = '00000000-0000-4000-8009-0000000e2e01';
+	expect(trails.features.map((f: { properties: { id: string } }) => f.properties.id)).toContain(
+		fixture
+	);
+	const gpx = await page.request.get(`/api/trails/${fixture}/gpx`);
 	expect(await gpx.text()).toContain('<trkpt');
 });
 
@@ -104,6 +113,27 @@ test('planned route navigates fully offline after pack download', async () => {
 		`insert into trip_stops (trip_id, day, "order", entity_type, entity_id, kind, arrive_at, depart_at)
 		 select '${trip}', 1, o, 'place', p.id, 'place', now() + (o || ' hours')::interval, now() + (o || ' hours')::interval + interval '1 hour'
 		 from (values ('seed-fort-1', 0), ('seed-temple-1', 1)) v(slug, o) join places p on p.slug = v.slug`
+	);
+	// Own route fixture (fort → temple, one left turn): the OSRM matrix pipeline may not have run on this stack.
+	psql(
+		`insert into matrix_points (entity_type, entity_id, location)
+		 select 'place', p.id, p.location from places p
+		 where p.slug in ('seed-fort-1', 'seed-temple-1')
+		   and not exists (select 1 from matrix_points m where m.entity_id = p.id)`
+	);
+	psql(
+		`insert into travel_matrix (from_point_id, to_point_id, duration_s, distance_m, duration_corrected_s, route_shape, route_turns)
+		 select a.id, b.id, 900, 6000, 1100,
+		        extensions.st_asencodedpolyline(extensions.st_makeline(array[
+		          a.location::extensions.geometry,
+		          extensions.st_setsrid(extensions.st_makepoint(
+		            extensions.st_x(a.location::extensions.geometry), extensions.st_y(b.location::extensions.geometry)), 4326),
+		          b.location::extensions.geometry])),
+		        '1L'
+		 from matrix_points a join places pa on pa.id = a.entity_id and pa.slug = 'seed-fort-1',
+		      matrix_points b join places pb on pb.id = b.entity_id and pb.slug = 'seed-temple-1'
+		 on conflict (from_point_id, to_point_id) do update
+		   set route_shape = excluded.route_shape, route_turns = excluded.route_turns`
 	);
 	// The service worker must control the page (as for any returning user) before routes are cached.
 	await page.goto('/me');

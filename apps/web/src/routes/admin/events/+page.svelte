@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -38,16 +39,16 @@
 	<form method="POST" action="?/save" use:submitting class="grid gap-3 sm:grid-cols-2">
 		<input type="hidden" name="id" value={e.id} />
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_name()} (EN)<input name="name_en" value={e.name_en} required class={field} /></label
+			>{s.event_name()} (EN)<input name="name_en" value={e.name_en} required class={field} /></label
 		>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_name()} (MR)<input name="name_mr" value={e.name_mr ?? ''} class={field} /></label
+			>{s.event_name()} (MR)<input name="name_mr" value={e.name_mr ?? ''} class={field} /></label
 		>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_name()} (HI)<input name="name_hi" value={e.name_hi ?? ''} class={field} /></label
+			>{s.event_name()} (HI)<input name="name_hi" value={e.name_hi ?? ''} class={field} /></label
 		>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_type()}
+			>{s.event_type()}
 			<select name="type" class={field}>
 				{#each ['festival', 'jatra', 'season'] as t (t)}<option value={t} selected={e.type === t}
 						>{msg(`event_type_${t}`)}</option
@@ -55,7 +56,7 @@
 			</select>
 		</label>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_from()}<input
+			>{s.event_from()}<input
 				type="date"
 				name="from_date"
 				value={e.from_date}
@@ -64,7 +65,7 @@
 			/></label
 		>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_to()}<input
+			>{s.event_to()}<input
 				type="date"
 				name="to_date"
 				value={e.to_date}
@@ -73,16 +74,16 @@
 			/></label
 		>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_taluka()}
+			>{s.event_taluka()}
 			<select name="taluka_id" class={field}>
-				<option value="">{m.event_all_talukas()}</option>
+				<option value="">{s.event_all_talukas()}</option>
 				{#each data.talukas as t (t.id)}<option value={t.id} selected={e.taluka_id === t.id}
 						>{t.name_en}</option
 					>{/each}
 			</select>
 		</label>
 		<label class="flex flex-col gap-1 type-small text-text-2"
-			>{m.event_crowd()}
+			>{s.event_crowd()}
 			<select name="crowd" class={field}>
 				<option value="">{m.filter_any()}</option>
 				<option value="busy" selected={impact(e).crowd === 'busy'}>{m.crowd_busy()}</option>
@@ -90,22 +91,22 @@
 			</select>
 		</label>
 		<label class="flex flex-col gap-1 type-small text-text-2 sm:col-span-2"
-			>{m.event_closures()}<input
+			>{s.event_closures()}<input
 				name="closures"
 				value={impact(e).closures ?? ''}
 				class={field}
 			/></label
 		>
 		<div class="sm:col-span-2">
-			<Button type="submit" variant="secondary">{m.qr_admin_save()}</Button>
+			<Button type="submit" variant="secondary">{s.qr_admin_save()}</Button>
 		</div>
 	</form>
 {/snippet}
 
-<Page title={m.events_title()} back>
+<Page title={s.events_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		<section class="flex flex-col gap-3 rounded-lg bg-surface p-4 shadow-e1">
-			<h2 class="type-h2">{m.event_add()}</h2>
+			<h2 class="type-h2">{s.event_add()}</h2>
 			{@render editor(blank)}
 			{#if form?.saved}<p class="type-small" role="status">{m.owner_saved()}</p>{/if}
 			{#if form?.error}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
@@ -123,14 +124,14 @@
 							>
 							{#if e.status !== 'published'}<span
 									class="rounded-full bg-alphonso-50 px-2 py-0.5 type-label text-alphonso-ink"
-									>{m.event_draft()}</span
+									>{s.event_draft()}</span
 								>{/if}
 						</summary>
 						<div class="mt-3 flex flex-col gap-3">
 							{#if e.status !== 'published'}
 								<form method="POST" action="?/publish" use:submitting>
 									<input type="hidden" name="id" value={e.id} />
-									<Button type="submit">{m.event_publish()}</Button>
+									<Button type="submit">{s.event_publish()}</Button>
 								</form>
 							{/if}
 							{@render editor(e)}

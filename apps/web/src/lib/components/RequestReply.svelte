@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { formatDate, formatINR } from '#lib/format.ts';
 	import Button from './Button.svelte';
@@ -41,7 +42,7 @@
 	{#if r.note}<p class="type-small">“{r.note}”</p>{/if}
 	<p class="type-body-strong" data-testid="request-status">{msg(`req_status_${r.status}`)}</p>
 	{#if r.contact_phone}
-		<p class="type-body" data-testid="request-phone">{m.req_contact({ phone: r.contact_phone })}</p>
+		<p class="type-body" data-testid="request-phone">{s.req_contact({ phone: r.contact_phone })}</p>
 	{/if}
 	{#if relay && r.status === 'sent'}
 		<div class="flex flex-wrap items-center gap-2">
@@ -51,13 +52,13 @@
 				target="_blank"
 				rel="noopener"
 				class="type-body-strong"
-				data-testid="relay-link">{m.req_relay()}</a
+				data-testid="relay-link">{s.req_relay()}</a
 			>
 			<!-- eslint-enable svelte/no-navigation-without-resolve -->
 			<form method="POST" action="?/reply" use:submitting>
 				<input type="hidden" name="id" value={r.id} />
 				<input type="hidden" name="answer" value="relayed" />
-				<Button type="submit" variant="ghost">{m.req_mark_relayed()}</Button>
+				<Button type="submit" variant="ghost">{s.req_mark_relayed()}</Button>
 			</form>
 		</div>
 	{/if}
@@ -65,7 +66,7 @@
 		<form method="POST" action="?/reply" use:submitting class="flex flex-col gap-2">
 			<input type="hidden" name="id" value={r.id} />
 			<fieldset class="flex flex-wrap gap-3">
-				<legend class="sr-only">{m.req_answer()}</legend>
+				<legend class="sr-only">{s.req_answer()}</legend>
 				{#each ['available', 'countered', 'unavailable'] as a (a)}
 					<label class="flex min-h-11 items-center gap-2 type-body">
 						<input type="radio" name="answer" value={a} required class="size-5 accent-kokum" />{msg(
@@ -80,8 +81,8 @@
 					type="number"
 					min="0"
 					inputmode="numeric"
-					aria-label={m.req_price()}
-					placeholder={m.req_price()}
+					aria-label={s.req_price()}
+					placeholder={s.req_price()}
 					class={field}
 				/>
 				<input
@@ -92,7 +93,7 @@
 					class={[field, 'min-w-0 flex-1']}
 				/>
 			</div>
-			<div><Button type="submit">{m.req_send_answer()}</Button></div>
+			<div><Button type="submit">{s.req_send_answer()}</Button></div>
 		</form>
 	{/if}
 </article>

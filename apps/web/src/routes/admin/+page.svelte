@@ -10,7 +10,7 @@
 	import SlidersHorizontal from '@lucide/svelte/icons/sliders-horizontal';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import FilePen from '@lucide/svelte/icons/file-pen';
-	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import InsetList from '#lib/components/InsetList.svelte';
@@ -22,37 +22,37 @@
 	const c = $derived(data.counts);
 	const queues = $derived(
 		[
-			{ n: c.review, href: resolve('/admin/review'), label: m.review_title() },
-			{ n: c.reports, href: resolve('/admin/reports'), label: m.reports_title() },
-			{ n: c.proofs, href: resolve('/admin/proofs'), label: m.proofs_title() },
-			{ n: c.moderation, href: resolve('/admin/moderation'), label: m.moderation_title() },
-			{ n: c.routes, href: resolve('/admin/routes'), label: m.routes_title() },
-			{ n: c.claims, href: resolve('/admin/claims'), label: m.claims_title() },
-			{ n: c.questions, href: resolve('/admin/questions'), label: m.team_title() },
-			{ n: c.requests, href: resolve('/admin/requests'), label: m.req_team_title() }
+			{ n: c.review, href: resolve('/admin/review'), label: s.review_title() },
+			{ n: c.reports, href: resolve('/admin/reports'), label: s.reports_title() },
+			{ n: c.proofs, href: resolve('/admin/proofs'), label: s.proofs_title() },
+			{ n: c.moderation, href: resolve('/admin/moderation'), label: s.moderation_title() },
+			{ n: c.routes, href: resolve('/admin/routes'), label: s.routes_title() },
+			{ n: c.claims, href: resolve('/admin/claims'), label: s.claims_title() },
+			{ n: c.questions, href: resolve('/admin/questions'), label: s.team_title() },
+			{ n: c.requests, href: resolve('/admin/requests'), label: s.req_team_title() }
 		].filter((q) => q.n != null)
 	);
 	const tools = $derived([
-		{ href: resolve('/admin/field'), label: m.field_title(), icon: MapPinPlus },
-		{ href: resolve('/admin/alerts'), label: m.alerts_title(), icon: TriangleAlert },
+		{ href: resolve('/admin/field'), label: s.field_title(), icon: MapPinPlus },
+		{ href: resolve('/admin/alerts'), label: s.alerts_title(), icon: TriangleAlert },
 		...(data.isAdmin
 			? [
 					{ href: resolve('/admin/content'), label: () => 'Edit all content', icon: FilePen },
-					{ href: resolve('/admin/qr'), label: m.qr_admin_title(), icon: QrCode },
+					{ href: resolve('/admin/qr'), label: s.qr_admin_title(), icon: QrCode },
 					// Internal tool, English only like the content editor (hardening D-22).
 					{ href: resolve('/admin/security'), label: () => 'Security events', icon: ShieldAlert },
 					{ href: resolve('/admin/insights'), label: () => 'Insights', icon: ChartColumn },
-					{ href: resolve('/admin/events'), label: m.events_title(), icon: CalendarDays },
-					{ href: resolve('/admin/planner'), label: m.planner_settings(), icon: SlidersHorizontal }
+					{ href: resolve('/admin/events'), label: s.events_title(), icon: CalendarDays },
+					{ href: resolve('/admin/planner'), label: s.planner_settings(), icon: SlidersHorizontal }
 				]
 			: [])
 	]);
 </script>
 
-<Page title={m.admin_title()} back>
+<Page title={s.admin_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-6">
 		<section aria-labelledby="waiting" class="flex flex-col gap-3">
-			<h2 id="waiting" class="type-h2">{m.admin_waiting()}</h2>
+			<h2 id="waiting" class="type-h2">{s.admin_waiting()}</h2>
 			<ul class="grid grid-cols-2 gap-3 sm:grid-cols-3" data-testid="queue-counter">
 				{#each queues as q (q.href)}
 					<li>
@@ -83,7 +83,7 @@
 			</ul>
 		</InsetList>
 		<section aria-labelledby="recheck" class="flex flex-col gap-3">
-			<h2 id="recheck" class="type-h2">{m.recheck_title()}</h2>
+			<h2 id="recheck" class="type-h2">{s.recheck_title()}</h2>
 			{#if data.due.length}
 				<InsetList>
 					<ul>
@@ -100,14 +100,14 @@
 								</div>
 								<form method="POST" action="?/verified" use:submitting>
 									<input type="hidden" name="id" value={p.id} />
-									<Button type="submit" variant="secondary">{m.recheck_mark()}</Button>
+									<Button type="submit" variant="secondary">{s.recheck_mark()}</Button>
 								</form>
 							</li>
 						{/each}
 					</ul>
 				</InsetList>
 			{:else}
-				<p class="type-body text-text-2">{m.recheck_empty()}</p>
+				<p class="type-body text-text-2">{s.recheck_empty()}</p>
 			{/if}
 		</section>
 	</div>

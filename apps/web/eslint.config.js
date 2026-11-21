@@ -10,7 +10,14 @@ const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
-	{ ignores: ['worker-configuration.d.ts', 'src/lib/db.types.ts', 'src/lib/paraglide/'] },
+	{
+		ignores: [
+			'worker-configuration.d.ts',
+			'src/lib/db.types.ts',
+			'src/lib/paraglide/',
+			'src/lib/paraglide-staff/'
+		]
+	},
 	js.configs.recommended,
 	ts.configs.recommended,
 	svelte.configs.recommended,

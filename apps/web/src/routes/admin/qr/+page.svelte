@@ -2,6 +2,7 @@
 	import { submitting } from '#lib/forms.ts';
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
@@ -11,7 +12,7 @@
 	const field = 'field h-12 w-full min-w-0 px-3 type-body text-text';
 </script>
 
-<Page title={m.qr_admin_title()} back>
+<Page title={s.qr_admin_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#if !data.plaques}
 			<p
@@ -19,11 +20,11 @@
 				class="rounded-md bg-surface-2 p-4 type-body"
 				data-testid="plaque-origin-missing"
 			>
-				{m.qr_admin_origin_missing()}
+				{s.qr_admin_origin_missing()}
 			</p>
 		{/if}
-		<nav class="flex flex-wrap items-center gap-2" aria-label={m.qr_admin_type()}>
-			<span class="type-small text-text-2">{m.qr_admin_type()}</span>
+		<nav class="flex flex-wrap items-center gap-2" aria-label={s.qr_admin_type()}>
+			<span class="type-small text-text-2">{s.qr_admin_type()}</span>
 			{#each data.types as t (t)}
 				<a
 					href="{resolve('/admin/qr')}?type={t}"
@@ -44,14 +45,14 @@
 		>
 			<input type="hidden" name="type" value={data.type} />
 			<label class="flex flex-col gap-1.5 type-small text-text-2">
-				{m.qr_admin_entity()}
+				{s.qr_admin_entity()}
 				<select name="id" required class={field}>
 					{#each data.options as o (o.id)}<option value={o.id}>{o.name}</option>{/each}
 				</select>
 			</label>
 			{#if form?.created}<p class="type-small" role="status">{form.created}</p>{/if}
 			{#if form?.error === 'create'}<p class="type-small" role="alert">{m.send_failed()}</p>{/if}
-			<div><Button type="submit">{m.qr_admin_create()}</Button></div>
+			<div><Button type="submit">{s.qr_admin_create()}</Button></div>
 		</form>
 
 		{#if data.codes.length}
@@ -70,37 +71,37 @@
 								data-testid="qr-health"
 							>
 								<span
-									>{m.qr_health_scans({ week: c.health.scans_7d, month: c.health.scans_30d })}</span
+									>{s.qr_health_scans({ week: c.health.scans_7d, month: c.health.scans_30d })}</span
 								>
 								{#if c.health.broken_open}<span class="text-text"
-										>{m.qr_health_broken({ n: c.health.broken_open })}</span
+										>{s.qr_health_broken({ n: c.health.broken_open })}</span
 									>{/if}
 								{#if c.health.silent}<span
 										class="inline-flex min-h-7 items-center gap-1.5 rounded-full bg-surface-2 px-2.5 type-label text-text"
 										><span class="size-2 shrink-0 rounded-full bg-caution" aria-hidden="true"
-										></span>{m.qr_health_silent()}</span
+										></span>{s.qr_health_silent()}</span
 									>{/if}
 							</p>
 						{/if}
 						<form method="POST" action="?/save" use:submitting class="grid gap-3 sm:grid-cols-2">
 							<input type="hidden" name="code" value={c.code} />
 							<label class="flex flex-col gap-1.5 type-small text-text-2">
-								{m.qr_admin_permission()}
+								{s.qr_admin_permission()}
 								<select name="permission_status" class={field}>
 									<option value="pending" selected={c.permission_status === 'pending'}
-										>{m.qr_perm_pending()}</option
+										>{s.qr_perm_pending()}</option
 									>
 									<option value="granted" selected={c.permission_status === 'granted'}
-										>{m.qr_perm_granted()}</option
+										>{s.qr_perm_granted()}</option
 									>
 								</select>
 							</label>
 							<label class="flex flex-col gap-1.5 type-small text-text-2">
-								{m.qr_admin_permission_body()}
+								{s.qr_admin_permission_body()}
 								<input name="permission_body" value={c.permission_body ?? ''} class={field} />
 							</label>
 							<label class="flex flex-col gap-1.5 type-small text-text-2">
-								{m.qr_admin_installed()}
+								{s.qr_admin_installed()}
 								<input
 									type="date"
 									name="installed_at"
@@ -109,15 +110,15 @@
 								/>
 							</label>
 							<label class="flex flex-col gap-1.5 type-small text-text-2">
-								{m.qr_admin_sponsor()}
+								{s.qr_admin_sponsor()}
 								<input name="sponsor" value={c.sponsor} class={field} />
 							</label>
 							<div class="flex flex-wrap items-center gap-3 sm:col-span-2">
-								<Button type="submit" variant="secondary">{m.qr_admin_save()}</Button>
+								<Button type="submit" variant="secondary">{s.qr_admin_save()}</Button>
 								<a
 									href={resolve('/admin/qr/[code]/plaque', { code: c.code })}
 									class="type-body"
-									target="_blank">{m.qr_admin_plaque()}</a
+									target="_blank">{s.qr_admin_plaque()}</a
 								>
 								{#if form?.saved === c.code}<span class="type-small" role="status"
 										>{m.owner_saved()}</span
@@ -128,7 +129,7 @@
 				{/each}
 			</ul>
 		{:else}
-			<p class="type-body text-text-2">{m.qr_admin_none()}</p>
+			<p class="type-body text-text-2">{s.qr_admin_none()}</p>
 		{/if}
 	</div>
 </Page>

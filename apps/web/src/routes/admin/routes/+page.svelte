@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { submitting } from '#lib/forms.ts';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import PlanDays from '#lib/components/plan/PlanDays.svelte';
@@ -9,7 +10,7 @@
 	let { data }: PageProps = $props();
 </script>
 
-<Page title={m.routes_title()} back>
+<Page title={s.routes_title()} back>
 	<div class="mx-auto flex max-w-170 flex-col gap-4">
 		{#each data.routes as r (r.trip_id)}
 			<article
@@ -27,14 +28,14 @@
 				{/if}
 				<form method="POST" action="?/review" use:submitting class="flex flex-wrap gap-2">
 					<input type="hidden" name="trip_id" value={r.trip_id} />
-					<Button type="submit" name="status" value="approved">{m.routes_approve()}</Button>
+					<Button type="submit" name="status" value="approved">{s.routes_approve()}</Button>
 					<Button type="submit" variant="ghost" name="status" value="rejected"
-						>{m.routes_reject()}</Button
+						>{s.routes_reject()}</Button
 					>
 				</form>
 			</article>
 		{:else}
-			<p class="type-body text-text-2">{m.routes_empty()}</p>
+			<p class="type-body text-text-2">{s.routes_empty()}</p>
 		{/each}
 	</div>
 </Page>

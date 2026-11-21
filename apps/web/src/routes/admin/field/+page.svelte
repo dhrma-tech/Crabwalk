@@ -3,6 +3,7 @@
 	import LocateFixed from '@lucide/svelte/icons/locate-fixed';
 	import Camera from '@lucide/svelte/icons/camera';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s as sm } from '#lib/staff-messages.ts';
 	import { msg } from '#lib/msg.ts';
 	import { toast } from '#lib/toast.svelte.ts';
 	import Page from '#lib/components/Page.svelte';
@@ -214,9 +215,9 @@
 			kind === 'places' &&
 			(sources.length > 10 || sources.some((u) => !/^https:\/\/\S+\.\S+/.test(u)))
 		)
-			return toast(m.field_sources_invalid());
+			return toast(sm.field_sources_invalid());
 		const licensedNow = mode === 'desk' && licensed;
-		if (licensedNow && !creditComplete(credit)) return toast(m.photo_credit_invalid());
+		if (licensedNow && !creditComplete(credit)) return toast(sm.photo_credit_invalid());
 		busy = true;
 		const id = crypto.randomUUID();
 		const s: Submission = {
@@ -234,7 +235,7 @@
 		busy = false;
 		await refresh();
 		if (r === 'failed') return toast(m.send_failed());
-		toast(r === 'sent' ? m.sent_review() : m.queued_offline());
+		toast(r === 'sent' ? sm.sent_review() : sm.queued_offline());
 		f = fresh();
 		photos = [];
 		previews = [];
@@ -254,7 +255,7 @@
 	const legend = 'float-left mb-1 w-full type-h3';
 </script>
 
-<Page title={m.field_title()} back>
+<Page title={sm.field_title()} back>
 	<form
 		onsubmit={submit}
 		class="mx-auto flex max-w-170 flex-col gap-4 pb-8"
@@ -262,25 +263,25 @@
 	>
 		{#if queued.length}
 			<p class="rounded-md bg-caution-50 p-3 type-small text-text" role="status">
-				{m.queue_count({ n: queued.length })}{#each queued.filter((q) => q.error) as q (q.id)}<br
+				{sm.queue_count({ n: queued.length })}{#each queued.filter((q) => q.error) as q (q.id)}<br
 					/>{q.payload.name_en}: {q.error}{/each}
 			</p>
 		{/if}
 
 		<div class={card}>
-			<p class="type-h3">{m.field_mode()}</p>
+			<p class="type-h3">{sm.field_mode()}</p>
 			<Segmented
-				label={m.field_mode()}
+				label={sm.field_mode()}
 				options={[
-					{ value: 'field', label: m.mode_field() },
-					{ value: 'desk', label: m.mode_desk() }
+					{ value: 'field', label: sm.mode_field() },
+					{ value: 'desk', label: sm.mode_desk() }
 				]}
 				bind:value={mode}
 			/>
 		</div>
 
 		<fieldset class={chips}>
-			<legend class={legend}>{m.field_type()}</legend>
+			<legend class={legend}>{sm.field_type()}</legend>
 			{#each [['places', m.type_place], ['stays', m.type_stay], ['eateries', m.type_eatery]] as const as [k, l] (k)}
 				<label class={box}><input type="radio" bind:group={kind} value={k} />{l()}</label>
 			{/each}
@@ -288,7 +289,7 @@
 
 		<div class={card}>
 			<label class={label}
-				>{m.field_name_en()}<input
+				>{sm.field_name_en()}<input
 					class={input}
 					bind:value={f.name_en}
 					required
@@ -298,7 +299,7 @@
 				/></label
 			>
 			<label class={label}
-				>{m.field_name_mr()}<input
+				>{sm.field_name_mr()}<input
 					class={input}
 					bind:value={f.name_mr}
 					maxlength="120"
@@ -309,22 +310,22 @@
 		</div>
 
 		<fieldset class={card}>
-			<legend class={legend}>{m.field_location()}</legend>
+			<legend class={legend}>{sm.field_location()}</legend>
 			{#if mode === 'field'}
 				<div>
 					<Button variant="secondary" onclick={locate} loading={gps === 'busy'}
 						>{#snippet icon()}<LocateFixed
 								size={20}
 								aria-hidden="true"
-							/>{/snippet}{m.gps_use()}</Button
+							/>{/snippet}{sm.gps_use()}</Button
 					>
 				</div>
-				{#if gps === 'denied'}<p class="type-small" role="alert">{m.gps_denied()}</p>{/if}
+				{#if gps === 'denied'}<p class="type-small" role="alert">{sm.gps_denied()}</p>{/if}
 				{#if accuracy != null}<p class="type-small text-text-2">
-						{m.gps_accuracy({ m: accuracy })}
+						{sm.gps_accuracy({ m: accuracy })}
 					</p>{/if}
 			{:else}
-				<p class="type-small text-text-2">{m.field_map_pick()}</p>
+				<p class="type-small text-text-2">{sm.field_map_pick()}</p>
 				{#if PMTILES_BASE_URL}
 					{#await import('#lib/components/map/MapView.svelte') then { default: MapView }}
 						<div class="h-64 overflow-hidden rounded-md" data-testid="desk-map">
@@ -343,7 +344,7 @@
 			{/if}
 			<div class="grid grid-cols-2 gap-3">
 				<label class={label}
-					>{m.field_lat()}<input
+					>{sm.field_lat()}<input
 						class={input}
 						bind:value={f.lat}
 						required
@@ -353,7 +354,7 @@
 					/></label
 				>
 				<label class={label}
-					>{m.field_lon()}<input
+					>{sm.field_lon()}<input
 						class={input}
 						bind:value={f.lon}
 						required
@@ -364,7 +365,7 @@
 				>
 			</div>
 			<label class={label}
-				>{m.field_location()}
+				>{sm.field_location()}
 				<select class={input} bind:value={f.taluka_id} required name="taluka_id">
 					<option value="" disabled>—</option>
 					{#each data.talukas as t (t.id)}<option value={t.id}>{t.name}</option>{/each}
@@ -375,7 +376,7 @@
 		{#if mode === 'desk' && kind === 'places'}
 			<!-- A desk place must say where it was checked (T-48): 1–10 https links, shown to reviewers. -->
 			<label class={[label, 'rounded-lg bg-surface p-4 shadow-e1']}
-				>{m.field_sources()}<textarea
+				>{sm.field_sources()}<textarea
 					class="field p-3 type-body text-text"
 					rows="3"
 					required
@@ -386,15 +387,17 @@
 		{/if}
 
 		<fieldset class={card}>
-			<legend class={legend}>{mode === 'field' ? m.field_photos() : m.field_photos_files()}</legend>
+			<legend class={legend}
+				>{mode === 'field' ? sm.field_photos() : sm.field_photos_files()}</legend
+			>
 			<label
 				class={[
 					box,
 					'w-fit cursor-pointer has-focus-visible:outline-2 has-focus-visible:outline-offset-2 has-focus-visible:outline-focus'
 				]}
 				><Camera size={20} aria-hidden="true" />{mode === 'field'
-					? m.field_photos()
-					: m.field_photos_files()}
+					? sm.field_photos()
+					: sm.field_photos_files()}
 				<input
 					type="file"
 					accept="image/*"
@@ -414,11 +417,11 @@
 			{#if mode === 'desk'}
 				<!-- Not our photos (T-51): CC BY / CC BY-SA only, with author and source, shown on the page. -->
 				<label class={[box, 'w-fit']}
-					><input type="checkbox" bind:checked={licensed} />{m.photo_licensed()}</label
+					><input type="checkbox" bind:checked={licensed} />{sm.photo_licensed()}</label
 				>
 				{#if licensed}
 					<label class={label}
-						>{m.photo_credit()}<input
+						>{sm.photo_credit()}<input
 							class={input}
 							bind:value={credit.credit}
 							maxlength="200"
@@ -426,7 +429,7 @@
 						/></label
 					>
 					<label class={label}
-						>{m.photo_licence()}<select
+						>{sm.photo_licence()}<select
 							class={input}
 							bind:value={credit.licence}
 							name="photo_licence"
@@ -436,7 +439,7 @@
 						</select></label
 					>
 					<label class={label}
-						>{m.photo_source()}<input
+						>{sm.photo_source()}<input
 							class={input}
 							type="url"
 							placeholder="https://"
@@ -451,19 +454,19 @@
 		{#if kind === 'places'}
 			<div class={card}>
 				<label class={label}
-					>{m.field_category()}
+					>{sm.field_category()}
 					<select class={input} bind:value={f.category} name="category"
 						>{#each Object.keys(categoryIcons) as c (c)}<option value={c}>{msg(`cat_${c}`)}</option
 							>{/each}</select
 					>
 				</label>
-				{#each [['fee', m.field_fee], ['best', m.fact_best_time], ['reach', m.fact_how_to_reach], ['station', m.fact_station], ['bus', m.fact_bus]] as const as [k, l] (k)}
+				{#each [['fee', sm.field_fee], ['best', m.fact_best_time], ['reach', m.fact_how_to_reach], ['station', m.fact_station], ['bus', m.fact_bus]] as const as [k, l] (k)}
 					<label class={label}
 						>{l()}<input class={input} bind:value={f[k]} maxlength="1000" name={k} /></label
 					>
 				{/each}
 				<label class={label}
-					>{m.field_fee_inr()}<input
+					>{sm.field_fee_inr()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -474,7 +477,7 @@
 					/></label
 				>
 				<label class={label}
-					>{m.field_visit_minutes()}<input
+					>{sm.field_visit_minutes()}<input
 						class={input}
 						type="number"
 						min="10"
@@ -487,12 +490,13 @@
 				>
 				<div class="flex flex-wrap gap-2">
 					<label class={box}
-						><input type="checkbox" bind:checked={f.gem} />{m.field_hidden_gem()}</label
+						><input type="checkbox" bind:checked={f.gem} />{sm.field_hidden_gem()}</label
 					>
-					<label class={box}><input type="checkbox" bind:checked={f.tide} />{m.field_tide()}</label>
+					<label class={box}><input type="checkbox" bind:checked={f.tide} />{sm.field_tide()}</label
+					>
 				</div>
 				<label class={label}
-					>{m.field_monsoon()}
+					>{sm.field_monsoon()}
 					<select class={input} bind:value={f.monsoon}
 						>{#each ['open', 'risky', 'closed'] as s (s)}<option value={s}
 								>{msg(`monsoon_${s}`)}</option
@@ -500,7 +504,7 @@
 					>
 				</label>
 				{#if f.monsoon !== 'open'}<label class={label}
-						>{m.field_monsoon_reason()}<input
+						>{sm.field_monsoon_reason()}<input
 							class={input}
 							bind:value={f.monsoonReason}
 							maxlength="1000"
@@ -508,7 +512,7 @@
 					>{/if}
 			</div>
 			<fieldset class={card}>
-				<legend class={legend}>{m.field_crowd()}</legend>
+				<legend class={legend}>{sm.field_crowd()}</legend>
 				{#each days as d (d)}
 					<label class="flex items-center justify-between gap-3 type-small"
 						>{msg(`wd_${d}`)}
@@ -521,7 +525,7 @@
 				{/each}
 			</fieldset>
 			<fieldset class={chips}>
-				<legend class={legend}>{m.field_delivery()}</legend>
+				<legend class={legend}>{sm.field_delivery()}</legend>
 				{#each ['swiggy', 'zomato', 'eatsure', 'magicpin'] as a (a)}<label class={box}
 						><input type="checkbox" bind:checked={f.delivery[a]} />{a[0].toUpperCase() +
 							a.slice(1)}</label
@@ -565,7 +569,7 @@
 			</fieldset>
 			<div class={pair}>
 				<label class={label}
-					>{m.field_price_min()}<input
+					>{sm.field_price_min()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -573,7 +577,7 @@
 					/></label
 				>
 				<label class={label}
-					>{m.field_price_max()}<input
+					>{sm.field_price_max()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -595,7 +599,7 @@
 					>
 				</label>
 				<label class={label}
-					>{m.field_price_two()}<input
+					>{sm.field_price_two()}<input
 						class={input}
 						type="number"
 						min="0"
@@ -610,7 +614,7 @@
 					>{/each}
 			</fieldset>
 			<fieldset class={card}>
-				<legend class={legend}>{m.field_food_apps()}</legend>
+				<legend class={legend}>{sm.field_food_apps()}</legend>
 				{#each ['swiggy', 'zomato', 'eatsure', 'magicpin'] as a (a)}
 					<label class={label}
 						>{a[0].toUpperCase() + a.slice(1)}<input
@@ -625,7 +629,7 @@
 			</fieldset>
 			{#if data.dishes.length}
 				<fieldset class={chips}>
-					<legend class={legend}>{m.field_signature()}</legend>
+					<legend class={legend}>{sm.field_signature()}</legend>
 					{#each data.dishes as d (d.id)}<label class={box}
 							><input type="checkbox" bind:group={f.dishes} value={d.id} />{d.name}</label
 						>{/each}
@@ -645,10 +649,10 @@
 				</label>
 				<div class="grid grid-cols-2 gap-3">
 					<label class={label}
-						>{m.field_phone()}<input class={input} type="tel" bind:value={f.phone} /></label
+						>{sm.field_phone()}<input class={input} type="tel" bind:value={f.phone} /></label
 					>
 					<label class={label}
-						>{m.field_whatsapp()}<input class={input} type="tel" bind:value={f.whatsapp} /></label
+						>{sm.field_whatsapp()}<input class={input} type="tel" bind:value={f.whatsapp} /></label
 					>
 				</div>
 			</div>
@@ -656,9 +660,9 @@
 
 		{#if kind !== 'stays'}
 			<fieldset class={card}>
-				<legend class={legend}>{m.field_hours()}</legend>
+				<legend class={legend}>{sm.field_hours()}</legend>
 				<label class={[box, 'w-fit']}
-					><input type="checkbox" bind:checked={f.hoursUnknown} />{m.field_hours_unknown()}</label
+					><input type="checkbox" bind:checked={f.hoursUnknown} />{sm.field_hours_unknown()}</label
 				>
 				{#if !f.hoursUnknown}
 					{#each f.hours as h (h.weekday)}
@@ -695,7 +699,7 @@
 
 		{#if kind === 'places'}
 			<label class={[label, 'rounded-lg bg-surface p-4 shadow-e1']}
-				>{m.field_notes()}<textarea
+				>{sm.field_notes()}<textarea
 					class="field p-3 type-body text-text"
 					rows="4"
 					maxlength="1000"
@@ -704,6 +708,6 @@
 			>
 		{/if}
 
-		<Button type="submit" loading={busy}>{m.submit_review()}</Button>
+		<Button type="submit" loading={busy}>{sm.submit_review()}</Button>
 	</form>
 </Page>

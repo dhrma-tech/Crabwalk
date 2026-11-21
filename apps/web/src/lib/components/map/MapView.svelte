@@ -942,12 +942,18 @@
 		overflow: hidden;
 		box-shadow: var(--shadow-e2);
 		border: 0;
-		background: var(--glass);
-		backdrop-filter: blur(14px) saturate(1.2);
+		/* T-57: solid translucent on phones; blur on desktop only. */
+		background: var(--glass-solid);
 	}
-	@supports not (backdrop-filter: blur(1px)) {
+	@media (width >= 1024px) {
 		:global(.maplibregl-ctrl.maplibregl-ctrl-group) {
-			background: var(--surface);
+			background: var(--glass);
+			backdrop-filter: blur(14px) saturate(1.2);
+		}
+		@supports not (backdrop-filter: blur(1px)) {
+			:global(.maplibregl-ctrl.maplibregl-ctrl-group) {
+				background: var(--surface);
+			}
 		}
 	}
 	:global(.maplibregl-ctrl-group button + button) {

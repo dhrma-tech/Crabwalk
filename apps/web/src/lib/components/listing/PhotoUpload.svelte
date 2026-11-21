@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Camera from '@lucide/svelte/icons/camera';
 	import { m } from '#lib/paraglide/messages.js';
+	import { s } from '#lib/staff-messages.ts';
 	import Crabby from '../Crabby.svelte';
 	import { processPhoto, uploadPhoto } from '#lib/field/photos.ts';
 
@@ -36,7 +37,7 @@
 		{#if busy}<Crabby size={20} walking tone="kokum" />{:else}<Camera
 				size={20}
 				aria-hidden="true"
-			/>{/if}{m.field_photos()}
+			/>{/if}{s.field_photos()}
 		<input type="file" accept="image/*" multiple class="sr-only" onchange={pick} disabled={busy} />
 	</label>
 	{#if failed}<p class="rounded-md bg-danger-50 p-3 type-small text-text" role="alert">
