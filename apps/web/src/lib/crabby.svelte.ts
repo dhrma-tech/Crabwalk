@@ -106,6 +106,13 @@ export const crabby = $state({
 	reelNext: null as string | null
 });
 
+/** Start over: this tab's conversation only (nothing is stored server-side). The daily count stays. */
+export function newChat() {
+	if (crabby.busy) return;
+	crabby.turns = [];
+	crabby.reelNext = null;
+}
+
 const REEL_URL = /https?:\/\/(?:www\.|m\.)?(?:youtube\.com|youtu\.be|instagram\.com)\/\S+/i;
 /** A pasted reel caption: two or more hashtags. */
 const CAPTION = /#[\p{L}\p{N}_]+[\s\S]*#[\p{L}\p{N}_]+/u;

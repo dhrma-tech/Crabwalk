@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Mic from '@lucide/svelte/icons/mic';
 	import Camera from '@lucide/svelte/icons/camera';
-	import Send from '@lucide/svelte/icons/send';
+	import ArrowUp from '@lucide/svelte/icons/arrow-up';
 	import MapPin from '@lucide/svelte/icons/map-pin';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import { goto } from '$app/navigation';
@@ -96,7 +96,7 @@
 <div class="flex h-full min-h-0 flex-col" data-testid="crabby-chat">
 	<div
 		bind:this={list}
-		class="flex min-h-0 flex-1 flex-col gap-3 overflow-y-auto px-6 py-4"
+		class="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto px-4 py-4"
 		aria-live="polite"
 	>
 		{#if crabby.team.length}
@@ -138,19 +138,22 @@
 		{#each crabby.turns as t, i (i)}
 			{#if t.role === 'user'}
 				<p
-					class="max-w-[85%] self-end rounded-lg rounded-br-sm bg-kokum-50 px-3.5 py-2.5 type-body text-kokum-ink"
+					class="crabby-msg max-w-[85%] origin-bottom-right self-end rounded-[22px] rounded-br-md bg-surface-2 px-4 py-2.5 type-body text-text"
 					data-testid="bubble-user"
 				>
 					{t.content}
 				</p>
 			{:else}
-				<div class="flex max-w-[92%] items-start gap-2.5 self-start">
-					<Crabby size={30} />
+				<div class="crabby-msg flex max-w-[94%] origin-top-left items-start gap-2.5 self-start">
+					<span
+						class="flex size-9 shrink-0 items-center justify-center rounded-full bg-kokum-50 ring-1 ring-kokum-100"
+						><Crabby size={24} /></span
+					>
 					<!-- Report 2 §9.11: Crabby bubbles surface + e1; the daily limit is a friendly lagoon card. -->
 					<div
 						class={[
-							'flex min-w-0 flex-1 flex-col gap-2.5 rounded-lg rounded-tl-sm px-3.5 py-2.5',
-							t.kind === 'limit' ? 'bg-lagoon-50' : 'bg-surface shadow-e1'
+							'flex min-w-0 flex-1 flex-col gap-2.5 rounded-[22px] rounded-tl-md px-3.5 py-2.5',
+							t.kind === 'limit' ? 'bg-lagoon-50' : t.kind ? 'bg-surface-2' : 'pt-1.5'
 						]}
 						data-testid="bubble-crabby"
 					>
@@ -163,7 +166,12 @@
 							<Illustration name="lamp" class="w-28" />
 							<p class="type-body">{m.crabby_unavailable()}</p>
 						{:else}
-							<p class="type-body whitespace-pre-line">{t.content}</p>
+							<p class="type-body whitespace-pre-line">
+								{t.content}{#if crabby.busy && i === crabby.turns.length - 1}<span
+										class="crabby-caret ml-0.5 inline-block h-[1.1em] w-0.5 translate-y-[0.2em] rounded-full bg-kokum"
+										aria-hidden="true"
+									></span>{/if}
+							</p>
 						{/if}
 						{#if t.cites?.length}
 							<!-- T2-03: the listings the reply names, checked against this turn's results. -->
@@ -306,14 +314,26 @@
 			{/if}
 		{/each}
 		{#if crabby.busy}
-			<div class="flex items-center gap-2 self-start" role="status">
-				<Crabby size={30} walking /><span class="type-small text-text-2"
+			<div class="crabby-msg flex items-center gap-2.5 self-start" role="status">
+				<span
+					class="flex size-9 shrink-0 items-center justify-center rounded-full bg-kokum-50 ring-1 ring-kokum-100"
+					><Crabby size={24} walking /></span
+				>
+				<span class="crabby-shimmer type-small"
 					>{crabby.status === 'tools'
 						? m.crabby_status_tools()
 						: crabby.status === 'writing'
 							? m.crabby_status_writing()
 							: m.crabby_thinking()}</span
 				>
+				<span class="flex gap-1" aria-hidden="true">
+					{#each [0, 1, 2] as d (d)}
+						<span
+							class="crabby-dot size-1.5 rounded-full bg-kokum"
+							style:animation-delay="{d * 0.15}s"
+						></span>
+					{/each}
+				</span>
 			</div>
 		{/if}
 	</div>
@@ -334,17 +354,21 @@
 		</div>
 	{:else}
 		{#if chips.length && !crabby.turns.length}
-			<div class="flex flex-wrap gap-1.5 px-6 pb-2">
-				{#each chips as c (c)}
+			<div class="flex flex-wrap gap-1.5 px-4 pb-2">
+				{#each chips as c, n (c)}
 					<button
 						type="button"
-						class="min-h-11 rounded-full bg-surface-2 px-4 py-2 text-left type-label text-text hover:bg-surface-3"
+						style:--i={n}
+						class="enter-rise min-h-11 rounded-full border border-border bg-surface px-4 py-2 text-left type-label text-text transition-[background-color,transform] duration-(--dur-state) hover:-translate-y-0.5 hover:bg-surface-2"
 						onclick={() => ((text = c), send())}>{c}</button
 					>
 				{/each}
 			</div>
 		{/if}
-		<form onsubmit={send} class="field mx-6 flex items-end gap-1 rounded-xl p-0.5">
+		<form
+			onsubmit={send}
+			class="field mx-4 flex items-end gap-1 rounded-[26px] p-1 transition-shadow duration-(--dur-state) focus-within:shadow-[0_0_0_4px_var(--kokum-50)]"
+		>
 			<!-- Snap and ask (P12): a photo, with the typed text as its question. -->
 			<label
 				class="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-full text-text-2 hover:text-text"
@@ -398,17 +422,24 @@
 			<button
 				type="submit"
 				disabled={!text.trim() || crabby.busy}
-				class="flex size-11 shrink-0 items-center justify-center rounded-full bg-kokum text-on-kokum transition-colors duration-(--dur-state) disabled:bg-transparent disabled:text-muted"
+				class="flex size-11 shrink-0 items-center justify-center rounded-full bg-kokum text-on-kokum transition-[background-color,color,transform] duration-(--dur-state) ease-(--ease-spring) enabled:hover:scale-105 enabled:active:scale-90 disabled:bg-surface-3 disabled:text-text-2"
 				aria-label={m.crabby_send()}
 			>
-				<Send size={20} aria-hidden="true" />
+				{#if crabby.busy}
+					<span
+						class="size-5 animate-spin rounded-full border-2 border-current border-t-transparent"
+						aria-hidden="true"
+					></span>
+				{:else}
+					<ArrowUp size={20} aria-hidden="true" />
+				{/if}
 			</button>
 		</form>
-		{#if crabby.remaining != null}
-			<p class="flex min-h-11 items-center px-6 pt-1 pb-2 type-small text-text-2">
-				<span class="tabular-nums">{m.crabby_remaining({ n: crabby.remaining })}</span>
-			</p>
-		{/if}
+		<p class="px-6 pt-2 pb-3 text-center type-label text-text-2">
+			{#if crabby.remaining != null}<span class="tabular-nums"
+					>{m.crabby_remaining({ n: crabby.remaining })}{' · '}</span
+				>{/if}{m.crabby_disclaimer()}
+		</p>
 	{/if}
 </div>
 

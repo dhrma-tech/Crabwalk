@@ -44,3 +44,4 @@ Points to check first:
 - Hardening T3-03 keys `monsoon_mode`, `monsoon_mode_hint` (Discover toggle; the hint describes the order of the lists): drafts.
 - Hardening T3-04 keys `me_stamps`, `me_stamps_empty` (Me: visited stamps): drafts.
 - Hardening T3-06 key `plan_copy_trip` (button on a shared plan): draft.
+- Crabby panel restyle (owner, 2026-11-21) keys `crabby_new_chat`, `crabby_on_page` (label before the current page or place name), `crabby_disclaimer` (states how Crabby answers: check it matches the product): drafts.

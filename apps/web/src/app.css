@@ -481,6 +481,63 @@
 @utility pop {
 	animation: pop var(--dur-emph) var(--ease-spring);
 }
+/* Crabby panel (owner, 2026-11-21): messages rise in, "thinking" text shimmers, dots bounce, a gradient sweeps
+   under the header while Crabby works, a caret blinks while the answer streams. The reduced-motion rule ends them. */
+@keyframes crabby-msg {
+	from {
+		opacity: 0;
+		transform: translateY(10px) scale(0.97);
+	}
+}
+@keyframes crabby-shimmer {
+	to {
+		background-position: -200% 0;
+	}
+}
+@keyframes crabby-dot {
+	0%,
+	80%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.35;
+	}
+	40% {
+		transform: translateY(-4px);
+		opacity: 1;
+	}
+}
+@keyframes crabby-sweep {
+	to {
+		background-position: 200% 0;
+	}
+}
+@keyframes crabby-caret {
+	50% {
+		opacity: 0;
+	}
+}
+@utility crabby-msg {
+	animation: crabby-msg var(--dur-enter) var(--ease-spring-soft) both;
+}
+@utility crabby-shimmer {
+	background: linear-gradient(90deg, var(--text-2) 0%, var(--text) 45%, var(--text-2) 70%) 0 0 /
+		200% 100%;
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+	animation: crabby-shimmer var(--dur-shimmer) linear infinite;
+}
+@utility crabby-dot {
+	animation: crabby-dot 1s var(--ease-inout) infinite;
+}
+@utility crabby-sweep {
+	background: linear-gradient(90deg, var(--kokum), var(--lagoon), var(--alphonso), var(--kokum)) 0
+		0 / 200% 100%;
+	animation: crabby-sweep var(--dur-shimmer) linear infinite;
+}
+@utility crabby-caret {
+	animation: crabby-caret 0.9s steps(1) infinite;
+}
 /* Page transitions (T1-02, brief section 4.3). `data-nav` on <html> is set by the root layout per navigation.
    Top bar and phone nav swap in place; the tapped card's photo morphs into the detail hero (and back). */
 [data-vt-hero] {
