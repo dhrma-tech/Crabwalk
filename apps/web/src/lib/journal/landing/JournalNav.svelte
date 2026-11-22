@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import { NAV } from '../content/landing.ts';
 	import { tr, locale } from '../i18n.ts';
@@ -17,7 +18,7 @@
 </script>
 
 <header class={['nav', tone]}>
-	<a href="/" class="brand" aria-label={tr(NAV.home)}>
+	<a href={resolve('/')} class="brand" aria-label={tr(NAV.home)}>
 		<Crabby size={40} state="idle" follow={false} />
 		<span class="word">Crabwalk</span>
 	</a>
@@ -45,7 +46,7 @@
 				{/each}
 			</div>
 		</form>
-		<a href="/onboarding" class="j-btn signin">{tr(NAV.signIn)}</a>
+		<a href={resolve('/onboarding')} class="j-btn signin">{tr(NAV.signIn)}</a>
 		<button
 			class="burger"
 			aria-expanded={open}
@@ -53,7 +54,14 @@
 			aria-label={open ? tr(NAV.close) : tr(NAV.menu)}
 			onclick={() => (open = !open)}
 		>
-			<svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" class="j-ink" stroke-width="1.8">
+			<svg
+				width="22"
+				height="22"
+				viewBox="0 0 24 24"
+				aria-hidden="true"
+				class="j-ink"
+				stroke-width="1.8"
+			>
 				{#if open}<path d="M6 6l12 12M18 6L6 18" />{:else}<path d="M4 7h16M4 12h11M4 17h16" />{/if}
 			</svg>
 		</button>

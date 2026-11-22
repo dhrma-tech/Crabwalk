@@ -24,7 +24,7 @@ export function inview(
 		{ rootMargin: opts.margin ?? '0px 0px -15% 0px', threshold: opts.threshold ?? 0 }
 	);
 	io.observe(node);
-	return () => io.disconnect();
+	return { destroy: () => io.disconnect() };
 }
 
 /** Whether a node is on screen, kept up to date (for pausing loops). */

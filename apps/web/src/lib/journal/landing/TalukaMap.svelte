@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { reducedMotion } from '#lib/motion.ts';
 	import { inview } from '../inview.ts';
@@ -24,7 +25,11 @@
 	const RIGHT = W + 10;
 	const LABEL_DY: Record<string, number> = { 'Unhale springs': -16, 'Dhoot-Papeshwar': 16 };
 	// Taluka names sit at their centroid, nudged where a marker lands on it.
-	const NAME_D: Partial<Record<TalukaKey, [number, number]>> = { rajapur: [-20, -64], sangameshwar: [-14, -40], ratnagiri: [30, -150] };
+	const NAME_D: Partial<Record<TalukaKey, [number, number]>> = {
+		rajapur: [-20, -64],
+		sangameshwar: [-14, -40],
+		ratnagiri: [30, -150]
+	};
 	const places = MAP_PLACES.map((p, i) => {
 		const [x, y] = project(p.lon, p.lat);
 		const ly = y + (LABEL_DY[p.name.en] ?? 0);
@@ -80,12 +85,19 @@
 						<ul class="spots">
 							{#each tal.spots as s, i (i)}<li>{tr(s)}</li>{/each}
 						</ul>
-						<a href="/discover" class="explore"
-							>{tr(MAP.explore).replace('{name}', tr(tal.name))} <span aria-hidden="true">→</span></a
+						<a href={resolve('/discover')} class="explore"
+							>{tr(MAP.explore).replace('{name}', tr(tal.name))}
+							<span aria-hidden="true">→</span></a
 						>
 					</div>
 					<div class="stamp-slot">
-						<Stamp icon={tal.stamp} name={tal.name.en} deva={tal.name.mr} no={idx} caption={tr(MAP.stamp)} />
+						<Stamp
+							icon={tal.stamp}
+							name={tal.name.en}
+							deva={tal.name.mr}
+							no={idx}
+							caption={tr(MAP.stamp)}
+						/>
 					</div>
 				{/key}
 			</article>
@@ -110,14 +122,44 @@
 						<stop offset="1" stop-color="#fff" stop-opacity="0" />
 					</linearGradient>
 					<mask id="sea-mask" maskUnits="userSpaceOnUse">
-						<rect x="-200" y="-20" width="1000" height={TALUKA_GEO.height + 40} fill="url(#sea-fade)" />
+						<rect
+							x="-200"
+							y="-20"
+							width="1000"
+							height={TALUKA_GEO.height + 40}
+							fill="url(#sea-fade)"
+						/>
 					</mask>
 					<!-- watercolour: ragged edges (displacement) + uneven pigment (noise in alpha) -->
 					<filter id="wash" x="-10%" y="-10%" width="120%" height="120%">
-						<feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="4" result="n" />
-						<feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G" result="d" />
-						<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="9" result="g" />
-						<feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.25" result="ga" />
+						<feTurbulence
+							type="fractalNoise"
+							baseFrequency="0.035"
+							numOctaves="3"
+							seed="4"
+							result="n"
+						/>
+						<feDisplacementMap
+							in="SourceGraphic"
+							in2="n"
+							scale="14"
+							xChannelSelector="R"
+							yChannelSelector="G"
+							result="d"
+						/>
+						<feTurbulence
+							type="fractalNoise"
+							baseFrequency="0.9"
+							numOctaves="2"
+							seed="9"
+							result="g"
+						/>
+						<feColorMatrix
+							in="g"
+							type="matrix"
+							values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 -1.1 1.25"
+							result="ga"
+						/>
 						<feComposite in="d" in2="ga" operator="in" result="p" />
 						<feGaussianBlur in="p" stdDeviation="0.6" />
 					</filter>
@@ -146,7 +188,11 @@
 				</g>
 				<g class="washes" aria-hidden="true">
 					{#each TALUKAS as t (t.key)}
-						<path d={TALUKA_GEO.talukas[t.key].d} class={['wash', t.key === shown && 'on', t.key === selected && 'sel']} filter="url(#wash)" />
+						<path
+							d={TALUKA_GEO.talukas[t.key].d}
+							class={['wash', t.key === shown && 'on', t.key === selected && 'sel']}
+							filter="url(#wash)"
+						/>
 					{/each}
 				</g>
 				<path d={TALUKA_GEO.borders} class="borders" pathLength="1" />
@@ -156,7 +202,11 @@
 				<g class="names">
 					{#each TALUKAS as t (t.key)}
 						{@const g = TALUKA_GEO.talukas[t.key]}
-						<text x={g.cx + (NAME_D[t.key]?.[0] ?? 0)} y={g.cy + (NAME_D[t.key]?.[1] ?? 0)} class={[t.key === shown && 'on']}>{tr(t.name)}</text>
+						<text
+							x={g.cx + (NAME_D[t.key]?.[0] ?? 0)}
+							y={g.cy + (NAME_D[t.key]?.[1] ?? 0)}
+							class={[t.key === shown && 'on']}>{tr(t.name)}</text
+						>
 					{/each}
 				</g>
 
@@ -164,10 +214,27 @@
 				<g class="places">
 					{#each places as p (p.i)}
 						<g style:--i={p.i}>
-							<path d="M{p.x} {p.y} L{p.side === 'w' ? p.tx + 8 : p.tx - 8} {p.ly} L{p.tx} {p.ly}" class="leader" pathLength="1" />
-							<circle cx={p.x} cy={p.y} r="12" class="splash" style:transform-origin="{p.x}px {p.y}px" />
+							<path
+								d="M{p.x} {p.y} L{p.side === 'w' ? p.tx + 8 : p.tx - 8} {p.ly} L{p.tx} {p.ly}"
+								class="leader"
+								pathLength="1"
+							/>
+							<circle
+								cx={p.x}
+								cy={p.y}
+								r="12"
+								class="splash"
+								style:transform-origin="{p.x}px {p.y}px"
+							/>
 							<g class="marker" style:transform-origin="{p.x}px {p.y}px">
-								<circle cx={p.x} cy={p.y} r={p.main ? 8 : 6} fill="#f5efeb" stroke="#2f4156" stroke-width="1.8" />
+								<circle
+									cx={p.x}
+									cy={p.y}
+									r={p.main ? 8 : 6}
+									fill="#f5efeb"
+									stroke="#2f4156"
+									stroke-width="1.8"
+								/>
 								<circle cx={p.x} cy={p.y} r={p.main ? 3.4 : 2.2} fill="#2f4156" />
 							</g>
 							<text

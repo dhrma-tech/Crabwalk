@@ -26,7 +26,8 @@
 		{ x: 720, y: 80, below: true },
 		{ x: 960, y: 70, below: true, end: true }
 	];
-	const ROUTE_D = 'M20 70 C 90 10, 150 10, 190 60 S 300 125, 360 80 S 470 15, 540 60 S 650 130, 720 80 S 830 20, 960 70';
+	const ROUTE_D =
+		'M20 70 C 90 10, 150 10, 190 60 S 300 125, 360 80 S 470 15, 540 60 S 650 130, 720 80 S 830 20, 960 70';
 
 	onMount(() => {
 		const still = reducedMotion.current;
@@ -121,7 +122,14 @@
 			<svg viewBox="-20 0 1020 150" role="img" aria-label={tr(HERO.routeLabel)}>
 				<defs>
 					<mask id="route-reveal" maskUnits="userSpaceOnUse">
-						<path class="reveal" d={ROUTE_D} pathLength="1" fill="none" stroke="#fff" stroke-width="10" />
+						<path
+							class="reveal"
+							d={ROUTE_D}
+							pathLength="1"
+							fill="none"
+							stroke="#fff"
+							stroke-width="10"
+						/>
 					</mask>
 				</defs>
 				<path
@@ -138,7 +146,14 @@
 					<g class="stop" style:--i={i}>
 						<g class="pin" style:transform-origin="{s.x}px {s.y}px">
 							{#if s.end}
-								<circle cx={s.x} cy={s.y} r="7" fill="var(--hero-paper)" stroke="currentColor" stroke-width="2.2" />
+								<circle
+									cx={s.x}
+									cy={s.y}
+									r="7"
+									fill="var(--hero-paper)"
+									stroke="currentColor"
+									stroke-width="2.2"
+								/>
 								<circle cx={s.x} cy={s.y} r="2.4" fill="currentColor" />
 							{:else}
 								<circle cx={s.x} cy={s.y} r="4.5" fill="currentColor" />
@@ -167,13 +182,38 @@
 
 	<!-- shoreline into the paper, and the notch hanging from the sea with the scroll arrow -->
 	<svg class="shore" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
-		<path d="M0 22 C 160 6, 300 30, 470 18 S 760 2, 930 20 S 1240 34, 1440 14 L1440 40 L0 40 Z" fill="var(--beige)" />
-		<path d="M0 22 C 160 6, 300 30, 470 18 S 760 2, 930 20 S 1240 34, 1440 14" fill="none" stroke="#f5efeb" stroke-width="3" opacity=".7" transform="translate(0 -5)" />
+		<path
+			d="M0 22 C 160 6, 300 30, 470 18 S 760 2, 930 20 S 1240 34, 1440 14 L1440 40 L0 40 Z"
+			fill="var(--beige)"
+		/>
+		<path
+			d="M0 22 C 160 6, 300 30, 470 18 S 760 2, 930 20 S 1240 34, 1440 14"
+			fill="none"
+			stroke="#f5efeb"
+			stroke-width="3"
+			opacity=".7"
+			transform="translate(0 -5)"
+		/>
 	</svg>
 	<div class="notch">
-		<svg viewBox="0 0 240 48" aria-hidden="true"><path d="M0 0 C 44 0, 56 4, 72 20 C 88 38, 100 46, 120 46 C 140 46, 152 38, 168 20 C 184 4, 196 0, 240 0 Z" fill={sky.sea} /></svg>
+		<svg viewBox="0 0 240 48" aria-hidden="true"
+			><path
+				d="M0 0 C 44 0, 56 4, 72 20 C 88 38, 100 46, 120 46 C 140 46, 152 38, 168 20 C 184 4, 196 0, 240 0 Z"
+				fill={sky.sea}
+			/></svg
+		>
 		<a href="#talukas" class={['arrow', !scrolled && 'pulse']} aria-label={tr(HERO.scroll)}>
-			<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+			<svg
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2.2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg
+			>
 		</a>
 	</div>
 </section>

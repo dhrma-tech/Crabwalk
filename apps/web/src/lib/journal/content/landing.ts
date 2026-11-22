@@ -21,7 +21,11 @@ export const NAV = {
 };
 
 export const HERO = {
-	eyebrow: t('The Konkan coast, verified on foot', 'कोंकण तट, पैदल जाँचा हुआ', 'कोकण किनारा, पायी तपासलेला'),
+	eyebrow: t(
+		'The Konkan coast, verified on foot',
+		'कोंकण तट, पैदल जाँचा हुआ',
+		'कोकण किनारा, पायी तपासलेला'
+	),
 	deva: 'रत्नागिरी',
 	title: 'Ratnagiri',
 	sub: t(
@@ -29,7 +33,11 @@ export const HERO = {
 		'समुद्री किले, लाल मिट्टी की चट्टानें और वे रसोइयाँ जिन पर स्थानीय लोग भरोसा करते हैं। हर जगह हमारी टीम ने खुद देखी, और उसे वैसा ही आँका जैसा वह सच में लगती है।',
 		'जलदुर्ग, लाल मातीचे कडे आणि स्थानिक ज्यांची शपथ घेतात अशी स्वयंपाकघरं. प्रत्येक ठिकाण आमच्या टीमने पायी पाहिलं, आणि ते खरंच कसं वाटतं त्यावरून मत दिलं.'
 	),
-	routeLabel: t('Coastal route from Jaigad to Pawas', 'जयगढ़ से पावस तक तटीय रास्ता', 'जयगड ते पावस किनारी मार्ग'),
+	routeLabel: t(
+		'Coastal route from Jaigad to Pawas',
+		'जयगढ़ से पावस तक तटीय रास्ता',
+		'जयगड ते पावस किनारी मार्ग'
+	),
 	route: [
 		t('Jaigad', 'जयगढ़', 'जयगड'),
 		t('Ganpatipule', 'गणपतिपुळे', 'गणपतीपुळे'),
@@ -38,7 +46,11 @@ export const HERO = {
 		t('Bhatye', 'भाट्ये', 'भाट्ये'),
 		t('Pawas', 'पावस', 'पावस')
 	],
-	tag: t('9 talukas · 3 languages · 1 coast', '9 तालुके · 3 भाषाएँ · 1 तट', '9 तालुके · 3 भाषा · 1 किनारा'),
+	tag: t(
+		'9 talukas · 3 languages · 1 coast',
+		'9 तालुके · 3 भाषाएँ · 1 तट',
+		'9 तालुके · 3 भाषा · 1 किनारा'
+	),
 	photo: t(
 		'Photo slot · Aare Ware coastal road at golden hour',
 		'फ़ोटो स्लॉट · सुनहरे समय में आरे वारे तटीय सड़क',
@@ -61,7 +73,11 @@ export const MAP = {
 		'सह्याद्री आणि अरबी समुद्राच्या मधले नऊ तालुके. एक निवडा आणि आमच्या टीमने तिथे काय फिरून, नकाशावर नोंदवून तपासलंय ते पाहा.'
 	),
 	pick: t('Choose a taluka', 'तालुका चुनें', 'तालुका निवडा'),
-	explore: t('Explore {name} · [n] verified places', '{name} देखें · [n] जाँची हुई जगहें', '{name} पाहा · [n] तपासलेली ठिकाणं'),
+	explore: t(
+		'Explore {name} · [n] verified places',
+		'{name} देखें · [n] जाँची हुई जगहें',
+		'{name} पाहा · [n] तपासलेली ठिकाणं'
+	),
 	aria: t(
 		'Map of Ratnagiri district and its nine talukas, with {name} highlighted',
 		'रत्नागिरी ज़िले और उसके नौ तालुकों का नक्शा, {name} चिह्नित',
@@ -69,13 +85,21 @@ export const MAP = {
 	),
 	sea: t('Arabian Sea', 'अरब सागर', 'अरबी समुद्र'),
 	north: 'N',
-	source: t('Boundaries © OpenStreetMap contributors', 'सीमाएँ © OpenStreetMap योगदानकर्ता', 'सीमा © OpenStreetMap योगदानकर्ते'),
+	source: t(
+		'Boundaries © OpenStreetMap contributors',
+		'सीमाएँ © OpenStreetMap योगदानकर्ता',
+		'सीमा © OpenStreetMap योगदानकर्ते'
+	),
 	stamp: t('Verified on foot', 'पैदल जाँचा', 'पायी तपासलं')
 };
 
 export const CATS = {
 	eyebrow: t('Discover', 'खोजें', 'शोधा'),
-	title: t('Eleven ways into the coast', 'तट तक पहुँचने के ग्यारह रास्ते', 'किनाऱ्याकडे जाण्याच्या अकरा वाटा'),
+	title: t(
+		'Eleven ways into the coast',
+		'तट तक पहुँचने के ग्यारह रास्ते',
+		'किनाऱ्याकडे जाण्याच्या अकरा वाटा'
+	),
 	body: t(
 		'Beaches to orchards, each with its story, timings, entry fee, tide window and monsoon status.',
 		'समुद्र तट से बाग़ों तक, हर जगह की कहानी, समय, प्रवेश शुल्क, ज्वार का समय और मानसून की स्थिति के साथ।',
@@ -132,7 +156,11 @@ export const WHY = {
 	open: t('Open the map', 'नक्शा खोलें', 'नकाशा उघडा'),
 	pack: t('Get offline pack', 'ऑफ़लाइन पैक लें', 'ऑफलाइन पॅक घ्या'),
 	search: t('Search the map', 'नक्शे में खोजें', 'नकाशात शोधा'),
-	offlineChip: t('Ratnagiri taluka · offline', 'रत्नागिरी तालुका · ऑफ़लाइन', 'रत्नागिरी तालुका · ऑफलाइन'),
+	offlineChip: t(
+		'Ratnagiri taluka · offline',
+		'रत्नागिरी तालुका · ऑफ़लाइन',
+		'रत्नागिरी तालुका · ऑफलाइन'
+	),
 	legend: {
 		places: t('Places', 'जगहें', 'ठिकाणं'),
 		stays: t('Stays', 'ठहराव', 'मुक्काम'),
@@ -153,7 +181,11 @@ export const WHY = {
 		'मैं यहीं हूँ। नक्शा, पिन और आपका रास्ता फ़ोन में है।',
 		'मी इथेच आहे. नकाशा, पिन आणि तुमचा मार्ग फोनमध्येच आहे.'
 	),
-	demoNote: t('A demo: your real network is not touched.', 'यह डेमो है: आपका असली नेटवर्क नहीं बदलता।', 'हा डेमो आहे: तुमचं खरं नेटवर्क बदलत नाही.'),
+	demoNote: t(
+		'A demo: your real network is not touched.',
+		'यह डेमो है: आपका असली नेटवर्क नहीं बदलता।',
+		'हा डेमो आहे: तुमचं खरं नेटवर्क बदलत नाही.'
+	),
 	kinds: [
 		{
 			key: 'hotels',
@@ -190,7 +222,11 @@ export const WHY = {
 
 export const CRABBY = {
 	eyebrow: t('Meet Crabby', 'क्रैबी से मिलिए', 'क्रॅबीला भेटा'),
-	title: t('Say hello to your Konkan local', 'अपने कोंकण के स्थानीय दोस्त से मिलिए', 'तुमच्या कोकणातल्या स्थानिक मित्राला नमस्कार करा'),
+	title: t(
+		'Say hello to your Konkan local',
+		'अपने कोंकण के स्थानीय दोस्त से मिलिए',
+		'तुमच्या कोकणातल्या स्थानिक मित्राला नमस्कार करा'
+	),
 	body: t(
 		'Crabby is the AI guide on every page of Crabwalk. Ask about a beach, a bus, a thali or a tide, in the language you think in.',
 		'क्रैबी, क्रैबवॉक के हर पेज पर मौजूद AI गाइड है। किसी समुद्र तट, बस, थाली या ज्वार के बारे में उसी भाषा में पूछें जिसमें आप सोचते हैं।',
@@ -244,13 +280,25 @@ export const CRABBY = {
 		}
 	],
 	chat: t('Chat with Crabby', 'क्रैबी से बात करें', 'क्रॅबीशी बोला'),
-	how: t('See how it plans a trip', 'देखें यह यात्रा कैसे प्लान करता है', 'तो सहल कशी आखतो ते पाहा'),
-	stageLabel: t('Crabby, the Crabwalk fiddler crab, waving', 'क्रैबी, क्रैबवॉक का फ़िडलर केकड़ा, हाथ हिलाते हुए', 'क्रॅबी, क्रॅबवॉकचा फिडलर खेकडा, हात हलवताना')
+	how: t(
+		'See how it plans a trip',
+		'देखें यह यात्रा कैसे प्लान करता है',
+		'तो सहल कशी आखतो ते पाहा'
+	),
+	stageLabel: t(
+		'Crabby, the Crabwalk fiddler crab, waving',
+		'क्रैबी, क्रैबवॉक का फ़िडलर केकड़ा, हाथ हिलाते हुए',
+		'क्रॅबी, क्रॅबवॉकचा फिडलर खेकडा, हात हलवताना'
+	)
 };
 
 export const PLANNER = {
 	eyebrow: t('Trip planner', 'ट्रिप प्लानर', 'सहल नियोजक'),
-	title: t('Tell it your trip. Get a plan with reasons.', 'अपनी यात्रा बताइए। वजहों के साथ प्लान पाइए।', 'तुमची सहल सांगा. कारणांसह प्लॅन मिळवा.'),
+	title: t(
+		'Tell it your trip. Get a plan with reasons.',
+		'अपनी यात्रा बताइए। वजहों के साथ प्लान पाइए।',
+		'तुमची सहल सांगा. कारणांसह प्लॅन मिळवा.'
+	),
 	body: t(
 		"Real Konkan road times, opening hours, tides and weather go in. A day-by-day plan comes out, and every stop says why it is there. If Crabby doesn't know, it says so.",
 		'असली कोंकण सड़क समय, खुलने के घंटे, ज्वार और मौसम अंदर जाते हैं। दिन-ब-दिन प्लान बाहर आता है, और हर पड़ाव बताता है कि वह क्यों है। क्रैबी को न पता हो तो वह साफ़ कहता है।',
@@ -265,16 +313,28 @@ export const PLANNER = {
 		t('Forts trail', 'किलों की राह', 'किल्ल्यांची वाट'),
 		t('Family weekend', 'परिवार का वीकेंड', 'कुटुंबाचा वीकेंड')
 	],
-	ask: t('3 days, family with kids, veg, low budget', '3 दिन, बच्चों के साथ परिवार, शाकाहारी, कम बजट', '3 दिवस, मुलांसह कुटुंब, शाकाहारी, कमी बजेट'),
+	ask: t(
+		'3 days, family with kids, veg, low budget',
+		'3 दिन, बच्चों के साथ परिवार, शाकाहारी, कम बजट',
+		'3 दिवस, मुलांसह कुटुंब, शाकाहारी, कमी बजेट'
+	),
 	days: t('Days', 'दिन', 'दिवस'),
-	thinking: t('Crabby is checking road times and tides', 'क्रैबी सड़क समय और ज्वार देख रहा है', 'क्रॅबी रस्ते-वेळ आणि भरती पाहतोय'),
+	thinking: t(
+		'Crabby is checking road times and tides',
+		'क्रैबी सड़क समय और ज्वार देख रहा है',
+		'क्रॅबी रस्ते-वेळ आणि भरती पाहतोय'
+	),
 	estimate: t('Estimated for 4 people', '4 लोगों के लिए अनुमान', '4 जणांसाठी अंदाज'),
 	total: '₹[total]',
 	apply: t('Apply plan', 'प्लान लागू करें', 'प्लॅन लागू करा'),
 	discard: t('Discard', 'हटाएँ', 'रद्द करा'),
 	replay: t('Replay', 'फिर से चलाएँ', 'पुन्हा चालवा'),
 	demo: t('Demo plan · sample stops', 'डेमो प्लान · नमूना पड़ाव', 'डेमो प्लॅन · नमुना थांबे'),
-	mapLabel: t('Route of the day on a small map', 'छोटे नक्शे पर दिन का रास्ता', 'छोट्या नकाशावर दिवसाचा मार्ग')
+	mapLabel: t(
+		'Route of the day on a small map',
+		'छोटे नक्शे पर दिन का रास्ता',
+		'छोट्या नकाशावर दिवसाचा मार्ग'
+	)
 };
 
 /** D1 is the reference's plan; D2/D3 reuse reference places with plain reasons (PLAN.md §5.3, demo copy).
@@ -283,28 +343,132 @@ export const DAYS = [
 	{
 		title: t('Day 1 · Ratnagiri town', 'दिन 1 · रत्नागिरी शहर', 'दिवस 1 · रत्नागिरी शहर'),
 		stops: [
-			{ time: '08:30', name: t('Ratnadurg Fort', 'रत्नदुर्ग किला', 'रत्नदुर्ग किल्ला'), why: t('Cool morning climb, clear sea view', 'सुबह की ठंडी चढ़ाई, साफ़ समुद्री नज़ारा', 'सकाळची थंड चढण, स्वच्छ समुद्रदृश्य'), x: 22, y: 30 },
-			{ time: '11:00', name: t('Thibaw Palace', 'थीबा पैलेस', 'थिबा राजवाडा'), why: t('Indoors through the midday heat', 'दोपहर की गर्मी में अंदर', 'दुपारच्या उन्हात आत'), x: 48, y: 44 },
-			{ time: '13:00', name: t('Home-style veg thali', 'घर जैसी शाकाहारी थाली', 'घरगुती शाकाहारी थाळी'), why: t('Veg, kid-friendly, within budget', 'शाकाहारी, बच्चों के लिए ठीक, बजट में', 'शाकाहारी, मुलांना योग्य, बजेटमध्ये'), x: 62, y: 62 },
-			{ time: '16:00', name: t('Ganpatipule', 'गणपतिपुळे', 'गणपतीपुळे'), why: t('Low crowd + sunset', 'कम भीड़ + सूर्यास्त', 'कमी गर्दी + सूर्यास्त'), x: 30, y: 82 }
+			{
+				time: '08:30',
+				name: t('Ratnadurg Fort', 'रत्नदुर्ग किला', 'रत्नदुर्ग किल्ला'),
+				why: t(
+					'Cool morning climb, clear sea view',
+					'सुबह की ठंडी चढ़ाई, साफ़ समुद्री नज़ारा',
+					'सकाळची थंड चढण, स्वच्छ समुद्रदृश्य'
+				),
+				x: 22,
+				y: 30
+			},
+			{
+				time: '11:00',
+				name: t('Thibaw Palace', 'थीबा पैलेस', 'थिबा राजवाडा'),
+				why: t('Indoors through the midday heat', 'दोपहर की गर्मी में अंदर', 'दुपारच्या उन्हात आत'),
+				x: 48,
+				y: 44
+			},
+			{
+				time: '13:00',
+				name: t('Home-style veg thali', 'घर जैसी शाकाहारी थाली', 'घरगुती शाकाहारी थाळी'),
+				why: t(
+					'Veg, kid-friendly, within budget',
+					'शाकाहारी, बच्चों के लिए ठीक, बजट में',
+					'शाकाहारी, मुलांना योग्य, बजेटमध्ये'
+				),
+				x: 62,
+				y: 62
+			},
+			{
+				time: '16:00',
+				name: t('Ganpatipule', 'गणपतिपुळे', 'गणपतीपुळे'),
+				why: t('Low crowd + sunset', 'कम भीड़ + सूर्यास्त', 'कमी गर्दी + सूर्यास्त'),
+				x: 30,
+				y: 82
+			}
 		]
 	},
 	{
 		title: t('Day 2 · North coast', 'दिन 2 · उत्तरी तट', 'दिवस 2 · उत्तर किनारा'),
 		stops: [
-			{ time: '08:00', name: t('Jaigad Fort', 'जयगढ़ किला', 'जयगड किल्ला'), why: t('Walls in the shade before ten', 'दस बजे से पहले छाँव में दीवारें', 'दहाच्या आधी सावलीत तटबंदी'), x: 26, y: 20 },
-			{ time: '10:30', name: t('Jaigad lighthouse', 'जयगढ़ लाइटहाउस', 'जयगड दीपगृह'), why: t('Short walk, kids love the view', 'छोटी सैर, बच्चों को नज़ारा पसंद', 'छोटी चाल, मुलांना दृश्य आवडतं'), x: 16, y: 34 },
-			{ time: '13:00', name: t('Village lunch at Ganpatipule', 'गणपतिपुळे में गाँव का खाना', 'गणपतीपुळ्यात गावरान जेवण'), why: t('Veg, sits on your way back', 'शाकाहारी, लौटते रास्ते पर', 'शाकाहारी, परतीच्या वाटेवर'), x: 40, y: 58 },
-			{ time: '16:30', name: t('Aare Ware viewpoint', 'आरे वारे व्यू पॉइंट', 'आरे वारे व्ह्यू पॉइंट'), why: t('Two beaches in one frame', 'एक फ़्रेम में दो तट', 'एका फ्रेममध्ये दोन किनारे'), x: 56, y: 78 }
+			{
+				time: '08:00',
+				name: t('Jaigad Fort', 'जयगढ़ किला', 'जयगड किल्ला'),
+				why: t(
+					'Walls in the shade before ten',
+					'दस बजे से पहले छाँव में दीवारें',
+					'दहाच्या आधी सावलीत तटबंदी'
+				),
+				x: 26,
+				y: 20
+			},
+			{
+				time: '10:30',
+				name: t('Jaigad lighthouse', 'जयगढ़ लाइटहाउस', 'जयगड दीपगृह'),
+				why: t(
+					'Short walk, kids love the view',
+					'छोटी सैर, बच्चों को नज़ारा पसंद',
+					'छोटी चाल, मुलांना दृश्य आवडतं'
+				),
+				x: 16,
+				y: 34
+			},
+			{
+				time: '13:00',
+				name: t(
+					'Village lunch at Ganpatipule',
+					'गणपतिपुळे में गाँव का खाना',
+					'गणपतीपुळ्यात गावरान जेवण'
+				),
+				why: t(
+					'Veg, sits on your way back',
+					'शाकाहारी, लौटते रास्ते पर',
+					'शाकाहारी, परतीच्या वाटेवर'
+				),
+				x: 40,
+				y: 58
+			},
+			{
+				time: '16:30',
+				name: t('Aare Ware viewpoint', 'आरे वारे व्यू पॉइंट', 'आरे वारे व्ह्यू पॉइंट'),
+				why: t('Two beaches in one frame', 'एक फ़्रेम में दो तट', 'एका फ्रेममध्ये दोन किनारे'),
+				x: 56,
+				y: 78
+			}
 		]
 	},
 	{
 		title: t('Day 3 · South to Pawas', 'दिन 3 · दक्षिण में पावस', 'दिवस 3 · दक्षिणेला पावस'),
 		stops: [
-			{ time: '08:30', name: t('Bhatye beach', 'भाट्ये तट', 'भाट्ये किनारा'), why: t('Calm water, good for a paddle', 'शांत पानी, पैर भिगोने लायक', 'शांत पाणी, पाय भिजवायला छान'), x: 30, y: 24 },
-			{ time: '10:30', name: t('Pawas', 'पावस', 'पावस'), why: t('Quiet village, shaded lanes', 'शांत गाँव, छायादार गलियाँ', 'शांत गाव, सावलीच्या वाटा'), x: 52, y: 46 },
-			{ time: '13:00', name: t('Konkani thali', 'कोंकणी थाली', 'कोकणी थाळी'), why: t('Veg plates, low budget', 'शाकाहारी थाली, कम बजट', 'शाकाहारी थाळी, कमी बजेट'), x: 64, y: 64 },
-			{ time: '15:30', name: t('Drive home', 'घर वापसी', 'घरी परत'), why: t('Leaves time before dark', 'अंधेरे से पहले समय बचता है', 'अंधार पडण्याआधी वेळ उरतो'), x: 78, y: 84 }
+			{
+				time: '08:30',
+				name: t('Bhatye beach', 'भाट्ये तट', 'भाट्ये किनारा'),
+				why: t(
+					'Calm water, good for a paddle',
+					'शांत पानी, पैर भिगोने लायक',
+					'शांत पाणी, पाय भिजवायला छान'
+				),
+				x: 30,
+				y: 24
+			},
+			{
+				time: '10:30',
+				name: t('Pawas', 'पावस', 'पावस'),
+				why: t(
+					'Quiet village, shaded lanes',
+					'शांत गाँव, छायादार गलियाँ',
+					'शांत गाव, सावलीच्या वाटा'
+				),
+				x: 52,
+				y: 46
+			},
+			{
+				time: '13:00',
+				name: t('Konkani thali', 'कोंकणी थाली', 'कोकणी थाळी'),
+				why: t('Veg plates, low budget', 'शाकाहारी थाली, कम बजट', 'शाकाहारी थाळी, कमी बजेट'),
+				x: 64,
+				y: 64
+			},
+			{
+				time: '15:30',
+				name: t('Drive home', 'घर वापसी', 'घरी परत'),
+				why: t('Leaves time before dark', 'अंधेरे से पहले समय बचता है', 'अंधार पडण्याआधी वेळ उरतो'),
+				x: 78,
+				y: 84
+			}
 		]
 	}
 ];
@@ -323,8 +487,16 @@ export const VERDICT = {
 	who: t('Who is travelling', 'कौन यात्रा कर रहा है', 'कोण प्रवास करतंय'),
 	of: t('[%] of [n] {group} votes', '[n] {group} वोटों में [%]', '[n] {group} मतांपैकी [%]'),
 	read: t('Read traveller verdicts', 'यात्रियों के फ़ैसले पढ़ें', 'प्रवाशांचे निकाल वाचा'),
-	featured: t('Velneshwar · family trip', 'वेलणेश्वर · परिवार की यात्रा', 'वेळणेश्वर · कुटुंबाची सहल'),
-	wall: t('Illustrated travellers and their one-word verdicts', 'चित्रित यात्री और उनके एक-शब्द फ़ैसले', 'रेखाटलेले प्रवासी आणि त्यांचे एका शब्दातले निकाल'),
+	featured: t(
+		'Velneshwar · family trip',
+		'वेलणेश्वर · परिवार की यात्रा',
+		'वेळणेश्वर · कुटुंबाची सहल'
+	),
+	wall: t(
+		'Illustrated travellers and their one-word verdicts',
+		'चित्रित यात्री और उनके एक-शब्द फ़ैसले',
+		'रेखाटलेले प्रवासी आणि त्यांचे एका शब्दातले निकाल'
+	),
 	pause: t('Pause the wall', 'दीवार रोकें', 'भिंत थांबवा'),
 	play: t('Play the wall', 'दीवार चलाएँ', 'भिंत चालू करा'),
 	groups: [
@@ -364,7 +536,11 @@ export const CLOSING = {
 		'ब्राउझर मेनूमध्ये: होम स्क्रीनवर जोडा.'
 	),
 	watermark: 'कोकण',
-	tagline: t('Ratnagiri, verified on foot. Made in the Konkan.', 'रत्नागिरी, पैदल जाँचा हुआ। कोंकण में बना।', 'रत्नागिरी, पायी तपासलेलं. कोकणात बनवलेलं.'),
+	tagline: t(
+		'Ratnagiri, verified on foot. Made in the Konkan.',
+		'रत्नागिरी, पैदल जाँचा हुआ। कोंकण में बना।',
+		'रत्नागिरी, पायी तपासलेलं. कोकणात बनवलेलं.'
+	),
 	footer: t('Footer', 'फ़ुटर', 'तळटीप'),
 	cols: [
 		{
@@ -387,8 +563,14 @@ export const CLOSING = {
 		{
 			title: t('For hosts', 'मेज़बानों के लिए', 'यजमानांसाठी'),
 			links: [
-				{ label: t('Claim your listing', 'अपनी लिस्टिंग का दावा करें', 'तुमची नोंद मिळवा'), href: '/owner' },
-				{ label: t('Sponsor a plaque', 'एक पट्टिका प्रायोजित करें', 'एक फलक प्रायोजित करा'), href: '/owner' },
+				{
+					label: t('Claim your listing', 'अपनी लिस्टिंग का दावा करें', 'तुमची नोंद मिळवा'),
+					href: '/owner'
+				},
+				{
+					label: t('Sponsor a plaque', 'एक पट्टिका प्रायोजित करें', 'एक फलक प्रायोजित करा'),
+					href: '/owner'
+				},
 				{ label: t('Report a problem', 'समस्या बताएँ', 'समस्या कळवा'), href: '/discover' }
 			]
 		}

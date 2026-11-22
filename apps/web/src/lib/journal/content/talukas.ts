@@ -17,7 +17,10 @@ export type Taluka = { key: TalukaKey; name: L; desc: L; spots: L[]; stamp: stri
 
 const t = (en: string, hi: string, mr: string): L => ({ en, hi, mr });
 
-export const DISTRICT = { name: t('Ratnagiri', 'रत्नागिरी', 'रत्नागिरी'), defaultTaluka: 'ratnagiri' as TalukaKey };
+export const DISTRICT = {
+	name: t('Ratnagiri', 'रत्नागिरी', 'रत्नागिरी'),
+	defaultTaluka: 'ratnagiri' as TalukaKey
+};
 
 export const TALUKAS: Taluka[] = [
 	{
@@ -28,7 +31,10 @@ export const TALUKAS: Taluka[] = [
 			'शांत उत्तरी छोर, जहाँ हर वसंत में ऑलिव रिडले कछुए अंडे देते हैं।',
 			'शांत उत्तरेकडचं टोक, जिथे दर वसंतात ऑलिव्ह रिडले कासवं अंडी घालतात.'
 		),
-		spots: [t('Velas turtle beach', 'वेलास कछुआ तट', 'वेळास कासव किनारा'), t('Bankot fort', 'बाणकोट किला', 'बाणकोट किल्ला')],
+		spots: [
+			t('Velas turtle beach', 'वेलास कछुआ तट', 'वेळास कासव किनारा'),
+			t('Bankot fort', 'बाणकोट किला', 'बाणकोट किल्ला')
+		],
 		stamp: 'turtle'
 	},
 	{
@@ -55,7 +61,10 @@ export const TALUKAS: Taluka[] = [
 			'सह्याद्री के किनारे घाट की सड़कें और पहाड़ी किले।',
 			'सह्याद्रीच्या कडेला घाटरस्ते आणि डोंगरी किल्ले.'
 		),
-		spots: [t('Rasalgad fort', 'रसालगढ़ किला', 'रसाळगड किल्ला'), t('Ghat viewpoints', 'घाट व्यू पॉइंट', 'घाटातले व्ह्यू पॉइंट')],
+		spots: [
+			t('Rasalgad fort', 'रसालगढ़ किला', 'रसाळगड किल्ला'),
+			t('Ghat viewpoints', 'घाट व्यू पॉइंट', 'घाटातले व्ह्यू पॉइंट')
+		],
 		stamp: 'ghat'
 	},
 	{
@@ -66,7 +75,10 @@ export const TALUKAS: Taluka[] = [
 			'वाशिष्ठी नदी पर बसा शहर, घाटों का प्रवेश द्वार।',
 			'वाशिष्ठीच्या काठचं गाव, घाटांचं प्रवेशद्वार.'
 		),
-		spots: [t('Parshuram temple', 'परशुराम मंदिर', 'परशुराम मंदिर'), t('Vashishti river', 'वाशिष्ठी नदी', 'वाशिष्ठी नदी')],
+		spots: [
+			t('Parshuram temple', 'परशुराम मंदिर', 'परशुराम मंदिर'),
+			t('Vashishti river', 'वाशिष्ठी नदी', 'वाशिष्ठी नदी')
+		],
 		stamp: 'river'
 	},
 	{
@@ -77,7 +89,11 @@ export const TALUKAS: Taluka[] = [
 			'साफ़, शांत तट और पुराने तटीय मंदिर।',
 			'स्वच्छ, शांत किनारे आणि जुनी किनारी मंदिरं.'
 		),
-		spots: [t('Guhagar beach', 'गुहागर तट', 'गुहागर किनारा'), t('Velneshwar', 'वेलणेश्वर', 'वेळणेश्वर'), t('Hedvi', 'हेदवी', 'हेदवी')],
+		spots: [
+			t('Guhagar beach', 'गुहागर तट', 'गुहागर किनारा'),
+			t('Velneshwar', 'वेलणेश्वर', 'वेळणेश्वर'),
+			t('Hedvi', 'हेदवी', 'हेदवी')
+		],
 		stamp: 'temple'
 	},
 	{
@@ -119,7 +135,10 @@ export const TALUKAS: Taluka[] = [
 			'भीतरी गाँव और पठार, समुद्र तट की भीड़ से दूर।',
 			'आतली गावं आणि सडे, किनाऱ्यावरच्या गर्दीपासून दूर.'
 		),
-		spots: [t('Village trails', 'गाँव की पगडंडियाँ', 'गावातल्या पायवाटा'), t('Orchard stays', 'बाग़ में ठहराव', 'बागेतले मुक्काम')],
+		spots: [
+			t('Village trails', 'गाँव की पगडंडियाँ', 'गावातल्या पायवाटा'),
+			t('Orchard stays', 'बाग़ में ठहराव', 'बागेतले मुक्काम')
+		],
 		stamp: 'mango'
 	},
 	{
@@ -140,17 +159,34 @@ export const TALUKAS: Taluka[] = [
 
 /** The 12 labelled places on the map. Coordinates: the repo's own OSM-sourced place data (data/places/*.yaml);
  *  Unhale and Ratnagiri city are town centres. `side` = which margin the leader line runs to. */
-export const MAP_PLACES: { name: L; lon: number; lat: number; side: 'w' | 'e'; main?: boolean }[] = [
-	{ name: t('Velas', 'वेलास', 'वेळास'), lon: 73.0314, lat: 17.9565, side: 'w' },
-	{ name: t('Suvarnadurg', 'सुवर्णदुर्ग', 'सुवर्णदुर्ग'), lon: 73.0845, lat: 17.8169, side: 'w' },
-	{ name: t('Rasalgad', 'रसालगढ़', 'रसाळगड'), lon: 73.5121, lat: 17.7645, side: 'e' },
-	{ name: t('Parshuram', 'परशुराम', 'परशुराम'), lon: 73.5049, lat: 17.5557, side: 'e' },
-	{ name: t('Velneshwar', 'वेलणेश्वर', 'वेळणेश्वर'), lon: 73.211, lat: 17.3786, side: 'w' },
-	{ name: t('Jaigad Fort', 'जयगढ़ किला', 'जयगड किल्ला'), lon: 73.2213, lat: 17.3011, side: 'w' },
-	{ name: t('Ganpatipule', 'गणपतिपुळे', 'गणपतीपुळे'), lon: 73.2653, lat: 17.1469, side: 'w' },
-	{ name: t('Marleshwar', 'मार्लेश्वर', 'मार्लेश्वर'), lon: 73.736, lat: 17.0745, side: 'e' },
-	{ name: t('Ratnagiri city', 'रत्नागिरी शहर', 'रत्नागिरी शहर'), lon: 73.3, lat: 16.99, side: 'w', main: true },
-	{ name: t('Pawas', 'पावस', 'पावस'), lon: 73.3288, lat: 16.8664, side: 'w' },
-	{ name: t('Unhale springs', 'उन्हाळे झरने', 'उन्हाळे झरे'), lon: 73.533, lat: 16.668, side: 'e' },
-	{ name: t('Dhoot-Papeshwar', 'धूतपापेश्वर', 'धूतपापेश्वर'), lon: 73.4982, lat: 16.6489, side: 'e' }
-];
+export const MAP_PLACES: { name: L; lon: number; lat: number; side: 'w' | 'e'; main?: boolean }[] =
+	[
+		{ name: t('Velas', 'वेलास', 'वेळास'), lon: 73.0314, lat: 17.9565, side: 'w' },
+		{ name: t('Suvarnadurg', 'सुवर्णदुर्ग', 'सुवर्णदुर्ग'), lon: 73.0845, lat: 17.8169, side: 'w' },
+		{ name: t('Rasalgad', 'रसालगढ़', 'रसाळगड'), lon: 73.5121, lat: 17.7645, side: 'e' },
+		{ name: t('Parshuram', 'परशुराम', 'परशुराम'), lon: 73.5049, lat: 17.5557, side: 'e' },
+		{ name: t('Velneshwar', 'वेलणेश्वर', 'वेळणेश्वर'), lon: 73.211, lat: 17.3786, side: 'w' },
+		{ name: t('Jaigad Fort', 'जयगढ़ किला', 'जयगड किल्ला'), lon: 73.2213, lat: 17.3011, side: 'w' },
+		{ name: t('Ganpatipule', 'गणपतिपुळे', 'गणपतीपुळे'), lon: 73.2653, lat: 17.1469, side: 'w' },
+		{ name: t('Marleshwar', 'मार्लेश्वर', 'मार्लेश्वर'), lon: 73.736, lat: 17.0745, side: 'e' },
+		{
+			name: t('Ratnagiri city', 'रत्नागिरी शहर', 'रत्नागिरी शहर'),
+			lon: 73.3,
+			lat: 16.99,
+			side: 'w',
+			main: true
+		},
+		{ name: t('Pawas', 'पावस', 'पावस'), lon: 73.3288, lat: 16.8664, side: 'w' },
+		{
+			name: t('Unhale springs', 'उन्हाळे झरने', 'उन्हाळे झरे'),
+			lon: 73.533,
+			lat: 16.668,
+			side: 'e'
+		},
+		{
+			name: t('Dhoot-Papeshwar', 'धूतपापेश्वर', 'धूतपापेश्वर'),
+			lon: 73.4982,
+			lat: 16.6489,
+			side: 'e'
+		}
+	];

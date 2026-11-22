@@ -3,8 +3,13 @@
 
 	// Postage stamp per taluka (brief §5 "collectible details"): perforated edge, double frame, ink icon,
 	// Devanagari name and a serial. Re-keyed by the parent so it "stamps" onto the card on change.
-	let { icon, name, deva, no, caption }: { icon: string; name: string; deva: string; no: number; caption: string } =
-		$props();
+	let {
+		icon,
+		name,
+		deva,
+		no,
+		caption
+	}: { icon: string; name: string; deva: string; no: number; caption: string } = $props();
 </script>
 
 <div class="stamp" aria-hidden="true">
@@ -43,8 +48,7 @@
 		outline: 1px solid var(--navy);
 		outline-offset: -5px;
 		background:
-			radial-gradient(circle at 70% 20%, rgb(181 70 43 / 0.12), transparent 60%),
-			var(--sky);
+			radial-gradient(circle at 70% 20%, rgb(181 70 43 / 0.12), transparent 60%), var(--sky);
 		color: var(--navy);
 	}
 	.no {
