@@ -51,7 +51,7 @@ test('card photo morphs into the hero; back reverses', async ({ page }) => {
 		.toBe(0);
 });
 
-for (const path of ['/', '/place/seed-fort-1'])
+for (const path of ['/discover', '/place/seed-fort-1'])
 	test(`no layout shift while ${path} loads (CLS 0, phone)`, async ({ page }) => {
 		await page.setViewportSize({ width: 390, height: 844 });
 		await page.goto(path);

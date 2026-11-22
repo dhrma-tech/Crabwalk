@@ -7,7 +7,7 @@ import { z } from 'zod';
 
 /** Pages Crabby may open. */
 export const PAGES = {
-	discover: '/',
+	discover: '/discover',
 	map: '/map',
 	stays: '/stays',
 	food: '/food',

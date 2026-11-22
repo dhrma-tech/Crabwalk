@@ -8,14 +8,14 @@
 	import { resolve } from '$app/paths';
 	import { m } from '#lib/paraglide/messages.js';
 	import { crabby } from '#lib/crabby.svelte.ts';
-	import { isActive } from '#lib/nav.ts';
+	import { isActive, isJournal } from '#lib/nav.ts';
 	import Crabby from './Crabby.svelte';
 
 	// Phones (Report 2 §7.1): a floating glass bar 12 px above the safe area with Crabby raised in the centre;
 	// the current item gets a kokum icon and dot. Laptops navigate from the top bar (T-3). Hidden while typing
 	// (the on-screen keyboard is up), on /navigate and under the emergency card.
 	const items = [
-		{ href: resolve('/'), label: m.nav_discover, icon: Compass, drive: 'discover' },
+		{ href: resolve('/discover'), label: m.nav_discover, icon: Compass, drive: 'discover' },
 		{ href: resolve('/map'), label: m.nav_map, icon: MapIcon, drive: 'map' },
 		{ href: resolve('/crabby'), label: m.nav_crabby, icon: null, drive: 'crabby' },
 		{ href: resolve('/plan/new'), label: m.nav_plan, icon: Route, drive: 'plan_new' },
@@ -40,7 +40,9 @@
 			removeEventListener('focusout', onOut);
 		};
 	});
-	const hidden = $derived(typing || page.route.id === '/navigate' || crabby.emergency);
+	const hidden = $derived(
+		typing || page.route.id === '/navigate' || crabby.emergency || isJournal(page.route.id)
+	);
 	// Brief section 4.7: one dot slides to the active tab (none for Crabby's raised button or other pages).
 	const active = $derived(items.findIndex((i) => isActive(page.url.pathname, i.href)));
 </script>

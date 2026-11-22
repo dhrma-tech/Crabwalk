@@ -10,7 +10,7 @@
 		description,
 		image,
 		canonical,
-		heading = page.url.pathname !== '/',
+		heading = page.url.pathname !== '/discover',
 		overlay = false,
 		jsonld,
 		children

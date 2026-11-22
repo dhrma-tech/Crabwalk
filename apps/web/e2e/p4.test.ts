@@ -163,7 +163,7 @@ test('verifier creates a place in the field; it appears after reviewer approval'
 	await expect(a.getByText('A quiet cove south of town.')).toBeVisible();
 	// A field-form place was visited (T-48): "Visited · date", never "Checked online".
 	await expect(a.getByText(/^Visited · \d/)).toBeVisible();
-	await a.goto('/?category=beach');
+	await a.goto('/discover?category=beach');
 	await expect(a.getByRole('link', { name: new RegExp(name) })).toBeVisible();
 	await Promise.all([v.ctx.close(), r.ctx.close(), anon.close()]);
 });

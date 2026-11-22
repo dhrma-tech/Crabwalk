@@ -60,7 +60,7 @@
 				<BrandMark size={40} />
 				<p class="type-body break-words">{m.me_signed_in_as({ email: data.email })}</p>
 				<div class="flex flex-col gap-3 [&>*]:w-full [&_button]:w-full">
-					<Button href="/">{m.go_discover()}</Button>
+					<Button href="/discover">{m.go_discover()}</Button>
 					<form method="POST" action="?/signOut" onsubmit={purgeThenSubmit}>
 						<Button variant="outline" type="submit">{m.sign_out()}</Button>
 					</form>

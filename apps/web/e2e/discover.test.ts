@@ -52,7 +52,7 @@ test('today strip: default point, then the nearest point; stale weather is hidde
 			geolocation: { latitude: lat, longitude: lon }
 		});
 		const page = await ctx.newPage();
-		await page.goto('/');
+		await page.goto('/discover');
 		await page.waitForLoadState('networkidle');
 		const weather = page.getByTestId('today-weather');
 		await expect(weather).toContainText(`Weather · ${def}`);
@@ -70,7 +70,7 @@ test('today strip: default point, then the nearest point; stale weather is hidde
 		psql(`delete from weather_cache where id in ('${ids.join("','")}')`);
 		ids.length = 0;
 		ids.push(wx(def, 31, '4 hours'));
-		await page.goto('/');
+		await page.goto('/discover');
 		await expect(page.getByTestId('today')).toBeVisible({ visible: !!station });
 		await expect(page.getByTestId('today-weather')).toHaveCount(0);
 		await ctx.close();
@@ -83,7 +83,7 @@ test('today strip: default point, then the nearest point; stale weather is hidde
 test('search groups results by kind and remembers recent searches', async ({ page }) => {
 	const dish = psql(`select name from dish_translations where lang = 'en' order by name limit 1`);
 	test.skip(!dish, 'no dishes in this database');
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.waitForLoadState('networkidle');
 	const box = page.locator('#search');
 	await box.fill(dish.slice(0, 6));
@@ -91,7 +91,7 @@ test('search groups results by kind and remembers recent searches', async ({ pag
 	await expect(results.getByRole('region', { name: 'Dishes' })).toBeVisible();
 	await results.getByRole('link', { name: dish }).first().click();
 	await expect(page).toHaveURL(/\/taste-konkan\//);
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.locator('#search').focus();
 	await expect(results.getByRole('region', { name: 'Recent searches' })).toBeVisible();
 	await results.getByRole('button', { name: dish.slice(0, 6) }).click();
@@ -101,7 +101,7 @@ test('search groups results by kind and remembers recent searches', async ({ pag
 
 test('a category has its own heading, canonical and description', async ({ page }) => {
 	await page.setViewportSize({ width: 1280, height: 900 });
-	await page.goto('/?category=fort');
+	await page.goto('/discover?category=fort');
 	await expect(page.getByRole('heading', { level: 1, name: 'Fort' })).toBeVisible();
 	await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', /\/\?category=fort$/);
 	await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', /^Fort on the/);
@@ -109,7 +109,7 @@ test('a category has its own heading, canonical and description', async ({ page 
 
 // T1-10 (UX-01): "Stays by vibe" under the search box links to the stays filter, no new data.
 test('vibe row links each vibe to the stays filter', async ({ page }) => {
-	await page.goto('/');
+	await page.goto('/discover');
 	const row = page.getByTestId('vibe-row');
 	await expect(row.getByRole('heading', { name: 'Stays by vibe' })).toBeVisible();
 	await expect(row.getByRole('link')).toHaveCount(9);
@@ -119,7 +119,7 @@ test('vibe row links each vibe to the stays filter', async ({ page }) => {
 
 // T1-10 (UX-07): a home row is left out until it has at least three items.
 test('home rows show only with three or more items', async ({ page }) => {
-	await page.goto('/');
+	await page.goto('/discover');
 	const rows = [
 		'places-title',
 		'stays-title',
@@ -148,7 +148,7 @@ test('monsoon mode: closures first with a badge; the toggle turns it off', async
 		await page
 			.context()
 			.addCookies([{ name: 'monsoon', value: 'on', url: 'http://localhost:4173' }]);
-		await page.goto('/?category=beach');
+		await page.goto('/discover?category=beach');
 		const cards = page.locator('main article');
 		const count = await cards.count();
 		expect(count).toBeGreaterThan(1);

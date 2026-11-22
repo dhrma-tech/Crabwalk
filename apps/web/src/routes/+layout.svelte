@@ -18,6 +18,7 @@
 	import { driver } from '#lib/drive.svelte.ts';
 	import { devBypass } from '#lib/devAuth.ts';
 	import { devClient } from '#lib/devAuth.client.ts';
+	import { isJournal } from '#lib/nav.ts';
 	import type { LayoutProps } from './$types';
 
 	let { children, data }: LayoutProps = $props();
@@ -49,7 +50,7 @@
 	});
 	// Page transitions (brief section 4.3; View Transitions where supported, none under reduced motion).
 	// `data-nav`: tab roots and Crabby's drive steps cross-fade; back rises from above; anything else from below.
-	const TABS = ['/', '/map', '/crabby', '/plan/new', '/me'];
+	const TABS = ['/discover', '/map', '/crabby', '/plan/new', '/me'];
 	let tapped: HTMLElement | null = null;
 	onMount(() => {
 		const click = (e: MouseEvent) => {
@@ -113,7 +114,7 @@
 <div
 	class={[
 		'flex min-h-dvh flex-col lg:[&:has(~[data-dock])]:pr-(--dock-w)',
-		page.route.id !== '/navigate' && 'pb-(--nav-h)'
+		page.route.id !== '/navigate' && !isJournal(page.route.id) && 'pb-(--nav-h)'
 	]}
 >
 	{@render children()}

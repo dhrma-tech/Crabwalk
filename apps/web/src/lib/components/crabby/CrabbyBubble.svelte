@@ -8,6 +8,7 @@
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { crabby, newChat } from '#lib/crabby.svelte.ts';
 	import Crabby from '../Crabby.svelte';
+	import { isJournal } from '#lib/nav.ts';
 	import CrabbyChat from './CrabbyChat.svelte';
 
 	// Laptops (T-3): Crabby docks on the right under the top bar, collapsible to a kokum button. A viewer's own
@@ -16,6 +17,7 @@
 	// Crabby itself, navigation, admin, error pages or while the emergency card is open (FRONTEND §6.7).
 	const hidden = $derived(
 		page.route.id === '/crabby' ||
+			isJournal(page.route.id) ||
 			page.route.id === '/navigate' ||
 			!!page.route.id?.startsWith('/admin') ||
 			crabby.emergency ||
@@ -46,7 +48,7 @@
 	];
 	const context = $derived(
 		placeName ??
-			(page.route.id === '/'
+			(page.route.id === '/discover'
 				? m.nav_discover()
 				: SECTION.find(([p]) => page.route.id?.startsWith(p))?.[1]()) ??
 			null

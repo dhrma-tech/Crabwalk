@@ -5,6 +5,7 @@ import type { RequestHandler } from './$types';
 // token pages are kept out by robots.txt and X-Robots-Tag (hooks.server.ts).
 const STATIC = [
 	'/',
+	'/discover',
 	'/map',
 	'/stays',
 	'/food',

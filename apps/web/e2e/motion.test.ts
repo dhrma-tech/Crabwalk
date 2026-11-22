@@ -6,7 +6,7 @@ import { expect, test } from '@playwright/test';
 test.skip(process.env.E2E_SUPABASE !== 'local', 'needs E2E_SUPABASE=local (seed place)');
 test.use({ reducedMotion: 'reduce' });
 
-for (const path of ['/', '/place/seed-fort-1', '/map']) {
+for (const path of ['/discover', '/place/seed-fort-1', '/map']) {
 	test(`reduced motion: no running animations after load on ${path}`, async ({ page }) => {
 		await page.goto(path);
 		await page.waitForLoadState('networkidle');

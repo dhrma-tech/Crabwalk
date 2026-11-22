@@ -3,7 +3,7 @@
 	"name": "Crabwalk",
 	"short_name": "Crabwalk",
 	"description": "Verified places, stays and food on the Konkan coast.",
-	"start_url": "/",
+	"start_url": "/discover",
 	"scope": "/",
 	"display": "standalone",
 	"theme_color": "#F5F7FA",

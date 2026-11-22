@@ -58,7 +58,7 @@ for (const width of [360, 640, 1024, 1280])
 
 test('dark theme tokens apply (manual override and system)', async ({ page }) => {
 	await prefs(page, 'en', 'dark');
-	await page.goto('/');
+	await page.goto('/discover');
 	await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
 	// Tideline night tide #0F1215 (DECISIONS T-1).
 	expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe(

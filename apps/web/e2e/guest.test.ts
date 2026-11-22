@@ -18,7 +18,7 @@ test('a cookieless page view sets no Supabase auth cookie and creates no user', 
 	page
 }) => {
 	const before = psql('select count(*) from auth.users where is_anonymous');
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.waitForLoadState('networkidle');
 	await page.goto('/stays');
 	await page.waitForLoadState('networkidle');

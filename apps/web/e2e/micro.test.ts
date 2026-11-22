@@ -33,7 +33,7 @@ test('heart pops on save, not on unsave', async ({ page }) => {
 
 test('phone nav: one dot slides to the new tab', async ({ page }) => {
 	await page.setViewportSize({ width: 390, height: 844 });
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.waitForLoadState('networkidle');
 	const dot = page.locator('[data-nav-dot]');
 	const x = () => dot.evaluate((d) => new DOMMatrix(getComputedStyle(d).transform).m41);

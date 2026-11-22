@@ -38,7 +38,7 @@ export const actions: Actions = {
 			password: q.password
 		});
 		if (error) return fail(400, { error: 'quick', next });
-		redirect(303, next ?? (admin ? '/admin/review' : '/'));
+		redirect(303, next ?? (admin ? '/admin/review' : '/discover'));
 	},
 	google: async ({ locals, url, request, cookies }) => {
 		if (tempGate()) return fail(404); // TODO(before-deploy): restore full auth

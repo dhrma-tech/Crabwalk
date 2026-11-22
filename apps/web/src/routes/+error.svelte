@@ -22,13 +22,13 @@
 <Page {title} back heading={false}>
 	{#if kind === 'missing'}
 		<ErrorState {title} body={m.not_found_body()} art="fort">
-			{#snippet action()}<Button href="/">{m.go_discover()}</Button>{/snippet}
+			{#snippet action()}<Button href="/discover">{m.go_discover()}</Button>{/snippet}
 		</ErrorState>
 	{:else if kind === 'denied'}
 		<ErrorState {title} body={m.not_allowed_body()}>
 			{#snippet action()}
 				<div class="flex flex-wrap items-center justify-center gap-3">
-					<Button href="/">{m.go_discover()}</Button>
+					<Button href="/discover">{m.go_discover()}</Button>
 					<Button variant="ghost" href={signInPath(page.url, !!page.data.gate?.on)}
 						>{m.sign_in()}</Button
 					>

@@ -21,7 +21,7 @@ test('a page view is stored with a route id, a day hash and nothing identifying'
 
 	// A search stores counts, never the words typed.
 	const words = `zzqx${Date.now().toString(36)}`;
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.waitForLoadState('networkidle');
 	await page.getByRole('searchbox').first().fill(words);
 	await expect

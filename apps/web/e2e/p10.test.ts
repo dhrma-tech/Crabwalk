@@ -44,6 +44,7 @@ const QR =
 const PUBLIC = [
 	...(QR ? [`/q/${QR}`] : []),
 	'/',
+	'/discover',
 	'/map',
 	'/place/seed-fort-1',
 	'/stays',

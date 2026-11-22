@@ -22,9 +22,9 @@
 		back = false,
 		overlay = false
 	}: { title: string; back?: boolean; overlay?: boolean } = $props();
-	const home = $derived(page.url.pathname === '/');
+	const home = $derived(page.url.pathname === '/discover');
 	const links = [
-		{ href: resolve('/'), label: m.nav_discover, drive: 'discover' },
+		{ href: resolve('/discover'), label: m.nav_discover, drive: 'discover' },
 		{ href: resolve('/map'), label: m.nav_map, drive: 'map' },
 		{ href: resolve('/plan/new'), label: m.nav_plan, drive: 'plan_new' },
 		{ href: resolve('/itineraries'), label: m.itin_title, drive: 'itineraries' },
@@ -63,12 +63,12 @@
 >
 	<div class="flex min-h-14 items-center gap-1 px-3 lg:hidden" data-clip-check>
 		{#if back}
-			<a href={resolve('/')} class={[icon, btn]} aria-label={m.back()} onclick={goBack}
+			<a href={resolve('/discover')} class={[icon, btn]} aria-label={m.back()} onclick={goBack}
 				><ChevronLeft size={24} aria-hidden="true" /></a
 			>
 		{:else}
 			<a
-				href={resolve('/')}
+				href={resolve('/discover')}
 				class="flex min-h-11 min-w-11 shrink-0 items-center justify-center px-1 no-underline"
 				aria-label={m.app_name()}
 				aria-current={home ? 'page' : undefined}><BrandMark wordmark={home} /></a
@@ -86,7 +86,7 @@
 			>
 				{title}
 			</p>
-			<a href="{resolve('/')}#search" class={[icon, btn]} aria-label={m.search()}
+			<a href="{resolve('/discover')}#search" class={[icon, btn]} aria-label={m.search()}
 				><Search size={22} aria-hidden="true" /></a
 			>
 		{/if}
@@ -97,7 +97,7 @@
 
 	<div class="mx-auto hidden h-18 max-w-300 items-center gap-4 px-8 lg:flex" data-clip-check>
 		<a
-			href={resolve('/')}
+			href={resolve('/discover')}
 			class="flex min-h-11 shrink-0 items-center no-underline"
 			aria-label={m.app_name()}
 			aria-current={home ? 'page' : undefined}><BrandMark wordmark /></a
