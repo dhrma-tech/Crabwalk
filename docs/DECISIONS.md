@@ -559,3 +559,18 @@ Crabby brief: `docs/crabwalk-handoff/{PLAN,HANDOFF,CRABBY_BRIEF}.md`.
 | LJ-10 | App font preloads moved from `app.html` into the root layout, skipped on journal routes (they use their own faces). English journal pages paint Devanagari in the system face and switch to Tiro after `load`. |
 | LJ-11 | Lighthouse mobile `/`: Perf 66, A11y/BP/SEO 100 (FCP 4.7 s, LCP 5.4 s on simulated slow 4G; `/privacy` baseline 79). The brief's LCP < 2.5 s and 200 KB JS targets are not met: the shared shell alone is ~190 KB gz (L-1). Lighter shell for marketing routes = owner call. Details in HANDOFF.md. |
 | LJ-12 | **Shell budget kept:** the full Crabby (7 states) pushed `/discover` shell JS to 212.5 KB gz. The app's existing call sites (nav button, dock, chat, loaders, me, guest, map, votes) now use `CrabbyMark.svelte`, the same fiddler silhouette without states or props; shell back to 209.2 KB. The full `Crabby.svelte` is used on the landing, onboarding and `/crabby/sheet`. `e2e/shell.test.ts` shell-JS and offline tests now load `/discover` (the app shell); "/" is the landing. |
+
+**Found 2026-11-22 (design audit, `design/DESIGN_AUDIT.md` §11), not fixed:**
+- Discover place cards: the `NoPhoto` coast scene at the tall 240–272 px crop renders as a maroon slab with two white chevrons (old kokum colour leaking, scene crop).
+- `/me` and `/itineraries/:id`: the page title sits at the container edge while the body is a centred column (1440 px).
+- `/discover` at 390 px: the page-level search field overflows the right edge.
+- Landing hero shows the dev caption "PHOTO SLOT · AARE WARE COASTAL ROAD …" to users.
+
+## Design elevation pass (owner brief, 2026-11-22)
+
+Audit: `design/DESIGN_AUDIT.md`. Plan: `design/IMPROVEMENT_PLAN.md`. Presentation layer only.
+
+| Ref | Decision |
+|---|---|
+| DE-1 | Owner "commit and proceed" = plan approved, go to Phase 3 (proof: hero + taluka map). Proposals P1–P12 were not answered, so each one follows its "if declined" column until the owner says yes. |
+| DE-2 | Screenshots (`design/screenshots/`, ~45 MB PNG) stay out of git (`.gitignore`); the scripts regenerate them. |
