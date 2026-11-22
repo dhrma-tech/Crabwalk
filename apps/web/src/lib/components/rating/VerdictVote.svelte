@@ -15,7 +15,7 @@
 	import { dur, reducedMotion } from '#lib/motion.ts';
 	import { processPhoto, type Processed } from '#lib/field/photos.ts';
 	import Button from '../Button.svelte';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import Segmented from '../Segmented.svelte';
 	import type { EntityType } from './VerdictGauge.svelte';
 	import SignInButton from '#lib/components/SignInButton.svelte';

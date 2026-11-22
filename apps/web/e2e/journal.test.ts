@@ -109,7 +109,8 @@ test.describe('onboarding', () => {
 		await expect(cont).toBeEnabled();
 		await cont.click();
 		await page.getByRole('button', { name: 'Start exploring' }).click();
-		await expect(page.getByRole('heading', { level: 1 })).toHaveText('Your Konkan is ready, Asha');
+		await expect(page.getByRole('heading', { name: 'Your Konkan is ready, Asha' })).toBeVisible();
+		await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
 	});
 });
 

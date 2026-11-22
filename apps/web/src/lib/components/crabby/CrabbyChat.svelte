@@ -23,7 +23,7 @@
 	import ThumbsDown from '@lucide/svelte/icons/thumbs-down';
 	import IconButton from '../IconButton.svelte';
 	import { onMount } from 'svelte';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import Illustration from '../Illustration.svelte';
 	import Button from '../Button.svelte';
 	import EmergencyCard from '../EmergencyCard.svelte';

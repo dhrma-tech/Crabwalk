@@ -3,7 +3,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
-	import Crabby from '#lib/components/Crabby.svelte';
+	import Crabby from '#lib/components/CrabbyMark.svelte';
 	import ErrorState from '#lib/components/ErrorState.svelte';
 	import { ensureSession } from '#lib/guest.client.ts';
 	import type { PageProps } from './$types';

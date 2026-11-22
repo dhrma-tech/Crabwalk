@@ -23,7 +23,7 @@
 
 <section class="closing" aria-labelledby="closing-title">
 	<Edge kind="wave" color="var(--navy)" height={56} />
-	<div class="mark" aria-hidden="true">
+	<div class="mark j-lazy" style:--j-lazy-h="330px" aria-hidden="true">
 		<svg viewBox="0 0 1000 330">
 			<defs>
 				<clipPath id="konkan-clip">

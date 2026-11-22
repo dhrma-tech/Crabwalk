@@ -404,19 +404,25 @@
 
 	@media (prefers-reduced-motion: no-preference) {
 		.eyebrow {
-			animation: fade-up 0.8s var(--j-ease-out) 0.1s both;
+			animation: slide-up 0.8s var(--j-ease-out) 0.1s both;
 		}
-		.deva text {
-			fill-opacity: 1;
+		/* English pages: रत्नागिरी writes itself once its face has arrived (after load, see whenDevaReady). */
+		:global(.journal.deva-ready) .deva text {
 			animation:
-				write 1.8s cubic-bezier(0.6, 0, 0.3, 1) 0.2s both,
-				ink-fill 0.6s ease-out 1.6s both;
+				write 1.8s cubic-bezier(0.6, 0, 0.3, 1) both,
+				ink-fill 0.6s ease-out 1.4s both;
+		}
+		:global(.journal:not(.deva-ready)) .deva text {
+			opacity: 0;
+		}
+		:global(.journal:is(:lang(hi), :lang(mr))) .deva text {
+			opacity: 1;
 		}
 		.ch {
 			animation: rise 1s var(--j-ease-out) calc(0.35s + var(--i) * 0.06s) both;
 		}
 		.sub {
-			animation: fade-up 0.9s var(--j-ease-out) 1.1s both;
+			animation: slide-up 0.9s var(--j-ease-out) 0.9s both;
 		}
 		.reveal {
 			stroke-dasharray: 1;
@@ -430,6 +436,12 @@
 		}
 		.tag {
 			animation: stamp 0.5s var(--j-spring) 3.3s both;
+		}
+	}
+	/* transform only: the text is painted from the first frame (it is the LCP element) */
+	@keyframes slide-up {
+		from {
+			transform: translateY(12px);
 		}
 	}
 	@keyframes fade-up {

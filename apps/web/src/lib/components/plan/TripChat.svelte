@@ -6,7 +6,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { toast } from '#lib/toast.svelte.ts';
 	import type { ChatMessage } from '#lib/server/chat/trip-chat.ts';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import Button from '../Button.svelte';
 
 	// Trip group chat (P12 step G, product plan 10.8): tripmates talk, share places, run polls (the old no-login

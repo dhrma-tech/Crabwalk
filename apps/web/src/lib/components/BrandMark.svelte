@@ -1,7 +1,7 @@
 <script lang="ts">
 	// Brand mark (user choice, 2026-11-03): the Crabby crab silhouette and `crabwalk` in lowercase Figtree 700, kokum.
 	// Decorative: the link around it carries the name.
-	import Crabby from './Crabby.svelte';
+	import Crabby from './CrabbyMark.svelte';
 
 	let { size = 32, wordmark = false }: { size?: number; wordmark?: boolean } = $props();
 </script>

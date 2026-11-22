@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
+	import { onMount } from 'svelte';
 	import { Spring } from 'svelte/motion';
 	import { tr } from '../i18n.ts';
 	import { VERDICT } from '../content/landing.ts';
@@ -86,6 +87,9 @@
 		}
 	];
 
+	// The server sends one pass of the wall; the loop's two extra passes are added in the browser (smaller HTML).
+	let reps = $state([0]);
+	onMount(() => (reps = [0, 1, 2]));
 	let group = $state<(typeof VERDICT.groups)[number]['key']>('family');
 	let paused = $state(false);
 	const segs = VERDICT_ORDER.map(
@@ -102,7 +106,12 @@
 
 <section class="verdict" aria-labelledby="verdict-title">
 	<Edge kind="scallop" color="#ffffff" height={30} />
-	<div class={['wall', paused && 'paused']} role="img" aria-label={tr(VERDICT.wall)}>
+	<div
+		class={['wall j-lazy', paused && 'paused']}
+		style:--j-lazy-h="440px"
+		role="img"
+		aria-label={tr(VERDICT.wall)}
+	>
 		<div class="cols">
 			{#each WALL as col, c (c)}
 				<div
@@ -112,7 +121,7 @@
 					class:up={c % 2 === 0}
 				>
 					<div class="track">
-						{#each [0, 1, 2, 3] as rep (rep)}
+						{#each reps as rep (rep)}
 							{#each col.tiles as p, t (t)}
 								<figure class="tile">
 									<Avatar
@@ -335,15 +344,15 @@
 			animation: none;
 		}
 	}
-	/* Four identical repeats: moving by a quarter of the track loops seamlessly. */
+	/* Three identical repeats: moving by a third of the track loops seamlessly. */
 	@keyframes loop-up {
 		to {
-			transform: translateY(-25%);
+			transform: translateY(-33.3333%);
 		}
 	}
 	@keyframes loop-down {
 		from {
-			transform: translateY(-25%);
+			transform: translateY(-33.3333%);
 		}
 		to {
 			transform: translateY(0);

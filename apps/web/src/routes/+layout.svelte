@@ -101,6 +101,24 @@
 </script>
 
 <svelte:head>
+	<!-- P10-4: the Latin halves used above the fold; Devanagari halves load only when needed. Not on the
+	     field-journal pages (landing, onboarding), which use their own fonts. -->
+	{#if !isJournal(page.route.id)}
+		<link
+			rel="preload"
+			href="/fonts/text-var-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="preload"
+			href="/fonts/display-400-latin.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin="anonymous"
+		/>
+	{/if}
 	<!-- TODO(before-deploy): restore full auth — no indexing while the temp gate is on. -->
 	{#if data.gate.on}<meta name="robots" content="noindex, nofollow" />{/if}
 </svelte:head>

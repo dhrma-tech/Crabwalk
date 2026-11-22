@@ -2,7 +2,7 @@
 	import Camera from '@lucide/svelte/icons/camera';
 	import { m } from '#lib/paraglide/messages.js';
 	import { s } from '#lib/staff-messages.ts';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import { processPhoto, uploadPhoto } from '#lib/field/photos.ts';
 
 	// Online photo upload for owners (same WebP pipeline as the field form).

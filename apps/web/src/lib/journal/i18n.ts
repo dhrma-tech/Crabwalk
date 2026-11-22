@@ -18,3 +18,17 @@ export const same = (s: string): L => ({ en: s, hi: s, mr: s });
 
 /** True when the text is mostly Devanagari, so it gets the Devanagari face and line height. */
 export const isDeva = (s: string) => /[ऀ-ॿ]/.test(s);
+
+/**
+ * Calls back once the page has loaded and the Devanagari face is in (PLAN.md §4): English journal pages paint
+ * Devanagari in the system font first, then switch, so the font file stays out of the first paint.
+ */
+export function whenDevaReady(cb: () => void) {
+	const go = () => {
+		const f = document.fonts?.load("400 1em 'Tiro Devanagari Marathi'", 'क');
+		(f ?? Promise.resolve()).then(cb, cb);
+	};
+	const soon = () => setTimeout(go, 150);
+	if (document.readyState === 'complete') soon();
+	else addEventListener('load', soon, { once: true });
+}

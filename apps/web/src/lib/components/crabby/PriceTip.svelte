@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { m } from '#lib/paraglide/messages.js';
 	import Button from '../Button.svelte';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import { page } from '$app/state';
 	import { signInHref } from '#lib/guest.client.ts';
 

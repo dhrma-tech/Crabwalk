@@ -12,10 +12,13 @@
 	import Closing from '#lib/journal/landing/Closing.svelte';
 	import ScrollCrab from '#lib/journal/landing/ScrollCrab.svelte';
 	import { HERO } from '#lib/journal/content/landing.ts';
-	import { tr, locale } from '#lib/journal/i18n.ts';
+	import { onMount } from 'svelte';
+	import { tr, locale, whenDevaReady } from '#lib/journal/i18n.ts';
 
 	// Landing (docs/crabwalk-handoff/PLAN.md, owner 2026-11-22: replaces "/", Discover moved to /discover).
 	// Sections in the reference order; each section's motion starts only when it nears the viewport.
+	let devaReady = $state(false);
+	onMount(() => whenDevaReady(() => (devaReady = true)));
 </script>
 
 <Meta title="Crabwalk" description={tr(HERO.sub)} />
@@ -27,16 +30,16 @@
 		type="font/woff2"
 		crossorigin="anonymous"
 	/>
-	<link
-		rel="preload"
-		href="/fonts/journal-text-latin.woff2"
-		as="font"
-		type="font/woff2"
-		crossorigin="anonymous"
-	/>
+	<noscript
+		><style>
+			.journal .deva text {
+				opacity: 1 !important;
+			}
+		</style></noscript
+	>
 </svelte:head>
 
-<div class="journal" lang={locale()}>
+<div class={['journal', devaReady && 'deva-ready']} lang={locale()}>
 	<!-- shared filters: duotone for photos (navy shadows, beige highlights) -->
 	<svg width="0" height="0" class="defs" aria-hidden="true">
 		<filter id="j-duotone" color-interpolation-filters="sRGB">

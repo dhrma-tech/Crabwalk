@@ -22,6 +22,15 @@
 	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
 }
 
+/* On journal pages the shell's own text (skip link, toasts) uses the journal faces, so the app fonts never load. */
+html:has(.journal) {
+	--font-display: 'Gloock', Georgia, serif;
+	--font-body: 'Instrument Sans', system-ui, sans-serif;
+}
+body:has(.journal) {
+	font-family: 'Instrument Sans', system-ui, sans-serif;
+}
+
 .journal {
 	--navy: #2f4156;
 	--teal: #567c8d;
@@ -38,9 +47,13 @@
 	--laterite: #b5462b;
 	--laterite-soft: #d9785a;
 	--sos: #d32f2f;
-	--j-display: 'Gloock', 'Tiro Devanagari Marathi', Georgia, serif;
-	--j-text: 'Instrument Sans', 'Tiro Devanagari Marathi', system-ui, sans-serif;
-	--j-deva: 'Tiro Devanagari Marathi', serif;
+	/* Devanagari face. English pages paint it in the phone's own Devanagari font first and switch to Tiro after
+	   the page has loaded (`deva-ready`), so the 96 KB file never competes with the first paint. Hindi and
+	   Marathi pages, where Devanagari is the main text, use Tiro from the start. */
+	--deva-face: 'Nirmala UI', 'Noto Sans Devanagari', 'Kohinoor Devanagari', 'Mangal', sans-serif;
+	--j-display: 'Gloock', var(--deva-face), Georgia, serif;
+	--j-text: 'Instrument Sans', var(--deva-face), system-ui, sans-serif;
+	--j-deva: var(--deva-face);
 	--j-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
 	--j-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 	--j-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -57,15 +70,21 @@
 	-webkit-font-smoothing: antialiased;
 	overflow-x: clip;
 }
-/* Paper grain over the whole page (brief §5: 3–6 %). One fixed, static layer: composited once, no repaint on scroll. */
+.journal.deva-ready,
+.journal:lang(hi),
+.journal:lang(mr) {
+	--deva-face: 'Tiro Devanagari Marathi', 'Nirmala UI', 'Noto Sans Devanagari', serif;
+}
+/* Paper grain over the whole page (brief §5: 3–6 %). One fixed, static layer with no blend mode, so it is
+   composited once and never re-blended while scrolling. */
 .journal::after {
 	content: '';
 	position: fixed;
 	inset: 0;
 	z-index: 60;
 	pointer-events: none;
-	opacity: 0.05;
-	mix-blend-mode: multiply;
+	opacity: 0.045;
+	will-change: transform;
 	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .2 0 0 0 0 .25 0 0 0 1.2 -.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 .journal :where(h1, h2, h3, p, ul, ol, figure) {
@@ -242,4 +261,10 @@
 		animation-iteration-count: 1 !important;
 		transition-duration: 0.01ms !important;
 	}
+}
+
+/* Heavy below-the-fold blocks skip style, layout and paint until they near the viewport. */
+.j-lazy {
+	content-visibility: auto;
+	contain-intrinsic-size: auto var(--j-lazy-h, 700px);
 }

@@ -7,7 +7,7 @@
 	import Page from '#lib/components/Page.svelte';
 	import Button from '#lib/components/Button.svelte';
 	import IconButton from '#lib/components/IconButton.svelte';
-	import Crabby from '#lib/components/Crabby.svelte';
+	import Crabby from '#lib/components/CrabbyMark.svelte';
 	import type { PageProps } from './$types';
 
 	// Crabby & you (P12 step D, product plan 10.7 + 10.9): tell Crabby about you, see and correct what it thinks,

@@ -9,7 +9,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { crabby } from '#lib/crabby.svelte.ts';
 	import { isActive, isJournal } from '#lib/nav.ts';
-	import Crabby from './Crabby.svelte';
+	import Crabby from './CrabbyMark.svelte';
 
 	// Phones (Report 2 §7.1): a floating glass bar 12 px above the safe area with Crabby raised in the centre;
 	// the current item gets a kokum icon and dot. Laptops navigate from the top bar (T-3). Hidden while typing

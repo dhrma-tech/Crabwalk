@@ -103,7 +103,11 @@
 			</article>
 		</div>
 
-		<div class="map" use:inview={{ onenter: enter, margin: '0px 0px -25% 0px' }}>
+		<div
+			class="map j-lazy"
+			style:--j-lazy-h="760px"
+			use:inview={{ onenter: enter, margin: '0px 0px -25% 0px' }}
+		>
 			<svg
 				viewBox="-200 -20 1000 {TALUKA_GEO.height + 40}"
 				role="img"
@@ -173,11 +177,17 @@
 				>
 
 				<!-- talukas: paper fill, hover/selected wash on top -->
+				<!-- each boundary once; the paper fill and the wash both reuse it -->
+				<defs>
+					{#each TALUKAS as t (t.key)}<path
+							id="tk-{t.key}"
+							d={TALUKA_GEO.talukas[t.key].d}
+						/>{/each}
+				</defs>
 				<g class="fills">
 					{#each TALUKAS as t (t.key)}
-						{@const g = TALUKA_GEO.talukas[t.key]}
-						<path
-							d={g.d}
+						<use
+							href="#tk-{t.key}"
 							class="fill"
 							onpointerenter={() => (hovered = t.key)}
 							onpointerleave={() => (hovered = null)}
@@ -188,8 +198,8 @@
 				</g>
 				<g class="washes" aria-hidden="true">
 					{#each TALUKAS as t (t.key)}
-						<path
-							d={TALUKA_GEO.talukas[t.key].d}
+						<use
+							href="#tk-{t.key}"
 							class={['wash', t.key === shown && 'on', t.key === selected && 'sel']}
 							filter="url(#wash)"
 						/>

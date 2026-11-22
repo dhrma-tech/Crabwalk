@@ -178,14 +178,15 @@ test('app shell JS < 210 KB gzipped', async ({ page }) => {
 		if (res.request().resourceType() === 'script' || res.url().endsWith('.js'))
 			scripts.push(res.body());
 	});
-	await page.goto('/', { waitUntil: 'networkidle' });
+	// The app shell (the landing at "/" is a marketing page with its own art and code: DECISIONS LJ-11).
+	await page.goto('/discover', { waitUntil: 'networkidle' });
 	const total = (await Promise.all(scripts)).reduce((n, b) => n + gzipSync(b).length, 0);
 	console.log(`app shell JS: ${(total / 1024).toFixed(1)} KB gzipped (${scripts.length} files)`);
 	expect(total).toBeLessThan(210 * 1024);
 });
 
 test('works offline after first visit', async ({ page, context }) => {
-	await page.goto('/');
+	await page.goto('/discover');
 	await page.evaluate(() => navigator.serviceWorker.ready);
 	await page.reload(); // SW now controls the page and caches it
 	// The page is cached after the response (cache.put), so wait for control + the cached copy, not a delay.

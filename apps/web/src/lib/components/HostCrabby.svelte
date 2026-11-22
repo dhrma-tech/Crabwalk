@@ -4,7 +4,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { s } from '#lib/staff-messages.ts';
 	import type { HostFill } from '#lib/server/ai/host.ts';
-	import Crabby from './Crabby.svelte';
+	import Crabby from './CrabbyMark.svelte';
 	import Button from './Button.svelte';
 
 	// Host Crabby (P12 step J, product plan 10.4): say or type what changed — in Marathi, Hindi or English — and

@@ -21,7 +21,7 @@
 	import { msg } from '#lib/msg.ts';
 	import { formatDate } from '#lib/format.ts';
 	import OfflinePacks from '#lib/components/OfflinePacks.svelte';
-	import Crabby from '#lib/components/Crabby.svelte';
+	import Crabby from '#lib/components/CrabbyMark.svelte';
 	import { enablePush, disablePush, pushStatus } from '#lib/push.ts';
 	import { onMount } from 'svelte';
 	import type { PageProps } from './$types';

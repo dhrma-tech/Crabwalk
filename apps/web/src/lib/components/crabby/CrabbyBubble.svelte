@@ -7,7 +7,7 @@
 	import { m } from '#lib/paraglide/messages.js';
 	import { getLocale } from '#lib/paraglide/runtime.js';
 	import { crabby, newChat } from '#lib/crabby.svelte.ts';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import { isJournal } from '#lib/nav.ts';
 	import CrabbyChat from './CrabbyChat.svelte';
 

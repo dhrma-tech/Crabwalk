@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import type { HTMLButtonAttributes } from 'svelte/elements';
 	import Phone from '@lucide/svelte/icons/phone';
-	import Crabby from './Crabby.svelte';
+	import Crabby from './CrabbyMark.svelte';
 
 	// Report 2 §8. Primary (kokum): one per screen. Emergency: emergency card / QR page only, and never moves.
 	// Press (brief section 4.7) scales the content, not the button, so the hit box never shrinks.

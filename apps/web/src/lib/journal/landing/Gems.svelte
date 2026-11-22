@@ -454,9 +454,8 @@
 		color: var(--navy);
 	}
 	.sample {
-		font-size: 11px;
+		font-size: 12px;
 		color: var(--muted);
-		opacity: 0.8;
 	}
 	@media (prefers-reduced-motion: no-preference) {
 		.cap-in {

@@ -57,7 +57,8 @@
 	// Crabby, a Konkan fiddler crab (docs/crabwalk-handoff/CRABBY_BRIEF.md): one oversized claw, tall eye stalks,
 	// laterite shell, beige belly, navy ink line with a little riso grain. Named parts (`body`, `stalkL/R`,
 	// `eyeL/R`, `bigClaw`, `smallClaw`, `leg1`–`leg6`) animate per `state`. Below 40 px it draws a bolder mark with no
-	// grain or props, so it still reads in a button. Old props still work: `walking` → scuttle, `waving` → wave,
+	// grain or props, so it still reads in a button. The app shell uses the lighter CrabbyMark.svelte (same silhouette)
+	// to stay in budget. Old props still work here too: `walking` → scuttle, `waving` → wave,
 	// `tone="white"` → a white silhouette for filled buttons. Never on emergency/safety UI.
 	let {
 		state: pose = 'idle',

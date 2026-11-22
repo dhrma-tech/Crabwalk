@@ -56,7 +56,8 @@
 		<h2 id="why-title" class="j-h2">{tr(WHY.title)}</h2>
 
 		<article
-			class={['panel', seen && 'go', offline && 'off']}
+			class={['panel j-lazy', seen && 'go', offline && 'off']}
+			style:--j-lazy-h="640px"
 			use:inview={{ onenter: () => (seen = true) }}
 		>
 			<div class="text">

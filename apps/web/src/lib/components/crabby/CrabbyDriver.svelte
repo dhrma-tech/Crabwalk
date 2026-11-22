@@ -2,7 +2,7 @@
 	import Square from '@lucide/svelte/icons/square';
 	import { m } from '#lib/paraglide/messages.js';
 	import { driver, stopDriving } from '#lib/drive.svelte.ts';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 
 	// What Crabby is doing on its own (P12 §3, 10.11): a ring on the element it taps and a status line with Stop,
 	// above the phone nav. Pointer-transparent ring; the line is announced politely.

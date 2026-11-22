@@ -11,7 +11,7 @@
 	import Postcard from '#lib/journal/onboarding/Postcard.svelte';
 	import OtpInput from '#lib/journal/onboarding/OtpInput.svelte';
 	import InkIcon from '#lib/journal/landing/InkIcon.svelte';
-	import { tr, locale, isDeva, type L, type Locale } from '#lib/journal/i18n.ts';
+	import { tr, locale, isDeva, whenDevaReady, type L, type Locale } from '#lib/journal/i18n.ts';
 	import { OB, OB_STEPS, OB_KEY, type ObState } from '#lib/journal/content/onboarding.ts';
 	import type { PageProps } from './$types';
 
@@ -39,6 +39,8 @@
 	});
 	let s = $state<ObState>(fresh());
 	let loaded = $state(false);
+	let devaReady = $state(false);
+	onMount(() => whenDevaReady(() => (devaReady = true)));
 	let flipped = $state(false);
 	let dir = $state(1);
 	const t = (l: L) => tr(l, s.lang);
@@ -228,7 +230,7 @@
 	/>
 </svelte:head>
 
-<div class={['journal', 'ob', `at-${s.step}`]} lang={s.lang}>
+<div class={['journal', 'ob', `at-${s.step}`, devaReady && 'deva-ready']} lang={s.lang}>
 	<!-- the scene: same coast, a new place per step -->
 	<div class="stage">
 		<Scene scene={SCENE[s.step]} />

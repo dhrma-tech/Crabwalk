@@ -19,7 +19,7 @@
 	import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
 	import { onMount, untrack } from 'svelte';
 	import { m as msg } from '#lib/paraglide/messages.js';
-	import Crabby from '../Crabby.svelte';
+	import Crabby from '../CrabbyMark.svelte';
 	import type { GeoJSONSource, Map as MLMap, Marker } from 'maplibre-gl';
 	import type { FeatureCollection, Point } from 'geojson';
 	import { getLocale } from '#lib/paraglide/runtime.js';
