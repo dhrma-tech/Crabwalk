@@ -1,0 +1,942 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crabwalk — Ratnagiri landing page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Tiro+Devanagari+Marathi:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5EFEB}
+a{color:#2F4156}a:hover{color:#436475}
+*{box-sizing:border-box}
+.cw-hide-sm{display:block}
+@media (max-width:720px){.cw-hide-sm{display:none}}
+</style>
+</helmet>
+
+<div style="font-family: 'Instrument Sans', system-ui, sans-serif; color: #2F4156; background: #F5EFEB; width: 100%; overflow: hidden">
+
+<!-- ================= HERO ================= -->
+<section style="position: relative; background: #C8D9E6; min-height: 880px; overflow: hidden">
+
+  <!-- illustrated coast (stand-in for hero photo) -->
+  <svg viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax slice" style="position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 420px" aria-hidden="true">
+    <circle cx="1060" cy="120" r="70" fill="#F5EFEB"></circle>
+    <path d="M0 210 C 180 150, 330 190, 470 160 S 760 120, 900 170 S 1200 140, 1440 180 L1440 420 L0 420 Z" fill="#A9C2D4"></path>
+    <path d="M0 260 C 220 220, 380 250, 560 225 S 900 200, 1080 240 S 1300 215, 1440 235 L1440 420 L0 420 Z" fill="#8AA7B9"></path>
+    <rect x="0" y="285" width="1440" height="135" fill="#567C8D"></rect>
+    <path d="M0 300 Q 40 294 80 300 T 160 300 T 240 300 T 320 300 T 400 300 T 480 300 T 560 300 T 640 300 T 720 300 T 800 300 T 880 300 T 960 300 T 1040 300 T 1120 300 T 1200 300 T 1280 300 T 1360 300 T 1440 300" fill="none" stroke="#C8D9E6" stroke-width="2" opacity=".6"></path>
+    <path d="M0 340 Q 60 332 120 340 T 240 340 T 360 340 T 480 340 T 600 340 T 720 340 T 840 340 T 960 340 T 1080 340 T 1200 340 T 1320 340 T 1440 340" fill="none" stroke="#C8D9E6" stroke-width="2" opacity=".35"></path>
+    <path d="M1440 420 L1440 200 C 1380 205, 1340 230, 1300 250 C 1260 268, 1230 300, 1180 320 C 1140 340, 1120 380, 1100 420 Z" fill="#2F4156"></path>
+    <rect x="1330" y="150" width="22" height="70" fill="#F5EFEB"></rect>
+    <rect x="1326" y="140" width="30" height="14" fill="#2F4156"></rect>
+    <path d="M1324 140 L1341 124 L1358 140 Z" fill="#2F4156"></path>
+    <rect x="1330" y="176" width="22" height="8" fill="#2F4156"></rect>
+    <path d="M0 420 L0 260 C 60 262, 110 290, 150 320 C 190 350, 220 385, 240 420 Z" fill="#2F4156"></path>
+    <path d="M30 262 L30 236 L48 236 L48 228 L62 228 L62 236 L80 236 L80 270" fill="#2F4156"></path>
+  </svg>
+
+  <!-- nav -->
+  <header style="position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; padding: 24px 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+    <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: #2F4156" aria-label="Crabwalk home">
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none" stroke="#2F4156" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <ellipse cx="17" cy="19" rx="8" ry="5.5"></ellipse>
+        <path d="M9.5 17 C 6 15, 5 11, 7 8 M7 8 L5 6 M7 8 L9.5 6.5"></path>
+        <path d="M24.5 17 C 28 15, 29 11, 27 8 M27 8 L29 6 M27 8 L24.5 6.5"></path>
+        <path d="M10 21 L5 24 M11 23 L7 27 M24 21 L29 24 M23 23 L27 27"></path>
+        <circle cx="14.5" cy="13" r="1"></circle><circle cx="19.5" cy="13" r="1"></circle>
+      </svg>
+      <span style="font-family: 'Gloock', Georgia, serif; font-size: 26px; letter-spacing: -0.01em">Crabwalk</span>
+    </a>
+    <nav aria-label="Main" style="display: flex; gap: 28px; align-items: center; flex-wrap: wrap; font-size: 13px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase">
+      <a href="#discover" style="text-decoration: none; color: #2F4156; border-bottom: 2px solid #2F4156; padding-bottom: 4px">Discover</a>
+      <a href="#map" style="text-decoration: none; color: #2F4156">Map</a>
+      <a href="#plan" style="text-decoration: none; color: #2F4156">Plan</a>
+      <a href="#taste" style="text-decoration: none; color: #2F4156">Taste Konkan</a>
+      <a href="#stays" style="text-decoration: none; color: #2F4156">Stays</a>
+    </nav>
+    <div style="display: flex; align-items: center; gap: 12px">
+      <div role="group" aria-label="Language" style="display: flex; border: 1px solid #2F4156; border-radius: 999px; padding: 3px; font-size: 13px">
+        <button style="border: 0; background: #2F4156; color: #FFFFFF; border-radius: 999px; padding: 6px 12px; min-height: 32px; font: inherit; font-weight: 600">EN</button>
+        <button style="border: 0; background: transparent; color: #2F4156; border-radius: 999px; padding: 6px 12px; min-height: 32px; font-family: 'Tiro Devanagari Marathi', serif; font-size: 15px">हि</button>
+        <button style="border: 0; background: transparent; color: #2F4156; border-radius: 999px; padding: 6px 12px; min-height: 32px; font-family: 'Tiro Devanagari Marathi', serif; font-size: 15px">म</button>
+      </div>
+      <a href="#plan" style="background: {{accent}}; color: #FFFFFF; text-decoration: none; border-radius: 999px; padding: 12px 20px; font-size: 14px; font-weight: 600; min-height: 44px; display: inline-flex; align-items: center">Sign in</a>
+    </div>
+  </header>
+
+  <!-- hero copy -->
+  <div style="position: relative; z-index: 2; max-width: 1100px; margin: 0 auto; padding: 72px 24px 0; text-align: center">
+    <p style="margin: 0; font-size: 13px; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: #436475">The Konkan coast, verified on foot</p>
+    <p style="margin: 14px 0 0; font-family: 'Tiro Devanagari Marathi', serif; font-size: 30px; color: #436475; line-height: 1.4">रत्नागिरी</p>
+    <h1 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(64px, 12vw, 176px); line-height: 0.92; letter-spacing: -0.03em; color: #2F4156">Ratnagiri</h1>
+    <p style="margin: 22px auto 0; max-width: 560px; font-size: 19px; line-height: 1.6; color: #2F4156">Sea forts, red-earth cliffs and kitchens the locals swear by. Every spot walked by our team, rated by how it actually feels.</p>
+
+    <!-- coastal route line -->
+    <div class="cw-hide-sm" style="margin: 36px auto 0; max-width: 980px">
+      <svg viewBox="0 0 980 140" style="width: 100%; height: auto; overflow: visible" role="img" aria-label="Coastal route from Jaigad to Pawas">
+        <path d="M20 70 C 90 10, 150 10, 190 60 S 300 125, 360 80 S 470 15, 540 60 S 650 130, 720 80 S 830 20, 960 70" fill="none" stroke="#2F4156" stroke-width="1.6" stroke-dasharray="5 6"></path>
+        <circle cx="20" cy="70" r="6" fill="#C8D9E6" stroke="#2F4156" stroke-width="2"></circle>
+        <circle cx="190" cy="60" r="4" fill="#2F4156"></circle>
+        <circle cx="360" cy="80" r="4" fill="#2F4156"></circle>
+        <circle cx="540" cy="60" r="4" fill="#2F4156"></circle>
+        <circle cx="720" cy="80" r="4" fill="#2F4156"></circle>
+        <circle cx="960" cy="70" r="6" fill="#C8D9E6" stroke="#2F4156" stroke-width="2"></circle>
+        <g font-family="Instrument Sans, sans-serif" font-size="12" font-weight="600" letter-spacing="3" fill="#2F4156">
+          <text x="20" y="104" text-anchor="middle">JAIGAD</text>
+          <text x="190" y="36" text-anchor="middle">GANPATIPULE</text>
+          <text x="360" y="114" text-anchor="middle">AARE WARE</text>
+          <text x="540" y="36" text-anchor="middle">RATNADURG</text>
+          <text x="720" y="114" text-anchor="middle">BHATYE</text>
+          <text x="960" y="104" text-anchor="middle">PAWAS</text>
+        </g>
+      </svg>
+      <p style="display: inline-block; margin: 6px 0 0; background: #2F4156; color: #F5EFEB; padding: 10px 22px; font-size: 12px; font-weight: 600; letter-spacing: 0.3em">9 TALUKAS · 3 LANGUAGES · 1 COAST</p>
+    </div>
+  </div>
+
+  <p style="position: absolute; z-index: 2; left: 24px; bottom: 20px; margin: 0; font-size: 12px; letter-spacing: 0.12em; color: #F5EFEB; text-transform: uppercase">Photo slot · Aare Ware coastal road at golden hour</p>
+</section>
+
+<!-- ================= DISCOVER MAP ================= -->
+<section id="talukas" style="position: relative; z-index: 3; background: #F5EFEB; padding: 96px 24px 96px">
+  <!-- scroll notch hanging from the hero -->
+  <svg viewBox="0 0 240 48" style="position: absolute; left: 50%; top: -1px; transform: translateX(-50%); width: 240px; height: 48px; display: block" aria-hidden="true">
+    <path d="M0 0 C 44 0, 56 4, 72 20 C 88 38, 100 46, 120 46 C 140 46, 152 38, 168 20 C 184 4, 196 0, 240 0 Z" fill="#567C8D"></path>
+  </svg>
+  <a href="#talukas" aria-label="Scroll to the Ratnagiri map" style="position: absolute; left: 50%; top: 2px; transform: translateX(-50%); width: 34px; height: 34px; border-radius: 999px; border: 1.5px solid #FFFFFF; color: #FFFFFF; display: flex; align-items: center; justify-content: center; text-decoration: none">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"></path></svg>
+  </a>
+
+  <div style="max-width: 1280px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+    <!-- copy + taluka picker -->
+    <div style="flex: 1 1 340px; min-width: 0; max-width: 440px">
+      <span style="display: block; width: 28px; height: 3px; background: #567C8D; border-radius: 2px"></span>
+      <h2 style="margin: 16px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(40px, 4.6vw, 60px); line-height: 1.02; color: #436475">Discover<br>Ratnagiri</h2>
+      <p style="margin: 18px 0 0; font-size: 17px; line-height: 1.65; color: #2F4156">Nine talukas between the Sahyadri and the Arabian Sea. Pick one to see what our team has walked, mapped and verified there.</p>
+
+      <div role="group" aria-label="Choose a taluka" style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{talukas}}" as="t" hint-placeholder-count="9">
+          <button onClick="{{t.pick}}" aria-pressed="{{t.sel}}" style="border: 1px solid #2F4156; background: {{t.bg}}; color: {{t.fg}}; border-radius: 999px; padding: 0 14px; min-height: 38px; font: inherit; font-size: 14px; font-weight: 600; transition: background .2s, color .2s">{{t.name}}</button>
+        </sc-for>
+      </div>
+
+      <article style="margin-top: 24px; background: #FFFFFF; border-radius: 24px; padding: 24px; box-shadow: 0 14px 34px rgba(47,65,86,.08)">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap">
+          <h3 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 30px; color: #2F4156">{{tal.name}}</h3>
+          <span style="font-family: 'Tiro Devanagari Marathi', serif; font-size: 20px; color: #436475">{{tal.mr}}</span>
+        </div>
+        <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #436475">{{tal.desc}}</p>
+        <ul style="margin: 16px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{tal.spots}}" as="s" hint-placeholder-count="3">
+            <li style="background: #F5EFEB; color: #2F4156; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600">{{s}}</li>
+          </sc-for>
+        </ul>
+        <a href="#discover" style="margin-top: 18px; display: inline-flex; align-items: center; gap: 6px; font-size: 15px; font-weight: 600; color: #2F4156">Explore {{tal.name}} · [n] verified places →</a>
+      </article>
+    </div>
+
+    <!-- the map -->
+    <div style="flex: 2 1 560px; min-width: 0; display: flex; justify-content: center">
+      <svg viewBox="-40 0 660 900" style="width: 100%; max-width: 680px; height: auto; display: block" role="img" aria-label="Map of Ratnagiri district and its nine talukas, with {{tal.name}} highlighted">
+        <defs>
+          <pattern id="cw-sea-dots" width="9" height="9" patternUnits="userSpaceOnUse">
+            <circle cx="2.5" cy="2.5" r="1.6" fill="#8AA7B9"></circle>
+            <circle cx="7" cy="7" r="1.6" fill="#8AA7B9"></circle>
+          </pattern>
+        </defs>
+
+        <!-- sea band -->
+        <path d="M215 40 L205 150 L210 260 L225 370 L240 480 L255 590 L275 700 L285 760 L305 860 L215 870 L190 760 L180 700 L160 590 L145 480 L130 370 L115 260 L112 150 L125 40 Z" fill="url(#cw-sea-dots)" opacity=".75"></path>
+        <text x="150" y="640" transform="rotate(-82 150 640)" font-family="Instrument Sans, sans-serif" font-size="12" font-weight="600" letter-spacing="6" fill="#567C8D">ARABIAN SEA</text>
+
+        <!-- talukas -->
+        <g stroke="#8AA7B9" stroke-width="1.4" stroke-linejoin="round">
+          <path d="M215 40 L300 30 L330 95 L360 150 L290 160 L205 150 Z" fill="{{tf.mandangad}}"></path>
+          <path d="M205 150 L290 160 L300 215 L285 270 L210 260 Z" fill="{{tf.dapoli}}"></path>
+          <path d="M290 160 L360 150 L390 210 L405 280 L340 300 L300 215 Z" fill="{{tf.khed}}"></path>
+          <path d="M210 260 L285 270 L300 320 L290 380 L225 370 Z" fill="{{tf.guhagar}}"></path>
+          <path d="M285 270 L300 215 L340 300 L405 280 L430 370 L350 395 L300 320 Z" fill="{{tf.chiplun}}"></path>
+          <path d="M290 380 L300 320 L350 395 L430 370 L450 480 L440 540 L350 540 L320 470 Z" fill="{{tf.sangameshwar}}"></path>
+          <path d="M225 370 L290 380 L320 470 L350 540 L320 600 L255 590 L240 480 Z" fill="{{tf.ratnagiri}}"></path>
+          <path d="M350 540 L440 540 L460 620 L455 680 L380 690 L320 600 Z" fill="{{tf.lanja}}"></path>
+          <path d="M255 590 L320 600 L380 690 L455 680 L470 760 L470 850 L305 860 L285 760 L275 700 Z" fill="{{tf.rajapur}}"></path>
+        </g>
+        <!-- district outline -->
+        <path d="M215 40 L300 30 L330 95 L360 150 L390 210 L405 280 L430 370 L450 480 L440 540 L460 620 L455 680 L470 760 L470 850 L305 860 L285 760 L275 700 L255 590 L240 480 L225 370 L210 260 L205 150 Z" fill="none" stroke="#436475" stroke-width="2.2" stroke-linejoin="round"></path>
+
+        <!-- taluka names -->
+        <g font-family="Gloock, Georgia, serif" text-anchor="middle">
+          <text x="276" y="104" font-size="17" fill="{{lf.mandangad}}">Mandangad</text>
+          <text x="250" y="218" font-size="16" fill="{{lf.dapoli}}">Dapoli</text>
+          <text x="352" y="236" font-size="17" fill="{{lf.khed}}">Khed</text>
+          <text x="256" y="330" font-size="16" fill="{{lf.guhagar}}">Guhagar</text>
+          <text x="372" y="346" font-size="17" fill="{{lf.chiplun}}">Chiplun</text>
+          <text x="384" y="470" font-size="15" fill="{{lf.sangameshwar}}">Sangameshwar</text>
+          <text x="290" y="520" font-size="18" fill="{{lf.ratnagiri}}">Ratnagiri</text>
+          <text x="398" y="622" font-size="17" fill="{{lf.lanja}}">Lanja</text>
+          <text x="392" y="828" font-size="18" fill="{{lf.rajapur}}">Rajapur</text>
+        </g>
+
+        <!-- leader lines -->
+        <g stroke="#436475" stroke-width="1" fill="none">
+          <path d="M232 72 L100 72"></path>
+          <path d="M192 205 L100 205"></path>
+          <path d="M380 182 L520 182"></path>
+          <path d="M330 270 L520 270"></path>
+          <path d="M222 345 L100 345"></path>
+          <path d="M234 398 L100 398"></path>
+          <path d="M243 432 L100 432"></path>
+          <path d="M422 432 L520 432"></path>
+          <path d="M250 522 L100 522"></path>
+          <path d="M264 562 L100 562"></path>
+          <path d="M332 740 L520 740"></path>
+          <path d="M350 792 L520 792"></path>
+        </g>
+
+        <!-- markers -->
+        <g fill="#F5EFEB" stroke="#2F4156" stroke-width="1.6">
+          <circle cx="232" cy="72" r="6"></circle>
+          <circle cx="192" cy="205" r="6"></circle>
+          <circle cx="380" cy="182" r="6"></circle>
+          <circle cx="330" cy="270" r="6"></circle>
+          <circle cx="222" cy="345" r="6"></circle>
+          <circle cx="234" cy="398" r="6"></circle>
+          <circle cx="243" cy="432" r="6"></circle>
+          <circle cx="422" cy="432" r="6"></circle>
+          <circle cx="250" cy="522" r="8"></circle>
+          <circle cx="264" cy="562" r="6"></circle>
+          <circle cx="332" cy="740" r="6"></circle>
+          <circle cx="350" cy="792" r="6"></circle>
+        </g>
+        <g fill="#2F4156">
+          <circle cx="232" cy="72" r="2.2"></circle><circle cx="192" cy="205" r="2.2"></circle><circle cx="380" cy="182" r="2.2"></circle>
+          <circle cx="330" cy="270" r="2.2"></circle><circle cx="222" cy="345" r="2.2"></circle><circle cx="234" cy="398" r="2.2"></circle>
+          <circle cx="243" cy="432" r="2.2"></circle><circle cx="422" cy="432" r="2.2"></circle><circle cx="250" cy="522" r="3.4"></circle>
+          <circle cx="264" cy="562" r="2.2"></circle><circle cx="332" cy="740" r="2.2"></circle><circle cx="350" cy="792" r="2.2"></circle>
+        </g>
+
+        <!-- place labels -->
+        <g font-family="Instrument Sans, sans-serif" font-size="13" fill="#2F4156">
+          <text x="94" y="76" text-anchor="end">Velas</text>
+          <text x="94" y="209" text-anchor="end">Suvarnadurg</text>
+          <text x="526" y="186">Rasalgad</text>
+          <text x="526" y="274">Parshuram</text>
+          <text x="94" y="349" text-anchor="end">Velneshwar</text>
+          <text x="94" y="402" text-anchor="end">Jaigad Fort</text>
+          <text x="94" y="436" text-anchor="end">Ganpatipule</text>
+          <text x="526" y="436">Marleshwar</text>
+          <text x="94" y="526" text-anchor="end" font-weight="600">Ratnagiri city</text>
+          <text x="94" y="566" text-anchor="end">Pawas</text>
+          <text x="526" y="744">Unhale springs</text>
+          <text x="526" y="796">Dhoot-Papeshwar</text>
+        </g>
+
+        <!-- north arrow -->
+        <g transform="translate(560 40)" stroke="#436475" fill="none" stroke-width="1.4">
+          <circle cx="0" cy="0" r="18"></circle>
+          <path d="M0 -12 L6 6 L0 2 L-6 6 Z" fill="#436475"></path>
+          <text x="0" y="-24" text-anchor="middle" font-family="Instrument Sans, sans-serif" font-size="11" font-weight="600" fill="#436475" stroke="none">N</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section id="discover" style="max-width: 1280px; margin: 0 auto; padding: 88px 24px 24px">
+  <div style="display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap">
+    <div>
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #436475">Discover</p>
+      <h2 style="margin: 10px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.05">Eleven ways<br>into the coast</h2>
+    </div>
+    <p style="margin: 0; max-width: 380px; font-size: 16px; line-height: 1.6; color: #436475">Beaches to orchards, each with its story, timings, entry fee, tide window and monsoon status.</p>
+  </div>
+  <div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 22px 18px; justify-content: space-between">
+    <sc-for list="{{categories}}" as="c" hint-placeholder-count="11">
+      <a href="#discover" style="width: 92px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-decoration: none; color: #2F4156">
+        <span style="width: 88px; height: 88px; border-radius: 999px; background: {{c.bg}}; display: flex; align-items: center; justify-content: center; border: 1px solid #C8D9E6">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="{{c.fg}}" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>
+        </span>
+        <span style="font-size: 14px; font-weight: 600">{{c.name}}</span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<!-- ================= HIDDEN GEMS ================= -->
+<section style="max-width: 1280px; margin: 0 auto; padding: 72px 24px">
+  <div style="display: flex; justify-content: space-between; align-items: end; gap: 24px; flex-wrap: wrap">
+    <div>
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #436475">Hidden gems</p>
+      <h2 style="margin: 10px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.05">The quiet side of Ratnagiri</h2>
+    </div>
+  </div>
+
+  <!-- taluka chips -->
+  <div role="group" aria-label="Filter by taluka" style="margin-top: 36px; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center">
+    <sc-for list="{{chips}}" as="t" hint-placeholder-count="5">
+      <button onClick="{{t.pick}}" aria-pressed="{{t.sel}}" style="border: 1px solid #2F4156; background: {{t.bg}}; color: {{t.fg}}; border-radius: 999px; padding: 0 18px; min-height: 40px; font: inherit; font-size: 14px; font-weight: 600; transition: background .2s, color .2s">{{t.label}}</button>
+    </sc-for>
+    <a href="#discover" style="border: 1px solid #2F4156; color: #2F4156; text-decoration: none; border-radius: 999px; padding: 0 18px; min-height: 40px; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600">View all →</a>
+  </div>
+
+  <!-- coverflow stage -->
+  <div style="position: relative; height: 500px; margin-top: 36px; overflow: hidden">
+    <sc-for list="{{gems}}" as="g" hint-placeholder-count="6">
+      <button onClick="{{g.pick}}" aria-label="{{g.label}}" aria-current="{{g.current}}" style="position: absolute; left: 50%; top: 24px; width: 340px; height: 440px; padding: 0; border: 0; border-radius: 28px; overflow: hidden; background: {{g.sky}}; transform: {{g.transform}}; z-index: {{g.z}}; opacity: {{g.opacity}}; box-shadow: {{g.shadow}}; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .35s, box-shadow .35s; cursor: pointer; font: inherit; text-align: left">
+        <svg viewBox="0 0 300 400" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+          <circle cx="{{g.sunX}}" cy="120" r="34" fill="#F5EFEB"></circle>
+          <path d="{{g.land}}" fill="{{g.landFill}}"></path>
+          <rect x="0" y="270" width="300" height="130" fill="#567C8D"></rect>
+          <path d="M0 292 Q 25 286 50 292 T 100 292 T 150 292 T 200 292 T 250 292 T 300 292" fill="none" stroke="#C8D9E6" stroke-width="2" opacity=".5"></path>
+          <path d="{{g.fore}}" fill="#2F4156"></path>
+        </svg>
+        <span style="position: absolute; inset: 0; background: #2F4156; opacity: {{g.dim}}; transition: opacity .35s"></span>
+        <span style="position: absolute; top: 16px; left: 16px; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2F4156" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"></path></svg>Hidden gem</span>
+        <span style="position: absolute; left: 16px; right: 16px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; gap: 8px">
+          <span style="background: rgba(47,65,86,.86); color: #F5EFEB; border-radius: 999px; padding: 6px 12px; font-size: 12px; font-weight: 500">{{g.crowd}}</span>
+          <sc-if value="{{g.active}}" hint-placeholder-val="{{ false }}">
+            <span style="width: 44px; height: 44px; border-radius: 999px; background: #FFFFFF; display: inline-flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#2F4156" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+          </sc-if>
+        </span>
+      </button>
+    </sc-for>
+  </div>
+
+  <!-- controls + active caption -->
+  <div style="margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 22px">
+    <div style="display: flex; align-items: center; gap: 14px">
+      <button onClick="{{prev}}" aria-label="Previous place" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #2F4156; background: transparent; color: #2F4156; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></button>
+      <span style="font-family: 'Gloock', Georgia, serif; font-size: 18px; min-width: 64px; text-align: center">{{counter}}</span>
+      <button onClick="{{next}}" aria-label="Next place" style="width: 48px; height: 48px; border-radius: 999px; border: 0; background: #2F4156; color: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg></button>
+    </div>
+    <div style="text-align: center; max-width: 360px; width: 100%">
+      <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #436475">{{cur.cat}} · {{cur.taluka}}</p>
+      <h3 style="margin: 6px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.1">{{cur.name}}</h3>
+      <p style="margin: 2px 0 0; font-family: 'Tiro Devanagari Marathi', serif; font-size: 18px; color: #436475">{{cur.mr}}</p>
+      <div style="margin: 14px auto 0; display: flex; height: 6px; border-radius: 999px; overflow: hidden; gap: 2px" aria-hidden="true">
+        <span style="width: {{cur.v4}}; background: #2F4156; transition: width .4s"></span>
+        <span style="width: {{cur.v3}}; background: #567C8D; transition: width .4s"></span>
+        <span style="width: {{cur.v2}}; background: #A9C2D4; transition: width .4s"></span>
+        <span style="width: {{cur.v1}}; background: #DCD3CC; transition: width .4s"></span>
+      </div>
+      <p style="margin: 8px 0 0; font-size: 14px; color: #436475"><strong style="color: #2F4156">{{cur.verdict}}</strong> · [n] votes</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY CRABWALK (bento) ================= -->
+<section id="map" style="background: #FFFFFF; padding: 96px 24px">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #436475">Why Crabwalk</p>
+    <h2 style="margin: 10px 0 0; max-width: 760px; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(36px, 4.4vw, 56px); line-height: 1.05">One place for the whole trip. Built here, checked here.</h2>
+
+    <!-- big map -->
+    <article style="margin-top: 48px; background: #2F4156; color: #F5EFEB; border-radius: 32px; padding: 40px; display: flex; flex-wrap: wrap; gap: 40px; align-items: stretch; overflow: hidden">
+      <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 32px">
+        <div>
+          <span style="display: inline-flex; width: 52px; height: 52px; border-radius: 16px; background: #436475; align-items: center; justify-content: center"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#F5EFEB" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"></path><path d="M9 4v14M15 6v14"></path></svg></span>
+          <h3 style="margin: 24px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(34px, 3.6vw, 48px); line-height: 1.05">A map that works where the network doesn't</h3>
+          <p style="margin: 16px 0 0; max-width: 400px; font-size: 17px; line-height: 1.65; color: #C8D9E6">Every place, hotel and homestay on one map. Download a taluka pack once and fuel, ATMs, hospitals, ferry jetties, ghat warnings and tide windows stay on your phone.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <div style="display: flex; flex-wrap: wrap; gap: 8px">
+            <span style="background: #C8D9E6; color: #2F4156; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600">Places</span>
+            <span style="background: #F5EFEB; color: #2F4156; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600">Stays</span>
+            <span style="background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 600">Hotels</span>
+            <span style="border: 1px solid #567C8D; color: #F5EFEB; border-radius: 999px; padding: 8px 14px; font-size: 14px">Fuel</span>
+            <span style="border: 1px solid #567C8D; color: #F5EFEB; border-radius: 999px; padding: 8px 14px; font-size: 14px">ATM</span>
+            <span style="border: 1px solid #567C8D; color: #F5EFEB; border-radius: 999px; padding: 8px 14px; font-size: 14px">Hospital</span>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a href="#map" style="background: #F5EFEB; color: #2F4156; text-decoration: none; border-radius: 999px; padding: 0 24px; min-height: 52px; display: inline-flex; align-items: center; font-size: 15px; font-weight: 600">Open the map</a>
+            <a href="#map" style="border: 1px solid #C8D9E6; color: #F5EFEB; text-decoration: none; border-radius: 999px; padding: 0 24px; min-height: 52px; display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg>Get offline pack</a>
+          </div>
+        </div>
+      </div>
+
+      <div style="flex: 2 1 560px; min-width: 0; position: relative; min-height: 560px; border-radius: 24px; overflow: hidden; background: #3A4F66">
+        <svg viewBox="0 0 760 560" preserveAspectRatio="xMidYMid slice" style="position: absolute; inset: 0; width: 100%; height: 100%" role="img" aria-label="Map of the Ratnagiri coast with places, stays and hotels pinned">
+          <!-- sea texture -->
+          <g stroke="#567C8D" stroke-width="1.4" fill="none" opacity=".45">
+            <path d="M20 80 q20 -8 40 0 t40 0"></path><path d="M60 200 q20 -8 40 0 t40 0"></path><path d="M10 330 q20 -8 40 0 t40 0"></path><path d="M90 450 q20 -8 40 0 t40 0"></path><path d="M150 120 q20 -8 40 0 t40 0"></path><path d="M120 520 q20 -8 40 0 t40 0"></path>
+          </g>
+          <!-- land -->
+          <path d="M300 0 L760 0 L760 560 L360 560 C 350 520, 330 500, 345 470 C 360 440, 320 425, 330 395 C 338 370, 372 362, 360 336 C 348 312, 318 318, 316 290 C 314 262, 350 255, 338 226 C 326 200, 292 205, 294 176 C 296 148, 330 140, 318 112 C 306 86, 278 90, 282 62 C 286 36, 312 30, 300 0 Z" fill="#567C8D"></path>
+          <path d="M760 0 L760 560 L560 560 C 600 480, 560 420, 610 360 C 650 310, 600 240, 650 180 C 690 130, 640 60, 690 0 Z" fill="#4D7083"></path>
+          <!-- creeks -->
+          <path d="M338 226 C 380 232, 420 220, 470 236 C 510 248, 540 240, 580 252" fill="none" stroke="#3A4F66" stroke-width="7" stroke-linecap="round"></path>
+          <path d="M330 395 C 380 400, 420 388, 470 404 C 510 416, 545 410, 585 420" fill="none" stroke="#3A4F66" stroke-width="6" stroke-linecap="round"></path>
+          <!-- roads -->
+          <g fill="none" stroke="#A9C2D4" stroke-width="2" stroke-linecap="round" opacity=".7">
+            <path d="M330 70 C 380 110, 360 160, 400 200 S 430 290, 420 330 S 430 440, 450 540"></path>
+            <path d="M400 200 C 480 190, 560 210, 700 190"></path>
+            <path d="M420 330 C 500 320, 600 340, 740 320"></path>
+          </g>
+          <!-- planned route -->
+          <path d="M318 112 C 340 150, 360 190, 372 250 S 360 330, 380 380" fill="none" stroke="#F5EFEB" stroke-width="3.5" stroke-dasharray="2 9" stroke-linecap="round"></path>
+
+          <!-- places (sky) -->
+          <g fill="#C8D9E6" stroke="#2F4156" stroke-width="2">
+            <path d="M300 54 c-9 0 -15 7 -15 15 c0 11 15 25 15 25 s15 -14 15 -25 c0 -8 -6 -15 -15 -15z"></path>
+            <path d="M318 98 c-9 0 -15 7 -15 15 c0 11 15 25 15 25 s15 -14 15 -25 c0 -8 -6 -15 -15 -15z"></path>
+            <path d="M340 236 c-9 0 -15 7 -15 15 c0 11 15 25 15 25 s15 -14 15 -25 c0 -8 -6 -15 -15 -15z"></path>
+            <path d="M380 366 c-9 0 -15 7 -15 15 c0 11 15 25 15 25 s15 -14 15 -25 c0 -8 -6 -15 -15 -15z"></path>
+            <path d="M520 150 c-9 0 -15 7 -15 15 c0 11 15 25 15 25 s15 -14 15 -25 c0 -8 -6 -15 -15 -15z"></path>
+          </g>
+          <!-- stays (beige) -->
+          <g fill="#F5EFEB" stroke="#2F4156" stroke-width="2">
+            <circle cx="360" cy="150" r="10"></circle>
+            <circle cx="410" cy="290" r="10"></circle>
+            <circle cx="470" cy="450" r="10"></circle>
+            <circle cx="600" cy="280" r="10"></circle>
+          </g>
+          <!-- hotels (white squares) -->
+          <g fill="#FFFFFF" stroke="#2F4156" stroke-width="2">
+            <rect x="378" y="262" width="18" height="18" rx="4"></rect>
+            <rect x="344" y="118" width="18" height="18" rx="4"></rect>
+            <rect x="430" y="210" width="18" height="18" rx="4"></rect>
+          </g>
+          <!-- labels -->
+          <g font-family="Instrument Sans, sans-serif" font-size="13" font-weight="600" fill="#F5EFEB" letter-spacing="1.5">
+            <text x="232" y="60">JAIGAD</text>
+            <text x="190" y="118">GANPATIPULE</text>
+            <text x="250" y="262">RATNADURG</text>
+            <text x="300" y="400">PAWAS</text>
+            <text x="540" y="168">MARLESHWAR</text>
+          </g>
+          <text x="440" y="300" font-family="Gloock, Georgia, serif" font-size="26" fill="#F5EFEB">Ratnagiri</text>
+          <text x="70" y="290" font-family="Instrument Sans, sans-serif" font-size="12" font-weight="600" letter-spacing="4" fill="#8AA7B9">ARABIAN SEA</text>
+        </svg>
+
+        <!-- floating UI -->
+        <div style="position: absolute; top: 16px; left: 16px; right: 16px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap">
+          <span style="background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 10px 16px; font-size: 14px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 18px rgba(31,44,59,.25)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#436475" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>Search the map</span>
+          <span style="background: #2F4156; color: #F5EFEB; border: 1px solid #567C8D; border-radius: 999px; padding: 10px 16px; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg>Ratnagiri taluka · offline</span>
+        </div>
+        <div style="position: absolute; left: 16px; bottom: 16px; background: #FFFFFF; color: #2F4156; border-radius: 18px; padding: 14px 16px; display: flex; gap: 16px; flex-wrap: wrap; font-size: 13px; font-weight: 600; box-shadow: 0 6px 18px rgba(31,44,59,.25)">
+          <span style="display: inline-flex; align-items: center; gap: 6px"><i style="width: 12px; height: 12px; border-radius: 999px 999px 999px 0; transform: rotate(-45deg); background: #C8D9E6; border: 2px solid #2F4156"></i>Places</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px"><i style="width: 12px; height: 12px; border-radius: 999px; background: #F5EFEB; border: 2px solid #2F4156"></i>Stays</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px"><i style="width: 12px; height: 12px; border-radius: 3px; background: #FFFFFF; border: 2px solid #2F4156"></i>Hotels</span>
+          <span style="display: inline-flex; align-items: center; gap: 6px"><i style="width: 18px; height: 0; border-top: 3px dotted #2F4156"></i>Your trip</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- hotels / stays / places -->
+    <div style="margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px">
+      <sc-for list="{{kinds}}" as="k" hint-placeholder-count="3">
+        <a href="{{k.href}}" style="background: #F5EFEB; color: #2F4156; text-decoration: none; border-radius: 28px; padding: 14px; display: flex; flex-direction: column; gap: 18px">
+          <div style="position: relative; aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; background: {{k.sky}}">
+            <svg viewBox="0 0 400 250" preserveAspectRatio="none" style="position: absolute; inset: 0; width: 100%; height: 100%" aria-hidden="true">
+              <circle cx="320" cy="70" r="26" fill="#F5EFEB"></circle>
+              <path d="M0 170 C 100 140, 220 160, 400 135 L400 250 L0 250 Z" fill="#567C8D"></path>
+              <path d="{{k.shape}}" fill="#2F4156"></path>
+            </svg>
+            <span style="position: absolute; top: 12px; left: 12px; width: 44px; height: 44px; border-radius: 14px; background: #FFFFFF; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2F4156" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{k.icon}}"></path></svg></span>
+          </div>
+          <div style="padding: 0 10px 12px; display: flex; justify-content: space-between; align-items: end; gap: 12px">
+            <div style="min-width: 0">
+              <h3 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 32px; line-height: 1.05">{{k.title}}</h3>
+              <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.55; color: #436475">{{k.desc}}</p>
+            </div>
+            <span style="flex: none; width: 48px; height: 48px; border-radius: 999px; background: #2F4156; display: flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></span>
+          </div>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MEET CRABBY ================= -->
+<section id="crabby" style="background: #C8D9E6; padding: 104px 24px 112px; overflow: hidden">
+  <div style="max-width: 1280px; margin: 0 auto">
+    <div style="text-align: center; max-width: 760px; margin: 0 auto">
+      <span style="display: inline-block; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase">Meet Crabby</span>
+      <h2 style="margin: 18px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(44px, 6vw, 84px); line-height: 1; color: #2F4156">Say hello to your<br>Konkan local</h2>
+      <p style="margin: 20px auto 0; max-width: 540px; font-size: 18px; line-height: 1.65; color: #2F4156">Crabby is the AI guide on every page of Crabwalk. Ask about a beach, a bus, a thali or a tide, in the language you think in.</p>
+    </div>
+
+    <!-- mascot stage -->
+    <div style="position: relative; height: 460px; max-width: 1080px; margin: 32px auto 0">
+      <svg viewBox="0 0 420 340" style="position: absolute; left: 50%; top: 40px; transform: translateX(-50%); width: min(440px, 92%); height: auto" role="img" aria-label="Crabby, the Crabwalk crab mascot, waving">
+        <ellipse cx="210" cy="312" rx="150" ry="16" fill="#A9C2D4"></ellipse>
+        <!-- legs -->
+        <g stroke="#2F4156" stroke-width="12" stroke-linecap="round" fill="none">
+          <path d="M120 230 L72 262 L60 300"></path>
+          <path d="M132 248 L96 290 L94 312"></path>
+          <path d="M150 260 L132 300 L138 318"></path>
+          <path d="M300 230 L348 262 L360 300"></path>
+          <path d="M288 248 L324 290 L326 312"></path>
+          <path d="M270 260 L288 300 L282 318"></path>
+        </g>
+        <!-- arms -->
+        <g stroke="#2F4156" stroke-width="14" stroke-linecap="round" fill="none">
+          <path d="M118 196 C 84 180, 70 150, 74 112"></path>
+          <path d="M302 196 C 336 176, 352 130, 346 84"></path>
+        </g>
+        <!-- left claw -->
+        <path d="M74 112 C 40 108, 30 70, 52 50 C 66 38, 92 42, 100 60 L 78 76 L 104 82 C 104 104, 92 114, 74 112 Z" fill="#567C8D" stroke="#2F4156" stroke-width="5" stroke-linejoin="round"></path>
+        <!-- right claw (waving) -->
+        <path d="M346 84 C 384 82, 396 40, 372 20 C 356 8, 328 14, 322 34 L 344 48 L 318 56 C 318 76, 328 86, 346 84 Z" fill="#567C8D" stroke="#2F4156" stroke-width="5" stroke-linejoin="round"></path>
+        <g stroke="#2F4156" stroke-width="4" stroke-linecap="round" fill="none" opacity=".6">
+          <path d="M392 50 q8 -6 10 -16"></path><path d="M398 74 q10 -2 16 -10"></path>
+        </g>
+        <!-- eye stalks -->
+        <g stroke="#2F4156" stroke-width="9" stroke-linecap="round">
+          <path d="M180 150 L170 98"></path>
+          <path d="M240 150 L250 98"></path>
+        </g>
+        <!-- body -->
+        <ellipse cx="210" cy="206" rx="112" ry="72" fill="#567C8D" stroke="#2F4156" stroke-width="6"></ellipse>
+        <path d="M140 176 C 170 150, 250 150, 280 176" fill="none" stroke="#A9C2D4" stroke-width="6" stroke-linecap="round" opacity=".7"></path>
+        <!-- eyes -->
+        <circle cx="170" cy="86" r="24" fill="#FFFFFF" stroke="#2F4156" stroke-width="5"></circle>
+        <circle cx="250" cy="86" r="24" fill="#FFFFFF" stroke="#2F4156" stroke-width="5"></circle>
+        <circle cx="175" cy="90" r="10" fill="#2F4156"></circle>
+        <circle cx="255" cy="90" r="10" fill="#2F4156"></circle>
+        <circle cx="179" cy="86" r="3.5" fill="#FFFFFF"></circle>
+        <circle cx="259" cy="86" r="3.5" fill="#FFFFFF"></circle>
+        <!-- face -->
+        <circle cx="160" cy="218" r="11" fill="#F5EFEB" opacity=".45"></circle>
+        <circle cx="260" cy="218" r="11" fill="#F5EFEB" opacity=".45"></circle>
+        <path d="M188 214 C 196 232, 224 232, 232 214" fill="none" stroke="#2F4156" stroke-width="6" stroke-linecap="round"></path>
+      </svg>
+
+      <!-- greeting bubble -->
+      <div style="position: absolute; left: 50%; top: 0; transform: translateX(40px); background: #2F4156; color: #F5EFEB; border-radius: 22px 22px 22px 6px; padding: 12px 18px; box-shadow: 0 12px 30px rgba(47,65,86,.22)">
+        <p style="margin: 0; font-family: 'Tiro Devanagari Marathi', serif; font-size: 18px; line-height: 1.3">नमस्कार!</p>
+        <p style="margin: 0; font-size: 14px; font-weight: 600">I'm Crabby.</p>
+      </div>
+
+      <!-- question chips -->
+      <span class="cw-hide-sm" style="position: absolute; left: 0; top: 70px; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 12px 18px; font-size: 15px; box-shadow: 0 10px 24px rgba(47,65,86,.12); transform: rotate(-3deg)">Best time to visit Jaigad Fort?</span>
+      <span class="cw-hide-sm" style="position: absolute; left: 4%; top: 250px; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 12px 18px; font-family: 'Tiro Devanagari Marathi', serif; font-size: 16px; box-shadow: 0 10px 24px rgba(47,65,86,.12); transform: rotate(2deg)">रत्नागिरीत शाकाहारी थाळी कुठे मिळेल?</span>
+      <span class="cw-hide-sm" style="position: absolute; right: 0; top: 150px; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 12px 18px; font-family: 'Tiro Devanagari Marathi', serif; font-size: 16px; box-shadow: 0 10px 24px rgba(47,65,86,.12); transform: rotate(3deg)">गणपतीपुळे में आज भीड़ कैसी है?</span>
+      <span class="cw-hide-sm" style="position: absolute; right: 6%; top: 330px; background: #2F4156; color: #F5EFEB; border-radius: 999px; padding: 12px 18px; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 10px 24px rgba(47,65,86,.18); transform: rotate(-2deg)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0014 0M12 18v3"></path></svg>"2 days, kids, low budget"</span>
+    </div>
+
+    <!-- what Crabby does -->
+    <div style="margin-top: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 16px">
+      <sc-for list="{{crabbyPoints}}" as="c" hint-placeholder-count="4">
+        <article style="background: #FFFFFF; border-radius: 24px; padding: 26px; display: flex; flex-direction: column; gap: 16px">
+          <span style="width: 48px; height: 48px; border-radius: 14px; background: #F5EFEB; display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2F4156" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg></span>
+          <div>
+            <h3 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 24px; line-height: 1.15; color: #2F4156">{{c.title}}</h3>
+            <p style="margin: 8px 0 0; font-size: 15px; line-height: 1.6; color: #436475">{{c.desc}}</p>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+
+    <div style="margin-top: 40px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap">
+      <a href="#plan" style="background: {{accent}}; color: #FFFFFF; text-decoration: none; border-radius: 999px; padding: 0 28px; min-height: 54px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">Chat with Crabby</a>
+      <a href="#plan" style="background: #FFFFFF; color: #2F4156; text-decoration: none; border-radius: 999px; padding: 0 28px; min-height: 54px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">See how it plans a trip ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TRIP PLANNER ================= -->
+<section id="plan" style="max-width: 1280px; margin: 0 auto; padding: 104px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+  <div style="flex: 1 1 420px; min-width: 0">
+    <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.28em; text-transform: uppercase; color: #436475">Trip planner</p>
+    <h2 style="margin: 10px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5vw, 68px); line-height: 1.02">Tell it your trip.<br>Get a plan with reasons.</h2>
+    <p style="margin: 22px 0 0; max-width: 460px; font-size: 18px; line-height: 1.65; color: #436475">Real Konkan road times, opening hours, tides and weather go in. A day-by-day plan comes out, and every stop says why it is there. If Crabby doesn't know, it says so.</p>
+    <div style="margin-top: 32px; display: flex; gap: 12px; flex-wrap: wrap">
+      <a href="#plan" style="background: {{accent}}; color: #FFFFFF; text-decoration: none; border-radius: 999px; padding: 0 26px; min-height: 52px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">Plan my trip</a>
+      <a href="#plan" style="border: 1px solid #2F4156; color: #2F4156; text-decoration: none; border-radius: 999px; padding: 0 26px; min-height: 52px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">See ready-made routes</a>
+    </div>
+    <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{routes}}" as="r" hint-placeholder-count="5">
+        <span style="background: #FFFFFF; border: 1px solid #C8D9E6; border-radius: 999px; padding: 8px 14px; font-size: 14px; color: #2F4156">{{r}}</span>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="flex: 1 1 480px; min-width: 0; background: #FFFFFF; border-radius: 32px; padding: 28px; box-shadow: 0 24px 60px rgba(47,65,86,.12)">
+    <div style="display: flex; justify-content: flex-end">
+      <p style="margin: 0; max-width: 80%; background: #2F4156; color: #F5EFEB; border-radius: 22px 22px 6px 22px; padding: 14px 18px; font-size: 15px; line-height: 1.5">3 days, family with kids, veg, low budget</p>
+    </div>
+    <div style="margin-top: 16px; display: flex; gap: 12px; align-items: flex-start">
+      <span style="flex: none; width: 40px; height: 40px; border-radius: 999px; background: #C8D9E6; display: flex; align-items: center; justify-content: center" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 34 34" fill="none" stroke="#2F4156" stroke-width="2" stroke-linecap="round"><ellipse cx="17" cy="19" rx="8" ry="5.5"></ellipse><path d="M9.5 17 C 6 15, 5 11, 7 8 M24.5 17 C 28 15, 29 11, 27 8 M10 21 L5 24 M24 21 L29 24"></path></svg>
+      </span>
+      <div style="flex: 1; min-width: 0; background: #F5EFEB; border-radius: 6px 22px 22px 22px; padding: 18px">
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap">
+          <p style="margin: 0; font-family: 'Gloock', Georgia, serif; font-size: 22px">Day 1 · Ratnagiri town</p>
+          <div role="tablist" aria-label="Days" style="display: flex; gap: 4px">
+            <button role="tab" aria-selected="true" style="border: 0; background: #2F4156; color: #FFFFFF; border-radius: 999px; padding: 0 14px; min-height: 32px; font: inherit; font-size: 13px; font-weight: 600">D1</button>
+            <button role="tab" aria-selected="false" style="border: 1px solid #C8D9E6; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 0 14px; min-height: 32px; font: inherit; font-size: 13px">D2</button>
+            <button role="tab" aria-selected="false" style="border: 1px solid #C8D9E6; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 0 14px; min-height: 32px; font: inherit; font-size: 13px">D3</button>
+          </div>
+        </div>
+        <ol style="list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 0">
+          <sc-for list="{{stops}}" as="s" hint-placeholder-count="4">
+            <li style="display: flex; gap: 14px">
+              <div style="display: flex; flex-direction: column; align-items: center; width: 14px; flex: none">
+                <span style="width: 12px; height: 12px; border-radius: 999px; border: 2px solid #2F4156; background: #FFFFFF; margin-top: 6px"></span>
+                <span style="flex: 1; width: 2px; background: #C8D9E6; min-height: 40px"></span>
+              </div>
+              <div style="flex: 1; min-width: 0; padding-bottom: 18px">
+                <p style="margin: 0; font-size: 13px; font-weight: 600; color: #436475">{{s.time}}</p>
+                <p style="margin: 2px 0 0; font-size: 17px; font-weight: 600; color: #2F4156">{{s.name}}</p>
+                <span style="margin-top: 8px; display: inline-flex; align-items: center; gap: 6px; background: #FFFFFF; border: 1px solid #C8D9E6; border-radius: 999px; padding: 5px 12px; font-size: 13px; color: #2F4156">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#436475" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3z"></path></svg>{{s.why}}</span>
+              </div>
+            </li>
+          </sc-for>
+        </ol>
+        <div style="display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; border-top: 1px solid #DCD3CC; padding-top: 16px">
+          <p style="margin: 0; font-size: 14px; color: #436475">Estimated for 4 people · <strong style="color: #2F4156">₹[total]</strong></p>
+          <div style="display: flex; gap: 8px">
+            <button style="border: 0; background: {{accent}}; color: #FFFFFF; border-radius: 999px; padding: 0 18px; min-height: 44px; font: inherit; font-size: 14px; font-weight: 600">Apply plan</button>
+            <button style="border: 0; background: transparent; color: #2F4156; border-radius: 999px; padding: 0 14px; min-height: 44px; font: inherit; font-size: 14px; font-weight: 600; text-decoration: underline">Discard</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VERDICT ================= -->
+<section style="background: #FFFFFF; padding: 72px 0 112px; overflow: hidden">
+  <!-- traveller wall -->
+  <div style="position: relative; height: 430px; max-width: 1360px; margin: 0 auto; -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 34%); mask-image: linear-gradient(to bottom, transparent 0, #000 34%)">
+    <div style="position: absolute; inset: 0; display: flex; justify-content: center; gap: 22px">
+      <sc-for list="{{wall}}" as="col" hint-placeholder-count="9">
+        <div style="position: relative; flex: none; width: 112px; display: flex; flex-direction: column; gap: 22px; padding-top: {{col.offset}}">
+          <span style="position: absolute; left: 50%; top: 0; bottom: 0; border-left: 1px solid #E6DED8" aria-hidden="true"></span>
+          <sc-for list="{{col.tiles}}" as="p" hint-placeholder-count="2">
+            <figure style="position: relative; margin: 0; width: 112px; height: 132px; border-radius: 18px; overflow: hidden; background: {{p.bg}}; box-shadow: 0 8px 20px rgba(47,65,86,.10)">
+              <svg viewBox="0 0 100 118" style="width: 100%; height: 100%; display: block" role="img" aria-label="{{p.alt}}">
+                <path d="{{p.hairBack}}" fill="{{p.hair}}"></path>
+                <rect x="44" y="60" width="12" height="14" fill="{{p.skin}}"></rect>
+                <path d="M14 118 C16 90, 32 76, 50 76 S84 90, 86 118 Z" fill="{{p.shirt}}"></path>
+                <circle cx="50" cy="48" r="17" fill="{{p.skin}}"></circle>
+                <path d="{{p.hairFront}}" fill="{{p.hair}}"></path>
+              </svg>
+              <sc-if value="{{p.hasChip}}" hint-placeholder-val="{{ false }}">
+                <figcaption style="position: absolute; left: 8px; right: 8px; bottom: 8px; background: #FFFFFF; color: #2F4156; border-radius: 999px; padding: 4px 8px; font-size: 11px; font-weight: 600; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{p.chip}}</figcaption>
+              </sc-if>
+            </figure>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+
+    <!-- featured traveller -->
+    <div class="cw-hide-sm" style="position: absolute; right: 7%; top: 190px; z-index: 3; transform: rotate(4deg)">
+      <figure style="margin: 0; width: 168px; height: 200px; border-radius: 24px; overflow: hidden; background: #C8D9E6; box-shadow: 0 26px 50px rgba(47,65,86,.28)">
+        <svg viewBox="0 0 100 118" style="width: 100%; height: 100%; display: block" role="img" aria-label="Traveller portrait">
+          <path d="M30 50 C28 26, 72 26, 70 50 L72 92 L28 92 Z" fill="#2B1D16"></path>
+          <rect x="44" y="60" width="12" height="14" fill="#B07A4F"></rect>
+          <path d="M14 118 C16 90, 32 76, 50 76 S84 90, 86 118 Z" fill="#2F4156"></path>
+          <circle cx="50" cy="48" r="17" fill="#B07A4F"></circle>
+          <path d="M32 46 C32 28, 68 28, 68 46 C62 36, 40 36, 32 46 Z" fill="#2B1D16"></path>
+        </svg>
+      </figure>
+      <div style="position: absolute; left: -92px; bottom: -26px; width: 200px; background: #FFFFFF; border-radius: 16px; padding: 12px 14px; box-shadow: 0 14px 30px rgba(47,65,86,.18); transform: rotate(-4deg)">
+        <p style="margin: 0; font-family: 'Gloock', Georgia, serif; font-size: 20px; color: #2F4156">Must visit</p>
+        <p style="margin: 2px 0 0; font-size: 12px; color: #436475">Velneshwar · family trip</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- copy -->
+  <div style="position: relative; max-width: 760px; margin: 8px auto 0; padding: 0 24px; text-align: center">
+    <span style="display: inline-block; border: 1px solid #DCD3CC; background: #F5EFEB; color: #2F4156; border-radius: 999px; padding: 6px 14px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase">The verdict</span>
+    <h2 style="margin: 18px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.04; color: #2F4156">Rated by travellers,<br><span style="color: #567C8D">in one honest word</span></h2>
+    <p style="margin: 20px auto 0; max-width: 520px; font-size: 18px; line-height: 1.65; color: #436475">No stars to decode. Every place, stay and kitchen gets a verdict, split by family, couple, solo and friends. Hygiene scores come only from people who were really there.</p>
+    <!-- verdict gauge -->
+    <div style="margin: 36px auto 0; max-width: 640px; background: #FFFFFF; border: 1px solid #E6DED8; border-radius: 28px; padding: 28px; text-align: left; box-shadow: 0 18px 44px rgba(47,65,86,.10)">
+      <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap">
+        <div>
+          <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #436475">Fort · Ratnagiri</p>
+          <p style="margin: 4px 0 0; font-family: 'Gloock', Georgia, serif; font-size: 26px; color: #2F4156">Ratnadurg Fort</p>
+        </div>
+        <div role="tablist" aria-label="Who is travelling" style="display: flex; gap: 4px; background: #F5EFEB; border-radius: 999px; padding: 4px; flex-wrap: wrap">
+          <sc-for list="{{groups}}" as="t" hint-placeholder-count="4">
+            <button role="tab" aria-selected="{{t.sel}}" onClick="{{t.pick}}" style="border: 0; border-radius: 999px; padding: 0 14px; min-height: 36px; font: inherit; font-size: 13px; font-weight: 600; background: {{t.bg}}; color: {{t.fg}}; transition: background .2s, color .2s">{{t.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <p style="margin: 24px 0 0; font-family: 'Gloock', Georgia, serif; font-size: 40px; line-height: 1; color: #2F4156">Must visit <span style="font-family: 'Instrument Sans', sans-serif; font-size: 16px; color: #436475">[%] of [n] {{groupLabel}} votes</span></p>
+      <div style="margin-top: 18px; display: flex; height: 16px; gap: 3px; border-radius: 999px; overflow: hidden" aria-hidden="true">
+        <span style="width: {{dist.v4}}; background: #2F4156; transition: width .4s"></span>
+        <span style="width: {{dist.v3}}; background: #567C8D; transition: width .4s"></span>
+        <span style="width: {{dist.v2}}; background: #A9C2D4; transition: width .4s"></span>
+        <span style="width: {{dist.v1}}; background: #DCD3CC; transition: width .4s"></span>
+      </div>
+      <div style="margin-top: 12px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; font-size: 13px; color: #436475">
+        <span style="display: flex; gap: 6px; align-items: center"><i style="flex: none; width: 10px; height: 10px; border-radius: 3px; background: #2F4156"></i>Must visit</span>
+        <span style="display: flex; gap: 6px; align-items: center"><i style="flex: none; width: 10px; height: 10px; border-radius: 3px; background: #567C8D"></i>Worth it</span>
+        <span style="display: flex; gap: 6px; align-items: center"><i style="flex: none; width: 10px; height: 10px; border-radius: 3px; background: #A9C2D4"></i>Timepass</span>
+        <span style="display: flex; gap: 6px; align-items: center"><i style="flex: none; width: 10px; height: 10px; border-radius: 3px; background: #DCD3CC"></i>Skip</span>
+      </div>
+    </div>
+    <a href="#discover" style="margin-top: 32px; background: {{accent}}; color: #FFFFFF; text-decoration: none; border-radius: 999px; padding: 0 26px; min-height: 52px; display: inline-flex; align-items: center; gap: 8px; font-size: 16px; font-weight: 600">Read traveller verdicts →</a>
+  </div>
+</section>
+
+<!-- ================= CTA + FOOTER ================= -->
+<section style="background: #2F4156; color: #F5EFEB; padding: 112px 24px 40px; position: relative; overflow: hidden">
+  <p style="position: absolute; left: 50%; top: 40px; transform: translateX(-50%); margin: 0; font-family: 'Tiro Devanagari Marathi', serif; font-size: clamp(120px, 20vw, 300px); line-height: 1; color: #374B61; white-space: nowrap; pointer-events: none" aria-hidden="true">कोकण</p>
+  <div style="position: relative; max-width: 900px; margin: 0 auto; text-align: center">
+    <h2 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: clamp(44px, 6vw, 84px); line-height: 1">Start your Konkan trip</h2>
+    <p style="margin: 20px auto 0; max-width: 520px; font-size: 18px; line-height: 1.6; color: #C8D9E6">Install Crabwalk on your phone. It works offline, in three languages, from the first beach to the last thali.</p>
+    <div style="margin-top: 32px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap">
+      <a href="#plan" style="background: #F5EFEB; color: #2F4156; text-decoration: none; border-radius: 999px; padding: 0 28px; min-height: 54px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">Plan with Crabby</a>
+      <a href="#top" style="border: 1px solid #C8D9E6; color: #F5EFEB; text-decoration: none; border-radius: 999px; padding: 0 28px; min-height: 54px; display: inline-flex; align-items: center; font-size: 16px; font-weight: 600">Install the app</a>
+    </div>
+  </div>
+
+  <footer style="position: relative; max-width: 1280px; margin: 120px auto 0; border-top: 1px solid #436475; padding-top: 40px; display: flex; flex-wrap: wrap; gap: 40px; justify-content: space-between">
+    <div style="max-width: 300px">
+      <p style="margin: 0; font-family: 'Gloock', Georgia, serif; font-size: 28px">Crabwalk</p>
+      <p style="margin: 10px 0 0; font-size: 14px; line-height: 1.6; color: #C8D9E6">Ratnagiri, verified on foot. Made in the Konkan.</p>
+    </div>
+    <nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 48px; font-size: 14px">
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C8D9E6">Explore</p>
+        <a href="#discover" style="color: #F5EFEB; text-decoration: none">Places</a>
+        <a href="#stays" style="color: #F5EFEB; text-decoration: none">Stays</a>
+        <a href="#taste" style="color: #F5EFEB; text-decoration: none">Taste Konkan</a>
+        <a href="#map" style="color: #F5EFEB; text-decoration: none">Map</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C8D9E6">Plan</p>
+        <a href="#plan" style="color: #F5EFEB; text-decoration: none">Ask Crabby</a>
+        <a href="#plan" style="color: #F5EFEB; text-decoration: none">Ready-made routes</a>
+        <a href="#plan" style="color: #F5EFEB; text-decoration: none">Group trips</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <p style="margin: 0; font-size: 12px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: #C8D9E6">For hosts</p>
+        <a href="#stays" style="color: #F5EFEB; text-decoration: none">Claim your listing</a>
+        <a href="#top" style="color: #F5EFEB; text-decoration: none">Sponsor a plaque</a>
+        <a href="#top" style="color: #F5EFEB; text-decoration: none">Report a problem</a>
+      </div>
+    </nav>
+  </footer>
+  <p style="position: relative; max-width: 1280px; margin: 40px auto 0; font-size: 12px; color: #C8D9E6">© 2026 Crabwalk · Map data © OpenStreetMap contributors</p>
+</section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#2F4156","options":["#2F4156","#567C8D","#B5462B","#E8A33D"]},"$preview":{"width":1440,"height":8400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { group: 'family', active: 0, taluka: 'all' };
+  }
+  renderVals() {
+    var self = this;
+    var icons = {
+      beach: 'M3 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M12 4v10M12 4c-3 0-6 2-7 5h14c-1-3-4-5-7-5z',
+      fort: 'M3 20V9h2V6h2v3h2V6h2v3h2V6h2v3h2V6h2v3h2v11zM10 20v-5h4v5',
+      temple: 'M12 2v3M8 9l4-4 4 4M6 12h12M7 12V9h10v3M5 21V12h14v9M10 21v-5h4v5',
+      waterfall: 'M4 4h16M7 4v10M12 4v13M17 4v9M4 20c2-1 4-1 6 0s4 1 6 0 4-1 4-1',
+      viewpoint: 'M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12zM12 15a3 3 0 100-6 3 3 0 000 6z',
+      backwater: 'M3 9c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0',
+      cave: 'M3 20c0-8 4-14 9-14s9 6 9 14zM9 20c0-4 1.5-7 3-7s3 3 3 7',
+      museum: 'M3 9l9-5 9 5M4 9h16M6 9v9M10 9v9M14 9v9M18 9v9M3 20h18',
+      village: 'M3 20V11l5-4 5 4v9M13 20v-6l4-3 4 3v6M7 20v-4h2v4',
+      market: 'M4 9l1-5h14l1 5M4 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3M5 12v8h14v-8',
+      orchard: 'M12 21v-6M12 15a6 6 0 100-12 6 6 0 000 12zM9 9a3 3 0 003 3'
+    };
+    var catNames = [['Beach','beach'],['Fort','fort'],['Temple','temple'],['Waterfall','waterfall'],['Viewpoint','viewpoint'],['Backwater','backwater'],['Cave','cave'],['Museum','museum'],['Village','village'],['Market','market'],['Orchard','orchard']];
+    var categories = catNames.map(function (c, i) {
+      var dark = i === 0;
+      return { name: c[0], icon: icons[c[1]], bg: dark ? '#2F4156' : '#FFFFFF', fg: dark ? '#FFFFFF' : '#2F4156' };
+    });
+
+    var lands = [
+      { land: 'M0 230 C 60 200, 120 215, 180 190 S 260 200, 300 185 L300 400 L0 400 Z', fore: 'M0 400 L0 320 C 40 330, 70 360, 90 400 Z' },
+      { land: 'M0 250 L60 210 L90 212 L90 190 L130 190 L130 205 L200 200 L300 225 L300 400 L0 400 Z', fore: 'M300 400 L300 330 C 260 340, 230 370, 215 400 Z' },
+      { land: 'M0 200 C 80 150, 160 190, 220 160 S 280 170, 300 160 L300 400 L0 400 Z', fore: 'M0 400 L0 340 C 50 345, 90 370, 110 400 Z' }
+    ];
+    var gemData = [
+      ['Velneshwar', 'वेळणेश्वर', 'Beach', 'Guhagar', 'Calm · typical', 'Must visit', ['46%','32%','16%','6%'], '#C8D9E6', 210, '#8AA7B9'],
+      ['Bhandarpule', 'भंडारपुळे', 'Beach', 'Ratnagiri', 'Empty · typical', 'Worth it', ['38%','40%','16%','6%'], '#A9C2D4', 90, '#7F9DB0'],
+      ['Marleshwar', 'मार्लेश्वर', 'Waterfall', 'Sangameshwar', 'Calm · typical', 'Must visit', ['52%','30%','12%','6%'], '#C8D9E6', 150, '#6F8FA3'],
+      ['Kolthare', 'कोळथरे', 'Beach', 'Dapoli', 'Empty · typical', 'Worth it', ['34%','42%','18%','6%'], '#A9C2D4', 220, '#8AA7B9'],
+      ['Pawas', 'पावस', 'Village', 'Ratnagiri', 'Calm · typical', 'Worth it', ['30%','44%','20%','6%'], '#C8D9E6', 80, '#7F9DB0'],
+      ['Ladghar', 'लाडघर', 'Beach', 'Dapoli', 'Calm · typical', 'Must visit', ['48%','30%','16%','6%'], '#A9C2D4', 200, '#6F8FA3']
+    ];
+    var n = gemData.length;
+    var active = this.state.active || 0;
+    var slots = {
+      '0': { x: 0, s: 1, z: 5, op: 1, dim: 0, sh: '0 30px 60px rgba(47,65,86,.28)' },
+      '1': { x: 290, s: 0.82, z: 4, op: 1, dim: 0.22, sh: '0 16px 36px rgba(47,65,86,.16)' },
+      '2': { x: 520, s: 0.66, z: 3, op: 1, dim: 0.42, sh: 'none' },
+      '3': { x: 720, s: 0.5, z: 1, op: 0, dim: 0.6, sh: 'none' }
+    };
+    var gems = gemData.map(function (g, i) {
+      var l = lands[i % 3];
+      var d = (i - active + n) % n;
+      if (d > n / 2) d -= n;
+      var slot = slots[String(Math.abs(d))];
+      var x = d < 0 ? -slot.x : slot.x;
+      return {
+        name: g[0], mr: g[1], cat: g[2], taluka: g[3], crowd: g[4], verdict: g[5],
+        v4: g[6][0], v3: g[6][1], v2: g[6][2], v1: g[6][3], sky: g[7], sunX: g[8], landFill: g[9], land: l.land, fore: l.fore,
+        active: d === 0, current: d === 0 ? 'true' : 'false',
+        label: (d === 0 ? 'Open ' : 'Show ') + g[0],
+        transform: 'translateX(calc(-50% + ' + x + 'px)) scale(' + slot.s + ')',
+        z: slot.z, opacity: slot.op, dim: slot.dim, shadow: slot.sh,
+        pick: function () { self.setState({ active: i, taluka: 'all' }); }
+      };
+    });
+    var cur = gems[active];
+    var counter = '0' + (active + 1) + ' / 0' + n;
+    var prev = function () { self.setState({ active: (active - 1 + n) % n, taluka: 'all' }); };
+    var next = function () { self.setState({ active: (active + 1) % n, taluka: 'all' }); };
+    var talukaSel = this.state.taluka || 'all';
+    var chips = [['all', 'All talukas'], ['Ratnagiri', 'Ratnagiri'], ['Dapoli', 'Dapoli'], ['Guhagar', 'Guhagar'], ['Sangameshwar', 'Sangameshwar']].map(function (c) {
+      var on = c[0] === talukaSel;
+      return {
+        label: c[1], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : 'transparent', fg: on ? '#FFFFFF' : '#2F4156',
+        pick: function () {
+          var idx = 0;
+          if (c[0] !== 'all') { for (var k = 0; k < n; k++) { if (gemData[k][3] === c[0]) { idx = k; break; } } }
+          self.setState({ active: idx, taluka: c[0] });
+        }
+      };
+    });
+
+    var vibes = ['Traditional Konkani home', 'Orchard stay', 'Beachfront', 'Family', 'Backpacker', 'Couple-friendly'];
+    var hairStyles = {
+      short: { back: 'M0 0', front: 'M32 46 C32 28, 68 28, 68 46 C62 36, 40 36, 32 46 Z' },
+      long: { back: 'M30 50 C28 26, 72 26, 70 50 L72 92 L28 92 Z', front: 'M33 44 C34 28, 66 28, 67 44 C58 36, 42 36, 33 44 Z' },
+      bun: { back: 'M41 22 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0', front: 'M33 46 C33 30, 67 30, 67 46 C60 38, 40 38, 33 46 Z' },
+      cap: { back: 'M0 0', front: 'M32 42 C33 26, 67 26, 68 42 Z M66 40 L82 44 L66 44 Z' },
+      bald: { back: 'M0 0', front: 'M0 0' }
+    };
+    function person(bg, skin, style, hair, shirt, chip) {
+      var h = hairStyles[style];
+      return { bg: bg, skin: skin, hair: hair, shirt: shirt, hairBack: h.back, hairFront: h.front, chip: chip || '', hasChip: !!chip, alt: chip ? 'Traveller who voted ' + chip : 'Traveller portrait' };
+    }
+    var wall = [
+      { offset: '70px', tiles: [person('#DDE7EE', '#C68642', 'short', '#1E1612', '#567C8D'), person('#F5EFEB', '#8D5524', 'long', '#1E1612', '#2F4156', 'Worth it')] },
+      { offset: '10px', tiles: [person('#C8D9E6', '#E0AC69', 'bun', '#3B2A20', '#FFFFFF'), person('#E9E2DC', '#6B4226', 'short', '#1E1612', '#8AA7B9')] },
+      { offset: '120px', tiles: [person('#F5EFEB', '#B07A4F', 'bald', '#1E1612', '#436475', 'Local legend'), person('#A9C2D4', '#C68642', 'long', '#2B1D16', '#F5EFEB')] },
+      { offset: '40px', tiles: [person('#C8D9E6', '#8D5524', 'cap', '#2F4156', '#FFFFFF'), person('#DDE7EE', '#E0AC69', 'short', '#5A4A42', '#2F4156')] },
+      { offset: '0px', tiles: [person('#E9E2DC', '#A86B4A', 'long', '#1E1612', '#567C8D', 'Must visit'), person('#C8D9E6', '#6B4226', 'short', '#1E1612', '#F5EFEB')] },
+      { offset: '90px', tiles: [person('#F5EFEB', '#C68642', 'bun', '#1E1612', '#2F4156'), person('#A9C2D4', '#B07A4F', 'short', '#2B1D16', '#FFFFFF', 'Perfect stay')] },
+      { offset: '30px', tiles: [person('#DDE7EE', '#8D5524', 'short', '#1E1612', '#436475'), person('#E9E2DC', '#E0AC69', 'long', '#3B2A20', '#8AA7B9')] },
+      { offset: '110px', tiles: [person('#C8D9E6', '#6B4226', 'bald', '#1E1612', '#F5EFEB')] },
+      { offset: '50px', tiles: [person('#F5EFEB', '#A86B4A', 'cap', '#567C8D', '#2F4156', 'Go for it'), person('#DDE7EE', '#C68642', 'long', '#1E1612', '#FFFFFF')] }
+    ];
+    var talukaData = [
+      ['mandangad', 'Mandangad', 'मंडणगड', 'The quiet northern tip, where olive ridley turtles nest each spring.', ['Velas turtle beach', 'Bankot fort']],
+      ['dapoli', 'Dapoli', 'दापोली', 'Long beaches, a sea fort and cool hill air.', ['Murud beach', 'Harnai', 'Suvarnadurg sea fort', 'Ladghar']],
+      ['khed', 'Khed', 'खेड', 'Ghat roads and hill forts on the Sahyadri edge.', ['Rasalgad fort', 'Ghat viewpoints']],
+      ['chiplun', 'Chiplun', 'चिपळूण', 'River town on the Vashishti, gateway to the ghats.', ['Parshuram temple', 'Vashishti river']],
+      ['guhagar', 'Guhagar', 'गुहागर', 'Clean, calm beaches and old coastal temples.', ['Guhagar beach', 'Velneshwar', 'Hedvi']],
+      ['sangameshwar', 'Sangameshwar', 'संगमेश्वर', 'Where rivers meet, with cave temples and monsoon falls.', ['Marleshwar temple and falls', 'Karneshwar temple']],
+      ['ratnagiri', 'Ratnagiri', 'रत्नागिरी', 'The heart of the coast: forts, beaches, mango orchards and the city.', ['Ganpatipule', 'Jaigad Fort', 'Ratnadurg', 'Thibaw Palace', 'Pawas']],
+      ['lanja', 'Lanja', 'लांजा', 'Inland villages and plateaus, far from the beach crowds.', ['Village trails', 'Orchard stays']],
+      ['rajapur', 'Rajapur', 'राजापूर', 'The southern stretch, with hot springs and riverside temples.', ['Unhale hot springs', 'Dhoot-Papeshwar temple']]
+    ];
+    var talSel = this.state.mapTaluka || 'ratnagiri';
+    var tf = {}, lf = {}, tal = null;
+    var talukas = talukaData.map(function (t) {
+      var on = t[0] === talSel;
+      tf[t[0]] = on ? '#A9C2D4' : '#FFFFFF';
+      lf[t[0]] = on ? '#2F4156' : '#567C8D';
+      var item = { name: t[1], mr: t[2], desc: t[3], spots: t[4], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : 'transparent', fg: on ? '#FFFFFF' : '#2F4156', pick: function () { self.setState({ mapTaluka: t[0] }); } };
+      if (on) tal = item;
+      return item;
+    });
+    var crabbyPoints = [
+      { title: 'Speaks your language', desc: 'English, हिंदी or मराठी. Type it or just say it out loud.',
+        icon: 'M4 5h16v11H9l-5 4zM8 9h8M8 12h5' },
+      { title: 'Does, not just answers', desc: 'Builds your plan, opens the map, shortlists stays. You confirm every change.',
+        icon: 'M12 3l1.8 4.7L18.5 9l-4.7 1.8L12 15.5l-1.8-4.7L5.5 9l4.7-1.3zM19 15l.8 2 2 .8-2 .8-.8 2-.8-2-2-.8 2-.8z' },
+      { title: 'Honest by design', desc: 'Answers only from places our team has verified. If it does not know, it says so.',
+        icon: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6zM9 12l2 2 4-4' },
+      { title: 'Safety comes first', desc: 'Say "accident" or "snake bite" and it skips the chat to show 112 and the nearest hospital.',
+        icon: 'M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z' }
+    ];
+    var kinds = [
+      { title: 'Hotels', href: '#stays', sky: '#C8D9E6',
+        desc: 'Front desks, room service and live prices compared across Agoda and MakeMyTrip.',
+        icon: 'M3 21V7l9-4 9 4v14M3 21h18M8 11h2M14 11h2M8 15h2M14 15h2M10 21v-3h4v3',
+        shape: 'M150 250 L150 90 L250 90 L250 250 Z M165 105 h20 v18 h-20 z M215 105 h20 v18 h-20 z M165 140 h20 v18 h-20 z M215 140 h20 v18 h-20 z M165 175 h20 v18 h-20 z M215 175 h20 v18 h-20 z' },
+      { title: 'Stays', href: '#stays', sky: '#A9C2D4',
+        desc: 'Konkani homes, orchard and agro-tourism stays where you eat with the family.',
+        icon: 'M3 11l9-7 9 7M5 10v10h14V10M10 20v-6h4v6',
+        shape: 'M130 250 L130 160 L200 110 L270 160 L270 250 Z M185 200 h30 v50 h-30 z' },
+      { title: 'Places', href: '#discover', sky: '#C8D9E6',
+        desc: 'Beaches, sea forts, temples and waterfalls, each one verified on foot.',
+        icon: 'M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11zM12 12.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5z',
+        shape: 'M90 250 L90 150 L110 150 L110 135 L130 135 L130 150 L160 150 L160 135 L180 135 L180 150 L210 150 L210 135 L230 135 L230 150 L250 150 L250 250 Z' }
+    ];
+    var routes = ['Ratnagiri in 2 days', 'Temples of Konkan', 'Hidden beaches', 'Forts trail', 'Family weekend'];
+    var stops = [
+      { time: '08:30', name: 'Ratnadurg Fort', why: 'Cool morning climb, clear sea view' },
+      { time: '11:00', name: 'Thibaw Palace', why: 'Indoors through the midday heat' },
+      { time: '13:00', name: 'Home-style veg thali', why: 'Veg, kid-friendly, within budget' },
+      { time: '16:00', name: 'Ganpatipule', why: 'Low crowd + sunset' }
+    ];
+
+    var groupDefs = [['family','Family'],['couple','Couple'],['solo','Solo'],['friends','Friends']];
+    var dists = {
+      family: { v4: '54%', v3: '28%', v2: '12%', v1: '6%' },
+      couple: { v4: '61%', v3: '24%', v2: '10%', v1: '5%' },
+      solo: { v4: '47%', v3: '33%', v2: '14%', v1: '6%' },
+      friends: { v4: '58%', v3: '26%', v2: '11%', v1: '5%' }
+    };
+    var curGroup = this.state.group;
+    var groups = groupDefs.map(function (g) {
+      var on = g[0] === curGroup;
+      return { label: g[1], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : 'transparent', fg: on ? '#FFFFFF' : '#2F4156', pick: function () { self.setState({ group: g[0] }); } };
+    });
+    var groupLabel = groupDefs.filter(function (g) { return g[0] === curGroup; })[0][1].toLowerCase();
+
+    var veg = '#2E7D32', nonveg = '#A1371F';
+    var dishes = [
+      ['Solkadhi', 'सोलकढी', 'Kokum and coconut milk, pink and cooling. Sip it after fish.', true, '#C8D9E6'],
+      ['Kombdi vade', 'कोंबडी वडे', 'Spicy Malvani chicken curry with puffy fried rice-flour vade.', false, '#567C8D'],
+      ['Bangda fry', 'बांगडा फ्राय', 'Mackerel coated in rava and masala, crisp off the tawa.', false, '#2F4156'],
+      ['Surmai thali', 'सुरमई थाळी', 'Kingfish fry and curry with rice, bhakri and solkadhi.', false, '#436475'],
+      ['Ukadiche modak', 'उकडीचे मोदक', 'Steamed rice-flour dumplings with coconut and jaggery.', true, '#A9C2D4'],
+      ['Ghavane', 'घावणे', 'Lacy rice-flour crepes, eaten with chutney or coconut milk.', true, '#C8D9E6'],
+      ['Aamras', 'आमरस', 'Pure Alphonso pulp, best with hot puris in mango season.', true, '#567C8D'],
+      ['Kokum sherbet', 'कोकम सरबत', 'Tangy-sweet kokum cooler for a hot afternoon.', true, '#436475']
+    ].map(function (d) {
+      return { name: d[0], mr: d[1], desc: d[2], dot: d[3] ? veg : nonveg, vegLabel: d[3] ? 'Vegetarian' : 'Non-vegetarian', tone: d[4] };
+    });
+
+    var seasons = [
+      { months: 'Oct – Feb', name: 'Beach season', desc: 'Calm sea, clear sunsets, the best months for forts.', now: true, bg: '#2F4156', fg: '#FFFFFF' },
+      { months: 'Feb – Mar', name: 'Turtle nesting', desc: 'Olive ridley hatchlings head to sea at Velas.', now: false, bg: '#FFFFFF', fg: '#2F4156' },
+      { months: 'Apr – May', name: 'Mango season', desc: 'Alphonso orchards, aamras and orchard stays.', now: false, bg: '#FFFFFF', fg: '#2F4156' },
+      { months: 'May – Jun', name: 'Firefly nights', desc: 'Pre-monsoon forests light up after dark.', now: false, bg: '#FFFFFF', fg: '#2F4156' },
+      { months: 'Jul – Sep', name: 'Waterfall season', desc: 'Green ghats and falls. We flag what is risky.', now: false, bg: '#567C8D', fg: '#FFFFFF' }
+    ];
+
+    var stays = [
+      { name: '[Konkani home stay]', style: 'Homely', tone: '#C8D9E6', tags: ['Traditional Konkani home', 'Family', 'Homemade meals'] },
+      { name: '[Orchard stay]', style: 'Homely', tone: '#A9C2D4', tags: ['Orchard stay', 'Couple-friendly', 'Veg'] },
+      { name: '[Beachfront stay]', style: 'Professional', tone: '#C8D9E6', tags: ['Beachfront', 'AC', 'Wi-Fi'] }
+    ];
+
+    return {
+      accent: this.props.accent ?? '#2F4156',
+      categories: categories, gems: gems, vibes: vibes, routes: routes, stops: stops,
+      cur: cur, counter: counter, prev: prev, next: next, chips: chips, kinds: kinds, wall: wall, crabbyPoints: crabbyPoints, talukas: talukas, tal: tal, tf: tf, lf: lf,
+      groups: groups, groupLabel: groupLabel, dist: dists[curGroup],
+      dishes: dishes, seasons: seasons, stays: stays
+    };
+  }
+}
+</script>
+</body>
+</html>

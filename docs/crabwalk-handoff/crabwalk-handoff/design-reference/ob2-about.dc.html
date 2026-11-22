@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crabwalk onboarding — About you</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Instrument+Sans:wght@400;500;600&amp;family=Tiro+Devanagari+Marathi&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5EFEB}
+*{box-sizing:border-box}
+a{color:#2F4156}a:hover{color:#436475}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F5EFEB; font-family: 'Instrument Sans', system-ui, sans-serif; color: #2F4156">
+
+  <!-- top bar -->
+  <div style="display: flex; align-items: center; gap: 14px; padding: 18px 20px 0">
+    <a href="ob1-login.dc.html" aria-label="Back" style="flex: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid #DCD3CC; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #2F4156"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div role="img" aria-label="Step 1 of 4" style="flex: 1; display: flex; gap: 6px">
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+    </div>
+    <a href="ob3-group.dc.html" style="font-size: 14px; font-weight: 600; color: #436475; padding: 12px 2px; text-decoration: none">Skip</a>
+  </div>
+
+  <div style="padding: 26px 24px 0">
+    <!-- Crabby says -->
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="flex: none; width: 40px; height: 40px; border-radius: 999px; background: #C8D9E6; display: flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 34 34" fill="none" stroke="#2F4156" stroke-width="2" stroke-linecap="round"><ellipse cx="17" cy="19" rx="8" ry="5.5"></ellipse><path d="M9.5 17 C 6 15, 5 11, 7 8 M24.5 17 C 28 15, 29 11, 27 8 M10 21 L5 24 M24 21 L29 24"></path></svg></span>
+      <p style="margin: 0; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 14px; font-size: 14px; color: #436475">Step 1 of 4 · takes a minute</p>
+    </div>
+    <h1 style="margin: 18px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.08">First, what should<br>Crabby call you?</h1>
+
+    <label for="ob-name" style="display: block; margin-top: 24px; font-size: 13px; font-weight: 600">Your name</label>
+    <input id="ob-name" type="text" placeholder="e.g. Dharma" style="margin-top: 8px; width: 100%; height: 54px; border: 1px solid #DCD3CC; border-radius: 14px; background: #FFFFFF; padding: 0 16px; font: inherit; font-size: 17px; color: #2F4156; outline: none">
+
+    <p style="margin: 26px 0 0; font-size: 13px; font-weight: 600">Which language feels like home?</p>
+    <div role="radiogroup" aria-label="App language" style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px">
+      <sc-for list="{{langs}}" as="l" hint-placeholder-count="3">
+        <button role="radio" aria-checked="{{l.sel}}" onClick="{{l.pick}}" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 68px; padding: 12px 16px; border-radius: 18px; border: {{l.border}}; background: {{l.bg}}; color: #2F4156; text-align: left; font: inherit; transition: background .2s, border-color .2s">
+          <span style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-family: {{l.font}}; font-size: 20px; line-height: 1.2">{{l.name}}</span>
+            <span style="font-family: {{l.font}}; font-size: 13px; color: #436475">{{l.sample}}</span>
+          </span>
+          <span style="flex: none; width: 24px; height: 24px; border-radius: 999px; border: 2px solid #2F4156; background: {{l.dot}}; box-shadow: inset 0 0 0 4px #FFFFFF"></span>
+        </button>
+      </sc-for>
+    </div>
+
+    <label for="ob-city" style="display: block; margin-top: 22px; font-size: 13px; font-weight: 600">Where do you usually start from? <span style="font-weight: 400; color: #436475">(optional)</span></label>
+    <div style="margin-top: 8px; position: relative">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#436475" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="position: absolute; left: 16px; top: 18px" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>
+      <input id="ob-city" type="text" placeholder="Pune, Mumbai, Kolhapur…" style="width: 100%; height: 54px; border: 1px solid #DCD3CC; border-radius: 14px; background: #FFFFFF; padding: 0 16px 0 44px; font: inherit; font-size: 16px; color: #2F4156; outline: none">
+    </div>
+  </div>
+
+  <!-- bottom action -->
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px 28px; background: #F5EFEB; border-top: 1px solid #E6DED8">
+    <a href="ob3-group.dc.html" style="height: 56px; border-radius: 999px; background: #2F4156; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600">Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { lang: 'mr' };
+  }
+  renderVals() {
+    var self = this;
+    var defs = [
+      ['en', 'English', 'Hi! Where shall we go today?', "'Instrument Sans', sans-serif"],
+      ['hi', 'हिंदी', 'नमस्ते! आज कहाँ चलें?', "'Tiro Devanagari Marathi', serif"],
+      ['mr', 'मराठी', 'नमस्कार! आज कुठे जायचं?', "'Tiro Devanagari Marathi', serif"]
+    ];
+    var langs = defs.map(function (d) {
+      var on = self.state.lang === d[0];
+      return {
+        name: d[1], sample: d[2], font: d[3], sel: on ? 'true' : 'false',
+        bg: on ? '#FFFFFF' : 'rgba(255,255,255,.5)', border: on ? '2px solid #2F4156' : '1px solid #DCD3CC',
+        dot: on ? '#2F4156' : '#FFFFFF',
+        pick: function () { self.setState({ lang: d[0] }); }
+      };
+    });
+    return { langs: langs };
+  }
+}
+</script>
+</body>
+</html>

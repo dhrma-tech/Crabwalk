@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crabwalk onboarding — Who's coming</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5EFEB}
+*{box-sizing:border-box}
+a{color:#2F4156}a:hover{color:#436475}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F5EFEB; font-family: 'Instrument Sans', system-ui, sans-serif; color: #2F4156">
+
+  <div style="display: flex; align-items: center; gap: 14px; padding: 18px 20px 0">
+    <a href="ob2-about.dc.html" aria-label="Back" style="flex: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid #DCD3CC; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #2F4156"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div role="img" aria-label="Step 2 of 4" style="flex: 1; display: flex; gap: 6px">
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+    </div>
+    <a href="ob4-interests.dc.html" style="font-size: 14px; font-weight: 600; color: #436475; padding: 12px 2px; text-decoration: none">Skip</a>
+  </div>
+
+  <div style="padding: 22px 24px 0">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="flex: none; width: 40px; height: 40px; border-radius: 999px; background: #C8D9E6; display: flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 34 34" fill="none" stroke="#2F4156" stroke-width="2" stroke-linecap="round"><ellipse cx="17" cy="19" rx="8" ry="5.5"></ellipse><path d="M9.5 17 C 6 15, 5 11, 7 8 M24.5 17 C 28 15, 29 11, 27 8 M10 21 L5 24 M24 21 L29 24"></path></svg></span>
+      <p style="margin: 0; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 14px; font-size: 14px; color: #436475">So I can split verdicts for people like you</p>
+    </div>
+    <h1 style="margin: 16px 0 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 32px; line-height: 1.08">Who usually travels<br>with you?</h1>
+
+    <div role="radiogroup" aria-label="Group type" style="margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+        <button role="radio" aria-checked="{{g.sel}}" onClick="{{g.pick}}" style="position: relative; height: 104px; border-radius: 20px; border: {{g.border}}; background: {{g.bg}}; color: {{g.fg}}; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; font: inherit; text-align: left; transition: background .2s, color .2s">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{g.icon}}"></path></svg>
+          <span style="display: flex; flex-direction: column">
+            <span style="font-size: 17px; font-weight: 600">{{g.label}}</span>
+            <span style="font-size: 12px; opacity: .8">{{g.hint}}</span>
+          </span>
+        </button>
+      </sc-for>
+    </div>
+
+    <p style="margin: 22px 0 0; font-size: 13px; font-weight: 600">Anyone who needs a little extra care?</p>
+    <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{care}}" as="c" hint-placeholder-count="4">
+        <button aria-pressed="{{c.sel}}" onClick="{{c.pick}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2F4156; background: {{c.bg}}; color: {{c.fg}}; font: inherit; font-size: 14px; font-weight: 600; transition: background .2s, color .2s">{{c.label}}</button>
+      </sc-for>
+    </div>
+
+    <p style="margin: 20px 0 0; font-size: 13px; font-weight: 600">How do you get around?</p>
+    <div style="margin-top: 10px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{modes}}" as="m" hint-placeholder-count="4">
+        <button aria-pressed="{{m.sel}}" onClick="{{m.pick}}" style="min-height: 40px; padding: 0 14px; border-radius: 999px; border: 1px solid #2F4156; background: {{m.bg}}; color: {{m.fg}}; font: inherit; font-size: 14px; font-weight: 600; transition: background .2s, color .2s">{{m.label}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px 28px; background: #F5EFEB; border-top: 1px solid #E6DED8">
+    <a href="ob4-interests.dc.html" style="height: 56px; border-radius: 999px; background: #2F4156; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600">Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { group: 'family', care: { kids: true }, modes: { car: true } };
+  }
+  renderVals() {
+    var self = this;
+    var gdefs = [
+      ['solo', 'Solo', 'Just me', 'M12 8a3 3 0 100-6 3 3 0 000 6zM6 21v-3a6 6 0 0112 0v3'],
+      ['couple', 'Couple', 'The two of us', 'M8 8a3 3 0 100-6 3 3 0 000 6zM16 8a3 3 0 100-6 3 3 0 000 6zM2 21v-3a5 5 0 0110 0v3M12 21v-3a5 5 0 0110 0v3'],
+      ['family', 'Family', 'Parents, kids, elders', 'M7 7a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM17 7a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM12 13a2 2 0 100-4 2 2 0 000 4zM3 21v-5a4 4 0 018 0M13 21v-5a4 4 0 018 0M9 21v-2a3 3 0 016 0v2'],
+      ['friends', 'Friends', 'A gang of 3+', 'M5 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM12 8a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM19 9a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM1 20v-3a4 4 0 017-2.6M8 20v-4a4 4 0 018 0v4M23 20v-3a4 4 0 00-7-2.6']
+    ];
+    var groups = gdefs.map(function (d) {
+      var on = self.state.group === d[0];
+      return { label: d[1], hint: d[2], icon: d[3], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2F4156', border: on ? '1px solid #2F4156' : '1px solid #DCD3CC', pick: function () { self.setState({ group: d[0] }); } };
+    });
+    function toggles(key, defs) {
+      return defs.map(function (d) {
+        var on = !!self.state[key][d[0]];
+        return { label: d[1], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : 'transparent', fg: on ? '#FFFFFF' : '#2F4156', pick: function () { var next = Object.assign({}, self.state[key]); next[d[0]] = !on; var patch = {}; patch[key] = next; self.setState(patch); } };
+      });
+    }
+    var care = toggles('care', [['kids', 'Kids under 10'], ['elders', 'Elders'], ['pets', 'Pets'], ['access', 'Wheelchair user']]);
+    var modes = toggles('modes', [['car', 'Own car'], ['bike', 'Bike'], ['bus', 'ST bus / train'], ['cab', 'Hired cab']]);
+    return { groups: groups, care: care, modes: modes };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,245 @@
+/* "Konkan field journal" (docs/crabwalk-handoff/PLAN.md): the landing and onboarding only. Everything hangs off
+   `.journal`, so the Tideline app is untouched. Light only: it is printed paper; the hero has its own night sky. */
+@font-face {
+	font-family: 'Gloock';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/journal-display-latin.woff2') format('woff2');
+	unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20B9, U+2190-2193, U+2212;
+}
+@font-face {
+	font-family: 'Instrument Sans';
+	font-weight: 400 600;
+	font-display: swap;
+	src: url('/fonts/journal-text-latin.woff2') format('woff2');
+	unicode-range: U+0020-007E, U+00A0-00FF, U+2010-2027, U+2030-203A, U+20B9, U+2190-2193, U+2212;
+}
+@font-face {
+	font-family: 'Tiro Devanagari Marathi';
+	font-weight: 400;
+	font-display: swap;
+	src: url('/fonts/journal-deva.woff2') format('woff2');
+	unicode-range: U+0900-097F, U+1CD0-1CF9, U+200B-200D, U+25CC, U+A8E0-A8FF;
+}
+
+.journal {
+	--navy: #2f4156;
+	--teal: #567c8d;
+	--sky: #c8d9e6;
+	--beige: #f5efeb;
+	--white: #ffffff;
+	--muted: #436475;
+	--mist: #a9c2d4;
+	--haze: #8aa7b9;
+	--line: #dcd3cc;
+	--line-2: #e6ded8;
+	--ink: #1f2c3b;
+	/* One warm accent (brief §4): Crabby's shell, one highlight per screen, hover sparks. Never large areas. */
+	--laterite: #b5462b;
+	--laterite-soft: #d9785a;
+	--sos: #d32f2f;
+	--j-display: 'Gloock', 'Tiro Devanagari Marathi', Georgia, serif;
+	--j-text: 'Instrument Sans', 'Tiro Devanagari Marathi', system-ui, sans-serif;
+	--j-deva: 'Tiro Devanagari Marathi', serif;
+	--j-ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+	--j-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+	--j-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+	--j-gutter: clamp(16px, 4vw, 40px);
+	--j-max: 1280px;
+	color-scheme: light;
+	position: relative;
+	isolation: isolate;
+	background: var(--beige);
+	color: var(--navy);
+	font-family: var(--j-text);
+	font-size: 16px;
+	line-height: 1.6;
+	-webkit-font-smoothing: antialiased;
+	overflow-x: clip;
+}
+/* Paper grain over the whole page (brief §5: 3–6 %). One fixed, static layer: composited once, no repaint on scroll. */
+.journal::after {
+	content: '';
+	position: fixed;
+	inset: 0;
+	z-index: 60;
+	pointer-events: none;
+	opacity: 0.05;
+	mix-blend-mode: multiply;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .18 0 0 0 0 .2 0 0 0 0 .25 0 0 0 1.2 -.1'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.journal :where(h1, h2, h3, p, ul, ol, figure) {
+	margin: 0;
+}
+.journal :where(a) {
+	color: inherit;
+}
+.journal :where(button) {
+	font: inherit;
+	color: inherit;
+	cursor: pointer;
+}
+.journal :focus-visible {
+	outline: 3px solid var(--laterite);
+	outline-offset: 3px;
+	border-radius: 6px;
+}
+
+/* Type. Devanagari: ~10 % more line height, no tracking, never all caps (brief §4). */
+.j-display {
+	font-family: var(--j-display);
+	font-weight: 400;
+	letter-spacing: -0.025em;
+	line-height: 1;
+	text-wrap: balance;
+}
+.j-h2 {
+	font-family: var(--j-display);
+	font-weight: 400;
+	font-size: clamp(38px, 5vw, 68px);
+	line-height: 1.02;
+	letter-spacing: -0.02em;
+	text-wrap: balance;
+}
+.j-caps {
+	font-size: 12px;
+	font-weight: 600;
+	letter-spacing: 0.28em;
+	text-transform: uppercase;
+}
+.j-lead {
+	font-size: clamp(17px, 1.5vw, 19px);
+	line-height: 1.65;
+	text-wrap: pretty;
+}
+.j-deva {
+	font-family: var(--j-deva);
+	letter-spacing: 0;
+	text-transform: none;
+	line-height: 1.5;
+}
+.journal:lang(hi) :is(.j-caps, .j-display, .j-h2),
+.journal:lang(mr) :is(.j-caps, .j-display, .j-h2),
+.journal :is(.j-caps, .j-display, .j-h2):lang(hi),
+.journal :is(.j-caps, .j-display, .j-h2):lang(mr) {
+	letter-spacing: 0;
+	text-transform: none;
+	line-height: 1.15;
+}
+.journal:lang(hi),
+.journal:lang(mr) {
+	line-height: 1.75;
+}
+
+.j-wrap {
+	width: 100%;
+	max-width: var(--j-max);
+	margin-inline: auto;
+	padding-inline: var(--j-gutter);
+}
+
+/* Buttons: ink-pressed pills, not the Tailwind look. A hard offset "print" shadow instead of soft blur. */
+.j-btn {
+	--b-bg: var(--navy);
+	--b-fg: var(--white);
+	--b-edge: var(--ink);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	min-height: 52px;
+	padding: 0 26px;
+	border: 1.5px solid var(--b-edge);
+	border-radius: 999px;
+	background: var(--b-bg);
+	color: var(--b-fg);
+	font-size: 16px;
+	font-weight: 600;
+	text-decoration: none;
+	box-shadow: 3px 3px 0 var(--b-edge);
+	transition:
+		transform 0.18s var(--j-ease),
+		box-shadow 0.18s var(--j-ease);
+}
+.j-btn:hover {
+	transform: translate(-1px, -1px);
+	box-shadow: 4px 4px 0 var(--b-edge);
+}
+.j-btn:active {
+	transform: translate(2px, 2px);
+	box-shadow: 1px 1px 0 var(--b-edge);
+}
+.j-btn.ghost {
+	--b-bg: transparent;
+	--b-fg: var(--navy);
+	--b-edge: var(--navy);
+	box-shadow: none;
+}
+.j-btn.ghost:hover {
+	background: rgb(47 65 86 / 0.06);
+	transform: none;
+}
+.j-btn.paper {
+	--b-bg: var(--beige);
+	--b-fg: var(--navy);
+	--b-edge: var(--ink);
+}
+.j-btn.on-dark {
+	--b-bg: transparent;
+	--b-fg: var(--beige);
+	--b-edge: var(--sky);
+	box-shadow: none;
+}
+.j-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	min-height: 44px;
+	padding: 0 16px;
+	border: 1.5px solid var(--navy);
+	border-radius: 999px;
+	background: transparent;
+	font-size: 14px;
+	font-weight: 600;
+	transition:
+		background 0.2s,
+		color 0.2s,
+		transform 0.25s var(--j-spring);
+}
+.j-chip[aria-pressed='true'],
+.j-chip[aria-selected='true'],
+.j-chip[aria-checked='true'] {
+	background: var(--navy);
+	color: var(--white);
+}
+.j-chip:active {
+	transform: scale(0.94);
+}
+
+/* Duotone for photos when they arrive (brief §5): navy shadows, beige highlights; hover shows full colour. */
+.j-duotone {
+	filter: url('#j-duotone');
+	transition: filter 0.4s;
+}
+.j-duotone:hover {
+	filter: none;
+}
+
+/* Ink line art: hand-drawn feel via round caps and a slight wobble filter where it is defined. */
+.j-ink {
+	fill: none;
+	stroke: currentColor;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.journal *,
+	.journal *::before,
+	.journal *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}

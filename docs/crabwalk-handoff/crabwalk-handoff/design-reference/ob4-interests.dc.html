@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Crabwalk onboarding — Interests and pace</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;family=Instrument+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#F5EFEB}
+*{box-sizing:border-box}
+a{color:#2F4156}a:hover{color:#436475}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #F5EFEB; font-family: 'Instrument Sans', system-ui, sans-serif; color: #2F4156">
+
+  <div style="display: flex; align-items: center; gap: 14px; padding: 18px 20px 0">
+    <a href="ob3-group.dc.html" aria-label="Back" style="flex: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid #DCD3CC; background: #FFFFFF; display: flex; align-items: center; justify-content: center; color: #2F4156"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div role="img" aria-label="Step 3 of 4" style="flex: 1; display: flex; gap: 6px">
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #2F4156"></span>
+      <span style="flex: 1; height: 6px; border-radius: 999px; background: #DCD3CC"></span>
+    </div>
+    <a href="ob5-food.dc.html" style="font-size: 14px; font-weight: 600; color: #436475; padding: 12px 2px; text-decoration: none">Skip</a>
+  </div>
+
+  <div style="padding: 22px 24px 0">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span style="flex: none; width: 40px; height: 40px; border-radius: 999px; background: #C8D9E6; display: flex; align-items: center; justify-content: center" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 34 34" fill="none" stroke="#2F4156" stroke-width="2" stroke-linecap="round"><ellipse cx="17" cy="19" rx="8" ry="5.5"></ellipse><path d="M9.5 17 C 6 15, 5 11, 7 8 M24.5 17 C 28 15, 29 11, 27 8 M10 21 L5 24 M24 21 L29 24"></path></svg></span>
+      <p style="margin: 0; background: #FFFFFF; border-radius: 4px 16px 16px 16px; padding: 8px 14px; font-size: 14px; color: #436475">Pick at least 3. I'll plan around them.</p>
+    </div>
+    <div style="margin-top: 16px; display: flex; justify-content: space-between; align-items: end; gap: 12px">
+      <h1 style="margin: 0; font-family: 'Gloock', Georgia, serif; font-weight: 400; font-size: 32px; line-height: 1.08">What pulls you<br>to the coast?</h1>
+      <span style="flex: none; background: #2F4156; color: #FFFFFF; border-radius: 999px; padding: 6px 12px; font-size: 13px; font-weight: 600">{{count}} picked</span>
+    </div>
+
+    <div role="group" aria-label="Interests" style="margin-top: 18px; display: flex; flex-wrap: wrap; gap: 8px">
+      <sc-for list="{{interests}}" as="i" hint-placeholder-count="14">
+        <button aria-pressed="{{i.sel}}" onClick="{{i.pick}}" style="min-height: 42px; padding: 0 14px 0 10px; border-radius: 999px; border: 1px solid {{i.line}}; background: {{i.bg}}; color: {{i.fg}}; display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 14px; font-weight: 600; transition: background .2s, color .2s">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{i.icon}}"></path></svg>{{i.label}}</button>
+      </sc-for>
+    </div>
+
+    <p style="margin: 22px 0 0; font-size: 13px; font-weight: 600">Your travel pace</p>
+    <div role="radiogroup" aria-label="Travel pace" style="margin-top: 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+      <sc-for list="{{paces}}" as="p" hint-placeholder-count="3">
+        <button role="radio" aria-checked="{{p.sel}}" onClick="{{p.pick}}" style="height: 76px; border-radius: 16px; border: {{p.border}}; background: {{p.bg}}; color: {{p.fg}}; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; padding: 0 12px; font: inherit; text-align: left; transition: background .2s, color .2s">
+          <span style="font-size: 15px; font-weight: 600">{{p.label}}</span>
+          <span style="font-size: 12px; opacity: .8">{{p.hint}}</span>
+        </button>
+      </sc-for>
+    </div>
+
+    <button role="switch" aria-checked="{{gemsSel}}" onClick="{{toggleGems}}" style="margin-top: 14px; width: 100%; min-height: 64px; border-radius: 16px; border: 1px solid #DCD3CC; background: #FFFFFF; color: #2F4156; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 14px; font: inherit; text-align: left">
+      <span style="display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 15px; font-weight: 600">Prefer hidden gems</span>
+        <span style="font-size: 12px; color: #436475">Calmer spots over the famous crowds</span>
+      </span>
+      <span style="flex: none; width: 48px; height: 28px; border-radius: 999px; background: {{gemsTrack}}; position: relative; transition: background .2s">
+        <span style="position: absolute; top: 3px; left: {{gemsKnob}}; width: 22px; height: 22px; border-radius: 999px; background: #FFFFFF; box-shadow: 0 1px 3px rgba(47,65,86,.3); transition: left .2s"></span>
+      </span>
+    </button>
+  </div>
+
+  <div style="position: absolute; left: 0; right: 0; bottom: 0; padding: 16px 20px 28px; background: #F5EFEB; border-top: 1px solid #E6DED8">
+    <a href="ob5-food.dc.html" style="height: 56px; border-radius: 999px; background: #2F4156; color: #FFFFFF; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 16px; font-weight: 600">Continue <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { picked: { beach: true, fort: true, food: true, gems: true }, pace: 'balanced', preferGems: true };
+  }
+  renderVals() {
+    var self = this;
+    var defs = [
+      ['beach', 'Beaches', 'M3 18c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M12 4v10M12 4c-3 0-6 2-7 5h14c-1-3-4-5-7-5z'],
+      ['fort', 'Sea forts', 'M3 20V9h2V6h2v3h2V6h2v3h2V6h2v3h2V6h2v3h2v11zM10 20v-5h4v5'],
+      ['temple', 'Temples', 'M12 2v3M8 9l4-4 4 4M6 12h12M7 12V9h10v3M5 21V12h14v9M10 21v-5h4v5'],
+      ['falls', 'Waterfalls', 'M4 4h16M7 4v10M12 4v13M17 4v9M4 20c2-1 4-1 6 0s4 1 6 0 4-1 4-1'],
+      ['view', 'Viewpoints', 'M2 12s4-6 10-6 10 6 10 6-4 6-10 6S2 12 2 12zM12 15a3 3 0 100-6 3 3 0 000 6z'],
+      ['backwater', 'Backwaters', 'M3 9c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0M3 15c2-1.5 4-1.5 6 0s4 1.5 6 0 4-1.5 6 0'],
+      ['cave', 'Caves', 'M3 20c0-8 4-14 9-14s9 6 9 14zM9 20c0-4 1.5-7 3-7s3 3 3 7'],
+      ['museum', 'Museums', 'M3 9l9-5 9 5M4 9h16M6 9v9M10 9v9M14 9v9M18 9v9M3 20h18'],
+      ['village', 'Villages', 'M3 20V11l5-4 5 4v9M13 20v-6l4-3 4 3v6M7 20v-4h2v4'],
+      ['market', 'Markets', 'M4 9l1-5h14l1 5M4 9c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3M5 12v8h14v-8'],
+      ['orchard', 'Orchards', 'M12 21v-6M12 15a6 6 0 100-12 6 6 0 000 12zM9 9a3 3 0 003 3'],
+      ['food', 'Local food', 'M4 11h16a8 8 0 01-16 0zM8 7c0-2 2-2 2-4M12 7c0-2 2-2 2-4M16 7c0-2 2-2 2-4'],
+      ['gems', 'Hidden gems', 'M6 3h12l4 6-10 12L2 9zM2 9h20M10 3l-2 6 4 12 4-12-2-6'],
+      ['trek', 'Treks', 'M3 20l6-10 4 6 3-4 5 8zM14 6a2 2 0 100-4 2 2 0 000 4z']
+    ];
+    var count = 0;
+    var interests = defs.map(function (d) {
+      var on = !!self.state.picked[d[0]];
+      if (on) count++;
+      return { label: d[1], icon: d[2], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2F4156', line: on ? '#2F4156' : '#DCD3CC',
+        pick: function () { var n = Object.assign({}, self.state.picked); n[d[0]] = !on; self.setState({ picked: n }); } };
+    });
+    var pdefs = [['relaxed', 'Relaxed', '2–3 stops a day'], ['balanced', 'Balanced', '4–5 stops'], ['packed', 'Packed', 'See it all']];
+    var paces = pdefs.map(function (d) {
+      var on = self.state.pace === d[0];
+      return { label: d[1], hint: d[2], sel: on ? 'true' : 'false', bg: on ? '#2F4156' : '#FFFFFF', fg: on ? '#FFFFFF' : '#2F4156', border: on ? '1px solid #2F4156' : '1px solid #DCD3CC', pick: function () { self.setState({ pace: d[0] }); } };
+    });
+    var g = self.state.preferGems;
+    return {
+      interests: interests, count: count, paces: paces,
+      gemsSel: g ? 'true' : 'false', gemsTrack: g ? '#2F4156' : '#DCD3CC', gemsKnob: g ? '23px' : '3px',
+      toggleGems: function () { self.setState({ preferGems: !g }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
