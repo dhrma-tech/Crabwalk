@@ -1,39 +1,60 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { onMount } from 'svelte';
 	import { reducedMotion, lowEnd, dataSaver } from '#lib/motion.ts';
 	import Crabby, { type CrabbyState } from '#lib/components/Crabby.svelte';
 	import Diorama from './Diorama.svelte';
 	import JournalNav from './JournalNav.svelte';
-	import { HERO } from '../content/landing.ts';
-	import { tr } from '../i18n.ts';
+	import { HERO, NAV } from '../content/landing.ts';
+	import { tr, locale } from '../i18n.ts';
 	import { skyAt, istHours, GOLDEN, type Sky } from '../sky.ts';
 
-	// Hero (brief §7.1): living coast diorama with the real Ratnagiri sky, the headline rising out of a wave,
-	// रत्नागिरी writing itself, then the coastal route drawing with a tiny Crabby scuttling to Pawas.
-	// Text is real HTML/SVG text. Entrance is CSS (starts at first paint, no wait for hydration); reduced motion
-	// shows the final state and a golden-hour sky.
+	// Hero, "Arriving at Ratnagiri" (design/IMPROVEMENT_PLAN.md §4.1): a station nameboard swings down, the name
+	// rises out of the sea, the coastal route draws with postmark stops and Crabby walks it to Pawas. Text is real
+	// HTML/SVG text and the headline is painted from the first frame (LCP). Reduced motion shows the final state.
 	let sky = $state<Sky>(skyAt(istHours()));
 	let hero = $state<HTMLElement>();
-	let route = $state<SVGPathElement>();
+	let routeH = $state<SVGPathElement>();
+	let routeV = $state<SVGPathElement>();
 	let scrolled = $state(false);
-	let crab = $state({ x: 20, y: 70, state: 'idle' as CrabbyState, on: false, flip: false });
+	let crab = $state({ x: 0, y: 0, state: 'idle' as CrabbyState, on: false, v: false });
 
-	const STOPS = [
-		{ x: 20, y: 70, below: true, end: true },
-		{ x: 190, y: 60, below: false },
-		{ x: 360, y: 80, below: true },
-		{ x: 540, y: 60, below: false },
-		{ x: 720, y: 80, below: true },
-		{ x: 960, y: 70, below: true, end: true }
-	];
-	const ROUTE_D =
-		'M20 70 C 90 10, 150 10, 190 60 S 300 125, 360 80 S 470 15, 540 60 S 650 130, 720 80 S 830 20, 960 70';
+	// Bilingual rule (§2.2): in Hindi and Marathi the Devanagari name is the headline and the Latin goes on the board.
+	const loc = locale();
+	const deva = loc !== 'en';
+
+	type Stop = { x: number; y: number; up: boolean };
+	// The coast runs north to south, Jaigad to Pawas. Every stop is a turning point of the line (flat tangent), so a
+	// label on the outer side of a stop never touches the route.
+	const H_X = [20, 190, 360, 540, 720, 960];
+	const H_Y = [70, 38, 104, 38, 104, 70];
+	const STOPS_H: Stop[] = H_X.map((x, i) => ({ x, y: H_Y[i], up: H_Y[i] < 60 }));
+	// Phones: the same six stops laid down the screen (north at the top), labels alternating out to each side.
+	const V_X = [160, 128, 192, 128, 192, 160];
+	const STOPS_V: Stop[] = V_X.map((x, i) => ({ x, y: 14 + i * 34, up: i === 5 || x < 160 }));
+
+	const path = (s: Stop[], vertical: boolean) =>
+		s.reduce((d, p, i) => {
+			if (!i) return `M${p.x} ${p.y}`;
+			const q = s[i - 1];
+			const m = vertical ? (p.y - q.y) / 2 : (p.x - q.x) / 2;
+			return vertical
+				? `${d} C${q.x} ${q.y + m} ${p.x} ${p.y - m} ${p.x} ${p.y}`
+				: `${d} C${q.x + m} ${q.y} ${p.x - m} ${p.y} ${p.x} ${p.y}`;
+		}, '');
+	const D_H = path(STOPS_H, false);
+	const D_V = path(STOPS_V, true);
 
 	onMount(() => {
 		const still = reducedMotion.current;
+		const phone = matchMedia('(max-width: 720px)').matches;
+		const end = (phone ? STOPS_V : STOPS_H).at(-1)!;
 		sky = still ? GOLDEN : skyAt(istHours());
 		const tick = setInterval(() => !reducedMotion.current && (sky = skyAt(istHours())), 60_000);
-		if (still || !hero) return () => clearInterval(tick);
+		if (still || !hero) {
+			crab = { x: end.x, y: end.y, state: 'idle', on: true, v: phone };
+			return () => clearInterval(tick);
+		}
 
 		// Parallax: pointer (desktop) and scroll move the layers through CSS vars, one rAF per frame at most.
 		const lite = lowEnd() || dataSaver.current;
@@ -62,19 +83,19 @@
 		addEventListener('pointermove', move, { passive: true });
 		addEventListener('scroll', queue, { passive: true });
 
-		// The tiny Crabby walks the route once it has drawn (CSS draws it from 1.5 s to 3.3 s).
+		// Crabby walks the route once it has drawn (CSS draws it from 1.4 s to 2.8 s), then waves at Pawas.
 		let walk = 0;
 		const start = setTimeout(() => {
+			const route = phone ? routeV : routeH;
 			if (!route) return;
 			const len = route.getTotalLength();
 			const t0 = performance.now();
-			const DUR = 4200;
-			crab.on = true;
-			crab.state = 'scuttle';
+			const DUR = 3600;
+			crab = { x: STOPS_H[0].x, y: STOPS_H[0].y, state: 'scuttle', on: true, v: phone };
 			const step = (now: number) => {
 				const k = Math.min(1, (now - t0) / DUR);
 				const e = k < 0.5 ? 2 * k * k : 1 - (-2 * k + 2) ** 2 / 2;
-				const p = route!.getPointAtLength(e * len);
+				const p = route.getPointAtLength(e * len);
 				crab.x = p.x;
 				crab.y = p.y;
 				if (k < 1) walk = requestAnimationFrame(step);
@@ -84,7 +105,7 @@
 				}
 			};
 			walk = requestAnimationFrame(step);
-		}, 3300);
+		}, 2900);
 
 		return () => {
 			clearInterval(tick);
@@ -99,42 +120,110 @@
 	const letters = HERO.title.split('');
 </script>
 
-<section class={['hero', `ph-${sky.phase}`]} bind:this={hero} aria-labelledby="hero-title">
+{#snippet stops(list: Stop[], vertical: boolean)}
+	{#each list as s, i (i)}
+		{@const end = i === 0 || i === list.length - 1}
+		{@const side = vertical ? (s.up ? -1 : 1) : s.up ? -1 : 1}
+		<g class="stop" style:--i={i}>
+			<!-- a round postmark per stop: ring, dotted inner ring, ink dot -->
+			<g class="pin" style:transform-origin="{s.x}px {s.y}px">
+				<circle
+					cx={s.x}
+					cy={s.y}
+					r={end ? 9 : 7}
+					fill="var(--hero-paper)"
+					stroke="currentColor"
+					stroke-width="1.6"
+				/>
+				<circle
+					cx={s.x}
+					cy={s.y}
+					r={end ? 5.6 : 4.2}
+					fill="none"
+					stroke="currentColor"
+					stroke-width=".9"
+					stroke-dasharray="1.4 1.3"
+				/>
+				<circle cx={s.x} cy={s.y} r={end ? 2.4 : 1.8} fill="currentColor" />
+			</g>
+			{#if vertical}
+				<path
+					d="M{s.x + side * 11} {s.y} h{side * 5}"
+					class="tick"
+					stroke="currentColor"
+					stroke-width="1.2"
+				/>
+				<text
+					x={s.x + side * 20}
+					y={s.y + 4}
+					text-anchor={side < 0 ? 'end' : 'start'}
+					class="j-caps label">{tr(HERO.route[i]).toLocaleUpperCase('en-IN')}</text
+				>
+			{:else}
+				<path
+					d="M{s.x} {s.y + side * 12} v{side * 6}"
+					class="tick"
+					stroke="currentColor"
+					stroke-width="1.2"
+				/>
+				<text x={s.x} y={s.up ? s.y - 24 : s.y + 34} text-anchor="middle" class="j-caps label"
+					>{tr(HERO.route[i]).toLocaleUpperCase('en-IN')}</text
+				>
+			{/if}
+		</g>
+	{/each}
+{/snippet}
+
+<section
+	class={['hero', `ph-${sky.phase}`]}
+	bind:this={hero}
+	aria-labelledby="hero-title"
+	data-photo-slot={HERO.photo.en}
+	data-sky={sky.phase}
+>
 	<Diorama {sky} />
 	<JournalNav tone={sky.phase === 'night' ? 'dark' : 'light'} />
 
 	<div class="copy j-wrap">
 		<p class="j-caps eyebrow">{tr(HERO.eyebrow)}</p>
-		<p class="deva" lang="mr">
-			<span class="sr-only">{HERO.deva}</span>
-			<svg viewBox="0 0 300 64" aria-hidden="true">
-				<text x="150" y="46" text-anchor="middle">{HERO.deva}</text>
-			</svg>
+		<!-- the station nameboard: the other script of the name, on a yellow board that swings down -->
+		<p class={['board', deva && 'latin']} lang={deva ? 'en' : 'mr'}>
+			<span>{deva ? HERO.title.toLocaleUpperCase('en-IN') : HERO.deva}</span>
 		</p>
-		<h1 id="hero-title" class="j-display title" lang="en" aria-label={HERO.title}>
+		<h1
+			id="hero-title"
+			class={['j-display', 'title', deva && 'title-deva']}
+			lang={deva ? loc : 'en'}
+			aria-label={deva ? HERO.deva : HERO.title}
+		>
 			<span class="mask" aria-hidden="true">
-				{#each letters as ch, i (i)}<span class="ch" style:--i={i}>{ch}</span>{/each}
+				{#if deva}
+					<span class="ch" style:--i={0}>{HERO.deva}</span>
+				{:else}
+					{#each letters as ch, i (i)}<span class="ch" style:--i={i}>{ch}</span>{/each}
+				{/if}
 			</span>
 		</h1>
 		<p class="j-lead sub">{tr(HERO.sub)}</p>
 
 		<div class="route">
-			<svg viewBox="-20 0 1020 150" role="img" aria-label={tr(HERO.routeLabel)}>
+			<svg class="route-h" viewBox="-20 0 1020 150" role="img" aria-label={tr(HERO.routeLabel)}>
 				<defs>
 					<mask id="route-reveal" maskUnits="userSpaceOnUse">
 						<path
 							class="reveal"
-							d={ROUTE_D}
+							d={D_H}
 							pathLength="1"
 							fill="none"
 							stroke="#fff"
-							stroke-width="10"
+							stroke-width="12"
 						/>
 					</mask>
 				</defs>
 				<path
-					bind:this={route}
-					d={ROUTE_D}
+					bind:this={routeH}
+					d={D_H}
+					class="line"
 					fill="none"
 					stroke="currentColor"
 					stroke-width="1.8"
@@ -142,43 +231,51 @@
 					stroke-linecap="round"
 					mask="url(#route-reveal)"
 				/>
-				{#each STOPS as s, i (i)}
-					<g class="stop" style:--i={i}>
-						<g class="pin" style:transform-origin="{s.x}px {s.y}px">
-							{#if s.end}
-								<circle
-									cx={s.x}
-									cy={s.y}
-									r="7"
-									fill="var(--hero-paper)"
-									stroke="currentColor"
-									stroke-width="2.2"
-								/>
-								<circle cx={s.x} cy={s.y} r="2.4" fill="currentColor" />
-							{:else}
-								<circle cx={s.x} cy={s.y} r="4.5" fill="currentColor" />
-							{/if}
-						</g>
-						<text
-							x={s.x}
-							y={s.below ? s.y + 36 : s.y - 22}
-							text-anchor="middle"
-							class="j-caps label"
-							font-size="12">{tr(HERO.route[i]).toLocaleUpperCase('en-IN')}</text
-						>
-					</g>
-				{/each}
-				{#if crab.on}
-					<g transform="translate({crab.x - 17} {crab.y - 30})">
+				{@render stops(STOPS_H, false)}
+				{#if crab.on && !crab.v}
+					<g transform="translate({crab.x - 17} {crab.y - 31})">
 						<Crabby size={34} state={crab.state} follow={false} speed={0.7} />
 					</g>
 				{/if}
 			</svg>
-			<p class="tag j-caps">{tr(HERO.tag)}</p>
+			<svg class="route-v" viewBox="0 0 320 200" role="img" aria-label={tr(HERO.routeLabel)}>
+				<defs>
+					<mask id="route-reveal-v" maskUnits="userSpaceOnUse">
+						<path
+							class="reveal"
+							d={D_V}
+							pathLength="1"
+							fill="none"
+							stroke="#fff"
+							stroke-width="12"
+						/>
+					</mask>
+				</defs>
+				<path
+					bind:this={routeV}
+					d={D_V}
+					fill="none"
+					stroke="currentColor"
+					stroke-width="1.6"
+					stroke-dasharray="4 6"
+					stroke-linecap="round"
+					mask="url(#route-reveal-v)"
+				/>
+				{@render stops(STOPS_V, true)}
+				{#if crab.on && crab.v}
+					<g transform="translate({crab.x - 13} {crab.y - 25})">
+						<Crabby size={26} state={crab.state} follow={false} speed={0.7} />
+					</g>
+				{/if}
+			</svg>
+
+			<!-- the tag is an ST bus ticket: the main slip and a torn-off stub that leads into Discover -->
+			<a class="ticket" href={resolve('/discover')}>
+				<span class="t-main j-caps">{tr(HERO.tag)}</span>
+				<span class="t-stub j-caps">{tr(NAV.links[0].label)}<span aria-hidden="true">→</span></span>
+			</a>
 		</div>
 	</div>
-
-	<p class="photo j-caps">{tr(HERO.photo)} · {tr(HERO.sky[sky.phase])}</p>
 
 	<!-- shoreline into the paper, and the notch hanging from the sea with the scroll arrow -->
 	<svg class="shore" viewBox="0 0 1440 40" preserveAspectRatio="none" aria-hidden="true">
@@ -230,7 +327,7 @@
 		color: var(--hero-ink);
 		isolation: isolate;
 		z-index: 2;
-		padding-bottom: 40px;
+		padding-bottom: 64px;
 	}
 	.shore {
 		position: absolute;
@@ -257,13 +354,13 @@
 	.arrow {
 		position: absolute;
 		left: 50%;
-		top: 2px;
+		top: -2px;
 		translate: -50% 0;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		width: 36px;
-		height: 36px;
+		width: 44px;
+		height: 44px;
 		border-radius: 999px;
 		border: 1.5px solid #fff;
 		color: #fff;
@@ -297,7 +394,7 @@
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		padding-top: clamp(28px, 6vh, 72px);
+		padding-top: clamp(24px, 5vh, 64px);
 		pointer-events: none;
 	}
 	.copy :global(a),
@@ -308,30 +405,63 @@
 		color: var(--hero-soft);
 		letter-spacing: 0.32em;
 	}
-	.deva {
-		margin-top: 10px;
-		width: min(220px, 60vw);
-		line-height: 0;
-	}
-	.deva svg {
-		width: 100%;
-		height: auto;
-		overflow: visible;
-	}
-	.deva text {
+
+	/* Station nameboard (§4.1): yellow fill, ink border, an inner rule and two bolts. Hinged at the top. */
+	.board {
+		position: relative;
+		margin-top: 14px;
+		padding: 2px 30px 4px;
+		background: var(--station);
+		color: var(--ink);
+		border: 2px solid var(--ink);
+		border-radius: 4px;
+		box-shadow:
+			inset 0 0 0 3px var(--station),
+			inset 0 0 0 4.5px var(--ink),
+			var(--print-2);
 		font-family: var(--j-deva);
-		font-size: 46px;
-		fill: var(--hero-soft);
-		stroke: var(--hero-soft);
-		stroke-width: 0.7;
-		stroke-dasharray: 340;
-		stroke-dashoffset: 0;
+		font-size: clamp(24px, 2.6vw, 34px);
+		line-height: 1.45;
+		transform-origin: 50% 0;
 	}
+	.board::before,
+	.board::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: 5px;
+		height: 5px;
+		margin-top: -2.5px;
+		border-radius: 50%;
+		background: var(--ink);
+	}
+	.board::before {
+		left: 9px;
+	}
+	.board::after {
+		right: 9px;
+	}
+	.board.latin {
+		padding: 9px 30px 8px;
+		font-family: var(--j-text);
+		font-weight: 600;
+		font-size: clamp(16px, 1.8vw, 22px);
+		line-height: 1.2;
+		letter-spacing: 0.16em;
+	}
+
 	.title {
-		margin-top: -2px;
+		margin-top: 6px;
 		font-size: clamp(72px, 15vw, 196px);
 		line-height: 0.9;
 		letter-spacing: -0.035em;
+	}
+	/* Devanagari headline: Tiro, more line height for the matras, no negative tracking. */
+	.title-deva {
+		margin-top: 14px;
+		font-size: clamp(60px, 13vw, 172px);
+		line-height: 1.15;
+		letter-spacing: 0;
 	}
 	/* The letters rise from behind a wave: the wavy bottom edge is a mask, not a box. */
 	.mask {
@@ -341,6 +471,9 @@
 		mask: var(--wave-mask) bottom / 100% 100% no-repeat;
 		--wave-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H200V90Q187.5 82 175 90T150 90T125 90T100 90T75 90T50 90T25 90T0 90Z'/%3E%3C/svg%3E");
 	}
+	.title-deva .mask {
+		padding: 0.02em 0.04em 0.12em;
+	}
 	.ch {
 		display: inline-block;
 	}
@@ -348,75 +481,114 @@
 		margin-top: 18px;
 		max-width: 560px;
 	}
+
 	.route {
-		margin-top: clamp(16px, 3vh, 32px);
+		margin-top: clamp(14px, 2.6vh, 30px);
 		width: min(980px, 100%);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
 	}
 	.route svg {
 		width: 100%;
 		height: auto;
 		overflow: visible;
 	}
+	.route-v {
+		display: none;
+	}
 	.label {
 		fill: currentColor;
 		font-family: var(--j-text);
+		font-size: 12px;
 		font-weight: 600;
 		letter-spacing: 3px;
 	}
-	.tag {
-		display: inline-block;
-		margin-top: 2px;
-		padding: 10px 22px;
-		background: var(--hero-ink);
-		color: var(--hero-paper);
-		letter-spacing: 0.3em;
-		/* a stamped label: slightly rotated, with a misregistered laterite edge */
-		transform: rotate(-1.2deg);
-		box-shadow: 3px 3px 0 var(--laterite);
+	:global(.journal:is(:lang(hi), :lang(mr))) .label {
+		font-size: 14px;
+		letter-spacing: 0;
 	}
-	.photo {
-		position: absolute;
-		z-index: 5;
-		left: var(--j-gutter);
-		bottom: 52px;
-		font-size: 10px;
-		letter-spacing: 0.14em;
-		color: var(--beige);
-		opacity: 0.8;
+
+	/* The ST ticket: a paper slip and a navy stub, torn along a notched line, printed with a hard shadow. */
+	.ticket {
+		display: inline-flex;
+		align-items: stretch;
+		min-height: 44px;
+		margin-top: 4px;
+		text-decoration: none;
+		color: var(--navy);
+		transform: rotate(-1.2deg);
+		filter: drop-shadow(3px 3px 0 var(--ink));
+		transition:
+			transform 0.2s var(--j-spring),
+			filter 0.2s;
+	}
+	.ticket:hover {
+		transform: translate(-1px, -2px) rotate(-1.2deg);
+		filter: drop-shadow(5px 5px 0 var(--ink));
+	}
+	.ticket:active {
+		transform: translate(2px, 2px) rotate(-1.2deg);
+		filter: drop-shadow(1px 1px 0 var(--ink));
+	}
+	.t-main,
+	.t-stub {
+		display: flex;
+		align-items: center;
+		padding: 10px 20px;
+		--n:
+			radial-gradient(circle 6px at var(--nx) 0, #0000 97%, #000) top / 100% 51% no-repeat,
+			radial-gradient(circle 6px at var(--nx) 100%, #0000 97%, #000) bottom / 100% 51% no-repeat;
+		-webkit-mask: var(--n);
+		mask: var(--n);
+	}
+	.t-main {
+		--nx: 100%;
+		background: var(--paper);
+		letter-spacing: 0.24em;
+	}
+	.t-stub {
+		--nx: 0;
+		gap: 8px;
+		background: var(--navy);
+		color: var(--paper);
+		letter-spacing: 0.2em;
+		white-space: nowrap;
 	}
 
 	@media (max-width: 720px) {
-		.route svg {
+		.eyebrow {
+			font-size: 11px;
+			letter-spacing: 0.18em;
+		}
+		.board {
+			margin-top: 12px;
+			padding-inline: 26px;
+		}
+		.route-h {
 			display: none;
+		}
+		.route-v {
+			display: block;
+			max-width: 320px;
 		}
 		.route {
-			margin-top: 20px;
+			margin-top: 10px;
 		}
-		.tag {
+		.t-main,
+		.t-stub {
+			padding: 8px 12px;
 			font-size: 10px;
-			padding: 8px 14px;
-			letter-spacing: 0.22em;
-		}
-		.photo {
-			display: none;
+			letter-spacing: 0.16em;
 		}
 	}
 
 	@media (prefers-reduced-motion: no-preference) {
 		.eyebrow {
-			animation: slide-up 0.8s var(--j-ease-out) 0.1s both;
+			animation: slide-up 0.8s var(--j-ease-out) 0.05s both;
 		}
-		/* English pages: रत्नागिरी writes itself once its face has arrived (after load, see whenDevaReady). */
-		:global(.journal.deva-ready) .deva text {
-			animation:
-				write 1.8s cubic-bezier(0.6, 0, 0.3, 1) both,
-				ink-fill 0.6s ease-out 1.4s both;
-		}
-		:global(.journal:not(.deva-ready)) .deva text {
-			opacity: 0;
-		}
-		:global(.journal:is(:lang(hi), :lang(mr))) .deva text {
-			opacity: 1;
+		.board {
+			animation: flip 0.7s var(--j-spring) 0.15s both;
 		}
 		.ch {
 			animation: rise 1s var(--j-ease-out) calc(0.35s + var(--i) * 0.06s) both;
@@ -426,17 +598,20 @@
 		}
 		.reveal {
 			stroke-dasharray: 1;
-			animation: draw 1.8s cubic-bezier(0.55, 0, 0.35, 1) 1.5s both;
+			animation: draw 1.4s var(--j-ease-inout) 1.4s both;
 		}
 		.stop .pin {
-			animation: pop 0.5s var(--j-spring) calc(1.55s + var(--i) * 0.32s) both;
+			animation: postmark 0.38s var(--j-spring) calc(1.45s + var(--i) * 0.26s) both;
 		}
-		.stop .label {
-			animation: fade 0.6s ease-out calc(1.7s + var(--i) * 0.32s) both;
+		.stop :is(.label, .tick) {
+			animation: fade 0.5s ease-out calc(1.6s + var(--i) * 0.26s) both;
 		}
-		.tag {
-			animation: stamp 0.5s var(--j-spring) 3.3s both;
+		.ticket {
+			animation: stamp 0.5s var(--j-spring) 2.9s backwards;
 		}
+	}
+	:global(html[data-lite]) .reveal {
+		animation-duration: 0.4s;
 	}
 	/* transform only: the text is painted from the first frame (it is the LCP element) */
 	@keyframes slide-up {
@@ -444,25 +619,17 @@
 			transform: translateY(12px);
 		}
 	}
-	@keyframes fade-up {
+	@keyframes flip {
 		from {
-			opacity: 0;
-			transform: translateY(14px);
+			transform: perspective(600px) rotateX(-92deg);
+		}
+		to {
+			transform: perspective(600px) rotateX(0);
 		}
 	}
 	@keyframes fade {
 		from {
 			opacity: 0;
-		}
-	}
-	@keyframes write {
-		from {
-			stroke-dashoffset: 340;
-		}
-	}
-	@keyframes ink-fill {
-		from {
-			fill-opacity: 0;
 		}
 	}
 	@keyframes rise {
@@ -478,9 +645,15 @@
 			stroke-dashoffset: 0;
 		}
 	}
-	@keyframes pop {
+	/* stamps thunk (§2.5): big and tilted, then pressed in with a little ink spread */
+	@keyframes postmark {
 		from {
-			transform: scale(0);
+			opacity: 0;
+			transform: scale(1.6) rotate(-24deg);
+		}
+		60% {
+			opacity: 1;
+			transform: scale(0.94) rotate(-4deg);
 		}
 	}
 	@keyframes stamp {

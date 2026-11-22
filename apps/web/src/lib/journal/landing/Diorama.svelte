@@ -107,15 +107,42 @@
 					fill="url(#dio-riso)"
 					opacity=".12"
 				/>
-				<!-- red-earth cliff face -->
+				<!-- red-earth (laterite) cliff face: pitted block texture, cut into courses -->
+				<pattern id="dio-pits" width="11" height="9" patternUnits="userSpaceOnUse">
+					<ellipse cx="2.5" cy="2" rx="1.3" ry=".8" fill="#2f4156" />
+					<ellipse cx="8" cy="6.5" rx=".9" ry=".6" fill="#2f4156" />
+					<circle cx="6" cy="1.5" r=".5" fill="#2f4156" />
+				</pattern>
 				<path
-					d="M380 338 C396 350 410 356 420 362 L420 392 C404 384 392 372 380 360 Z"
+					d="M356 320 C378 332 402 348 420 360 L420 400 C398 390 374 370 356 348 Z"
 					fill="#b5462b"
-					opacity=".55"
+					opacity=".62"
 				/>
-				<g stroke="#2f4156" stroke-width="1.3" stroke-linecap="round" opacity=".45">
-					<path d="M388 346 l-2 14 M398 352 l-2 16 M408 357 l-1 16" />
+				<path
+					d="M356 320 C378 332 402 348 420 360 L420 400 C398 390 374 370 356 348 Z"
+					fill="url(#dio-pits)"
+					opacity=".4"
+				/>
+				<g stroke="#2f4156" stroke-width="1.2" stroke-linecap="round" opacity=".45" fill="none">
+					<path d="M358 334 C378 346 400 360 420 372 M360 346 C380 360 400 374 420 386" />
+					<path
+						d="M372 334 l-1 10 M392 346 l-1 12 M408 356 l-1 12 M384 352 l-1 12 M402 368 l-1 12"
+					/>
 				</g>
+				<!-- a hamlet of Mangalore-tile roofs on the hill (windows lit at night) -->
+				{#each [[190, 296, 1], [216, 299, 0.85], [240, 300, 0.9]] as [hx, hy, k] (hx)}
+					<g transform="translate({hx} {hy}) scale({k})">
+						<rect x="-10" y="-1" width="20" height="11" fill="#f5efeb" />
+						<rect x="-3" y="2.5" width="5" height="5" fill={night ? '#f6e3b4' : '#2f4156'} />
+						<path d="M-14 0 L-8 -9 L8 -9 L14 0 Z" fill="#b5462b" />
+						<path
+							d="M-11.5 -3 H11.5 M-9.5 -6 H9.5"
+							stroke="#2f4156"
+							stroke-width=".7"
+							opacity=".5"
+						/>
+					</g>
+				{/each}
 				<path
 					d="M600 360 C660 330 760 322 850 336 C900 344 930 354 960 366 L600 366 Z"
 					fill="var(--hill2)"
@@ -123,7 +150,6 @@
 				<!-- mango and cashew clumps -->
 				<g fill="#2f4156" opacity=".42">
 					<path d="M70 304 c-6 -16 10 -28 22 -20 c8 -12 28 -6 26 8 c12 2 12 18 0 20 Z" />
-					<path d="M168 292 c-4 -12 8 -22 18 -16 c6 -10 22 -4 20 6 c10 2 10 14 0 16 Z" />
 				</g>
 			</svg>
 		</div>
@@ -142,20 +168,37 @@
 				<g stroke="#f5efeb" stroke-width="2" stroke-linecap="round" class="glint">
 					<path d="M560 386 h18 M610 396 h10 M1010 392 h14 M960 420 h22" />
 				</g>
-				<!-- hodi (fishing boat) -->
-				<g class="boat" transform="translate(1000 392)">
-					<path d="M-46 0 C-30 14 30 14 50 0 L44 -4 L-40 -4 Z" fill="#2f4156" />
-					<path d="M-36 -4 L-30 -10 L36 -10 L42 -4" fill="none" stroke="#2f4156" stroke-width="2" />
-					<path d="M2 -10 L2 -64" stroke="#2f4156" stroke-width="2.4" stroke-linecap="round" />
+				<!-- hodi (Konkan fishing boat): raised prow, painted rail, a small stern cabin and festival bunting -->
+				<g class="boat" transform="translate(1070 392)">
 					<path
-						d="M4 -62 C24 -48 30 -30 28 -12 L4 -12 Z"
+						d="M-60 -18 C-56 -10 -50 -6 -44 -6 L38 -6 C46 -6 52 -9 60 -16 C56 -2 40 10 0 10 C-36 10 -54 0 -60 -18 Z"
+						fill="#2f4156"
+					/>
+					<path
+						d="M-54 -9 C-40 -2 30 -2 54 -10"
+						fill="none"
+						stroke="#f4b740"
+						stroke-width="2.4"
+						stroke-linecap="round"
+					/>
+					<path
+						d="M-44 -6 L-44 -21 L-18 -21 L-18 -6"
 						fill="#f5efeb"
 						stroke="#2f4156"
 						stroke-width="2"
 						stroke-linejoin="round"
 					/>
+					<path d="M-48 -22 L-14 -22" stroke="#2f4156" stroke-width="3" stroke-linecap="round" />
+					<path d="M6 -6 L6 -50" stroke="#2f4156" stroke-width="2.4" stroke-linecap="round" />
+					<path d="M6 -48 L58 -17" fill="none" stroke="#2f4156" stroke-width="1" />
+					<g stroke="#2f4156" stroke-width=".8" stroke-linejoin="round">
+						<path d="M19 -40 L25 -36.5 L18 -33 Z" fill="#f4b740" />
+						<path d="M32 -32 L38 -28.6 L31 -25 Z" fill="#b5462b" />
+						<path d="M45 -24.6 L51 -21 L44 -17.6 Z" fill="#f5efeb" />
+					</g>
+					<path d="M6 -50 L22 -46 L6 -42 Z" fill="#f4b740" stroke="#2f4156" stroke-width="1.2" />
 					<path
-						d="M-40 6 C-26 14 24 14 44 6"
+						d="M-50 8 C-30 16 26 16 50 6"
 						fill="none"
 						stroke="#c8d9e6"
 						stroke-width="1.6"
@@ -307,6 +350,18 @@
 		width: 100%;
 		height: 100%;
 	}
+	/* The tide comes in as the hero leaves (§4.1): the sea rises up to 24 px over the near cliffs while the other
+	   layers sink. The water drawn below the frame fills the gap. */
+	.land .sea {
+		transform: translate3d(
+			calc(var(--mx) * var(--d) * -36px),
+			calc(var(--my) * var(--d) * -14px + max(var(--sy) * -0.08px, -24px)),
+			0
+		);
+	}
+	.sea svg {
+		overflow: visible;
+	}
 	.land {
 		position: absolute;
 		left: 0;
@@ -435,10 +490,10 @@
 	@keyframes bob {
 		0%,
 		100% {
-			transform: translate(1000px, 392px) rotate(-1.5deg);
+			transform: translate(1070px, 392px) rotate(-1.5deg);
 		}
 		50% {
-			transform: translate(1000px, 396px) rotate(1.5deg);
+			transform: translate(1070px, 396px) rotate(1.5deg);
 		}
 	}
 	@keyframes glint {

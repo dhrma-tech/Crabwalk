@@ -47,6 +47,16 @@ body:has(.journal) {
 	--laterite: #b5462b;
 	--laterite-soft: #d9785a;
 	--sos: #d32f2f;
+	/* Supporting accent (design/IMPROVEMENT_PLAN.md §2.1): station boards, milestone caps, Hapus. Fill only, never
+	   text; navy on station is 5.8:1. */
+	--station: #f4b740;
+	--paper: #fbf8f5;
+	/* Print shadows (§2.3): hard offsets only; --lift is the one soft shadow, for things floating over art. */
+	--print-1: 2px 2px 0 var(--ink);
+	--print-2: 4px 4px 0 var(--ink);
+	--print-press: 1px 1px 0 var(--ink);
+	--lift: 0 12px 32px rgb(31 44 59 / 0.16);
+	--j-ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
 	/* Devanagari face. English pages paint it in the phone's own Devanagari font first and switch to Tiro after
 	   the page has loaded (`deva-ready`), so the 96 KB file never competes with the first paint. Hindi and
 	   Marathi pages, where Devanagari is the main text, use Tiro from the start. */
