@@ -437,8 +437,8 @@
 		</form>
 		<p class="px-6 pt-2 pb-3 text-center type-label text-text-2">
 			{#if crabby.remaining != null}<span class="tabular-nums"
-					>{m.crabby_remaining({ n: crabby.remaining })}{' · '}</span
-				>{/if}{m.crabby_disclaimer()}
+					>{m.crabby_remaining({ n: crabby.remaining })} ·
+				</span>{/if}{m.crabby_disclaimer()}
 		</p>
 	{/if}
 </div>

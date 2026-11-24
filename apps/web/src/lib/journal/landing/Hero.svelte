@@ -458,9 +458,9 @@
 	}
 	/* Devanagari headline: Tiro, more line height for the matras, no negative tracking. */
 	.title-deva {
-		margin-top: 14px;
-		font-size: clamp(60px, 13vw, 172px);
-		line-height: 1.15;
+		margin-top: 10px;
+		font-size: clamp(60px, 11vw, 148px);
+		line-height: 1.05;
 		letter-spacing: 0;
 	}
 	/* The letters rise from behind a wave: the wavy bottom edge is a mask, not a box. */
@@ -480,6 +480,10 @@
 	.sub {
 		margin-top: 18px;
 		max-width: 560px;
+	}
+	/* Devanagari runs longer: two lines, like English, so it stays clear of the hills. */
+	.title-deva + .sub {
+		max-width: 660px;
 	}
 
 	.route {

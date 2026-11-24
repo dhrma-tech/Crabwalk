@@ -349,8 +349,8 @@
 						{#each tal.spots as s, i (i)}<li>{tr(s)}</li>{/each}
 					</ul>
 					<a href={resolve('/discover')} class="explore"
-						>{tr(MAP.explore).replace('{name}', tr(tal.name))}
-						<span aria-hidden="true">→</span></a
+						>{tr(MAP.explore).replace('{name}', tr(tal.name))}&nbsp;<span aria-hidden="true">→</span
+						></a
 					>
 				</div>
 				<div class="stamp-slot" out:fly={slide(28)}>
@@ -617,8 +617,7 @@
 		font-weight: 600;
 	}
 	.explore {
-		display: inline-flex;
-		gap: 6px;
+		display: inline-block;
 		margin-top: 16px;
 		font-weight: 600;
 		text-underline-offset: 4px;
